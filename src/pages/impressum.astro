@@ -1,10 +1,212 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/PageHero.astro";
-import ContentPlaceholder from "@/components/ContentPlaceholder.astro";
 ---
 
 <Layout title="Impressum" description="Impressum gemäß § 5 TMG.">
   <PageHero eyebrow="Rechtliches" title="Impressum" intro="Angaben gemäß § 5 TMG." />
-  <ContentPlaceholder note="Rechtlich verbindlicher Text folgt — bitte Firmierung, Anschrift, Vertretungsberechtigte, Handelsregister, Aufsichtsbehörde (Vermittlerregister-Nr. nach § 34d GewO) und USt-IdNr. zuschicken." />
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div class="space-y-12 text-sm leading-relaxed text-ink-700/85">
+        <div class="space-y-1">
+          <p>
+            Fabio Rumpf<br />
+            Narzissenweg 7a<br />
+            34128 Kassel
+          </p>
+          <p>
+            Tel.: <a href="tel:056194033160" class="text-brand-700 underline underline-offset-2">0561-94033160</a><br />
+            E-Mail: <a href="mailto:info@fr-makler.de" class="text-brand-700 underline underline-offset-2">info@fr-makler.de</a>
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">
+            Inhaltlich verantwortlich i.S.d. § 18 Abs. 2 MStV
+          </h2>
+          <p class="mt-2">Fabio Rumpf (Anschrift wie oben)</p>
+        </div>
+
+        <div class="space-y-3">
+          <p>
+            Erlaubnis nach § 34d Abs. 1 Gewerbeordnung (Versicherungsmakler), Aufsichtsbehörde:
+            Industrie- und Handelskammer Kassel-Marburg, Kurfürstenstraße 9, 34117 Kassel
+          </p>
+          <p>
+            Erlaubnis nach § 34f Abs. 1 Gewerbeordnung (Finanzanlagenvermittler), Aufsichtsbehörde:
+            Industrie- und Handelskammer Kassel-Marburg, Kurfürstenstraße 9, 34117 Kassel
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">Vermittlerregister</h2>
+          <p class="mt-2">
+            <a
+              href="https://www.vermittlerregister.info"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-brand-700 underline underline-offset-2"
+            >
+              www.vermittlerregister.info
+            </a>
+          </p>
+          <p class="mt-2">
+            Registrierungs-Nr. D-JM3H-JQ3JL-94 (für § 34d GewO)<br />
+            Registrierungs-Nr. D-F-139-L56R-67 (für § 34f GewO)
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">Berufsbezeichnung</h2>
+          <p class="mt-2">
+            Versicherungsmakler mit Erlaubnis nach § 34d Abs. 1 Gewerbeordnung, Bundesrepublik Deutschland<br />
+            Finanzanlagenvermittler nach § 34f Abs. 1 Gewerbeordnung, Bundesrepublik Deutschland
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">Zuständige Berufskammer</h2>
+          <p class="mt-2">Industrie- und Handelskammer Kassel-Marburg, Kurfürstenstraße 9, 34117 Kassel</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">Berufsrechtliche Regelungen</h2>
+          <ul class="mt-2 list-inside list-disc space-y-1">
+            <li>§ 34d Gewerbeordnung (GewO)</li>
+            <li>§ 34f Gewerbeordnung (GewO)</li>
+            <li>§§ 59 – 68 Gesetz über den Versicherungsvertrag (VVG)</li>
+            <li>Verordnung über die Versicherungsvermittlung und -beratung (VersVermV)</li>
+            <li>Verordnung über die Finanzanlagenvermittlung (FinVermV)</li>
+          </ul>
+          <p class="mt-3">
+            Die berufsrechtlichen Regelungen können über die vom Bundesministerium der Justiz und
+            von der juris GmbH betriebene Homepage
+            <a
+              href="https://www.gesetze-im-internet.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-brand-700 underline underline-offset-2"
+            >
+              www.gesetze-im-internet.de
+            </a>
+            eingesehen und abgerufen werden.
+          </p>
+        </div>
+
+        <div class="space-y-6 border-t border-black/5 pt-10">
+          <h2 class="font-serif text-xl font-semibold text-ink-950">
+            Informationen über Nachhaltigkeitsrisiken bei Finanzprodukten
+          </h2>
+
+          <div>
+            <h3 class="font-semibold text-ink-950">Was sind Nachhaltigkeitsrisiken?</h3>
+            <p class="mt-2">
+              Als Nachhaltigkeitsrisiken (ESG-Risiken) werden Ereignisse oder Bedingungen aus den
+              drei Bereichen Umwelt (Environment), Soziales (Social) und Unternehmensführung
+              (Governance) bezeichnet, deren Eintreten negative Auswirkungen auf den Wert der
+              Investition bzw. Anlage haben könnten. Diese Risiken können einzelne Unternehmen
+              genauso wie ganze Branchen oder Regionen betreffen.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-ink-950">
+              Was gibt es für Beispiele für Nachhaltigkeitsrisiken in den drei Bereichen?
+            </h3>
+            <p class="mt-2">
+              <strong class="text-ink-950">Umwelt:</strong> In Folge des Klimawandels könnten vermehrt
+              auftretende Extremwetterereignisse ein Risiko darstellen. Dieses Risiko wird auch
+              physisches Risiko genannt. Ein Beispiel hierfür wäre eine extreme Trockenperiode in
+              einer bestimmten Region. Dadurch könnten Pegel von Transportwegen wie Flüssen so weit
+              sinken, dass der Transport von Waren beeinträchtigt werden könnte.
+            </p>
+            <p class="mt-3">
+              <strong class="text-ink-950">Soziales:</strong> Im Bereich des Sozialen könnten sich
+              Risiken zum Beispiel aus der Nichteinhaltung von arbeitsrechtlichen Standards oder des
+              Gesundheitsschutzes ergeben.
+            </p>
+            <p class="mt-3">
+              <strong class="text-ink-950">Unternehmensführung:</strong> Beispiele für Risiken im
+              Bereich der Unternehmensführung sind etwa die Nichteinhaltung der Steuerehrlichkeit
+              oder Korruption in Unternehmen.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-ink-950">
+              Information zur Einbeziehung von Nachhaltigkeitsrisiken bei der Beratungstätigkeit
+              (Art. 3 TVO)
+            </h3>
+            <p class="mt-2">
+              Um Nachhaltigkeitsrisiken bei der Beratung einzubeziehen, werden im Rahmen der Auswahl
+              von Anbietern (Finanzmarktteilnehmern) und deren Finanzprodukten deren zur Verfügung
+              gestellte Informationen berücksichtigt. Anbieter, die erkennbar keine Strategie zur
+              Einbeziehung von Nachhaltigkeitsrisiken in ihre Investitionsentscheidungen haben,
+              werden ggf. nicht angeboten. Im Rahmen der Beratung wird ggf. gesondert dargestellt,
+              wenn die Berücksichtigung der Nachhaltigkeitsrisiken bei der Investmententscheidung
+              erkennbare Vor- bzw. Nachteile für den Kunden bedeuten. Über die Berücksichtigung von
+              Nachhaltigkeitsrisiken bei Investitionsentscheidungen des jeweiligen Anbieters
+              informiert dieser mit seinen vorvertraglichen Informationen. Fragen dazu kann der
+              Kunde im Vorfeld eines möglichen Abschlusses ansprechen.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-ink-950">
+              Information zur Berücksichtigung nachteiliger Auswirkungen auf Nachhaltigkeitsfaktoren
+              (Art. 4 TVO in Verbindung mit Art. 11 der Ergänzung zur TVO vom 1. Januar 2023)
+            </h3>
+            <p class="mt-2">
+              Erklärung über die Berücksichtigung der wichtigsten nachteiligen Auswirkungen auf
+              Nachhaltigkeitsfaktoren bei der Anlage- und Versicherungsberatung:
+            </p>
+            <p class="mt-3">
+              Bei der Beratung ist es unser Ziel, Ihnen ein geeignetes
+              Anlage-/Versicherungsanlageprodukt empfehlen zu können. Dabei berücksichtigen wir auch
+              Ihre Nachhaltigkeitspräferenzen, sofern Sie dies wünschen. Hierbei können Sie
+              festlegen, ob bei Ihrer Anlage ökologische und/oder soziale Werte sowie Grundsätze
+              guter Unternehmensführung und/oder die wichtigsten nachteiligen Auswirkungen von
+              Investitionsentscheidungen auf Nachhaltigkeitsfaktoren berücksichtigt werden sollen.
+              Der Gesetzgeber hat je nach Art des Anlageziels (Investition in Unternehmen, Staaten,
+              Immobilien etc.) in folgenden Bereichen „Indikatoren" für die wichtigsten nachteiligen
+              Auswirkungen ihrer Investitionsentscheidungen auf Nachhaltigkeitsfaktoren bestimmt:
+            </p>
+            <ul class="mt-3 list-inside list-disc space-y-1">
+              <li>Umwelt-, Sozial- und Arbeitnehmerbelange</li>
+              <li>Die Achtung der Menschenrechte</li>
+              <li>Die Bekämpfung von Korruption und Bestechung</li>
+            </ul>
+            <p class="mt-3">
+              Die Produktanbieter sind gesetzlich verpflichtet, eine Erklärung zu veröffentlichen,
+              welche Strategie sie in Bezug auf die Berücksichtigung der wichtigsten nachteiligen
+              Auswirkungen und den Umgang damit verfolgen. Dies bezieht sich insbesondere auf
+              Treibhausgasemissionen, Wasserverbrauch, Biodiversität, Abfall, Soziales und
+              Arbeitnehmerbelange (einschließlich Menschenrechte und Korruption). Wenn Sie sich dazu
+              entscheiden, dass die wichtigsten nachteiligen Auswirkungen Ihrer
+              Investitionsentscheidungen auf Nachhaltigkeitsfaktoren bei der Produktauswahl
+              berücksichtigt werden sollen, beachten wir im Rahmen des Auswahlprozesses die von den
+              Produktanbietern bereitgestellten Informationen sowie die von den Produktanbietern
+              dargelegten Strategien. Eigene Einstufungs- und Auswahlmethoden zu den Informationen
+              der Produktanbieter wenden wir nicht an. Es erfolgt keine gesonderte Prüfung der
+              Angaben der Produktanbieter in Hinblick auf ihre Plausibilität.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-ink-950">
+              Informationen zur Vergütungspolitik bei der Berücksichtigung von Nachhaltigkeitsrisiken
+              (Art. 5 TVO)
+            </h3>
+            <p class="mt-2">
+              Die Vergütung für die Vermittlung von Finanzprodukten wird grundsätzlich nicht von den
+              Nachhaltigkeitsrisiken beeinflusst. Es kann vorkommen, dass Anbieter die
+              Berücksichtigung von Nachhaltigkeitsrisiken bei Investitionen höher vergüten. Wenn
+              dies dem Kundeninteresse nicht widerspricht, wird die höhere Vergütung angenommen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

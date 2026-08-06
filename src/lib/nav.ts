@@ -16,9 +16,5 @@ export const primaryNav: NavLink[] = [
 export const legalNav: NavLink[] = [
   { label: "Datenschutz", href: "/datenschutz" },
   { label: "Erstinformation", href: "/erstinformation" },
-  {
-    label: "Impressum",
-    href: "https://fabio-rumpf.vermittler-impressum.de/impressum-687165.html",
-    external: true,
-  },
+  { label: "Impressum", href: "/impressum" },
 ];
