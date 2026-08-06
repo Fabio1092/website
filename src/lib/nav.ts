@@ -9,7 +9,6 @@ export const primaryNav: NavLink[] = [
   { label: "PKV", href: "/private-krankenversicherung-kassel" },
   { label: "BU", href: "/bu" },
   { label: "Über mich", href: "/ueber-mich" },
-  { label: "Kontakt", href: "/kontakt" },
 ];
 
 export const legalNav: NavLink[] = [
