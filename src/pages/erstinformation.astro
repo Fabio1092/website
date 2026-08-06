@@ -1,13 +1,141 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/PageHero.astro";
-import ContentPlaceholder from "@/components/ContentPlaceholder.astro";
 ---
 
 <Layout
   title="Erstinformation"
-  description="Erstinformation gemäß § 15 VersVermV."
+  description="Information nach § 15 Versicherungsvermittlungsverordnung (VersVermV) sowie § 12 Finanzanlagenvermittlungsverordnung (FinVermV)."
 >
-  <PageHero eyebrow="Rechtliches" title="Erstinformation" intro="Pflichtangaben gemäß § 15 VersVermV." />
-  <ContentPlaceholder note="Text der Erstinformation folgt — bitte das bestehende Dokument (PDF oder Text) zuschicken, dann übernehme ich es hier." />
+  <PageHero
+    eyebrow="Rechtliches"
+    title="Erstinformation"
+    intro="Information nach § 15 Versicherungsvermittlungsverordnung (VersVermV) sowie § 12 Finanzanlagenvermittlungsverordnung (FinVermV)."
+  />
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div class="space-y-12 text-sm leading-relaxed text-ink-700/85">
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">1. Fabio Rumpf</h2>
+          <p class="mt-2">
+            Fabio Rumpf Versicherungs- und Finanzmakler<br />
+            Narzissenweg 7a<br />
+            34128 Kassel
+          </p>
+          <p class="mt-2">
+            Tel.-Nr.: <a href="tel:056194033160" class="text-brand-700 underline underline-offset-2">0561 94033160</a><br />
+            E-Mail-Adresse: <a href="mailto:info@fr-makler.de" class="text-brand-700 underline underline-offset-2">info@fr-makler.de</a>
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">2. Status des Vermittlers gemäß Gewerbeordnung</h2>
+          <p class="mt-2">
+            Ich bin als Versicherungsmakler tätig und biete Beratungsdienstleistungen an. Ich
+            verfüge über eine Gewerbeerlaubnis nach § 34d Abs. 1 der Gewerbeordnung und bin bei der
+            zuständigen Behörde IHK Kassel-Marburg gemeldet.
+          </p>
+          <p class="mt-2">Im Vermittlerregister bin ich unter der Nummer D-JM3H-JQ3JL-94 registriert.</p>
+          <p class="mt-2">Bei Interesse können Sie die Angaben bei der gemeinsamen Registerstelle überprüfen:</p>
+          <p class="mt-2">
+            Industrie und Handelskammer Kassel-Marburg<br />
+            Kurfürstenstraße 9<br />
+            34117 Kassel<br />
+            Tel.: 0561 7891-0<br />
+            Internet:
+            <a
+              href="https://www.vermittlerregister.info"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-brand-700 underline underline-offset-2"
+            >
+              www.vermittlerregister.info
+            </a>
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">3. Vergütung</h2>
+          <p class="mt-2">
+            Für die Vermittlung und die Betreuung von Versicherungsverträgen erhalte ich in der
+            Regel Courtagen, die von den Versicherungsunternehmen an mich ausgezahlt, aber
+            wirtschaftlich von Ihnen getragen werden, da sie in den Versicherungsprämien enthalten
+            sind.
+          </p>
+          <p class="mt-2">
+            Bei Bedarf und nach Vereinbarung mit unseren Kunden werden wir auch auf Basis anderer
+            Vergütungsmodelle tätig, z. B. in Form von Honorarvereinbarungen oder von Kombinationen
+            der Vergütungsmodelle.
+          </p>
+          <p class="mt-2">Über die vorgenannten Vergütungen hinaus erhalte ich keine anderen Zuwendungen.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">
+            4. Schlichtungsstellen für außergerichtliche Streitbeilegung
+          </h2>
+          <p class="mt-2">
+            Schlichtungsstelle für gewerbliche Versicherungs-, Anlage- und Kreditvermittlung<br />
+            Glockengießerwall 2<br />
+            20095 Hamburg<br />
+            Internet:
+            <a
+              href="https://www.schlichtung-finanzberatung.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-brand-700 underline underline-offset-2"
+            >
+              www.schlichtung-finanzberatung.de
+            </a>
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">
+            5. Informationen über Emittenten und Anbieter, zu deren Finanzanlagen Vermittlungs- oder
+            Beratungsleistungen angeboten werden
+          </h2>
+          <p class="mt-2">
+            Vermittelt und beraten wird zu Finanzanlagen aus der gesamten Breite des in Deutschland
+            bestehenden Marktes, soweit dies im Rahmen der behördlichen Zulassung als
+            Finanzanlagenvermittler/-berater gem. § 34f Absatz 1 Nr. 1 GewO zulässig ist.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-lg font-semibold text-ink-950">
+            6. Informationen über die Vergütung bei der Finanzanlagenberatung und -vermittlung
+          </h2>
+          <p class="mt-2">
+            Im Zusammenhang mit der Anlageberatung oder -vermittlung kann die Vergütung hierfür
+            durch den Anleger oder durch Dritte (Produktgeber, Kooperationspartner) in Kombination
+            erfolgen. Dies ist abhängig von den Wünschen und Bedürfnissen des Anlegers und den
+            Finanzprodukten, welche eventuell vermittelt werden.
+          </p>
+          <p class="mt-2">
+            Soweit die Vergütungsbestandteile insofern durch den Anleger gezahlt werden, erfolgt
+            dies entsprechend der gesondert zu treffenden Vergütungsvereinbarung.
+          </p>
+          <p class="mt-2">
+            Soweit Zuwendungen im Zusammenhang mit der Anlageberatung oder -vermittlung insofern
+            von Dritten (Produktgebern, Kooperationspartnern) erbracht werden, dürfen diese
+            behalten werden.
+          </p>
+        </div>
+
+        <div class="border-t border-black/5 pt-10">
+          <h2 class="font-serif text-lg font-semibold text-ink-950">
+            Information zur Teilnahme am Streitbeilegungsverfahren gemäß § 36 Verbraucherstreitbeilegungsgesetz
+          </h2>
+          <p class="mt-2">
+            In Versicherungsangelegenheiten nehme ich an einem verpflichtenden
+            Streitbeilegungsverfahren vor den oben unter Ziffer vier genannten
+            Verbraucherschlichtungsstellen teil. In der Anlagevermittlung nehme ich daran auf
+            freiwilliger Basis teil.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
