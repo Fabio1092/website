@@ -1,0 +1,44 @@
+---
+const questions = [
+  "Was möchtest du absichern?",
+  "Was ist dir wirklich wichtig?",
+  "Welche Risiken möchtest du vermeiden?",
+  "Welche Leistungen brauchst du möglicherweise gar nicht?",
+];
+---
+
+<section id="about-warum-unabhaengig" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Warum unabhängige Beratung?</span>
+    <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Weil eine gute Lösung nicht bei jedem Menschen gleich aussieht.
+    </h2>
+
+    <div class="mt-8 space-y-5 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Versicherungen sind komplex. Gleichzeitig betreffen Entscheidungen zur Berufsunfähigkeit
+        oder privaten Krankenversicherung oft mehrere Jahrzehnte des eigenen Lebens.
+      </p>
+      <p>
+        Deshalb reicht es aus meiner Sicht nicht, einige Tarife nebeneinanderzustellen und am Ende
+        den günstigsten Beitrag zu markieren.
+      </p>
+      <p>Gute Beratung beginnt damit, deine Situation zu verstehen:</p>
+    </div>
+
+    <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+      {
+        questions.map((question) => (
+          <li class="rounded-xl border border-black/5 bg-white px-5 py-4 font-serif text-base text-ink-950">
+            {question}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-8 text-base leading-relaxed text-ink-700/85">
+      Erst wenn diese Fragen beantwortet sind, können wir beurteilen, welche Lösung wirklich zu
+      dir passt.
+    </p>
+  </div>
+</section>

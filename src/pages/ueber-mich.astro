@@ -1,17 +1,35 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import PageHero from "@/components/PageHero.astro";
-import ContentPlaceholder from "@/components/ContentPlaceholder.astro";
+import AboutHero from "@/components/about/AboutHero.astro";
+import AboutStory from "@/components/about/AboutStory.astro";
+import AboutWhyIndependent from "@/components/about/AboutWhyIndependent.astro";
+import AboutValues from "@/components/about/AboutValues.astro";
+import AboutHonesty from "@/components/about/AboutHonesty.astro";
+import AboutExpertise from "@/components/about/AboutExpertise.astro";
+import AboutPersonal from "@/components/about/AboutPersonal.astro";
+import AboutPromise from "@/components/about/AboutPromise.astro";
+import FinalCta from "@/components/FinalCta.astro";
 ---
 
 <Layout
   title="Über mich"
-  description="Fabio Rumpf — Versicherungsmakler aus Kassel. Persönlich, unabhängig, digital."
+  description="Fabio Rumpf — unabhängiger Versicherungsmakler aus Kassel, spezialisiert auf Berufsunfähigkeits- und private Krankenversicherung."
 >
-  <PageHero
-    eyebrow="Über mich"
-    title="Fabio Rumpf"
-    intro="Spezialist für Berufsunfähigkeitsversicherungen und private Absicherung — persönlich, ehrlich, auf Augenhöhe."
+  <AboutHero />
+  <AboutStory />
+  <AboutWhyIndependent />
+  <AboutValues />
+  <AboutHonesty />
+  <AboutExpertise />
+  <AboutPersonal />
+  <AboutPromise />
+  <FinalCta
+    id="about-cta"
+    eyebrow="Lernen wir uns kennen"
+    title="Der erste Schritt ist kein Vertragsabschluss. Es ist ein ehrliches Gespräch."
+    body="Im kostenlosen Erstgespräch sprechen wir über deine Situation, deine Fragen und das, was du erreichen möchtest. Danach weißt du, ob und wie ich dich sinnvoll unterstützen kann."
+    ctaLabel="Kostenloses Erstgespräch vereinbaren"
+    points={["Kostenlos und unverbindlich", "Persönlich in Kassel oder digital", "Keine Entscheidung unter Zeitdruck"]}
+    closingLine="Ich freue mich darauf, dich und deine Situation kennenzulernen."
   />
-  <ContentPlaceholder />
 </Layout>

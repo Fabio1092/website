@@ -1,0 +1,49 @@
+---
+import { Heart, MapPinned, Trophy } from "lucide-react";
+
+const markers = [
+  { icon: Heart, label: "Familie in Kassel" },
+  { icon: Trophy, label: "Fußball im Verein" },
+  { icon: MapPinned, label: "Verwurzelt in Nordhessen" },
+];
+---
+
+<section id="about-persoenlich" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Der Mensch hinter FR Makler</span>
+    <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      In Kassel zu Hause. Beruflich und privat fest verwurzelt.
+    </h2>
+
+    <div class="mt-8 space-y-5 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Ich lebe gemeinsam mit meiner Frau und unseren beiden Kindern in Kassel. Die Region ist
+        für mich nicht nur mein beruflicher Standort, sondern mein Zuhause.
+      </p>
+      <p>
+        Außerhalb der Beratung verbringe ich möglichst viel Zeit mit meiner Familie. Wir reisen
+        gerne gemeinsam und entdecken neue Orte.
+      </p>
+      <p>
+        Sport ist für mich der ideale Ausgleich zum beruflichen Alltag. Ich spiele Fußball im
+        Verein und bin auch darüber hinaus gerne aktiv.
+      </p>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      {
+        markers.map((marker) => (
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/5 bg-brand-50/50 px-4 py-2 text-sm text-ink-700/80">
+            <marker.icon className="h-4 w-4 text-brand-600" aria-hidden="true" />
+            {marker.label}
+          </span>
+        ))
+      }
+    </div>
+
+    <p class="mt-8 font-serif text-lg leading-relaxed text-ink-950">
+      Familie, Verlässlichkeit und ein respektvoller Umgang miteinander sind für mich nicht nur
+      privat wichtig. Diese Werte prägen auch die Art, wie ich mit meinen Kunden zusammenarbeite.
+    </p>
+  </div>
+</section>
