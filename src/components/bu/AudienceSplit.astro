@@ -1,0 +1,87 @@
+---
+import { CheckCircle2, TrendingUp, Wallet, ShieldCheck } from "lucide-react";
+
+const columns = [
+  {
+    eyebrow: "Du hast noch keine BU?",
+    title: "Wir finden die richtige Absicherung für deine Zukunft.",
+    intro:
+      "Gemeinsam finden wir heraus, welcher Versicherer am besten zu dir passt – mit starken Leistungen und fairen Beiträgen.",
+    points: [
+      "Professionelle Risikovoranfrage vor Antragstellung für die besten Annahmechancen",
+      "Individuelle Analyse deiner Situation und Ziele",
+      "Vergleich der Top-Versicherer am Markt",
+      "Klare Empfehlungen – verständlich & transparent",
+      "Digital, einfach und ohne Papierkram",
+    ],
+  },
+  {
+    eyebrow: "Du hast bereits eine BU?",
+    title: "Wir prüfen deinen Vertrag kostenlos und unverbindlich.",
+    intro: "Viele bestehende Verträge sind veraltet oder zu teuer. Eine Überprüfung lohnt sich oft mehr als du denkst.",
+    points: [
+      "Analyse deines aktuellen Vertrags und Leistungsumfangs",
+      "Prüfung auf bessere Tarifgenerationen und Bedingungen",
+      "Oft höhere Rente für weniger Geld möglich",
+      "Wir finden heraus, ob & wie ein Wechsel für dich sinnvoll ist",
+      "Jetzt prüfen, statt später ärgern",
+    ],
+  },
+];
+
+const goals = [
+  { icon: TrendingUp, label: "Mehr Leistung für dich" },
+  { icon: Wallet, label: "Weniger Beitrag für dich" },
+  { icon: ShieldCheck, label: "Mehr Sicherheit für deine Zukunft" },
+];
+---
+
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Für wen ist meine Beratung geeignet?</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Egal, wo du gerade stehst – ich helfe dir weiter</h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Ob du deine erste BU-Versicherung abschließen möchtest oder deinen bestehenden Vertrag
+        überprüfen willst – wir finden die beste Lösung für dich.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-2">
+      {
+        columns.map((col, index) => (
+          <div data-reveal style={`transition-delay: ${index * 100}ms`} class="rounded-2xl border border-black/5 bg-brand-50/30 p-8">
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-600">{col.eyebrow}</span>
+            <h3 class="mt-2 font-serif text-xl font-semibold text-ink-950">{col.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-ink-700/75">{col.intro}</p>
+            <ul class="mt-6 space-y-3">
+              {col.points.map((point) => (
+                <li class="flex items-start gap-2.5 text-sm text-ink-700/85">
+                  <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-14 rounded-2xl bg-ink-950 px-8 py-10 text-center text-white">
+      <h3 class="font-serif text-xl font-semibold">Unser Ziel: Das Beste für dich herausholen.</h3>
+      <p class="mx-auto mt-2 max-w-2xl text-sm text-white/60">
+        Durch Spezialisierung, Erfahrung und hunderte Risikovoranfragen finden wir Lösungen, die andere oft übersehen.
+      </p>
+      <div class="mx-auto mt-8 flex max-w-2xl flex-col justify-center gap-6 sm:flex-row">
+        {
+          goals.map((goal) => (
+            <div class="flex flex-1 items-center justify-center gap-2.5 text-sm font-medium text-white/90">
+              <goal.icon className="h-4.5 w-4.5 text-gold-400" aria-hidden="true" />
+              {goal.label}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

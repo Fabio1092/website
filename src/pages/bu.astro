@@ -1,17 +1,67 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import PageHero from "@/components/PageHero.astro";
-import ContentPlaceholder from "@/components/ContentPlaceholder.astro";
+import BuHero from "@/components/bu/BuHero.astro";
+import AudienceSplit from "@/components/bu/AudienceSplit.astro";
+import RiskInquiryComparison from "@/components/bu/RiskInquiryComparison.astro";
+import CommonMistakes from "@/components/bu/CommonMistakes.astro";
+import ProcessSteps from "@/components/ProcessSteps.astro";
+import CaseStudies from "@/components/bu/CaseStudies.astro";
+import TrustStrip from "@/components/bu/TrustStrip.astro";
+import BuAbout from "@/components/bu/BuAbout.astro";
+import FinalCta from "@/components/FinalCta.astro";
 ---
 
 <Layout
   title="Berufsunfähigkeitsversicherung"
-  description="Berufsunfähigkeitsversicherung prüfen, optimieren oder neu abschließen — professionelle Risikoanfrage."
+  description="Berufsunfähigkeitsversicherung prüfen, optimieren oder neu abschließen — dank professioneller Risikovoranfragen und echter Spezialisierung."
 >
-  <PageHero
-    eyebrow="BU"
-    title="Berufsunfähigkeitsversicherung"
-    intro="Prüfen, optimieren oder neu abschließen — professionelle Beratung für deine wichtigste Absicherung."
+  <BuHero />
+  <AudienceSplit />
+  <RiskInquiryComparison />
+  <CommonMistakes />
+  <ProcessSteps
+    eyebrow="Unser Beratungsprozess"
+    title="So prüfen wir deine BU – Schritt für Schritt."
+    intro="Unser Prozess ist einfach, transparent und 100 % digital. Du bekommst Klarheit und eine fundierte Empfehlung – ohne Papierkram und ohne Verpflichtung."
+    ctaLabel="Jetzt kostenlose BU-Analyse anfordern"
+    steps={[
+      {
+        number: "1",
+        duration: "ca. 15–20 Min.",
+        title: "Erstgespräch & Zielklärung",
+        description:
+          "Wir sprechen über deine aktuelle Situation, deine Ziele und klären, ob du eine neue BU benötigst oder ob sich eine Überprüfung deines bestehenden Vertrags lohnt.",
+      },
+      {
+        number: "2",
+        duration: "ca. 10–30 Min.",
+        title: "Datenaufnahme leicht gemacht",
+        description:
+          "Du beantwortest unseren digitalen Fragenkatalog zu Gesundheit, Beruf und Wünschen – sicher, anonym und in wenigen Minuten.",
+      },
+      {
+        number: "3",
+        duration: "ca. 2–10 Tage",
+        title: "Professionelle Risikovoranfrage",
+        description: "Wir prüfen anonym bei mehreren Versicherern deine Annahmechancen und die möglichen Bedingungen.",
+      },
+      {
+        number: "4",
+        duration: "ca. 60–90 Min.",
+        title: "Auswertung & Empfehlung",
+        description:
+          "Du erhältst eine verständliche Auswertung mit den besten Optionen für dich – inklusive Leistungsumfang, Beiträgen und unserer klaren Empfehlung.",
+      },
+      {
+        number: "5",
+        duration: "100 % digital",
+        title: "Umsetzung – wenn du willst",
+        description: "Wenn du dich für eine Lösung entscheidest, kümmern wir uns um die Umsetzung – einfach, schnell und digital.",
+      },
+    ]}
   />
-  <ContentPlaceholder />
+  <CaseStudies />
+  <TrustStrip />
+  <BuAbout />
+  <FinalCta />
 </Layout>

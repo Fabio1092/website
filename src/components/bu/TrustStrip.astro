@@ -1,0 +1,16 @@
+---
+const items = ["Mehrere hundert Risikovoranfragen", "Anonyme Vorprüfung", "Bessere Ergebnisse", "Schnell & unkompliziert"];
+---
+
+<div class="border-y border-black/5 bg-white py-8">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-4 sm:px-6 lg:px-8">
+    {
+      items.map((item, index) => (
+        <>
+          <span class="text-sm font-medium text-ink-700/70">{item}</span>
+          {index < items.length - 1 && <span class="hidden h-1 w-1 rounded-full bg-brand-300 sm:block" aria-hidden="true" />}
+        </>
+      ))
+    }
+  </div>
+</div>

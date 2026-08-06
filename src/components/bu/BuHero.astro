@@ -1,0 +1,85 @@
+---
+import { TrendingUp, Smartphone, ShieldCheck } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+
+const features = [
+  {
+    icon: TrendingUp,
+    title: "Mehrere hundert Risikovoranfragen durchgeführt",
+    description: "Langjährige Spezialisierung auf BU-Versicherung",
+  },
+  {
+    icon: Smartphone,
+    title: "100 % digital & unkompliziert",
+    description: "Von der Analyse bis zur Umsetzung - alles online, einfach und schnell",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Häufig bessere Leistungen und niedrigere Beiträge",
+    description: "Oft deutlich bessere Konditionen als aktuelle Verträge",
+  },
+];
+
+const trustBadges = ["Unverbindlich & kostenlos", "100 % vertraulich", "15 Minuten Erstgespräch", "Keine Verpflichtung"];
+---
+
+<section class="relative overflow-hidden bg-ink-950 text-white">
+  <div
+    class="pointer-events-none absolute -top-40 right-[-10%] h-[32rem] w-[32rem] rounded-full bg-brand-500/20 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -bottom-32 left-[-10%] h-[26rem] w-[26rem] rounded-full bg-gold-500/10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:py-28 lg:px-8">
+    <div class="text-center">
+      <span
+        class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300"
+      >
+        Aus Kassel. Für Nordhessen. Digital in ganz Deutschland.
+      </span>
+      <h1 class="mx-auto mt-6 max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+        Berufsunfähigkeitsversicherung prüfen, optimieren oder neu abschließen.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+        Wir finden für dich die beste Absicherung zu den bestmöglichen Bedingungen – dank
+        professioneller Risikovoranfragen und echter Spezialisierung.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-3">
+      {
+        features.map((feature) => (
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <feature.icon className="h-6 w-6 text-brand-400" aria-hidden="true" />
+            <p class="mt-4 text-sm font-semibold text-white">{feature.title}</p>
+            <p class="mt-1.5 text-sm text-white/60">{feature.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mx-auto mt-10 max-w-2xl rounded-3xl border border-gold-500/20 bg-gradient-to-br from-gold-500/10 to-transparent p-8 text-center sm:p-10">
+      <h2 class="font-serif text-2xl font-semibold text-white">Kostenlose BU-Analyse anfordern</h2>
+      <p class="mt-2 text-sm leading-relaxed text-white/70">
+        Unverbindlich prüfen lassen, ob du optimal abgesichert bist – oder wo du bessere
+        Möglichkeiten hast.
+      </p>
+      <a
+        href={siteConfig.calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+      >
+        Jetzt BU-Erstgespräch vereinbaren
+      </a>
+      <ul class="mx-auto mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-white/60">
+        {trustBadges.map((badge) => <li>{badge}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,92 @@
+---
+import { Target, TrendingUp, Smartphone, MapPin } from "lucide-react";
+
+const features = [
+  {
+    icon: Target,
+    title: "Spezialisierung, die den Unterschied macht",
+    description:
+      "Ich habe mich bewusst auf Berufsunfähigkeitsversicherungen spezialisiert. Dadurch profitierst du von tiefem Fachwissen & professionellen Risikovoranfragen.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Mehrere hundert Risikovoranfragen durchgeführt",
+    description:
+      "Durch die Erfahrung aus hunderten Risikovoranfragen weiß ich, worauf Versicherer achten und wie wir deine Annahmechancen sowie deine Bedingungen optimal gestalten.",
+  },
+  {
+    icon: Smartphone,
+    title: "100 % digital. Persönlich begleitet.",
+    description:
+      "Von der ersten Analyse bis zur Umsetzung läuft alles einfach und digital. Gleichzeitig hast du einen festen Ansprechpartner, der dich persönlich begleitet.",
+  },
+  {
+    icon: MapPin,
+    title: "Aus Kassel. Für Nordhessen. Digital deutschlandweit.",
+    description:
+      "Viele meiner Kunden kommen aus Kassel und Nordhessen. Dank digitaler Beratung begleite ich heute Kunden in ganz Deutschland schnell, unkompliziert und unabhängig.",
+  },
+];
+
+const stats = [
+  { value: "300+", label: "Professionelle Risikovoranfragen durchgeführt" },
+  { value: "Oft bis zu 50 %", label: "Beitragsersparnis bei Vertragsprüfung möglich" },
+  { value: "100 %", label: "Digital. Einfach. Persönlich." },
+  { value: "Aus Kassel", label: "Für Nordhessen. Deutschlandweit digital." },
+  { value: "BU-Spezialist", label: "Fokus auf BU-Versicherung" },
+];
+---
+
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+      <div data-reveal class="relative mx-auto w-full max-w-sm lg:sticky lg:top-28 lg:mx-0">
+        <div class="absolute -inset-4 -z-10 rounded-3xl bg-brand-50" aria-hidden="true"></div>
+        <img
+          src="/images/1-42.jpg"
+          alt="Fabio Rumpf, Spezialist für Berufsunfähigkeitsversicherungen"
+          class="aspect-[4/5] w-full rounded-2xl object-cover shadow-xl shadow-ink-950/10"
+          loading="lazy"
+          width="800"
+          height="1000"
+        />
+      </div>
+
+      <div>
+        <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Über mich</span>
+        <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+          Spezialist für Berufsunfähigkeitsversicherungen. <span class="text-brand-600">Aus Kassel. Für dich.</span>
+        </h2>
+        <p class="mt-5 text-base leading-relaxed text-ink-700/80">
+          Ich bin Fabio Rumpf – Versicherungsmakler mit Spezialisierung auf
+          Berufsunfähigkeitsversicherungen. Seit vielen Jahren helfe ich Menschen dabei, die
+          bestmögliche Absicherung zu den bestmöglichen Bedingungen zu erhalten – egal ob neu oder
+          bei bestehendem Vertrag.
+        </p>
+
+        <div class="mt-8 grid gap-6 sm:grid-cols-2">
+          {
+            features.map((feature, index) => (
+              <div data-reveal style={`transition-delay: ${index * 80}ms`}>
+                <feature.icon className="h-5 w-5 text-brand-600" aria-hidden="true" />
+                <h3 class="mt-3 text-sm font-semibold text-ink-950">{feature.title}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-ink-700/70">{feature.description}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="mt-10 grid grid-cols-2 gap-6 border-t border-black/5 pt-8 sm:grid-cols-5">
+          {
+            stats.map((stat) => (
+              <div>
+                <p class="font-serif text-xl font-semibold text-brand-700">{stat.value}</p>
+                <p class="mt-1 text-xs leading-snug text-ink-700/60">{stat.label}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

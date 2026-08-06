@@ -5,7 +5,7 @@ import Testimonials from "@/components/home/Testimonials.astro";
 import Services from "@/components/home/Services.astro";
 import AudienceGrid from "@/components/home/AudienceGrid.astro";
 import ValueProps from "@/components/home/ValueProps.astro";
-import ProcessSteps from "@/components/home/ProcessSteps.astro";
+import ProcessSteps from "@/components/ProcessSteps.astro";
 import AboutTeaser from "@/components/home/AboutTeaser.astro";
 import Faq from "@/components/home/Faq.astro";
 import FinalCta from "@/components/FinalCta.astro";
@@ -20,7 +20,40 @@ import FinalCta from "@/components/FinalCta.astro";
   <Services />
   <AudienceGrid />
   <ValueProps />
-  <ProcessSteps />
+  <ProcessSteps
+    title="In 4 einfachen Schritten zu deiner optimalen Absicherung."
+    intro="Transparenter Prozess, klare Schritte und eine Beratung, die sich ganz nach dir richtet."
+    steps={[
+      {
+        number: "1",
+        duration: "ca. 15 Min.",
+        title: "Telefonisches Erstgespräch",
+        description:
+          "Wir sprechen über deine aktuelle Situation, deine beruflichen Pläne und die Themen, die dir wichtig sind. Gemeinsam finden wir heraus, ob eine private Krankenversicherung oder eine Absicherung deiner Arbeitskraft für dich sinnvoll ist.",
+      },
+      {
+        number: "2",
+        duration: "ca. 45–90 Min.",
+        title: "Persönliche Bedarfsanalyse",
+        description:
+          "Ich analysiere deine individuelle Situation und prüfe, welche Anforderungen an deine BU oder PKV gestellt werden. Dabei berücksichtige ich sowohl deine aktuelle Lebenssituation als auch deine langfristigen Ziele.",
+      },
+      {
+        number: "3",
+        duration: "ca. 60 Min.",
+        title: "Passende Strategie & Empfehlung",
+        description:
+          "Du erhältst eine verständliche Empfehlung mit passenden Lösungen und Tarifen. Dabei geht es nicht um möglichst viele Optionen, sondern um die Lösung, die langfristig am besten zu dir passt.",
+      },
+      {
+        number: "4",
+        duration: "Langfristig",
+        title: "Begleitung über den Abschluss hinaus",
+        description:
+          "Ich begleite dich bei der Umsetzung und stehe dir auch danach langfristig zur Seite – bei Fragen, Anpassungen oder Veränderungen deiner Lebenssituation.",
+      },
+    ]}
+  />
   <AboutTeaser />
   <Faq />
   <FinalCta />

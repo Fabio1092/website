@@ -1,0 +1,81 @@
+---
+import { HeartPulse, Coins, History } from "lucide-react";
+
+const mistakes = [
+  {
+    icon: HeartPulse,
+    number: "1. Fehler",
+    title: "Gesundheitsfragen nicht optimal beantwortet.",
+    description:
+      "Ungenaue oder unvollständige Angaben können zu Leistungsausschlüssen oder sogar zur Ablehnung deines Antrags führen – oft ohne es zu merken.",
+    consequence: "Ausschlüsse, Risikozuschläge oder Ablehnung – und das kann dir im Ernstfall den Schutz kosten.",
+    solution: "Professionelle Risikovoranfrage zeigt dir, wie du optimal durch die Gesundheitsprüfung kommst.",
+  },
+  {
+    icon: Coins,
+    number: "2. Fehler",
+    title: "Falscher Tarif – zu teuer oder zu schwach",
+    description:
+      "Viele Verträge bieten entweder zu wenig Leistung oder sind unnötig teuer – weil Möglichkeiten am Markt nicht richtig genutzt wurden.",
+    consequence: "Im Ernstfall reicht die BU-Rente nicht aus – oder du zahlst über Jahre zu viel.",
+    solution: "Wir vergleichen nicht nur Preise, sondern vor allem Leistungen, Bedingungen und Qualität.",
+  },
+  {
+    icon: History,
+    number: "3. Fehler",
+    title: "Veralteter Vertrag – nicht mehr zeitgemäß",
+    description:
+      "Tarifgenerationen ändern sich laufend. Was vor ein paar Jahren noch gut war, kann heute im Vergleich schlechter sein – bei einem höheren Beitrag.",
+    consequence: "Schlechtere Bedingungen und weniger Leistung – trotz jahrelanger Beitragszahlung.",
+    solution: "Wir prüfen deinen bestehenden Vertrag und zeigen dir, ob du besser gestellt werden kannst.",
+  },
+];
+---
+
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Die 3 häufigsten BU-Fehler</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Kleine Fehler, große Folgen.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Diese 3 Fehler werden im Ernstfall teuer. Bei der Berufsunfähigkeitsversicherung kommt es
+        auf jedes Detail an – diese Fehler sehen wir leider viel zu oft, und helfen dir, sie von
+        Anfang an zu vermeiden.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-3">
+      {
+        mistakes.map((mistake, index) => (
+          <div data-reveal style={`transition-delay: ${index * 100}ms`} class="flex flex-col rounded-2xl border border-black/5 bg-brand-50/30 p-7">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
+              <mistake.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <span class="mt-5 text-xs font-semibold uppercase tracking-wider text-danger-500">{mistake.number}</span>
+            <h3 class="mt-1.5 font-serif text-lg font-semibold text-ink-950">{mistake.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{mistake.description}</p>
+
+            <div class="mt-5 rounded-xl border border-danger-500/15 bg-danger-50 p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-danger-500">Folge</p>
+              <p class="mt-1 text-sm leading-relaxed text-ink-700/85">{mistake.consequence}</p>
+            </div>
+            <div class="mt-3 rounded-xl border border-success-500/15 bg-success-50 p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-success-500">Unsere Lösung</p>
+              <p class="mt-1 text-sm leading-relaxed text-ink-700/85">{mistake.solution}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-14 rounded-2xl bg-ink-950 px-8 py-10 text-center text-white">
+      <h3 class="font-serif text-xl font-semibold">Vermeide teure Fehler - bevor sie passieren.</h3>
+      <p class="mx-auto mt-2 max-w-2xl text-sm text-white/60">
+        Mit unserer Risikovoranfrage sorgen wir dafür, dass du die bestmögliche Absicherung zu den
+        bestmöglichen Bedingungen erhältst. Mehrere hundert Risikovoranfragen — Erfahrung, die dich absichert.
+      </p>
+    </div>
+  </div>
+</section>
