@@ -1,5 +1,5 @@
 ---
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Star } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 
 const badges = [
@@ -22,46 +22,76 @@ const badges = [
   >
   </div>
 
-  <div class="relative mx-auto max-w-4xl px-4 py-28 text-center sm:px-6 lg:px-8">
-    <span
-      class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300"
-    >
-      Aus Kassel. Für Nordhessen. Digital in ganz Deutschland.
-    </span>
-    <h1 class="mt-6 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-      Spezialisiert auf Berufsunfähigkeits- &amp; private Krankenversicherung in Kassel.
-    </h1>
-    <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
-      Dein Versicherungsmakler aus Nordhessen für BU- und PKV-Beratung — persönlich,
-      verständlich und ungebunden.
-    </p>
+  <div
+    class="relative mx-auto grid max-w-6xl gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:py-28 lg:px-8"
+  >
+    <div class="order-2 text-center lg:order-1 lg:text-left">
+      <span
+        class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300"
+      >
+        Aus Kassel. Für Nordhessen. Digital in ganz Deutschland.
+      </span>
+      <h1 class="mt-6 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+        Spezialisiert auf Berufsunfähigkeits- &amp; private Krankenversicherung in Kassel.
+      </h1>
+      <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/70 lg:mx-0">
+        Dein Versicherungsmakler aus Nordhessen für BU- und PKV-Beratung — persönlich,
+        verständlich und ungebunden.
+      </p>
 
-    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <a
-        href={siteConfig.calendlyUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
-      >
-        Kostenloses Erstgespräch buchen
-      </a>
-      <a
-        href="#beratungsablauf"
-        class="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:border-white/40 hover:bg-white/5 sm:w-auto"
-      >
-        Beratung kennenlernen
-      </a>
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+        <a
+          href={siteConfig.calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+        >
+          Kostenloses Erstgespräch buchen
+        </a>
+        <a
+          href="#beratungsablauf"
+          class="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:border-white/40 hover:bg-white/5 sm:w-auto"
+        >
+          Beratung kennenlernen
+        </a>
+      </div>
+
+      <ul class="mx-auto mt-12 grid max-w-lg grid-cols-1 gap-x-8 gap-y-4 text-left sm:grid-cols-2 lg:mx-0">
+        {
+          badges.map((badge) => (
+            <li class="flex items-center gap-2.5 text-sm text-white/80">
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
+              {badge}
+            </li>
+          ))
+        }
+      </ul>
     </div>
 
-    <ul class="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-x-8 gap-y-4 text-left sm:grid-cols-2">
-      {
-        badges.map((badge) => (
-          <li class="flex items-center gap-2.5 text-sm text-white/80">
-            <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
-            {badge}
-          </li>
-        ))
-      }
-    </ul>
+    <div class="order-1 mx-auto w-full max-w-xs sm:max-w-sm lg:order-2 lg:mx-0 lg:max-w-none">
+      <div class="relative">
+        <div
+          class="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/25 via-transparent to-gold-500/15 blur-xl"
+          aria-hidden="true"
+        >
+        </div>
+        <img
+          src="/images/Fabio_Rumpf.jpg"
+          alt="Fabio Rumpf, Versicherungsmakler aus Kassel"
+          class="aspect-[4/5] w-full rounded-[2rem] border border-white/10 object-cover shadow-2xl shadow-black/40"
+          width="800"
+          height="1000"
+          fetchpriority="high"
+        />
+        <div
+          class="absolute -bottom-6 left-1/2 flex w-[calc(100%-2.5rem)] -translate-x-1/2 items-center gap-3 rounded-2xl border border-white/10 bg-ink-900/90 px-5 py-3.5 shadow-xl shadow-black/30 backdrop-blur sm:w-auto"
+        >
+          <div class="flex text-gold-400">
+            {Array.from({ length: 5 }).map(() => <Star className="h-4 w-4 fill-current" aria-hidden="true" />)}
+          </div>
+          <span class="text-sm font-medium text-white/90 whitespace-nowrap">5.0 · 36 Bewertungen</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
