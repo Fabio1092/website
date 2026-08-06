@@ -1,0 +1,75 @@
+---
+import { Briefcase, Building2, Users, Landmark } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+
+const audiences = [
+  {
+    icon: Briefcase,
+    title: "Angestellte & Akademiker",
+    description:
+      "Du bist angestellt oder Akademiker und möchtest deine Arbeitskraft langfristig absichern? Ich helfe dir, die passende BU und PKV zu finden — verständlich, transparent und auf deine Situation abgestimmt.",
+  },
+  {
+    icon: Building2,
+    title: "Selbstständige & Unternehmer",
+    description:
+      "Du führst dein eigenes Unternehmen und willst dich, deine Familie und dein Business optimal absichern? Gemeinsam entwickeln wir Lösungen, die zu dir und deinem Leben passen.",
+  },
+  {
+    icon: Users,
+    title: "Familien & Gutverdiener",
+    description:
+      "Du möchtest das Beste für deine Liebsten und gleichzeitig deine Gesundheit und dein Einkommen schützen? Ich zeige dir, wie du heute clever vorsorgst.",
+  },
+  {
+    icon: Landmark,
+    title: "Beamte & Referendare",
+    description:
+      "Als Beamter oder Referendar hast du besondere Möglichkeiten bei der Absicherung. Ich begleite dich bei der optimalen Auswahl.",
+  },
+];
+---
+
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Für wen ist meine Beratung geeignet?</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Meine Beratung passt zu dir, wenn du deine Zukunft absichern willst.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Egal, in welcher Lebensphase du gerade stehst – ich helfe dir dabei, die passende Absicherung für
+        deine Gesundheit, deine Arbeitskraft und deine Familie zu finden.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        audiences.map((audience, index) => (
+          <div
+            data-reveal
+            style={`transition-delay: ${index * 80}ms`}
+            class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 transition-colors duration-300 hover:bg-brand-50"
+          >
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
+              <audience.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <h3 class="mt-5 font-serif text-lg font-semibold text-ink-950">{audience.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{audience.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href={siteConfig.calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-full bg-ink-950 px-7 py-3.5 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-ink-800"
+      >
+        Jetzt Termin vereinbaren
+      </a>
+    </div>
+  </div>
+</section>

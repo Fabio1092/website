@@ -1,0 +1,46 @@
+---
+import { siteConfig } from "@/lib/site";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  ctaLabel?: string;
+  badges?: string[];
+}
+
+const {
+  eyebrow = "Lass uns sprechen",
+  title = "Bereit für den nächsten Schritt?",
+  ctaLabel = "Kostenloses Erstgespräch buchen",
+  badges = ["15 Minuten · persönlich & offen", "Individuell · auf dich zugeschnitten", "Klare Schritte · dein 1:1 Fahrplan"],
+} = Astro.props;
+---
+
+<section class="bg-ink-950 py-24 text-white">
+  <div data-reveal class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+    <span class="text-sm font-semibold uppercase tracking-wider text-brand-300">{eyebrow}</span>
+    <h2 class="mt-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>
+    <p class="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-white/70">
+      In einem unverbindlichen Gespräch schauen wir gemeinsam, wie ich dich dabei unterstützen kann, deine Ziele
+      zu erreichen und dein volles Potenzial zu entfalten.
+    </p>
+
+    <div class="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-white/70">
+      {badges.map((badge) => <span>{badge}</span>)}
+    </div>
+
+    <a
+      href={siteConfig.calendlyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-10 inline-flex items-center justify-center rounded-full bg-gold-500 px-8 py-4 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+    >
+      {ctaLabel}
+    </a>
+
+    <p class="mt-6 text-sm text-white/50">
+      Persönlich. Ehrlich. Auf Augenhöhe. Kein Verkaufsgespräch, sondern ein ehrlicher Austausch über deine
+      Situation und mögliche nächste Schritte.
+    </p>
+  </div>
+</section>

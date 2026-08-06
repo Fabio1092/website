@@ -1,0 +1,67 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+
+const badges = [
+  "Spezialisiert auf BU & PKV",
+  "Persönlich in Kassel & Nordhessen",
+  "Persönliche Begleitung im Leistungsfall",
+  "Ungebunden & transparent",
+];
+---
+
+<section class="relative overflow-hidden bg-ink-950 text-white">
+  <div
+    class="pointer-events-none absolute -top-40 right-[-10%] h-[32rem] w-[32rem] rounded-full bg-brand-500/20 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -bottom-32 left-[-10%] h-[26rem] w-[26rem] rounded-full bg-gold-500/10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-4xl px-4 py-28 text-center sm:px-6 lg:px-8">
+    <span
+      class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300"
+    >
+      Aus Kassel. Für Nordhessen. Digital in ganz Deutschland.
+    </span>
+    <h1 class="mt-6 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+      Spezialisiert auf Berufsunfähigkeits- &amp; private Krankenversicherung in Kassel.
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+      Dein Versicherungsmakler aus Nordhessen für BU- und PKV-Beratung — persönlich,
+      verständlich und ungebunden.
+    </p>
+
+    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a
+        href={siteConfig.calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+      >
+        Kostenloses Erstgespräch buchen
+      </a>
+      <a
+        href="#beratungsablauf"
+        class="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:border-white/40 hover:bg-white/5 sm:w-auto"
+      >
+        Beratung kennenlernen
+      </a>
+    </div>
+
+    <ul class="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-x-8 gap-y-4 text-left sm:grid-cols-2">
+      {
+        badges.map((badge) => (
+          <li class="flex items-center gap-2.5 text-sm text-white/80">
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
+            {badge}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

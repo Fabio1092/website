@@ -158,4 +158,23 @@
   h4 {
     font-family: var(--font-serif);
   }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98),
+      transform 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 }

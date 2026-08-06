@@ -1,6 +1,7 @@
 export type NavLink = {
   label: string;
   href: string;
+  external?: boolean;
 };
 
 export const primaryNav: NavLink[] = [
@@ -13,6 +14,11 @@ export const primaryNav: NavLink[] = [
 ];
 
 export const legalNav: NavLink[] = [
-  { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
+  { label: "Erstinformation", href: "/erstinformation" },
+  {
+    label: "Impressum",
+    href: "https://fabio-rumpf.vermittler-impressum.de/impressum-687165.html",
+    external: true,
+  },
 ];

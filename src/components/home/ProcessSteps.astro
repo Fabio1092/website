@@ -1,0 +1,79 @@
+---
+import { siteConfig } from "@/lib/site";
+
+const steps = [
+  {
+    number: "1",
+    duration: "ca. 15 Min.",
+    title: "Telefonisches Erstgespräch",
+    description:
+      "Wir sprechen über deine aktuelle Situation, deine beruflichen Pläne und die Themen, die dir wichtig sind. Gemeinsam finden wir heraus, ob eine private Krankenversicherung oder eine Absicherung deiner Arbeitskraft für dich sinnvoll ist.",
+  },
+  {
+    number: "2",
+    duration: "ca. 45–90 Min.",
+    title: "Persönliche Bedarfsanalyse",
+    description:
+      "Ich analysiere deine individuelle Situation und prüfe, welche Anforderungen an deine BU oder PKV gestellt werden. Dabei berücksichtige ich sowohl deine aktuelle Lebenssituation als auch deine langfristigen Ziele.",
+  },
+  {
+    number: "3",
+    duration: "ca. 60 Min.",
+    title: "Passende Strategie & Empfehlung",
+    description:
+      "Du erhältst eine verständliche Empfehlung mit passenden Lösungen und Tarifen. Dabei geht es nicht um möglichst viele Optionen, sondern um die Lösung, die langfristig am besten zu dir passt.",
+  },
+  {
+    number: "4",
+    duration: "Langfristig",
+    title: "Begleitung über den Abschluss hinaus",
+    description:
+      "Ich begleite dich bei der Umsetzung und stehe dir auch danach langfristig zur Seite – bei Fragen, Anpassungen oder Veränderungen deiner Lebenssituation.",
+  },
+];
+---
+
+<section id="beratungsablauf" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">So läuft unsere Zusammenarbeit</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        In 4 einfachen Schritten zu deiner optimalen Absicherung.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Transparenter Prozess, klare Schritte und eine Beratung, die sich ganz nach dir richtet.
+      </p>
+    </div>
+
+    <ol class="mt-16 space-y-10">
+      {
+        steps.map((step, index) => (
+          <li data-reveal style={`transition-delay: ${index * 100}ms`} class="relative flex gap-6 sm:gap-8">
+            <div class="flex flex-col items-center">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-lg font-semibold text-white">
+                {step.number}
+              </span>
+              {index < steps.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
+            </div>
+            <div class="pb-2">
+              <span class="text-xs font-semibold uppercase tracking-wide text-brand-600">{step.duration}</span>
+              <h3 class="mt-1 font-serif text-xl font-semibold text-ink-950">{step.title}</h3>
+              <p class="mt-2 max-w-2xl text-sm leading-relaxed text-ink-700/80">{step.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-14 text-center">
+      <a
+        href={siteConfig.calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+      >
+        Telefonisches Erstgespräch vereinbaren
+      </a>
+    </div>
+  </div>
+</section>

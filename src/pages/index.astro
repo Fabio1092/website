@@ -1,17 +1,27 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import PageHero from "@/components/PageHero.astro";
-import ContentPlaceholder from "@/components/ContentPlaceholder.astro";
+import HomeHero from "@/components/home/HomeHero.astro";
+import Testimonials from "@/components/home/Testimonials.astro";
+import Services from "@/components/home/Services.astro";
+import AudienceGrid from "@/components/home/AudienceGrid.astro";
+import ValueProps from "@/components/home/ValueProps.astro";
+import ProcessSteps from "@/components/home/ProcessSteps.astro";
+import AboutTeaser from "@/components/home/AboutTeaser.astro";
+import Faq from "@/components/home/Faq.astro";
+import FinalCta from "@/components/FinalCta.astro";
 ---
 
 <Layout
   title="Startseite"
-  description="Unabhängige Beratung zu Berufsunfähigkeit, privater Krankenversicherung und deiner finanziellen Absicherung."
+  description="Dein Versicherungsmakler aus Nordhessen für BU- und PKV-Beratung — persönlich, verständlich und ungebunden."
 >
-  <PageHero
-    eyebrow="Versicherungs- & Finanzmakler aus Kassel"
-    title="Deine Absicherung. Klar, ehrlich, auf Augenhöhe."
-    intro="Sobald du mir den finalen Text deiner Startseite schickst, bauen wir hier gemeinsam das vollständige, interaktive Design."
-  />
-  <ContentPlaceholder note="Startseiten-Text folgt — du hattest erwähnt, dass du damit bereits zufrieden bist. Schick ihn mir, dann setze ich ihn im neuen Design um." />
+  <HomeHero />
+  <Testimonials />
+  <Services />
+  <AudienceGrid />
+  <ValueProps />
+  <ProcessSteps />
+  <AboutTeaser />
+  <Faq />
+  <FinalCta />
 </Layout>

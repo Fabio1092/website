@@ -1,5 +1,6 @@
 ---
 import { primaryNav } from "@/lib/nav";
+import { siteConfig } from "@/lib/site";
 
 const currentPath = Astro.url.pathname;
 
@@ -43,7 +44,9 @@ function isActive(href: string) {
 
     <div class="hidden lg:block">
       <a
-        href="/kontakt"
+        href={siteConfig.calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         class="inline-flex items-center justify-center rounded-full bg-gold-500 px-5 py-2.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
       >
         Kostenloses Erstgespräch
@@ -82,7 +85,9 @@ function isActive(href: string) {
         ))
       }
       <a
-        href="/kontakt"
+        href={siteConfig.calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         class="mt-3 block rounded-full bg-gold-500 px-5 py-3 text-center text-base font-semibold text-ink-950"
       >
         Kostenloses Erstgespräch
