@@ -1,0 +1,46 @@
+---
+import { Scale, SearchCheck, Smartphone, UserRound } from "lucide-react";
+
+const items = [
+  {
+    icon: Scale,
+    title: "Ungebunden beraten",
+    description: "Ich vertrete deine Interessen – nicht die eines einzelnen Versicherers.",
+  },
+  {
+    icon: SearchCheck,
+    title: "Individuell analysiert",
+    description: "Keine Tarifempfehlung ohne Blick auf deine persönliche Lebensplanung.",
+  },
+  {
+    icon: Smartphone,
+    title: "Digital umgesetzt",
+    description: "Von der Analyse bis zur Antragstellung einfach und digital.",
+  },
+  {
+    icon: UserRound,
+    title: "Langfristig begleitet",
+    description: "Auch nach dem Abschluss hast du einen festen Ansprechpartner.",
+  },
+];
+---
+
+<section id="pkv-vertrauen" class="bg-brand-50/40 py-14">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        items.map((item, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="flex items-start gap-3">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
+              <item.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink-950">{item.title}</p>
+              <p class="mt-1 text-sm leading-relaxed text-ink-700/70">{item.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

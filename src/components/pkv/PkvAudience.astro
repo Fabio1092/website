@@ -1,0 +1,93 @@
+---
+import { CheckCircle2, Briefcase, Building2, Landmark, ShieldQuestion } from "lucide-react";
+
+const cards = [
+  {
+    icon: Briefcase,
+    label: "Angestellte",
+    headline: "Du möchtest wissen, ob sich der Wechsel in die PKV für dich langfristig lohnt?",
+    text: "Wir prüfen nicht nur den heutigen Beitrag. Gemeinsam betrachten wir Leistungen, Arbeitgeberzuschuss, Familienplanung, berufliche Entwicklung und die langfristige Tragfähigkeit deiner Entscheidung.",
+    points: [
+      "Individuelle Prüfung deiner Ausgangssituation",
+      "Vergleich von Leistungen und Tarifbedingungen",
+      "Berücksichtigung deiner Familien- und Karriereplanung",
+      "Klare Entscheidungshilfe statt Tarifflut",
+    ],
+  },
+  {
+    icon: Building2,
+    label: "Selbstständige & Unternehmer",
+    headline: "Du brauchst eine Krankenversicherung, die zu deinem Einkommen und deinem Alltag passt?",
+    text: "Als Selbstständiger trägst du deine Krankenversicherung vollständig selbst. Deshalb müssen Beitrag, Selbstbeteiligung, Krankentagegeld und Leistungsumfang sinnvoll aufeinander abgestimmt sein.",
+    points: [
+      "Passende Absicherung für ambulante und stationäre Leistungen",
+      "Sinnvolle Höhe des Krankentagegeldes",
+      "Ausgewogene Selbstbeteiligung",
+      "Langfristig tragfähige Tarifstrategie",
+    ],
+  },
+  {
+    icon: Landmark,
+    label: "Beamte & Referendare",
+    headline: "Du möchtest Beihilfe und PKV von Anfang an richtig kombinieren?",
+    text: "Bei Beamten und Referendaren kommt es auf die passende Ergänzung zur Beihilfe an. Wir prüfen Beihilfesätze, Tarifbausteine, mögliche Öffnungsaktionen und deine langfristige berufliche Entwicklung.",
+    points: [
+      "Beihilfekonforme Tarifauswahl",
+      "Prüfung passender Versicherer",
+      "Berücksichtigung von Dienstherr und Bundesland",
+      "Begleitung bei späteren Veränderungen",
+    ],
+  },
+  {
+    icon: ShieldQuestion,
+    label: "Bereits privat versichert",
+    headline: "Du möchtest wissen, ob dein bestehender Vertrag noch zu dir passt?",
+    text: "Wir analysieren deinen aktuellen Tarif, deine Leistungen und deine persönliche Situation. Danach weißt du, ob dein Vertrag sinnvoll bestehen bleiben kann oder ob Handlungsbedarf besteht.",
+    points: [
+      "Analyse deines bestehenden Tarifs",
+      "Prüfung von Leistungsumfang und Selbstbeteiligung",
+      "Einordnung der Beitragsentwicklung",
+      "Klare Empfehlung ohne vorschnellen Wechsel",
+    ],
+  },
+];
+---
+
+<section id="pkv-zielgruppen" class="bg-white py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Für wen ist die Beratung?</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Egal, wo du gerade stehst – wir prüfen, was wirklich zu dir passt.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Eine gute PKV-Beratung beginnt nicht mit einem Tarif. Sie beginnt mit deiner beruflichen
+        Situation, deiner Gesundheit, deiner Familienplanung und deinen Vorstellungen von einer
+        guten medizinischen Versorgung.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2">
+      {
+        cards.map((card, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="rounded-2xl border border-black/5 bg-brand-50/30 p-7">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
+              <card.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <span class="mt-5 block text-xs font-semibold uppercase tracking-wider text-brand-600">{card.label}</span>
+            <h3 class="mt-1.5 font-serif text-lg font-semibold text-ink-950">{card.headline}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{card.text}</p>
+            <ul class="mt-5 space-y-2">
+              {card.points.map((point) => (
+                <li class="flex items-start gap-2.5 text-sm text-ink-700/85">
+                  <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

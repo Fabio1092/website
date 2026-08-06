@@ -15,6 +15,7 @@ interface Props {
   intro: string;
   steps: Step[];
   ctaLabel?: string;
+  closing?: { title: string; text: string };
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   intro,
   steps,
   ctaLabel = "Telefonisches Erstgespräch vereinbaren",
+  closing,
 } = Astro.props;
 ---
 
@@ -55,15 +57,32 @@ const {
       }
     </ol>
 
-    <div class="mt-14 text-center">
-      <a
-        href={siteConfig.calendlyUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
-      >
-        {ctaLabel}
-      </a>
-    </div>
+    {
+      closing ? (
+        <div class="mt-14 rounded-3xl bg-ink-950 px-8 py-10 text-center text-white sm:px-12">
+          <h3 class="font-serif text-2xl font-semibold">{closing.title}</h3>
+          <p class="mx-auto mt-2 max-w-xl text-sm text-white/60">{closing.text}</p>
+          <a
+            href={siteConfig.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+          >
+            {ctaLabel}
+          </a>
+        </div>
+      ) : (
+        <div class="mt-14 text-center">
+          <a
+            href={siteConfig.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+          >
+            {ctaLabel}
+          </a>
+        </div>
+      )
+    }
   </div>
 </section>

@@ -6,7 +6,7 @@ export type NavLink = {
 
 export const primaryNav: NavLink[] = [
   { label: "Startseite", href: "/" },
-  { label: "PKV", href: "/pkv" },
+  { label: "PKV", href: "/private-krankenversicherung-kassel" },
   { label: "BU", href: "/bu" },
   { label: "360° Check", href: "/360-grad-check" },
   { label: "Über mich", href: "/ueber-mich" },

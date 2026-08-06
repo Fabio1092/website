@@ -6,10 +6,13 @@ import "@/styles/global.css";
 interface Props {
   title: string;
   description: string;
+  /** Use the title as-is in <title>/og:title instead of appending "· Fabio Rumpf Makler". */
+  fullTitle?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, fullTitle = false } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = fullTitle ? title : `${title} · Fabio Rumpf Makler`;
 ---
 
 <!doctype html>
@@ -19,10 +22,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/images/Logo.png" />
     <link rel="canonical" href={canonicalUrl} />
-    <title>{title} · Fabio Rumpf Makler</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={`${title} · Fabio Rumpf Makler`} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/images/Logo.png" />
     <meta property="og:locale" content="de_DE" />

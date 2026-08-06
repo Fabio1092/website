@@ -1,0 +1,96 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PkvHero from "@/components/pkv/PkvHero.astro";
+import PkvTrustBar from "@/components/pkv/PkvTrustBar.astro";
+import PkvAudience from "@/components/pkv/PkvAudience.astro";
+import PkvDecision from "@/components/pkv/PkvDecision.astro";
+import PkvMistakes from "@/components/pkv/PkvMistakes.astro";
+import PkvBenefits from "@/components/pkv/PkvBenefits.astro";
+import PkvHealthCheck from "@/components/pkv/PkvHealthCheck.astro";
+import ProcessSteps from "@/components/ProcessSteps.astro";
+import PkvExistingCheck from "@/components/pkv/PkvExistingCheck.astro";
+import PkvCaseStudies from "@/components/pkv/PkvCaseStudies.astro";
+import PkvAbout from "@/components/pkv/PkvAbout.astro";
+import PkvFaq from "@/components/pkv/PkvFaq.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="Private Krankenversicherung Kassel | PKV-Beratung – FR Makler"
+  description="Private Krankenversicherung prüfen, vergleichen oder optimieren. Ungebundene PKV-Beratung aus Kassel – persönlich in Nordhessen und digital deutschlandweit."
+  fullTitle
+>
+  <PkvHero />
+  <PkvTrustBar />
+  <PkvAudience />
+  <PkvDecision />
+  <PkvMistakes />
+  <PkvBenefits />
+  <PkvHealthCheck />
+  <ProcessSteps
+    id="pkv-beratungsprozess"
+    eyebrow="So läuft die PKV-Beratung"
+    title="Von der ersten Frage bis zur langfristigen Betreuung."
+    intro="Du erhältst einen klaren Prozess, verständliche Empfehlungen und ausreichend Zeit für deine Entscheidung."
+    ctaLabel="Kostenlose PKV-Analyse starten"
+    steps={[
+      {
+        number: "1",
+        duration: "ca. 15–20 Minuten",
+        title: "Kostenloses Erstgespräch",
+        description:
+          "Wir sprechen über deine aktuelle Situation und klären, was du dir von einer privaten Krankenversicherung erwartest. Danach weißt du, ob und wie ich dich sinnvoll unterstützen kann.",
+      },
+      {
+        number: "2",
+        duration: "ca. 45–90 Minuten",
+        title: "Persönliche Bedarfsanalyse",
+        description:
+          "Wir betrachten Beruf, Einkommen, Gesundheit, Familienplanung, gewünschte Leistungen und deine langfristigen Ziele.",
+      },
+      {
+        number: "3",
+        duration: "abhängig vom Einzelfall",
+        title: "Gesundheitsdaten & Risikoprüfung",
+        description:
+          "Wir bereiten deine Gesundheitsangaben strukturiert auf und prüfen, welche Versicherer für deine Situation realistisch infrage kommen.",
+      },
+      {
+        number: "4",
+        duration: "ca. 45–60 Minuten",
+        title: "Tarifanalyse & Empfehlung",
+        description:
+          "Du erhältst eine verständliche Auswahl geeigneter Lösungen. Ich erkläre dir Leistungen, Unterschiede, Beiträge und mögliche Nachteile.",
+      },
+      {
+        number: "5",
+        duration: "persönlich & digital",
+        title: "Umsetzung & langfristige Begleitung",
+        description:
+          "Wenn du dich entscheidest, begleite ich die Antragstellung und bleibe auch danach dein persönlicher Ansprechpartner.",
+      },
+    ]}
+    closing={{
+      title: "Keine Tarifflut. Keine Entscheidung unter Druck.",
+      text: "Du erhältst eine klare Empfehlung und entscheidest erst, wenn alle offenen Fragen beantwortet sind.",
+    }}
+  />
+  <PkvExistingCheck />
+  <PkvCaseStudies />
+  <PkvAbout />
+  <PkvFaq />
+  <FinalCta
+    id="pkv-cta"
+    eyebrow="Lass uns deine Möglichkeiten prüfen"
+    title="Triff deine PKV-Entscheidung nicht allein auf Basis eines Beitrags."
+    body="In einem kostenlosen Erstgespräch schauen wir gemeinsam auf deine Situation. Du erhältst eine erste Einschätzung und einen klaren Fahrplan für die nächsten Schritte."
+    ctaLabel="Kostenlose PKV-Analyse starten"
+    points={[
+      "Kostenloses und unverbindliches Erstgespräch",
+      "Persönliche Einschätzung deiner Situation",
+      "Klare nächste Schritte",
+      "Keine Entscheidung unter Zeitdruck",
+    ]}
+    closingLine="Persönlich. Verständlich. Ungebunden."
+  />
+</Layout>

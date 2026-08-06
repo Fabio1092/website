@@ -1,0 +1,80 @@
+---
+import { X, Check, Info } from "lucide-react";
+
+const without = [
+  "Gesundheitsangaben werden aus dem Gedächtnis beantwortet",
+  "Arztunterlagen werden nicht geprüft",
+  "Der Antrag wird direkt bei einem Versicherer gestellt",
+  "Risikozuschläge oder Ablehnungen kommen überraschend",
+  "Weitere Anfragen können erschwert werden",
+];
+
+const withPrep = [
+  "Gesundheitsdaten werden strukturiert aufbereitet",
+  "Relevante Diagnosen und Behandlungen werden eingeordnet",
+  "Geeignete Versicherer werden gezielt ausgewählt",
+  "Mögliche Zuschläge oder Einschränkungen sind vorab besser einschätzbar",
+  "Du stellst den Antrag auf einer belastbaren Grundlage",
+];
+---
+
+<section id="pkv-gesundheitspruefung" class="bg-white py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Vor dem Antrag richtig vorbereiten</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Die Gesundheitsprüfung entscheidet mit, welche Möglichkeiten du tatsächlich hast.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Vorerkrankungen bedeuten nicht automatisch, dass eine private Krankenversicherung
+        ausgeschlossen ist. Entscheidend ist, wie deine Gesundheitsdaten aufbereitet werden und
+        welcher Versicherer zu deiner Situation passt.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-2">
+      <div data-reveal class="rounded-2xl border border-danger-500/15 bg-brand-50/30 p-8">
+        <span class="inline-flex items-center gap-2 text-sm font-semibold text-danger-500">
+          <X className="h-4.5 w-4.5" aria-hidden="true" />
+          Ohne saubere Vorbereitung
+        </span>
+        <ul class="mt-6 space-y-3">
+          {
+            without.map((point) => (
+              <li class="flex items-start gap-2.5 text-sm text-ink-700/85">
+                <X className="mt-0.5 h-4.5 w-4.5 shrink-0 text-danger-500/70" aria-hidden="true" />
+                {point}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div data-reveal style="transition-delay: 100ms" class="rounded-2xl border border-success-500/20 bg-brand-50/30 p-8">
+        <span class="inline-flex items-center gap-2 text-sm font-semibold text-success-500">
+          <Check className="h-4.5 w-4.5" aria-hidden="true" />
+          Mit professioneller Vorbereitung
+        </span>
+        <ul class="mt-6 space-y-3">
+          {
+            withPrep.map((point) => (
+              <li class="flex items-start gap-2.5 text-sm text-ink-700/85">
+                <Check className="mt-0.5 h-4.5 w-4.5 shrink-0 text-success-500" aria-hidden="true" />
+                {point}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-12 flex max-w-2xl items-start gap-3 rounded-2xl border border-gold-500/20 bg-gold-50 px-6 py-5">
+      <Info className="mt-0.5 h-5 w-5 shrink-0 text-gold-600" aria-hidden="true" />
+      <p class="text-sm leading-relaxed text-ink-700/85">
+        <strong class="text-ink-950">Wichtig:</strong> Eine Risikovoranfrage ist kein Versprechen
+        auf Annahme. Sie schafft aber deutlich mehr Klarheit, bevor ein offizieller Antrag gestellt
+        wird.
+      </p>
+    </div>
+  </div>
+</section>

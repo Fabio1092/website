@@ -1,0 +1,77 @@
+---
+import { Target, Scale, MessageCircleHeart, Clock } from "lucide-react";
+
+const usps = [
+  {
+    icon: Target,
+    title: "Spezialisierung statt Bauchladen",
+    text: "Mein Fokus liegt auf komplexen Vorsorgethemen, bei denen eine oberflächliche Beratung nicht ausreicht.",
+  },
+  {
+    icon: Scale,
+    title: "Ungebundene Empfehlungen",
+    text: "Ich bin nicht an einen einzelnen Versicherer gebunden und kann unterschiedliche Lösungen für dich prüfen.",
+  },
+  {
+    icon: MessageCircleHeart,
+    title: "Verständlich statt kompliziert",
+    text: "Ich erkläre dir die relevanten Unterschiede klar und nachvollziehbar – ohne Fachchinesisch und ohne unnötige Tarifflut.",
+  },
+  {
+    icon: Clock,
+    title: "Persönlich und langfristig",
+    text: "Auch nach dem Abschluss bleibe ich dein Ansprechpartner und begleite dich bei Veränderungen deiner Lebenssituation.",
+  },
+];
+---
+
+<section id="pkv-ueber-mich" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+      <div data-reveal class="relative mx-auto w-full max-w-sm lg:sticky lg:top-28 lg:mx-0">
+        <div class="absolute -inset-4 -z-10 rounded-3xl bg-white" aria-hidden="true"></div>
+        <img
+          src="/images/1-48.jpg"
+          alt="Fabio Rumpf, Spezialist für private Krankenversicherung"
+          class="aspect-[4/5] w-full rounded-2xl object-cover shadow-xl shadow-ink-950/10"
+          loading="lazy"
+          width="800"
+          height="1000"
+        />
+      </div>
+
+      <div class="min-w-0">
+        <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Über mich</span>
+        <h2 class="mt-3 hyphens-auto break-words text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+          Spezialist für private Kranken&shy;versicherung. <span class="text-brand-600">Aus Kassel. Für dich.</span>
+        </h2>
+        <p class="mt-5 text-base leading-relaxed text-ink-700/80">
+          Ich bin Fabio Rumpf, ungebundener Versicherungsmakler aus Kassel mit Spezialisierung auf
+          Berufsunfähigkeitsversicherung und private Krankenversicherung.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-ink-700/80">
+          Bei der PKV geht es aus meiner Sicht nicht darum, möglichst schnell einen günstigen
+          Tarif zu finden. Es geht darum, eine Entscheidung zu treffen, die zu deiner Gesundheit,
+          deiner Lebensplanung und deinen Ansprüchen passt.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-ink-700/80">
+          Deshalb nehme ich mir Zeit für eine saubere Analyse, verständliche Erklärungen und eine
+          langfristige Strategie. Du sollst nicht einfach einen Tarif auswählen. Du sollst
+          verstehen, warum eine Lösung für dich sinnvoll ist.
+        </p>
+
+        <div class="mt-8 grid gap-6 sm:grid-cols-2">
+          {
+            usps.map((usp, index) => (
+              <div data-reveal style={`transition-delay: ${index * 80}ms`}>
+                <usp.icon className="h-5 w-5 text-brand-600" aria-hidden="true" />
+                <h3 class="mt-3 text-sm font-semibold text-ink-950">{usp.title}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-ink-700/70">{usp.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

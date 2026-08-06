@@ -1,0 +1,73 @@
+---
+const cases = [
+  {
+    label: "Angestellter",
+    headline: "PKV-Wechsel mit Blick auf Karriere und Familienplanung",
+    situation:
+      "Ein gutverdienender Angestellter interessiert sich für die PKV, plant aber in den kommenden Jahren eine Familie und möchte seine Arbeitszeit später möglicherweise reduzieren.",
+    check:
+      "Wir betrachten nicht nur den heutigen Beitrag, sondern auch Arbeitgeberzuschuss, Familienplanung, mögliche Teilzeit und die langfristige Finanzierbarkeit.",
+    result:
+      "Eine nachvollziehbare Entscheidung auf Basis seiner gesamten Lebensplanung – nicht nur eines kurzfristigen Preisvorteils.",
+  },
+  {
+    label: "Selbstständige",
+    headline: "Leistungsstarker Schutz mit passendem Krankentagegeld",
+    situation:
+      "Eine Selbstständige möchte bessere medizinische Leistungen, muss gleichzeitig aber ihre laufenden Kosten und mögliche Einkommensausfälle berücksichtigen.",
+    check: "Wir stimmen Tarif, Selbstbeteiligung und Krankentagegeld auf ihre tatsächliche finanzielle Situation ab.",
+    result: "Eine PKV-Lösung, die medizinische Ansprüche und unternehmerische Sicherheit sinnvoll verbindet.",
+  },
+  {
+    label: "Bestehender Vertrag",
+    headline: "Bestehende PKV eingeordnet statt vorschnell gewechselt",
+    situation:
+      "Ein bereits privat Versicherter ist wegen steigender Beiträge verunsichert und überlegt, den Versicherer zu wechseln.",
+    check: "Wir analysieren den bestehenden Tarif, interne Wechselmöglichkeiten und die Folgen eines externen Wechsels.",
+    result:
+      "Eine klare Entscheidungsgrundlage, bei der Leistungen, Rechte und langfristige Auswirkungen berücksichtigt werden.",
+  },
+];
+---
+
+<section id="pkv-beispiele" class="bg-white py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Typische Beratungssituationen</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        So unterschiedlich können sinnvolle PKV-Lösungen aussehen.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Die folgenden Beispiele zeigen typische Beratungssituationen. Die konkrete Empfehlung
+        hängt immer von der individuellen Ausgangslage ab.
+      </p>
+    </div>
+
+    <div class="mt-14 space-y-6">
+      {
+        cases.map((c, index) => (
+          <div data-reveal style={`transition-delay: ${index * 100}ms`} class="rounded-2xl border border-black/5 bg-brand-50/30 p-8">
+            <span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700 shadow-sm">
+              {c.label}
+            </span>
+            <h3 class="mt-4 font-serif text-xl font-semibold text-ink-950">{c.headline}</h3>
+            <div class="mt-5 grid gap-5 sm:grid-cols-3">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">Ausgangslage</p>
+                <p class="mt-1.5 text-sm leading-relaxed text-ink-700/80">{c.situation}</p>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">Prüfung</p>
+                <p class="mt-1.5 text-sm leading-relaxed text-ink-700/80">{c.check}</p>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Ergebnis</p>
+                <p class="mt-1.5 text-sm leading-relaxed text-ink-950">{c.result}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

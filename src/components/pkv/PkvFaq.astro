@@ -1,0 +1,85 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Für wen ist eine private Krankenversicherung grundsätzlich interessant?",
+    answer:
+      "Das hängt von deiner beruflichen und persönlichen Situation ab. Angestellte, Selbstständige und Beamte haben unterschiedliche Voraussetzungen und Anforderungen. Entscheidend sind unter anderem Einkommen, Gesundheit, Familienplanung, gewünschte Leistungen und langfristige Perspektive.",
+  },
+  {
+    question: "Ist die PKV immer besser als die gesetzliche Krankenversicherung?",
+    answer:
+      "Nein. Die PKV kann für bestimmte Menschen sehr sinnvoll sein, ist aber keine pauschal bessere Lösung. Eine gute Beratung prüft deshalb nicht nur Tarife, sondern zunächst, ob das System grundsätzlich zu deiner Situation passt.",
+  },
+  {
+    question: "Warum reicht ein Onlinevergleich nicht aus?",
+    answer:
+      "Ein Vergleichsrechner zeigt Beiträge und ausgewählte Leistungen. Er bewertet aber nicht automatisch deine Lebensplanung, Gesundheitsgeschichte, Familienplanung oder langfristige Tarifstrategie. Genau dort beginnt die eigentliche Beratung.",
+  },
+  {
+    question: "Was passiert bei Vorerkrankungen?",
+    answer:
+      "Vorerkrankungen können je nach Diagnose, Behandlung und Versicherer unterschiedlich bewertet werden. Deshalb sollten Gesundheitsangaben sorgfältig aufbereitet werden, bevor ein offizieller Antrag gestellt wird.",
+  },
+  {
+    question: "Was ist eine Risikovoranfrage?",
+    answer:
+      "Mit einer Risikovoranfrage kann vor einer offiziellen Antragstellung geprüft werden, wie ausgewählte Versicherer deine gesundheitliche Situation voraussichtlich bewerten. Das schafft mehr Klarheit über mögliche Annahmebedingungen.",
+  },
+  {
+    question: "Kann ich meine bestehende PKV optimieren?",
+    answer:
+      "Das hängt vom Vertrag und deiner Situation ab. Möglich sind unter anderem Anpassungen innerhalb der Gesellschaft oder eine Prüfung alternativer Lösungen. Ein externer Wechsel sollte jedoch nie vorschnell erfolgen.",
+  },
+  {
+    question: "Was passiert mit meinen Alterungsrückstellungen bei einem Wechsel?",
+    answer:
+      "Die Auswirkungen hängen unter anderem davon ab, ob du innerhalb deiner Gesellschaft den Tarif wechselst oder zu einem anderen Versicherer gehst. Deshalb muss dieser Punkt vor jeder Wechselentscheidung individuell geprüft werden.",
+  },
+  {
+    question: "Wie wichtig ist das Krankentagegeld?",
+    answer:
+      "Das Krankentagegeld sichert dein Einkommen bei längerer Arbeitsunfähigkeit. Höhe und Beginn der Leistung sollten genau zu deinem Beruf, deiner Lohnfortzahlung und deinem tatsächlichen Einkommen passen.",
+  },
+  {
+    question: "Kostet mich die Beratung zusätzlich?",
+    answer:
+      "Das Erstgespräch ist für dich kostenlos und unverbindlich. Kommt über mich ein Vertrag zustande, erhalte ich von der Versicherung eine Vergütung in Form einer Courtage. Wie die Zusammenarbeit konkret ausgestaltet ist, besprechen wir transparent.",
+  },
+  {
+    question: "Berätst du nur in Kassel?",
+    answer:
+      "Nein. Persönliche Gespräche sind in Kassel und Nordhessen möglich. Die Beratung kann außerdem vollständig digital und deutschlandweit stattfinden.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<section id="pkv-faq" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Häufige Fragen</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Was du vor deiner PKV-Entscheidung wissen solltest.
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

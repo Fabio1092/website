@@ -1,0 +1,104 @@
+---
+import { CheckCircle2, ShieldCheck } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+
+const trustPoints = [
+  "Spezialisiert auf private Krankenversicherung",
+  "Ungebundene und verständliche Beratung",
+  "Persönlich in Kassel. Digital deutschlandweit.",
+];
+---
+
+<section id="pkv-hero" class="relative overflow-hidden bg-ink-950 text-white">
+  <div
+    class="pointer-events-none absolute -top-40 right-[-10%] h-[32rem] w-[32rem] rounded-full bg-brand-500/20 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -bottom-32 left-[-10%] h-[26rem] w-[26rem] rounded-full bg-gold-500/10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="relative mx-auto grid max-w-6xl gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:py-28 lg:px-8"
+  >
+    <div class="order-2 min-w-0 text-center lg:order-1 lg:text-left">
+      <span
+        class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300"
+      >
+        Aus Kassel. Für Nordhessen. Digital in ganz Deutschland.
+      </span>
+      <h1 class="mt-6 hyphens-auto break-words text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+        Private Kranken&shy;versicherung <span class="text-brand-400">richtig auswählen, prüfen oder optimieren.</span>
+      </h1>
+      <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/70 lg:mx-0">
+        Die PKV begleitet dich möglicherweise über Jahrzehnte. Deshalb vergleichen wir nicht
+        einfach Beiträge, sondern entwickeln eine Lösung, die zu deiner Gesundheit, deiner
+        Lebensplanung und deinen Ansprüchen an medizinische Versorgung passt.
+      </p>
+
+      <ul class="mx-auto mt-8 flex max-w-lg flex-col gap-2.5 text-left lg:mx-0">
+        {
+          trustPoints.map((point) => (
+            <li class="flex items-center gap-2.5 text-sm text-white/80">
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
+              {point}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+        <a
+          href={siteConfig.calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+        >
+          Kostenlose PKV-Analyse starten
+        </a>
+        <a
+          href="#pkv-beratungsprozess"
+          class="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:border-white/40 hover:bg-white/5 sm:w-auto"
+        >
+          Beratung unverbindlich kennenlernen
+        </a>
+      </div>
+
+      <p class="mt-5 text-xs font-medium text-white/50">
+        Kostenloses Erstgespräch · Keine Verpflichtung · Persönliche Einschätzung
+      </p>
+    </div>
+
+    <div class="order-1 mx-auto w-full max-w-xs sm:max-w-sm lg:order-2 lg:mx-0 lg:max-w-none">
+      <div class="relative">
+        <div
+          class="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/25 via-transparent to-gold-500/15 blur-xl"
+          aria-hidden="true"
+        >
+        </div>
+        <img
+          src="/images/1-19.jpg"
+          alt="Fabio Rumpf, PKV-Spezialist aus Kassel"
+          class="aspect-[4/5] w-full rounded-[2rem] border border-white/10 object-cover shadow-2xl shadow-black/40"
+          width="800"
+          height="1000"
+          fetchpriority="high"
+        />
+        <div
+          class="absolute -bottom-6 left-1/2 flex w-[calc(100%-2.5rem)] -translate-x-1/2 items-start gap-3 rounded-2xl border border-white/10 bg-ink-900/90 px-5 py-4 shadow-xl shadow-black/30 backdrop-blur"
+        >
+          <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
+          <div>
+            <p class="text-sm font-semibold text-white">PKV-Spezialist aus Kassel</p>
+            <p class="mt-0.5 text-xs leading-snug text-white/60">
+              Persönliche Beratung, saubere Gesundheitsprüfung und langfristige Begleitung.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

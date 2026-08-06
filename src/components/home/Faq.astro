@@ -1,8 +1,51 @@
 ---
-import FaqAccordion from "./FaqAccordion.tsx";
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Muss ich mich vor dem Termin schon für eine BU oder PKV entschieden haben?",
+    answer:
+      "Nein. Genau dafür ist das Erstgespräch da. Wir schauen uns gemeinsam deine Situation an und klären zunächst, ob eine Berufsunfähigkeitsversicherung oder private Krankenversicherung überhaupt sinnvoll für dich ist. Du musst vorab keine Entscheidung treffen.",
+  },
+  {
+    question: "Kostet mich die Beratung etwas?",
+    answer:
+      "Nein. Das Erstgespräch ist für dich kostenfrei und unverbindlich. Wir lernen uns kennen, besprechen deine Situation und finden heraus, ob und wie ich dich unterstützen kann. Solltest du über mich einen Vertrag abschließen, bekomme ich von der Gesellschaft eine Vergütung in Form einer Courtage.",
+  },
+  {
+    question: "Kann ich mich auch beraten lassen, wenn ich bereits eine BU oder PKV habe?",
+    answer:
+      "Ja. Viele meiner Kunden besitzen bereits eine Berufsunfähigkeitsversicherung oder sind privat krankenversichert. Oft geht es darum, bestehende Verträge zu prüfen, Versorgungslücken aufzudecken oder mögliche Verbesserungen zu identifizieren.",
+  },
+  {
+    question: "Ich habe Vorerkrankungen. Macht eine Beratung trotzdem Sinn?",
+    answer:
+      "Unbedingt. Gerade bei Vorerkrankungen ist eine saubere Aufbereitung der Gesundheitsdaten besonders wichtig. In vielen Fällen gibt es bessere Möglichkeiten als vorschnell einen Antrag zu stellen. Gemeinsam prüfen wir, welche Optionen für dich realistisch sind.",
+  },
+  {
+    question: "Wie läuft die Beratung ab?",
+    answer:
+      "Die Zusammenarbeit erfolgt in vier Schritten: 1. Kostenloses Erstgespräch, 2. Analyse deiner Situation, 3. Individuelle Empfehlung, 4. Umsetzung und langfristige Begleitung. Dabei entscheidest du jederzeit selbst, ob und wie du weitermachen möchtest.",
+  },
+  {
+    question: "Berätst du nur Kunden aus Kassel?",
+    answer:
+      "Nein. Neben persönlichen Gesprächen in Kassel begleite ich meine Kunden deutschlandweit online. Die meisten Beratungen finden heute bequem per Videomeeting statt.",
+  },
+  {
+    question: "Für wen ist eine private Krankenversicherung sinnvoll?",
+    answer:
+      "Das hängt von deiner persönlichen Situation ab. Einkommen, Familienplanung, Gesundheitszustand und berufliche Perspektive spielen dabei eine wichtige Rolle. Genau deshalb gibt es keine pauschale Antwort und keine Lösung von der Stange.",
+  },
+  {
+    question: "Warum sollte ich mich von einem spezialisierten Makler beraten lassen?",
+    answer:
+      "Die Berufsunfähigkeitsversicherung und die private Krankenversicherung gehören zu den wichtigsten finanziellen Entscheidungen überhaupt. Gleichzeitig sind sie auch die komplexesten Bereiche im Versicherungsmarkt. Durch meine Spezialisierung auf BU und PKV profitierst du von einer Beratung, die sich nicht oberflächlich mit vielen Themen beschäftigt, sondern tief in die Details geht.",
+  },
+];
 ---
 
-<section class="bg-brand-50/40 py-24">
+<section id="faq" class="bg-brand-50/40 py-24">
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
     <div class="text-center">
       <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">FAQ</span>
@@ -11,7 +54,7 @@ import FaqAccordion from "./FaqAccordion.tsx";
       </h2>
     </div>
     <div data-reveal class="mt-12">
-      <FaqAccordion client:visible />
+      <FaqAccordion client:visible faqs={faqs} />
     </div>
   </div>
 </section>
