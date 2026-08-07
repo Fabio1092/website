@@ -34,3 +34,14 @@ jobs:
           protocol: ftp
           local-dir: ./dist/
           server-dir: ./public_html/
+
+      - name: fr-makler.de direkt gegen die IP testen (Diagnose)
+        if: always()
+        run: |
+          echo "--- fr-makler.de gegen 82.25.96.147 ---"
+          curl -sS --http1.1 -D - -o body1.html --resolve fr-makler.de:443:82.25.96.147 "https://fr-makler.de/" || echo "exit code: $?"
+          echo "--- erste 30 Zeilen Body ---"
+          head -n 30 body1.html || true
+          echo ""
+          echo "--- Vorschau-Domain gegen dieselbe IP (Vergleich) ---"
+          curl -sS --http1.1 -o /dev/null -w "HTTP-Status: %{http_code}\n" "https://turquoise-antelope-438343.hostingersite.com" || echo "exit code: $?"
