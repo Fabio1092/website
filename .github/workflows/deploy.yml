@@ -34,10 +34,3 @@ jobs:
           protocol: ftp
           local-dir: ./dist/
           server-dir: ./public_html/
-
-      - name: Vorschau-URL prüfen (Diagnose)
-        if: always()
-        run: |
-          curl -sS --http1.1 -D - -o body.html "https://turquoise-antelope-438343.hostingersite.com" || echo "curl exit code: $?"
-          echo "--- Body (erste 40 Zeilen) ---"
-          head -n 40 body.html || true
