@@ -25,13 +25,6 @@ jobs:
       - name: Seite bauen
         run: npm run build
 
-      - name: FTP-Verzeichnisse prüfen (Diagnose)
-        run: |
-          echo "--- Inhalt von FTP-Root ---"
-          curl -s --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" "ftp://${{ secrets.FTP_SERVER }}/" || echo "Root-Listing fehlgeschlagen"
-          echo "--- Inhalt von /public_html/ ---"
-          curl -s --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" "ftp://${{ secrets.FTP_SERVER }}/public_html/" || echo "public_html-Listing fehlgeschlagen"
-
       - name: Auf Hostinger hochladen
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
@@ -40,4 +33,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           local-dir: ./dist/
-          server-dir: ./
+          server-dir: ./public_html/
