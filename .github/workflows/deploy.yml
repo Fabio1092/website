@@ -25,17 +25,6 @@ jobs:
       - name: Seite bauen
         run: npm run build
 
-      - name: Diagnose - aktueller FTP-Stand
-        run: |
-          echo "=== Root ==="
-          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" || echo "FEHLER Root"
-          echo "=== public_html ==="
-          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/public_html/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" || echo "FEHLER public_html"
-          echo "=== domains ==="
-          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" || echo "FEHLER domains"
-          echo "=== domains/sandybrown-.../public_html ==="
-          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/sandybrown-albatross-172567.hostingersite.com/public_html/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" || echo "FEHLER domains/sandybrown"
-
       - name: Auf Hostinger hochladen
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
