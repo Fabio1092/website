@@ -37,6 +37,6 @@ jobs:
 
       - name: Vorschau-URL prüfen (Diagnose)
         run: |
-          curl -sS -D - -o body.html "https://turquoise-antelope-438343.hostingersite.com" || true
+          curl -sS --http1.1 -D - -o body.html "https://turquoise-antelope-438343.hostingersite.com" || echo "curl exit code: $?"
           echo "--- Body (erste 40 Zeilen) ---"
           head -n 40 body.html || true
