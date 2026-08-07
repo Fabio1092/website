@@ -15,10 +15,10 @@ function isActive(href: string) {
   class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink-950/95 text-white backdrop-blur transition-shadow duration-300 data-[scrolled=true]:shadow-lg data-[scrolled=true]:shadow-black/20"
   data-scrolled="false"
 >
-  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-    <a href="/" class="flex items-center gap-3" aria-label="FR Makler Startseite">
+  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-6 xl:px-8">
+    <a href="/" class="flex shrink-0 items-center gap-2.5" aria-label="FR Makler Startseite">
       <img src="/images/Logo.png" alt="FR Makler Logo" class="h-11 w-11 shrink-0 rounded-lg" width="44" height="44" />
-      <span class="flex flex-col leading-tight">
+      <span class="flex flex-col leading-tight whitespace-nowrap">
         <span class="font-serif text-lg font-semibold tracking-tight sm:text-xl">Fabio Rumpf</span>
         <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-400 sm:text-xs">
           Versicherungs- und Finanzmakler
@@ -26,13 +26,13 @@ function isActive(href: string) {
       </span>
     </a>
 
-    <nav class="hidden items-center gap-7 xl:flex" aria-label="Hauptnavigation">
+    <nav class="hidden shrink-0 items-center gap-5 lg:flex xl:gap-7" aria-label="Hauptnavigation">
       {
         primaryNav.map((link) => (
           <a
             href={link.href}
             class:list={[
-              "relative text-sm font-medium text-white/80 transition-colors hover:text-white",
+              "relative whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white",
               { "text-white": isActive(link.href) },
             ]}
           >
@@ -45,12 +45,12 @@ function isActive(href: string) {
       }
     </nav>
 
-    <div class="hidden items-center gap-3 xl:flex">
+    <div class="hidden shrink-0 items-center gap-2.5 lg:flex xl:gap-3">
       <a
         href={siteConfig.registrationUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-white/20 px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:border-white/40 hover:bg-white/5"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-white/20 px-3.5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:border-white/40 hover:bg-white/5"
       >
         Neukunde werden
       </a>
@@ -58,7 +58,7 @@ function isActive(href: string) {
         href={siteConfig.calendlyUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-gold-500 px-5 py-2.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-gold-500 px-4 py-2.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 xl:px-5"
       >
         Kostenloses Erstgespräch
       </a>
@@ -67,7 +67,7 @@ function isActive(href: string) {
     <button
       id="menu-toggle"
       type="button"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-md text-white xl:hidden"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-md text-white lg:hidden"
       aria-controls="mobile-menu"
       aria-expanded="false"
       aria-label="Menü öffnen"
@@ -79,7 +79,7 @@ function isActive(href: string) {
 
   <div
     id="mobile-menu"
-    class="hidden xl:hidden"
+    class="hidden lg:hidden"
   >
     <nav class="space-y-1 border-t border-white/10 px-4 pb-6 pt-4" aria-label="Mobile Navigation">
       {
