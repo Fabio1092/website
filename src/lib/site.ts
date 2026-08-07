@@ -9,6 +9,8 @@ export const siteConfig = {
   hours: "Mo - Fr: 9:00 - 18:00",
   address: "Narzissenweg 7a, 34128 Kassel",
   calendlyUrl: "https://calendly.com/fr-makler/kostenloses-erstgesprach",
+  registrationUrl:
+    "https://meine-finanzen.digital/interessent/m/0dfdfc10-1b1b-11ee-82d2-960000d203a8",
   whatsappUrl: "https://wa.me/4956194033160",
   instagramUrl: "https://www.instagram.com/fr.makler/",
   trustindexEmbedSrc:
