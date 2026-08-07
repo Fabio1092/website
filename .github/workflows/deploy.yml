@@ -25,6 +25,15 @@ jobs:
       - name: Seite bauen
         run: npm run build
 
+      - name: Diagnose - FTP-Struktur auflisten
+        run: |
+          echo "=== Root ==="
+          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+          echo "=== public_html ==="
+          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/public_html/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+          echo "=== domains (falls vorhanden) ==="
+          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" || echo "kein domains-Ordner"
+
       - name: Auf Hostinger hochladen
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
