@@ -1,0 +1,48 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/beratung360/Hero.astro";
+import GesamtbildProblem from "@/components/beratung360/GesamtbildProblem.astro";
+import ErstVerstehen from "@/components/beratung360/ErstVerstehen.astro";
+import Process from "@/components/beratung360/Process.astro";
+import WhyDifferent from "@/components/beratung360/WhyDifferent.astro";
+import Benefits from "@/components/beratung360/Benefits.astro";
+import LocalTrust from "@/components/beratung360/LocalTrust.astro";
+import TargetAudience from "@/components/beratung360/TargetAudience.astro";
+import Faq from "@/components/beratung360/Faq.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="Versicherungsmakler Kassel: 360° Beratung – FR Makler"
+  description="Ganzheitliche 360° Versicherungsberatung in Kassel: Wir betrachten deine gesamte Absicherung statt einzelner Verträge – persönlich vor Ort oder digital."
+  fullTitle
+>
+  <Hero />
+  <GesamtbildProblem />
+  <ErstVerstehen />
+  <Process />
+  <WhyDifferent />
+  <Benefits />
+  <LocalTrust />
+  <TargetAudience />
+  <FinalCta
+    id="b360-mid-cta"
+    eyebrow="Bereit loszulegen?"
+    title="Deine 360° Beratung beim Versicherungsmakler in Kassel."
+    titleHighlight="360° Beratung"
+    body="Vielleicht möchtest du gerade nur eine einzelne Versicherung überprüfen. Vielleicht hast du aber auch schon länger das Gefühl: „Eigentlich müsste ich das ganze Thema einmal vernünftig sortieren.“ Genau dafür ist unsere 360° Beratung da."
+    ctaLabel="360° Erstgespräch in Kassel vereinbaren"
+    badges={["Persönlich in Kassel oder digital", "Kostenlos und unverbindlich"]}
+    closingLine="Wir nehmen uns im ersten Schritt die Zeit, deine Situation kennenzulernen und herauszufinden, welche Themen für dich tatsächlich relevant sind. Danach weißt du, wo du stehst — und wir können gemeinsam entscheiden, wie der nächste Schritt aussieht."
+  />
+  <Faq />
+  <FinalCta
+    id="b360-final-cta"
+    eyebrow="Lass uns dein Gesamtbild anschauen"
+    title="Bereit für den 360° Blick auf deine Versicherungen?"
+    titleHighlight="360° Blick"
+    body="Buche jetzt dein unverbindliches Erstgespräch und lerne unseren Beratungsansatz kennen."
+    ctaLabel="Jetzt Erstgespräch beim Versicherungsmakler in Kassel buchen"
+    closingLine="Persönlich in Kassel oder bequem digital."
+  />
+</Layout>

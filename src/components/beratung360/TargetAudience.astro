@@ -1,0 +1,65 @@
+---
+import { CheckCircle2 } from "lucide-react";
+
+const criteria = [
+  "mehrere Versicherungsverträge besitzt und nicht genau weißt, ob sie sinnvoll zusammenspielen",
+  "deine Absicherung schon länger nicht mehr überprüfen lassen hast",
+  "beruflich oder privat vor einer größeren Veränderung stehst",
+  "eine Familie gründest oder bereits Kinder hast",
+  "eine Immobilie kaufst oder gebaut hast",
+  "dich selbstständig gemacht hast",
+  "dein Einkommen deutlich verändert hast",
+  "Vermögen und Altersvorsorge strukturierter aufbauen möchtest",
+  "oder einfach wissen willst, ob du heute wirklich sinnvoll aufgestellt bist",
+];
+---
+
+<section id="b360-zielgruppe" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Passt das zu dir?</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Für wen ist unsere <span class="text-brand-600">360° Beratung</span> sinnvoll?
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">Besonders sinnvoll ist der Ansatz, wenn du …</p>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-10 grid max-w-3xl gap-3.5 sm:grid-cols-2">
+      {
+        criteria.map((item) => (
+          <li class="flex items-start gap-2.5 rounded-xl border border-black/5 bg-white p-4 text-sm leading-relaxed text-ink-700/85">
+            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" aria-hidden="true" />
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mx-auto mt-8 max-w-2xl text-center text-base leading-relaxed text-ink-700/85">
+      Dabei spielt es keine Rolle, ob du bereits viele Versicherungen besitzt oder gerade erst
+      anfängst, dich mit dem Thema auseinanderzusetzen.
+    </p>
+
+    <div data-reveal class="mx-auto mt-10 max-w-2xl rounded-3xl border border-brand-200 bg-white px-8 py-10 text-center sm:px-12">
+      <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Das Ziel</p>
+      <p class="mx-auto mt-3 max-w-xl font-serif text-2xl leading-snug text-ink-950">
+        Am Ende sollst du wissen, warum du wie abgesichert bist.
+      </p>
+      <div class="mx-auto mt-6 max-w-xl space-y-3 text-left text-sm leading-relaxed text-ink-700/85">
+        <p>
+          Wir möchten nicht, dass du nach einer Beratung mit fünf neuen Versicherungsordnern nach
+          Hause gehst und trotzdem nicht weißt, was du eigentlich abgeschlossen hast.
+        </p>
+        <p>
+          Du sollst dein Konzept verstehen. Du sollst wissen, welche Risiken du bewusst abgesichert
+          hast. Du sollst wissen, welche Ziele deine Vorsorge verfolgt. Und du sollst
+          nachvollziehen können, warum eine bestimmte Lösung zu dir passt.
+        </p>
+        <p class="font-medium text-ink-950">
+          Denn am Ende geht es nicht darum, möglichst viele Versicherungen zu besitzen. Es geht
+          darum, die richtigen Entscheidungen für dein Leben zu treffen.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+---
+import { Compass, ListChecks, Sparkles, ShieldCheck, Wallet, MessageCircleQuestion, RefreshCcw } from "lucide-react";
+
+const benefits = [
+  {
+    icon: Compass,
+    title: "Ganzheitlicher Blick",
+    description: "Wir betrachten nicht nur einen einzelnen Vertrag, sondern deine gesamte Absicherungs- und Vorsorgesituation.",
+  },
+  {
+    icon: ListChecks,
+    title: "Klare Prioritäten",
+    description: "Du sollst wissen, welche Themen für deine Situation besonders relevant sind und welche warten können.",
+  },
+  {
+    icon: Sparkles,
+    title: "Individuelle Wünsche",
+    description: "Deine Anforderungen bilden die Grundlage unserer späteren Empfehlungen.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Bestehende Verträge werden berücksichtigt",
+    description: "Was bereits sinnvoll gelöst ist, muss nicht zwangsläufig verändert werden.",
+  },
+  {
+    icon: Wallet,
+    title: "Budgetorientierte Planung",
+    description: "Wir entwickeln kein theoretisches Wunschkonzept, das anschließend nicht zu deinen finanziellen Möglichkeiten passt.",
+  },
+  {
+    icon: MessageCircleQuestion,
+    title: "Verständliche Empfehlungen",
+    description: "Du sollst verstehen, warum wir dir etwas empfehlen – und nicht einfach unserer Empfehlung vertrauen müssen.",
+  },
+  {
+    icon: RefreshCcw,
+    title: "Langfristige Betreuung",
+    description: "Mit der Umsetzung endet unsere Arbeit nicht. Deine Lebenssituation verändert sich, und deshalb sollte auch dein Versicherungskonzept regelmäßig überprüft werden.",
+  },
+];
+---
+
+<section id="b360-erwartungen" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Was dich erwartet</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Was du von <span class="text-brand-600">unserer Beratung</span> erwarten kannst.
+      </h2>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        benefits.map((benefit, index) => (
+          <div data-reveal style={`transition-delay: ${index * 60}ms`} class="rounded-2xl border border-black/5 bg-white p-6">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600">
+              <benefit.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <h3 class="mt-4 text-sm font-semibold text-ink-950">{benefit.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/70">{benefit.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

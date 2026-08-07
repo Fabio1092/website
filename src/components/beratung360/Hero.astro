@@ -1,0 +1,95 @@
+---
+import { Compass } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+---
+
+<section id="b360-hero" class="relative overflow-hidden bg-ink-950 text-white">
+  <div
+    class="pointer-events-none absolute -top-40 right-[-10%] h-[32rem] w-[32rem] rounded-full bg-brand-500/20 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -bottom-32 left-[-10%] h-[26rem] w-[26rem] rounded-full bg-gold-500/10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="relative mx-auto grid max-w-6xl gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:py-28 lg:px-8"
+  >
+    <div class="order-2 min-w-0 text-center lg:order-1 lg:text-left">
+      <span
+        class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300"
+      >
+        Versicherungsmakler Kassel
+      </span>
+      <h1 class="mt-6 hyphens-auto break-words text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+        <span class="text-brand-400">360° Beratung</span> statt Versicherungen von der Stange.
+      </h1>
+      <p class="mx-auto mt-6 max-w-xl font-serif text-xl leading-relaxed text-white/90 lg:mx-0">
+        Deine Versicherungen sollten zu deinem Leben passen. Nicht umgekehrt.
+      </p>
+      <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/70 lg:mx-0">
+        Einzelne Versicherungen vergleichen kann jeder. Wir gehen einen Schritt weiter. Als
+        Versicherungsmakler in Kassel betrachten wir nicht einfach einzelne Verträge, sondern deine
+        gesamte Situation: deine aktuelle Absicherung, deine Lebensplanung, deine Wünsche, deine
+        Prioritäten und natürlich das Budget, das dir dafür zur Verfügung steht. Daraus entsteht
+        deine persönliche 360° Beratung.
+      </p>
+
+      <div class="mx-auto mt-7 max-w-xl rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-left lg:mx-0">
+        <p class="text-sm text-white/60">
+          Nicht die Frage „Welche Versicherung können wir dir anbieten?" steht am Anfang. Sondern:
+        </p>
+        <p class="mt-2 font-serif text-lg leading-snug text-white">
+          Was brauchst du wirklich, damit deine Absicherung zu deinem Leben passt?
+        </p>
+      </div>
+
+      <div class="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+        <a
+          href={siteConfig.calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+        >
+          360° Beratung vereinbaren
+        </a>
+      </div>
+
+      <p class="mt-5 text-xs font-medium text-white/50">
+        Kostenloses Erstgespräch · Persönlich in Kassel oder digital
+      </p>
+    </div>
+
+    <div class="order-1 mx-auto w-full max-w-xs sm:max-w-sm lg:order-2 lg:mx-0 lg:max-w-none">
+      <div class="relative">
+        <div
+          class="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/25 via-transparent to-gold-500/15 blur-xl"
+          aria-hidden="true"
+        >
+        </div>
+        <img
+          src="/images/Fabio_Rumpf.jpg"
+          alt="Fabio Rumpf, Versicherungsmakler aus Kassel"
+          class="aspect-[4/5] w-full rounded-[2rem] border border-white/10 object-cover shadow-2xl shadow-black/40"
+          width="800"
+          height="1000"
+          fetchpriority="high"
+        />
+        <div
+          class="absolute -bottom-6 left-1/2 flex w-[calc(100%-2.5rem)] -translate-x-1/2 items-start gap-3 rounded-2xl border border-white/10 bg-ink-900/90 px-5 py-4 shadow-xl shadow-black/30 backdrop-blur"
+        >
+          <Compass className="mt-0.5 h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
+          <div>
+            <p class="text-sm font-semibold text-white">Ganzheitliche Beratung aus Kassel</p>
+            <p class="mt-0.5 text-xs leading-snug text-white/60">
+              Ein Gesamtkonzept statt einzelner Verträge — abgestimmt auf dein Leben.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

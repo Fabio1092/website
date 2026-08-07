@@ -1,0 +1,127 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+
+interface Step {
+  number: string;
+  title: string;
+  intro?: string;
+  text?: string;
+  questions?: string[];
+  closing?: string;
+}
+
+const steps: Step[] = [
+  {
+    number: "1",
+    title: "Wir lernen dich kennen",
+    intro: "Im ersten Gespräch geht es zunächst um dich.",
+    questions: [
+      "Wo stehst du aktuell?",
+      "Was hast du in den kommenden Jahren vor?",
+      "Welche Ziele möchtest du erreichen?",
+      "Welche Absicherung besteht bereits?",
+      "Und welche Themen beschäftigen dich vielleicht schon länger?",
+    ],
+    closing: "So entsteht zunächst ein Gesamtbild deiner persönlichen Situation.",
+  },
+  {
+    number: "2",
+    title: "Du definierst deine Prioritäten",
+    text: "Danach gehen wir die für dich relevanten Bereiche strukturiert durch. Dabei unterscheiden wir bewusst zwischen Themen, die für dich eine hohe Priorität haben, und Bereichen, die aktuell weniger wichtig sind. Denn nicht jede Versicherung ist für jeden Menschen gleich relevant. Und manchmal stellt sich sogar heraus, dass ein Thema bereits vollkommen ausreichend gelöst ist.",
+    closing: "Das darf auch das Ergebnis einer guten Beratung sein.",
+  },
+  {
+    number: "3",
+    title: "Wir halten deine Wünsche konkret fest",
+    intro: "„Eine gute Absicherung“ ist uns zu ungenau. Deshalb definieren wir gemeinsam, was eine gute Lösung für dich konkret bedeuten muss.",
+    questions: [
+      "Welche Leistungen sind dir wichtig?",
+      "Welche Risiken möchtest du unbedingt abgesichert wissen?",
+      "Welche Ziele möchtest du mit deiner Vorsorge erreichen?",
+      "Was erwartest du von deiner zukünftigen Lösung?",
+    ],
+    closing:
+      "Damit entsteht Schritt für Schritt dein persönliches Anforderungsprofil — die Grundlage für unsere Konzepterstellung.",
+  },
+  {
+    number: "4",
+    title: "Wir sprechen offen über dein Budget",
+    text: "Eine Beratung bringt dir wenig, wenn das fertige Konzept anschließend finanziell nicht zu deinem Leben passt. Deshalb gehört auch dein gewünschter finanzieller Rahmen zu unserer 360° Beratung. Gemeinsam definieren wir, welches Budget für deine wichtigsten Absicherungs- und Vorsorgethemen zur Verfügung stehen soll.",
+    closing: "Innerhalb dieses Rahmens möchten wir deine wichtigsten Ziele und Wünsche bestmöglich lösen.",
+  },
+  {
+    number: "5",
+    title: "Wir prüfen, was bereits vorhanden ist",
+    text: "Ganzheitliche Beratung bedeutet für uns ausdrücklich nicht, bestehende Versicherungen grundsätzlich auszutauschen. Im Gegenteil: Wenn du bereits Verträge besitzt, beziehen wir diese in die Betrachtung mit ein. Was gut zu deiner Situation und deinen Wünschen passt, kann Bestandteil deines Gesamtkonzepts bleiben. Und dort, wo wir sinnvolles Verbesserungspotenzial erkennen, zeigen wir es dir transparent auf.",
+    closing: "Nicht alles neu. Sondern alles sinnvoll aufeinander abgestimmt.",
+  },
+  {
+    number: "6",
+    title: "Wir erstellen dein persönliches 360° Konzept",
+    text: "Nach unserem Erstgespräch beginnt unsere eigentliche Arbeit. Wir führen deine Situation, deine Prioritäten, deine gewünschten Leistungen, vorhandene Verträge und deinen finanziellen Rahmen zusammen. Auf dieser Grundlage entsteht dein persönliches Lösungskonzept.",
+    closing: "Nicht ausgehend von einem bestimmten Produkt. Sondern ausgehend von den Anforderungen, die wir zuvor gemeinsam definiert haben.",
+  },
+  {
+    number: "7",
+    title: "Im zweiten Termin bekommst du das Gesamtbild",
+    text: "Im Folgetermin stellen wir dir dein persönliches Konzept vor. Dabei starten wir nicht wieder bei null — wir knüpfen genau an unser Erstgespräch an: Das sind deine Ziele. Das waren deine Prioritäten. Das waren deine Wünsche. Das ist dein Budget. Und so können wir diese Punkte aus unserer Sicht sinnvoll lösen. Wir erklären dir die Empfehlungen verständlich, beantworten deine Fragen und zeigen dir die jeweiligen Vor- und Nachteile.",
+    closing: "Erst wenn du die Lösung verstanden hast und sie für dich passt, sprechen wir über die Umsetzung.",
+  },
+];
+---
+
+<section id="b360-prozess" class="scroll-mt-24 bg-white py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">So funktioniert unsere 360° Beratung</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Sieben Schritte zu <span class="text-brand-600">deinem persönlichen Konzept</span>.
+      </h2>
+    </div>
+
+    <ol class="mt-16 space-y-12">
+      {
+        steps.map((step, index) => (
+          <li data-reveal style={`transition-delay: ${index * 60}ms`} class="relative flex gap-6 sm:gap-8">
+            <div class="flex flex-col items-center">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-lg font-semibold text-white">
+                {step.number}
+              </span>
+              {index < steps.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
+            </div>
+            <div class="max-w-2xl pb-2">
+              <h3 class="font-serif text-xl font-semibold text-ink-950">{step.title}</h3>
+              {step.intro && <p class="mt-2 text-base leading-relaxed text-ink-700/80">{step.intro}</p>}
+              {step.text && <p class="mt-2 text-base leading-relaxed text-ink-700/80">{step.text}</p>}
+              {step.questions && (
+                <ul class="mt-4 space-y-2">
+                  {step.questions.map((question) => (
+                    <li class="flex items-start gap-2.5 text-sm text-ink-700/80">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" aria-hidden="true" />
+                      {question}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {step.closing && (
+                <p class="mt-4 font-serif text-base leading-snug text-ink-950">{step.closing}</p>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-14 text-center">
+      <a
+        href={siteConfig.calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+      >
+        360° Beratung vereinbaren
+      </a>
+    </div>
+  </div>
+</section>

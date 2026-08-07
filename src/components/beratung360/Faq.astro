@@ -1,0 +1,69 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Was macht ein Versicherungsmakler in Kassel?",
+    answer:
+      "Ein Versicherungsmakler unterstützt seine Kunden bei der Auswahl und Betreuung geeigneter Versicherungslösungen. Unser Ansatz geht darüber hinaus: Im Rahmen unserer 360° Beratung betrachten wir deine Absicherung ganzheitlich und entwickeln aus deiner persönlichen Situation, deinen Zielen, Prioritäten und deinem Budget ein individuelles Konzept.",
+  },
+  {
+    question: "Muss ich meine bestehenden Versicherungen kündigen?",
+    answer:
+      "Nein. Bestehende Verträge werden zunächst berücksichtigt und geprüft. Wenn eine vorhandene Lösung bereits sinnvoll zu deinen Anforderungen passt, kann sie Bestandteil deines Gesamtkonzepts bleiben. Veränderungen empfehlen wir dort, wo wir entsprechendes Verbesserungspotenzial sehen.",
+  },
+  {
+    question: "Was passiert im ersten Beratungsgespräch?",
+    answer:
+      "Im Erstgespräch lernen wir deine aktuelle Situation sowie deine Ziele und Wünsche kennen. Anschließend betrachten und priorisieren wir die für dich relevanten Themen, definieren deine Anforderungen und sprechen über den finanziellen Rahmen. Diese Informationen bilden die Grundlage für die anschließende Konzepterstellung.",
+  },
+  {
+    question: "Bekomme ich direkt im ersten Termin Versicherungsangebote?",
+    answer:
+      "Der Schwerpunkt des ersten Termins liegt auf der Analyse und deinen Anforderungen. Auf dieser Basis können anschließend passende Lösungen ausgearbeitet werden. Das persönliche Konzept besprechen wir mit dir im Folgetermin.",
+  },
+  {
+    question: "Kann die Beratung auch online stattfinden?",
+    answer: "Ja. Die 360° Beratung kann persönlich in Kassel oder digital durchgeführt werden.",
+  },
+  {
+    question: "Was kostet die Beratung?",
+    answer:
+      "Das Erstgespräch ist für dich kostenlos und unverbindlich. Kommt über mich ein Vertrag zustande, erhalte ich von der Versicherung eine Vergütung in Form einer Courtage. Wie die Zusammenarbeit konkret ausgestaltet ist, besprechen wir transparent.",
+  },
+  {
+    question: "Warum eine ganzheitliche Beratung statt einzelner Versicherungsvergleiche?",
+    answer:
+      "Weil verschiedene Bereiche deiner finanziellen Absicherung miteinander zusammenhängen können. Statt einzelne Verträge isoliert zu betrachten, schaffen wir zunächst ein Gesamtbild und priorisieren anschließend gemeinsam die Themen, die für deine persönliche Situation relevant sind.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<section id="b360-faq" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Häufige Fragen</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Fragen zur <span class="text-brand-600">360° Versicherungsberatung</span>.
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
