@@ -1,0 +1,61 @@
+---
+import type { ComponentType } from "react";
+import { X, Check } from "lucide-react";
+
+interface Column {
+  tone: "danger" | "success" | "brand" | "ink";
+  label: string;
+  heading?: string;
+  points: string[];
+}
+
+interface Props {
+  columns: [Column, Column];
+}
+
+const { columns } = Astro.props;
+
+const toneConfig: Record<
+  Column["tone"],
+  { bg: string; text: string; icon: ComponentType<{ className?: string; "aria-hidden"?: boolean }> | null }
+> = {
+  danger: { bg: "bg-danger-50/60", text: "text-danger-600", icon: X },
+  success: { bg: "bg-success-50/60", text: "text-success-600", icon: Check },
+  brand: { bg: "bg-brand-50/60", text: "text-brand-700", icon: null },
+  ink: { bg: "bg-ink-950 text-white", text: "text-brand-300", icon: null },
+};
+---
+
+<div class="shadow-soft grid overflow-hidden rounded-3xl divide-y divide-black/[0.06] lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+  {
+    columns.map((col, index) => {
+      const cfg = toneConfig[col.tone];
+      const Icon = cfg.icon;
+      return (
+        <div data-reveal style={`transition-delay: ${index * 100}ms`} class:list={["p-8 sm:p-10", cfg.bg]}>
+          <span class:list={["inline-flex items-center gap-2 text-sm font-semibold", cfg.text]}>
+            {Icon && <Icon className="h-4.5 w-4.5" aria-hidden={true} />}
+            {col.label}
+          </span>
+          {col.heading && (
+            <h3 class:list={["mt-3 font-serif text-lg font-semibold", col.tone === "ink" ? "text-white" : "text-ink-950"]}>
+              {col.heading}
+            </h3>
+          )}
+          <ul class="mt-5 space-y-3">
+            {col.points.map((point) => (
+              <li class:list={["flex items-start gap-2.5 text-sm", col.tone === "ink" ? "text-white/80" : "text-ink-700/85"]}>
+                {Icon ? (
+                  <Icon className={`mt-0.5 h-4.5 w-4.5 shrink-0 ${cfg.text}`} aria-hidden={true} />
+                ) : (
+                  <span class:list={["mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full", col.tone === "ink" ? "bg-brand-400" : "bg-brand-500"]} aria-hidden="true" />
+                )}
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    })
+  }
+</div>

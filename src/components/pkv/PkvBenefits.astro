@@ -63,14 +63,14 @@ const benefits = [
       <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
         Die Unterschiede zwischen privaten Krankenversicherungen liegen oft im Detail. Genau diese
         Details entscheiden später darüber, wie umfassend und verlässlich dein Schutz wirklich
-        ist.
+        ist. Du musst sie nicht selbst vergleichen – du solltest nur verstehen, warum sie zählen.
       </p>
     </div>
 
-    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="shadow-soft mt-14 grid gap-px overflow-hidden rounded-3xl bg-black/[0.06] sm:grid-cols-2 lg:grid-cols-4">
       {
         benefits.map((benefit, index) => (
-          <div data-reveal style={`transition-delay: ${index * 60}ms`} class="rounded-2xl border border-black/5 bg-white p-6">
+          <div data-reveal style={`transition-delay: ${index * 60}ms`} class="bg-white p-7">
             <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600">
               <benefit.icon className="h-5 w-5" aria-hidden="true" />
             </div>
@@ -79,13 +79,6 @@ const benefits = [
           </div>
         ))
       }
-    </div>
-
-    <div class="mx-auto mt-12 max-w-2xl rounded-2xl border border-black/5 bg-white px-8 py-6 text-center">
-      <p class="text-sm leading-relaxed text-ink-700/80">
-        Du musst diese Bedingungen nicht selbst vergleichen. Du solltest aber verstehen, warum sie
-        für deine Entscheidung wichtig sind.
-      </p>
     </div>
   </div>
 </section>
