@@ -1,0 +1,18 @@
+name: Diagnostic Live Check
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check live site
+        run: |
+          echo "--- fr-makler.de ---"
+          curl -s -o /tmp/live.html -w "HTTP %{http_code}\n" https://fr-makler.de/
+          echo "--- asset references in live HTML ---"
+          grep -o '_astro/[a-zA-Z0-9_.]*\.\(js\|css\)' /tmp/live.html | sort -u
+          echo "--- Last-Modified / cache headers ---"
+          curl -sI https://fr-makler.de/ | grep -iE "last-modified|cache-control|etag|date"
+          echo "--- www subdomain ---"
+          curl -s -o /dev/null -w "HTTP %{http_code}\n" https://www.fr-makler.de/
