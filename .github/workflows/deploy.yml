@@ -25,10 +25,6 @@ jobs:
       - name: Seite bauen
         run: npm run build
 
-      - name: Einmalig alte default.php entfernen
-        run: |
-          curl -s --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" -Q "DELE default.php" "ftp://${{ secrets.FTP_SERVER }}/domains/fr-makler.de/public_html/" || echo "default.php evtl. schon entfernt oder nicht vorhanden"
-
       - name: Auf Hostinger hochladen
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
