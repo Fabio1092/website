@@ -28,12 +28,16 @@ jobs:
       - name: Diagnose - Cookie-Banner und Superchat pruefen
         run: |
           echo "=== HTTP-Status ==="
-          curl -s -o /dev/null -w "HTTP-Status: %{http_code}\n" --http1.1 https://fr-makler.de/ || echo "FEHLER"
-          BODY=$(curl -s --http1.1 https://fr-makler.de/)
-          echo "=== cookie-consent im Live-HTML gefunden? ==="
-          echo "$BODY" | grep -o "cookie-consent" | head -1 || echo "NICHT GEFUNDEN"
-          echo "=== superchat im Live-HTML gefunden? ==="
-          echo "$BODY" | grep -o "superchat" | head -1 || echo "NICHT GEFUNDEN"
+          curl -s -o /dev/null -w "HTTP-Status: %{http_code}\n" --http1.1 https://fr-makler.de/
+          curl -s --http1.1 https://fr-makler.de/ -o /tmp/live.html
+          echo "=== Body-Groesse ==="
+          wc -c /tmp/live.html
+          echo "=== cookie-consent (case-insensitiv) ==="
+          grep -ic "cookie-consent" /tmp/live.html || true
+          echo "=== superchat (case-insensitiv) ==="
+          grep -ic "superchat" /tmp/live.html || true
+          echo "=== Letzte 40 Zeilen des Bodys ==="
+          tail -c 4000 /tmp/live.html
 
       - name: Auf Hostinger hochladen
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
