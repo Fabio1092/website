@@ -1,0 +1,110 @@
+---
+import { Briefcase, Users, HeartPulse, ClipboardList, Wallet } from "lucide-react";
+
+const leistungen = [
+  "ambulante Behandlung",
+  "stationäre Leistungen",
+  "Zahnbehandlung und Zahnersatz",
+  "Psychotherapie",
+  "Hilfs- und Heilmittel",
+  "Arzneimittel",
+  "Selbstbehalt",
+  "Krankentagegeld",
+  "Leistungen im Ausland",
+  "Beitragsentlastung im Alter",
+];
+---
+
+<section id="pkv-angestellte-checkpunkte" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Unsere Prüfpunkte</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Diese Punkte <span class="text-brand-600">prüfen wir gemeinsam.</span>
+      </h2>
+    </div>
+
+    <div class="mt-14 space-y-6">
+      <div data-reveal class="rounded-2xl border border-black/5 bg-white p-7">
+        <div class="flex items-start gap-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600">
+            <Briefcase className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <div>
+            <h3 class="font-serif text-lg font-semibold text-ink-950">Deine berufliche Entwicklung</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">
+              Wie stabil ist dein Einkommen? Welche beruflichen Veränderungen sind realistisch?
+              Sind Teilzeit, Selbstständigkeit oder ein längerer Auslandsaufenthalt denkbar?
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal class="rounded-2xl border border-black/5 bg-white p-7">
+        <div class="flex items-start gap-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600">
+            <Users className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <div>
+            <h3 class="font-serif text-lg font-semibold text-ink-950">Deine Familienplanung</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">
+              In der privaten Krankenversicherung benötigt grundsätzlich jede versicherte Person
+              einen eigenen Versicherungsschutz. Deshalb müssen Partner, mögliche Kinder und die
+              Einkommenssituation der Familie von Beginn an berücksichtigt werden.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal class="rounded-2xl border border-black/5 bg-white p-7">
+        <div class="flex items-start gap-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600">
+            <HeartPulse className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <div>
+            <h3 class="font-serif text-lg font-semibold text-ink-950">Deinen Gesundheitszustand</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">
+              Bei einem PKV-Antrag werden Gesundheitsfragen gestellt. Vorerkrankungen können
+              Einfluss auf die Annahme, den Beitrag oder den Leistungsumfang haben. Deshalb sollte
+              kein Antrag unvorbereitet gestellt werden.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal class="rounded-2xl border border-black/5 bg-white p-7">
+        <div class="flex items-start gap-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600">
+            <ClipboardList className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-serif text-lg font-semibold text-ink-950">Deine gewünschten Leistungen</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">Wir prüfen unter anderem:</p>
+            <ul class="mt-3 grid gap-2 sm:grid-cols-2">
+              {
+                leistungen.map((leistung) => (
+                  <li class="rounded-lg bg-brand-50/60 px-3 py-2 text-sm text-ink-700/80">{leistung}</li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal class="rounded-2xl border border-black/5 bg-white p-7">
+        <div class="flex items-start gap-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600">
+            <Wallet className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <div>
+            <h3 class="font-serif text-lg font-semibold text-ink-950">Deine langfristige finanzielle Tragfähigkeit</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">
+              Die Entscheidung darf nicht nur auf dem heutigen Zahlbeitrag beruhen. Sie muss auch
+              bei veränderten Lebenssituationen tragfähig bleiben.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

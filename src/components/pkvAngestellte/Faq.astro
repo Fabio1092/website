@@ -1,0 +1,60 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Ist die PKV für Angestellte immer günstiger?",
+    answer:
+      "Nein. Der Beitrag hängt unter anderem von Alter, Gesundheitszustand, Tarif und Leistungsumfang ab. Außerdem müssen Familienplanung und langfristige Beitragsentwicklung berücksichtigt werden.",
+  },
+  {
+    question: "Bekomme ich als Angestellter einen Arbeitgeberzuschuss?",
+    answer:
+      "Privat krankenversicherte Angestellte können grundsätzlich einen Arbeitgeberzuschuss erhalten. Die konkrete Höhe ist gesetzlich begrenzt und hängt vom tatsächlichen Beitrag ab.",
+  },
+  {
+    question: "Was passiert, wenn mein Einkommen später sinkt?",
+    answer:
+      "Das hängt von der konkreten Situation ab. Ein sinkendes Einkommen kann erneut Versicherungspflicht in der gesetzlichen Krankenversicherung auslösen. Alter, Beschäftigungsstatus und weitere Voraussetzungen spielen dabei eine Rolle.",
+  },
+  {
+    question: "Kann ich meine Familie kostenlos mitversichern?",
+    answer:
+      "Eine beitragsfreie Familienversicherung wie in der gesetzlichen Krankenversicherung gibt es in der PKV grundsätzlich nicht. Für jedes privat versicherte Familienmitglied wird eigener Schutz benötigt.",
+  },
+  {
+    question: "Sollte ich einfach den günstigsten Tarif nehmen?",
+    answer:
+      "Nein. Ein niedriger Einstiegsbeitrag sagt wenig über die Qualität und langfristige Eignung eines Tarifs aus.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<section id="pkv-angestellte-faq" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Häufige Fragen</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Was Angestellte vor der <span class="text-brand-600">PKV-Entscheidung</span> wissen sollten.
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

@@ -1,0 +1,58 @@
+---
+import { CheckCircle2 } from "lucide-react";
+
+const points = [
+  "als Angestellter die gesetzlichen Voraussetzungen erfüllst,",
+  "langfristig über ein stabiles und gutes Einkommen verfügst,",
+  "Wert auf individuell vereinbarte Leistungen legst,",
+  "deine Gesundheitsversorgung bewusst gestalten möchtest,",
+  "bereit bist, dich ausführlich mit Tarifbedingungen zu beschäftigen,",
+  "eine langfristige und nicht nur kurzfristig günstige Lösung suchst.",
+];
+---
+
+<section id="pkv-angestellte-eignung" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Passt die PKV zu dir?</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Für wen kann eine <span class="text-brand-600">private Krankenversicherung</span> interessant sein?
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">Eine PKV kann für dich grundsätzlich interessant sein, wenn du:</p>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-10 flex max-w-xl flex-col gap-3">
+      {
+        points.map((point) => (
+          <li class="flex items-start gap-3 text-base leading-relaxed text-ink-700/85">
+            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" aria-hidden="true" />
+            {point}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div data-reveal class="mx-auto mt-10 max-w-xl text-base leading-relaxed text-ink-700/85">
+      <p>
+        Gleichzeitig gibt es Situationen, in denen der Verbleib in der gesetzlichen
+        Krankenversicherung die passendere Entscheidung sein kann.
+      </p>
+      <p class="mt-2">Genau deshalb beginnt unsere Beratung ergebnisoffen.</p>
+    </div>
+
+    <div data-reveal class="mx-auto mt-6 grid max-w-xl gap-4 sm:grid-cols-2">
+      <div class="rounded-2xl border border-black/5 bg-white px-6 py-5">
+        <p class="text-sm font-semibold uppercase tracking-wide text-ink-700/50">Das machen wir nicht</p>
+        <p class="mt-2 text-base leading-relaxed text-ink-700/70">
+          Dir die PKV als grundsätzlich bessere Lösung verkaufen.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-brand-200 bg-brand-50 px-6 py-5">
+        <p class="text-sm font-semibold uppercase tracking-wide text-brand-600">Das machen wir</p>
+        <p class="mt-2 text-base font-medium leading-relaxed text-ink-950">
+          Prüfen, welches System besser zu deinem Leben passt.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

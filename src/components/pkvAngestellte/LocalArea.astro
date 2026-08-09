@@ -1,0 +1,23 @@
+---
+import { MapPin } from "lucide-react";
+
+const towns = ["Baunatal", "Vellmar", "Lohfelden", "Fuldatal", "Hofgeismar", "Melsungen"];
+---
+
+<section id="pkv-angestellte-region" class="bg-ink-950 py-20 text-white">
+  <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+    <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-500/15 text-brand-300">
+      <MapPin className="h-6 w-6" aria-hidden="true" />
+    </div>
+    <h2 class="mt-5 font-serif text-2xl font-semibold sm:text-3xl">
+      Persönliche PKV-Beratung <span class="text-brand-400">in Kassel und Nordhessen</span>
+    </h2>
+    <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/70">
+      Unsere Beratung richtet sich an Angestellte aus Kassel und der gesamten Region Nordhessen –
+      unter anderem aus {towns.join(", ")}.
+    </p>
+    <p class="mx-auto mt-4 max-w-xl text-base font-medium leading-relaxed text-white/85">
+      Du entscheidest, ob die Beratung persönlich bei uns in Kassel oder digital stattfindet.
+    </p>
+  </div>
+</section>

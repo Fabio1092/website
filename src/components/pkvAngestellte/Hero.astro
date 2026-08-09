@@ -1,0 +1,75 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+
+const trustPoints = [
+  "Persönlich in Kassel oder digital",
+  "Individuelle Tarif- und Bedingungsanalyse",
+  "Begleitung von der Vorprüfung bis zum Antrag",
+];
+---
+
+<section id="pkv-angestellte-hero" class="relative overflow-hidden bg-ink-950 text-white">
+  <div
+    class="pointer-events-none absolute -top-40 right-[-10%] h-[32rem] w-[32rem] rounded-full bg-brand-500/20 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -bottom-32 left-[-10%] h-[26rem] w-[26rem] rounded-full bg-gold-500/10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:py-28 lg:px-8">
+    <span
+      class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300"
+    >
+      Für Angestellte in Kassel und Nordhessen
+    </span>
+    <h1 class="mt-6 hyphens-auto break-words text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+      Private Kranken&shy;versicherung <span class="text-brand-400">für Angestellte in Kassel und Nordhessen</span>
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-xl font-medium leading-relaxed text-white/90">
+      Passt die private Krankenversicherung wirklich zu deinem Leben?
+    </p>
+    <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+      Du verdienst gut, hast die Möglichkeit, dich privat zu versichern, und möchtest jetzt
+      wissen, ob ein Wechsel tatsächlich sinnvoll ist? Dann solltest du nicht nur Beiträge und
+      Tarifnamen vergleichen.
+    </p>
+    <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-white/70">
+      Die Entscheidung zwischen gesetzlicher und privater Krankenversicherung begleitet dich
+      möglicherweise über Jahrzehnte. Dein Einkommen, deine Familienplanung, dein
+      Gesundheitszustand, deine beruflichen Ziele und die Qualität des gewählten Tarifs müssen
+      deshalb gemeinsam betrachtet werden.
+    </p>
+    <p class="mx-auto mt-6 max-w-2xl text-base font-medium leading-relaxed text-white/85">
+      Wir beraten Angestellte aus Kassel und Nordhessen persönlich und nachvollziehbar bei der
+      Frage: Ist die private Krankenversicherung langfristig die richtige Entscheidung für mich –
+      und wenn ja, welche Lösung passt wirklich?
+    </p>
+
+    <ul class="mx-auto mt-10 flex max-w-lg flex-col gap-2.5 text-left sm:mx-auto">
+      {
+        trustPoints.map((point) => (
+          <li class="flex items-center gap-2.5 text-sm text-white/80">
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
+            {point}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a
+        href={siteConfig.calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+      >
+        Unverbindliches PKV-Erstgespräch vereinbaren
+      </a>
+    </div>
+  </div>
+</section>

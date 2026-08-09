@@ -1,0 +1,98 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/pkvAngestellte/Hero.astro";
+import Eligibility from "@/components/pkvAngestellte/Eligibility.astro";
+import Questions from "@/components/pkvAngestellte/Questions.astro";
+import Suitability from "@/components/pkvAngestellte/Suitability.astro";
+import Checklist from "@/components/pkvAngestellte/Checklist.astro";
+import PreExisting from "@/components/pkvAngestellte/PreExisting.astro";
+import ProcessSteps from "@/components/ProcessSteps.astro";
+import LocalArea from "@/components/pkvAngestellte/LocalArea.astro";
+import Faq from "@/components/pkvAngestellte/Faq.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="PKV für Angestellte in Kassel | Persönliche Beratung"
+  description="Individuelle PKV-Beratung für Angestellte in Kassel und Nordhessen. Wir prüfen Voraussetzungen, Tarife, Gesundheit und langfristige Eignung."
+  fullTitle
+>
+  <Hero />
+  <Eligibility />
+  <Questions />
+  <Suitability />
+  <Checklist />
+  <PreExisting />
+  <ProcessSteps
+    id="pkv-angestellte-beratungsprozess"
+    eyebrow="So läuft unsere PKV-Beratung für Angestellte ab"
+    title="Von der ersten Frage bis zur langfristigen Betreuung."
+    titleHighlight="langfristigen Betreuung"
+    intro="Ein klarer Prozess, verständliche Empfehlungen und ausreichend Zeit für deine Entscheidung."
+    ctaLabel="Unverbindliches PKV-Erstgespräch vereinbaren"
+    steps={[
+      {
+        number: "1",
+        duration: "Kostenlos und unverbindlich",
+        title: "Unverbindliches Erstgespräch",
+        description:
+          "Wir sprechen über deine aktuelle Versicherung, dein Einkommen, deine Lebensplanung und deine Erwartungen.",
+      },
+      {
+        number: "2",
+        duration: "Grundlage für alles Weitere",
+        title: "Prüfung deiner Ausgangssituation",
+        description:
+          "Wir klären, ob du die Voraussetzungen für einen Wechsel erfüllst und ob die PKV grundsätzlich zu deiner Situation passt.",
+      },
+      {
+        number: "3",
+        duration: "Sorgfältig und strukturiert",
+        title: "Aufbereitung der Gesundheitsangaben",
+        description:
+          "Gemeinsam strukturieren wir die relevanten Angaben und beschaffen bei Bedarf ergänzende Unterlagen.",
+      },
+      {
+        number: "4",
+        duration: "Mehr als nur Beiträge",
+        title: "Markt- und Tarifprüfung",
+        description:
+          "Wir vergleichen nicht nur Beiträge, sondern vor allem Tarifbedingungen, Leistungsgrenzen und langfristig relevante Regelungen.",
+      },
+      {
+        number: "5",
+        duration: "Verständlich aufbereitet",
+        title: "Verständliche Empfehlung",
+        description: "Du erhältst eine nachvollziehbare Gegenüberstellung mit Vor- und Nachteilen.",
+      },
+      {
+        number: "6",
+        duration: "Persönlich & digital",
+        title: "Umsetzung und Betreuung",
+        description:
+          "Erst wenn die Lösung zu dir passt, begleiten wir dich bei Antrag und Umsetzung. Auch danach bleiben wir dein Ansprechpartner.",
+      },
+    ]}
+    closing={{
+      title: "Keine Entscheidung unter Druck.",
+      text: "Du erhältst eine nachvollziehbare Empfehlung und entscheidest erst, wenn alle offenen Fragen geklärt sind.",
+    }}
+  />
+  <LocalArea />
+  <Faq />
+  <FinalCta
+    id="pkv-angestellte-cta"
+    eyebrow="Nächster Schritt"
+    title="Finde heraus, ob die PKV wirklich zu dir passt."
+    titleHighlight="PKV wirklich zu dir passt"
+    body="Du musst heute noch keine Entscheidung treffen. Im ersten Gespräch klären wir zunächst:"
+    ctaLabel="PKV-Erstgespräch vereinbaren"
+    points={[
+      "Ob ein Wechsel grundsätzlich sinnvoll ist",
+      "Welche Fragen noch offen sind",
+      "Welche Risiken berücksichtigt werden müssen",
+      "Wie der weitere Prüfprozess aussehen kann",
+    ]}
+    closingLine="PKV-Beratung für Angestellte – persönlich in Kassel oder digital in ganz Nordhessen."
+  />
+</Layout>

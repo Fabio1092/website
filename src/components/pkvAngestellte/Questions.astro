@@ -1,0 +1,46 @@
+---
+const questions = [
+  "Kann ich in der PKV tatsächlich Beiträge sparen?",
+  "Welche Leistungen sind wirklich wichtig?",
+  "Wie entwickeln sich die Beiträge langfristig?",
+  "Was passiert, wenn ich später Kinder bekomme?",
+  "Wie funktioniert der Arbeitgeberzuschuss?",
+  "Was geschieht bei Teilzeit, Elternzeit oder einem beruflichen Wechsel?",
+  "Welche Folgen haben bestehende Erkrankungen?",
+  "Kann ich später wieder in die gesetzliche Krankenversicherung zurück?",
+];
+---
+
+<section id="pkv-angestellte-fragen" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Bevor du entscheidest</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Eine gute PKV-Entscheidung beginnt <span class="text-brand-600">nicht mit einem Tarifvergleich.</span>
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">Viele Interessenten kommen mit Fragen wie:</p>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-10 grid max-w-2xl gap-3 sm:grid-cols-2">
+      {
+        questions.map((question) => (
+          <li class="rounded-xl border border-black/5 bg-white px-5 py-4 text-sm leading-relaxed text-ink-700/85">
+            {question}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div data-reveal class="mx-auto mt-10 max-w-2xl space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Diese Fragen lassen sich nicht seriös mit einem pauschalen Vergleich beantworten.</p>
+      <p>
+        Eine günstige Lösung kann langfristig teuer werden, wenn wichtige Leistungen fehlen,
+        Selbstbehalte unpassend gewählt wurden oder die Familienplanung nicht berücksichtigt
+        wurde.
+      </p>
+      <p class="font-medium text-ink-950">
+        Deshalb analysieren wir zuerst deine Situation – und erst danach den Markt.
+      </p>
+    </div>
+  </div>
+</section>
