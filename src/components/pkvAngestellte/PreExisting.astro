@@ -1,11 +1,4 @@
 ---
-const outcomes = [
-  "einer normalen Annahme,",
-  "einem Risikozuschlag,",
-  "einer Einschränkung,",
-  "einer Zurückstellung oder",
-  "einer Ablehnung",
-];
 ---
 
 <section id="pkv-angestellte-vorerkrankungen" class="bg-white py-24">
@@ -24,17 +17,10 @@ const outcomes = [
       <p>Sie kann aber zu:</p>
     </div>
 
-    <ul data-reveal class="mx-auto mt-6 max-w-xl space-y-2">
-      {
-        outcomes.map((outcome) => (
-          <li class="rounded-xl border border-black/5 bg-brand-50/40 px-5 py-3 text-sm leading-relaxed text-ink-700/85">
-            {outcome}
-          </li>
-        ))
-      }
-    </ul>
-
-    <p data-reveal class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ink-700/85">führen.</p>
+    <p data-reveal class="mx-auto mt-6 max-w-xl text-center font-serif text-lg leading-relaxed text-ink-950">
+      einer normalen Annahme, einem Risikozuschlag, einer Einschränkung, einer Zurückstellung oder
+      einer Ablehnung führen.
+    </p>
 
     <div data-reveal class="mx-auto mt-8 max-w-xl space-y-4 text-base leading-relaxed text-ink-700/85">
       <p>

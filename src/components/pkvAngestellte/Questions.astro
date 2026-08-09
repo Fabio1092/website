@@ -20,10 +20,11 @@ const questions = [
       <p class="mt-4 text-lg leading-relaxed text-ink-700/80">Viele Interessenten kommen mit Fragen wie:</p>
     </div>
 
-    <ul data-reveal class="mx-auto mt-10 grid max-w-2xl gap-3 sm:grid-cols-2">
+    <ul data-reveal class="mx-auto mt-10 grid max-w-2xl gap-x-8 gap-y-3 border-t border-black/[0.06] pt-8 sm:grid-cols-2">
       {
         questions.map((question) => (
-          <li class="rounded-xl border border-black/5 bg-white px-5 py-4 text-sm leading-relaxed text-ink-700/85">
+          <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
             {question}
           </li>
         ))

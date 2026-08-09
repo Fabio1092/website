@@ -21,19 +21,20 @@ const questions = [
       </h2>
     </div>
 
-    <ul data-reveal class="mx-auto mt-10 grid max-w-2xl gap-3 sm:grid-cols-2">
+    <ul data-reveal class="mx-auto mt-10 grid max-w-2xl gap-x-8 gap-y-3 border-t border-black/[0.06] pt-8 sm:grid-cols-2">
       {
         questions.map((question) => (
-          <li class="rounded-xl border border-black/5 bg-white px-5 py-4 text-sm leading-relaxed text-ink-700/85">
+          <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
             {question}
           </li>
         ))
       }
     </ul>
 
-    <div data-reveal class="mx-auto mt-10 max-w-2xl rounded-2xl bg-ink-950 px-8 py-8 text-center text-white">
-      <p class="text-base leading-relaxed text-white/80">Eine PKV ist kein kurzfristiges Sparmodell.</p>
-      <p class="mt-1 font-serif text-xl font-semibold">Sie ist eine langfristige Systementscheidung.</p>
-    </div>
+    <p data-reveal class="mx-auto mt-12 max-w-xl text-center">
+      <span class="block text-base leading-relaxed text-ink-700/60">Eine PKV ist kein kurzfristiges Sparmodell.</span>
+      <span class="mt-1 block font-serif text-xl font-semibold text-ink-950">Sie ist eine langfristige Systementscheidung.</span>
+    </p>
   </div>
 </section>

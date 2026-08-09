@@ -25,7 +25,7 @@ const points = [
     <ul data-reveal class="mx-auto mt-10 flex max-w-xl flex-col gap-3">
       {
         points.map((point) => (
-          <li class="flex items-start gap-3 rounded-xl bg-white px-5 py-4 text-base leading-relaxed text-ink-700/85">
+          <li class="flex items-start gap-3 text-base leading-relaxed text-ink-700/85">
             <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" aria-hidden="true" />
             {point}
           </li>
@@ -33,11 +33,9 @@ const points = [
       }
     </ul>
 
-    <div data-reveal class="mx-auto mt-8 max-w-xl rounded-2xl border border-black/5 bg-white px-6 py-5 text-center">
-      <p class="text-sm leading-relaxed text-ink-700/70">
-        Nicht passend ist die Beratung für Menschen, die ausschließlich einen möglichst günstigen
-        Einzelabschluss ohne Gesamtbetrachtung möchten.
-      </p>
-    </div>
+    <p data-reveal class="mx-auto mt-8 max-w-xl border-t border-black/[0.06] pt-6 text-center text-sm leading-relaxed text-ink-700/60">
+      Nicht passend ist die Beratung für Menschen, die ausschließlich einen möglichst günstigen
+      Einzelabschluss ohne Gesamtbetrachtung möchten.
+    </p>
   </div>
 </section>

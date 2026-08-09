@@ -28,19 +28,17 @@ const criteria = [
       </p>
     </div>
 
-    <ul data-reveal class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div data-reveal class="mt-10 flex flex-wrap justify-center gap-2.5">
       {
         criteria.map((criterion) => (
-          <li class="rounded-xl border border-black/5 bg-white px-5 py-4 text-sm leading-relaxed text-ink-700/85">
-            {criterion}
-          </li>
+          <span class="rounded-full border border-brand-200 bg-white px-4 py-1.5 text-sm font-medium text-brand-700">{criterion}</span>
         ))
       }
-    </ul>
-
-    <div data-reveal class="mx-auto mt-10 max-w-xl rounded-2xl bg-ink-950 px-8 py-6 text-center text-white">
-      <p class="text-sm leading-relaxed text-white/70">Du sollst nicht nur wissen, welchen Tarif du abschließt.</p>
-      <p class="mt-1 font-serif text-lg font-semibold">Du sollst verstehen, wie er funktioniert.</p>
     </div>
+
+    <p data-reveal class="mx-auto mt-12 max-w-xl text-center">
+      <span class="block text-sm leading-relaxed text-ink-700/60">Du sollst nicht nur wissen, welchen Tarif du abschließt.</span>
+      <span class="mt-1 block font-serif text-xl font-semibold text-ink-950">Du sollst verstehen, wie er funktioniert.</span>
+    </p>
   </div>
 </section>

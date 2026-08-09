@@ -17,88 +17,56 @@ const familyPoints = [
       </h2>
     </div>
 
-    <div class="mt-14 space-y-6">
-      <div data-reveal class="rounded-2xl border border-black/5 bg-brand-50/30 p-7">
-        <div class="flex items-start gap-4">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
-            <GraduationCap className="h-5 w-5" aria-hidden="true" />
+    <div class="mt-16 divide-y divide-black/[0.06] border-t border-black/[0.06]">
+      {
+        [
+          {
+            icon: GraduationCap,
+            title: "Beamte auf Widerruf",
+            text: "Hierzu gehören häufig Anwärter, Referendare und Personen im Vorbereitungsdienst. In dieser Phase sind günstige Anwärterkonditionen interessant. Gleichzeitig sollte nicht nur auf den heutigen Beitrag geschaut werden. Wichtig ist, wie sich der Schutz bei einem Statuswechsel weiterentwickelt.",
+          },
+          {
+            icon: TrendingUp,
+            title: "Beamte auf Probe",
+            text: "Mit der Übernahme auf Probe verändert sich häufig die berufliche und finanzielle Situation. Jetzt sollte geprüft werden, ob der bestehende Schutz weiterhin passt und ob wichtige Leistungsbereiche ausreichend abgesichert sind.",
+          },
+          {
+            icon: ShieldCheck,
+            title: "Beamte auf Lebenszeit",
+            text: "Hier steht die langfristige Qualität besonders im Mittelpunkt. Neben der aktuellen Versorgung sollten Familie, Ruhestand, Beihilfeänderungen und langfristige Tarifstabilität berücksichtigt werden.",
+          },
+          {
+            icon: BookOpen,
+            title: "Lehrkräfte und Referendare",
+            text: "Gerade im Lehramt entstehen Fragen zu Vorbereitungsdienst, Dienstherrn, Bundeslandwechseln, Beihilfe und Dienstunfähigkeit. Krankenversicherung und Dienstunfähigkeitsabsicherung sollten deshalb gemeinsam betrachtet werden.",
+          },
+        ].map((item, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="flex gap-5 py-8 sm:gap-6">
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
+              <item.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <div class="min-w-0">
+              <h3 class="font-serif text-lg font-semibold text-ink-950">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-700/75">{item.text}</p>
+            </div>
           </div>
-          <div>
-            <h3 class="font-serif text-lg font-semibold text-ink-950">Beamte auf Widerruf</h3>
-            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">
-              Hierzu gehören häufig Anwärter, Referendare und Personen im Vorbereitungsdienst. In
-              dieser Phase sind günstige Anwärterkonditionen interessant. Gleichzeitig sollte
-              nicht nur auf den heutigen Beitrag geschaut werden. Wichtig ist, wie sich der Schutz
-              bei einem Statuswechsel weiterentwickelt.
-            </p>
-          </div>
-        </div>
-      </div>
+        ))
+      }
 
-      <div data-reveal class="rounded-2xl border border-black/5 bg-brand-50/30 p-7">
-        <div class="flex items-start gap-4">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
-            <TrendingUp className="h-5 w-5" aria-hidden="true" />
-          </div>
-          <div>
-            <h3 class="font-serif text-lg font-semibold text-ink-950">Beamte auf Probe</h3>
-            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">
-              Mit der Übernahme auf Probe verändert sich häufig die berufliche und finanzielle
-              Situation. Jetzt sollte geprüft werden, ob der bestehende Schutz weiterhin passt und
-              ob wichtige Leistungsbereiche ausreichend abgesichert sind.
-            </p>
-          </div>
+      <div data-reveal class="flex gap-5 py-8 sm:gap-6">
+        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
+          <Users className="h-5 w-5" aria-hidden="true" />
         </div>
-      </div>
-
-      <div data-reveal class="rounded-2xl border border-black/5 bg-brand-50/30 p-7">
-        <div class="flex items-start gap-4">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
-            <ShieldCheck className="h-5 w-5" aria-hidden="true" />
-          </div>
-          <div>
-            <h3 class="font-serif text-lg font-semibold text-ink-950">Beamte auf Lebenszeit</h3>
-            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">
-              Hier steht die langfristige Qualität besonders im Mittelpunkt. Neben der aktuellen
-              Versorgung sollten Familie, Ruhestand, Beihilfeänderungen und langfristige
-              Tarifstabilität berücksichtigt werden.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div data-reveal class="rounded-2xl border border-black/5 bg-brand-50/30 p-7">
-        <div class="flex items-start gap-4">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
-            <BookOpen className="h-5 w-5" aria-hidden="true" />
-          </div>
-          <div>
-            <h3 class="font-serif text-lg font-semibold text-ink-950">Lehrkräfte und Referendare</h3>
-            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">
-              Gerade im Lehramt entstehen Fragen zu Vorbereitungsdienst, Dienstherrn,
-              Bundeslandwechseln, Beihilfe und Dienstunfähigkeit. Krankenversicherung und
-              Dienstunfähigkeitsabsicherung sollten deshalb gemeinsam betrachtet werden.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div data-reveal class="rounded-2xl border border-black/5 bg-brand-50/30 p-7">
-        <div class="flex items-start gap-4">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
-            <Users className="h-5 w-5" aria-hidden="true" />
-          </div>
-          <div class="min-w-0 flex-1">
-            <h3 class="font-serif text-lg font-semibold text-ink-950">Beamte mit Familie</h3>
-            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">Bei Ehepartnern und Kindern muss geprüft werden:</p>
-            <ul class="mt-3 space-y-1.5">
-              {
-                familyPoints.map((point) => (
-                  <li class="text-sm leading-relaxed text-ink-700/75">– {point}</li>
-                ))
-              }
-            </ul>
-          </div>
+        <div class="min-w-0 flex-1">
+          <h3 class="font-serif text-lg font-semibold text-ink-950">Beamte mit Familie</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-700/75">Bei Ehepartnern und Kindern muss geprüft werden:</p>
+          <ul class="mt-3 space-y-1.5">
+            {
+              familyPoints.map((point) => (
+                <li class="text-sm leading-relaxed text-ink-700/75">– {point}</li>
+              ))
+            }
+          </ul>
         </div>
       </div>
     </div>
