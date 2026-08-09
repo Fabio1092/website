@@ -1,0 +1,38 @@
+---
+import { MapPin } from "lucide-react";
+
+const groups = [
+  "Lehrkräfte,",
+  "Referendare,",
+  "Polizeibeamte,",
+  "Verwaltungsbeamte,",
+  "Justizbeamte,",
+  "Hochschul- und Kommunalbeamte,",
+  "Beamtenanwärter,",
+  "Beamte auf Probe und Lebenszeit.",
+];
+---
+
+<section id="pkv-beamte-region" class="bg-ink-950 py-20 text-white">
+  <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+    <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-500/15 text-brand-300">
+      <MapPin className="h-6 w-6" aria-hidden="true" />
+    </div>
+    <h2 class="mt-5 font-serif text-2xl font-semibold sm:text-3xl">
+      Persönliche <span class="text-brand-400">Beamtenberatung</span> in Kassel und Nordhessen
+    </h2>
+    <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/70">Wir beraten unter anderem:</p>
+
+    <ul class="mx-auto mt-6 grid max-w-xl grid-cols-2 gap-2 text-left sm:grid-cols-4">
+      {
+        groups.map((group) => (
+          <li class="rounded-lg bg-white/5 px-3 py-2 text-sm text-white/80">{group}</li>
+        ))
+      }
+    </ul>
+
+    <p class="mx-auto mt-6 max-w-xl text-base font-medium leading-relaxed text-white/85">
+      Die Beratung kann persönlich in Kassel oder vollständig digital stattfinden.
+    </p>
+  </div>
+</section>

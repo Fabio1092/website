@@ -1,0 +1,40 @@
+---
+const checks = [
+  "welche Leistungen konkret erfasst sind,",
+  "welche Begrenzungen gelten,",
+  "ob Höchstbeträge vorgesehen sind,",
+  "welche Ausschlüsse bestehen,",
+  "ob die Regelungen zur hessischen Beihilfesituation passen.",
+];
+---
+
+<section id="pkv-beamte-beihilfeergaenzung" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Details entscheiden</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Beihilfeergänzung: <span class="text-brand-600">kleine Klausel, große Wirkung.</span>
+      </h2>
+    </div>
+
+    <div data-reveal class="mt-10 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Nicht jede medizinische Rechnung wird vollständig von Beihilfe und regulärem
+        Restkostentarif übernommen.
+      </p>
+      <p>Eine Beihilfeergänzung kann bestimmte verbleibende Lücken reduzieren.</p>
+      <p>Wie wertvoll sie tatsächlich ist, hängt von ihren Bedingungen ab.</p>
+      <p>Wir prüfen deshalb nicht nur, ob ein Tarif eine Beihilfeergänzung enthält, sondern:</p>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-6 max-w-xl space-y-2">
+      {
+        checks.map((check) => (
+          <li class="rounded-xl border border-black/5 bg-white px-5 py-3 text-sm leading-relaxed text-ink-700/85">
+            {check}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

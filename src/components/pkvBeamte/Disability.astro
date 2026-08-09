@@ -1,0 +1,48 @@
+---
+import { ShieldAlert } from "lucide-react";
+
+const topics = [
+  "private Krankenversicherung,",
+  "Dienstunfähigkeitsversicherung,",
+  "Beamtenstatus,",
+  "vorhandene Versorgungsansprüche,",
+  "Familie und Hinterbliebenenschutz,",
+  "langfristige finanzielle Planung.",
+];
+---
+
+<section id="pkv-beamte-dienstunfaehigkeit" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-start gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600">
+        <ShieldAlert className="h-6 w-6" aria-hidden="true" />
+      </div>
+      <div>
+        <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Ganzheitlich gedacht</span>
+        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+          PKV und <span class="text-brand-600">Dienstunfähigkeit</span> gemeinsam denken
+        </h2>
+      </div>
+    </div>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Für Beamte reicht es nicht, nur die Krankheitskosten abzusichern.</p>
+      <p>Die eigene Arbeitskraft und der Beamtenstatus sind ebenfalls zentrale Bestandteile des finanziellen Schutzes.</p>
+      <p>Je nach Status können bei Dienstunfähigkeit erhebliche Versorgungslücken entstehen.</p>
+      <p>Deshalb betrachten wir auf Wunsch gemeinsam:</p>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-6 grid max-w-xl gap-2 sm:grid-cols-2">
+      {
+        topics.map((topic) => (
+          <li class="rounded-lg bg-brand-50/60 px-4 py-2.5 text-sm text-ink-700/85">{topic}</li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mt-8 text-base font-medium leading-relaxed text-ink-950">
+      Unsere klare Spezialisierung liegt auf PKV, BU und DU. Dadurch können wir diese Bereiche
+      aufeinander abstimmen, statt sie isoliert zu betrachten.
+    </p>
+  </div>
+</section>

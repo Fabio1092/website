@@ -1,0 +1,101 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/pkvBeamte/Hero.astro";
+import HowItWorks from "@/components/pkvBeamte/HowItWorks.astro";
+import Misconception from "@/components/pkvBeamte/Misconception.astro";
+import TargetGroups from "@/components/pkvBeamte/TargetGroups.astro";
+import Beihilfe from "@/components/pkvBeamte/Beihilfe.astro";
+import PreExisting from "@/components/pkvBeamte/PreExisting.astro";
+import Supplement from "@/components/pkvBeamte/Supplement.astro";
+import Disability from "@/components/pkvBeamte/Disability.astro";
+import ProcessSteps from "@/components/ProcessSteps.astro";
+import LocalArea from "@/components/pkvBeamte/LocalArea.astro";
+import Faq from "@/components/pkvBeamte/Faq.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="PKV für Beamte in Kassel | Beihilfe richtig absichern"
+  description="PKV-Beratung für Beamte, Anwärter und Referendare in Kassel und Nordhessen. Beihilfe, Restkosten, Vorerkrankungen und DU abgestimmt prüfen."
+  fullTitle
+>
+  <Hero />
+  <HowItWorks />
+  <Misconception />
+  <TargetGroups />
+  <Beihilfe />
+  <PreExisting />
+  <Supplement />
+  <Disability />
+  <ProcessSteps
+    id="pkv-beamte-beratungsprozess"
+    eyebrow="So läuft unsere Beamtenberatung ab"
+    title="Von der ersten Frage bis zur langfristigen Betreuung."
+    titleHighlight="langfristigen Betreuung"
+    intro="Ein klarer Prozess, verständliche Empfehlungen und ausreichend Zeit für deine Entscheidung."
+    ctaLabel="Unverbindliches Erstgespräch vereinbaren"
+    steps={[
+      {
+        number: "1",
+        duration: "Kostenlos und unverbindlich",
+        title: "Erstgespräch",
+        description:
+          "Wir klären deinen Beamtenstatus, deinen Dienstherrn, deine aktuelle Versicherung und deine familiäre Situation.",
+      },
+      {
+        number: "2",
+        duration: "Regional relevant",
+        title: "Prüfung der Beihilfesituation",
+        description:
+          "Wir betrachten die für dich relevanten Beihilfevorschriften und den abzusichernden Restkostenanteil.",
+      },
+      {
+        number: "3",
+        duration: "Sorgfältig und strukturiert",
+        title: "Gesundheitshistorie",
+        description: "Wir bereiten relevante Angaben strukturiert auf und prüfen mögliche Zugangswege.",
+      },
+      {
+        number: "4",
+        duration: "Mehr als nur Beiträge",
+        title: "Tarif- und Bedingungsanalyse",
+        description: "Wir vergleichen passende Beamtentarife sowie relevante Ergänzungsbausteine.",
+      },
+      {
+        number: "5",
+        duration: "Verständlich aufbereitet",
+        title: "Verständliche Empfehlung",
+        description: "Du erhältst eine nachvollziehbare Gegenüberstellung mit den wesentlichen Vor- und Nachteilen.",
+      },
+      {
+        number: "6",
+        duration: "Persönlich & digital",
+        title: "Antrag und Betreuung",
+        description:
+          "Wir begleiten dich bei der Umsetzung und stehen dir auch bei späteren Status- oder Familienänderungen zur Seite.",
+      },
+    ]}
+    closing={{
+      title: "Keine Entscheidung unter Druck.",
+      text: "Du erhältst eine nachvollziehbare Empfehlung und entscheidest erst, wenn alle offenen Fragen geklärt sind.",
+    }}
+  />
+  <LocalArea />
+  <Faq />
+  <FinalCta
+    id="pkv-beamte-cta"
+    eyebrow="Nächster Schritt"
+    title="Lass deine Beihilfe- und PKV-Situation professionell prüfen."
+    titleHighlight="professionell prüfen"
+    body="In einem unverbindlichen Erstgespräch klären wir:"
+    ctaLabel="PKV-Beratung für Beamte vereinbaren"
+    points={[
+      "Deinen Beamtenstatus",
+      "Deine konkrete Beihilfesituation",
+      "Deine gesundheitliche Ausgangslage",
+      "Deinen gewünschten Leistungsumfang",
+      "Die nächsten sinnvollen Schritte",
+    ]}
+    closingLine="Spezialisierte PKV- und DU-Beratung für Beamte in Kassel und Nordhessen."
+  />
+</Layout>
