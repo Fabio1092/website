@@ -15,18 +15,18 @@ function isActive(href: string) {
   class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink-950/95 text-white backdrop-blur transition-shadow duration-300 data-[scrolled=true]:shadow-lg data-[scrolled=true]:shadow-black/20"
   data-scrolled="false"
 >
-  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-6 xl:px-8">
+  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-4 xl:px-8">
     <a href="/" class="flex shrink-0 items-center gap-2.5" aria-label="FR Makler Startseite">
       <img src="/images/Logo.png" alt="FR Makler Logo" class="h-11 w-11 shrink-0 rounded-lg" width="44" height="44" />
       <span class="flex flex-col leading-tight whitespace-nowrap">
         <span class="font-serif text-lg font-semibold tracking-tight sm:text-xl">Fabio Rumpf</span>
-        <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-400 sm:text-xs lg:hidden xl:block">
+        <span class="text-[10px] font-semibold uppercase tracking-wide text-brand-400 sm:text-xs lg:text-[9px] lg:tracking-normal xl:text-xs xl:tracking-wide">
           Versicherungs- und Finanzmakler
         </span>
       </span>
     </a>
 
-    <nav class="hidden shrink-0 items-center gap-5 lg:flex xl:gap-7" aria-label="Hauptnavigation">
+    <nav class="hidden shrink-0 items-center gap-4 lg:flex xl:gap-7" aria-label="Hauptnavigation">
       {
         primaryNav.map((link) =>
           link.children ? (
