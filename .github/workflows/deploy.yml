@@ -25,13 +25,6 @@ jobs:
       - name: Seite bauen
         run: npm run build
 
-      - name: Diagnose - www.fr-makler.de pruefen
-        run: |
-          echo "=== HTTP-Status ==="
-          curl -s -o /dev/null -w "HTTP-Status: %{http_code}\n" --http1.1 https://www.fr-makler.de/ || echo "FEHLER"
-          echo "=== Erste 15 Zeilen Body ==="
-          curl -s --http1.1 https://www.fr-makler.de/ | head -15 || echo "FEHLER"
-
       - name: Auf Hostinger hochladen
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
