@@ -25,19 +25,16 @@ jobs:
       - name: Seite bauen
         run: npm run build
 
-      - name: Diagnose - Cookie-Banner und Superchat pruefen
+      - name: Diagnose - Ordnerstruktur pruefen
         run: |
-          echo "=== HTTP-Status ==="
-          curl -s -o /dev/null -w "HTTP-Status: %{http_code}\n" --http1.1 https://fr-makler.de/
-          curl -s --http1.1 https://fr-makler.de/ -o /tmp/live.html
-          echo "=== Body-Groesse ==="
-          wc -c /tmp/live.html
-          echo "=== cookie-consent (case-insensitiv) ==="
-          grep -ic "cookie-consent" /tmp/live.html || true
-          echo "=== superchat (case-insensitiv) ==="
-          grep -ic "superchat" /tmp/live.html || true
-          echo "=== Letzte 40 Zeilen des Bodys ==="
-          tail -c 4000 /tmp/live.html
+          echo "=== domains/ Inhalt ==="
+          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+          echo "=== domains/fr-makler.de/ (falls vorhanden) ==="
+          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/fr-makler.de/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" || echo "kein solcher Ordner"
+          echo "=== domains/fr-makler.de/public_html/ (falls vorhanden) ==="
+          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/fr-makler.de/public_html/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" || echo "kein solcher Ordner"
+          echo "=== domains/royalblue-magpie-425000.hostingersite.com/public_html/ (unser aktuelles Ziel) ==="
+          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/royalblue-magpie-425000.hostingersite.com/public_html/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
 
       - name: Auf Hostinger hochladen
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
