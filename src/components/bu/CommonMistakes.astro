@@ -5,7 +5,7 @@ import MistakeGrid from "@/components/MistakeGrid.astro";
 const mistakes = [
   {
     icon: HeartPulse,
-    number: "1. Fehler",
+    number: "01",
     title: "Gesundheitsfragen nicht optimal beantwortet.",
     description:
       "Ungenaue oder unvollständige Angaben können zu Leistungsausschlüssen oder sogar zur Ablehnung deines Antrags führen – oft ohne es zu merken.",
@@ -14,7 +14,7 @@ const mistakes = [
   },
   {
     icon: Coins,
-    number: "2. Fehler",
+    number: "02",
     title: "Falscher Tarif – zu teuer oder zu schwach",
     description:
       "Viele Verträge bieten entweder zu wenig Leistung oder sind unnötig teuer – weil Möglichkeiten am Markt nicht richtig genutzt wurden.",
@@ -23,7 +23,7 @@ const mistakes = [
   },
   {
     icon: History,
-    number: "3. Fehler",
+    number: "03",
     title: "Veralteter Vertrag – nicht mehr zeitgemäß",
     description:
       "Tarifgenerationen ändern sich laufend. Was vor ein paar Jahren noch gut war, kann heute im Vergleich schlechter sein – bei einem höheren Beitrag.",
@@ -35,12 +35,10 @@ const mistakes = [
 
 <MistakeGrid
   id="bu-fehler"
-  eyebrow="Die 3 häufigsten BU-Fehler"
   title="Kleine Fehler, große Folgen."
   titleHighlight="große Folgen"
   intro="Diese 3 Fehler werden im Ernstfall teuer. Bei der Berufsunfähigkeitsversicherung kommt es auf jedes Detail an – diese Fehler sehen wir leider viel zu oft, und helfen dir, sie von Anfang an zu vermeiden."
   mistakes={mistakes}
-  columns={3}
   closing={{
     title: "Vermeide teure Fehler - bevor sie passieren.",
     text: "Mit unserer Risikovoranfrage sorgen wir dafür, dass du die bestmögliche Absicherung zu den bestmöglichen Bedingungen erhältst. Mehrere hundert Risikovoranfragen — Erfahrung, die dich absichert.",

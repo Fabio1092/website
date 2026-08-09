@@ -5,7 +5,7 @@ import MistakeGrid from "@/components/MistakeGrid.astro";
 const mistakes = [
   {
     icon: Tag,
-    number: "1. Fehler",
+    number: "01",
     title: "Nur nach dem günstigsten Beitrag entschieden",
     description:
       "Ein niedriger Preis sagt wenig darüber aus, wie gut ein Tarif bei wichtigen Behandlungen, Hilfsmitteln, Psychotherapie, Zahnersatz oder stationären Leistungen tatsächlich leistet.",
@@ -14,7 +14,7 @@ const mistakes = [
   },
   {
     icon: ClipboardList,
-    number: "2. Fehler",
+    number: "02",
     title: "Gesundheitsfragen zu schnell beantwortet",
     description:
       "Unvollständige oder ungenaue Angaben können zu Rückfragen, Risikozuschlägen oder Problemen bei der Annahme führen.",
@@ -24,7 +24,7 @@ const mistakes = [
   },
   {
     icon: Baby,
-    number: "3. Fehler",
+    number: "03",
     title: "Familienplanung und Zukunft nicht berücksichtigt",
     description:
       "Was heute für eine Einzelperson günstig aussieht, kann bei Elternzeit, Teilzeit oder Familiengründung ganz anders wirken.",
@@ -33,7 +33,7 @@ const mistakes = [
   },
   {
     icon: Repeat,
-    number: "4. Fehler",
+    number: "04",
     title: "Bestehenden Vertrag vorschnell gewechselt",
     description:
       "Ein externer Wechsel klingt manchmal attraktiv, kann aber neue Gesundheitsprüfungen, neue Vertragsbedingungen und den Verlust wertvoller Rechte bedeuten.",
@@ -45,10 +45,8 @@ const mistakes = [
 
 <MistakeGrid
   id="pkv-fehler"
-  eyebrow="Die 4 häufigsten PKV-Fehler"
   title="Kleine Entscheidungen heute können später große Folgen haben."
   titleHighlight="große Folgen"
   intro="Viele Probleme entstehen nicht, weil die PKV grundsätzlich falsch ist. Sie entstehen, weil vor dem Abschluss zu wenig geprüft, zu kurzfristig gedacht oder ein unpassender Tarif gewählt wurde."
   mistakes={mistakes}
-  columns={2}
 />

@@ -12,17 +12,14 @@ interface Mistake {
 
 interface Props {
   id?: string;
-  eyebrow: string;
   title: string;
   titleHighlight?: string;
   intro: string;
   mistakes: Mistake[];
-  columns?: 2 | 3;
   closing?: { title: string; text: string };
 }
 
-const { id, eyebrow, title, titleHighlight, intro, mistakes, columns = 3, closing } = Astro.props;
-const gridColsClass = columns === 2 ? "sm:grid-cols-2" : "lg:grid-cols-3";
+const { id, title, titleHighlight, intro, mistakes, closing } = Astro.props;
 
 const hIdx = titleHighlight ? title.indexOf(titleHighlight) : -1;
 const titleBefore = hIdx >= 0 ? title.slice(0, hIdx) : title;
@@ -31,37 +28,43 @@ const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
 ---
 
 <section id={id} class="bg-white py-24">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">{eyebrow}</span>
-      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
         {titleBefore}{titleMatch && <span class="text-brand-600">{titleMatch}</span>}{titleAfter}
       </h2>
       <p class="mt-4 text-lg leading-relaxed text-ink-700/80">{intro}</p>
     </div>
 
-    <div class={`mt-14 grid gap-6 ${gridColsClass}`}>
+    <div class="mt-16 divide-y divide-black/[0.06] border-t border-black/[0.06]">
       {
         mistakes.map((mistake, index) => (
-          <div
-            data-reveal
-            style={`transition-delay: ${index * 100}ms`}
-            class="flex flex-col rounded-2xl border border-black/5 bg-brand-50/30 p-7"
-          >
-            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
-              <mistake.icon className="h-5 w-5" aria-hidden={true} />
+          <div data-reveal style={`transition-delay: ${index * 90}ms`} class="grid gap-6 py-10 sm:grid-cols-[auto_1fr] sm:gap-10">
+            <div class="flex items-center gap-4 sm:flex-col sm:items-start sm:gap-3">
+              <span data-tabular class="font-serif text-4xl font-semibold text-ink-950/10 sm:text-5xl">
+                {mistake.number}
+              </span>
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-danger-50 text-danger-500">
+                <mistake.icon className="h-4.5 w-4.5" aria-hidden={true} />
+              </div>
             </div>
-            <span class="mt-5 text-xs font-semibold uppercase tracking-wider text-danger-500">{mistake.number}</span>
-            <h3 class="mt-1.5 font-serif text-lg font-semibold text-ink-950">{mistake.title}</h3>
-            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{mistake.description}</p>
 
-            <div class="mt-5 rounded-xl border border-danger-500/15 bg-danger-50 p-4">
-              <p class="text-xs font-semibold uppercase tracking-wide text-danger-500">Folge</p>
-              <p class="mt-1 text-sm leading-relaxed text-ink-700/85">{mistake.consequence}</p>
-            </div>
-            <div class="mt-3 rounded-xl border border-success-500/15 bg-success-50 p-4">
-              <p class="text-xs font-semibold uppercase tracking-wide text-success-500">Unsere Lösung</p>
-              <p class="mt-1 text-sm leading-relaxed text-ink-700/85">{mistake.solution}</p>
+            <div class="min-w-0">
+              <h3 class="font-serif text-xl font-semibold text-ink-950">{mistake.title}</h3>
+              <p class="mt-2.5 max-w-2xl text-base leading-relaxed text-ink-700/75">{mistake.description}</p>
+
+              <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                <p class="text-sm leading-relaxed text-ink-700/80">
+                  <span class="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-danger-500 align-middle" aria-hidden="true" />
+                  <span class="font-semibold text-danger-600">Folge: </span>
+                  {mistake.consequence}
+                </p>
+                <p class="text-sm leading-relaxed text-ink-700/80">
+                  <span class="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-success-500 align-middle" aria-hidden="true" />
+                  <span class="font-semibold text-success-600">Unsere Lösung: </span>
+                  {mistake.solution}
+                </p>
+              </div>
             </div>
           </div>
         ))
@@ -70,7 +73,7 @@ const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
 
     {
       closing && (
-        <div class="mt-14 rounded-2xl bg-ink-950 px-8 py-10 text-center text-white">
+        <div class="mt-4 rounded-2xl bg-ink-950 px-8 py-10 text-center text-white">
           <h3 class="font-serif text-xl font-semibold">{closing.title}</h3>
           <p class="mx-auto mt-2 max-w-2xl text-sm text-white/60">{closing.text}</p>
         </div>

@@ -5,8 +5,14 @@ import { siteConfig } from "@/lib/site";
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-white/10 bg-ink-950 text-white">
-  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+<footer class="relative overflow-hidden border-t border-white/10 bg-ink-950 text-white">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/50 to-transparent" aria-hidden="true"></div>
+  <div
+    class="pointer-events-none absolute -top-40 left-[8%] h-80 w-80 rounded-full bg-brand-500/10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr]">
       <div>
         <a href="/" class="flex items-center gap-3" aria-label="FR Makler Startseite">
@@ -48,6 +54,19 @@ const year = new Date().getFullYear();
                 <a href={link.href} class="text-sm text-white/70 transition-colors hover:text-white">
                   {link.label}
                 </a>
+                {link.children && (
+                  <ul class="mt-2 space-y-2 border-l border-white/10 pl-3">
+                    {link.children
+                      .filter((child) => child.href !== link.href)
+                      .map((child) => (
+                        <li>
+                          <a href={child.href} class="text-xs text-white/50 transition-colors hover:text-white">
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                  </ul>
+                )}
               </li>
             ))
           }
