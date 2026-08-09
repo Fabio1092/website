@@ -1,0 +1,47 @@
+---
+const criteria = [
+  "ambulante Behandlung",
+  "stationäre Versorgung",
+  "Zahnleistungen",
+  "Psychotherapie",
+  "Hilfs- und Heilmittel",
+  "Arzneimittel",
+  "Vorsorgeuntersuchungen",
+  "Leistungen im Ausland",
+  "Selbstbehalt",
+  "Krankentagegeld",
+  "Beitragsentlastung",
+  "Tarifwechselmöglichkeiten",
+  "Leistungsbegrenzungen und Erstattungsvoraussetzungen",
+];
+---
+
+<section id="pkv-selbststaendige-tarifauswahl" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Tarifauswahl</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Was wir bei der <span class="text-brand-600">Tarifauswahl</span> prüfen.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Wir analysieren nicht nur Hochglanzleistungen, sondern die vertraglichen Bedingungen.
+        Dazu gehören unter anderem:
+      </p>
+    </div>
+
+    <ul data-reveal class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        criteria.map((criterion) => (
+          <li class="rounded-xl border border-black/5 bg-white px-5 py-4 text-sm leading-relaxed text-ink-700/85">
+            {criterion}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div data-reveal class="mx-auto mt-10 max-w-xl rounded-2xl bg-ink-950 px-8 py-6 text-center text-white">
+      <p class="text-sm leading-relaxed text-white/70">Du sollst nicht nur wissen, welchen Tarif du abschließt.</p>
+      <p class="mt-1 font-serif text-lg font-semibold">Du sollst verstehen, wie er funktioniert.</p>
+    </div>
+  </div>
+</section>

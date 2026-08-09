@@ -1,0 +1,103 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/pkvSelbststaendige/Hero.astro";
+import Eligibility from "@/components/pkvSelbststaendige/Eligibility.astro";
+import Questions from "@/components/pkvSelbststaendige/Questions.astro";
+import IncomeProtection from "@/components/pkvSelbststaendige/IncomeProtection.astro";
+import Deductible from "@/components/pkvSelbststaendige/Deductible.astro";
+import PreExisting from "@/components/pkvSelbststaendige/PreExisting.astro";
+import TariffCheck from "@/components/pkvSelbststaendige/TariffCheck.astro";
+import ProcessSteps from "@/components/ProcessSteps.astro";
+import Holistic from "@/components/pkvSelbststaendige/Holistic.astro";
+import Suitability from "@/components/pkvSelbststaendige/Suitability.astro";
+import Faq from "@/components/pkvSelbststaendige/Faq.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="PKV für Selbstständige in Kassel | Individuelle Beratung"
+  description="PKV-Beratung für Selbstständige und Unternehmer in Kassel und Nordhessen. Individuelle Prüfung von Beitrag, Leistungen, Gesundheit und Krankentagegeld."
+  fullTitle
+>
+  <Hero />
+  <Eligibility />
+  <Questions />
+  <IncomeProtection />
+  <Deductible />
+  <PreExisting />
+  <TariffCheck />
+  <ProcessSteps
+    id="pkv-selbststaendige-beratungsprozess"
+    eyebrow="So läuft die Beratung ab"
+    title="Von der ersten Frage bis zur langfristigen Betreuung."
+    titleHighlight="langfristigen Betreuung"
+    intro="Ein klarer Prozess, verständliche Empfehlungen und ausreichend Zeit für deine Entscheidung."
+    ctaLabel="Unverbindliches PKV-Erstgespräch vereinbaren"
+    steps={[
+      {
+        number: "1",
+        duration: "Kostenlos und unverbindlich",
+        title: "Kennenlernen",
+        description:
+          "Wir sprechen über deine Selbstständigkeit, deine Einnahmesituation, deine aktuelle Krankenversicherung und deine Ziele.",
+      },
+      {
+        number: "2",
+        duration: "Ergebnisoffen",
+        title: "Strategische Systemprüfung",
+        description:
+          "Wir prüfen ergebnisoffen, ob die gesetzliche oder private Krankenversicherung besser zu deiner Situation passt.",
+      },
+      {
+        number: "3",
+        duration: "Sorgfältig und strukturiert",
+        title: "Gesundheitsaufbereitung",
+        description: "Wir strukturieren relevante Vorerkrankungen, Behandlungen und Unterlagen.",
+      },
+      {
+        number: "4",
+        duration: "Falls sinnvoll",
+        title: "Risiko- und Marktprüfung",
+        description:
+          "Falls sinnvoll, prüfen wir zunächst die Versicherbarkeit. Anschließend vergleichen wir geeignete Lösungen.",
+      },
+      {
+        number: "5",
+        duration: "Verständlich aufbereitet",
+        title: "Konzept und Empfehlung",
+        description:
+          "Du erhältst eine verständliche Auswertung mit Vor- und Nachteilen sowie den finanziellen Auswirkungen.",
+      },
+      {
+        number: "6",
+        duration: "Persönlich & digital",
+        title: "Umsetzung und langfristige Betreuung",
+        description:
+          "Wenn du dich für eine Lösung entscheidest, begleiten wir dich bei der Umsetzung und bleiben auch später dein Ansprechpartner.",
+      },
+    ]}
+    closing={{
+      title: "Keine Entscheidung unter Druck.",
+      text: "Du erhältst eine nachvollziehbare Empfehlung und entscheidest erst, wenn alle offenen Fragen geklärt sind.",
+    }}
+  />
+  <Holistic />
+  <Suitability />
+  <Faq />
+  <FinalCta
+    id="pkv-selbststaendige-cta"
+    eyebrow="Nächster Schritt"
+    title="Prüfe, welche Krankenversicherung zu deiner Selbstständigkeit passt."
+    titleHighlight="zu deiner Selbstständigkeit passt"
+    body="In einem unverbindlichen Erstgespräch klären wir:"
+    ctaLabel="PKV-Erstgespräch für Selbstständige vereinbaren"
+    points={[
+      "Deine aktuelle Situation",
+      "Deine wirtschaftlichen Rahmenbedingungen",
+      "Deine Erwartungen an den Versicherungsschutz",
+      "Deine gesundheitliche Ausgangslage",
+      "Die nächsten sinnvollen Schritte",
+    ]}
+    closingLine="Persönliche PKV-Beratung für Selbstständige und Unternehmer aus Kassel und Nordhessen."
+  />
+</Layout>

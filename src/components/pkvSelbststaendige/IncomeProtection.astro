@@ -1,0 +1,50 @@
+---
+import { Wallet } from "lucide-react";
+
+const checks = [
+  "ab welchem Krankheitstag eine Leistung benötigt wird,",
+  "wie hoch der tatsächliche Absicherungsbedarf ist,",
+  "welche laufenden privaten und betrieblichen Kosten bestehen,",
+  "wie lange vorhandene Rücklagen ausreichen,",
+  "wie Krankenversicherung und Krankentagegeld zusammenpassen.",
+];
+---
+
+<section id="pkv-selbststaendige-krankentagegeld" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-start gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600">
+        <Wallet className="h-6 w-6" aria-hidden="true" />
+      </div>
+      <div>
+        <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Einkommensschutz</span>
+        <h2 class="mt-2 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+          Der besondere Stellenwert des <span class="text-brand-600">Krankentagegeldes</span>
+        </h2>
+      </div>
+    </div>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Wenn du als Selbstständiger krankheitsbedingt nicht arbeiten kannst, kann unmittelbar
+        Einkommen fehlen.
+      </p>
+      <p>Deshalb gehört die Absicherung des Verdienstausfalls zwingend in die Beratung.</p>
+      <p class="font-medium text-ink-950">Wir prüfen gemeinsam:</p>
+    </div>
+
+    <ul data-reveal class="mt-6 space-y-2">
+      {
+        checks.map((check) => (
+          <li class="rounded-xl border border-black/5 bg-brand-50/40 px-5 py-3 text-sm leading-relaxed text-ink-700/85">
+            {check}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mt-8 text-base font-medium leading-relaxed text-ink-950">
+      Die Krankenversicherung darf nicht isoliert vom Einkommensschutz betrachtet werden.
+    </p>
+  </div>
+</section>

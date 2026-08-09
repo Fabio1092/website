@@ -1,0 +1,44 @@
+---
+const topics = [
+  "Berufsunfähigkeit,",
+  "Krankentagegeld,",
+  "betriebliche Absicherung,",
+  "Haftungsrisiken,",
+  "Altersvorsorge,",
+  "Familie und Hinterbliebenenschutz,",
+  "Liquiditätsplanung.",
+];
+---
+
+<section id="pkv-selbststaendige-ganzheitlich" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Unser Beratungsansatz</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Ganzheitliche Beratung <span class="text-brand-600">statt isolierter PKV-Verkauf.</span>
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Bei Selbstständigen hängt die Krankenversicherung eng mit weiteren Bereichen zusammen:
+      </p>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-10 grid max-w-2xl gap-2 sm:grid-cols-2">
+      {
+        topics.map((topic) => (
+          <li class="rounded-lg bg-brand-50/60 px-4 py-2.5 text-sm text-ink-700/85">{topic}</li>
+        ))
+      }
+    </ul>
+
+    <div data-reveal class="mx-auto mt-10 max-w-xl space-y-3 text-center text-base leading-relaxed text-ink-700/85">
+      <p>
+        Unser Schwerpunkt liegt auf PKV und Einkommensschutz. Weitere Themen betrachten wir im
+        Rahmen eines ganzheitlichen Mandats.
+      </p>
+      <p class="font-medium text-ink-950">
+        So entsteht kein loses Sammelsurium einzelner Verträge, sondern ein abgestimmtes
+        Absicherungskonzept.
+      </p>
+    </div>
+  </div>
+</section>

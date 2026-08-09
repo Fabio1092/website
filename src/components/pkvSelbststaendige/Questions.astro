@@ -1,0 +1,40 @@
+---
+const questions = [
+  "Wie stabil sind meine Einnahmen?",
+  "Kann ich den Beitrag auch in schwächeren Monaten tragen?",
+  "Wie bin ich bei längerer Arbeitsunfähigkeit abgesichert?",
+  "Ab welchem Zeitpunkt benötige ich Krankentagegeld?",
+  "Welche Selbstbeteiligung passt zu meiner Liquidität?",
+  "Wie werden Partner und Kinder versichert?",
+  "Was passiert, wenn ich meine Selbstständigkeit später aufgebe?",
+  "Welche Leistungen sind für mich wirklich wichtig?",
+  "Wie wirken sich Vorerkrankungen aus?",
+  "Wie plane ich den Beitrag langfristig ein?",
+];
+---
+
+<section id="pkv-selbststaendige-fragen" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Bevor du entscheidest</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Diese Fragen solltest du <span class="text-brand-600">vor einem Wechsel</span> beantworten.
+      </h2>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-10 grid max-w-2xl gap-3 sm:grid-cols-2">
+      {
+        questions.map((question) => (
+          <li class="rounded-xl border border-black/5 bg-white px-5 py-4 text-sm leading-relaxed text-ink-700/85">
+            {question}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div data-reveal class="mx-auto mt-10 max-w-2xl rounded-2xl bg-ink-950 px-8 py-8 text-center text-white">
+      <p class="text-base leading-relaxed text-white/80">Eine PKV ist kein kurzfristiges Sparmodell.</p>
+      <p class="mt-1 font-serif text-xl font-semibold">Sie ist eine langfristige Systementscheidung.</p>
+    </div>
+  </div>
+</section>

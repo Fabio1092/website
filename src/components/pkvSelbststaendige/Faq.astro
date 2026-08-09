@@ -1,0 +1,60 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Müssen Selbstständige eine bestimmte Einkommensgrenze erreichen?",
+    answer:
+      "Für hauptberuflich Selbstständige gilt grundsätzlich nicht dieselbe Jahresarbeitsentgeltgrenze wie für Angestellte. Trotzdem sollte die Entscheidung nur getroffen werden, wenn der Beitrag langfristig tragbar ist.",
+  },
+  {
+    question: "Zahlt bei Selbstständigen jemand die Hälfte des PKV-Beitrags?",
+    answer:
+      "Ein klassischer Arbeitgeberzuschuss besteht grundsätzlich nicht. Der Beitrag muss deshalb vollständig in der eigenen Finanzplanung berücksichtigt werden.",
+  },
+  {
+    question: "Ist die PKV bei schwankendem Einkommen riskant?",
+    answer:
+      "Sie kann es sein, wenn keine ausreichenden Rücklagen und keine langfristige Planung vorhanden sind. Der PKV-Beitrag sinkt nicht automatisch mit einem niedrigeren Einkommen.",
+  },
+  {
+    question: "Wie sichere ich mich bei längerer Krankheit ab?",
+    answer:
+      "Hierfür kann Krankentagegeld eine zentrale Rolle spielen. Höhe und Leistungsbeginn müssen zur individuellen Einkommens- und Kostensituation passen.",
+  },
+  {
+    question: "Kann ich später zurück in die gesetzliche Krankenversicherung?",
+    answer:
+      "Das hängt von Alter, beruflichem Status und weiteren gesetzlichen Voraussetzungen ab. Ein freier Wechsel ist nicht jederzeit möglich.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<section id="pkv-selbststaendige-faq" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Häufige Fragen</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Was Selbstständige vor der <span class="text-brand-600">PKV-Entscheidung</span> wissen sollten.
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

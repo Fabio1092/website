@@ -1,0 +1,43 @@
+---
+const checks = [
+  "welche jährliche Belastung realistisch tragbar ist,",
+  "wie häufig medizinische Leistungen in Anspruch genommen werden,",
+  "welche Rücklagen vorhanden sind,",
+  "ob der Selbstbehalt steuerlich und wirtschaftlich in das Gesamtkonzept passt,",
+  "wie sich Beitrag und Eigenanteil gemeinsam entwickeln.",
+];
+---
+
+<section id="pkv-selbststaendige-selbstbehalt" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-wider text-brand-600">Selbstbehalt</span>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Sinnvoll gewählt <span class="text-brand-600">oder unnötiges Risiko?</span>
+      </h2>
+    </div>
+
+    <div data-reveal class="mt-10 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Ein höherer Selbstbehalt kann den laufenden Beitrag reduzieren.</p>
+      <p>Das bedeutet aber nicht automatisch, dass er wirtschaftlich sinnvoll ist.</p>
+      <p class="font-medium text-ink-950">Wir prüfen:</p>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-6 max-w-xl space-y-2">
+      {
+        checks.map((check) => (
+          <li class="rounded-xl border border-black/5 bg-white px-5 py-3 text-sm leading-relaxed text-ink-700/85">
+            {check}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div data-reveal class="mx-auto mt-8 max-w-xl rounded-2xl border border-brand-200 bg-white px-6 py-5 text-center">
+      <p class="text-base font-medium leading-relaxed text-ink-950">
+        Entscheidend ist nicht der niedrigste Monatsbeitrag, sondern die tragfähige
+        Gesamtbelastung.
+      </p>
+    </div>
+  </div>
+</section>
