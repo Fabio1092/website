@@ -2,11 +2,21 @@ export type NavLink = {
   label: string;
   href: string;
   external?: boolean;
+  children?: NavLink[];
 };
 
 export const primaryNav: NavLink[] = [
   { label: "Startseite", href: "/" },
-  { label: "PKV", href: "/private-krankenversicherung-kassel" },
+  {
+    label: "PKV",
+    href: "/private-krankenversicherung-kassel",
+    children: [
+      { label: "PKV im Überblick", href: "/private-krankenversicherung-kassel" },
+      { label: "PKV für Angestellte", href: "/pkv-angestellte-kassel" },
+      { label: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel" },
+      { label: "PKV für Beamte", href: "/pkv-beamte-kassel" },
+    ],
+  },
   { label: "BU", href: "/bu" },
   { label: "360° Beratung", href: "/360-beratung" },
   { label: "Über mich", href: "/ueber-mich" },

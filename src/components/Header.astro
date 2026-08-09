@@ -28,20 +28,67 @@ function isActive(href: string) {
 
     <nav class="hidden shrink-0 items-center gap-5 lg:flex xl:gap-7" aria-label="Hauptnavigation">
       {
-        primaryNav.map((link) => (
-          <a
-            href={link.href}
-            class:list={[
-              "relative whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white",
-              { "text-white": isActive(link.href) },
-            ]}
-          >
-            {link.label}
-            {isActive(link.href) && (
-              <span class="absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-brand-400" />
-            )}
-          </a>
-        ))
+        primaryNav.map((link) =>
+          link.children ? (
+            <div class="group relative">
+              <a
+                href={link.href}
+                class:list={[
+                  "relative flex items-center gap-1 whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white",
+                  { "text-white": isActive(link.href) },
+                ]}
+              >
+                {link.label}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mt-0.5 transition-transform duration-200 group-hover:rotate-180"
+                  aria-hidden="true"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+                {isActive(link.href) && (
+                  <span class="absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-brand-400" />
+                )}
+              </a>
+              <div class="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <div class="overflow-hidden rounded-2xl border border-white/10 bg-ink-900 shadow-xl shadow-black/30">
+                  {link.children.map((child) => (
+                    <a
+                      href={child.href}
+                      class:list={[
+                        "block px-5 py-3 text-sm font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white",
+                        { "bg-white/5 text-white": isActive(child.href) },
+                      ]}
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={link.href}
+              class:list={[
+                "relative whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white",
+                { "text-white": isActive(link.href) },
+              ]}
+            >
+              {link.label}
+              {isActive(link.href) && (
+                <span class="absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-brand-400" />
+              )}
+            </a>
+          ),
+        )
       }
     </nav>
 
@@ -84,15 +131,34 @@ function isActive(href: string) {
     <nav class="space-y-1 border-t border-white/10 px-4 pb-6 pt-4" aria-label="Mobile Navigation">
       {
         primaryNav.map((link) => (
-          <a
-            href={link.href}
-            class:list={[
-              "block rounded-md px-3 py-3 text-base font-medium text-white/85 transition-colors hover:bg-white/5 hover:text-white",
-              { "bg-white/5 text-white": isActive(link.href) },
-            ]}
-          >
-            {link.label}
-          </a>
+          <div>
+            <a
+              href={link.href}
+              class:list={[
+                "block rounded-md px-3 py-3 text-base font-medium text-white/85 transition-colors hover:bg-white/5 hover:text-white",
+                { "bg-white/5 text-white": isActive(link.href) },
+              ]}
+            >
+              {link.label}
+            </a>
+            {link.children && (
+              <div class="ml-3 space-y-1 border-l border-white/10 pl-3">
+                {link.children
+                  .filter((child) => child.href !== link.href)
+                  .map((child) => (
+                    <a
+                      href={child.href}
+                      class:list={[
+                        "block rounded-md px-3 py-2.5 text-sm font-medium text-white/70 transition-colors hover:bg-white/5 hover:text-white",
+                        { "bg-white/5 text-white": isActive(child.href) },
+                      ]}
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+              </div>
+            )}
+          </div>
         ))
       }
       <a
