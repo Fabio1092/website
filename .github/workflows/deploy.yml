@@ -34,3 +34,16 @@ jobs:
           protocol: ftp
           local-dir: ./dist/
           server-dir: ./domains/fr-makler.de/public_html/
+
+      - name: TEMP diagnostic - check live site
+        run: |
+          echo "--- local build asset refs ---"
+          grep -o '_astro/[a-zA-Z0-9_.]*\.\(js\|css\)' dist/index.html | sort -u
+          echo "--- fr-makler.de ---"
+          curl -s -o /tmp/live.html -w "HTTP %{http_code}\n" "https://fr-makler.de/?cachebust=$(date +%s)"
+          echo "--- asset refs in live HTML ---"
+          grep -o '_astro/[a-zA-Z0-9_.]*\.\(js\|css\)' /tmp/live.html | sort -u
+          echo "--- headers ---"
+          curl -sI "https://fr-makler.de/?cachebust=$(date +%s)" | grep -iE "last-modified|cache-control|etag|date|age"
+          echo "--- www subdomain ---"
+          curl -s -o /dev/null -w "HTTP %{http_code}\n" https://www.fr-makler.de/
