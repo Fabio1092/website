@@ -25,6 +25,16 @@ jobs:
       - name: Seite bauen
         run: npm run build
 
+      - name: Diagnose - finale Pruefung fr-makler.de
+        run: |
+          curl -s --http1.1 https://fr-makler.de/ -o /tmp/live.html
+          echo "=== cookie-consent (Anzahl Treffer) ==="
+          grep -c "cookie-consent" /tmp/live.html || true
+          echo "=== superchat (Anzahl Treffer) ==="
+          grep -c "superchat" /tmp/live.html || true
+          echo "=== default.php im Live-HTML? (sollte nicht der Fall sein) ==="
+          grep -c "All Set to Go" /tmp/live.html || true
+
       - name: Auf Hostinger hochladen
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
