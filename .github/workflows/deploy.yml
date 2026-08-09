@@ -25,16 +25,9 @@ jobs:
       - name: Seite bauen
         run: npm run build
 
-      - name: Diagnose - Ordnerstruktur pruefen
+      - name: Einmalig alte default.php entfernen
         run: |
-          echo "=== domains/ Inhalt ==="
-          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
-          echo "=== domains/fr-makler.de/ (falls vorhanden) ==="
-          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/fr-makler.de/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" || echo "kein solcher Ordner"
-          echo "=== domains/fr-makler.de/public_html/ (falls vorhanden) ==="
-          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/fr-makler.de/public_html/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" || echo "kein solcher Ordner"
-          echo "=== domains/royalblue-magpie-425000.hostingersite.com/public_html/ (unser aktuelles Ziel) ==="
-          curl -s --list-only "ftp://${{ secrets.FTP_SERVER }}/domains/royalblue-magpie-425000.hostingersite.com/public_html/" --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+          curl -s --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" -Q "DELE default.php" "ftp://${{ secrets.FTP_SERVER }}/domains/fr-makler.de/public_html/" || echo "default.php evtl. schon entfernt oder nicht vorhanden"
 
       - name: Auf Hostinger hochladen
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
@@ -44,4 +37,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           local-dir: ./dist/
-          server-dir: ./domains/royalblue-magpie-425000.hostingersite.com/public_html/
+          server-dir: ./domains/fr-makler.de/public_html/
