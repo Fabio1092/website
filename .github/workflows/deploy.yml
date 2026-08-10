@@ -34,18 +34,3 @@ jobs:
           protocol: ftp
           local-dir: ./dist/
           server-dir: ./domains/fr-makler.de/public_html/
-
-      - name: TEMP diagnostic - live status check
-        run: |
-          echo "--- fr-makler.de ---"
-          curl -sI -o /tmp/h1.txt -w "HTTP %{http_code}\n" "https://fr-makler.de/?cachebust=$(date +%s)"
-          cat /tmp/h1.txt
-          echo "--- www.fr-makler.de ---"
-          curl -sI -o /tmp/h2.txt -w "HTTP %{http_code}\n" "https://www.fr-makler.de/?cachebust=$(date +%s)"
-          cat /tmp/h2.txt
-          echo "--- http (no TLS) fr-makler.de ---"
-          curl -sI -o /dev/null -w "HTTP %{http_code}\n" "http://fr-makler.de/"
-          echo "--- DNS resolution ---"
-          getent hosts fr-makler.de || nslookup fr-makler.de || true
-          echo "--- body snippet ---"
-          curl -s "https://fr-makler.de/?cachebust=$(date +%s)" | head -c 800
