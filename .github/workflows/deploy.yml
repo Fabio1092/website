@@ -34,3 +34,18 @@ jobs:
           protocol: ftp
           local-dir: ./dist/
           server-dir: ./domains/fr-makler.de/public_html/
+
+      - name: TEMP diagnostic - content served at user-reported IP
+        run: |
+          echo "--- Forcing connection to 82.25.96.147 for fr-makler.de ---"
+          curl -sS --resolve fr-makler.de:443:82.25.96.147 https://fr-makler.de -o /tmp/page.html -D /tmp/headers.txt
+          echo "--- Headers ---"
+          cat /tmp/headers.txt
+          echo "--- Title tag ---"
+          grep -o '<title>[^<]*</title>' /tmp/page.html || echo "NO TITLE FOUND"
+          echo "--- First h1 ---"
+          grep -o '<h1[^>]*>[^<]*' /tmp/page.html | head -3
+          echo "--- File size ---"
+          wc -c /tmp/page.html
+          echo "--- Contains 'astro' build marker? ---"
+          grep -o 'astro-island\|Fabio Rumpf' /tmp/page.html | sort -u
