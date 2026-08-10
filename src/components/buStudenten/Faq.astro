@@ -1,0 +1,45 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Ist eine BU als Student nicht viel zu früh?",
+    answer: "Nicht zwingend. Gerade Gesundheitszustand und zukünftige Anpassungsmöglichkeiten können dafür sprechen, das Thema frühzeitig zu prüfen.",
+  },
+  {
+    question: "Welche BU-Rente brauche ich als Student?",
+    answer: "Das hängt von der individuellen Situation und den Möglichkeiten des jeweiligen Tarifs ab. Wichtig ist außerdem, wie sich die Absicherung später erhöhen lässt.",
+  },
+  {
+    question: "Muss ich nach meinem Studium eine neue BU abschließen?",
+    answer: "Nicht zwangsläufig. Eine gute Lösung sollte möglichst so gestaltet sein, dass sie dich auch nach dem Berufseinstieg begleiten kann.",
+  },
+  {
+    question: "Was passiert, wenn ich meinen Studiengang wechsle?",
+    answer: "Das sollte individuell geprüft werden. Veränderungen in Ausbildung und Beruf sind ein Grund, weshalb wir unsere Kunden langfristig begleiten.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="bu-studenten-faq" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Häufige Fragen.</h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

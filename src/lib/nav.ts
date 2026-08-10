@@ -17,7 +17,17 @@ export const primaryNav: NavLink[] = [
       { label: "PKV für Beamte", href: "/pkv-beamte-kassel" },
     ],
   },
-  { label: "BU", href: "/bu" },
+  {
+    label: "BU",
+    href: "/bu",
+    children: [
+      { label: "BU im Überblick", href: "/bu" },
+      { label: "BU für Angestellte", href: "/bu-angestellte-kassel" },
+      { label: "BU für Selbstständige", href: "/bu-selbststaendige-kassel" },
+      { label: "BU für Studenten", href: "/bu-studenten-kassel" },
+      { label: "BU/DU für Beamte", href: "/bu-beamte-kassel" },
+    ],
+  },
   { label: "360° Beratung", href: "/360-beratung" },
   { label: "Über mich", href: "/ueber-mich" },
 ];

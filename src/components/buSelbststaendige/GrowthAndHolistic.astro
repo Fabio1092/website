@@ -1,0 +1,43 @@
+---
+const topics = [
+  "Berufsunfähigkeit",
+  "Krankentagegeld",
+  "private Krankenversicherung",
+  "Altersvorsorge",
+  "Familienabsicherung",
+  "betriebliche Risiken",
+  "Haftung",
+  "Vermögensschutz",
+];
+---
+
+<section id="bu-selbststaendige-wachstum" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Was passiert, wenn <span class="text-brand-600">dein Unternehmen wächst</span>?
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Heute arbeitest du vielleicht zu 80 Prozent operativ selbst mit. In fünf Jahren führst du möglicherweise zehn Mitarbeiter und bist überwiegend Geschäftsführer.</p>
+      <p class="font-medium text-ink-950">
+        Deine Tätigkeit kann sich also massiv verändern. Eine gute BU-Strategie sollte deshalb
+        nicht nur deine heutige Situation betrachten, sondern auch die Entwicklung deines
+        Unternehmens.
+      </p>
+    </div>
+
+    <div class="mt-14 border-t border-black/[0.06] pt-14">
+      <h3 class="font-serif text-2xl font-semibold text-ink-950">Ganzheitliche Absicherung für Selbstständige.</h3>
+      <p data-reveal class="mt-4 text-base leading-relaxed text-ink-700/85">Bei Selbstständigen hängen häufig mehrere Themen zusammen:</p>
+
+      <div data-reveal class="mt-6 flex flex-wrap gap-2.5">
+        {topics.map((topic) => <span class="rounded-lg bg-white px-4 py-2.5 text-sm text-ink-700/80">{topic}</span>)}
+      </div>
+
+      <p data-reveal class="mt-6 text-base leading-relaxed text-ink-700/85">
+        Unser Schwerpunkt liegt auf PKV und Einkommensschutz. Weitere Versicherungsthemen
+        betrachten wir im Rahmen eines ganzheitlichen Mandats.
+      </p>
+    </div>
+  </div>
+</section>

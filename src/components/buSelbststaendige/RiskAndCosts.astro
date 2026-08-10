@@ -1,0 +1,34 @@
+---
+const costs = ["Miete oder Finanzierung", "Lebenshaltungskosten", "Krankenversicherung", "Altersvorsorge", "Darlehen", "familiäre Verpflichtungen"];
+---
+
+<section id="bu-selbststaendige-risiko" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Dein größtes wirtschaftliches Risiko sitzt möglicherweise <span class="text-brand-600">jeden Morgen vor deinem Spiegel</span>.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Was passiert in deinem Unternehmen, wenn du morgen für längere Zeit ausfällst?</p>
+      <p>
+        Vielleicht laufen deine betrieblichen Kosten weiter. Gleichzeitig fehlt möglicherweise dein
+        persönliches Einkommen. Und privat bestehen weiterhin:
+      </p>
+    </div>
+
+    <div data-reveal class="mt-6 flex flex-wrap gap-2.5">
+      {costs.map((cost) => <span class="rounded-lg bg-brand-50/60 px-4 py-2.5 text-sm text-ink-700/80">{cost}</span>)}
+    </div>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Bei Selbstständigen muss deshalb sauber getrennt werden: Was betrifft das Unternehmen –
+        und was betrifft dich persönlich?
+      </p>
+      <p class="font-medium text-ink-950">
+        Eine Berufsunfähigkeitsversicherung soll deine persönliche Einkommenssituation absichern.
+        Betriebliche Risiken müssen gegebenenfalls zusätzlich betrachtet werden.
+      </p>
+    </div>
+  </div>
+</section>

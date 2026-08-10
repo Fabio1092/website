@@ -1,0 +1,43 @@
+---
+const factors = [
+  "Miete oder Immobilienfinanzierung",
+  "Lebenshaltungskosten",
+  "Versicherungen",
+  "Kredite",
+  "Altersvorsorge",
+  "Sparpläne",
+  "familiäre Verpflichtungen",
+  "deinen gewünschten Lebensstandard",
+];
+---
+
+<section id="bu-angestellte-rente" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Wie hoch sollte <span class="text-brand-600">deine BU-Rente</span> sein?
+      </h2>
+    </div>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Eine BU-Rente sollte nicht danach gewählt werden, welcher Beitrag angenehm aussieht. Die
+        entscheidende Frage lautet:
+      </p>
+      <p class="font-serif text-xl text-ink-950">
+        Wie viel Geld brauchst du, damit dein Leben auch dann weitergehen kann, wenn dein
+        Arbeitseinkommen dauerhaft ausfällt?
+      </p>
+      <p>Dazu betrachten wir unter anderem:</p>
+    </div>
+
+    <div data-reveal class="mt-6 flex flex-wrap justify-center gap-2.5">
+      {factors.map((factor) => <span class="rounded-lg bg-white px-4 py-2.5 text-sm text-ink-700/80">{factor}</span>)}
+    </div>
+
+    <p data-reveal class="mx-auto mt-8 max-w-xl text-center text-sm leading-relaxed text-ink-700/70">
+      Denn eine zu niedrige BU-Rente kann im Leistungsfall bedeuten, dass zwar Versicherungsschutz
+      vorhanden ist – aber deine tatsächliche finanzielle Lücke trotzdem bestehen bleibt.
+    </p>
+  </div>
+</section>

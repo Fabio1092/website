@@ -1,0 +1,84 @@
+---
+import { GraduationCap, TrendingUp, ShieldCheck } from "lucide-react";
+
+const groups = [
+  {
+    icon: GraduationCap,
+    title: "Beamte auf Widerruf",
+    text: "Hierzu zählen häufig Beamtenanwärter und Referendare. Gerade am Beginn der Beamtenlaufbahn können Versorgungslücken besonders relevant sein.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Beamte auf Probe",
+    text: "Auch hier sollte genau geprüft werden, welche Ansprüche tatsächlich bestehen und welche private Absicherung benötigt wird.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Beamte auf Lebenszeit",
+    text: "Mit zunehmender Dienstzeit können sich Versorgungsansprüche verändern. Eine private DU-Absicherung muss deshalb nicht nur heute passen, sondern sollte langfristig mit der Beamtenlaufbahn abgestimmt werden.",
+  },
+];
+---
+
+<section id="bu-beamte-status" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Warum der <span class="text-brand-600">Beamtenstatus</span> so wichtig ist.
+    </h2>
+    <p data-reveal class="mt-4 text-lg leading-relaxed text-ink-700/80">
+      Die finanzielle Situation im Fall einer Dienstunfähigkeit kann sich deutlich unterscheiden
+      zwischen:
+    </p>
+
+    <div class="mt-10 divide-y divide-black/[0.06] border-t border-black/[0.06]">
+      {
+        groups.map((group, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="flex gap-5 py-8 sm:gap-6">
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
+              <group.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <div class="min-w-0">
+              <h3 class="font-serif text-lg font-semibold text-ink-950">{group.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-700/75">{group.text}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-14 space-y-8 border-t border-black/[0.06] pt-14">
+      <div data-reveal>
+        <h3 class="font-serif text-xl font-semibold text-ink-950">Besonders relevant für Beamtenanwärter und Referendare</h3>
+        <div class="mt-3 space-y-3 text-base leading-relaxed text-ink-700/85">
+          <p>
+            Viele junge Beamte beschäftigen sich intensiv mit ihrer privaten Krankenversicherung.
+            Das Thema Dienstunfähigkeit wird dagegen häufig auf später verschoben. Dabei kann
+            gerade zu Beginn der Laufbahn eine private Absicherung besonders relevant sein.
+          </p>
+          <p class="font-medium text-ink-950">
+            Deshalb betrachten wir bei Beamten gerne beide existenziellen Themen gemeinsam: PKV +
+            DU. So entstehen keine voneinander losgelösten Einzelentscheidungen.
+          </p>
+        </div>
+      </div>
+
+      <div data-reveal>
+        <h3 class="font-serif text-xl font-semibold text-ink-950">Was ist eine Dienstunfähigkeitsklausel?</h3>
+        <div class="mt-3 space-y-3 text-base leading-relaxed text-ink-700/85">
+          <p>
+            Eine Dienstunfähigkeitsklausel regelt, unter welchen Voraussetzungen eine
+            Dienstunfähigkeit im Rahmen des privaten Versicherungsschutzes berücksichtigt wird. Die
+            konkrete Formulierung kann sich zwischen Versicherern und Tarifen deutlich
+            unterscheiden.
+          </p>
+          <p>
+            Umgangssprachlich wird häufig zwischen verschiedenen Ausgestaltungen wie einer
+            sogenannten echten oder unechten Dienstunfähigkeitsklausel unterschieden. Entscheidend
+            ist nicht die Marketingbezeichnung.
+          </p>
+          <p class="font-serif text-lg italic text-ink-950">Entscheidend ist: Was steht tatsächlich in den Versicherungsbedingungen? Genau das prüfen wir.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

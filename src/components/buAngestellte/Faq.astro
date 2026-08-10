@@ -1,0 +1,55 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Brauche ich eine BU auch bei einem Bürojob?",
+    answer:
+      "Auch Bürotätigkeiten schützen nicht grundsätzlich vor Erkrankungen, die eine langfristige Berufsausübung erschweren oder unmöglich machen können. Entscheidend ist immer deine individuelle Tätigkeit.",
+  },
+  {
+    question: "Wie hoch sollte meine BU-Rente sein?",
+    answer:
+      "Das hängt von Einkommen, Fixkosten, Lebensstandard und finanziellen Verpflichtungen ab. Deshalb bestimmen wir die Höhe individuell.",
+  },
+  {
+    question: "Wann sollte ich eine BU abschließen?",
+    answer:
+      "Eine frühzeitige Prüfung kann sinnvoll sein, da Gesundheitszustand, Alter und berufliche Tätigkeit Einfluss auf die Versicherbarkeit und die Konditionen haben können.",
+  },
+  {
+    question: "Kann ich meine BU später erhöhen?",
+    answer: "Viele Tarife bieten bestimmte Möglichkeiten zur Erhöhung. Wie flexibel diese ausgestaltet sind, unterscheidet sich jedoch erheblich.",
+  },
+  {
+    question: "Was passiert bei Vorerkrankungen?",
+    answer:
+      "Das hängt von Art, Zeitraum und Verlauf der Erkrankung sowie vom jeweiligen Versicherer ab. Deshalb sollte die Gesundheitshistorie vor Antragstellung sorgfältig geprüft werden.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="bu-angestellte-faq" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Häufige Fragen zur <span class="text-brand-600">BU für Angestellte</span>.
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

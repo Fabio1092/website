@@ -1,0 +1,81 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/buAngestellte/Hero.astro";
+import IncomeValue from "@/components/buAngestellte/IncomeValue.astro";
+import BuRente from "@/components/buAngestellte/BuRente.astro";
+import HealthAndPreExisting from "@/components/buAngestellte/HealthAndPreExisting.astro";
+import Conditions from "@/components/buAngestellte/Conditions.astro";
+import LifeChanges from "@/components/buAngestellte/LifeChanges.astro";
+import ProcessSteps from "@/components/ProcessSteps.astro";
+import LocalArea from "@/components/buAngestellte/LocalArea.astro";
+import Faq from "@/components/buAngestellte/Faq.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="Berufsunfähigkeitsversicherung für Angestellte Kassel | BU-Beratung"
+  description="BU-Beratung für Angestellte in Kassel & Nordhessen. Individuelle Prüfung von BU-Rente, Gesundheitsfragen, Risikovoranfrage und Vertragsbedingungen."
+  fullTitle
+>
+  <Hero />
+  <IncomeValue />
+  <BuRente />
+  <HealthAndPreExisting />
+  <Conditions />
+  <LifeChanges />
+  <ProcessSteps
+    id="bu-angestellte-prozess"
+    title="So läuft unsere BU-Beratung ab."
+    titleHighlight="BU-Beratung"
+    intro="Ein klarer Prozess, verständliche Empfehlungen und ausreichend Zeit für deine Entscheidung."
+    ctaLabel="BU-Beratung vereinbaren"
+    steps={[
+      {
+        number: "1",
+        duration: "Kostenlos und unverbindlich",
+        title: "Kennenlernen",
+        description: "Wir sprechen über deinen Beruf, dein Einkommen, deine Ziele und deine bestehende Absicherung.",
+      },
+      {
+        number: "2",
+        duration: "Grundlage für alles Weitere",
+        title: "Bedarf ermitteln",
+        description: "Wir prüfen, welche finanzielle Lücke entstehen würde und welche BU-Rente sinnvoll sein kann.",
+      },
+      {
+        number: "3",
+        duration: "Sorgfältig und strukturiert",
+        title: "Gesundheitshistorie aufbereiten",
+        description: "Wir strukturieren die relevanten Gesundheitsangaben.",
+      },
+      {
+        number: "4",
+        duration: "Falls erforderlich",
+        title: "Versicherbarkeit prüfen",
+        description: "Falls notwendig, führen wir eine geeignete Risikoprüfung bzw. Risikovoranfrage durch.",
+      },
+      {
+        number: "5",
+        duration: "Mehr als nur Beiträge",
+        title: "Tarife und Bedingungen vergleichen",
+        description: "Wir prüfen nicht nur den Preis, sondern die relevanten Vertragsbedingungen.",
+      },
+      {
+        number: "6",
+        duration: "In Ruhe entscheiden",
+        title: "Empfehlung und Umsetzung",
+        description: "Du bekommst eine verständliche Empfehlung und entscheidest anschließend in Ruhe.",
+      },
+    ]}
+  />
+  <LocalArea />
+  <Faq />
+  <FinalCta
+    id="bu-angestellte-cta"
+    title="Schütze nicht nur dein Einkommen. Schütze deine finanzielle Freiheit."
+    titleHighlight="finanzielle Freiheit"
+    body="Im ersten Gespräch klären wir zunächst, ob und in welcher Form eine Berufsunfähigkeitsversicherung zu deiner Situation passt."
+    ctaLabel="BU-Erstgespräch vereinbaren"
+    closingLine="Berufsunfähigkeitsberatung für Angestellte – persönlich in Kassel oder digital in Nordhessen."
+  />
+</Layout>

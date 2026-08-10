@@ -1,0 +1,41 @@
+---
+const questions = [
+  "Wie hoch sind deine privaten monatlichen Kosten?",
+  "Welche Einnahmen benötigst du persönlich?",
+  "Welche Kosten laufen unabhängig von deiner Arbeitsfähigkeit weiter?",
+  "Gibt es weiteres Einkommen?",
+  "Ist dein Unternehmen auch ohne dich handlungsfähig?",
+  "Welche Rücklagen bestehen?",
+  "Welche Altersvorsorge muss weitergeführt werden?",
+  "Welche finanziellen Verpflichtungen bestehen?",
+];
+---
+
+<section id="bu-selbststaendige-rente" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Wie hoch sollte eine <span class="text-brand-600">BU-Rente für Selbstständige</span> sein?
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Bei Selbstständigen reicht es nicht, einfach das letzte Nettoeinkommen anzuschauen. Wir
+        wollen verstehen:
+      </p>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-10 grid max-w-2xl gap-x-8 gap-y-3 border-t border-black/[0.06] pt-8 sm:grid-cols-2">
+      {
+        questions.map((question) => (
+          <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+            {question}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mx-auto mt-8 max-w-xl text-center text-base leading-relaxed text-ink-700/85">
+      Erst daraus entsteht ein sinnvolles Absicherungskonzept.
+    </p>
+  </div>
+</section>

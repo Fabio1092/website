@@ -1,0 +1,67 @@
+---
+const questions = [
+  "Was machst du konkret beruflich?",
+  "Welche körperlichen Tätigkeiten gehören dazu?",
+  "Wie hoch ist dein psychischer Belastungsanteil?",
+  "Wie viel Verantwortung trägst du?",
+  "Wie sieht dein typischer Arbeitstag aus?",
+  "Welche Ausbildung und Qualifikation hast du?",
+  "Welche finanziellen Verpflichtungen bestehen?",
+];
+---
+
+<section id="bu-angestellte-einkommen" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Warum dein Einkommen wahrscheinlich <span class="text-brand-600">dein größter Vermögenswert</span> ist.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-5 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Stell dir vor, du verdienst 4.000 Euro brutto im Monat. Über die kommenden 30 Berufsjahre
+        fließt damit ein siebenstelliger Betrag durch deine Arbeitskraft.
+      </p>
+      <p>
+        Ein Auto versichern wir. Eine Immobilie versichern wir. Aber die Fähigkeit, das Geld für
+        all diese Dinge überhaupt erst zu verdienen, wird häufig unterschätzt. Dabei hängt genau
+        davon dein heutiges Leben ab.
+      </p>
+      <p class="font-medium text-ink-950">
+        Eine Berufsunfähigkeitsversicherung soll deshalb nicht irgendeinen Vertrag absichern. Sie
+        soll deine finanzielle Unabhängigkeit schützen.
+      </p>
+    </div>
+
+    <blockquote class="relative mt-10">
+      <span class="pointer-events-none absolute -left-2 -top-8 font-serif text-8xl text-brand-500/15 sm:-top-10" aria-hidden="true">„</span>
+      <p class="relative font-serif text-xl leading-relaxed text-ink-950 sm:text-2xl">
+        In meinem Beruf kann ich doch eigentlich immer arbeiten.
+      </p>
+    </blockquote>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Diesen Gedanken haben viele Angestellte.</p>
+      <p>
+        Berufsunfähigkeit entsteht aber nicht ausschließlich durch schwere körperliche Unfälle.
+        Auch längerfristige Erkrankungen können dazu führen, dass der bisherige Beruf nicht mehr
+        oder nur noch eingeschränkt ausgeübt werden kann.
+      </p>
+      <p>Deshalb betrachten wir nicht einfach nur deine Berufsbezeichnung. Wir schauen uns an:</p>
+    </div>
+
+    <ul data-reveal class="mt-6 grid gap-x-8 gap-y-3 border-t border-black/[0.06] pt-6 sm:grid-cols-2">
+      {
+        questions.map((question) => (
+          <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+            {question}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mt-8 text-base leading-relaxed text-ink-700/85">
+      Erst danach lässt sich sinnvoll beurteilen, wie deine Arbeitskraft abgesichert werden sollte.
+    </p>
+  </div>
+</section>

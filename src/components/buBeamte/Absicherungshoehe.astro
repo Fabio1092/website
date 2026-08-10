@@ -1,0 +1,38 @@
+---
+const factors = [
+  "welches Einkommen aktuell besteht",
+  "welche privaten Fixkosten bestehen",
+  "welcher Lebensstandard abgesichert werden soll",
+  "welche Versorgungsansprüche vorhanden sind",
+  "welcher Beamtenstatus besteht",
+  "welche Verpflichtungen gegenüber Partner oder Familie existieren",
+  "ob Darlehen oder Immobilienfinanzierungen laufen",
+  "wie hoch eine mögliche Versorgungslücke tatsächlich ist",
+];
+---
+
+<section id="bu-beamte-absicherungshoehe" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Wie hoch sollte eine <span class="text-brand-600">DU-Absicherung</span> sein?
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">Wir schauen uns zunächst an:</p>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-10 grid max-w-2xl gap-x-8 gap-y-3 border-t border-black/[0.06] pt-8 sm:grid-cols-2">
+      {
+        factors.map((factor) => (
+          <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+            {factor}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mx-auto mt-8 max-w-xl text-center text-base leading-relaxed text-ink-700/85">
+      Erst daraus ergibt sich eine sinnvolle Absicherungshöhe.
+    </p>
+  </div>
+</section>

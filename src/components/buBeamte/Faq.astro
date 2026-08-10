@@ -1,0 +1,53 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Brauche ich als Beamter überhaupt eine BU?",
+    answer: "Das lässt sich nicht pauschal beantworten. Beamtenstatus, Versorgungsansprüche und konkrete Vertragsbedingungen müssen gemeinsam betrachtet werden.",
+  },
+  {
+    question: "Was ist besser – BU oder DU?",
+    answer: "Dienstunfähigkeit und Berufsunfähigkeit sind unterschiedliche Sachverhalte. Bei Beamten sollte deshalb insbesondere geprüft werden, wie ein BU-Vertrag die Dienstunfähigkeit berücksichtigt.",
+  },
+  {
+    question: "Ist jeder Tarif mit DU-Klausel automatisch gut?",
+    answer: "Nein. Entscheidend ist die konkrete Formulierung der Versicherungsbedingungen.",
+  },
+  {
+    question: "Sollte ich als Anwärter schon eine DU abschließen?",
+    answer: "Gerade bei jungen Beamten kann eine frühzeitige Prüfung sinnvoll sein. Die tatsächliche Empfehlung hängt jedoch von der individuellen Situation ab.",
+  },
+  {
+    question: "Was passiert beim Wechsel des Beamtenstatus?",
+    answer: "Deshalb betrachten wir den Vertrag langfristig. Ein Schutz, der als Anwärter passt, sollte auch auf spätere Entwicklungen geprüft werden.",
+  },
+  {
+    question: "Kann ich PKV und DU gemeinsam beraten lassen?",
+    answer: "Ja. Gerade bei Beamten ist die gemeinsame Betrachtung sinnvoll, weil Gesundheitsangaben und langfristige Lebensplanung bei beiden Themen eine wichtige Rolle spielen.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="bu-beamte-faq" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Häufige Fragen.</h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

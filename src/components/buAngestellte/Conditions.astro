@@ -1,0 +1,39 @@
+---
+const terms = [
+  "Definition der Berufsunfähigkeit",
+  "Prognosezeitraum",
+  "abstrakte Verweisung",
+  "Nachversicherungsmöglichkeiten",
+  "Dynamik",
+  "Leistungs- und Versicherungsdauer",
+  "Regelungen bei Berufswechsel",
+  "Möglichkeiten zur Erhöhung",
+  "Leistungsprüfung",
+  "Karenzzeiten",
+  "relevante Ausschlüsse und Sonderregelungen",
+];
+---
+
+<section id="bu-angestellte-bedingungen" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Welche <span class="text-brand-600">Vertragsbedingungen</span> sind bei einer BU wichtig?
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Eine gute Berufsunfähigkeitsversicherung besteht nicht nur aus BU-Rente und Monatsbeitrag.
+        Entscheidend ist, unter welchen Bedingungen der Versicherer später leisten muss. Wir prüfen
+        deshalb unter anderem:
+      </p>
+    </div>
+
+    <div data-reveal class="mt-10 flex flex-wrap justify-center gap-2.5">
+      {terms.map((term) => <span class="rounded-full border border-brand-200 bg-white px-4 py-1.5 text-sm font-medium text-brand-700">{term}</span>)}
+    </div>
+
+    <p data-reveal class="mx-auto mt-12 max-w-xl text-center">
+      <span class="block text-base leading-relaxed text-ink-700/60">Unser Ziel ist nicht, dir den billigsten Tarif zu zeigen.</span>
+      <span class="mt-1 block font-serif text-xl font-semibold text-ink-950">Unser Ziel ist, dass du verstehst, warum eine Lösung zu deiner Situation passt.</span>
+    </p>
+  </div>
+</section>

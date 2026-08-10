@@ -1,0 +1,85 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/buBeamte/Hero.astro";
+import BuVsDu from "@/components/buBeamte/BuVsDu.astro";
+import BeamtenStatus from "@/components/buBeamte/BeamtenStatus.astro";
+import TargetGroups from "@/components/buBeamte/TargetGroups.astro";
+import Absicherungshoehe from "@/components/buBeamte/Absicherungshoehe.astro";
+import HealthCheck from "@/components/buBeamte/HealthCheck.astro";
+import Conditions from "@/components/buBeamte/Conditions.astro";
+import PkvDu from "@/components/buBeamte/PkvDu.astro";
+import ProcessSteps from "@/components/ProcessSteps.astro";
+import LocalArea from "@/components/buBeamte/LocalArea.astro";
+import Faq from "@/components/buBeamte/Faq.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="Dienstunfähigkeitsversicherung Beamte Kassel | BU & DU Beratung"
+  description="BU- & DU-Beratung für Beamte, Anwärter und Referendare in Kassel & Nordhessen. Versorgungslücken, DU-Klauseln und Gesundheitsfragen individuell prüfen."
+  fullTitle
+>
+  <Hero />
+  <BuVsDu />
+  <BeamtenStatus />
+  <TargetGroups />
+  <Absicherungshoehe />
+  <HealthCheck />
+  <Conditions />
+  <PkvDu />
+  <ProcessSteps
+    id="bu-beamte-prozess"
+    title="So läuft unsere BU-/DU-Beratung ab."
+    titleHighlight="BU-/DU-Beratung"
+    intro="Ein klarer Prozess, der deinen Beamtenstatus und deine Versorgungssituation von Anfang an mitdenkt."
+    ctaLabel="BU-/DU-Erstgespräch vereinbaren"
+    steps={[
+      {
+        number: "1",
+        duration: "Kostenlos und unverbindlich",
+        title: "Beamtenstatus und Situation aufnehmen",
+        description: "Wir klären Dienstherrn, Status, Tätigkeit und Einkommen.",
+      },
+      {
+        number: "2",
+        duration: "Grundlage für alles Weitere",
+        title: "Versorgungssituation analysieren",
+        description: "Welche Ansprüche bestehen bereits und welche Lücke bleibt?",
+      },
+      {
+        number: "3",
+        duration: "Sorgfältig und strukturiert",
+        title: "Gesundheitshistorie aufbereiten",
+        description: "Wir prüfen die relevanten Angaben.",
+      },
+      {
+        number: "4",
+        duration: "Bei Bedarf",
+        title: "Versicherbarkeit prüfen",
+        description: "Bei Bedarf erfolgt zunächst eine Risikovoranfrage.",
+      },
+      {
+        number: "5",
+        duration: "Fokus auf BU & DU",
+        title: "Bedingungen vergleichen",
+        description: "Besonderer Fokus liegt auf BU- und DU-Regelungen.",
+      },
+      {
+        number: "6",
+        duration: "In Ruhe entscheiden",
+        title: "Empfehlung und Umsetzung",
+        description: "Du erhältst eine verständliche Gegenüberstellung und kannst anschließend entscheiden.",
+      },
+    ]}
+  />
+  <LocalArea />
+  <Faq />
+  <FinalCta
+    id="bu-beamte-cta"
+    title="Deine Beamtenlaufbahn verdient eine Absicherung, die sie versteht."
+    titleHighlight="eine Absicherung, die sie versteht"
+    body="Wir prüfen deine individuelle Versorgungssituation und zeigen dir verständlich, welche BU-/DU-Lösung zu deiner Laufbahn passen kann."
+    ctaLabel="BU-/DU-Erstgespräch vereinbaren"
+    closingLine="Spezialisierte BU- und DU-Beratung für Beamte in Kassel und Nordhessen."
+  />
+</Layout>

@@ -1,0 +1,81 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/buSelbststaendige/Hero.astro";
+import RiskAndCosts from "@/components/buSelbststaendige/RiskAndCosts.astro";
+import Krankentagegeld from "@/components/buSelbststaendige/Krankentagegeld.astro";
+import BuRente from "@/components/buSelbststaendige/BuRente.astro";
+import Taetigkeit from "@/components/buSelbststaendige/Taetigkeit.astro";
+import HealthAndConditions from "@/components/buSelbststaendige/HealthAndConditions.astro";
+import GrowthAndHolistic from "@/components/buSelbststaendige/GrowthAndHolistic.astro";
+import ProcessSteps from "@/components/ProcessSteps.astro";
+import Faq from "@/components/buSelbststaendige/Faq.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="BU für Selbstständige Kassel | Berufsunfähigkeit absichern"
+  description="BU-Beratung für Selbstständige in Kassel & Nordhessen. Individuelle Analyse von Einkommen, Tätigkeit, Gesundheitsfragen und Vertragsbedingungen."
+  fullTitle
+>
+  <Hero />
+  <RiskAndCosts />
+  <Krankentagegeld />
+  <BuRente />
+  <Taetigkeit />
+  <HealthAndConditions />
+  <GrowthAndHolistic />
+  <ProcessSteps
+    id="bu-selbststaendige-prozess"
+    title="So läuft unsere Beratung ab."
+    titleHighlight="Beratung"
+    intro="Ein klarer Prozess, der Unternehmen und private Situation gemeinsam betrachtet."
+    ctaLabel="Beratung zur Einkommensabsicherung vereinbaren"
+    steps={[
+      {
+        number: "1",
+        duration: "Kostenlos und unverbindlich",
+        title: "Unternehmerische und private Situation verstehen",
+        description: "Wir sprechen über Unternehmen, Tätigkeit, Einkommen und private Verpflichtungen.",
+      },
+      {
+        number: "2",
+        duration: "Grundlage für alles Weitere",
+        title: "Einkommensrisiko analysieren",
+        description: "Was passiert finanziell, wenn du nicht mehr arbeiten kannst?",
+      },
+      {
+        number: "3",
+        duration: "Sorgfältig und strukturiert",
+        title: "Gesundheitsangaben aufbereiten",
+        description: "Wir strukturieren deine Gesundheitshistorie.",
+      },
+      {
+        number: "4",
+        duration: "Falls erforderlich",
+        title: "Versicherbarkeit prüfen",
+        description: "Bei Bedarf prüfen wir mögliche Konditionen vorab.",
+      },
+      {
+        number: "5",
+        duration: "Mehr als nur Beiträge",
+        title: "Tarife und Bedingungen analysieren",
+        description: "Wir vergleichen passende Lösungen hinsichtlich Leistung und Bedingungen.",
+      },
+      {
+        number: "6",
+        duration: "Erst wenn alles passt",
+        title: "Konzept umsetzen",
+        description: "Erst wenn die Lösung fachlich und wirtschaftlich passt, erfolgt die Umsetzung.",
+      },
+    ]}
+  />
+  <Faq />
+  <FinalCta
+    id="bu-selbststaendige-cta"
+    title="Dein Unternehmen braucht dich. Dein privates Leben auch."
+    titleHighlight="Dein privates Leben"
+    body="Finde heraus, wie du deine persönliche Arbeitskraft sinnvoll absichern kannst."
+    ctaLabel="BU-Erstgespräch für Selbstständige vereinbaren"
+    closingLine="Persönliche BU-Beratung für Selbstständige und Unternehmer aus Kassel und Nordhessen."
+  />
+</Layout>

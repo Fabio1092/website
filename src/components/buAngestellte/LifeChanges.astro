@@ -1,0 +1,36 @@
+---
+const changes = [
+  "ein höheres Einkommen",
+  "einen Partner",
+  "Kinder",
+  "eine Immobilie",
+  "eine Führungsposition",
+  "oder eine Selbstständigkeit",
+];
+---
+
+<section id="bu-angestellte-lebensplanung" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Besonders wichtig: Deine BU muss <span class="text-brand-600">mit deinem Leben mitwachsen</span>.
+    </h2>
+
+    <div data-reveal class="mt-8 grid gap-8 sm:grid-cols-2">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/45">Heute bist du vielleicht</p>
+        <p class="mt-2 font-serif text-lg text-ink-950">25 Jahre alt, angestellt und wohnst zur Miete.</p>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">In fünf Jahren hast du möglicherweise</p>
+        <ul class="mt-2 space-y-1.5">
+          {changes.map((change) => <li class="font-serif text-lg text-ink-950">{change}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <p data-reveal class="mt-8 text-base leading-relaxed text-ink-700/85">
+      Deshalb achten wir bereits heute darauf, welche Möglichkeiten bestehen, deine Absicherung
+      später an eine veränderte Lebenssituation anzupassen.
+    </p>
+  </div>
+</section>

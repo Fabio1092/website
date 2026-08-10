@@ -1,0 +1,53 @@
+---
+const terms = [
+  "konkrete Definition der Berufsunfähigkeit",
+  "Regelungen für Selbstständige",
+  "mögliche Umorganisation des Betriebs",
+  "abstrakte Verweisung",
+  "Nachversicherung",
+  "Dynamik",
+  "Leistungsdauer",
+  "Entwicklung der BU-Rente",
+  "Wechsel der Tätigkeit",
+  "Aufnahme einer neuen beruflichen Tätigkeit",
+  "Leistungsprüfung",
+];
+---
+
+<section id="bu-selbststaendige-gesundheit" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Gesundheitsprüfung und <span class="text-brand-600">Risikovoranfrage</span>.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Auch bei Selbstständigen gilt: Die Qualität einer BU-Beratung entscheidet sich häufig lange
+        bevor der eigentliche Vertrag ausgewählt wird. Wir bereiten deshalb deine gesundheitliche
+        Vorgeschichte sorgfältig auf und prüfen, wie Versicherer deine Situation voraussichtlich
+        bewerten.
+      </p>
+      <p>Bei relevanten Vorerkrankungen kann eine Risikovoranfrage sinnvoll sein. Denn die Frage lautet nicht nur:</p>
+      <p class="font-serif text-lg italic text-ink-700/60">„Welcher Tarif ist günstig?“</p>
+      <p>Sondern zuerst:</p>
+      <p class="font-serif text-xl italic text-ink-950">„Welcher Versicherer bietet mir überhaupt zu welchen Bedingungen Versicherungsschutz?“</p>
+    </div>
+
+    <div class="mt-14 border-t border-black/[0.06] pt-14">
+      <h3 class="font-serif text-2xl font-semibold text-ink-950">Vertragsbedingungen für Selbstständige genau prüfen.</h3>
+      <p data-reveal class="mt-4 text-base leading-relaxed text-ink-700/85">
+        Bei Selbstständigen können bestimmte Regelungen besonders relevant sein. Wir schauen uns
+        deshalb unter anderem an:
+      </p>
+
+      <div data-reveal class="mt-6 flex flex-wrap gap-2.5">
+        {terms.map((term) => <span class="rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-sm font-medium text-brand-700">{term}</span>)}
+      </div>
+
+      <p data-reveal class="mt-6 text-base leading-relaxed text-ink-700/85">
+        Gerade die Bedingungen rund um eine mögliche betriebliche Umorganisation sollten bei
+        Selbstständigen verstanden werden.
+      </p>
+    </div>
+  </div>
+</section>

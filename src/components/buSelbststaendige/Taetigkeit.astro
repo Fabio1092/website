@@ -1,0 +1,35 @@
+---
+const jobs = ["Handwerksmeister", "Physiotherapeut", "Gastronom", "Arzt", "IT-Unternehmer", "Architekt", "Immobilienmakler"];
+const activities = ["körperliche Arbeit", "Bürotätigkeit", "Personalführung", "Reisetätigkeit", "organisatorische Aufgaben", "Kundenberatung", "operative Mitarbeit"];
+---
+
+<section id="bu-selbststaendige-taetigkeit" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Deine konkrete <span class="text-brand-600">Tätigkeit entscheidet</span>.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>„Selbstständig“ ist keine Berufsbezeichnung. Ein selbstständiger Unternehmensberater hat eine völlig andere Tätigkeit als:</p>
+    </div>
+
+    <div data-reveal class="mt-5 flex flex-wrap gap-2.5">
+      {jobs.map((job) => <span class="rounded-full border border-brand-200 bg-white px-4 py-1.5 text-sm font-medium text-brand-700">{job}</span>)}
+    </div>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Bei der BU-Beratung schauen wir deshalb genau auf deine tatsächlichen Tätigkeiten und deren
+        Verteilung. Dazu können beispielsweise gehören:
+      </p>
+    </div>
+
+    <div data-reveal class="mt-5 flex flex-wrap gap-2.5">
+      {activities.map((activity) => <span class="rounded-lg bg-white px-4 py-2.5 text-sm text-ink-700/80">{activity}</span>)}
+    </div>
+
+    <p data-reveal class="mt-8 text-base leading-relaxed text-ink-700/85">
+      Eine genaue Tätigkeitsbeschreibung kann bei Selbstständigen besonders relevant sein.
+    </p>
+  </div>
+</section>

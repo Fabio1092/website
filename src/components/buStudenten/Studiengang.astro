@@ -1,0 +1,21 @@
+---
+const subjects = ["Medizin", "Jura", "Wirtschaftswissenschaften", "Informatik", "Maschinenbau", "Lehramt", "Architektur", "Psychologie"];
+---
+
+<section id="bu-studenten-studiengang" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Dein <span class="text-brand-600">Studiengang</span> kann relevant sein.
+    </h2>
+    <p data-reveal class="mt-4 text-lg leading-relaxed text-ink-700/80">Nicht jeder Student wird identisch eingestuft. Ob du beispielsweise studierst:</p>
+
+    <div data-reveal class="mt-8 flex flex-wrap justify-center gap-2.5">
+      {subjects.map((subject) => <span class="rounded-full border border-brand-200 bg-white px-4 py-1.5 text-sm font-medium text-brand-700">{subject}</span>)}
+    </div>
+
+    <p data-reveal class="mx-auto mt-8 max-w-xl text-center text-base leading-relaxed text-ink-700/85">
+      kann für die spätere Risikobewertung relevant sein. Deshalb prüfen wir nicht pauschal
+      „Studententarife“, sondern schauen uns deine persönliche Situation an.
+    </p>
+  </div>
+</section>

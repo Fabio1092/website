@@ -1,0 +1,27 @@
+---
+const events = ["Berufseinstieg", "höherem Einkommen", "Heirat", "Geburt eines Kindes", "Immobilienfinanzierung", "Selbstständigkeit", "weiteren relevanten Lebensereignissen"];
+---
+
+<section id="bu-studenten-flexibilitaet" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Heute kleine BU – <span class="text-brand-600">später größere Absicherung</span>?
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Als Student benötigst du möglicherweise noch nicht dieselbe BU-Rente wie später mit einem
+        hohen Einkommen. Entscheidend ist deshalb, ob dein Vertrag Möglichkeiten bietet, den
+        Versicherungsschutz später anzupassen. Zum Beispiel bei:
+      </p>
+    </div>
+
+    <div data-reveal class="mt-6 flex flex-wrap gap-2.5">
+      {events.map((event) => <span class="rounded-lg bg-brand-50/60 px-4 py-2.5 text-sm text-ink-700/80">{event}</span>)}
+    </div>
+
+    <p data-reveal class="mt-8 text-base leading-relaxed text-ink-700/85">
+      Deshalb sind flexible Anpassungsmöglichkeiten bei jungen Menschen besonders wichtig.
+    </p>
+  </div>
+</section>

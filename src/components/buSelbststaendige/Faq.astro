@@ -1,0 +1,46 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Ist eine BU für Selbstständige besonders wichtig?",
+    answer: "Das hängt von deiner individuellen finanziellen Situation ab. Häufig besteht jedoch eine starke Abhängigkeit vom eigenen Arbeitseinkommen.",
+  },
+  {
+    question: "Kann ich einfach meine kompletten Unternehmenskosten über eine BU absichern?",
+    answer: "Die BU dient grundsätzlich der persönlichen Einkommensabsicherung. Betriebliche Risiken müssen separat betrachtet werden.",
+  },
+  {
+    question: "Was bedeutet Umorganisation?",
+    answer:
+      "Je nach Tarif und individueller Situation kann geprüft werden, ob ein Selbstständiger seinen Betrieb so umorganisieren kann, dass eine weitere Tätigkeit möglich ist. Die konkreten Bedingungen unterscheiden sich.",
+  },
+  {
+    question: "Was passiert, wenn sich meine Tätigkeit verändert?",
+    answer: "Berufliche Veränderungen sollten mit Blick auf den bestehenden Versicherungsschutz geprüft werden. Deshalb ist eine langfristige Betreuung sinnvoll.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="bu-selbststaendige-faq" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Häufige Fragen.</h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

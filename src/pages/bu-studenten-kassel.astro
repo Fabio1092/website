@@ -1,0 +1,81 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/buStudenten/Hero.astro";
+import WhyEarly from "@/components/buStudenten/WhyEarly.astro";
+import Studiengang from "@/components/buStudenten/Studiengang.astro";
+import Flexibility from "@/components/buStudenten/Flexibility.astro";
+import HealthAndPreExisting from "@/components/buStudenten/HealthAndPreExisting.astro";
+import Requirements from "@/components/buStudenten/Requirements.astro";
+import ProcessSteps from "@/components/ProcessSteps.astro";
+import LocalArea from "@/components/buStudenten/LocalArea.astro";
+import Faq from "@/components/buStudenten/Faq.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="BU für Studenten Kassel | Berufsunfähigkeitsversicherung"
+  description="BU-Beratung für Studenten in Kassel & Nordhessen. Frühzeitig Arbeitskraft absichern, Gesundheitsfragen prüfen und flexible BU-Lösung finden."
+  fullTitle
+>
+  <Hero />
+  <WhyEarly />
+  <Studiengang />
+  <Flexibility />
+  <HealthAndPreExisting />
+  <Requirements />
+  <ProcessSteps
+    id="bu-studenten-prozess"
+    title="So läuft unsere Beratung ab."
+    titleHighlight="Beratung"
+    intro="Ein klarer Prozess, der dich vom Studium bis in dein Berufsleben begleitet."
+    ctaLabel="BU-Beratung für Studenten vereinbaren"
+    steps={[
+      {
+        number: "1",
+        duration: "Kostenlos und unverbindlich",
+        title: "Kennenlernen",
+        description: "Studiengang, Alter, berufliche Pläne und persönliche Situation.",
+      },
+      {
+        number: "2",
+        duration: "Grundlage für alles Weitere",
+        title: "Absicherungsbedarf bestimmen",
+        description: "Welche BU-Rente ist heute sinnvoll und welche Entwicklung erwarten wir später?",
+      },
+      {
+        number: "3",
+        duration: "Sorgfältig und strukturiert",
+        title: "Gesundheitshistorie prüfen",
+        description: "Wir bereiten deine Angaben strukturiert vor.",
+      },
+      {
+        number: "4",
+        duration: "Marktvergleich",
+        title: "Versicherbarkeit und Markt prüfen",
+        description: "Wir vergleichen geeignete Lösungen.",
+      },
+      {
+        number: "5",
+        duration: "Fokus auf Flexibilität",
+        title: "Vertragsbedingungen analysieren",
+        description: "Dabei liegt ein besonderer Fokus auf Flexibilität für deine spätere Karriere.",
+      },
+      {
+        number: "6",
+        duration: "In Ruhe entscheiden",
+        title: "Gemeinsam entscheiden",
+        description: "Du bekommst eine verständliche Empfehlung und entscheidest anschließend selbst.",
+      },
+    ]}
+  />
+  <LocalArea />
+  <Faq />
+  <FinalCta
+    id="bu-studenten-cta"
+    title="Sichere deine Karriere ab, bevor sie überhaupt richtig beginnt."
+    titleHighlight="bevor sie überhaupt richtig beginnt"
+    body="Ein erstes Gespräch schafft Klarheit darüber, welche Möglichkeiten für dich bestehen."
+    ctaLabel="BU-Beratung für Studenten vereinbaren"
+    closingLine="BU-Beratung für Studenten in Kassel und Nordhessen – persönlich oder digital."
+  />
+</Layout>

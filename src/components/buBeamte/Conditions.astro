@@ -1,0 +1,37 @@
+---
+const terms = [
+  "Ausgestaltung der Dienstunfähigkeitsklausel",
+  "BU-Bedingungen",
+  "Beamtenstatus",
+  "Versicherungsdauer",
+  "Leistungsdauer",
+  "Nachversicherungsmöglichkeiten",
+  "Dynamik",
+  "Anpassungsmöglichkeiten",
+  "Wechsel des Dienstherrn",
+  "Veränderungen des Beamtenstatus",
+  "Berufs- beziehungsweise Dienstwechsel",
+  "Gesundheitsprüfung",
+  "Ausschlüsse und Zuschläge",
+];
+---
+
+<section id="bu-beamte-bedingungen" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Worauf wir bei einer <span class="text-brand-600">BU-/DU-Versicherung</span> achten.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">Unter anderem prüfen wir:</p>
+    </div>
+
+    <div data-reveal class="mt-10 flex flex-wrap justify-center gap-2.5">
+      {terms.map((term) => <span class="rounded-full border border-brand-200 bg-white px-4 py-1.5 text-sm font-medium text-brand-700">{term}</span>)}
+    </div>
+
+    <p data-reveal class="mx-auto mt-10 max-w-xl text-center text-base leading-relaxed text-ink-700/85">
+      Unser Anspruch ist, dass du den Unterschied zwischen zwei Tarifen nicht erst bemerkst, wenn
+      du Leistungen benötigst.
+    </p>
+  </div>
+</section>
