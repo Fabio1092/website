@@ -34,3 +34,14 @@ jobs:
           protocol: ftp
           local-dir: ./dist/
           server-dir: ./domains/fr-makler.de/public_html/
+
+      - name: TEMP diagnostic - HTTPS check
+        run: |
+          echo "--- HTTP -> HTTPS redirect check ---"
+          curl -sSI http://fr-makler.de | head -20
+          echo "--- HTTPS response headers ---"
+          curl -sSI https://fr-makler.de | head -20
+          echo "--- Certificate details ---"
+          echo | openssl s_client -connect fr-makler.de:443 -servername fr-makler.de 2>/dev/null | openssl x509 -noout -subject -issuer -dates
+          echo "--- www subdomain HTTPS ---"
+          curl -sSI https://www.fr-makler.de | head -20
