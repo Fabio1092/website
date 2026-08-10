@@ -34,16 +34,3 @@ jobs:
           protocol: ftp
           local-dir: ./dist/
           server-dir: ./domains/fr-makler.de/public_html/
-
-      - name: TEMP diagnostic - DNS resolution
-        run: |
-          echo "--- A records (fr-makler.de) via Google DNS ---"
-          dig +short fr-makler.de @8.8.8.8
-          echo "--- A records (www.fr-makler.de) via Google DNS ---"
-          dig +short www.fr-makler.de @8.8.8.8
-          echo "--- A records (fr-makler.de) via Cloudflare DNS ---"
-          dig +short fr-makler.de @1.1.1.1
-          echo "--- NS records ---"
-          dig +short NS fr-makler.de @8.8.8.8
-          echo "--- CNAME (www) ---"
-          dig +short CNAME www.fr-makler.de @8.8.8.8
