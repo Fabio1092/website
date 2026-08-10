@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  href: string;
+  linkLabel: string;
+}
+
+const { title, href, linkLabel } = Astro.props;
+---
+
+<section class="border-y border-black/[0.06] bg-brand-50/40 py-14">
+  <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+    <p class="font-serif text-xl leading-snug text-ink-950">{title}</p>
+    <a href={href} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-800">
+      {linkLabel} →
+    </a>
+  </div>
+</section>
