@@ -34,3 +34,12 @@ jobs:
           protocol: ftp
           local-dir: ./dist/
           server-dir: ./domains/fr-makler.de/public_html/
+
+      - name: TEMP diagnostic - www redirect + charset header
+        run: |
+          echo "--- non-www https ---"
+          curl -sSI https://fr-makler.de/ | head -10
+          echo "--- www https (should be 200, content-type should include charset) ---"
+          curl -sSI https://www.fr-makler.de/ | head -10
+          echo "--- apple-touch-icon ---"
+          curl -sSI https://www.fr-makler.de/apple-touch-icon.png | head -5
