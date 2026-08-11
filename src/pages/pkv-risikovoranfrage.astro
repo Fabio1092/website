@@ -1,0 +1,39 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/pkvRisiko/Hero.astro";
+import WhyRiskInquiry from "@/components/pkvRisiko/WhyRiskInquiry.astro";
+import ProcessDetailed from "@/components/pkvRisiko/ProcessDetailed.astro";
+import Outcomes from "@/components/pkvRisiko/Outcomes.astro";
+import ComparisonAdvantage from "@/components/pkvRisiko/ComparisonAdvantage.astro";
+import Philosophy from "@/components/pkvRisiko/Philosophy.astro";
+import Benefits from "@/components/pkvRisiko/Benefits.astro";
+import RelatedTopic from "@/components/RelatedTopic.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="Risikovoranfrage PKV Kassel | Anonyme Risikoprüfung"
+  description="So läuft die anonyme Risikovoranfrage vor deiner PKV-Antragstellung ab: strukturiert, persönlich begleitet und ohne unnötiges Risiko."
+  fullTitle
+>
+  <Hero />
+  <WhyRiskInquiry />
+  <ProcessDetailed />
+  <Outcomes />
+  <ComparisonAdvantage />
+  <Philosophy />
+  <Benefits />
+  <RelatedTopic
+    title="Auch bei der Berufsunfähigkeitsversicherung lohnt sich eine professionelle Risikovoranfrage vor der Antragstellung."
+    href="/bu"
+    linkLabel="BU im Überblick ansehen"
+  />
+  <FinalCta
+    id="pkv-risiko-cta"
+    title="Du möchtest deine Möglichkeiten prüfen lassen?"
+    titleHighlight="deine Möglichkeiten"
+    body="Dann starten wir mit einem kurzen telefonischen Erstgespräch. In maximal 15 bis 20 Minuten klären wir die wichtigsten Eckpunkte und schauen gemeinsam, ob eine anonyme Risikovoranfrage in deiner Situation der richtige nächste Schritt ist."
+    ctaLabel="Jetzt Erstgespräch vereinbaren"
+    closingLine="Persönliche PKV-Beratung mit anonymer Risikovoranfrage aus Kassel und deutschlandweit digital."
+  />
+</Layout>

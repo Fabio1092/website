@@ -1,0 +1,52 @@
+---
+import { ClipboardList, FileHeart, MessageCircle, BarChart3 } from "lucide-react";
+
+const phases = [
+  { icon: ClipboardList, text: "Erste Aufnahme deiner Angaben" },
+  { icon: FileHeart, text: "Aufbereitung deiner Krankheitsbilder" },
+  { icon: MessageCircle, text: "Kommunikation mit den Risikoprüfern" },
+  { icon: BarChart3, text: "Auswertung der Ergebnisse" },
+];
+---
+
+<section id="pkv-risiko-vorteil" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Dein <span class="text-brand-600">Vorteil</span> auf einen Blick.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Die anonyme Risikovoranfrage sorgt dafür, dass wir deine gesundheitliche Situation bereits
+        vor einer konkreten Antragstellung professionell prüfen lassen können.
+      </p>
+      <p>
+        Du bekommst von mir dabei nicht einfach einen Fragebogen zugeschickt und musst
+        anschließend allein herausfinden, was du dort eintragen sollst.
+      </p>
+      <p class="font-medium text-ink-950">Ich begleite dich durch den gesamten Prozess.</p>
+    </div>
+
+    <div class="mt-8 grid gap-4 border-t border-black/[0.06] pt-8 sm:grid-cols-2">
+      {
+        phases.map((phase, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="flex items-center gap-3 rounded-xl bg-white p-4 shadow-sm">
+            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+              <phase.icon className="h-4.5 w-4.5" aria-hidden="true" />
+            </div>
+            <p class="text-sm font-medium text-ink-950">{phase.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div data-reveal class="mt-10 space-y-3 text-base leading-relaxed text-ink-700/85">
+      <p>Unser gemeinsames Ziel ist nicht irgendeine PKV.</p>
+      <p class="font-medium text-ink-950">
+        Unser Ziel ist herauszufinden, welche Gesellschaft unter Berücksichtigung deiner
+        gesundheitlichen Situation, deiner Anforderungen und der tatsächlichen Annahmekonditionen
+        die bestmögliche Lösung für dich bietet.
+      </p>
+    </div>
+  </div>
+</section>

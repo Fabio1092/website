@@ -1,0 +1,268 @@
+---
+type Block =
+  | { type: "p"; text: string }
+  | { type: "emphasis"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "pills"; items: string[] }
+  | { type: "questions"; items: string[] };
+
+interface Step {
+  number: string;
+  duration: string;
+  title: string;
+  blocks: Block[];
+}
+
+const steps: Step[] = [
+  {
+    number: "1",
+    duration: "Ca. 15–20 Minuten",
+    title: "Kurzes telefonisches Erstgespräch",
+    blocks: [
+      { type: "p", text: "Am Anfang steht ein kurzes telefonisches Erstgespräch." },
+      { type: "p", text: "Dafür planen wir in der Regel maximal 15 bis 20 Minuten ein." },
+      {
+        type: "p",
+        text: "In diesem Gespräch besprechen wir die wichtigsten Eckpunkte deiner Situation, nehmen einige grundlegende Informationen auf und klären zunächst eine entscheidende Frage:",
+      },
+      { type: "emphasis", text: "Kann und möchte ich dir in deiner individuellen Situation sinnvoll weiterhelfen?" },
+      { type: "p", text: "Wenn das der Fall ist, starten wir anschließend gemeinsam mit der Risikoprüfung." },
+    ],
+  },
+  {
+    number: "2",
+    duration: "Rechtliche Grundlage",
+    title: "Datenschutz als Grundlage",
+    blocks: [
+      {
+        type: "p",
+        text: "Bevor wir Gesundheitsinformationen aufnehmen oder eine Risikovoranfrage durchführen, benötige ich von dir zunächst die entsprechende unterschriebene Datenschutzerklärung.",
+      },
+      { type: "p", text: "Damit schaffen wir eine saubere Grundlage für den weiteren Prozess." },
+    ],
+  },
+  {
+    number: "3",
+    duration: "Digital, jederzeit",
+    title: "Du erhältst deinen digitalen Risikofragebogen",
+    blocks: [
+      { type: "p", text: "Anschließend bekommst du von mir per E-Mail einen persönlichen Link zu deinem Risikofragebogen." },
+      { type: "p", text: "Diesen kannst du ganz bequem von zu Hause aus ausfüllen – egal ob am:" },
+      { type: "pills", items: ["Laptop", "Tablet", "Smartphone"] },
+      { type: "p", text: "Du musst den Fragebogen dabei nicht in einem Durchgang fertigstellen." },
+      {
+        type: "p",
+        text: "Deine Angaben können zwischengespeichert werden. Du kannst dir also die notwendige Zeit nehmen, Unterlagen heraussuchen und einzelne Informationen in Ruhe ergänzen.",
+      },
+      { type: "p", text: "Gerade bei umfangreicheren Krankheitsverläufen ist das ein großer Vorteil." },
+    ],
+  },
+  {
+    number: "4",
+    duration: "Per WhatsApp",
+    title: "Du bekommst von mir eine konkrete Ausfüllhilfe per WhatsApp",
+    blocks: [
+      { type: "p", text: "Zeitgleich mit dem Risikofragebogen erhältst du von mir über WhatsApp eine ausführliche Anleitung." },
+      { type: "p", text: "Denn entscheidend ist nicht nur, dass gesundheitliche Angaben gemacht werden." },
+      {
+        type: "p",
+        text: "Entscheidend ist auch, dass sie so beschrieben werden, dass ein Risikoprüfer nachvollziehen kann, was tatsächlich passiert ist.",
+      },
+      { type: "p", text: "Mein Ziel ist deshalb, deine Angaben von Beginn an so sauber und verständlich wie möglich aufzubereiten." },
+      {
+        type: "p",
+        text: "Das hilft uns dabei, unnötige Rückfragen zu vermeiden und möglichst aussagekräftige Ergebnisse von den Versicherungsgesellschaften zu erhalten.",
+      },
+    ],
+  },
+  {
+    number: "5",
+    duration: "Worauf es ankommt",
+    title: "Wie müssen Erkrankungen und Behandlungen beschrieben werden?",
+    blocks: [
+      { type: "p", text: "Viele Kunden wissen verständlicherweise zunächst nicht, wie ausführlich ein Krankheitsbild beschrieben werden sollte." },
+      { type: "p", text: "Eine reine Angabe wie beispielsweise:" },
+      { type: "quote", text: "„Rückenschmerzen“" },
+      { type: "p", text: "hilft einem Risikoprüfer nur begrenzt weiter." },
+      { type: "p", text: "Viel interessanter sind Fragen wie:" },
+      {
+        type: "questions",
+        items: [
+          "Wann bestanden die Beschwerden?",
+          "Was war die Ursache?",
+          "Welche Diagnose wurde gestellt?",
+          "Welche Untersuchungen oder Behandlungen fanden statt?",
+          "Wie lange dauerte die Behandlung?",
+          "Gab es Medikamente?",
+          "Ist die Behandlung abgeschlossen?",
+          "Bestehen heute noch Beschwerden?",
+        ],
+      },
+      { type: "p", text: "Genau dabei unterstütze ich dich." },
+      {
+        type: "p",
+        text: "Du erhältst von mir zusätzlich konkrete Beispiele unterschiedlicher Krankheitsbilder, damit du sehen kannst, wie entsprechende Angaben sinnvoll aufgebaut werden können.",
+      },
+      { type: "p", text: "Dadurch musst du nicht rätseln, welche Informationen relevant sind." },
+    ],
+  },
+  {
+    number: "6",
+    duration: "Persönliche Unterstützung",
+    title: "Du bist beim Ausfüllen nicht auf dich allein gestellt",
+    blocks: [
+      { type: "p", text: "Während du den Fragebogen ausfüllst, kannst du dich jederzeit bei mir melden." },
+      { type: "p", text: "Wenn eine Frage auftaucht oder du dir bei einer Angabe unsicher bist, kannst du mir einfach über WhatsApp schreiben." },
+      {
+        type: "p",
+        text: "Und wenn ein Krankheitsverlauf etwas komplizierter ist und du keine Lust hast, einen halben Roman in dein Handy zu tippen:",
+      },
+      { type: "emphasis", text: "Dann schickst du mir einfach eine Sprachnachricht." },
+      {
+        type: "p",
+        text: "Du erklärst mir den Sachverhalt so, wie du ihn erlebt hast, und wir schauen gemeinsam, welche Informationen für die Risikoprüfung relevant sind.",
+      },
+      { type: "p", text: "Das macht den Prozess gerade bei umfangreicheren gesundheitlichen Themen deutlich angenehmer." },
+    ],
+  },
+  {
+    number: "7",
+    duration: "Qualitätskontrolle",
+    title: "Ich prüfe deine Angaben vor der Risikovoranfrage",
+    blocks: [
+      { type: "p", text: "Sobald du den Fragebogen vollständig ausgefüllt und abgeschickt hast, schaue ich mir deine Angaben noch einmal an." },
+      { type: "p", text: "Dabei prüfe ich insbesondere:" },
+      {
+        type: "questions",
+        items: [
+          "Sind die Angaben verständlich?",
+          "Fehlen relevante Informationen?",
+          "Kann ein Risikoprüfer den Krankheitsverlauf nachvollziehen?",
+          "Gibt es Punkte, bei denen erfahrungsgemäß Rückfragen entstehen könnten?",
+          "Sollten bestimmte Sachverhalte noch genauer erklärt werden?",
+        ],
+      },
+      { type: "p", text: "Falls notwendig, gehen wir einzelne Angaben noch einmal gemeinsam durch." },
+      { type: "p", text: "Der Sinn dahinter ist ganz einfach:" },
+      { type: "p", text: "Die Versicherungsgesellschaft soll eine möglichst klare Entscheidungsgrundlage erhalten." },
+      { type: "p", text: "Je sauberer wir im Vorfeld arbeiten, desto besser können die Risikoprüfer deine Situation einschätzen." },
+    ],
+  },
+  {
+    number: "8",
+    duration: "Ohne persönliche Daten",
+    title: "Die Risikovoranfrage erfolgt anonym",
+    blocks: [
+      { type: "p", text: "Ein besonders wichtiger Punkt:" },
+      { type: "emphasis", text: "Die Risikovoranfrage wird anonym durchgeführt." },
+      {
+        type: "p",
+        text: "Das bedeutet, dass die Gesellschaften nicht einfach einen regulären Versicherungsantrag mit deinen vollständigen persönlichen Daten erhalten.",
+      },
+      {
+        type: "p",
+        text: "Stattdessen wird eine anonymisierte Musterperson mit den für die Risikoprüfung erforderlichen Angaben dargestellt – beispielsweise mit Gesundheitsverlauf, Berufsbild oder Geburtsdatum beziehungsweise Alter.",
+      },
+      { type: "p", text: "Der große Vorteil:" },
+      {
+        type: "p",
+        text: "Wir können zunächst herausfinden, wie unterschiedliche Gesellschaften deine Situation bewerten, bevor wir uns für eine konkrete Antragstellung entscheiden.",
+      },
+      { type: "p", text: "Damit vermeiden wir, wahllos Anträge bei unterschiedlichen Gesellschaften einzureichen." },
+    ],
+  },
+  {
+    number: "9",
+    duration: "Gezielt statt wahllos",
+    title: "Auswahl der passenden Versicherungsgesellschaften",
+    blocks: [
+      { type: "p", text: "Ich schicke deine Risikovoranfrage bewusst nicht wahllos an möglichst viele Versicherer." },
+      { type: "p", text: "Stattdessen treffe ich anhand deiner persönlichen Situation eine Vorauswahl." },
+      {
+        type: "p",
+        text: "In der Regel sprechen wir von etwa zwei bis drei Gesellschaften, in besonderen Fällen können es auch bis zu fünf sein.",
+      },
+      {
+        type: "p",
+        text: "Welche Gesellschaften angefragt werden, hängt unter anderem davon ab, welche Anbieter aus fachlicher Sicht grundsätzlich zu deiner Situation passen könnten.",
+      },
+      { type: "p", text: "So bleibt die Anfrage gezielt und effizient." },
+    ],
+  },
+  {
+    number: "10",
+    duration: "Wenige Werktage bis 2 Wochen",
+    title: "Jetzt beginnt die Risikoprüfung",
+    blocks: [
+      { type: "p", text: "Anschließend prüfen die ausgewählten Versicherungsgesellschaften die eingereichten Angaben." },
+      { type: "p", text: "Im Optimalfall erhalten wir bereits innerhalb weniger Werktage eine Rückmeldung." },
+      {
+        type: "p",
+        text: "Je nach Auslastung der Gesellschaft, Komplexität des Krankheitsverlaufs oder notwendigen Rückfragen kann die Prüfung allerdings auch ein bis zwei Wochen dauern.",
+      },
+      { type: "p", text: "Sollten zusätzliche Informationen benötigt werden, kümmern wir uns gemeinsam darum." },
+      { type: "p", text: "Mir ist dabei wichtig, dass du jederzeit weißt, an welchem Punkt wir gerade stehen." },
+    ],
+  },
+];
+---
+
+<section id="pkv-risiko-prozess" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <ol class="space-y-14">
+      {
+        steps.map((step, index) => (
+          <li data-reveal style={`transition-delay: ${Math.min(index, 4) * 80}ms`} class="relative flex gap-6 sm:gap-8">
+            <div class="flex flex-col items-center">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-lg font-semibold text-white">
+                {step.number}
+              </span>
+              {index < steps.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
+            </div>
+            <div class="min-w-0 pb-2">
+              <span class="text-xs font-semibold uppercase tracking-wide text-brand-600">{step.duration}</span>
+              <h3 class="mt-1 font-serif text-xl font-semibold text-ink-950 sm:text-2xl">{step.title}</h3>
+              <div class="mt-4 space-y-3">
+                {step.blocks.map((block) => {
+                  if (block.type === "p") {
+                    return <p class="text-sm leading-relaxed text-ink-700/85 sm:text-base">{block.text}</p>;
+                  }
+                  if (block.type === "emphasis") {
+                    return <p class="text-sm font-medium leading-relaxed text-ink-950 sm:text-base">{block.text}</p>;
+                  }
+                  if (block.type === "quote") {
+                    return <p class="italic text-ink-700/70">{block.text}</p>;
+                  }
+                  if (block.type === "pills") {
+                    return (
+                      <div class="flex flex-wrap gap-2.5 py-1">
+                        {block.items.map((item) => (
+                          <span class="inline-flex items-center rounded-full border border-brand-200 bg-white px-4 py-1.5 text-sm font-medium text-brand-700">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    );
+                  }
+                  if (block.type === "questions") {
+                    return (
+                      <ul class="grid gap-x-8 gap-y-2 border-t border-black/[0.06] pt-4 sm:grid-cols-2">
+                        {block.items.map((item) => (
+                          <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+                            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

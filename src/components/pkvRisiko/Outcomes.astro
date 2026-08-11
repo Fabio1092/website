@@ -1,0 +1,71 @@
+---
+import { CheckCircle2, TrendingUp, ShieldOff, XCircle } from "lucide-react";
+
+const outcomes = [
+  {
+    icon: CheckCircle2,
+    tone: "success",
+    title: "Normalannahme",
+    description:
+      "Die Gesellschaft würde dich auf Basis der geprüften Angaben grundsätzlich zu den normalen Konditionen versichern.",
+  },
+  {
+    icon: TrendingUp,
+    tone: "gold",
+    title: "Risikozuschlag",
+    description:
+      "Die Gesellschaft ist grundsätzlich bereit, dich aufzunehmen, verlangt aufgrund bestimmter gesundheitlicher Umstände jedoch einen zusätzlichen Beitrag.",
+  },
+  {
+    icon: ShieldOff,
+    tone: "brand",
+    title: "Leistungsausschluss",
+    description:
+      "Je nach Tarif und Konstellation kann eine Gesellschaft bestimmte Risiken oder Leistungen von der Absicherung ausschließen.",
+  },
+  {
+    icon: XCircle,
+    tone: "danger",
+    title: "Ablehnung",
+    description: "Eine Gesellschaft möchte das Risiko in der vorliegenden Konstellation nicht übernehmen.",
+  },
+];
+
+const toneClasses: Record<string, string> = {
+  success: "bg-success-50 text-success-600",
+  gold: "bg-gold-50 text-gold-600",
+  brand: "bg-brand-50 text-brand-600",
+  danger: "bg-danger-50 text-danger-600",
+};
+---
+
+<section id="pkv-risiko-ergebnisse" class="bg-white py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Nach Abschluss der Risikoprüfung erhalten wir ein <span class="text-brand-600">Votum</span> der Gesellschaft.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Dabei können beispielsweise unterschiedliche Ergebnisse entstehen.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2">
+      {
+        outcomes.map((outcome, index) => (
+          <div
+            data-reveal
+            style={`transition-delay: ${index * 80}ms`}
+            class="rounded-2xl border border-black/5 bg-brand-50/20 p-6 sm:p-7"
+          >
+            <div class:list={["flex h-11 w-11 items-center justify-center rounded-xl", toneClasses[outcome.tone]]}>
+              <outcome.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <h3 class="mt-5 font-serif text-lg font-semibold text-ink-950">{outcome.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{outcome.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
