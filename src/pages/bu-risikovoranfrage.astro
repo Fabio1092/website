@@ -1,0 +1,43 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/buRisiko/Hero.astro";
+import WhyRiskInquiry from "@/components/buRisiko/WhyRiskInquiry.astro";
+import ProcessDetailed from "@/components/buRisiko/ProcessDetailed.astro";
+import Sofortvotierung from "@/components/buRisiko/Sofortvotierung.astro";
+import AnonymousAndTiming from "@/components/buRisiko/AnonymousAndTiming.astro";
+import Outcomes from "@/components/buRisiko/Outcomes.astro";
+import ComparisonAdvantage from "@/components/buRisiko/ComparisonAdvantage.astro";
+import Philosophy from "@/components/buRisiko/Philosophy.astro";
+import Benefits from "@/components/buRisiko/Benefits.astro";
+import RelatedTopic from "@/components/RelatedTopic.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<Layout
+  title="Risikovoranfrage BU Kassel | Sofortvotierung & Risikoprüfung"
+  description="So läuft deine Risikovoranfrage zur Berufsunfähigkeitsversicherung ab: Sofortvotierung, anonyme Risikoprüfung und persönliche Begleitung Schritt für Schritt."
+  fullTitle
+>
+  <Hero />
+  <WhyRiskInquiry />
+  <ProcessDetailed />
+  <Sofortvotierung />
+  <AnonymousAndTiming />
+  <Outcomes />
+  <ComparisonAdvantage />
+  <Philosophy />
+  <Benefits />
+  <RelatedTopic
+    title="Auch bei der privaten Krankenversicherung lohnt sich eine anonyme Risikovoranfrage vor der Antragstellung."
+    href="/pkv-risikovoranfrage"
+    linkLabel="Risikovoranfrage PKV ansehen"
+  />
+  <FinalCta
+    id="bu-risiko-cta"
+    title="Du möchtest wissen, wie deine Chancen auf eine Berufsunfähigkeitsversicherung aussehen?"
+    titleHighlight="Berufsunfähigkeitsversicherung"
+    body="Dann starten wir mit einem kurzen telefonischen Erstgespräch. Wir sprechen etwa 15 bis 20 Minuten miteinander, klären deine Ausgangssituation und schauen, welcher nächste Schritt in deinem Fall sinnvoll ist. Anschließend kümmern wir uns gemeinsam um die Risikoprüfung – und finden heraus, welche Möglichkeiten für dich tatsächlich bestehen."
+    ctaLabel="Jetzt Erstgespräch zur BU-Risikovoranfrage vereinbaren"
+    closingLine="Persönliche BU-Beratung mit anonymer Risikovoranfrage und Sofortvotierung aus Kassel und deutschlandweit digital."
+  />
+</Layout>

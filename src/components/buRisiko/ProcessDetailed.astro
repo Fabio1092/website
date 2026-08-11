@@ -1,0 +1,212 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string };
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "pills"; items: string[] }
+  | { type: "questions"; items: string[] };
+
+interface Step {
+  number: string;
+  duration: string;
+  title: string;
+  blocks: Block[];
+}
+
+const steps: Step[] = [
+  {
+    number: "1",
+    duration: "Ca. 15–20 Minuten",
+    title: "Wir starten mit einem kurzen Erstgespräch",
+    blocks: [
+      { type: "p", parts: ["Bevor wir Gesundheitsfragen, Diagnosen oder berufliche Details aufarbeiten, lernen wir uns zunächst kurz kennen."] },
+      { type: "p", parts: ["Das Erstgespräch findet telefonisch statt und dauert normalerweise nicht länger als ", { b: "15 bis 20 Minuten" }, "."] },
+      { type: "p", parts: ["Dabei klären wir die wichtigsten Eckpunkte deiner Situation und schauen, ob und wie ich dir bei deinem Anliegen weiterhelfen kann."] },
+      { type: "p", parts: ["Passt alles, starten wir anschließend mit der eigentlichen Risikoprüfung."] },
+    ],
+  },
+  {
+    number: "2",
+    duration: "Rechtliche Grundlage",
+    title: "Die Grundlage: deine Datenschutzerklärung",
+    blocks: [
+      {
+        type: "p",
+        parts: [
+          "Bevor wir mit deinen Gesundheits- und Risikodaten arbeiten können, benötige ich zunächst die entsprechende ",
+          { b: "unterschriebene Datenschutzerklärung" },
+          " von dir.",
+        ],
+      },
+      { type: "p", parts: ["Anschließend können wir mit der strukturierten Aufnahme deiner Angaben beginnen."] },
+    ],
+  },
+  {
+    number: "3",
+    duration: "Digital, jederzeit",
+    title: "Deinen Risikofragebogen füllst du bequem online aus",
+    blocks: [
+      { type: "p", parts: ["Du bekommst von mir per E-Mail einen Link zu deinem digitalen Risikofragebogen."] },
+      { type: "p", parts: ["Diesen kannst du ganz in Ruhe von zu Hause aus bearbeiten – egal ob am:"] },
+      { type: "pills", items: ["Smartphone", "Tablet", "Laptop"] },
+      { type: "p", parts: ["Und keine Sorge:"] },
+      { type: "standalone", text: "Du musst nicht alles auf einmal ausfüllen." },
+      {
+        type: "p",
+        parts: [
+          "Deine Eingaben können zwischengespeichert werden. Wenn du also für eine Frage erst einen Arztbrief heraussuchen oder bestimmte Informationen prüfen möchtest, kannst du später einfach weitermachen.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Neben den gesundheitlichen Angaben benötigen wir bei der Berufsunfähigkeitsversicherung außerdem ",
+          { b: "detailliertere Informationen zu deiner beruflichen Tätigkeit" },
+          ".",
+        ],
+      },
+      { type: "p", parts: ["Denn auch dein konkreter Beruf und dessen Ausgestaltung können Einfluss darauf haben, wie eine Gesellschaft dein Risiko einschätzt."] },
+      { type: "p", parts: ["Deshalb ist mir wichtig, nicht nur eine Berufsbezeichnung aufzunehmen, sondern deine tatsächliche berufliche Situation möglichst sauber abzubilden."] },
+    ],
+  },
+  {
+    number: "4",
+    duration: "Per WhatsApp",
+    title: "Du bekommst eine Anleitung von mir",
+    blocks: [
+      { type: "p", parts: ["Gesundheitsfragen sind für die meisten Menschen kein Alltag."] },
+      { type: "p", parts: ["Woher sollst du wissen, wie ausführlich eine fünf Jahre zurückliegende Behandlung beschrieben werden muss?"] },
+      { type: "p", parts: ["Genau deshalb lasse ich dich mit dem Fragebogen nicht allein."] },
+      {
+        type: "p",
+        parts: [
+          "Parallel zur Zusendung des Fragebogens bekommst du von mir über WhatsApp eine Anleitung, mit der ich dir zeige, ",
+          { b: "wie du deine Angaben möglichst sinnvoll und vollständig aufbereitest" },
+          ".",
+        ],
+      },
+      { type: "p", parts: ["Zusätzlich erhältst du Beispiele unterschiedlicher Krankheitsbilder und deren möglicher Aufbereitung."] },
+      { type: "p", parts: ["Dadurch bekommst du ein Gefühl dafür, welche Informationen wichtig sind und wie detailliert eine Beschreibung sein sollte."] },
+    ],
+  },
+  {
+    number: "5",
+    duration: "Worauf es ankommt",
+    title: "Warum eine saubere Beschreibung so wichtig ist",
+    blocks: [
+      { type: "p", parts: ["Stell dir vor, im Fragebogen steht lediglich:"] },
+      { type: "quote", text: "„Kniebeschwerden“" },
+      { type: "p", parts: ["Damit kann ein Risikoprüfer zunächst wenig anfangen."] },
+      {
+        type: "questions",
+        items: [
+          "Handelte es sich um einmalige Schmerzen nach dem Sport?",
+          "Gab es eine konkrete Diagnose?",
+          "Wurde ein MRT durchgeführt?",
+          "War eine Operation notwendig?",
+          "Wie lange bestanden die Beschwerden?",
+          "Wann fand die letzte Behandlung statt?",
+          "Bestehen heute noch Einschränkungen?",
+        ],
+      },
+      { type: "p", parts: ["Für die Einschätzung des Versicherers können solche Informationen einen erheblichen Unterschied machen."] },
+      {
+        type: "p",
+        parts: [
+          "Deshalb versuchen wir, relevante Krankheitsbilder so aufzubereiten, dass der Risikoprüfer ein möglichst klares Bild davon bekommt, ",
+          { b: "was tatsächlich passiert ist und wie die Situation heute aussieht" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    number: "6",
+    duration: "Persönliche Unterstützung",
+    title: "Fragen? Schreib mir einfach.",
+    blocks: [
+      { type: "p", parts: ["Während des Ausfüllens kannst du dich jederzeit bei mir melden."] },
+      { type: "p", parts: ["Wenn du bei einer Frage nicht weiterkommst, schreibst du mir einfach über WhatsApp."] },
+      { type: "p", parts: ["Und gerade bei längeren Krankheitsverläufen musst du nicht anfangen, seitenlange Texte in dein Smartphone zu tippen."] },
+      { type: "p", parts: ["Du kannst mir den Sachverhalt auch ganz unkompliziert ", { b: "per Sprachnachricht erklären" }, "."] },
+      { type: "p", parts: ["Wir klären offene Punkte gemeinsam und schauen, welche Informationen wir für eine saubere Risikoprüfung benötigen."] },
+    ],
+  },
+  {
+    number: "7",
+    duration: "Qualitätskontrolle",
+    title: "Bevor etwas geprüft wird, schaue ich mir deine Angaben an",
+    blocks: [
+      { type: "p", parts: ["Sobald dein Risikofragebogen vollständig ist, prüfe ich deine Angaben noch einmal."] },
+      { type: "p", parts: ["Dabei geht es insbesondere darum, ob alle relevanten Informationen vorhanden und die einzelnen Sachverhalte nachvollziehbar beschrieben sind."] },
+      { type: "p", parts: ["Falls mir etwas auffällt, gehen wir den entsprechenden Punkt noch einmal gemeinsam durch."] },
+      { type: "p", parts: ["Mein Anspruch ist:"] },
+      { type: "standalone", text: "Wir reichen nicht einfach irgendwelche Informationen ein und hoffen auf ein gutes Ergebnis." },
+      { type: "p", parts: ["Wir bereiten deine Situation zunächst so auf, dass eine fundierte Einschätzung durch die Versicherer möglich wird."] },
+    ],
+  },
+];
+---
+
+<section id="bu-risiko-prozess" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <ol class="space-y-14">
+      {
+        steps.map((step, index) => (
+          <li data-reveal style={`transition-delay: ${Math.min(index, 4) * 80}ms`} class="relative flex gap-6 sm:gap-8">
+            <div class="flex flex-col items-center">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-lg font-semibold text-white">
+                {step.number}
+              </span>
+              {index < steps.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
+            </div>
+            <div class="min-w-0 pb-2">
+              <span class="text-xs font-semibold uppercase tracking-wide text-brand-600">{step.duration}</span>
+              <h3 class="mt-1 font-serif text-xl font-semibold text-ink-950 sm:text-2xl">{step.title}</h3>
+              <div class="mt-4 space-y-3">
+                {step.blocks.map((block) => {
+                  if (block.type === "p") {
+                    return <RichParagraph parts={block.parts} />;
+                  }
+                  if (block.type === "standalone") {
+                    return <p class="text-sm font-medium leading-relaxed text-ink-950 sm:text-base">{block.text}</p>;
+                  }
+                  if (block.type === "quote") {
+                    return <p class="italic text-ink-700/70">{block.text}</p>;
+                  }
+                  if (block.type === "pills") {
+                    return (
+                      <div class="flex flex-wrap gap-2.5 py-1">
+                        {block.items.map((item) => (
+                          <span class="inline-flex items-center rounded-full border border-brand-200 bg-white px-4 py-1.5 text-sm font-medium text-brand-700">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    );
+                  }
+                  if (block.type === "questions") {
+                    return (
+                      <ul class="grid gap-x-8 gap-y-2 border-t border-black/[0.06] pt-4 sm:grid-cols-2">
+                        {block.items.map((item) => (
+                          <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+                            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

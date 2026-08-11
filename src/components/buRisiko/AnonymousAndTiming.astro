@@ -1,0 +1,54 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+---
+
+<section id="bu-risiko-anonym" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Die individuelle Voranfrage bleibt <span class="text-brand-600">anonym</span>.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Auch bei diesem Weg geht es zunächst nicht darum, einen regulären Versicherungsantrag zu stellen.</p>
+      <RichParagraph
+        class="text-base leading-relaxed text-ink-700/85"
+        parts={["Die relevanten Informationen werden im Rahmen der Voranfrage ", { b: "anonymisiert" }, " zur Prüfung eingereicht."]}
+      />
+      <p>
+        Die Gesellschaft soll beurteilen können, welches Risiko vorliegt und zu welchen
+        Konditionen eine Absicherung grundsätzlich möglich wäre, ohne dass wir dafür direkt einen
+        regulären Antrag stellen müssen.
+      </p>
+      <p>
+        So können wir verschiedene Einschätzungen einholen und anschließend auf einer deutlich
+        besseren Entscheidungsgrundlage weiterarbeiten.
+      </p>
+    </div>
+
+    <div data-reveal class="mt-12 space-y-4 border-t border-black/[0.06] pt-10 text-base leading-relaxed text-ink-700/85">
+      <h3 class="font-serif text-xl font-semibold text-ink-950">Wie lange dauert die Risikoprüfung?</h3>
+      <RichParagraph
+        class="text-base leading-relaxed text-ink-700/85"
+        parts={[
+          "Durch die Möglichkeit der Sofortvotierung kann es sein, dass wir bei geeigneten Fällen ",
+          { b: "sehr schnell eine erste konkrete Einschätzung" },
+          " erhalten.",
+        ]}
+      />
+      <p>
+        Ist dagegen eine individuelle Risikovoranfrage notwendig, hängt die Bearbeitungszeit von
+        der jeweiligen Gesellschaft und der Komplexität deiner Angaben ab.
+      </p>
+      <RichParagraph
+        class="text-base leading-relaxed text-ink-700/85"
+        parts={["Häufig erhalten wir innerhalb von etwa ", { b: "zwei bis drei Werktagen" }, " eine Rückmeldung."]}
+      />
+      <p>Eine Bearbeitungszeit von ungefähr einer Woche kann ebenfalls vorkommen.</p>
+      <RichParagraph
+        class="text-base leading-relaxed text-ink-700/85"
+        parts={["In komplexeren Fällen oder bei hoher Auslastung kann es vereinzelt auch einmal ", { b: "bis zu zwei Wochen" }, " dauern."]}
+      />
+      <p>Entstehen Rückfragen, kann sich die Bearbeitung entsprechend verlängern.</p>
+    </div>
+  </div>
+</section>

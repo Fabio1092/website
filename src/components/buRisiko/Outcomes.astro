@@ -1,0 +1,73 @@
+---
+import { CheckCircle2, TrendingUp, ShieldOff, XCircle } from "lucide-react";
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const outcomes = [
+  {
+    icon: CheckCircle2,
+    tone: "success",
+    title: "Normalannahme",
+    description: "Die Gesellschaft würde dich auf Grundlage der geprüften Angaben grundsätzlich ohne besondere Erschwernisse versichern.",
+  },
+  {
+    icon: TrendingUp,
+    tone: "gold",
+    title: "Risikozuschlag",
+    description: "Eine Absicherung ist grundsätzlich möglich, allerdings verlangt die Gesellschaft aufgrund der individuellen Risikosituation einen höheren Beitrag.",
+  },
+  {
+    icon: ShieldOff,
+    tone: "brand",
+    title: "Leistungsausschluss",
+    description: "Bestimmte Erkrankungen, Körperbereiche oder daraus resultierende Ursachen können – abhängig vom konkreten Votum – vom Versicherungsschutz ausgeschlossen werden.",
+  },
+  {
+    icon: XCircle,
+    tone: "danger",
+    title: "Ablehnung",
+    description: "Die Gesellschaft würde in der geprüften Konstellation keinen Versicherungsschutz anbieten.",
+  },
+];
+
+const toneClasses: Record<string, string> = {
+  success: "bg-success-50 text-success-600",
+  gold: "bg-gold-50 text-gold-600",
+  brand: "bg-brand-50 text-brand-600",
+  danger: "bg-danger-50 text-danger-600",
+};
+---
+
+<section id="bu-risiko-ergebnisse" class="bg-white py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Welche <span class="text-brand-600">Ergebnisse</span> sind möglich?
+      </h2>
+      <RichParagraph
+        class="mt-4 text-lg leading-relaxed text-ink-700/80"
+        parts={[
+          "Am Ende wollen wir von den Gesellschaften eine möglichst konkrete Aussage dazu haben, ",
+          { b: "ob und unter welchen Bedingungen eine Berufsunfähigkeitsversicherung für dich möglich ist." },
+        ]}
+      />
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2">
+      {
+        outcomes.map((outcome, index) => (
+          <div
+            data-reveal
+            style={`transition-delay: ${index * 80}ms`}
+            class="rounded-2xl border border-black/5 bg-brand-50/20 p-6 sm:p-7"
+          >
+            <div class:list={["flex h-11 w-11 items-center justify-center rounded-xl", toneClasses[outcome.tone]]}>
+              <outcome.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <h3 class="mt-5 font-serif text-lg font-semibold text-ink-950">{outcome.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{outcome.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

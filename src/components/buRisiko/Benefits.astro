@@ -1,0 +1,49 @@
+---
+import { MessageSquare, Mic, HelpCircle } from "lucide-react";
+
+const capabilities = [
+  { icon: HelpCircle, text: "Du kannst Fragen stellen." },
+  { icon: MessageSquare, text: "Du kannst mir Sachverhalte per WhatsApp erklären." },
+  { icon: Mic, text: "Du kannst bei komplizierteren Themen Sprachnachrichten schicken." },
+];
+---
+
+<section id="bu-risiko-begleitung" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Du wirst während des gesamten Prozesses <span class="text-brand-600">begleitet</span>.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Mir ist wichtig, dass du bei der Risikovoranfrage nicht einfach einen Link erhältst und
+        danach auf dich allein gestellt bist.
+      </p>
+      <p>
+        Ich begleite dich von der Aufnahme deiner Gesundheits- und Berufsdaten über die
+        Aufbereitung komplizierter Krankheitsverläufe bis zur Prüfung der Versicherbarkeit.
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-4 border-t border-black/[0.06] pt-8 sm:grid-cols-3">
+      {
+        capabilities.map((item, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="flex items-center gap-3 rounded-xl bg-white p-4 shadow-sm">
+            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+              <item.icon className="h-4.5 w-4.5" aria-hidden="true" />
+            </div>
+            <p class="text-sm font-medium text-ink-950">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div data-reveal class="mt-10 space-y-2 text-base leading-relaxed text-ink-700/85">
+      <p>Und bevor wir den nächsten Schritt gehen, schaue ich mir deine Angaben noch einmal an.</p>
+      <p class="font-medium text-ink-950">
+        So entsteht aus einem zunächst kompliziert wirkenden Thema ein klarer und strukturierter
+        Prozess.
+      </p>
+    </div>
+  </div>
+</section>

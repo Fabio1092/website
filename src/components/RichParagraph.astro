@@ -1,0 +1,14 @@
+---
+type Part = string | { b: string };
+
+interface Props {
+  parts: Part[];
+  class?: string;
+}
+
+const { parts, class: className = "text-sm leading-relaxed text-ink-700/85 sm:text-base" } = Astro.props;
+---
+
+<p class={className}>
+  {parts.map((part) => (typeof part === "string" ? part : <strong class="font-semibold text-ink-950">{part.b}</strong>))}
+</p>

@@ -1,0 +1,43 @@
+---
+const questions = [
+  "Welche Gesellschaften kommen tatsächlich infrage?",
+  "Wo ist eine Normalannahme möglich?",
+  "Wo gibt es einen Risikozuschlag?",
+  "Welche Ausschlüsse werden angeboten?",
+  "Und welche Gesellschaft lehnt die Absicherung gegebenenfalls ab?",
+];
+---
+
+<section id="bu-risiko-vergleich" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Erst die <span class="text-brand-600">Versicherbarkeit</span>. Dann der eigentliche Vergleich.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Genau das ist für mich der entscheidende Punkt des gesamten Prozesses.</p>
+      <p>
+        Bei einer Berufsunfähigkeitsversicherung bringt es dir wenig, wenn wir auf dem Papier
+        einen hervorragenden Tarif finden, dieser Versicherer dich aufgrund deiner individuellen
+        Situation aber gar nicht oder nur unter ungünstigen Bedingungen versichern möchte.
+      </p>
+      <p class="font-medium text-ink-950">Deshalb möchte ich möglichst früh wissen:</p>
+    </div>
+
+    <ul data-reveal class="mt-6 space-y-2.5 border-t border-black/[0.06] pt-6">
+      {
+        questions.map((question) => (
+          <li class="flex items-baseline gap-2.5 text-sm font-medium leading-relaxed text-ink-950 sm:text-base">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+            {question}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mt-8 text-base leading-relaxed text-ink-700/85">
+      Erst wenn wir diese Informationen kennen, können wir die tatsächlich verfügbaren Lösungen
+      sinnvoll miteinander vergleichen.
+    </p>
+  </div>
+</section>

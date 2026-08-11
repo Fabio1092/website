@@ -1,0 +1,53 @@
+---
+import { ArrowRight } from "lucide-react";
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const pipeline = [
+  "Erstgespräch",
+  "Gesundheits- und Berufsdaten",
+  "Aufbereitung",
+  "Prüfung auf Sofortvotierung",
+  "ggf. anonyme individuelle Risikovoranfrage",
+  "Auswertung",
+  "konkreter BU-Vergleich",
+];
+---
+
+<section id="bu-risiko-warum-ich" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Warum dieser Prozess für dich einen <span class="text-brand-600">Unterschied</span> macht.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Eine gute BU-Beratung besteht für mich nicht darin, möglichst schnell irgendeinen Tarif auszuwählen.</p>
+      <p>Sie besteht darin, zuerst die Voraussetzungen für eine fundierte Entscheidung zu schaffen.</p>
+      <p class="font-medium text-ink-950">Deshalb arbeiten wir strukturiert:</p>
+    </div>
+
+    <div data-reveal class="mt-8 flex flex-wrap items-center gap-x-2 gap-y-3 rounded-2xl border border-black/[0.06] bg-brand-50/30 p-6">
+      {
+        pipeline.map((step, index) => (
+          <>
+            <span class="rounded-full bg-white px-3.5 py-2 text-sm font-medium text-ink-950 shadow-sm">{step}</span>
+            {index < pipeline.length - 1 && <ArrowRight className="h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />}
+          </>
+        ))
+      }
+    </div>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Dadurch verlieren wir keine Zeit mit Lösungen, die in deiner individuellen Situation
+        ohnehin nicht realistisch umsetzbar wären.
+      </p>
+      <RichParagraph
+        class="text-base leading-relaxed text-ink-700/85"
+        parts={[
+          "Stattdessen können wir uns in der anschließenden Beratung auf die Gesellschaften und Lösungen konzentrieren, die für dich ",
+          { b: "tatsächlich infrage kommen." },
+        ]}
+      />
+    </div>
+  </div>
+</section>

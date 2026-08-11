@@ -1,0 +1,89 @@
+---
+import { ShieldCheck } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+
+const trustPoints = [
+  "Kostenloses, unverbindliches Erstgespräch",
+  "Sofortvotierung möglich in etwa 2 von 3 Fällen",
+  "Persönliche Begleitung bei jedem Schritt",
+];
+---
+
+<section id="bu-risiko-hero" class="relative overflow-hidden bg-ink-950 text-white">
+  <div
+    class="pointer-events-none absolute -top-40 right-[-10%] h-[32rem] w-[32rem] rounded-full bg-brand-500/20 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -bottom-32 left-[-10%] h-[26rem] w-[26rem] rounded-full bg-gold-500/10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="relative mx-auto grid max-w-6xl gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:py-28 lg:px-8"
+  >
+    <div class="order-2 min-w-0 text-center lg:order-1 lg:text-left">
+      <span
+        class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300"
+      >
+        Aus Kassel. Für Nordhessen. Digital in ganz Deutschland.
+      </span>
+      <h1 class="mt-6 hyphens-auto break-words text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+        So läuft deine <span class="text-brand-400">Risikovoranfrage</span> zur Berufs&shy;unfähigkeits&shy;versicherung ab.
+      </h1>
+      <p class="mx-auto mt-6 max-w-xl font-serif text-xl leading-relaxed text-white/90 lg:mx-0">
+        Bei einer Berufsunfähigkeitsversicherung entscheidet nicht nur der gewünschte
+        Versicherungsschutz darüber, welche Gesellschaft am besten zu dir passt.
+      </p>
+      <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/70 lg:mx-0">
+        Mindestens genauso entscheidend ist die Frage:
+      </p>
+      <p class="mx-auto mt-3 max-w-xl text-base font-medium leading-relaxed text-white/90 lg:mx-0">
+        Welche Versicherung nimmt dich mit deiner persönlichen, gesundheitlichen und beruflichen
+        Situation überhaupt an – und zu welchen Konditionen?
+      </p>
+
+      <div class="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+        <a
+          href={siteConfig.calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+        >
+          Unverbindliches Erstgespräch vereinbaren
+        </a>
+      </div>
+
+      <ul class="mx-auto mt-8 flex max-w-lg flex-col gap-2.5 text-left lg:mx-0">
+        {
+          trustPoints.map((point) => (
+            <li class="flex items-center gap-2.5 text-sm text-white/80">
+              <ShieldCheck className="h-4.5 w-4.5 shrink-0 text-brand-400" aria-hidden="true" />
+              {point}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="order-1 mx-auto w-full max-w-xs sm:max-w-sm lg:order-2 lg:mx-0 lg:max-w-none">
+      <div class="relative">
+        <div
+          class="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/25 via-transparent to-gold-500/15 blur-xl"
+          aria-hidden="true"
+        >
+        </div>
+        <img
+          src="/images/1-17.jpg"
+          alt="Fabio Rumpf, BU-Spezialist aus Kassel"
+          class="aspect-[4/5] w-full rounded-[2rem] border border-white/10 object-cover shadow-2xl shadow-black/40"
+          width="800"
+          height="1000"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+---
+import { Zap } from "lucide-react";
+import RichParagraph from "@/components/RichParagraph.astro";
+---
+
+<section id="bu-risiko-sofortvotierung" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Und jetzt kommt bei der BU ein entscheidender Schritt: die <span class="text-brand-600">Sofortvotierung</span>.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Wenn alle notwendigen Gesundheits- und Berufsinformationen vollständig vorliegen,
+        versende ich nicht automatisch sofort eine individuelle Risikovoranfrage an
+        verschiedene Gesellschaften.
+      </p>
+      <RichParagraph
+        class="text-base leading-relaxed text-ink-700/85"
+        parts={["Zunächst prüfe ich, ", { b: "ob wir bereits über eine Sofortvotierung eine konkrete Einschätzung erhalten können." }]}
+      />
+      <p>Dafür stehen mir spezielle Programme und Tools zur Verfügung.</p>
+      <p>
+        Ich kann die relevanten Daten deiner Situation dort erfassen und erhalte – sofern der
+        konkrete Fall dafür geeignet ist – direkt eine Einschätzung der jeweiligen Gesellschaft.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-10 flex max-w-2xl items-start gap-4 rounded-2xl border border-gold-500/20 bg-gold-50 px-6 py-5">
+      <Zap className="mt-0.5 h-5 w-5 shrink-0 text-gold-600" aria-hidden="true" />
+      <div>
+        <p class="text-sm leading-relaxed text-ink-950">
+          <strong>Wir können unter Umständen innerhalb kürzester Zeit wissen</strong>, ob eine
+          Versicherung dich grundsätzlich versichern würde und zu welchen Konditionen.
+        </p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-700/85">
+          In etwa <strong class="text-ink-950">zwei von drei Fällen</strong> ist auf diesem Weg
+          bereits eine direkte Rückmeldung möglich. Das kann den gesamten Prozess erheblich
+          beschleunigen.
+        </p>
+      </div>
+    </div>
+
+    <div data-reveal class="mt-12 space-y-4 border-t border-black/[0.06] pt-10 text-base leading-relaxed text-ink-700/85">
+      <h3 class="font-serif text-xl font-semibold text-ink-950">Was kann bei einer Sofortvotierung herauskommen?</h3>
+      <p>Je nach gesundheitlicher und beruflicher Situation kann die Rückmeldung unterschiedlich ausfallen.</p>
+      <p>Beispielsweise kann eine Versicherung eine reguläre Annahme ermöglichen.</p>
+      <p>
+        Es kann aber auch sein, dass eine Annahme nur mit besonderen Konditionen möglich wäre –
+        beispielsweise mit einem Risikozuschlag oder einem Leistungsausschluss.
+      </p>
+      <p>Und natürlich kann eine Gesellschaft ein Risiko auch ablehnen.</p>
+      <p class="font-medium text-ink-950">Der entscheidende Punkt ist:</p>
+      <p class="font-medium text-ink-950">
+        Wir kennen diese Einschätzung, bevor wir einen regulären Antrag auf den Weg bringen.
+      </p>
+    </div>
+
+    <div data-reveal class="mt-12 space-y-4 border-t border-black/[0.06] pt-10 text-base leading-relaxed text-ink-700/85">
+      <h3 class="font-serif text-xl font-semibold text-ink-950">Was passiert, wenn keine Sofortvotierung möglich ist?</h3>
+      <p>Nicht jede gesundheitliche Vorgeschichte lässt sich automatisiert beurteilen.</p>
+      <p>Manche Situationen sind schlicht zu individuell.</p>
+      <p>
+        Wenn meine Prüfung ergibt, dass dein Fall durch einen Risikoprüfer individuell betrachtet
+        werden sollte, gehen wir den klassischen Weg:
+      </p>
+      <p class="font-medium text-ink-950">Ich erstelle eine vollständige anonyme Risikovoranfrage.</p>
+      <p>Diese wird gezielt an ausgewählte Versicherungsgesellschaften übermittelt.</p>
+      <p>
+        Dort schaut sich ein Risikoprüfer beziehungsweise Sachbearbeiter deine gesundheitliche und
+        berufliche Situation individuell an und gibt anschließend eine Einschätzung ab.
+      </p>
+    </div>
+  </div>
+</section>
