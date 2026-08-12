@@ -1,0 +1,45 @@
+---
+import { CheckCircle2 } from "lucide-react";
+
+const checks = [
+  "Was war die Erkrankung oder Beschwerde?",
+  "Warum beziehungsweise wodurch trat sie auf?",
+  "Wann trat sie auf?",
+  "Wie lange bestand sie?",
+  "Wer hat sie untersucht oder behandelt?",
+  "Welche Untersuchungen wurden durchgeführt?",
+  "Welche Behandlung erfolgte?",
+  "Gab es eine Arbeitsunfähigkeit?",
+  "Was war das Ergebnis?",
+  "Seit wann bist du behandlungsfrei?",
+  "Seit wann bist du beschwerdefrei?",
+];
+---
+
+<section id="guide-gesundheitscheck" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Dein Gesundheits-Check: Diese Punkte sollten <span class="text-brand-600">möglichst erkennbar</span> sein.
+    </h2>
+    <p class="mt-4 text-base leading-relaxed text-ink-700/80">
+      Bei einem relevanten Krankheitsbild sollte der Risikoprüfer nach deiner Beschreibung
+      möglichst folgende Fragen beantworten können:
+    </p>
+
+    <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+      {
+        checks.map((check, index) => (
+          <li data-reveal style={`transition-delay: ${(index % 6) * 60}ms`} class="flex items-start gap-2.5 rounded-xl bg-white p-4 text-sm leading-relaxed text-ink-700/85 shadow-sm">
+            <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-500" aria-hidden="true" />
+            {check}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mt-8 text-base leading-relaxed text-ink-700/85">
+      Wenn diese Punkte nachvollziehbar sind, hat der Risikoprüfer eine deutlich bessere Grundlage
+      für seine Einschätzung.
+    </p>
+  </div>
+</section>

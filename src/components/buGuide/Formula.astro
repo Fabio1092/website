@@ -1,0 +1,129 @@
+---
+interface Point {
+  number: string;
+  title: string;
+  intro?: string[];
+  list?: string[];
+  outro?: string[];
+}
+
+const points: Point[] = [
+  {
+    number: "1",
+    title: "Was war?",
+    intro: [
+      "Was genau ist passiert?",
+      "Welche Beschwerden hattest du?",
+      "Welche Diagnose wurde gestellt?",
+      "Handelte es sich beispielsweise um Schmerzen, eine Verletzung, eine Erkrankung, eine Vorsorgeuntersuchung oder eine andere Behandlung?",
+    ],
+  },
+  {
+    number: "2",
+    title: "Was war die Ursache?",
+    intro: ["Gab es einen konkreten Auslöser?", "Zum Beispiel: Sportverletzung, Unfall, falsche Bewegung, Infekt oder eine andere nachvollziehbare Ursache."],
+    outro: ["Falls dir keine Ursache bekannt ist, musst du natürlich keine erfinden."],
+  },
+  {
+    number: "3",
+    title: "Wann war es?",
+    intro: ["Gib möglichst an:"],
+    list: ["Wann die Beschwerden begonnen haben.", "Wann du beim Arzt warst.", "Wie lange die Behandlung dauerte.", "Wann die letzte Behandlung oder Untersuchung stattfand."],
+    outro: ["Ungefähre Angaben können verwendet werden, wenn du das genaue Datum tatsächlich nicht mehr weißt."],
+  },
+  {
+    number: "4",
+    title: "Bei wem warst du?",
+    intro: ["Gib – soweit im Fragebogen vorgesehen – den behandelnden Arzt beziehungsweise Behandler an."],
+    outro: ["Hilfreich sind insbesondere: Name, Fachrichtung und gegebenenfalls Praxis beziehungsweise Anschrift."],
+  },
+  {
+    number: "5",
+    title: "Was wurde untersucht?",
+    intro: ["Gab es weiterführende Untersuchungen?", "Zum Beispiel:"],
+    list: ["Röntgen", "MRT", "Ultraschall", "Blutuntersuchung", "EKG", "sonstige Diagnostik"],
+    outro: ["Und vor allem: Was kam bei der Untersuchung heraus?", "Auch ein unauffälliges Ergebnis kann für die Einschätzung relevant sein."],
+  },
+  {
+    number: "6",
+    title: "Wie wurde behandelt?",
+    intro: ["Beschreibe die tatsächliche Behandlung.", "Beispielsweise:"],
+    list: ["Medikamente", "Physiotherapie", "Operation", "Gesprächstherapie", "sonstige Therapie", "keine Behandlung notwendig"],
+    outro: ["Wenn Medikamente eingenommen wurden, kannst du – soweit bekannt – auch angeben, welches Medikament und über welchen Zeitraum."],
+  },
+  {
+    number: "7",
+    title: "Warst du arbeitsunfähig?",
+    intro: [
+      "Dieser Punkt wird schnell vergessen.",
+      "Wenn du aufgrund der Erkrankung oder Behandlung krankgeschrieben warst, gib auch die Dauer beziehungsweise den Zeitraum der Arbeitsunfähigkeit an.",
+    ],
+    outro: ["Gab es keine Arbeitsunfähigkeit, kannst du dies entsprechend angeben."],
+  },
+  {
+    number: "8",
+    title: "Was war das Ergebnis?",
+    intro: ["Für die Risikoprüfung ist nicht nur wichtig, dass einmal etwas war.", "Mindestens genauso wichtig ist: Wie ist die Situation heute?", "Gib deshalb möglichst an:"],
+    list: [
+      "Ist die Behandlung abgeschlossen?",
+      "Seit wann bist du behandlungsfrei?",
+      "Seit wann bist du beschwerdefrei?",
+      "Bestehen noch Einschränkungen?",
+      "Nimmst du noch Medikamente?",
+      "Sind weitere Untersuchungen oder Behandlungen geplant?",
+    ],
+    outro: ["Wenn etwas vollständig ausgeheilt ist, darf und sollte das genauso klar aus deiner Beschreibung hervorgehen."],
+  },
+];
+---
+
+<section id="guide-formel" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Die einfache <span class="text-brand-600">Formel</span> für gute Gesundheitsangaben.
+    </h2>
+    <p class="mt-4 text-base leading-relaxed text-ink-700/80">
+      Wenn du eine Erkrankung, Beschwerde oder Behandlung einträgst, kannst du dich an den
+      folgenden Punkten orientieren.
+    </p>
+
+    <ol class="mt-12 space-y-10">
+      {
+        points.map((point, index) => (
+          <li data-reveal style={`transition-delay: ${Math.min(index, 4) * 60}ms`} class="relative flex gap-6 sm:gap-8">
+            <div class="flex flex-col items-center">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-base font-semibold text-white">
+                {point.number}
+              </span>
+              {index < points.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
+            </div>
+            <div class="min-w-0 pb-2">
+              <h3 class="font-serif text-lg font-semibold text-ink-950">{point.title}</h3>
+              <div class="mt-3 space-y-2">
+                {point.intro?.map((line) => (
+                  <p class="text-sm leading-relaxed text-ink-700/85 sm:text-base">{line}</p>
+                ))}
+              </div>
+              {point.list && (
+                <div class="mt-3 flex flex-wrap gap-2.5">
+                  {point.list.map((item) => (
+                    <span class="inline-flex items-center rounded-full border border-brand-200 bg-white px-4 py-1.5 text-sm font-medium text-brand-700">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              )}
+              {point.outro && (
+                <div class="mt-3 space-y-2">
+                  {point.outro.map((line) => (
+                    <p class="text-sm leading-relaxed text-ink-700/75">{line}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

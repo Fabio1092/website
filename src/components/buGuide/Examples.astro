@@ -1,36 +1,55 @@
 ---
 import { X, Check } from "lucide-react";
 
-const examples = [
+interface Example {
+  title: string;
+  intro?: string;
+  bad?: string;
+  goodLabel: string;
+  good: string;
+  outro?: string;
+}
+
+const examples: Example[] = [
   {
-    title: "Beispiel 1: Rückenschmerzen",
+    title: "Beispiel 1: Rückenbeschwerden",
     bad: "„Rückenschmerzen“",
+    goodLabel: "Aussagekräftiger wäre beispielsweise",
     good:
-      "„Einmalige Beschwerden im unteren Rücken nach sportlicher Belastung im März 2024. Hausärztliche Untersuchung, keine weiterführende Diagnostik. Behandlung mit Schmerzmitteln für wenige Tage. Beschwerden nach ca. einer Woche vollständig abgeklungen. Keine weiteren Behandlungen und seitdem beschwerdefrei.“",
+      "„Einmalige muskuläre Beschwerden im unteren Rücken nach dem Tragen schwerer Möbel, ca. Februar 2024. Untersuchung beim Orthopäden. Keine neurologischen Auffälligkeiten, keine weiterführende bildgebende Diagnostik erforderlich. Behandlung mit Schmerzmittel für fünf Tage und vier Einheiten Physiotherapie. Keine Arbeitsunfähigkeit. Behandlung im März 2024 abgeschlossen, seitdem vollständig beschwerde- und behandlungsfrei.“",
+    outro: "Jetzt weiß der Risikoprüfer wesentlich genauer, womit er es zu tun hat.",
   },
   {
-    title: "Beispiel 2: Kniebeschwerden",
+    title: "Beispiel 2: Knieverletzung",
     bad: "„Knieprobleme“",
+    goodLabel: "Aussagekräftiger wäre beispielsweise",
     good:
-      "„Schmerzen am rechten Knie nach dem Joggen im Juni 2023. Orthopädische Untersuchung. Anschließend sechs Termine Physiotherapie. Keine Operation. Behandlung im September 2023 abgeschlossen. Seitdem beschwerdefrei, keine Einschränkungen und keine weitere Behandlung.“",
+      "„Schmerzen am rechten Knie nach einer Verdrehung beim Fußball, ca. Juni 2023. Untersuchung beim Orthopäden inklusive MRT. Keine Operation erforderlich. Behandlung mit Schonung und sechs Einheiten Physiotherapie. Zwei Wochen arbeitsunfähig. Behandlung im August 2023 abgeschlossen. Seitdem beschwerdefrei und sportlich wieder vollständig belastbar.“",
   },
   {
-    title: "Beispiel 3: Atemwegsinfekt",
-    bad: "„Atemwege / Erkältung“",
+    title: "Beispiel 3: Wiederkehrende Infekte",
+    intro:
+      "Bei wiederkehrenden, vergleichbaren Erkrankungen kann eine zusammenfassende Darstellung sinnvoll sein, sofern sie zur konkreten Fragestellung passt.",
+    bad: "„Mehrfach Erkältung“",
+    goodLabel: "Aussagekräftiger wäre beispielsweise",
     good:
-      "„Akuter Atemwegsinfekt im Januar 2025. Einmalige hausärztliche Behandlung und medikamentöse Behandlung für wenige Tage. Vollständig ausgeheilt. Keine Folgebehandlungen und keine anhaltenden Beschwerden.“",
+      "„Etwa ein- bis zweimal jährlich unkomplizierter Erkältungsinfekt mit Husten und Schnupfen, zuletzt ca. November 2025. Jeweils hausärztliche Behandlung beziehungsweise symptomatische Behandlung für wenige Tage. Keine Komplikationen oder Folgeerkrankungen. Jeweils nach wenigen Tagen vollständig ausgeheilt.“",
+    outro:
+      "So muss nicht zwingend aus jedem einzelnen unkomplizierten Infekt ein langer Absatz werden – entscheidend bleibt aber immer die konkrete Fragestellung und der abgefragte Zeitraum.",
   },
   {
-    title: "Beispiel 4: Sportverletzung",
-    bad: "„Verletzung Sprunggelenk“",
+    title: "Beispiel 4: Allergie",
+    bad: "„Pollenallergie“",
+    goodLabel: "Aussagekräftiger wäre beispielsweise",
     good:
-      "„Umknickverletzung des rechten Sprunggelenks beim Fußball im Mai 2023. Ärztliche Untersuchung, keine Operation erforderlich. Behandlung durch Ruhigstellung und anschließende Physiotherapie. Behandlung abgeschlossen. Heute vollständig belastbar und seitdem beschwerdefrei.“",
+      "„Saisonale Pollenallergie seit ca. 2021, Beschwerden hauptsächlich im Frühjahr. Bei Bedarf Einnahme eines Antihistaminikums. Keine Atemwegsbeteiligung und kein Asthma. Keine Arbeitsunfähigkeit. Außerhalb der Pollensaison beschwerdefrei.“",
   },
   {
-    title: "Beispiel 5: Allergie",
-    bad: "„Allergie“",
-    good:
-      "„Saisonale Pollenallergie seit 2020, Beschwerden hauptsächlich während der Pollensaison. Bei Bedarf Einnahme eines Antihistaminikums. Keine Atemnot, keine stationären Behandlungen. Keine weiteren Einschränkungen.“",
+    title: "Beispiel 5: Vorsorgeuntersuchung",
+    intro: "Auch Arztbesuche ohne Erkrankung können – abhängig von der konkreten Gesundheitsfrage – anzugeben sein.",
+    goodLabel: "Beispiel",
+    good: "„Regelmäßige hautärztliche Vorsorgekontrolle, zuletzt ca. Oktober 2025. Untersuchung ohne auffälligen Befund. Keine Behandlung erforderlich.“",
+    outro: "Damit ist direkt erkennbar, dass der Arztkontakt nicht aufgrund einer bestehenden Erkrankung erfolgte.",
   },
 ];
 ---
@@ -41,47 +60,34 @@ const examples = [
       Konkrete <span class="text-brand-600">Beispiele</span>.
     </h2>
 
-    <div data-reveal class="mt-6 space-y-3 text-base leading-relaxed text-ink-700/85">
-      <p>
-        Die folgenden Beispiele dienen ausschließlich dazu, dir zu zeigen, wie eine
-        nachvollziehbare Beschreibung aufgebaut sein kann.
-      </p>
-      <p class="font-medium text-ink-950">Bitte übernimm die Formulierungen nicht einfach.</p>
-      <p>
-        Deine Angaben müssen immer zu deinem tatsächlichen Krankheits- und Behandlungsverlauf und
-        zu den konkret gestellten Gesundheitsfragen passen.
-      </p>
-    </div>
-
-    <div class="mt-12 space-y-6">
+    <div class="mt-12 space-y-8">
       {
         examples.map((example, index) => (
           <div data-reveal style={`transition-delay: ${index * 60}ms`}>
             <h3 class="font-serif text-lg font-semibold text-ink-950">{example.title}</h3>
-            <div class="mt-4 grid overflow-hidden rounded-2xl shadow-sm sm:grid-cols-2">
-              <div class="bg-danger-50/60 p-6">
-                <span class="inline-flex items-center gap-2 text-sm font-semibold text-danger-600">
-                  <X className="h-4.5 w-4.5" aria-hidden="true" />
-                  So lieber nicht
-                </span>
-                <p class="mt-3 text-sm italic leading-relaxed text-ink-700/80">{example.bad}</p>
-              </div>
+            {example.intro && <p class="mt-2 text-sm leading-relaxed text-ink-700/75">{example.intro}</p>}
+            <div class:list={["mt-4 grid overflow-hidden rounded-2xl shadow-sm", example.bad ? "sm:grid-cols-2" : ""]}>
+              {example.bad && (
+                <div class="bg-danger-50/60 p-6">
+                  <span class="inline-flex items-center gap-2 text-sm font-semibold text-danger-600">
+                    <X className="h-4.5 w-4.5" aria-hidden="true" />
+                    Zu wenig Information
+                  </span>
+                  <p class="mt-3 text-sm italic leading-relaxed text-ink-700/80">{example.bad}</p>
+                </div>
+              )}
               <div class="bg-success-50/60 p-6">
                 <span class="inline-flex items-center gap-2 text-sm font-semibold text-success-600">
                   <Check className="h-4.5 w-4.5" aria-hidden="true" />
-                  Aussagekräftiger wäre beispielsweise
+                  {example.goodLabel}
                 </span>
                 <p class="mt-3 text-sm leading-relaxed text-ink-700/85">{example.good}</p>
               </div>
             </div>
+            {example.outro && <p class="mt-3 text-sm leading-relaxed text-ink-700/75">{example.outro}</p>}
           </div>
         ))
       }
     </div>
-
-    <p data-reveal class="mt-10 border-t border-black/[0.06] pt-8 text-base font-medium leading-relaxed text-ink-950">
-      Natürlich gilt bei allen Beispielen: Bitte nur Informationen angeben, die deinem
-      tatsächlichen Verlauf entsprechen.
-    </p>
   </div>
 </section>

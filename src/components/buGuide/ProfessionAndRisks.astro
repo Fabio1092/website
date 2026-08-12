@@ -1,0 +1,68 @@
+---
+import { CheckCircle2 } from "lucide-react";
+
+const points = [
+  "Was ist deine genaue Berufsbezeichnung?",
+  "Was sind deine tatsächlichen Aufgaben?",
+  "Wie verteilen sich deine Tätigkeiten?",
+  "Wie hoch ist gegebenenfalls dein Anteil an Büro- beziehungsweise körperlicher Tätigkeit?",
+  "Gibt es besondere berufliche Belastungen oder Gefahren?",
+  "Gibt es weitere berufsbezogene Angaben, die im Fragebogen konkret abgefragt werden?",
+];
+---
+
+<section id="guide-beruf" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Bei der BU ebenfalls wichtig: besondere <span class="text-brand-600">Risiken in Beruf und Freizeit</span>.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Neben deiner Gesundheit kann bei der Berufsunfähigkeitsversicherung auch relevant sein,
+        was du beruflich und in deiner Freizeit tatsächlich machst.
+      </p>
+      <p>Deshalb solltest du Fragen zu besonderen Gefahren genauso sorgfältig beantworten.</p>
+      <p>
+        Dazu können – abhängig von der konkreten Fragestellung – beispielsweise besondere
+        berufliche Tätigkeiten oder bestimmte Sport- und Freizeitaktivitäten gehören.
+      </p>
+      <p>Wenn hierzu ein zusätzlicher Fragebogen erforderlich ist, füllen wir diesen entsprechend mit aus.</p>
+    </div>
+
+    <h3 class="mt-14 font-serif text-2xl font-semibold text-ink-950">
+      Beschreibe deinen Beruf nicht nur mit einer Berufsbezeichnung
+    </h3>
+
+    <div data-reveal class="mt-6 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Bei der Berufsunfähigkeitsversicherung kann die konkrete Ausgestaltung deines Berufs eine wichtige Rolle spielen.</p>
+      <p>
+        „Ingenieur", „Geschäftsführer", „Techniker" oder „Kaufmann" sagt allein noch wenig darüber
+        aus, wie dein tatsächlicher Arbeitstag aussieht.
+      </p>
+      <p class="font-medium text-ink-950">
+        Achte deshalb darauf, deine berufliche Situation vollständig und nachvollziehbar
+        anzugeben.
+      </p>
+    </div>
+
+    <ul data-reveal class="mt-6 space-y-3 border-t border-black/[0.06] pt-6">
+      {
+        points.map((point) => (
+          <li class="flex items-start gap-2.5 text-sm leading-relaxed text-ink-700/85 sm:text-base">
+            <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-500" aria-hidden="true" />
+            {point}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div data-reveal class="mt-10 space-y-2 border-t border-black/[0.06] pt-8 text-base leading-relaxed text-ink-700/85">
+      <p class="font-medium text-ink-950">Auch hier gilt:</p>
+      <p>
+        Beschreibe deinen tatsächlichen Berufsalltag – nicht die Variante, von der du glaubst,
+        dass sie für die Versicherung besser klingt.
+      </p>
+    </div>
+  </div>
+</section>

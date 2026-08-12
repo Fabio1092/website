@@ -3,32 +3,38 @@ import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/PageHero.astro";
 import IntroAndChecklist from "@/components/buGuide/IntroAndChecklist.astro";
 import AccuracyPrinciple from "@/components/buGuide/AccuracyPrinciple.astro";
+import Formula from "@/components/buGuide/Formula.astro";
+import HealthCheckList from "@/components/buGuide/HealthCheckList.astro";
 import Examples from "@/components/buGuide/Examples.astro";
-import ComplexCasesAndVoice from "@/components/buGuide/ComplexCasesAndVoice.astro";
-import ProfessionDetails from "@/components/buGuide/ProfessionDetails.astro";
+import PsychTopics from "@/components/buGuide/PsychTopics.astro";
+import RecurringAndDocs from "@/components/buGuide/RecurringAndDocs.astro";
+import ProfessionAndRisks from "@/components/buGuide/ProfessionAndRisks.astro";
+import VoiceMessageCallout from "@/components/buGuide/VoiceMessageCallout.astro";
 import FinalCheck from "@/components/buGuide/FinalCheck.astro";
 import WhatHappensNext from "@/components/buGuide/WhatHappensNext.astro";
-import OutcomesGuide from "@/components/buGuide/OutcomesGuide.astro";
 import ClosingSteps from "@/components/buGuide/ClosingSteps.astro";
 ---
 
 <Layout
   title="Dein Leitfaden zur BU-Risikovoranfrage"
-  description="So bereitest du deine Angaben optimal für die Risikoprüfung deiner Berufsunfähigkeitsversicherung vor."
+  description="So füllst du deinen Risikofragebogen für die BU-Risikovoranfrage richtig und vollständig aus."
   fullTitle
   noindex
 >
   <PageHero
     title="Dein Leitfaden zur BU-Risikovoranfrage"
-    intro="So bereitest du deine Angaben optimal für die Risikoprüfung vor."
+    intro="So füllst du deinen Risikofragebogen richtig und vollständig aus."
   />
   <IntroAndChecklist />
   <AccuracyPrinciple />
+  <Formula />
+  <HealthCheckList />
   <Examples />
-  <ComplexCasesAndVoice />
-  <ProfessionDetails />
+  <PsychTopics />
+  <RecurringAndDocs />
+  <ProfessionAndRisks />
+  <VoiceMessageCallout />
   <FinalCheck />
   <WhatHappensNext />
-  <OutcomesGuide />
   <ClosingSteps />
 </Layout>

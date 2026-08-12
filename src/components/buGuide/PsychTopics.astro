@@ -1,0 +1,68 @@
+---
+const topics = [
+  "psychische Beschwerden oder Belastungen",
+  "Stresssituationen",
+  "Prüfungs- oder Studienprobleme",
+  "berufliche Belastungen",
+  "Lebenskrisen",
+  "Trennung oder Beziehungsprobleme",
+  "Mobbing",
+  "Essstörungen",
+  "psychologische oder psychotherapeutische Gespräche",
+  "entsprechende ärztliche Beratungen",
+  "Coaching oder Beratungsangebote, sofern sie von der konkreten Frage erfasst werden",
+];
+---
+
+<section id="guide-psychisch" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Besonders wichtig: <span class="text-brand-600">Psychische Themen</span> und Gespräche.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Bei Fragen zu psychischen Beschwerden oder Behandlungen solltest du besonders sorgfältig
+        lesen, was genau und für welchen Zeitraum gefragt wird.
+      </p>
+      <p>Denke dabei nicht ausschließlich an eine diagnostizierte Depression oder eine klassische Psychotherapie.</p>
+      <p>
+        Je nach konkreter Fragestellung können beispielsweise auch Kontakte oder Gespräche im
+        Zusammenhang mit folgenden Themen relevant sein:
+      </p>
+    </div>
+
+    <div data-reveal class="mt-6 flex flex-wrap gap-2.5 border-t border-black/[0.06] pt-6">
+      {
+        topics.map((topic) => (
+          <span class="inline-flex items-center rounded-full border border-brand-200 bg-white px-4 py-1.5 text-sm font-medium text-brand-700">
+            {topic}
+          </span>
+        ))
+      }
+    </div>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p class="font-medium text-ink-950">Entscheidend ist immer die tatsächliche Formulierung der Gesundheitsfrage.</p>
+      <p>Wenn du dir bei einem solchen Sachverhalt nicht sicher bist:</p>
+    </div>
+
+    <blockquote class="relative mt-8">
+      <span class="pointer-events-none absolute -left-2 -top-6 font-serif text-7xl text-brand-500/15" aria-hidden="true">„</span>
+      <p class="relative font-serif text-lg leading-relaxed text-ink-950 sm:text-xl">
+        Bitte nicht selbst entscheiden, dass es „bestimmt nicht relevant" ist. Schreib mir kurz
+        und wir schauen es uns gemeinsam an.
+      </p>
+    </blockquote>
+
+    <div data-reveal class="mt-10 space-y-3 border-t border-black/[0.06] pt-8 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Bei psychischen beziehungsweise psychotherapeutischen Sachverhalten kann es außerdem
+        vorkommen, dass für eine belastbare Risikoeinschätzung später zusätzliche Unterlagen
+        benötigt werden.
+      </p>
+      <p class="font-medium text-ink-950">Auch hier gilt:</p>
+      <p>Bitte nicht vorsorglich alles selbst anfordern. Wir stimmen gemeinsam ab, was tatsächlich benötigt wird.</p>
+    </div>
+  </div>
+</section>

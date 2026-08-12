@@ -2,7 +2,12 @@
 import { MessageCircle } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 
-const steps = ["Nimm dir beim Ausfüllen Zeit.", "Beantworte die Fragen vollständig und wahrheitsgemäß.", "Wenn du unsicher bist: Frag mich."];
+const steps = [
+  "Lies die Fragen und Fragezeiträume genau.",
+  "Beschreibe relevante Sachverhalte vollständig und nachvollziehbar.",
+  "Fordere nicht vorsorglich irgendwelche Arztunterlagen an.",
+  "Wenn du dir unsicher bist: Schreib mir.",
+];
 ---
 
 <section id="guide-abschluss" class="relative overflow-hidden bg-ink-950 py-24 text-white">
@@ -14,9 +19,11 @@ const steps = ["Nimm dir beim Ausfüllen Zeit.", "Beantworte die Fragen vollstä
 
   <div data-reveal class="relative mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
     <h2 class="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
-      Was musst du <span class="text-brand-400">jetzt</span> tun?
+      Und <span class="text-brand-400">jetzt</span>?
     </h2>
-    <p class="mt-4 text-lg leading-relaxed text-white/70">Eigentlich nur drei Dinge:</p>
+    <p class="mt-4 text-lg leading-relaxed text-white/70">
+      Für dich sind während des Ausfüllens vor allem vier Dinge wichtig:
+    </p>
 
     <ol class="mx-auto mt-10 flex max-w-md flex-col gap-3 text-left">
       {
@@ -32,21 +39,21 @@ const steps = ["Nimm dir beim Ausfüllen Zeit.", "Beantworte die Fragen vollstä
     </ol>
 
     <p class="mx-auto mt-10 max-w-lg text-base leading-relaxed text-white/70">
-      Du musst weder Versicherungsprofi noch Mediziner sein.
+      Du musst nicht selbst beurteilen können, welche Information ein Risikoprüfer benötigt.
     </p>
     <p class="mx-auto mt-2 max-w-lg text-base font-medium leading-relaxed text-white/90">
-      Genau deshalb begleite ich dich durch den gesamten Prozess.
+      Genau dafür begleite ich dich durch den Prozess.
     </p>
 
     <div class="mt-14 border-t border-white/10 pt-10">
-      <h3 class="font-serif text-xl font-semibold">Noch eine Frage beim Ausfüllen?</h3>
+      <h3 class="font-serif text-xl font-semibold">Noch eine Frage?</h3>
       <p class="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/70">
-        Wenn dir etwas unklar ist, schreib mir einfach über WhatsApp. Bei längeren Sachverhalten
-        kannst du mir auch unkompliziert eine Sprachnachricht schicken.
+        Schreib mir einfach über WhatsApp. Und wenn der Sachverhalt zu lang zum Tippen ist, schick
+        mir eine Sprachnachricht.
       </p>
       <p class="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/70">
-        Lieber klären wir eine Frage gemeinsam, als dass du aus Unsicherheit eine unvollständige
-        oder missverständliche Angabe machst.
+        Lieber klären wir eine Frage gemeinsam, als dass eine wichtige Information fehlt oder
+        missverständlich angegeben wird.
       </p>
 
       <a
