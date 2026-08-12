@@ -34,15 +34,3 @@ jobs:
           protocol: ftp
           local-dir: ./dist/
           server-dir: ./domains/fr-makler.de/public_html/
-
-      - name: TEMP diagnostic - bu-ausfuellhilfe reachability
-        run: |
-          echo "--- direct path, no trailing slash ---"
-          curl -sSI https://www.fr-makler.de/bu-ausfuellhilfe | head -10
-          echo "--- with trailing slash ---"
-          curl -sSI https://www.fr-makler.de/bu-ausfuellhilfe/ | head -10
-          echo "--- apex domain ---"
-          curl -sSI https://fr-makler.de/bu-ausfuellhilfe | head -10
-          echo "--- body snippet (first 300 chars) ---"
-          curl -sS https://www.fr-makler.de/bu-ausfuellhilfe/ | head -c 300
-          echo ""
