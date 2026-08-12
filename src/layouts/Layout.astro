@@ -9,9 +9,11 @@ interface Props {
   description: string;
   /** Use the title as-is in <title>/og:title instead of appending "· Fabio Rumpf Makler". */
   fullTitle?: boolean;
+  /** Exclude this page from search engine indexing (e.g. private client-only pages). */
+  noindex?: boolean;
 }
 
-const { title, description, fullTitle = false } = Astro.props;
+const { title, description, fullTitle = false, noindex = false } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = fullTitle ? title : `${title} · Fabio Rumpf Makler`;
 const ogImageUrl = new URL("/images/og-image.jpg", Astro.site);
@@ -25,6 +27,7 @@ const ogImageUrl = new URL("/images/og-image.jpg", Astro.site);
     <link rel="icon" type="image/png" href="/images/Logo.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />

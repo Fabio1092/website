@@ -1,0 +1,104 @@
+---
+import { FileSignature, Mail, BookOpenCheck, FolderSearch, Clock } from "lucide-react";
+
+const checklist = [
+  {
+    icon: FileSignature,
+    title: "Datenschutzerklärung digital unterschreiben",
+    text: "Du erhältst die Datenschutzerklärung von mir per E-Mail und kannst sie ganz einfach direkt am Smartphone digital unterschreiben. Du musst nichts ausdrucken oder an mich zurücksenden.",
+  },
+  {
+    icon: Mail,
+    title: "E-Mail mit dem Risikofragebogen öffnen",
+    text: "Den Zugang zu deinem digitalen Risikofragebogen erhältst du ebenfalls von mir.",
+  },
+  {
+    icon: BookOpenCheck,
+    title: "Diese Anleitung einmal vollständig durchlesen",
+    text: "Dadurch weißt du bereits vor dem Ausfüllen, worauf es bei deinen Angaben ankommt.",
+  },
+  {
+    icon: FolderSearch,
+    title: "Vorhandene medizinische Unterlagen nutzen – aber bitte nicht extra anfordern",
+    text: "Du musst im ersten Schritt keine Arztberichte, Befunde oder sonstigen medizinischen Unterlagen bei deinen Ärzten anfordern oder neu einholen.",
+    extra: [
+      "Falls dir entsprechende Unterlagen ohnehin bereits vorliegen und sie für die abgefragten Zeiträume relevant sind, kannst du sie gerne direkt dem Risikofragebogen anhängen.",
+      "Hast du keine Unterlagen vorliegen, ist das zunächst überhaupt kein Problem. Fülle den Fragebogen einfach anhand der dir bekannten Informationen möglichst vollständig aus.",
+      "Sollte eine Versicherungsgesellschaft im Rahmen der Risikoprüfung zu einem bestimmten Sachverhalt zusätzliche Arztberichte oder Befunde benötigen, können wir diese gezielt im Nachgang einholen.",
+      "Du musst also nicht vorsorglich anfangen, sämtliche Arztunterlagen zusammenzusuchen.",
+    ],
+  },
+  {
+    icon: Clock,
+    title: "Genügend Zeit einplanen",
+    text: "Du musst den Fragebogen nicht in einem Rutsch fertigstellen. Deine Eingaben können zwischengespeichert werden. Nimm dir also lieber etwas mehr Zeit und beantworte die Fragen dafür sorgfältig.",
+  },
+];
+---
+
+<section id="guide-intro" class="bg-white py-20">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Du hast von mir den Link zu dieser Seite erhalten, weil wir gemeinsam eine
+        Risikovoranfrage für deine Berufsunfähigkeitsversicherung durchführen.
+      </p>
+      <p>Auf dieser Seite findest du alle wichtigen Informationen für die nächsten Schritte.</p>
+      <p>
+        Du kannst sie während des Ausfüllens deines Risikofragebogens jederzeit geöffnet lassen
+        und als Checkliste verwenden.
+      </p>
+      <p class="font-medium text-ink-950">Dabei gilt vor allem:</p>
+    </div>
+
+    <blockquote class="relative mt-10">
+      <span class="pointer-events-none absolute -left-2 -top-8 font-serif text-8xl text-brand-500/15 sm:-top-10" aria-hidden="true">„</span>
+      <p class="relative font-serif text-xl leading-relaxed text-ink-950 sm:text-2xl">
+        Nimm dir Zeit und versuche nicht, deine gesundheitliche Vorgeschichte möglichst kurz
+        darzustellen.
+      </p>
+    </blockquote>
+
+    <div class="mt-8 space-y-3 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Unser Ziel ist, deine Angaben vollständig, wahrheitsgemäß und für einen Risikoprüfer
+        nachvollziehbar aufzubereiten.
+      </p>
+      <p>
+        Je klarer deine Angaben sind, desto besser kann deine individuelle Situation eingeschätzt
+        werden und desto eher vermeiden wir unnötige Rückfragen.
+      </p>
+    </div>
+
+    <h2 class="mt-16 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Bevor du startest: <span class="text-brand-600">deine Checkliste</span>.
+    </h2>
+    <p class="mt-4 text-base leading-relaxed text-ink-700/80">
+      Bevor du mit dem Risikofragebogen beginnst, solltest du diese Punkte erledigt beziehungsweise
+      vorbereitet haben:
+    </p>
+
+    <div class="mt-10 divide-y divide-black/[0.06] border-t border-black/[0.06]">
+      {
+        checklist.map((item, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="flex gap-5 py-7 sm:gap-6">
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <item.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <div class="min-w-0">
+              <h3 class="font-serif text-lg font-semibold text-ink-950">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-700/75">{item.text}</p>
+              {item.extra && (
+                <div class="mt-3 space-y-2.5 rounded-xl bg-brand-50/40 p-4">
+                  {item.extra.map((line) => (
+                    <p class="text-sm leading-relaxed text-ink-700/75">{line}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

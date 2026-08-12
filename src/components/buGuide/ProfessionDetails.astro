@@ -1,0 +1,52 @@
+---
+import { CheckCircle2 } from "lucide-react";
+
+const points = [
+  "Deine aktuelle Berufsbezeichnung korrekt anzugeben.",
+  "Deine tatsächliche Tätigkeit nachvollziehbar zu beschreiben.",
+  "Gefragte Tätigkeitsanteile möglichst genau anzugeben.",
+  "Besondere berufliche Tätigkeiten oder Belastungen korrekt anzugeben.",
+  "Weitere berufsbezogene Fragen vollständig zu beantworten.",
+  "Dich bei schwer einzuordnenden Tätigkeiten kurz bei mir zu melden.",
+];
+---
+
+<section id="guide-beruf" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Bei der BU besonders wichtig: <span class="text-brand-600">Beschreibe deinen Beruf genau</span>.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Bei einer Risikovoranfrage zur Berufsunfähigkeitsversicherung spielen neben deiner
+        gesundheitlichen Vorgeschichte auch deine beruflichen Angaben eine wichtige Rolle.
+      </p>
+      <p>Dabei reicht die reine Berufsbezeichnung unter Umständen nicht aus.</p>
+      <p>
+        Denn zwei Menschen können auf dem Papier denselben Beruf haben und im Alltag vollkommen
+        unterschiedliche Tätigkeiten ausüben.
+      </p>
+      <p class="font-medium text-ink-950">Achte deshalb darauf:</p>
+    </div>
+
+    <ul data-reveal class="mt-6 space-y-3 border-t border-black/[0.06] pt-6">
+      {
+        points.map((point) => (
+          <li class="flex items-start gap-2.5 text-sm leading-relaxed text-ink-700/85 sm:text-base">
+            <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-500" aria-hidden="true" />
+            {point}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div data-reveal class="mt-10 space-y-2 border-t border-black/[0.06] pt-8 text-base leading-relaxed text-ink-700/85">
+      <p class="font-medium text-ink-950">Auch hier gilt:</p>
+      <p>
+        Nicht überlegen, welche Angabe vermeintlich besser klingt, sondern die tatsächliche
+        berufliche Situation möglichst verständlich beschreiben.
+      </p>
+    </div>
+  </div>
+</section>

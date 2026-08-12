@@ -1,0 +1,95 @@
+---
+const orientationQuestions = [
+  { title: "Was war?", text: "Welche Diagnose, Erkrankung oder Beschwerde lag vor?" },
+  { title: "Wann war es?", text: "Wann sind die Beschwerden aufgetreten beziehungsweise wann fand die Behandlung statt?" },
+  { title: "Was war die Ursache?", text: "Gab es einen konkreten Auslöser oder eine bekannte Ursache?" },
+  { title: "Was wurde untersucht?", text: "Gab es beispielsweise Untersuchungen, MRT, Röntgen, Labor oder andere Diagnostik?" },
+  { title: "Was kam dabei heraus?", text: "Welche Diagnose beziehungsweise welcher Befund wurde gestellt?" },
+  { title: "Wie wurde behandelt?", text: "Zum Beispiel Medikamente, Physiotherapie, Operation oder eine andere Therapie." },
+  { title: "Wie lange dauerte die Behandlung?", text: "" },
+  { title: "Wann war die letzte Behandlung oder Kontrolle?", text: "" },
+  { title: "Ist die Behandlung abgeschlossen?", text: "" },
+  { title: "Wie ist der Zustand heute?", text: "Bestehen noch Beschwerden, Einschränkungen oder Folgen?" },
+  { title: "Ist noch etwas geplant?", text: "Stehen weitere Behandlungen, Untersuchungen oder Kontrollen an?" },
+];
+
+const missingInfo = [
+  "Warst du deshalb einmal beim Hausarzt oder zwei Jahre in Behandlung?",
+  "War es eine harmlose Verspannung oder ein Bandscheibenvorfall?",
+  "Gab es ein MRT?",
+  "Wurden Medikamente verschrieben?",
+  "Bist du heute vollständig beschwerdefrei?",
+];
+---
+
+<section id="guide-genauigkeit" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Das Wichtigste zuerst: Bitte <span class="text-brand-600">nichts weglassen</span> oder „schöner machen".
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Bei einer Risikovoranfrage geht es nicht darum, Erkrankungen möglichst harmlos klingen zu lassen.</p>
+      <p>Genauso wenig hilft es uns, möglichst viele medizinische Fachbegriffe zu verwenden.</p>
+      <p class="font-medium text-ink-950">Entscheidend ist:</p>
+      <p class="font-medium text-ink-950">Der Risikoprüfer muss verstehen können, was tatsächlich passiert ist.</p>
+      <p>Deshalb sollten deine Angaben immer:</p>
+      <p class="text-lg font-semibold text-ink-950">vollständig, wahrheitsgemäß, verständlich und nachvollziehbar sein.</p>
+      <p>
+        Wenn du dir bei einer Frage unsicher bist, rate bitte nicht und lass die Information auch
+        nicht einfach weg.
+      </p>
+      <p class="font-medium text-ink-950">Melde dich stattdessen kurz bei mir.</p>
+    </div>
+
+    <h3 class="mt-14 font-serif text-2xl font-semibold text-ink-950">
+      So beschreibst du eine Erkrankung oder Behandlung richtig
+    </h3>
+
+    <div data-reveal class="mt-6 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Ein häufiger Fehler besteht darin, lediglich eine Diagnose oder ein einzelnes Stichwort einzutragen.</p>
+      <p>Zum Beispiel:</p>
+      <p class="italic text-ink-700/70">„Rückenschmerzen"</p>
+      <p>Für dich ist vielleicht vollkommen klar, was damit gemeint ist.</p>
+      <p class="font-medium text-ink-950">Der Risikoprüfer weiß allerdings nicht:</p>
+    </div>
+
+    <ul data-reveal class="mt-6 space-y-2 border-t border-black/[0.06] pt-6">
+      {
+        missingInfo.map((q) => (
+          <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 sm:text-base">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+            {q}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mt-6 text-base leading-relaxed text-ink-700/85">
+      Genau diese Informationen können für die Einschätzung einen großen Unterschied machen.
+    </p>
+    <p data-reveal class="mt-4 text-base leading-relaxed text-ink-700/85">
+      Nutze deshalb bei relevanten Behandlungen diese Fragen als Orientierung:
+    </p>
+
+    <div class="mt-8 grid gap-3 sm:grid-cols-2">
+      {
+        orientationQuestions.map((item, index) => (
+          <div data-reveal style={`transition-delay: ${(index % 6) * 60}ms`} class="rounded-xl bg-white p-4 shadow-sm">
+            <p class="text-sm font-semibold text-ink-950">{item.title}</p>
+            {item.text && <p class="mt-1 text-sm leading-relaxed text-ink-700/75">{item.text}</p>}
+          </div>
+        ))
+      }
+    </div>
+
+    <div data-reveal class="mt-10 space-y-3 border-t border-black/[0.06] pt-8 text-base leading-relaxed text-ink-700/85">
+      <p>Du musst nicht bei jeder Kleinigkeit zwanghaft jeden einzelnen dieser Punkte beantworten.</p>
+      <p>Die Fragen helfen dir vielmehr dabei, zu prüfen:</p>
+      <p class="font-medium text-ink-950">
+        Kann jemand, der mich nicht kennt, nach meiner Beschreibung nachvollziehen, was passiert
+        ist?
+      </p>
+    </div>
+  </div>
+</section>

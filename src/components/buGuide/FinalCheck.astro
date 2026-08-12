@@ -1,0 +1,42 @@
+---
+import { CheckCircle2 } from "lucide-react";
+
+const checks = [
+  "Habe ich alle Fragen beantwortet?",
+  "Habe ich die jeweils abgefragten Zeiträume berücksichtigt?",
+  "Sind relevante Erkrankungen und Behandlungen nachvollziehbar beschrieben?",
+  "Habe ich angegeben, ob die jeweilige Behandlung abgeschlossen ist?",
+  "Ist erkennbar, wie mein aktueller gesundheitlicher Zustand ist?",
+  "Habe ich bestehende Beschwerden oder Einschränkungen angegeben?",
+  "Habe ich vorhandene und relevante Unterlagen berücksichtigt?",
+  "Habe ich bei Unsicherheiten nachgefragt, anstatt zu raten?",
+  "Sind meine beruflichen Angaben vollständig und verständlich?",
+  "Sind alle Angaben vollständig und wahrheitsgemäß?",
+];
+---
+
+<section id="guide-finaler-check" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Dein letzter Check <span class="text-brand-600">vor dem Absenden</span>.
+    </h2>
+    <p class="mt-4 text-base leading-relaxed text-ink-700/80">
+      Bevor du den Fragebogen abschickst, gehe bitte noch einmal kurz diese Punkte durch:
+    </p>
+
+    <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+      {
+        checks.map((check, index) => (
+          <li data-reveal style={`transition-delay: ${(index % 6) * 60}ms`} class="flex items-start gap-2.5 rounded-xl bg-white p-4 text-sm leading-relaxed text-ink-700/85 shadow-sm">
+            <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-500" aria-hidden="true" />
+            {check}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mt-10 text-lg font-medium leading-relaxed text-ink-950">
+      Alles erledigt? Dann kannst du den Fragebogen abschicken.
+    </p>
+  </div>
+</section>

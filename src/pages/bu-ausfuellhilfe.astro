@@ -1,0 +1,34 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import IntroAndChecklist from "@/components/buGuide/IntroAndChecklist.astro";
+import AccuracyPrinciple from "@/components/buGuide/AccuracyPrinciple.astro";
+import Examples from "@/components/buGuide/Examples.astro";
+import ComplexCasesAndVoice from "@/components/buGuide/ComplexCasesAndVoice.astro";
+import ProfessionDetails from "@/components/buGuide/ProfessionDetails.astro";
+import FinalCheck from "@/components/buGuide/FinalCheck.astro";
+import WhatHappensNext from "@/components/buGuide/WhatHappensNext.astro";
+import OutcomesGuide from "@/components/buGuide/OutcomesGuide.astro";
+import ClosingSteps from "@/components/buGuide/ClosingSteps.astro";
+---
+
+<Layout
+  title="Dein Leitfaden zur BU-Risikovoranfrage"
+  description="So bereitest du deine Angaben optimal für die Risikoprüfung deiner Berufsunfähigkeitsversicherung vor."
+  fullTitle
+  noindex
+>
+  <PageHero
+    title="Dein Leitfaden zur BU-Risikovoranfrage"
+    intro="So bereitest du deine Angaben optimal für die Risikoprüfung vor."
+  />
+  <IntroAndChecklist />
+  <AccuracyPrinciple />
+  <Examples />
+  <ComplexCasesAndVoice />
+  <ProfessionDetails />
+  <FinalCheck />
+  <WhatHappensNext />
+  <OutcomesGuide />
+  <ClosingSteps />
+</Layout>

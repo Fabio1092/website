@@ -1,0 +1,87 @@
+---
+import { X, Check } from "lucide-react";
+
+const examples = [
+  {
+    title: "Beispiel 1: Rückenschmerzen",
+    bad: "„Rückenschmerzen“",
+    good:
+      "„Einmalige Beschwerden im unteren Rücken nach sportlicher Belastung im März 2024. Hausärztliche Untersuchung, keine weiterführende Diagnostik. Behandlung mit Schmerzmitteln für wenige Tage. Beschwerden nach ca. einer Woche vollständig abgeklungen. Keine weiteren Behandlungen und seitdem beschwerdefrei.“",
+  },
+  {
+    title: "Beispiel 2: Kniebeschwerden",
+    bad: "„Knieprobleme“",
+    good:
+      "„Schmerzen am rechten Knie nach dem Joggen im Juni 2023. Orthopädische Untersuchung. Anschließend sechs Termine Physiotherapie. Keine Operation. Behandlung im September 2023 abgeschlossen. Seitdem beschwerdefrei, keine Einschränkungen und keine weitere Behandlung.“",
+  },
+  {
+    title: "Beispiel 3: Atemwegsinfekt",
+    bad: "„Atemwege / Erkältung“",
+    good:
+      "„Akuter Atemwegsinfekt im Januar 2025. Einmalige hausärztliche Behandlung und medikamentöse Behandlung für wenige Tage. Vollständig ausgeheilt. Keine Folgebehandlungen und keine anhaltenden Beschwerden.“",
+  },
+  {
+    title: "Beispiel 4: Sportverletzung",
+    bad: "„Verletzung Sprunggelenk“",
+    good:
+      "„Umknickverletzung des rechten Sprunggelenks beim Fußball im Mai 2023. Ärztliche Untersuchung, keine Operation erforderlich. Behandlung durch Ruhigstellung und anschließende Physiotherapie. Behandlung abgeschlossen. Heute vollständig belastbar und seitdem beschwerdefrei.“",
+  },
+  {
+    title: "Beispiel 5: Allergie",
+    bad: "„Allergie“",
+    good:
+      "„Saisonale Pollenallergie seit 2020, Beschwerden hauptsächlich während der Pollensaison. Bei Bedarf Einnahme eines Antihistaminikums. Keine Atemnot, keine stationären Behandlungen. Keine weiteren Einschränkungen.“",
+  },
+];
+---
+
+<section id="guide-beispiele" class="bg-white py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Konkrete <span class="text-brand-600">Beispiele</span>.
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-3 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Die folgenden Beispiele dienen ausschließlich dazu, dir zu zeigen, wie eine
+        nachvollziehbare Beschreibung aufgebaut sein kann.
+      </p>
+      <p class="font-medium text-ink-950">Bitte übernimm die Formulierungen nicht einfach.</p>
+      <p>
+        Deine Angaben müssen immer zu deinem tatsächlichen Krankheits- und Behandlungsverlauf und
+        zu den konkret gestellten Gesundheitsfragen passen.
+      </p>
+    </div>
+
+    <div class="mt-12 space-y-6">
+      {
+        examples.map((example, index) => (
+          <div data-reveal style={`transition-delay: ${index * 60}ms`}>
+            <h3 class="font-serif text-lg font-semibold text-ink-950">{example.title}</h3>
+            <div class="mt-4 grid overflow-hidden rounded-2xl shadow-sm sm:grid-cols-2">
+              <div class="bg-danger-50/60 p-6">
+                <span class="inline-flex items-center gap-2 text-sm font-semibold text-danger-600">
+                  <X className="h-4.5 w-4.5" aria-hidden="true" />
+                  So lieber nicht
+                </span>
+                <p class="mt-3 text-sm italic leading-relaxed text-ink-700/80">{example.bad}</p>
+              </div>
+              <div class="bg-success-50/60 p-6">
+                <span class="inline-flex items-center gap-2 text-sm font-semibold text-success-600">
+                  <Check className="h-4.5 w-4.5" aria-hidden="true" />
+                  Aussagekräftiger wäre beispielsweise
+                </span>
+                <p class="mt-3 text-sm leading-relaxed text-ink-700/85">{example.good}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p data-reveal class="mt-10 border-t border-black/[0.06] pt-8 text-base font-medium leading-relaxed text-ink-950">
+      Natürlich gilt bei allen Beispielen: Bitte nur Informationen angeben, die deinem
+      tatsächlichen Verlauf entsprechen.
+    </p>
+  </div>
+</section>
