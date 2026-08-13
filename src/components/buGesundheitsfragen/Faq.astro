@@ -1,0 +1,79 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Wie viele Jahre muss ich Krankheiten bei einer BU angeben?",
+    answer:
+      "Das hängt vom jeweiligen Versicherer und von der konkreten Frage ab. Häufig kommen Zeiträume von drei, fünf und zehn Jahren vor. Entscheidend ist aber nicht nur der Zeitraum, sondern der exakte Wortlaut.",
+  },
+  {
+    question: "Muss ich jeden Arztbesuch angeben?",
+    answer:
+      "Nein, nicht pauschal. Angegeben werden muss das, wonach der Versicherer konkret fragt. Manche Anträge schließen bestimmte Bagatellerkrankungen ausdrücklich aus.",
+  },
+  {
+    question: "Muss ich Beschwerden angeben, obwohl ich nie beim Arzt war?",
+    answer:
+      "Das hängt vollständig von der Fragestellung ab. Eine offene Beschwerdefrage kann solche Beschwerden erfassen. Eine Frage, die ausdrücklich auf ärztliche Beratung, Untersuchung oder Behandlung abstellt, funktioniert anders.",
+  },
+  {
+    question: "Muss ich eine Psychotherapie angeben?",
+    answer: "Wenn sie in den abgefragten Zeitraum und unter die konkrete Gesundheitsfrage fällt: ja. Die Abfragezeiträume unterscheiden sich zwischen den Versicherern.",
+  },
+  {
+    question: "Was passiert, wenn ich Gesundheitsfragen falsch beantworte?",
+    answer:
+      "Das kann im Leistungsfall erhebliche Konsequenzen haben. Auch Versicherer weisen ausdrücklich darauf hin, dass Antragsfragen vollständig und wahrheitsgemäß beantwortet werden müssen.",
+  },
+  {
+    question: "Gibt es eine BU ohne Gesundheitsfragen?",
+    answer:
+      "Eine klassische individuelle Berufsunfähigkeitsversicherung ganz ohne Risikoprüfung ist die Ausnahme. Auch die Allianz weist darauf hin, dass es eine BU vollständig ohne Gesundheitsfragen in der Regel nicht gibt. Es existieren allerdings Sonderfälle und Konzepte mit vereinfachter Prüfung.",
+  },
+  {
+    question: "Was ist eine anonyme Risikovoranfrage?",
+    answer:
+      "Dabei lasse ich einen gesundheitlichen Sachverhalt vor einem regulären Antrag von ausgewählten Versicherern einschätzen. So können wir die möglichen Annahmebedingungen miteinander vergleichen.",
+  },
+  {
+    question: "Wird eine Risikovoranfrage bei allen Gesellschaften gemacht?",
+    answer: "Nein. Ich wähle Versicherer gezielt anhand deiner Gesundheitshistorie, ihrer Risikoprüfung und der Vertragsqualität aus.",
+  },
+  {
+    question: "Gibt es Sonderaktionen mit weniger Gesundheitsfragen?",
+    answer:
+      "Ja. Je nach Versicherer können vereinfachte Fragen für bestimmte Altersgruppen, Berufe, Studenten, Finanzierungsanlässe oder andere Zielgruppen angeboten werden.",
+  },
+  {
+    question: "Wann brauche ich eine ärztliche Untersuchung?",
+    answer:
+      "Das hängt vom Versicherer, deinem Alter und insbesondere von der beantragten BU-Rente ab. Bei höheren Renten können zusätzliche medizinische Unterlagen oder Untersuchungen notwendig werden.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Häufige Fragen zu <span class="text-brand-600">BU-Gesundheitsfragen</span>
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

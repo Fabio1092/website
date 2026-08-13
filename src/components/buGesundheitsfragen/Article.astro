@@ -1,0 +1,762 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "callout"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "statRow"; items: string[] }
+  | { type: "resultsList"; items: { label: string; value: string }[] }
+  | { type: "steps"; items: { title: string; body: string }[] }
+  | { type: "table"; headers: string[]; rows: string[][] }
+  | {
+      type: "compare";
+      labelA: string;
+      textA: string;
+      noteA?: string;
+      labelB: string;
+      textB: string;
+      noteB?: string;
+      quoted?: boolean;
+    }
+  | { type: "quotePair"; goodLabel: string; good: string; badLabel: string; bad: string };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const sections: Section[] = [
+  {
+    id: "welche-gesundheitsfragen",
+    heading: "Welche Gesundheitsfragen stellt eine Berufsunfähigkeitsversicherung?",
+    blocks: [
+      { type: "p", parts: ["Eine Berufsunfähigkeitsversicherung möchte einschätzen, wie hoch das Risiko ist, dass du während der Vertragslaufzeit berufsunfähig wirst."] },
+      { type: "p", parts: ["Dafür werden je nach Versicherer insbesondere folgende Bereiche abgefragt:"] },
+      {
+        type: "list",
+        items: [
+          "Erkrankungen und Beschwerden",
+          "ambulante Behandlungen",
+          "Krankenhausaufenthalte",
+          "Operationen",
+          "psychische oder psychosomatische Beschwerden",
+          "Erkrankungen des Bewegungsapparates",
+          "Herz- und Kreislauferkrankungen",
+          "Allergien und Atemwegserkrankungen",
+          "Medikamente",
+          "laufende oder geplante Untersuchungen",
+          "Arbeitsunfähigkeiten",
+          "bestehende körperliche oder geistige Beeinträchtigungen",
+          "teilweise frühere Versicherungsanträge oder Ablehnungen",
+        ],
+      },
+      { type: "p", parts: ["Eine „Ja“-Antwort bedeutet dabei keineswegs automatisch, dass du keine Berufsunfähigkeitsversicherung bekommst."] },
+      { type: "standalone", text: "Viel wichtiger ist:" },
+      { type: "callout", text: "Was genau steckt hinter dieser Ja-Antwort?" },
+      {
+        type: "p",
+        parts: [
+          "Ein einmaliger Hexenschuss vor vier Jahren ist etwas anderes als seit Jahren bestehende chronische Rückenbeschwerden. Eine kurze psychologische Beratung wegen einer akuten Belastungssituation ist etwas anderes als eine langjährige Psychotherapie mit laufender Medikation.",
+        ],
+      },
+      { type: "p", parts: ["Deshalb beginnt eine gute BU-Beratung für mich nicht mit der Frage:"] },
+      { type: "quote", text: "„Welche Gesellschaft ist die günstigste?“" },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "quote", text: "„Was ist gesundheitlich tatsächlich passiert und welcher Versicherer kann damit am sinnvollsten umgehen?“" },
+    ],
+  },
+  {
+    id: "offene-geschlossene-fragen",
+    heading: "Der vielleicht wichtigste Unterschied: offene und geschlossene Gesundheitsfragen",
+    blocks: [
+      { type: "p", parts: ["Wenn du nur einen Punkt aus diesem Artikel mitnimmst, dann diesen:"] },
+      { type: "callout", text: "Nicht nur der Zeitraum einer Gesundheitsfrage ist entscheidend. Mindestens genauso wichtig ist ihre Formulierung." },
+      { type: "p", parts: ["Zwei Versicherer können beispielsweise beide einen Zeitraum von fünf Jahren abfragen – und trotzdem etwas vollkommen Unterschiedliches von dir wissen wollen."] },
+      { type: "h3", text: "Beispiel einer offenen Gesundheitsfrage" },
+      { type: "p", parts: ["Eine offene Fragestellung kann sinngemäß so aussehen:"] },
+      { type: "quote", text: "„Bestehen oder bestanden in den letzten fünf Jahren Krankheiten, Beschwerden oder Funktionsstörungen?“" },
+      { type: "p", parts: ["Das Problem:"] },
+      { type: "standalone", text: "Die Frage setzt keinen Arztbesuch voraus." },
+      {
+        type: "p",
+        parts: ["Du musst dir also theoretisch Gedanken darüber machen, welche Beschwerden du innerhalb dieses Zeitraums hattest – selbst wenn du deswegen nie bei einem Arzt oder Therapeuten warst."],
+      },
+      { type: "p", parts: ["Wo beginnt eine relevante Beschwerde?"] },
+      {
+        type: "list",
+        items: [
+          "Bei einmaligen Rückenschmerzen nach dem Fitnessstudio?",
+          "Bei Kopfschmerzen?",
+          "Bei gelegentlichem Ziehen im Knie?",
+          "Bei zwei schlaflosen Nächten?",
+        ],
+      },
+      { type: "p", parts: ["Genau hier entsteht Interpretationsspielraum."] },
+      {
+        type: "p",
+        parts: ["Frühere Antragsversionen verschiedener Versicherer haben mit solchen sehr offenen Formulierungen gearbeitet. Auch die Nürnberger fragte beispielsweise lange sehr breit nach:"],
+      },
+      { type: "quote", text: "„Bestehen oder bestanden in den letzten 5 Jahren Krankheiten, Beschwerden oder Funktionsstörungen …“" },
+      { type: "p", parts: ["Inzwischen wurden die Fragen dort deutlich überarbeitet und reine Beschwerdefragen zeitlich verkürzt."] },
+      { type: "h3", text: "Geschlossene Gesundheitsfragen sind häufig kundenfreundlicher" },
+      { type: "p", parts: ["Deutlich klarer finde ich Fragen, die an einen konkreten medizinischen Kontakt anknüpfen."] },
+      { type: "p", parts: ["Der Volkswohl Bund formuliert beispielsweise sinngemäß:"] },
+      { type: "quote", text: "„Wurden Sie in den nachfolgend genannten Zeiträumen wegen Erkrankungen oder Beschwerden ärztlich oder therapeutisch beraten, untersucht oder behandelt?“" },
+      { type: "p", parts: ["Der entscheidende Unterschied:"] },
+      { type: "p", parts: ["Es wird nicht einfach danach gefragt, ob irgendwann einmal irgendeine Beschwerde vorhanden war."] },
+      { type: "standalone", text: "Die Frage knüpft an eine Beratung, Untersuchung oder Behandlung an." },
+      { type: "p", parts: ["Auch AXA arbeitet mit einer vergleichsweise klaren Fragelogik:"] },
+      {
+        type: "quote",
+        text: "„Sind oder waren Sie in den letzten 5 Jahren in Beratung, Behandlung oder Untersuchung bei Ärzten, Heilpraktikern, Physio-, Psycho- oder sonstigen nichtärztlichen Therapeuten wegen Krankheiten oder Unfallfolgen …“",
+      },
+      { type: "p", parts: ["Auch hier steht der tatsächliche Kontakt mit einem Arzt oder Therapeuten im Vordergrund."] },
+      { type: "standalone", text: "Für einen Kunden ist das wesentlich klarer." },
+    ],
+  },
+  {
+    id: "praxisbeispiel-ruecken",
+    heading: "Praxisbeispiel: Der gleiche Rücken – zwei unterschiedliche Antworten",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir an, du hattest vor zwei Jahren für einige Tage Rückenschmerzen."] },
+      { type: "p", parts: ["Du warst deswegen:"] },
+      {
+        type: "list",
+        items: [
+          "nicht beim Arzt,",
+          "nicht beim Physiotherapeuten,",
+          "hast keine Medikamente erhalten,",
+          "hattest keine Arbeitsunfähigkeit,",
+          "und seitdem auch keine Beschwerden mehr.",
+        ],
+      },
+      {
+        type: "compare",
+        quoted: true,
+        labelA: "Versicherer A fragt",
+        textA: "Bestanden in den letzten fünf Jahren Beschwerden des Bewegungsapparates?",
+        noteA: "Hier kann der Sachverhalt grundsätzlich unter die Frage fallen.",
+        labelB: "Versicherer B fragt",
+        textB: "Wurden Sie in den letzten fünf Jahren wegen Erkrankungen oder Beschwerden des Bewegungsapparates ärztlich oder therapeutisch beraten, untersucht oder behandelt?",
+        noteB: "Hier liegt eine vollkommen andere Fragelogik vor.",
+      },
+      { type: "callout", text: "Gleicher Kunde. Gleicher Rücken. Gleiche Vergangenheit. Andere Gesundheitsfrage." },
+      { type: "p", parts: ["Genau deshalb darf man beim BU-Antrag niemals einfach sagen:"] },
+      { type: "quote", text: "„Ach, das war doch nichts.“" },
+      { type: "p", parts: ["Entscheidend ist ausschließlich, ", { b: "was der jeweilige Versicherer konkret in Textform wissen möchte." }] },
+    ],
+  },
+  {
+    id: "wichtige-woerter",
+    heading: "Auch einzelne Wörter wie „angeraten“, „geplant“ oder „vorgesehen“ sind wichtig",
+    blocks: [
+      { type: "p", parts: ["Ein weiterer Punkt wird gerne überlesen."] },
+      { type: "p", parts: ["Ein Versicherer kann nicht nur danach fragen, was bereits stattgefunden hat."] },
+      { type: "p", parts: ["Er kann auch wissen wollen, ob eine Untersuchung oder Behandlung:"] },
+      { type: "list", items: ["angeraten,", "empfohlen,", "vorgesehen,", "beabsichtigt", "oder geplant ist."] },
+      { type: "p", parts: ["Nehmen wir ein Beispiel:"] },
+      { type: "p", parts: ["Du hattest Schulterschmerzen und dein Orthopäde sagt:"] },
+      { type: "quote", text: "„Wenn es nicht besser wird, sollten wir ein MRT machen.“" },
+      { type: "p", parts: ["Das MRT hat noch gar nicht stattgefunden."] },
+      { type: "p", parts: ["Trotzdem kann dieser Sachverhalt bei einer Frage nach ", { b: "angeratenen oder geplanten Untersuchungen" }, " relevant werden."] },
+      {
+        type: "p",
+        parts: ["Canada Life verwendet beispielsweise in seinen Gesundheitsfragen auch Formulierungen, bei denen nach derzeit vorgesehenen Maßnahmen gefragt wird. Die regulären ambulanten Abfragezeiträume liegen dort bei vielen Bereichen bei drei Jahren."],
+      },
+      { type: "p", parts: ["Das zeigt:"] },
+      { type: "callout", text: "Der Zeitraum alleine sagt praktisch nichts über die Qualität einer Gesundheitsfrage aus." },
+      { type: "p", parts: ["Du musst immer drei Dinge gleichzeitig betrachten:"] },
+      { type: "statRow", items: ["Was wird gefragt?", "Wie wird gefragt?", "Wie lange wird zurückgefragt?"] },
+    ],
+  },
+  {
+    id: "abfragezeitraeume",
+    heading: "Welche Abfragezeiträume gibt es bei den BU-Gesundheitsfragen?",
+    blocks: [
+      { type: "p", parts: ["Einen einheitlichen Abfragezeitraum gibt es nicht."] },
+      { type: "p", parts: ["Typisch sind insbesondere:"] },
+      { type: "statRow", items: ["3 Jahre", "5 Jahre", "10 Jahre"] },
+      { type: "p", parts: ["Teilweise werden auch aktuelle Beschwerden lediglich für wenige Monate abgefragt."] },
+      { type: "p", parts: ["Dabei können innerhalb desselben Antrags unterschiedliche Zeiträume gelten."] },
+      { type: "p", parts: ["Ein Versicherer kann beispielsweise:"] },
+      { type: "list", items: ["ambulante Behandlungen 3 Jahre,", "psychische Erkrankungen 5 Jahre,", "Krankenhausaufenthalte 10 Jahre"] },
+      { type: "p", parts: ["abfragen."] },
+      { type: "p", parts: ["Ein anderer fragt psychische Erkrankungen ebenfalls nur drei Jahre ab und stationäre Behandlungen lediglich fünf Jahre."] },
+      {
+        type: "p",
+        parts: ["Canada Life hat beispielsweise für viele ambulante Behandlungen einen Zeitraum von drei Jahren und für Krankenhausaufenthalte beziehungsweise Operationen fünf Jahre. Auch psychische Erkrankungen fallen im regulären Antrag in diesen kürzeren ambulanten Zeitraum."],
+      },
+      {
+        type: "p",
+        parts: ["AXA nennt dagegen für ärztliche bzw. therapeutische Behandlungen fünf Jahre und bei stationären Maßnahmen zehn Jahre. Das bestätigt AXA auch in seinen eigenen aktuellen Informationen."],
+      },
+      { type: "h3", text: "Warum „nur drei Jahre Gesundheitsfragen“ trotzdem nicht automatisch besser bedeutet" },
+      { type: "p", parts: ["Das ist mir besonders wichtig."] },
+      { type: "p", parts: ["Im Internet liest man häufig Aussagen wie:"] },
+      { type: "quote", text: "„Gesellschaft X fragt nur drei Jahre ab – deshalb ist sie besser.“" },
+      { type: "p", parts: ["So einfach funktioniert BU-Beratung nicht."] },
+      { type: "p", parts: ["Vergleichen wir:"] },
+      {
+        type: "compare",
+        quoted: true,
+        labelA: "Versicherer A",
+        textA: "Bestanden in den vergangenen drei Jahren Krankheiten oder Beschwerden …",
+        labelB: "Versicherer B",
+        textB: "Wurden Sie in den vergangenen fünf Jahren wegen Erkrankungen ärztlich beraten, untersucht oder behandelt …",
+      },
+      { type: "p", parts: ["Welcher Antrag ist kundenfreundlicher?"] },
+      { type: "p", parts: ["Das lässt sich nicht allein anhand der ", { b: "3 gegen 5 Jahre" }, " beantworten."] },
+      { type: "p", parts: ["Wenn du beispielsweise vor vier Jahren beim Arzt warst, kann Versicherer A vorteilhafter sein."] },
+      { type: "p", parts: ["Wenn du dagegen aktuell gelegentliche Beschwerden ohne Arztbesuch hast, kann Versicherer B interessanter sein."] },
+      { type: "callout", text: "Gesundheitsfragen muss man immer im Zusammenhang mit deiner persönlichen Gesundheitshistorie bewerten." },
+    ],
+  },
+  {
+    id: "versicherer-vergleich",
+    heading: "Wie unterscheiden sich einige bekannte BU-Versicherer?",
+    blocks: [
+      { type: "p", parts: ["Die folgende Darstellung soll dir ein Gefühl dafür geben, wie unterschiedlich die Fragekonzepte sein können."] },
+      { type: "p", parts: ["Sie ersetzt ausdrücklich nicht die Prüfung des jeweils aktuellen Originalantrags."] },
+      {
+        type: "table",
+        headers: ["Versicherer", "Charakter der Gesundheitsfragen", "Typische Besonderheit"],
+        rows: [
+          ["AXA", "stark an ärztliche/therapeutische Kontakte geknüpft", "vergleichsweise geschlossene Fragestellung"],
+          ["Volkswohl Bund", "Behandlung/Beratung/Untersuchung im Mittelpunkt", "teilweise 3- und 5-Jahres-Zeiträume"],
+          ["Allianz", "viele Arzt-/Therapeutenkontakte zeitlich begrenzt", "bestimmte Bagatellen werden ausdrücklich ausgenommen"],
+          ["Canada Life", "kurze reguläre Abfragezeiträume", "viele ambulante Themen 3 Jahre, stationär 5 Jahre"],
+          ["Nürnberger", "Gesundheitsfragen deutlich verbessert", "Beschwerdefrage verkürzt, stationär teilweise nur 5 Jahre"],
+          ["Dialog", "stark behandlungsorientiert", "keine breit angelegte offene Beschwerdefrage"],
+          ["Alte Leipziger", "viele Bereiche verkürzt", "reine Beschwerdefrage inzwischen deutlich enger gefasst"],
+          ["Baloise", "Gesundheitsprüfung in den vergangenen Jahren verbessert", "interessante Varianten insbesondere für jüngere Kunden"],
+        ],
+      },
+      { type: "p", parts: ["Die wesentliche Erkenntnis:"] },
+      { type: "callout", text: "Es gibt nicht „die beste Gesundheitsfrage“. Es gibt die passendste Gesundheitsprüfung für deine individuelle Situation." },
+    ],
+  },
+  {
+    id: "bagatellen",
+    heading: "Beispiel Allianz: Bagatellerkrankungen ausdrücklich ausgenommen",
+    blocks: [
+      { type: "p", parts: ["Interessant finde ich Gesundheitsfragen, bei denen der Versicherer nicht nur sagt, was angegeben werden muss, sondern ausdrücklich auch, ", { b: "was nicht angegeben werden muss" }, "."] },
+      { type: "p", parts: ["Bei der Allianz findet sich beispielsweise eine Frage nach Behandlungen, Untersuchungen und Beratungen bei Ärzten oder Therapeuten, bei der bestimmte Sachverhalte ausdrücklich nicht berücksichtigt werden müssen."] },
+      {
+        type: "p",
+        parts: ["Dazu gehören beispielsweise unter bestimmten Voraussetzungen akute Erkältungskrankheiten, akute Magen-Darm- oder Harnwegsinfekte, unauffällige Vorsorgeuntersuchungen, zahnärztliche Behandlungen sowie Schwangerschaft und Geburt."],
+      },
+      { type: "p", parts: ["Warum finde ich das kundenfreundlich?"] },
+      { type: "p", parts: ["Weil der Interpretationsspielraum kleiner wird."] },
+      { type: "p", parts: ["Der Versicherer sagt nicht nur:"] },
+      { type: "quote", text: "„Sag uns alles Relevante.“" },
+      { type: "p", parts: ["Sondern grenzt aktiv aus, was für diese konkrete Frage nicht relevant ist."] },
+      { type: "h3", text: "Beispiel Nürnberger: Ein „Musst-du-nicht-angeben“-Katalog" },
+      { type: "p", parts: ["Auch die Nürnberger arbeitet inzwischen mit ausdrücklichen Ausnahmen."] },
+      {
+        type: "p",
+        parts: ["In der aktuellen Fragelogik werden beispielsweise bestimmte folgenlos ausgeheilte Infekte, zahnärztliche Behandlungen, komplikationslose Impfungen, unauffällige Vorsorgeuntersuchungen oder bestimmte folgenlose Bagatellverletzungen ausdrücklich ausgenommen."],
+      },
+      { type: "p", parts: ["Für den Kunden bringt das einen echten Vorteil:"] },
+      { type: "standalone", text: "Es reduziert die Unsicherheit." },
+      { type: "p", parts: ["Denn eine der größten Sorgen beim BU-Antrag ist:"] },
+      { type: "quote", text: "„Was passiert, wenn ich irgendeinen kleinen Arztbesuch vergessen habe?“" },
+      { type: "p", parts: ["Je klarer der Versicherer beschreibt, was er wissen möchte und was nicht, desto sauberer lässt sich ein Antrag beantworten."] },
+    ],
+  },
+  {
+    id: "kundenfreundlich-kriterien",
+    heading: "Kundenfreundliche vs. weniger kundenfreundliche Gesundheitsfragen",
+    blocks: [
+      { type: "p", parts: ["Ich würde eine BU-Gesundheitsfrage grundsätzlich anhand von vier Kriterien bewerten."] },
+      { type: "h3", text: "1. Wie eindeutig ist die Frage?" },
+      {
+        type: "quotePair",
+        goodLabel: "Kundenfreundlicher",
+        good: "Wurden Sie wegen … ärztlich untersucht oder behandelt?",
+        badLabel: "Schwieriger",
+        bad: "Bestanden Krankheiten, Störungen, Schäden oder Beschwerden?",
+      },
+      { type: "h3", text: "2. Wie lang ist der Zeitraum?" },
+      { type: "p", parts: ["Drei Jahre sind grundsätzlich leichter aufzuarbeiten als fünf."] },
+      { type: "p", parts: ["Fünf Jahre sind leichter als zehn."] },
+      { type: "p", parts: ["Aber nur, wenn die Fragestellung vergleichbar ist."] },
+      { type: "h3", text: "3. Gibt es eine offene Beschwerdefrage?" },
+      { type: "p", parts: ["Eine Frage nach Beschwerden ohne Arztbesuch kann deutlich schwieriger zu beantworten sein."] },
+      { type: "p", parts: ["Denn dann musst du dich nicht nur an Behandlungen erinnern, sondern auch an subjektive Beschwerden."] },
+      { type: "h3", text: "4. Gibt es klare Ausnahmen?" },
+      { type: "p", parts: ["Ein ausdrücklicher Katalog, welche Bagatellerkrankungen nicht angegeben werden müssen, schafft Klarheit."] },
+      { type: "p", parts: ["Das ist für mich ein echter Qualitätsfaktor."] },
+    ],
+  },
+  {
+    id: "psychotherapie-beispiel",
+    heading: "Praxisbeispiel Psychotherapie: Fünf oder zehn Jahre können entscheidend sein",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir an:"] },
+      { type: "p", parts: ["Du hast vor sechs Jahren eine Psychotherapie abgeschlossen."] },
+      { type: "p", parts: ["Seitdem:"] },
+      { type: "list", items: ["keine weiteren Sitzungen,", "keine Medikamente,", "keine Beschwerden,", "keine Arbeitsunfähigkeit."] },
+      {
+        type: "compare",
+        quoted: false,
+        labelA: "Versicherer A",
+        textA: "fragt psychotherapeutische Behandlungen der letzten zehn Jahre ab.",
+        noteA: "Die Behandlung ist anzugeben.",
+        labelB: "Versicherer B",
+        textB: "fragt lediglich fünf Jahre zurück.",
+        noteB: "Liegt keine andere Frage vor, die den Sachverhalt erfasst, kann diese Behandlung dort außerhalb des abgefragten Zeitraums liegen.",
+      },
+      { type: "p", parts: ["Das kann in deiner konkreten Situation einen erheblichen Unterschied machen."] },
+      { type: "p", parts: ["Deshalb schaue ich bei meinen Kunden immer zuerst auf die Gesundheitshistorie und dann auf den Markt."] },
+      { type: "standalone", text: "Nicht umgekehrt." },
+    ],
+  },
+  {
+    id: "krankenakte-pruefen",
+    heading: "Sollte ich meine Krankenakte vor dem BU-Antrag prüfen?",
+    blocks: [
+      { type: "p", parts: ["In vielen Fällen: ja."] },
+      {
+        type: "p",
+        parts: ["Gerade wenn du in den vergangenen Jahren häufiger beim Arzt warst oder nicht mehr genau weißt, welche Diagnosen abgerechnet wurden, kann eine Aufarbeitung deiner Patientenakte sinnvoll sein."],
+      },
+      { type: "p", parts: ["Denn nicht selten steht dort mehr, als der Kunde selbst erwartet."] },
+      { type: "p", parts: ["Ein Arzt kann beispielsweise abrechnungstechnisch eine Diagnose dokumentiert haben, obwohl du selbst den Termin nur als:"] },
+      { type: "quote", text: "„Ich hatte mal kurz Rücken.“" },
+      { type: "p", parts: ["in Erinnerung hast."] },
+      { type: "p", parts: ["Deshalb arbeite ich mit meinen Kunden zunächst die Gesundheitshistorie strukturiert auf."] },
+      { type: "p", parts: ["Dabei können je nach Situation helfen:"] },
+      {
+        type: "list",
+        items: [
+          "Patientenakten der behandelnden Ärzte,",
+          "Auskünfte der gesetzlichen Krankenversicherung,",
+          "Abrechnungsdaten,",
+          "Befundberichte,",
+          "Entlassungsberichte,",
+          "Medikamentenhistorien",
+          "oder ärztliche Stellungnahmen.",
+        ],
+      },
+      { type: "p", parts: ["Wichtig ist aber auch hier:"] },
+      { type: "standalone", text: "Wir sammeln nicht wahllos möglichst viele Daten." },
+      { type: "p", parts: ["Wir prüfen, was für den konkreten Antrag und die jeweilige Gesundheitshistorie sinnvoll ist."] },
+    ],
+  },
+  {
+    id: "ja-antwort",
+    heading: "Was passiert bei einer Ja-Antwort?",
+    blocks: [
+      { type: "p", parts: ["Eine Ja-Antwort ist keine Katastrophe."] },
+      { type: "p", parts: ["Der Versicherer möchte dann meistens zusätzliche Informationen."] },
+      { type: "p", parts: ["Typische Fragen sind:"] },
+      {
+        type: "list",
+        items: [
+          "Welche Diagnose wurde gestellt?",
+          "Wann trat sie erstmals auf?",
+          "Wann war die letzte Behandlung?",
+          "Welche Therapie fand statt?",
+          "Welche Medikamente wurden genommen?",
+          "Wie lange bestand Arbeitsunfähigkeit?",
+          "Bestehen aktuell Beschwerden?",
+          "Ist die Behandlung abgeschlossen?",
+          "Gibt es Folgeschäden?",
+        ],
+      },
+      { type: "p", parts: ["Je sauberer wir diese Informationen aufbereiten, desto besser kann ein Risikoprüfer die Situation einschätzen."] },
+      { type: "h3", text: "Beispiel: „Rückenschmerzen“ ist für einen Risikoprüfer viel zu wenig" },
+      { type: "p", parts: ["Stell dir zwei Angaben vor."] },
+      {
+        type: "compare",
+        quoted: false,
+        labelA: "Variante 1",
+        textA: "Rückenschmerzen.",
+        noteA: "Das sagt dem Risikoprüfer fast nichts.",
+        labelB: "Variante 2",
+        textB:
+          "Einmalige muskuläre Verspannung nach sportlicher Belastung im Februar 2023. Zwei physiotherapeutische Behandlungen, keine Bildgebung, keine Arbeitsunfähigkeit, keine Medikamente, Behandlung abgeschlossen, seitdem vollständig beschwerde- und behandlungsfrei.",
+        noteB: "Das ist eine vollkommen andere Informationsqualität.",
+      },
+      { type: "p", parts: ["Genau deshalb ist die ", { b: "Aufbereitung der Gesundheitshistorie häufig wichtiger als die bloße Anzahl der Diagnosen." }] },
+    ],
+  },
+  {
+    id: "anonyme-risikovoranfrage",
+    heading: "Warum ich bei Vorerkrankungen häufig eine anonyme Risikovoranfrage mache",
+    blocks: [
+      { type: "p", parts: ["Wenn relevante Vorerkrankungen bestehen, stelle ich nicht einfach einen Antrag bei fünf Gesellschaften und schaue, wer ihn annimmt."] },
+      { type: "p", parts: ["Ich gehe einen Schritt vorher."] },
+      { type: "p", parts: ["Wir bereiten die gesundheitlichen Angaben gemeinsam auf und führen bei ausgewählten Gesellschaften eine ", { b: "anonyme Risikovoranfrage" }, " durch."] },
+      { type: "p", parts: ["Dabei bekommt der Risikoprüfer die notwendigen Informationen über:"] },
+      {
+        type: "list",
+        items: ["Alter,", "Beruf,", "gewünschte BU-Rente,", "Diagnose,", "Behandlungszeitraum,", "Therapie,", "aktuellen Gesundheitszustand", "und gegebenenfalls medizinische Unterlagen."],
+      },
+      { type: "p", parts: ["Persönliche Identifikationsmerkmale werden dabei soweit möglich nicht Bestandteil der Voranfrage."] },
+      { type: "p", parts: ["Anschließend erhalten wir ein Votum."] },
+      { type: "p", parts: ["Beispielsweise:"] },
+      { type: "statRow", items: ["Normalannahme", "Risikozuschlag", "Leistungsausschluss", "Zurückstellung", "Ablehnung"] },
+      { type: "h3", text: "Warum ist eine anonyme Risikovoranfrage sinnvoll?" },
+      { type: "p", parts: ["Der größte Vorteil:"] },
+      { type: "callout", text: "Wir kennen die Reaktion des Versicherers, bevor wir den eigentlichen Antrag stellen." },
+      { type: "p", parts: ["Dadurch können wir verschiedene Risikoprüfer gezielt vergleichen."] },
+      { type: "p", parts: ["Beispiel:"] },
+      { type: "p", parts: ["Wir fragen fünf sinnvoll ausgewählte Gesellschaften an."] },
+      { type: "p", parts: ["Die Ergebnisse:"] },
+      {
+        type: "resultsList",
+        items: [
+          { label: "Versicherer A", value: "Ablehnung" },
+          { label: "Versicherer B", value: "Ausschluss Wirbelsäule" },
+          { label: "Versicherer C", value: "+25 % Risikozuschlag" },
+          { label: "Versicherer D", value: "Normalannahme" },
+          { label: "Versicherer E", value: "Zurückstellung für zwölf Monate" },
+        ],
+      },
+      { type: "p", parts: ["Jetzt haben wir eine vollkommen andere Entscheidungsgrundlage."] },
+      { type: "p", parts: ["Ohne Voranfrage hättest du möglicherweise direkt bei Versicherer A einen Antrag gestellt."] },
+      { type: "p", parts: ["Mit der Voranfrage wissen wir vorher:"] },
+      { type: "standalone", text: "Versicherer D beurteilt deinen Fall möglicherweise erheblich besser." },
+      { type: "h3", text: "Warum frage ich nicht einfach bei 20 Versicherern an?" },
+      { type: "p", parts: ["Weil eine gute Risikovoranfrage kein Massenspam ist."] },
+      { type: "p", parts: ["Ich wähle vorab aus:"] },
+      {
+        type: "list",
+        items: [
+          "Welche Gesundheitsfragen passen zur Vorgeschichte?",
+          "Welche Gesellschaft hat bei dieser Diagnose erfahrungsgemäß eine interessante Risikoprüfung?",
+          "Welcher Tarif erfüllt gleichzeitig die fachlichen Anforderungen?",
+          "Welche Versicherer kommen preislich sinnvoll infrage?",
+        ],
+      },
+      { type: "p", parts: ["Dann frage ich gezielt an."] },
+      { type: "p", parts: ["Das bringt in der Praxis meist bessere Ergebnisse als eine schlecht vorbereitete Anfrage an den kompletten Markt."] },
+    ],
+  },
+  {
+    id: "sonderaktionen",
+    heading: "Sonderaktionen mit vereinfachten Gesundheitsfragen",
+    blocks: [
+      { type: "p", parts: ["Ein weiterer großer Hebel sind ", { b: "BU-Sonderaktionen" }, "."] },
+      { type: "p", parts: ["Versicherer bieten immer wieder vereinfachte Gesundheitsprüfungen an."] },
+      { type: "p", parts: ["Diese können beispielsweise gebunden sein an:"] },
+      {
+        type: "list",
+        items: [
+          "ein bestimmtes Eintrittsalter,",
+          "bestimmte Berufe,",
+          "bestimmte Studiengänge,",
+          "Schüler oder Studenten,",
+          "eine Immobilienfinanzierung,",
+          "bestimmte Versorgungswerke,",
+          "Arbeitgeberkonzepte",
+          "oder eine maximale BU-Rente.",
+        ],
+      },
+      { type: "p", parts: ["Teilweise werden dann nur sehr wenige Fragen gestellt oder die Abfragezeiträume erheblich verkürzt."] },
+      {
+        type: "p",
+        parts: ["So gibt es beispielsweise Aktionen, bei denen teilweise nur 24 Monate betrachtet werden. Andere Angebote richten sich an Personen unter 30 oder 35 Jahren oder begrenzen die BU-Rente beispielsweise auf 1.500 bis 2.000 Euro."],
+      },
+      { type: "p", parts: ["Das kann bei der passenden Gesundheitshistorie extrem wertvoll sein."] },
+      { type: "h3", text: "Sind vereinfachte Gesundheitsfragen automatisch besser?" },
+      { type: "standalone", text: "Nein." },
+      { type: "p", parts: ["Das ist wichtig."] },
+      { type: "p", parts: ["Eine Sonderaktion ist nicht automatisch der beste Vertrag."] },
+      { type: "p", parts: ["Wir müssen gleichzeitig prüfen:"] },
+      {
+        type: "list",
+        items: [
+          "Wie gut sind die Versicherungsbedingungen?",
+          "Welche BU-Rente ist möglich?",
+          "Welche Dynamik kann eingeschlossen werden?",
+          "Welche Nachversicherungsmöglichkeiten gibt es?",
+          "Passt die Berufsgruppe?",
+          "Wie hoch ist der Beitrag?",
+          "Welche Gesundheitsfragen werden trotz Vereinfachung gestellt?",
+        ],
+      },
+      { type: "p", parts: ["Deshalb kenne und prüfe ich bei meinen Kunden nicht nur die regulären Gesundheitsfragen, sondern auch die aktuell verfügbaren Sonderaktionen."] },
+      { type: "standalone", text: "Der Kunde muss diesen Markt nicht selbst überblicken." },
+      { type: "p", parts: ["Genau das ist meine Aufgabe."] },
+    ],
+  },
+  {
+    id: "untersuchungsgrenzen",
+    heading: "Wie hoch kann eine BU ohne zusätzliche ärztliche Untersuchung abgeschlossen werden?",
+    blocks: [
+      { type: "p", parts: ["Auch hier unterscheiden sich die Versicherer."] },
+      { type: "p", parts: ["Bis zu einer bestimmten BU-Rente reichen häufig die normalen Gesundheitsfragen."] },
+      { type: "p", parts: ["Wird eine höhere monatliche BU-Rente beantragt, können zusätzliche Anforderungen entstehen."] },
+      { type: "p", parts: ["Dazu gehören beispielsweise:"] },
+      { type: "list", items: ["ärztliches Zeugnis,", "Hausarztbericht,", "Blutuntersuchung,", "HIV-Test,", "Ruhe-EKG,", "Belastungs-EKG", "oder weitere medizinische Unterlagen."] },
+      {
+        type: "p",
+        parts: [
+          "Die regulären Untersuchungsgrenzen liegen bei vielen Anbietern – abhängig insbesondere vom Eintrittsalter – ungefähr zwischen ",
+          { b: "2.000 und 3.000 Euro" },
+          " monatlicher BU-Rente.",
+        ],
+      },
+      { type: "h3", text: "Warum eine Untersuchungsgrenze strategisch wichtig sein kann" },
+      { type: "p", parts: ["Nehmen wir an, du möchtest eine BU-Rente von 4.000 Euro."] },
+      { type: "p", parts: ["Versicherer A verlangt oberhalb von 3.000 Euro ein ärztliches Zeugnis."] },
+      { type: "p", parts: ["Damit kann sich plötzlich nicht nur der Umfang der medizinischen Prüfung verändern."] },
+      { type: "p", parts: ["Es können auch zusätzliche oder teilweise weitergehende Gesundheitsfragen entstehen."] },
+      { type: "p", parts: ["Erweiterte ärztliche Fragebögen können dabei teilweise Fragen enthalten, die zeitlich deutlich weiter reichen als der normale BU-Antrag."] },
+      { type: "p", parts: ["Deshalb muss bei hohen BU-Renten die Antragsstrategie noch sorgfältiger geplant werden."] },
+      { type: "h3", text: "Kann man eine hohe BU-Rente auf mehrere Versicherer verteilen?" },
+      { type: "p", parts: ["Grundsätzlich kann eine Aufteilung auf mehrere Verträge sinnvoll sein."] },
+      { type: "p", parts: ["Beispiel:"] },
+      { type: "p", parts: ["Statt 4.000 Euro bei einer Gesellschaft könnten je nach individueller Situation beispielsweise:"] },
+      { type: "callout", text: "2.000 Euro + 2.000 Euro" },
+      { type: "p", parts: ["bei zwei Versicherern geprüft werden."] },
+      { type: "p", parts: ["Das kann Vorteile haben – etwa hinsichtlich späterer Flexibilität oder verschiedener Risikoprüfungsgrenzen."] },
+      { type: "p", parts: ["Aber:"] },
+      { type: "standalone", text: "Eine solche Aufteilung ist kein Trick, um Gesundheits- oder Versicherungsfragen zu umgehen." },
+      { type: "p", parts: ["Bestehende und gleichzeitig beantragte Absicherungen müssen entsprechend der jeweiligen Fragen selbstverständlich korrekt angegeben werden."] },
+      { type: "p", parts: ["Ob eine Aufteilung sinnvoll ist, muss individuell geprüft werden."] },
+    ],
+  },
+  {
+    id: "eigenschaften-kundenfreundlich",
+    heading: "Welche Gesundheitsfragen sind für mich besonders kundenfreundlich?",
+    blocks: [
+      { type: "p", parts: ["Wenn ich Gesundheitsfragen bewerte, gefallen mir insbesondere folgende Eigenschaften:"] },
+      { type: "h3", text: "1. Konkreter Arztbezug" },
+      {
+        type: "quotePair",
+        goodLabel: "Gut",
+        good: "Waren Sie wegen … in ärztlicher Behandlung oder Untersuchung?",
+        badLabel: "Schwieriger",
+        bad: "Bestanden Krankheiten oder Beschwerden?",
+      },
+      { type: "h3", text: "2. Kurze und eindeutig definierte Zeiträume" },
+      { type: "p", parts: ["Drei oder fünf Jahre sind einfacher aufzuarbeiten als zehn Jahre."] },
+      { type: "h3", text: "3. Kurze Beschwerdezeiträume" },
+      { type: "p", parts: ["Wenn nach Beschwerden ohne Arztkontakt gefragt wird, finde ich kurze Zeiträume grundsätzlich kundenfreundlicher als mehrere Jahre."] },
+      { type: "h3", text: "4. Klare Bagatellausschlüsse" },
+      {
+        type: "p",
+        parts: ["Wenn der Versicherer ausdrücklich sagt, dass folgenlos ausgeheilte Erkältungen oder unauffällige Vorsorgeuntersuchungen nicht angegeben werden müssen, entsteht weniger Interpretationsspielraum."],
+      },
+      { type: "h3", text: "5. Klare Formulierungen zu geplanten Maßnahmen" },
+      { type: "p", parts: ["Der Kunde muss erkennen können, ob ausschließlich durchgeführte oder auch angeratene Untersuchungen erfasst werden."] },
+    ],
+  },
+  {
+    id: "mein-vorgehen",
+    heading: "Mein Vorgehen bei den Gesundheitsfragen",
+    blocks: [
+      { type: "p", parts: ["Ich würde die Gesundheitsprüfung niemals isoliert betrachten."] },
+      { type: "p", parts: ["Mein Prozess sieht typischerweise so aus:"] },
+      {
+        type: "steps",
+        items: [
+          { title: "Gesundheitshistorie erfassen", body: "Was ist in den relevanten Jahren gesundheitlich passiert?" },
+          { title: "Medizinische Unterlagen prüfen", body: "Falls notwendig, beschaffen und bewerten wir Unterlagen." },
+          { title: "Diagnosen aufbereiten", body: "Nicht nur Diagnose nennen, sondern Verlauf, Therapie und heutigen Zustand erklären." },
+          { title: "Gesundheitsfragen des Marktes vergleichen", body: "Jetzt schauen wir konkret: Welche Gesellschaft fragt was?" },
+          { title: "Sonderaktionen prüfen", body: "Gibt es aktuell eine vereinfachte Gesundheitsprüfung, die zu dir passt?" },
+          { title: "Risikovoranfrage durchführen", body: "Bei relevanten Vorerkrankungen hole ich gezielte anonyme Voten ein." },
+          { title: "Versicherungsbedingungen und Beiträge vergleichen", body: "Erst jetzt kommt die klassische Tarifauswahl." },
+          { title: "Antrag stellen", body: "Nachdem die Strategie steht, erfolgt der eigentliche Antrag." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "guenstigster-tarif-beispiel",
+    heading: "Praxisbeispiel: Warum der günstigste BU-Tarif wertlos sein kann",
+    blocks: [
+      { type: "p", parts: ["Stell dir vor:"] },
+      { type: "list", items: ["32 Jahre alt", "Ingenieur", "2.500 Euro gewünschte BU-Rente", "Psychotherapie vor sechs Jahren", "seitdem vollständig beschwerdefrei"] },
+      {
+        type: "compare",
+        quoted: false,
+        labelA: "Versicherer A",
+        textA: "Beitrag: 71 Euro",
+        noteA: "Psychotherapie wird 10 Jahre abgefragt.",
+        labelB: "Versicherer B",
+        textB: "Beitrag: 79 Euro",
+        noteB: "Psychotherapie wird 5 Jahre abgefragt.",
+      },
+      { type: "p", parts: ["Ein Vergleichsrechner zeigt zunächst:"] },
+      { type: "standalone", text: "Versicherer A ist günstiger." },
+      { type: "p", parts: ["Für deinen individuellen Fall kann Versicherer B trotzdem die interessantere Ausgangslage bieten."] },
+      { type: "p", parts: ["Und genau deshalb ist eine BU kein Produkt, das man ausschließlich über Preislisten vergleichen sollte."] },
+    ],
+  },
+  {
+    id: "nicht-alles",
+    heading: "Die Gesundheitsfragen sind wichtig – aber nicht alles",
+    blocks: [
+      { type: "p", parts: ["Bei aller Bedeutung möchte ich einen Punkt nicht verschweigen:"] },
+      { type: "callout", text: "Ich würde niemals einen fachlich schlechten BU-Tarif ausschließlich deshalb empfehlen, weil dessen Gesundheitsfragen angenehmer sind." },
+      { type: "p", parts: ["Die Gesundheitsprüfung ist ein Teil der Entscheidung."] },
+      { type: "p", parts: ["Daneben müssen unter anderem stimmen:"] },
+      {
+        type: "list",
+        items: [
+          "Definition der Berufsunfähigkeit",
+          "Nachversicherungsmöglichkeiten",
+          "Dynamik",
+          "garantierte Rentensteigerung",
+          "Teilzeitregelungen",
+          "Berufswechsel",
+          "konkrete Verweisung",
+          "Leistungsprüfung",
+          "Laufzeit",
+          "Beitrag",
+          "finanzielle Angemessenheit",
+          "und die gesamte Vertragsgestaltung",
+        ],
+      },
+      { type: "p", parts: ["Die beste Lösung entsteht aus:"] },
+      { type: "callout", text: "guten Versicherungsbedingungen + passender Risikoprüfung + sauberer Antragsstrategie." },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-24 px-4 py-16 sm:px-6 lg:px-8">
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone")
+              return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "callout")
+              return (
+                <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+                  <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">{block.text}</p>
+                </div>
+              );
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "statRow")
+              return (
+                <div class="flex flex-wrap justify-center gap-4 py-2">
+                  {block.items.map((item) => (
+                    <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-4 text-center">
+                      <p class="font-serif text-lg font-semibold text-brand-700">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              );
+            if (block.type === "resultsList")
+              return (
+                <ul class="divide-y divide-black/5 overflow-hidden rounded-xl border border-black/5 bg-white">
+                  {block.items.map((item) => (
+                    <li class="flex items-center justify-between gap-4 px-5 py-3.5 text-sm">
+                      <span class="font-medium text-ink-950">{item.label}</span>
+                      <span class="text-ink-700/80">{item.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "steps")
+              return (
+                <ol class="space-y-6 pt-2">
+                  {block.items.map((item, index) => (
+                    <li class="flex gap-4">
+                      <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink-950 text-sm font-semibold text-white">
+                        {index + 1}
+                      </span>
+                      <div class="min-w-0 pt-0.5">
+                        <p class="font-semibold text-ink-950">{item.title}</p>
+                        <p class="mt-1 text-sm leading-relaxed text-ink-700/80">{item.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              );
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[640px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            if (block.type === "compare")
+              return (
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-2xl border border-black/5 bg-white p-5">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{block.labelA}</p>
+                    <p class="mt-2 font-serif text-base leading-relaxed text-ink-950">
+                      {block.quoted ? `„${block.textA}“` : block.textA}
+                    </p>
+                    {block.noteA && <p class="mt-2.5 text-sm leading-relaxed text-ink-700/70">{block.noteA}</p>}
+                  </div>
+                  <div class="rounded-2xl border border-black/5 bg-white p-5">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{block.labelB}</p>
+                    <p class="mt-2 font-serif text-base leading-relaxed text-ink-950">
+                      {block.quoted ? `„${block.textB}“` : block.textB}
+                    </p>
+                    {block.noteB && <p class="mt-2.5 text-sm leading-relaxed text-ink-700/70">{block.noteB}</p>}
+                  </div>
+                </div>
+              );
+            if (block.type === "quotePair")
+              return (
+                <div class="space-y-3 rounded-xl border border-black/5 bg-white p-5">
+                  <p class="text-sm leading-relaxed text-ink-950">
+                    <span class="mr-2 font-semibold uppercase tracking-wide text-brand-600">{block.goodLabel}:</span>
+                    <span class="font-serif italic">„{block.good}“</span>
+                  </p>
+                  <p class="text-sm leading-relaxed text-ink-950">
+                    <span class="mr-2 font-semibold uppercase tracking-wide text-ink-400">{block.badLabel}:</span>
+                    <span class="font-serif italic">„{block.bad}“</span>
+                  </p>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

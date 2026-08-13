@@ -1,0 +1,56 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/buGesundheitsfragen/Hero.astro";
+import TableOfContents from "@/components/buGesundheitsfragen/TableOfContents.astro";
+import Article from "@/components/buGesundheitsfragen/Article.astro";
+import Faq from "@/components/buGesundheitsfragen/Faq.astro";
+import Conclusion from "@/components/buGesundheitsfragen/Conclusion.astro";
+import FinalCta from "@/components/FinalCta.astro";
+
+const pageTitle = "Gesundheitsfragen in der Berufsunfähigkeitsversicherung: Warum bei der BU jedes Wort entscheidend sein kann";
+const pageDescription =
+  "BU-Gesundheitsfragen im Detail: Warum Wortlaut und Zeitraum über die Versicherbarkeit entscheiden — mit Praxisbeispielen und Versichererübersicht.";
+const canonicalUrl = new URL("/bu-gesundheitsfragen", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: pageTitle,
+  description: pageDescription,
+  inLanguage: "de-DE",
+  datePublished: "2026-08-13",
+  dateModified: "2026-08-13",
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
+  publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Berufsunfähigkeitsversicherung", item: new URL("/bu", Astro.site).toString() },
+    { "@type": "ListItem", position: 3, name: "Gesundheitsfragen", item: canonicalUrl },
+  ],
+};
+---
+
+<Layout title="BU Gesundheitsfragen: Wortlaut, Zeiträume & Risikoprüfung" description={pageDescription}>
+  <Hero />
+  <TableOfContents />
+  <Article />
+  <Faq />
+  <Conclusion />
+  <FinalCta
+    id="final-cta"
+    title="Du hast Vorerkrankungen oder bist unsicher, was du bei den BU-Gesundheitsfragen angeben musst?"
+    titleHighlight="BU-Gesundheitsfragen"
+    body="Dann musst du nicht selbst Dutzende BU-Anträge miteinander vergleichen. Ich prüfe gemeinsam mit dir deine Gesundheitshistorie, die passenden Gesundheitsfragen, aktuelle Sonderaktionen und – wenn sinnvoll – die Möglichkeiten einer anonymen Risikovoranfrage."
+    ctaLabel="Jetzt BU-Beratung anfragen"
+    closingLine="Persönlich. Ehrlich. Auf Augenhöhe. Kein Verkaufsgespräch, sondern ein ehrlicher Austausch über deine Gesundheitshistorie und mögliche nächste Schritte."
+  />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

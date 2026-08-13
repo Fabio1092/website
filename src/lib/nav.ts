@@ -28,6 +28,7 @@ export const primaryNav: NavLink[] = [
       { label: "BU für Studenten", href: "/bu-studenten-kassel" },
       { label: "BU/DU für Beamte", href: "/bu-beamte-kassel" },
       { label: "Risikovoranfrage", href: "/bu-risikovoranfrage" },
+      { label: "Gesundheitsfragen", href: "/bu-gesundheitsfragen" },
     ],
   },
   { label: "360° Beratung", href: "/360-beratung" },

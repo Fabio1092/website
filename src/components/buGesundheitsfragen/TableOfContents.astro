@@ -1,0 +1,49 @@
+---
+const entries = [
+  { id: "welche-gesundheitsfragen", label: "Welche Gesundheitsfragen stellt eine BU?" },
+  { id: "offene-geschlossene-fragen", label: "Offene vs. geschlossene Gesundheitsfragen" },
+  { id: "praxisbeispiel-ruecken", label: "Praxisbeispiel: Der gleiche Rücken" },
+  { id: "wichtige-woerter", label: "„Angeraten“, „geplant“ oder „vorgesehen“" },
+  { id: "abfragezeitraeume", label: "Abfragezeiträume: 3, 5 oder 10 Jahre" },
+  { id: "versicherer-vergleich", label: "Vergleich bekannter BU-Versicherer" },
+  { id: "bagatellen", label: "Bagatellerkrankungen: Allianz & Nürnberger" },
+  { id: "kundenfreundlich-kriterien", label: "Kundenfreundliche vs. schwierige Fragen" },
+  { id: "psychotherapie-beispiel", label: "Praxisbeispiel: Psychotherapie" },
+  { id: "krankenakte-pruefen", label: "Krankenakte vor dem Antrag prüfen" },
+  { id: "ja-antwort", label: "Was passiert bei einer Ja-Antwort?" },
+  { id: "anonyme-risikovoranfrage", label: "Anonyme Risikovoranfrage" },
+  { id: "sonderaktionen", label: "Sonderaktionen mit vereinfachten Fragen" },
+  { id: "untersuchungsgrenzen", label: "Untersuchungsgrenzen bei hoher BU-Rente" },
+  { id: "eigenschaften-kundenfreundlich", label: "5 Eigenschaften kundenfreundlicher Fragen" },
+  { id: "mein-vorgehen", label: "Mein Vorgehen bei den Gesundheitsfragen" },
+  { id: "guenstigster-tarif-beispiel", label: "Praxisbeispiel: Der günstigste Tarif" },
+  { id: "nicht-alles", label: "Wichtig – aber nicht alles" },
+  { id: "faq", label: "Häufige Fragen" },
+  { id: "fazit", label: "Fazit" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>

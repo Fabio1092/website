@@ -1,0 +1,60 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const pairs = [
+  "3 statt 5 Jahre",
+  "5 statt 10 Jahre",
+  "„behandelt“ statt „bestanden“",
+  "„durchgeführt“ statt „angeraten“",
+  "offene Beschwerden statt klarer Arztbezug",
+  "regulärer Antrag statt passender Sonderaktion",
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Fazit: Gesundheitsfragen sind kein Formularproblem, sondern Teil der BU-Strategie
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Wenn du eine Berufsunfähigkeitsversicherung abschließt, solltest du die Gesundheitsfragen nicht einfach schnell ausfüllen."]} />
+      <RichParagraph parts={["Denn zwischen diesen Formulierungen:"]} />
+      <blockquote class="border-l-2 border-brand-200 pl-5">
+        <p class="font-serif text-lg italic leading-relaxed text-ink-950">„Bestanden Beschwerden?“</p>
+      </blockquote>
+      <RichParagraph parts={["und"]} />
+      <blockquote class="border-l-2 border-brand-200 pl-5">
+        <p class="font-serif text-lg italic leading-relaxed text-ink-950">„Wurden Sie wegen Beschwerden ärztlich behandelt?“</p>
+      </blockquote>
+      <RichParagraph parts={["liegen nur wenige Wörter."]} />
+      <RichParagraph parts={["Für deinen Antrag können sie einen erheblichen Unterschied machen."]} />
+      <RichParagraph parts={["Dasselbe gilt für:"]} />
+
+      <ul class="space-y-2">
+        {
+          pairs.map((pair) => (
+            <li class="flex items-baseline gap-2.5 text-base font-medium leading-relaxed text-ink-950">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {pair}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Genau hier sehe ich meine Aufgabe."]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">Ich führe dich durch diesen Dschungel.</p>
+      <RichParagraph
+        parts={[
+          "Wir arbeiten zunächst deine Gesundheitshistorie sauber auf. Anschließend prüfe ich die relevanten Gesundheitsfragen und aktuell verfügbaren Sonderaktionen. Bei Vorerkrankungen nutze ich, wenn sinnvoll, eine anonyme Risikovoranfrage und vergleiche die Ergebnisse verschiedener Risikoprüfer.",
+        ]}
+      />
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Erst danach entscheiden wir gemeinsam, welcher Versicherer und welcher Tarif wirklich zu dir passen.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
