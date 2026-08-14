@@ -2,12 +2,7 @@
 import { CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 
-const trustPoints = [
-  "Mehr als 300 Risikovoranfragen begleitet",
-  "Spezialisierung auf Berufsunfähigkeitsversicherung",
-  "Persönlicher Ansprechpartner aus Kassel",
-  "Beratung digital oder persönlich möglich",
-];
+const trustPoints = ["300+ Risikovoranfragen begleitet", "Spezialisierung auf Berufsunfähigkeitsversicherung", "Persönlicher Ansprechpartner aus Kassel"];
 ---
 
 <section id="landing-hero" class="relative overflow-hidden bg-white">
@@ -24,23 +19,22 @@ const trustPoints = [
       </h1>
 
       <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-700/80 lg:mx-0">
-        Finde heraus, welche BU wirklich zu dir passt – bevor du einen Antrag stellst.
+        Erst prüfen, was möglich ist. Dann die passende BU auswählen.
       </p>
 
       <div class="mx-auto mt-5 max-w-xl space-y-3 text-base leading-relaxed text-ink-700/75 lg:mx-0">
         <p>
-          Welche Berufsunfähigkeitsversicherung sinnvoll ist, entscheidet sich nicht nur am Preis.
-          Dein Beruf, dein Einkommen, deine Gesundheitshistorie und die Vertragsbedingungen
-          entscheiden darüber, welcher Versicherer zu dir passt und wie gut du im Ernstfall
-          tatsächlich abgesichert bist.
+          Eine gute Berufsunfähigkeitsversicherung hängt nicht nur vom Preis ab. Dein Beruf, dein
+          Einkommen, deine Gesundheitshistorie und die Vertragsbedingungen entscheiden darüber,
+          welcher Versicherer wirklich zu deiner Situation passt.
         </p>
         <p>
-          Ich unterstütze dich dabei, deine Möglichkeiten strukturiert zu prüfen – auf Wunsch
-          inklusive professioneller Risikovoranfrage vor der eigentlichen Antragstellung.
+          Ich unterstütze dich dabei, deine Möglichkeiten strukturiert zu prüfen – bei Bedarf
+          inklusive professioneller Risikovoranfrage, bevor überhaupt ein Antrag gestellt wird.
         </p>
       </div>
 
-      <ul class="mx-auto mt-7 flex max-w-xl flex-col gap-2.5 text-left sm:grid sm:grid-cols-2 lg:mx-0">
+      <ul class="mx-auto mt-7 flex max-w-md flex-col gap-2.5 text-left lg:mx-0">
         {
           trustPoints.map((point) => (
             <li class="flex items-start gap-2.5 text-sm text-ink-700/85">
@@ -62,7 +56,7 @@ const trustPoints = [
           Kostenlosen BU-Check starten
         </a>
         <p class="text-sm text-ink-700/60">15 Minuten · kostenlos · unverbindlich</p>
-        <p class="text-sm font-medium text-brand-700">Erst prüfen. Dann entscheiden.</p>
+        <p class="text-sm font-medium text-brand-700">Keine Verpflichtung. Kein vorschneller Antrag.</p>
       </div>
     </div>
 

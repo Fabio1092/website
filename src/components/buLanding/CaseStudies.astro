@@ -1,5 +1,4 @@
 ---
-import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 ---
 
@@ -14,16 +13,17 @@ import { siteConfig } from "@/lib/site";
     <div class="mt-12 space-y-6">
       <div data-reveal class="shadow-soft rounded-3xl bg-white p-8 sm:p-10">
         <span class="inline-flex items-center rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
-          Neukunde
+          Max, 29 · Ingenieur
         </span>
-        <h3 class="mt-4 font-serif text-xl font-semibold text-ink-950">Max, 29, Ingenieur — BU von Anfang an strukturiert angegangen</h3>
+        <h3 class="mt-4 font-serif text-xl font-semibold text-ink-950">Neue BU strukturiert angegangen</h3>
         <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-ink-700/75">
           Max wollte erstmals eine Berufsunfähigkeitsversicherung abschließen. Statt direkt einen
-          Antrag einzureichen, wurde seine persönliche Situation zunächst geprüft und eine
-          Risikovoranfrage durchgeführt.
+          Antrag bei irgendeinem Versicherer einzureichen, wurde seine Situation zunächst geprüft
+          und eine Risikovoranfrage durchgeführt.
         </p>
 
-        <div class="mt-7 grid grid-cols-3 gap-4 border-t border-black/[0.06] pt-7 text-center">
+        <p class="mt-7 border-t border-black/[0.06] pt-6 text-xs font-semibold uppercase tracking-wide text-ink-700/45">Ergebnis des konkreten Falls</p>
+        <div class="mt-4 grid grid-cols-3 gap-4 text-center">
           <div>
             <p class="font-serif text-2xl font-semibold text-ink-950 sm:text-3xl">2.000 €</p>
             <p class="mt-1 text-xs text-ink-700/60">monatliche BU-Rente</p>
@@ -34,46 +34,39 @@ import { siteConfig } from "@/lib/site";
           </div>
           <div>
             <p class="font-serif text-lg font-semibold text-brand-700 sm:text-xl">Ohne Ausschluss</p>
-            <p class="mt-1 text-xs text-ink-700/60">Annahme</p>
+            <p class="mt-1 text-xs text-ink-700/60">vereinbarter Leistungsausschluss</p>
           </div>
         </div>
 
         <p class="mt-7 border-t border-black/[0.06] pt-6 text-sm font-medium text-brand-700">
-          Für Max konnte damit eine passende Lösung umgesetzt werden, ohne vorher unnötig
+          So konnte für Max eine passende Lösung umgesetzt werden, ohne vorher unnötig
           verschiedene Anträge zu stellen.
         </p>
-        <p class="mt-3 text-xs leading-relaxed text-ink-700/50">
-          Die dargestellten Ergebnisse beziehen sich auf einen individuellen Einzelfall und sind
-          nicht auf andere Personen übertragbar.
-        </p>
+        <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Individueller Beratungsfall. Ergebnisse sind nicht auf andere Personen übertragbar.</p>
       </div>
 
       <div data-reveal style="transition-delay: 100ms" class="shadow-soft rounded-3xl bg-white p-8 sm:p-10">
         <span class="inline-flex items-center rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
-          Bestehende BU
+          Julia, 38 · Marketing-Managerin
         </span>
-        <h3 class="mt-4 font-serif text-xl font-semibold text-ink-950">Julia, 38, Marketing-Managerin — erst prüfen, dann verändern</h3>
+        <h3 class="mt-4 font-serif text-xl font-semibold text-ink-950">Bestehende BU zuerst geprüft</h3>
         <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-ink-700/75">
-          Julia hatte bereits seit sechs Jahren eine Berufsunfähigkeitsversicherung. Der
-          bestehende Vertrag wurde analysiert und anschließend geprüft, welche Alternativen unter
-          Berücksichtigung ihrer persönlichen Situation möglich waren.
+          Julia hatte bereits seit sechs Jahren eine Berufsunfähigkeitsversicherung. Bevor etwas
+          verändert wurde, haben wir zunächst ihren bestehenden Vertrag analysiert und
+          anschließend geprüft, welche Alternativen unter Berücksichtigung ihrer persönlichen
+          Situation überhaupt möglich waren.
         </p>
 
-        <div class="mt-8 grid items-center gap-6 border-t border-black/[0.06] pt-7 sm:grid-cols-[1fr_auto_1fr]">
+        <div class="mt-7 grid gap-6 border-t border-black/[0.06] pt-6 sm:grid-cols-2">
           <div>
-            <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/45">Bisheriger Vertrag</p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/45">Vorher</p>
             <ul class="mt-3 space-y-1.5">
               <li class="text-sm text-ink-700/60 line-through decoration-ink-700/30">142,37 € monatlicher Beitrag</li>
               <li class="text-sm text-ink-700/60 line-through decoration-ink-700/30">1.500 € monatliche BU-Rente</li>
             </ul>
           </div>
-
-          <div class="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600 sm:flex">
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </div>
-
           <div class="border-t border-black/[0.06] pt-5 sm:border-t-0 sm:pt-0">
-            <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Neue Lösung</p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Nachher</p>
             <ul class="mt-3 space-y-1.5">
               <li class="text-sm font-medium text-ink-950">69,11 € monatlicher Beitrag</li>
               <li class="text-sm font-medium text-ink-950">2.000 € monatliche BU-Rente</li>
@@ -82,15 +75,15 @@ import { siteConfig } from "@/lib/site";
           </div>
         </div>
 
-        <p class="mt-7 border-t border-black/[0.06] pt-6 text-sm font-medium text-brand-700">
-          Das entsprach in diesem individuellen Fall einer Differenz von 73,26 € monatlich beim
-          Beitrag und 500 € zusätzlicher monatlicher BU-Rente.
-        </p>
+        <div class="mt-7 border-t border-black/[0.06] pt-6 text-sm font-medium text-brand-700">
+          <p>In diesem konkreten Fall bedeutete das:</p>
+          <p class="mt-1">73,26 € weniger monatlicher Beitrag und gleichzeitig 500 € mehr monatliche BU-Rente.</p>
+        </div>
         <p class="mt-4 rounded-xl bg-black/[0.02] p-4 text-xs leading-relaxed text-ink-700/55">
-          <strong class="font-semibold text-ink-700/70">Wichtig:</strong> So ein Ergebnis ist kein
-          Versprechen. Ob und welche Verbesserung möglich ist, hängt immer von deinem bestehenden
-          Vertrag, deinem Beruf, deinem Alter, deiner Gesundheit und den aktuellen Möglichkeiten
-          bei Versicherern ab. Deshalb prüfen wir zuerst.
+          <strong class="font-semibold text-ink-700/70">Aber wichtig:</strong> Das ist kein
+          Versprechen für dein persönliches Ergebnis. Was bei dir möglich ist, hängt unter anderem
+          von deinem bestehenden Vertrag, deinem Alter, deinem Beruf und deiner Gesundheit ab.
+          Deshalb prüfen wir zuerst.
         </p>
       </div>
     </div>

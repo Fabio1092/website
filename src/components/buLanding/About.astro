@@ -1,22 +1,31 @@
 ---
-import { UserCheck, MapPin, Laptop } from "lucide-react";
-import { siteConfig } from "@/lib/site";
+import { Target, TrendingUp, Scale, MapPin, Laptop } from "lucide-react";
 
 const points = [
   {
-    icon: UserCheck,
-    title: "Persönlicher Ansprechpartner",
-    text: "Du weißt, mit wem du sprichst und hast während des Prozesses einen festen Ansprechpartner.",
+    icon: Target,
+    title: "BU-Spezialisierung",
+    text: "Die Berufsunfähigkeitsversicherung und insbesondere der Umgang mit Risikovoranfragen sind ein Schwerpunkt meiner Beratung.",
+  },
+  {
+    icon: TrendingUp,
+    title: "300+ Risikovoranfragen",
+    text: "Ich habe bereits mehr als 300 Risikovoranfragen begleitet und dadurch unterschiedlichste Ausgangssituationen erlebt.",
+  },
+  {
+    icon: Scale,
+    title: "Unabhängige Beratung",
+    text: "Als Versicherungsmakler bin ich nicht an einen einzelnen Versicherer gebunden. Wir können deshalb unterschiedliche Möglichkeiten betrachten und miteinander vergleichen.",
   },
   {
     icon: MapPin,
     title: "Aus Kassel. Für Nordhessen.",
-    text: "Mein Standort ist Kassel. Wenn du aus Kassel, Baunatal, Vellmar, Lohfelden, Kaufungen oder der Region Nordhessen kommst, hast du damit einen Ansprechpartner direkt aus deiner Region.",
+    text: "Mein Standort ist Kassel. Ich berate Kunden aus Kassel, Baunatal, Vellmar, Lohfelden, Kaufungen und der Region Nordhessen.",
   },
   {
     icon: Laptop,
-    title: "Gleichzeitig komplett digital möglich",
-    text: "Wenn du keine Lust auf Papierordner oder mehrere Vor-Ort-Termine hast, kann die Beratung auch digital stattfinden. Persönlich, verständlich und ohne unnötigen Fachjargon.",
+    title: "Persönlich oder digital",
+    text: "Du entscheidest, was besser zu dir passt. Die Beratung kann persönlich oder vollständig digital durchgeführt werden.",
   },
 ];
 ---
@@ -40,32 +49,11 @@ const points = [
       </div>
 
       <div data-reveal class="min-w-0">
-        <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">BU-Beratung mit klarem Schwerpunkt</p>
-        <h2 class="mt-3 font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Hi, ich bin Fabio.</h2>
+        <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+          Warum <span class="text-brand-600">mit mir?</span>
+        </h2>
 
-        <div class="mt-5 space-y-3 text-base leading-relaxed text-ink-700/80">
-          <p>Ich bin Versicherungs- und Finanzmakler aus Kassel.</p>
-          <p>
-            Ein Schwerpunkt meiner Arbeit liegt auf der Berufsunfähigkeitsversicherung und
-            insbesondere auf der strukturierten Vorbereitung von Risikovoranfragen.
-          </p>
-          <p>Ich habe bereits mehrere hundert Risikovoranfragen begleitet.</p>
-          <p>
-            Diese Erfahrung hilft mir dabei, unterschiedliche Ausgangssituationen sauber
-            aufzubereiten und gemeinsam mit meinen Kunden strukturiert zu prüfen, welche
-            Möglichkeiten infrage kommen.
-          </p>
-        </div>
-
-        <div class="mt-6 rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
-          <p class="font-serif text-lg leading-relaxed text-ink-950">
-            „Ich möchte dir nicht möglichst schnell eine Versicherung verkaufen. Ich möchte, dass
-            du verstehst, warum eine Lösung zu dir passt – oder warum eine Veränderung gerade
-            keinen Sinn ergibt.“
-          </p>
-        </div>
-
-        <div class="mt-8 space-y-5">
+        <div class="mt-8 space-y-6">
           {
             points.map((point) => (
               <div class="flex items-start gap-4">
@@ -79,19 +67,6 @@ const points = [
               </div>
             ))
           }
-        </div>
-
-        <div class="mt-8">
-          <a
-            href={siteConfig.calendlyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-cta="about-cta"
-            class="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
-          >
-            Fabio kennenlernen
-          </a>
-          <p class="mt-3 text-sm text-ink-700/55">Kostenloses 15-Minuten-Erstgespräch</p>
         </div>
       </div>
     </div>

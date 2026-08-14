@@ -1,0 +1,61 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+
+const checklist = ["Wo du aktuell stehst", "Was du absichern möchtest", "Welche Fragen bei dir offen sind", "Welcher nächste Schritt sinnvoll sein könnte"];
+---
+
+<section id="final-cta" class="relative overflow-hidden bg-ink-950 py-24 text-white">
+  <div
+    class="pointer-events-none absolute left-1/2 top-0 h-[28rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/15 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="pointer-events-none absolute -bottom-24 right-[-8%] h-72 w-72 rounded-full bg-gold-500/10 blur-3xl" aria-hidden="true"></div>
+
+  <div data-reveal class="relative mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+      Du musst heute noch <span class="text-brand-400">keine Berufs&shy;unfähigkeits&shy;versicherung</span> auswählen.
+    </h2>
+    <p class="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-white/70">Du solltest nur wissen, was dein sinnvollster nächster Schritt ist.</p>
+
+    <div class="mx-auto mt-6 max-w-md space-y-1.5 text-sm leading-relaxed text-white/60">
+      <p>Vielleicht brauchst du eine neue BU.</p>
+      <p>Vielleicht sollte dein bestehender Vertrag einmal genauer geprüft werden.</p>
+      <p>Vielleicht ist dein aktueller Schutz bereits gut und du musst überhaupt nichts verändern.</p>
+    </div>
+    <p class="mt-4 text-sm font-medium text-white/85">Genau das finden wir heraus.</p>
+
+    <p class="mt-8 text-sm text-white/70">In einem kostenlosen 15-minütigen Erstgespräch klären wir:</p>
+    <ul class="mx-auto mt-5 grid max-w-md grid-cols-1 gap-x-8 gap-y-3 text-left sm:grid-cols-2">
+      {
+        checklist.map((point) => (
+          <li class="flex items-center gap-2.5 text-sm text-white/80">
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
+            {point}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-8 font-serif text-xl font-semibold">Erst Klarheit. Dann Entscheidung.</p>
+
+    <a
+      href={siteConfig.calendlyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cta="final-bu-check"
+      class="shadow-lift mt-8 inline-flex items-center justify-center rounded-full bg-gold-500 px-8 py-4 text-sm font-semibold text-ink-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+    >
+      Kostenlosen BU-Check starten
+    </a>
+    <p class="mt-4 text-sm text-white/50">15 Minuten · kostenlos · unverbindlich</p>
+    <p class="mt-1 text-sm text-white/50">Kein vorschneller Antrag. Keine Abschlussverpflichtung.</p>
+
+    <div class="mx-auto mt-14 max-w-xs border-t border-white/10 pt-8">
+      <p class="font-serif text-base font-semibold text-white">Fabio Rumpf</p>
+      <p class="mt-1 text-xs text-white/50">Versicherungs- und Finanzmakler</p>
+      <p class="text-xs text-white/50">Kassel · Nordhessen</p>
+    </div>
+  </div>
+</section>

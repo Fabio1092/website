@@ -1,6 +1,14 @@
 ---
+import { CheckCircle2 } from "lucide-react";
 import ComparisonSplit from "@/components/ComparisonSplit.astro";
 import { siteConfig } from "@/lib/site";
+
+const checklist = [
+  "Welche Versicherer grundsätzlich infrage kommen",
+  "Welche Annahmebedingungen möglich sein könnten",
+  "Ob Zuschläge oder Leistungsausschlüsse zu erwarten sind",
+  "Welche Anbieter für deine Situation besonders interessant sind",
+];
 
 const columns: [
   { tone: "neutral"; label: string; points: string[] },
@@ -10,22 +18,22 @@ const columns: [
     tone: "neutral",
     label: "Direkt einen Antrag stellen",
     points: [
-      "Du legst dich früh auf einen Versicherer fest",
-      "Die individuelle Risikoprüfung erfolgt im Antragsprozess",
-      "Zuschläge oder Ausschlüsse zeigen sich möglicherweise erst danach",
-      "Vergleichbare Alternativen wurden vorher eventuell nicht geprüft",
+      "Du entscheidest dich früh für einen Versicherer",
+      "Deine Risikoprüfung erfolgt erst im konkreten Antragsprozess",
+      "Mögliche Zuschläge oder Ausschlüsse zeigen sich möglicherweise erst danach",
+      "Andere Versicherer wurden eventuell noch nicht geprüft",
       "Eine Ablehnung kann weitere Schritte unnötig komplizierter machen",
     ],
   },
   {
     tone: "brand",
-    label: "Erst mit Risikovoranfrage prüfen",
+    label: "Erst Möglichkeiten prüfen",
     points: [
-      "Deine Situation wird strukturiert aufbereitet",
-      "Mehrere geeignete Versicherer können betrachtet werden",
-      "Mögliche Annahmebedingungen werden vorab vergleichbarer",
-      "Auffälligkeiten können vor einer Antragstellung erkannt werden",
-      "Danach kannst du wesentlich bewusster entscheiden, wo ein Antrag sinnvoll ist",
+      "Deine Situation wird strukturiert vorbereitet",
+      "Geeignete Versicherer können gezielt betrachtet werden",
+      "Mögliche Annahmebedingungen werden vergleichbarer",
+      "Auffälligkeiten können bereits vor einem Antrag sichtbar werden",
+      "Du kannst anschließend wesentlich bewusster entscheiden",
     ],
   },
 ];
@@ -35,30 +43,37 @@ const columns: [
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
-        Der wichtigste Schritt kann passieren, <span class="text-brand-600">bevor überhaupt ein Antrag gestellt wird.</span>
+        Der entscheidende Schritt kann passieren, <span class="text-brand-600">bevor überhaupt ein Antrag gestellt wird.</span>
       </h2>
-      <p class="mt-5 text-lg leading-relaxed text-ink-700/80">
-        Erst prüfen, wie Versicherer deine Situation einschätzen. Dann gezielt entscheiden.
-      </p>
+      <p class="mt-5 text-lg leading-relaxed text-ink-700/80">Erst Versicherbarkeit prüfen. Dann gezielt entscheiden.</p>
       <p class="mt-4 text-base leading-relaxed text-ink-700/70">
-        Gerade wenn gesundheitliche Themen bestehen, kann eine professionelle Risikovoranfrage
-        sinnvoll sein. Dabei wird nicht einfach wahllos ein Antrag bei einem Versicherer
-        eingereicht. Stattdessen bereiten wir deine Situation strukturiert auf und prüfen bei
-        ausgewählten Versicherern vorab, wie diese deine persönliche Konstellation grundsätzlich
-        einschätzen und welche Bedingungen möglich sein könnten. Das verschafft dir wesentlich
-        mehr Klarheit für die anschließende Entscheidung.
+        Gerade bei gesundheitlichen Themen kann es sinnvoll sein, nicht sofort einen konkreten
+        BU-Antrag einzureichen. Stattdessen können wir deine Situation zunächst strukturiert
+        aufbereiten und bei geeigneten Versicherern prüfen, wie diese deine persönliche
+        Ausgangslage einschätzen. Das nennt man eine Risikovoranfrage.
+      </p>
+      <p class="mt-4 text-sm font-semibold text-ink-950">
+        Sie kann dir helfen, bereits vor einer Antragstellung besser zu verstehen:
       </p>
     </div>
+
+    <ul class="mx-auto mt-6 grid max-w-2xl gap-x-8 gap-y-2.5 sm:grid-cols-2">
+      {
+        checklist.map((item) => (
+          <li class="flex items-start gap-2.5 text-sm leading-relaxed text-ink-700/85">
+            <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+            {item}
+          </li>
+        ))
+      }
+    </ul>
 
     <div class="mt-12">
       <ComparisonSplit columns={columns} />
     </div>
 
     <div class="mx-auto mt-12 max-w-xl text-center">
-      <p class="text-lg font-medium text-ink-950">
-        Du stellst also nicht einfach irgendwo einen Antrag. Du prüfst zuerst deine Möglichkeiten
-        und triffst danach eine fundierte Entscheidung.
-      </p>
+      <p class="font-serif text-xl font-semibold text-ink-950">Erst prüfen. Dann Antrag stellen.</p>
       <div class="mt-8">
         <a
           href={siteConfig.calendlyUrl}
@@ -67,9 +82,9 @@ const columns: [
           data-cta="risk-check"
           class="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
         >
-          Risikovoranfrage besprechen
+          Risikovoranfrage unverbindlich besprechen
         </a>
-        <p class="mt-3 text-sm text-ink-700/55">Kostenloses Erstgespräch · kein Abschlusszwang</p>
+        <p class="mt-3 text-sm text-ink-700/55">15 Minuten · kostenlos · ohne Abschlussverpflichtung</p>
       </div>
     </div>
   </div>

@@ -3,21 +3,21 @@ import { CheckCircle2, ShieldAlert } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 
 const noBuPoints = [
-  "Welche BU-Rente zu deinem Einkommen und deinen laufenden Kosten passt",
-  "Wie dein konkreter Beruf von Versicherern eingestuft wird",
-  "Welche Vertragsbedingungen für dich wichtig sind",
-  "Wie deine Gesundheitshistorie sauber aufbereitet werden sollte",
-  "Welche Versicherer für deine Ausgangssituation infrage kommen",
-  "Ob vorab eine Risikovoranfrage sinnvoll ist",
+  "Welche BU-Rente zu deinem Einkommen passt",
+  "Wie dein Beruf von Versicherern eingestuft wird",
+  "Welche Vertragsbedingungen für dich relevant sind",
+  "Welche gesundheitlichen Angaben berücksichtigt werden müssen",
+  "Welche Versicherer zu deiner Ausgangssituation passen könnten",
+  "Ob eine Risikovoranfrage sinnvoll ist",
 ];
 
 const existingBuPoints = [
   "Wie hoch deine aktuelle BU-Rente ist",
   "Ob sie noch zu deinem heutigen Einkommen passt",
-  "Welche Leistungen dein Vertrag enthält",
-  "Welche Anpassungsmöglichkeiten du innerhalb des Vertrags hast",
-  "Welche Bedingungen heute alternativ möglich wären",
-  "Ob eine Veränderung überhaupt einen echten Vorteil bringt",
+  "Welche Leistungen und Bedingungen dein Vertrag enthält",
+  "Welche Anpassungsmöglichkeiten bestehen",
+  "Welche Alternativen heute grundsätzlich denkbar wären",
+  "Ob eine Veränderung dich tatsächlich besserstellen würde",
 ];
 ---
 
@@ -32,12 +32,9 @@ const existingBuPoints = [
         <span class="inline-flex w-fit items-center rounded-full bg-brand-600 px-3.5 py-1 text-xs font-semibold uppercase tracking-wide text-white">
           Noch keine BU
         </span>
-        <h3 class="mt-4 font-serif text-2xl font-semibold text-ink-950">Ich habe noch keine BU</h3>
-        <p class="mt-3 text-sm leading-relaxed text-ink-700/80">
-          Dann schauen wir gemeinsam, wie viel Absicherung du tatsächlich brauchst und welche
-          Möglichkeiten zu dir passen.
-        </p>
-        <p class="mt-5 text-sm font-semibold text-ink-950">Wir prüfen unter anderem:</p>
+        <h3 class="mt-4 hyphens-auto break-words font-serif text-2xl font-semibold text-ink-950">Ich habe noch keine Berufs&shy;unfähigkeits&shy;versicherung</h3>
+        <p class="mt-3 text-sm leading-relaxed text-ink-700/80">Dann schauen wir zuerst, wie deine Absicherung überhaupt aussehen sollte.</p>
+        <p class="mt-5 text-sm font-semibold text-ink-950">Unter anderem klären wir:</p>
         <ul class="mt-3 flex-1 space-y-2.5">
           {
             noBuPoints.map((point) => (
@@ -49,8 +46,8 @@ const existingBuPoints = [
           }
         </ul>
         <p class="mt-6 border-t border-black/[0.06] pt-5 text-sm leading-relaxed text-ink-700/70">
-          Das Ziel ist nicht, möglichst schnell irgendeine BU abzuschließen. Das Ziel ist, eine
-          Lösung zu finden, die du verstanden hast und die zu deiner Situation passt.
+          Das Ziel ist nicht, möglichst schnell irgendeinen Vertrag abzuschließen. Das Ziel ist
+          eine BU, die du verstanden hast und die zu deinem Leben passt.
         </p>
         <a
           href={siteConfig.calendlyUrl}
@@ -59,7 +56,7 @@ const existingBuPoints = [
           data-cta="no-bu-check"
           class="mt-7 inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
         >
-          Meine BU-Möglichkeiten prüfen
+          Meine Möglichkeiten prüfen
         </a>
       </div>
 
@@ -67,20 +64,21 @@ const existingBuPoints = [
         <span class="inline-flex w-fit items-center rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wide text-brand-300">
           Bestehende BU
         </span>
-        <h3 class="mt-4 font-serif text-2xl font-semibold">Ich habe bereits eine BU</h3>
+        <h3 class="mt-4 hyphens-auto break-words font-serif text-2xl font-semibold">Ich habe bereits eine Berufs&shy;unfähigkeits&shy;versicherung</h3>
 
-        <div class="mt-4 rounded-2xl border border-gold-500/20 bg-gold-500/10 px-5 py-4">
+        <p class="mt-4 text-sm leading-relaxed text-white/70">Dann gilt zunächst:</p>
+        <div class="mt-3 rounded-2xl border border-gold-500/20 bg-gold-500/10 px-5 py-4">
           <p class="text-sm font-semibold text-gold-300">Ein neuer Vertrag ist nicht automatisch ein besserer Vertrag.</p>
         </div>
 
         <p class="mt-4 text-sm leading-relaxed text-white/70">
-          Deine bestehende Berufsunfähigkeitsversicherung kann sehr wertvoll sein. Insbesondere
-          dann, wenn sich dein Gesundheitszustand seit Vertragsabschluss verändert hat oder dein
-          bestehender Vertrag Rechte enthält, die du heute so nicht mehr bekommen würdest.
+          Deine bestehende BU kann sehr wertvoll sein. Besonders dann, wenn sich deine Gesundheit
+          seit Abschluss verändert hat oder dein Vertrag Leistungen und Rechte enthält, die du
+          heute nicht ohne Weiteres wieder bekommen würdest.
         </p>
-        <p class="mt-3 text-sm font-medium text-white/85">Deshalb wird zunächst nichts gekündigt oder verändert.</p>
+        <p class="mt-3 text-sm font-medium text-white/85">Deshalb wird zunächst nichts gekündigt.</p>
 
-        <p class="mt-5 text-sm font-semibold text-white">Wir schauen uns zuerst an:</p>
+        <p class="mt-5 text-sm font-semibold text-white">Wir prüfen zuerst:</p>
         <ul class="mt-3 flex-1 space-y-2.5">
           {
             existingBuPoints.map((point) => (
@@ -94,7 +92,7 @@ const existingBuPoints = [
 
         <p class="mt-6 border-t border-white/10 pt-5 text-sm leading-relaxed text-white/70">
           Und wenn dein bestehender Vertrag bereits gut zu dir passt? Dann sage ich dir auch das.
-          Eine Veränderung macht nur Sinn, wenn sie dich tatsächlich besserstellt.
+          Eine Veränderung macht nur Sinn, wenn sie für dich tatsächlich einen Vorteil bringt.
         </p>
 
         <a
@@ -109,7 +107,7 @@ const existingBuPoints = [
 
         <p class="mt-4 flex items-center justify-center gap-2 text-center text-xs text-white/50">
           <ShieldAlert className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          Bestehenden Vertrag bitte nicht vorschnell kündigen.
+          Bitte bestehenden Versicherungsschutz nicht vorschnell kündigen.
         </p>
       </div>
     </div>
