@@ -1,0 +1,53 @@
+---
+const objections = [
+  {
+    thought: "Ich will eigentlich erstmal nur wissen, was überhaupt möglich ist.",
+    answer:
+      "Perfekt. Genau darum geht es im Erstgespräch. Du musst dort keine Versicherung auswählen und nichts abschließen. Wir klären zunächst nur deine Ausgangssituation und den möglichen nächsten Schritt.",
+  },
+  {
+    thought: "Ich habe gesundheitliche Vorerkrankungen.",
+    answer:
+      "Das bedeutet nicht automatisch, dass eine Berufsunfähigkeitsversicherung unmöglich ist. Gerade dann sollten wir aber nicht vorschnell vorgehen. Wir schauen uns deine Situation strukturiert an und besprechen, ob und wie eine Vorprüfung sinnvoll durchgeführt werden kann.",
+  },
+  {
+    thought: "Ich habe schon eine BU. Wahrscheinlich willst du mir einfach eine neue verkaufen.",
+    answer:
+      "Nein. Ein bestehender Vertrag wird nicht automatisch ersetzt. Wir prüfen zuerst, was du heute hast und ob eine Veränderung überhaupt sinnvoll wäre. Ist dein bestehender Vertrag die bessere Lösung, gibt es keinen vernünftigen Grund, ihn nur wegen eines neuen Angebots aufzugeben.",
+  },
+  {
+    thought: "Ich möchte nicht von zehn Versicherungen angerufen werden.",
+    answer:
+      "Dein Ansprechpartner während der Beratung bin ich. Wir besprechen gemeinsam, welche Schritte durchgeführt werden und welche Informationen dafür notwendig sind.",
+  },
+  {
+    thought: "Ist das Erstgespräch wirklich kostenlos?",
+    answer: "Ja. Das erste Gespräch ist kostenlos und unverbindlich. Wir klären darin, wo du stehst und ob eine weitere Beratung für dich sinnvoll ist.",
+  },
+];
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-center font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Vielleicht denkst du <span class="text-brand-600">gerade …</span>
+    </h2>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {
+        objections.map((item, index) => (
+          <div
+            data-reveal
+            style={`transition-delay: ${(index % 4) * 60}ms`}
+            class:list={["rounded-2xl border border-black/5 bg-brand-50/25 p-6", index === objections.length - 1 && "sm:col-span-2"]}
+          >
+            <p class="font-serif text-lg italic leading-snug text-ink-700/80">„{item.thought}“</p>
+            <div class="mt-4 border-t border-black/[0.06] pt-4">
+              <p class="text-sm leading-relaxed text-ink-950">{item.answer}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

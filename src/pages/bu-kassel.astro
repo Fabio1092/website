@@ -1,0 +1,42 @@
+---
+import LandingLayout from "@/layouts/LandingLayout.astro";
+import Hero from "@/components/buLanding/Hero.astro";
+import TrustBar from "@/components/buLanding/TrustBar.astro";
+import ProblemSection from "@/components/buLanding/ProblemSection.astro";
+import RiskInquiryUsp from "@/components/buLanding/RiskInquiryUsp.astro";
+import AudiencePaths from "@/components/buLanding/AudiencePaths.astro";
+import ClarityQuestions from "@/components/buLanding/ClarityQuestions.astro";
+import ProcessTimeline from "@/components/buLanding/ProcessTimeline.astro";
+import CaseStudies from "@/components/buLanding/CaseStudies.astro";
+import About from "@/components/buLanding/About.astro";
+import ObjectionHandling from "@/components/buLanding/ObjectionHandling.astro";
+import Faq from "@/components/buLanding/Faq.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<LandingLayout
+  title="Berufsunfähigkeitsversicherung Kassel | BU-Check"
+  description="Kostenloser BU-Check in Kassel & Nordhessen: Finde heraus, welche Berufsunfähigkeitsversicherung zu dir passt – inklusive professioneller Risikovoranfrage."
+>
+  <Hero />
+  <TrustBar />
+  <ProblemSection />
+  <RiskInquiryUsp />
+  <AudiencePaths />
+  <ClarityQuestions />
+  <ProcessTimeline />
+  <CaseStudies />
+  <About />
+  <ObjectionHandling />
+  <Faq />
+  <FinalCta
+    id="final-cta"
+    title="Du musst heute noch keine BU auswählen."
+    titleHighlight="keine BU auswählen"
+    body="Du solltest nur wissen, was dein sinnvollster nächster Schritt ist. In einem kostenlosen 15-minütigen Erstgespräch klären wir:"
+    points={["Wo du aktuell stehst", "Was du absichern möchtest", "Welche Fragen bei dir offen sind", "Welcher nächste Schritt sinnvoll sein könnte"]}
+    ctaLabel="Kostenlosen BU-Check starten"
+    ctaId="final-bu-check"
+    closingLine="15 Minuten · kostenlos · unverbindlich — Kein vorschneller Antrag. Keine Verpflichtung. Erst Klarheit, dann Entscheidung."
+  />
+</LandingLayout>

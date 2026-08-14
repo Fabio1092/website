@@ -1,0 +1,118 @@
+---
+import { siteConfig } from "@/lib/site";
+
+interface Step {
+  number: string;
+  duration: string;
+  title: string;
+  intro: string[];
+  list?: string[];
+  outro?: string;
+}
+
+const steps: Step[] = [
+  {
+    number: "1",
+    duration: "ca. 15 Minuten",
+    title: "Kostenloses Erstgespräch",
+    intro: [
+      "Wir sprechen kurz über deine Situation: Hast du bereits eine BU? Was möchtest du absichern? Gibt es gesundheitliche Themen? Und wobei genau möchtest du Unterstützung?",
+      "Danach können wir einschätzen, ob und wie ich dir sinnvoll helfen kann.",
+    ],
+    outro: "Kein Abschluss. Keine Verpflichtung.",
+  },
+  {
+    number: "2",
+    duration: "Digital möglich",
+    title: "Deine Situation wird strukturiert aufgenommen",
+    intro: ["Wenn du weitermachen möchtest, erfassen wir unter anderem:"],
+    list: ["Beruf und konkrete Tätigkeit", "Einkommen und gewünschte BU-Rente", "bestehenden Versicherungsschutz", "wichtige persönliche Anforderungen", "relevante Gesundheitshistorie"],
+    outro: "Der Prozess kann weitgehend digital erfolgen.",
+  },
+  {
+    number: "3",
+    duration: "Wenn sinnvoll",
+    title: "Risikovoranfrage – wenn sie sinnvoll ist",
+    intro: [
+      "Falls deine Ausgangssituation eine Vorprüfung sinnvoll macht, bereiten wir die relevanten Informationen auf und holen Einschätzungen geeigneter Versicherer ein.",
+      "So erhalten wir vor einer konkreten Antragstellung ein besseres Bild deiner Möglichkeiten.",
+    ],
+  },
+  {
+    number: "4",
+    duration: "Nicht nur der Preis",
+    title: "Vergleich & persönliche Empfehlung",
+    intro: ["Anschließend vergleichen wir nicht einfach nur Monatsbeiträge. Wir betrachten unter anderem:"],
+    list: ["mögliche Annahmebedingungen", "Leistungsumfang", "wichtige Vertragsbedingungen", "Flexibilität des Vertrags", "Beitrag", "Passung zu deiner persönlichen Situation"],
+    outro: "Du bekommst die Ergebnisse verständlich erklärt und eine klare Einschätzung.",
+  },
+  {
+    number: "5",
+    duration: "Deine Wahl",
+    title: "Du entscheidest",
+    intro: [
+      "Wenn du von einer Lösung überzeugt bist, kümmern wir uns gemeinsam um die Umsetzung.",
+      "Wenn keine der Möglichkeiten für dich sinnvoll ist, wird auch nichts abgeschlossen.",
+    ],
+    outro: "Die Entscheidung bleibt bei dir.",
+  },
+];
+---
+
+<section class="scroll-mt-24 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        So läuft deine <span class="text-brand-600">BU-Beratung</span> ab
+      </h2>
+    </div>
+
+    <ol class="mt-14 space-y-12">
+      {
+        steps.map((step, index) => (
+          <li data-reveal style={`transition-delay: ${Math.min(index, 4) * 80}ms`} class="relative flex gap-6 sm:gap-8">
+            <div class="flex flex-col items-center">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-lg font-semibold text-white">
+                {step.number}
+              </span>
+              {index < steps.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
+            </div>
+            <div class="min-w-0 pb-2">
+              <span class="text-xs font-semibold uppercase tracking-wide text-brand-600">{step.duration}</span>
+              <h3 class="mt-1 font-serif text-xl font-semibold text-ink-950 sm:text-2xl">{step.title}</h3>
+              <div class="mt-3 space-y-2.5">
+                {step.intro.map((line) => (
+                  <p class="text-sm leading-relaxed text-ink-700/80 sm:text-base">{line}</p>
+                ))}
+              </div>
+              {step.list && (
+                <ul class="mt-3 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
+                  {step.list.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/75">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {step.outro && <p class="mt-3 text-sm font-medium text-ink-950">{step.outro}</p>}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-14 text-center">
+      <a
+        href={siteConfig.calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cta="process-cta"
+        class="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+      >
+        Kostenloses BU-Erstgespräch vereinbaren
+      </a>
+      <p class="mt-3 text-sm text-ink-700/55">15 Minuten · unverbindlich · persönlich</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,87 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+
+const trustPoints = [
+  "Mehr als 300 Risikovoranfragen begleitet",
+  "Spezialisierung auf Berufsunfähigkeitsversicherung",
+  "Persönlicher Ansprechpartner aus Kassel",
+  "Beratung digital oder persönlich möglich",
+];
+---
+
+<section id="landing-hero" class="relative overflow-hidden bg-white">
+  <div class="pointer-events-none absolute -top-32 right-[-8%] h-96 w-96 rounded-full bg-brand-100/50 blur-3xl" aria-hidden="true"></div>
+
+  <div class="relative mx-auto grid max-w-6xl gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-10 lg:py-20 lg:px-8">
+    <div class="order-1 min-w-0 text-center lg:text-left">
+      <span class="inline-flex items-center rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-700">
+        BU-Spezialist aus Kassel · Für Nordhessen
+      </span>
+
+      <h1 class="mx-auto mt-6 max-w-[720px] hyphens-auto break-words text-4xl font-semibold leading-[1.15] tracking-tight text-ink-950 sm:text-5xl lg:mx-0">
+        Berufs&shy;unfähigkeits&shy;versicherung in <span class="text-brand-600">Kassel</span> &amp; Nordhessen
+      </h1>
+
+      <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-700/80 lg:mx-0">
+        Finde heraus, welche BU wirklich zu dir passt – bevor du einen Antrag stellst.
+      </p>
+
+      <div class="mx-auto mt-5 max-w-xl space-y-3 text-base leading-relaxed text-ink-700/75 lg:mx-0">
+        <p>
+          Welche Berufsunfähigkeitsversicherung sinnvoll ist, entscheidet sich nicht nur am Preis.
+          Dein Beruf, dein Einkommen, deine Gesundheitshistorie und die Vertragsbedingungen
+          entscheiden darüber, welcher Versicherer zu dir passt und wie gut du im Ernstfall
+          tatsächlich abgesichert bist.
+        </p>
+        <p>
+          Ich unterstütze dich dabei, deine Möglichkeiten strukturiert zu prüfen – auf Wunsch
+          inklusive professioneller Risikovoranfrage vor der eigentlichen Antragstellung.
+        </p>
+      </div>
+
+      <ul class="mx-auto mt-7 flex max-w-xl flex-col gap-2.5 text-left sm:grid sm:grid-cols-2 lg:mx-0">
+        {
+          trustPoints.map((point) => (
+            <li class="flex items-start gap-2.5 text-sm text-ink-700/85">
+              <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+              {point}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-8 flex flex-col items-center gap-3 lg:items-start">
+        <a
+          href={siteConfig.calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="hero-bu-check"
+          class="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-8 py-4 text-base font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+        >
+          Kostenlosen BU-Check starten
+        </a>
+        <p class="text-sm text-ink-700/60">15 Minuten · kostenlos · unverbindlich</p>
+        <p class="text-sm font-medium text-brand-700">Erst prüfen. Dann entscheiden.</p>
+      </div>
+    </div>
+
+    <div class="order-2 mx-auto w-full max-w-xs sm:max-w-sm lg:mx-0 lg:max-w-none">
+      <div class="relative">
+        <div
+          class="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-500/10 blur-xl"
+          aria-hidden="true"
+        >
+        </div>
+        <img
+          src="/images/1-22.jpg"
+          alt="Fabio Rumpf, BU-Spezialist aus Kassel"
+          class="aspect-[4/5] w-full rounded-[2rem] border border-black/5 object-cover shadow-2xl shadow-black/10"
+          width="800"
+          height="1000"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </div>
+</section>

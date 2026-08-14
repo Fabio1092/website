@@ -8,6 +8,7 @@ interface Props {
   titleHighlight?: string;
   body?: string;
   ctaLabel?: string;
+  ctaId?: string;
   badges?: string[];
   points?: string[];
   closingLine?: string;
@@ -19,6 +20,7 @@ const {
   titleHighlight = "nächsten Schritt",
   body = "In einem unverbindlichen Gespräch schauen wir gemeinsam, wie ich dich dabei unterstützen kann, deine Ziele zu erreichen und dein volles Potenzial zu entfalten.",
   ctaLabel = "Kostenloses Erstgespräch buchen",
+  ctaId,
   badges = ["15 Minuten · persönlich & offen", "Individuell · auf dich zugeschnitten", "Klare Schritte · dein 1:1 Fahrplan"],
   points,
   closingLine = "Persönlich. Ehrlich. Auf Augenhöhe. Kein Verkaufsgespräch, sondern ein ehrlicher Austausch über deine Situation und mögliche nächste Schritte.",
@@ -69,6 +71,7 @@ const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
       href={siteConfig.calendlyUrl}
       target="_blank"
       rel="noopener noreferrer"
+      data-cta={ctaId}
       class="shadow-lift mt-10 inline-flex items-center justify-center rounded-full bg-gold-500 px-8 py-4 text-sm font-semibold text-ink-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
     >
       {ctaLabel}

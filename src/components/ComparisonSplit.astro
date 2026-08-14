@@ -3,7 +3,7 @@ import type { ComponentType } from "react";
 import { X, Check } from "lucide-react";
 
 interface Column {
-  tone: "danger" | "success" | "brand" | "ink";
+  tone: "danger" | "success" | "brand" | "ink" | "neutral";
   label: string;
   heading?: string;
   points: string[];
@@ -23,6 +23,7 @@ const toneConfig: Record<
   success: { bg: "bg-success-50/60", text: "text-success-600", icon: Check },
   brand: { bg: "bg-brand-50/60", text: "text-brand-700", icon: null },
   ink: { bg: "bg-ink-950 text-white", text: "text-brand-300", icon: null },
+  neutral: { bg: "bg-black/[0.025]", text: "text-ink-700/55", icon: null },
 };
 ---
 

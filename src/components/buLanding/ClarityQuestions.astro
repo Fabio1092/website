@@ -1,0 +1,40 @@
+---
+const questions = [
+  { q: "Welche Absicherung brauche ich?", sub: "Welche BU-Rente passt zu meinem Einkommen und meinem Leben?" },
+  { q: "Welche Möglichkeiten habe ich?", sub: "Welche Versicherer kommen für meinen Beruf und meine persönliche Situation infrage?" },
+  { q: "Was passiert mit meiner Gesundheitshistorie?", sub: "Welche Angaben sind relevant und wie sollten sie sauber aufbereitet werden?" },
+  { q: "Welche Bedingungen sind wichtig?", sub: "Wo unterscheiden sich Verträge wirklich und welche Punkte sind für mich relevant?" },
+  { q: "Was ist mein sinnvollster nächster Schritt?", sub: "Neuabschluss, bestehende BU behalten, optimieren – oder aktuell gar nichts verändern?" },
+];
+---
+
+<section class="bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Was du <span class="text-brand-600">nach der Beratung</span> wissen sollst
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-ink-700/70">Nicht, welcher Tarif in irgendeinem Vergleich auf Platz 1 steht.</p>
+      <p class="mt-1 text-base font-medium text-ink-950">Sondern:</p>
+    </div>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2">
+      {
+        questions.map((item, index) => (
+          <div
+            data-reveal
+            style={`transition-delay: ${index * 60}ms`}
+            class:list={["rounded-2xl border border-black/5 bg-white p-6", index === questions.length - 1 && "sm:col-span-2 sm:mx-auto sm:max-w-md"]}
+          >
+            <p class="font-serif text-lg font-semibold text-ink-950">{item.q}</p>
+            <p class="mt-1.5 text-sm leading-relaxed text-ink-700/70">{item.sub}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mx-auto mt-10 max-w-md text-center text-lg font-medium text-ink-950">
+      Du bekommst Klarheit statt einfach nur einen Tarifvergleich.
+    </p>
+  </div>
+</section>
