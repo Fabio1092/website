@@ -1,0 +1,23 @@
+---
+import LandingLayout from "@/layouts/LandingLayout.astro";
+import Hero from "@/components/buDanke/Hero.astro";
+import NextSteps from "@/components/buDanke/NextSteps.astro";
+import BeforeCallNotice from "@/components/buDanke/BeforeCallNotice.astro";
+import CallTips from "@/components/buDanke/CallTips.astro";
+import FabioSignoff from "@/components/buDanke/FabioSignoff.astro";
+import ContactBlock from "@/components/buDanke/ContactBlock.astro";
+---
+
+<LandingLayout
+  title="Terminbestätigung | BU-Check gebucht"
+  description="Dein kostenloser BU-Check ist gebucht. Hier erfährst du, wie es jetzt weitergeht und worauf du dich vor unserem Gespräch nicht vorbereiten musst."
+  noindex
+  showStickyCta={false}
+>
+  <Hero />
+  <NextSteps />
+  <BeforeCallNotice />
+  <CallTips />
+  <FabioSignoff />
+  <ContactBlock />
+</LandingLayout>

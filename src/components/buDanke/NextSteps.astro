@@ -1,0 +1,88 @@
+---
+import { Mail, Clock, MessageSquareOff } from "lucide-react";
+
+const checklist = [
+  "Wo stehst du aktuell?",
+  "Hast du bereits eine BU?",
+  "Was möchtest du absichern?",
+  "Gibt es gesundheitliche Themen, die wir berücksichtigen sollten?",
+  "Welche Fragen sind für dich aktuell offen?",
+];
+---
+
+<section class="scroll-mt-24 bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-center font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Was passiert <span class="text-brand-600">jetzt?</span>
+    </h2>
+
+    <ol class="mt-14 space-y-12">
+      <li data-reveal class="relative flex gap-6 sm:gap-8">
+        <div class="flex flex-col items-center">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 text-white">
+            <Mail className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true"></span>
+        </div>
+        <div class="min-w-0 pb-2">
+          <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">1. Terminbestätigung prüfen</h3>
+          <div class="mt-3 space-y-2.5 text-sm leading-relaxed text-ink-700/80 sm:text-base">
+            <p>Schau bitte kurz in dein E-Mail-Postfach.</p>
+            <p>Dort findest du die Bestätigung mit Datum, Uhrzeit und allen Informationen zu unserem Gespräch.</p>
+          </div>
+          <div class="mt-4 rounded-xl border border-black/5 bg-white px-5 py-3.5 text-sm text-ink-700/70">
+            <span class="font-medium text-ink-950">Keine E-Mail erhalten?</span> Prüfe bitte auch deinen Spam-Ordner.
+          </div>
+        </div>
+      </li>
+
+      <li data-reveal style="transition-delay: 80ms" class="relative flex gap-6 sm:gap-8">
+        <div class="flex flex-col items-center">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 text-white">
+            <Clock className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true"></span>
+        </div>
+        <div class="min-w-0 pb-2">
+          <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">2. Plane dir etwa 15 Minuten ein</h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-700/80 sm:text-base">
+            Für unser erstes Gespräch brauchst du keine Versicherungsordner vorzubereiten und auch
+            noch keine Gesundheitsunterlagen herauszusuchen.
+          </p>
+          <p class="mt-3 text-sm font-medium text-ink-950">Wir wollen zunächst verstehen:</p>
+          <ul class="mt-3 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+            {
+              checklist.map((item) => (
+                <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/80">
+                  <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                  {item}
+                </li>
+              ))
+            }
+          </ul>
+          <p class="mt-4 text-sm leading-relaxed text-ink-700/70">
+            Danach können wir gemeinsam einschätzen, welcher nächste Schritt für dich sinnvoll ist.
+          </p>
+        </div>
+      </li>
+
+      <li data-reveal style="transition-delay: 160ms" class="relative flex gap-6 sm:gap-8">
+        <div class="flex flex-col items-center">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 text-white">
+            <MessageSquareOff className="h-5 w-5" aria-hidden="true" />
+          </span>
+        </div>
+        <div class="min-w-0 pb-2">
+          <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">3. Du musst im Gespräch nichts entscheiden</h3>
+          <div class="mt-3 space-y-2.5 text-sm leading-relaxed text-ink-700/80 sm:text-base">
+            <p class="font-medium text-ink-950">Mir ist wichtig, dass du das vorher weißt:</p>
+            <p>Das Erstgespräch ist kein Abschlussgespräch.</p>
+            <p>Wir schauen uns zunächst deine Situation an und prüfen, ob und wie ich dir weiterhelfen kann.</p>
+            <p>Du musst im Termin keinen Vertrag abschließen und keine Entscheidung treffen.</p>
+          </div>
+          <p class="mt-4 font-serif text-lg font-semibold text-ink-950">Erst Klarheit. Dann Entscheidung.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>

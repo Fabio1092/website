@@ -1,0 +1,27 @@
+---
+import { siteConfig } from "@/lib/site";
+---
+
+<section class="bg-brand-50/30 py-16 sm:py-20">
+  <div class="mx-auto max-w-md px-4 text-center sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold text-ink-950">Fragen vor dem Termin?</h2>
+    <p class="mt-3 text-sm leading-relaxed text-ink-700/75">
+      Wenn vorher noch etwas Wichtiges auftaucht, kannst du dich gerne melden.
+    </p>
+
+    <div class="mx-auto mt-7 max-w-xs rounded-2xl border border-black/5 bg-white p-6 shadow-soft">
+      <p class="font-serif text-base font-semibold text-ink-950">Fabio Rumpf</p>
+      <p class="mt-1 text-xs text-ink-700/60">Versicherungs- und Finanzmakler</p>
+      <p class="text-xs text-ink-700/60">Kassel</p>
+
+      <div class="mt-4 space-y-1.5 border-t border-black/[0.06] pt-4 text-sm">
+        <p>
+          <a href={siteConfig.phoneHref} class="font-medium text-ink-950 transition-colors hover:text-brand-700">{siteConfig.phone}</a>
+        </p>
+        <p>
+          <a href={siteConfig.emailHref} class="font-medium text-ink-950 transition-colors hover:text-brand-700">{siteConfig.email}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
