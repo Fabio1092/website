@@ -1,9 +1,21 @@
 ---
+import { Star } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 
-// TODO(Fabio): Platzhalter — bitte durch 3 echte, freigegebene Google-Bewertungen ersetzen
-// (Zitat + Vorname/Name), bevor diese Sektion live geht.
-const placeholders = [1, 2, 3];
+const reviews = [
+  {
+    name: "Jacqueline Neudert",
+    text: "Empfehlenswert! Ich habe meine PKV und BU hier abgeschlossen und bin begeistert. Besonders hervorzuheben: Alles läuft komplett digital ab! Man spart sich das Hin- und Hergeschicke von Post oder die Fahrerei zu Terminen für Unterschriften. Er erklärt alles sehr verständlich und hat immer ein offenes Ohr für jegliche Fragen.",
+  },
+  {
+    name: "Hannah Mackenrodt",
+    text: "Bei unserem Gespräch ging es um eine Berufsunfähigkeitsversicherung, sowie eine Altersvorsorge. Ich habe mich bei dem Gespräch sehr wohl gefühlt und viele Informationen sammeln können. Letztendlich haben wir ein gutes Ergebnis erzielen können, mit dem ich sehr zufrieden bin.",
+  },
+  {
+    name: "Enrico Volkmann",
+    text: "Fabio konnte mich beim Thema Berufsunfähigkeitsversicherung super beraten und hat mir geholfen, eine passende Versicherung zu finden. Während der Beratung fühlte ich mich gut aufgehoben und zu keiner Zeit unter Druck gesetzt, etwas abschließen zu müssen. Ich bin sehr zufrieden mit dem Ergebnis der Beratung und kann seine Arbeit daher nur weiterempfehlen.",
+  },
+];
 ---
 
 <section class="bg-white py-16 sm:py-24">
@@ -14,10 +26,18 @@ const placeholders = [1, 2, 3];
 
     <div class="mt-12 grid gap-5 sm:grid-cols-3">
       {
-        placeholders.map((n) => (
-          <div class="flex flex-col items-center rounded-2xl border border-dashed border-black/15 bg-black/[0.015] p-6 text-center">
-            <p class="text-sm italic leading-relaxed text-ink-700/40">Platzhalter für echte Google-Bewertung {n}</p>
-            <p class="mt-3 text-xs font-medium text-ink-700/35">Vorname / Name gemäß freigegebener Bewertung</p>
+        reviews.map((review, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="shadow-soft flex flex-col rounded-2xl border border-black/5 bg-white p-6">
+            <div class="flex gap-0.5 text-gold-500" aria-label="5 von 5 Sternen">
+              {Array.from({ length: 5 }).map(() => (
+                <Star className="h-4 w-4 fill-current" aria-hidden="true" />
+              ))}
+            </div>
+            <p class="mt-4 flex-1 text-sm leading-relaxed text-ink-700/80">„{review.text}“</p>
+            <div class="mt-5 flex items-center justify-between border-t border-black/[0.06] pt-4">
+              <p class="text-sm font-semibold text-ink-950">{review.name}</p>
+              <p class="text-xs text-ink-700/45">Google-Bewertung</p>
+            </div>
           </div>
         ))
       }
