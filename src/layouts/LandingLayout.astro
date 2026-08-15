@@ -3,6 +3,7 @@ import Header from "@/components/buLanding/Header.astro";
 import Footer from "@/components/buLanding/Footer.astro";
 import StickyMobileCta from "@/components/buLanding/StickyMobileCta.astro";
 import CookieConsent from "@/components/CookieConsent.astro";
+import AnalyticsDataLayer from "@/components/AnalyticsDataLayer.astro";
 import "@/styles/global.css";
 
 interface Props {
@@ -28,6 +29,7 @@ const ogImageUrl = new URL("/images/og-image.jpg", Astro.site);
     <link rel="icon" type="image/png" href="/images/Logo.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalUrl} />
+    <AnalyticsDataLayer />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <title>{pageTitle}</title>
     <meta name="description" content={description} />

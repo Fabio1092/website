@@ -35,23 +35,19 @@
 
 <script is:inline>
   (function () {
-    var GA_ID = "G-SB8S31ZCN5";
+    var GTM_ID = "GTM-TVZRXZ9";
     var STORAGE_KEY = "cookie-consent";
 
-    function loadGoogleAnalytics() {
-      if (window.gtagLoaded) return;
-      window.gtagLoaded = true;
+    function loadGTM() {
+      if (window.gtmLoaded) return;
+      window.gtmLoaded = true;
 
       window.dataLayer = window.dataLayer || [];
-      window.gtag = function () {
-        window.dataLayer.push(arguments);
-      };
-      window.gtag("js", new Date());
-      window.gtag("config", GA_ID);
+      window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
 
       var script = document.createElement("script");
       script.async = true;
-      script.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+      script.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
       document.head.appendChild(script);
     }
 
@@ -67,7 +63,7 @@
 
     var stored = localStorage.getItem(STORAGE_KEY);
     if (stored === "accepted") {
-      loadGoogleAnalytics();
+      loadGTM();
     } else if (stored !== "rejected") {
       showBanner();
     }
@@ -78,7 +74,7 @@
     if (acceptBtn) {
       acceptBtn.addEventListener("click", function () {
         localStorage.setItem(STORAGE_KEY, "accepted");
-        loadGoogleAnalytics();
+        loadGTM();
         hideBanner();
       });
     }

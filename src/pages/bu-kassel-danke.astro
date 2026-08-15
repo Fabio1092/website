@@ -21,3 +21,8 @@ import ContactBlock from "@/components/buDanke/ContactBlock.astro";
   <FabioSignoff />
   <ContactBlock />
 </LandingLayout>
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: "booking_confirmed" });
+</script>
