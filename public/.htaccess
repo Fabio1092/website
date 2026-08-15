@@ -1,7 +1,9 @@
-# Canonical host: force https://www.fr-makler.de
+# Canonical host: force https://fr-makler.de (non-www)
+# Single rule handles both http->https and www->non-www in one hop, avoiding redirect chains.
 RewriteEngine On
-RewriteCond %{HTTP_HOST} !^www\.fr-makler\.de$ [NC]
-RewriteRule ^(.*)$ https://www.fr-makler.de/$1 [L,R=301]
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.fr-makler\.de$ [NC]
+RewriteRule ^(.*)$ https://fr-makler.de/$1 [L,R=301]
 
 # Ensure the charset is sent in the HTTP response header, not just in the HTML meta tag
 AddDefaultCharset UTF-8
