@@ -1,0 +1,59 @@
+---
+import PkvLandingLayout from "@/layouts/PkvLandingLayout.astro";
+import Hero from "@/components/pkvLanding/Hero.astro";
+import TrustBar from "@/components/pkvLanding/TrustBar.astro";
+import ProblemSection from "@/components/pkvLanding/ProblemSection.astro";
+import BenefitsSection from "@/components/pkvLanding/BenefitsSection.astro";
+import AudienceSection from "@/components/pkvLanding/AudienceSection.astro";
+import IdentificationSection from "@/components/pkvLanding/IdentificationSection.astro";
+import HealthSection from "@/components/pkvLanding/HealthSection.astro";
+import ProcessSection from "@/components/pkvLanding/ProcessSection.astro";
+import DifferentiationSection from "@/components/pkvLanding/DifferentiationSection.astro";
+import AdvisorSection from "@/components/pkvLanding/AdvisorSection.astro";
+import Testimonials from "@/components/pkvLanding/Testimonials.astro";
+import Faq from "@/components/pkvLanding/Faq.astro";
+import FinalCtaSection from "@/components/pkvLanding/FinalCtaSection.astro";
+import { siteConfig } from "@/lib/site";
+
+// Real business data only (name, contact, address, service area) — no
+// aggregateRating/review markup, since the Trustindex figures shown
+// elsewhere on the site aren't pinned data suitable for baking into schema.
+const insuranceAgencySchema = {
+  "@context": "https://schema.org",
+  "@type": "InsuranceAgency",
+  name: siteConfig.legalName,
+  image: new URL("/images/og-image.jpg", Astro.site).toString(),
+  telephone: siteConfig.phone,
+  email: siteConfig.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Narzissenweg 7a",
+    postalCode: "34128",
+    addressLocality: "Kassel",
+    addressCountry: "DE",
+  },
+  areaServed: ["Kassel", "Nordhessen"],
+  url: new URL("/pkv-kassel", Astro.site).toString(),
+};
+---
+
+<PkvLandingLayout
+  title="Private Krankenversicherung Kassel | PKV-Beratung"
+  description="Persönliche PKV-Beratung in Kassel & Nordhessen für Angestellte, Selbstständige und Beamte. Jetzt 15-minütiges Erstgespräch mit Fabio Rumpf buchen."
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify(insuranceAgencySchema)} />
+
+  <Hero />
+  <TrustBar />
+  <ProblemSection />
+  <BenefitsSection />
+  <AudienceSection />
+  <IdentificationSection />
+  <HealthSection />
+  <ProcessSection />
+  <DifferentiationSection />
+  <AdvisorSection />
+  <Testimonials />
+  <Faq />
+  <FinalCtaSection />
+</PkvLandingLayout>

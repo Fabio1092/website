@@ -10,6 +10,10 @@ export const siteConfig = {
   address: "Narzissenweg 7a, 34128 Kassel",
   calendlyUrl: "https://calendly.com/fr-makler/kostenloses-erstgesprach",
   calendlyBuUrl: "https://calendly.com/fr-makler/kostenloses-bu-erstgesprach",
+  // Currently mirrors the general Erstgespräch link. Swap this to a dedicated
+  // PKV Calendly event type here if/when one exists — every CTA on
+  // /pkv-kassel reads from this single constant via BookingButton.astro.
+  calendlyPkvUrl: "https://calendly.com/fr-makler/kostenloses-erstgesprach",
   registrationUrl:
     "https://meine-finanzen.digital/interessent/m/0dfdfc10-1b1b-11ee-82d2-960000d203a8",
   whatsappUrl: "https://wa.me/4956194033160",

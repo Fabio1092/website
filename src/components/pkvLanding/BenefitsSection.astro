@@ -1,0 +1,59 @@
+---
+import BookingButton from "@/components/pkvLanding/BookingButton.astro";
+
+const items = [
+  {
+    number: "01",
+    title: "Ist die PKV überhaupt sinnvoll für dich?",
+    text: "PKV ist nicht automatisch besser als die gesetzliche Krankenversicherung. Wir betrachten deine persönliche und berufliche Situation und klären, ob ein Wechsel grundsätzlich zu deinen Zielen und deiner Lebensplanung passt.",
+  },
+  {
+    number: "02",
+    title: "Was ist dir bei deiner Krankenversicherung wirklich wichtig?",
+    text: "Nicht jeder braucht dieselben Leistungen. Ambulante Behandlung, Krankenhaus, Zahnleistungen, Krankentagegeld, Selbstbeteiligung und viele weitere Punkte können sich von Tarif zu Tarif deutlich unterscheiden.",
+    highlight: "Was davon ist für dich persönlich relevant?",
+  },
+  {
+    number: "03",
+    title: "Welche langfristigen Auswirkungen hat deine Entscheidung?",
+    text: "Eine Krankenversicherung begleitet dich möglicherweise über Jahrzehnte. Deshalb sollte die Entscheidung nicht ausschließlich davon abhängen, welcher Tarif heute besonders günstig aussieht. Wir betrachten die PKV auch mit Blick auf deine zukünftige Lebensplanung.",
+  },
+  {
+    number: "04",
+    title: "Welche Möglichkeiten kommen für dich realistisch infrage?",
+    text: "Berufsstatus, gewünschte Leistungen, finanzielle Situation und gesundheitliche Vorgeschichte können beeinflussen, welche Lösungen sinnvoll und überhaupt möglich sind. Erst wenn diese Fragen geklärt sind, lohnt sich der Blick auf konkrete Tarife.",
+  },
+  {
+    number: "05",
+    title: "Wie gehst du die nächsten Schritte richtig an?",
+    text: "Wenn wir gemeinsam feststellen, dass die PKV für dich grundsätzlich sinnvoll ist, können wir im nächsten Schritt tiefer einsteigen. Dann geht es darum, mögliche Gesellschaften und Tarife strukturiert miteinander zu vergleichen und eine Lösung zu finden, die nachvollziehbar zu deiner Situation passt.",
+  },
+];
+---
+
+<section class="bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-center font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Was wir zuerst gemeinsam herausfinden</h2>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {
+        items.map((item, index) => (
+          <div
+            data-reveal
+            style={`transition-delay: ${(index % 4) * 70}ms`}
+            class:list={["rounded-2xl border border-black/5 bg-white p-7 shadow-soft", index === items.length - 1 && "sm:col-span-2"]}
+          >
+            <span class="font-serif text-2xl font-semibold text-brand-300">{item.number}</span>
+            <h3 class="mt-2 font-serif text-lg font-semibold text-ink-950">{item.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{item.text}</p>
+            {item.highlight && <p class="mt-3 text-sm font-semibold text-brand-700">{item.highlight}</p>}
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <BookingButton location="benefits" variant="compact" />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+---
+import BookingButton from "@/components/pkvLanding/BookingButton.astro";
+---
+
+<section id="fabio" class="scroll-mt-20 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16">
+      <div class="mx-auto w-full max-w-xs sm:max-w-sm lg:mx-0 lg:max-w-none">
+        <div class="relative">
+          <div class="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/10 via-transparent to-gold-500/10 blur-xl" aria-hidden="true"></div>
+          <img
+            src="/images/1-48.jpg"
+            alt="Fabio Rumpf, Versicherungsmakler aus Kassel"
+            class="aspect-[4/5] w-full rounded-[2rem] border border-black/5 object-cover shadow-2xl shadow-black/10"
+            width="800"
+            height="1000"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <div data-reveal class="min-w-0 text-center lg:text-left">
+        <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Dein Ansprechpartner für PKV in Kassel &amp; Nordhessen</h2>
+
+        <p class="mx-auto mt-6 font-serif text-xl font-semibold text-ink-950 lg:mx-0">Fabio Rumpf</p>
+        <p class="mx-auto text-sm font-medium uppercase tracking-wide text-brand-600 lg:mx-0">Versicherungsmakler aus Kassel</p>
+
+        <div class="mx-auto mt-6 max-w-xl space-y-3.5 text-base leading-relaxed text-ink-700/80 lg:mx-0">
+          <p>
+            Ich berate Menschen aus Kassel, Nordhessen und darüber hinaus bei der Frage, welche
+            Krankenversicherung zu ihrer persönlichen Situation passt.
+          </p>
+          <p>
+            Bei einer PKV-Entscheidung geht es aus meiner Sicht um deutlich mehr als darum, heute
+            einen günstigen Tarif zu finden.
+          </p>
+          <p class="font-medium text-ink-950">Mein Anspruch ist:</p>
+          <p>
+            Du sollst verstehen, welche Möglichkeiten du hast, welche Vor- und Nachteile damit
+            verbunden sind und welche Entscheidung zu deiner Situation passt.
+          </p>
+          <p>Unsere Gespräche können persönlich in Kassel oder digital stattfinden.</p>
+        </div>
+
+        <div class="mt-8">
+          <BookingButton location="advisor" variant="compact" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

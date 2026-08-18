@@ -1,0 +1,28 @@
+---
+import BookingButton from "@/components/pkvLanding/BookingButton.astro";
+---
+
+<div
+  id="sticky-mobile-cta"
+  class="fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-black/5 bg-white/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 shadow-[0_-4px_16px_-4px_rgba(10,10,10,0.12)] backdrop-blur transition-transform duration-300 sm:hidden"
+>
+  <BookingButton location="sticky" variant="sticky" />
+</div>
+
+<script>
+  const bar = document.getElementById("sticky-mobile-cta");
+  if (bar) {
+    const heroEl = document.querySelector("#landing-hero");
+    const threshold = heroEl ? heroEl.getBoundingClientRect().height * 0.7 : 500;
+    let visible = false;
+    const onScroll = () => {
+      const shouldShow = window.scrollY > threshold;
+      if (shouldShow !== visible) {
+        visible = shouldShow;
+        bar.classList.toggle("translate-y-full", !visible);
+      }
+    };
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+</script>

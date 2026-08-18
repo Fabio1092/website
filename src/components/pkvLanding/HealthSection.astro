@@ -1,0 +1,37 @@
+---
+import { Stethoscope } from "lucide-react";
+import BookingButton from "@/components/pkvLanding/BookingButton.astro";
+---
+
+<section class="relative overflow-hidden bg-ink-950 py-16 text-white sm:py-24">
+  <div class="pointer-events-none absolute -top-24 left-[-6%] h-80 w-80 rounded-full bg-brand-500/15 blur-3xl" aria-hidden="true"></div>
+
+  <div data-reveal class="relative mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+    <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-brand-300">
+      <Stethoscope className="h-6 w-6" aria-hidden="true" />
+    </div>
+
+    <h2 class="mt-6 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">Vorerkrankungen?</h2>
+    <p class="mt-3 text-lg leading-relaxed text-white/70">Bitte nicht einfach irgendeinen Antrag stellen.</p>
+
+    <div class="mx-auto mt-6 max-w-xl space-y-3 text-left text-sm leading-relaxed text-white/75 sm:text-base">
+      <p>
+        Gesundheitliche Angaben gehören zu den wichtigsten Punkten bei der privaten
+        Krankenversicherung. Vergangene oder bestehende Erkrankungen können Einfluss darauf haben,
+        ob und zu welchen Konditionen dich ein Versicherer aufnimmt. Deshalb ist es wichtig,
+        strukturiert vorzugehen.
+      </p>
+      <p>
+        Wenn es in deiner Situation sinnvoll ist, kann zunächst geprüft werden, welche
+        Möglichkeiten über eine anonyme Risikovoranfrage bestehen. So können wir uns zuerst die
+        realistischen Optionen anschauen, bevor ein konkreter Versicherungsantrag gestellt wird.
+      </p>
+    </div>
+
+    <p class="mt-8 font-serif text-xl font-semibold text-white">Erst Klarheit schaffen. Dann entscheiden.</p>
+
+    <div class="mt-8">
+      <BookingButton location="health" />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+---
+import Header from "@/components/pkvLanding/Header.astro";
+// Footer has no BU-specific copy, so it's intentionally shared with the BU
+// landing page rather than duplicated.
+import Footer from "@/components/buLanding/Footer.astro";
+import StickyMobileCta from "@/components/pkvLanding/StickyMobileCta.astro";
+import CookieConsent from "@/components/CookieConsent.astro";
+import AnalyticsDataLayer from "@/components/AnalyticsDataLayer.astro";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Exclude this page from search engine indexing. */
+  noindex?: boolean;
+  /** Hide the persistent mobile booking bar. */
+  showStickyCta?: boolean;
+}
+
+const { title, description, noindex = false, showStickyCta = true } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = `${title} · Fabio Rumpf Makler`;
+const ogImageUrl = new URL("/images/og-image.jpg", Astro.site);
+---
+
+<!doctype html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/Logo.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={canonicalUrl} />
+    <AnalyticsDataLayer />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="de_DE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="generator" content={Astro.generator} />
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen bg-background text-foreground antialiased">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    {showStickyCta && <StickyMobileCta />}
+    <CookieConsent />
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+      );
+      document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

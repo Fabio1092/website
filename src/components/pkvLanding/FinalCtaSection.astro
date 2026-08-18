@@ -1,0 +1,30 @@
+---
+import BookingButton from "@/components/pkvLanding/BookingButton.astro";
+---
+
+<section id="final-cta" class="relative overflow-hidden bg-ink-950 py-24 text-white">
+  <div
+    class="pointer-events-none absolute left-1/2 top-0 h-[28rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/15 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="pointer-events-none absolute -bottom-24 right-[-8%] h-72 w-72 rounded-full bg-gold-500/10 blur-3xl" aria-hidden="true"></div>
+
+  <div data-reveal class="relative mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-3xl font-semibold tracking-tight sm:text-4xl">Du musst heute noch keine PKV auswählen.</h2>
+    <p class="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-white/70">Du solltest nur herausfinden, ob sie für dich die richtige Entscheidung ist.</p>
+
+    <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/70">
+      Wenn du aus Kassel oder Nordhessen kommst und aktuell über eine private Krankenversicherung
+      nachdenkst, lass uns deine Situation gemeinsam anschauen. Im ersten Schritt reichen dafür 15
+      Minuten.
+    </p>
+
+    <p class="mt-8 font-serif text-xl font-semibold">Buche jetzt dein persönliches Erstgespräch mit mir.</p>
+
+    <div class="mt-8">
+      <BookingButton location="final" />
+    </div>
+    <p class="mt-4 text-sm text-white/50">Persönlich in Kassel oder digital.</p>
+  </div>
+</section>

@@ -1,0 +1,91 @@
+---
+import BookingButton from "@/components/pkvLanding/BookingButton.astro";
+
+interface Step {
+  number: string;
+  title: string;
+  intro: string[];
+  list?: string[];
+  outro?: string[];
+}
+
+const steps: Step[] = [
+  {
+    number: "01",
+    title: "15-minütiges Erstgespräch",
+    intro: ["Wir lernen uns kurz kennen und sprechen über deine aktuelle Situation. Dabei klären wir unter anderem:"],
+    list: ["Wo stehst du aktuell?", "Warum beschäftigst du dich mit PKV?", "Welche Fragen sind für dich besonders wichtig?", "Gibt es Besonderheiten, die wir berücksichtigen müssen?"],
+    outro: ["Vor allem finden wir heraus, ob eine weiterführende Beratung für dich sinnvoll ist."],
+  },
+  {
+    number: "02",
+    title: "Analyse deiner Situation",
+    intro: [
+      "Wenn es für beide Seiten passt, schauen wir uns deine Situation anschließend detaillierter an. Dabei betrachten wir beispielsweise deinen Berufsstatus, deine Wünsche an den Versicherungsschutz, deine Lebensplanung und gegebenenfalls deine gesundheitliche Vorgeschichte.",
+    ],
+  },
+  {
+    number: "03",
+    title: "Vergleich sinnvoller Möglichkeiten",
+    intro: [
+      "Erst danach beschäftigen wir uns mit konkreten Lösungen. Dabei geht es nicht ausschließlich um den Beitrag. Wir betrachten auch Leistungen, Bedingungen und die Frage, wie gut eine Lösung langfristig zu deiner Situation passt.",
+    ],
+  },
+  {
+    number: "04",
+    title: "Verständliche Empfehlung",
+    intro: [
+      "Mein Anspruch ist, dass du am Ende nicht einfach sagst: „Fabio meint, Tarif XY sei gut.“ Sondern: „Ich verstehe, warum diese Lösung zu mir passt.“",
+      "Du sollst die Unterschiede verstehen und deine Entscheidung nachvollziehbar treffen können.",
+    ],
+  },
+  {
+    number: "05",
+    title: "Umsetzung & langfristige Betreuung",
+    intro: ["Wenn du dich für eine Lösung entscheidest, unterstütze ich dich bei der Umsetzung. Und auch danach hast du weiterhin einen persönlichen Ansprechpartner."],
+  },
+];
+---
+
+<section class="scroll-mt-24 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">So läuft die Beratung ab</h2>
+    </div>
+
+    <ol class="mt-14 space-y-10">
+      {
+        steps.map((step, index) => (
+          <li data-reveal style={`transition-delay: ${Math.min(index, 4) * 80}ms`} class="relative flex gap-6 sm:gap-8">
+            <div class="flex flex-col items-center">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-base font-semibold text-white">
+                {step.number}
+              </span>
+              {index < steps.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
+            </div>
+            <div class="min-w-0 pb-2">
+              <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">{step.title}</h3>
+              <div class="mt-3 space-y-2.5">
+                {step.intro.map((line) => (
+                  <p class="text-sm leading-relaxed text-ink-700/80 sm:text-base">{line}</p>
+                ))}
+              </div>
+              {step.list && (
+                <ul class="mt-3 space-y-1.5">
+                  {step.list.map((item) => (
+                    <li class="text-sm leading-relaxed text-ink-700/70 sm:text-base">– {item}</li>
+                  ))}
+                </ul>
+              )}
+              {step.outro && step.outro.map((line) => <p class="mt-3 text-sm font-medium text-ink-950">{line}</p>)}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-14 text-center">
+      <BookingButton location="process" variant="compact" />
+    </div>
+  </div>
+</section>

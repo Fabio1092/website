@@ -1,0 +1,16 @@
+---
+const items = ["Versicherungsmakler", "Persönlicher Ansprechpartner", "Kassel & Nordhessen", "Beratung vor Ort oder digital"];
+---
+
+<div class="border-y border-black/5 bg-brand-50/30 py-6">
+  <div class="mx-auto grid max-w-5xl grid-cols-2 gap-x-6 gap-y-3 px-4 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-10 sm:gap-y-3 sm:px-6 lg:px-8">
+    {
+      items.map((item, index) => (
+        <>
+          <span class="text-center text-sm font-medium text-ink-700/75 sm:text-left">{item}</span>
+          {index < items.length - 1 && <span class="hidden h-1 w-1 rounded-full bg-brand-300 sm:block" aria-hidden="true" />}
+        </>
+      ))
+    }
+  </div>
+</div>
