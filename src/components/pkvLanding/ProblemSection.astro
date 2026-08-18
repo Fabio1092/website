@@ -3,25 +3,25 @@ import { CheckCircle2 } from "lucide-react";
 import BookingButton from "@/components/pkvLanding/BookingButton.astro";
 
 const questions = [
-  "Passt die PKV grundsätzlich zu meinem Leben?",
-  "Welche Leistungen brauche ich wirklich?",
-  "Wie unterscheiden sich gute Tarife tatsächlich?",
-  "Was passiert, wenn sich mein Einkommen oder meine berufliche Situation verändert?",
-  "Was bedeutet Familienplanung für meine Entscheidung?",
-  "Wie gehe ich mit Vorerkrankungen richtig um?",
-  "Und wie verhindere ich, heute eine Entscheidung zu treffen, die ich später bereue?",
+  "Was passiert, wenn du später eine Familie gründest?",
+  "Wie verändert sich deine Situation, wenn dein Einkommen oder dein Beruf sich verändert?",
+  "Welche Leistungen möchtest du wirklich abgesichert haben?",
+  "Welche Rolle spielt deine gesundheitliche Vorgeschichte?",
+  "Und ist die PKV überhaupt die bessere Entscheidung für dich – oder passt die gesetzliche Krankenversicherung langfristig besser?",
 ];
 ---
 
 <section class="bg-white py-16 sm:py-24">
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
     <div class="text-center">
-      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Eine PKV ist schnell abgeschlossen.</h2>
-      <p class="mt-3 text-lg leading-relaxed text-ink-700/80">Ob sie wirklich zu dir passt, zeigt sich oft erst Jahre später.</p>
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Die entscheidende Frage ist nicht: „Welcher Tarif ist am günstigsten?“
+      </h2>
+      <p class="mt-3 text-lg leading-relaxed text-ink-700/80">Sondern: Welche Entscheidung passt langfristig zu dir?</p>
       <p class="mt-6 text-base leading-relaxed text-ink-700/70">
-        Wer sich mit der privaten Krankenversicherung beschäftigt, stößt schnell auf unzählige
-        Tarife, Beiträge und Leistungsbausteine. Doch bevor wir überhaupt über konkrete Tarife
-        sprechen, sind ganz andere Fragen entscheidend:
+        Wer anfängt, sich mit der privaten Krankenversicherung zu beschäftigen, landet schnell bei
+        Beiträgen, Tarifnamen und Leistungsvergleichen. Dabei sind vorher ganz andere Fragen
+        wichtig.
       </p>
     </div>
 
@@ -36,14 +36,11 @@ const questions = [
       }
     </ul>
 
-    <div class="mx-auto mt-12 max-w-xl space-y-4 text-center">
-      <p class="text-base leading-relaxed text-ink-700/75">
-        Genau deshalb geht es bei meiner Beratung nicht darum, dir möglichst schnell irgendeinen
-        Tarif zu präsentieren. Es geht zunächst um eine viel wichtigere Frage:
-      </p>
-      <p class="font-serif text-xl font-semibold text-ink-950">Ist die private Krankenversicherung langfristig die richtige Lösung für dich?</p>
+    <div class="mx-auto mt-12 max-w-xl space-y-1.5 text-center">
+      <p class="font-serif text-lg font-semibold text-ink-950">Genau deshalb beginnt meine Beratung nicht mit einem Tarif.</p>
+      <p class="font-serif text-lg font-semibold text-brand-600">Sie beginnt mit deiner Situation.</p>
 
-      <div class="pt-4">
+      <div class="pt-6">
         <BookingButton location="problem" variant="compact" />
       </div>
     </div>

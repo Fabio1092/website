@@ -1,11 +1,12 @@
 ---
 import { siteConfig } from "@/lib/site";
+import BookingButton from "@/components/pkvLanding/BookingButton.astro";
 
 // Real, live Google reviews via the same Trustindex widget used on the homepage.
-// Deliberately not reusing the static BU-page reviews here: of the reviews
-// collected so far, only one explicitly covers PKV, and presenting the
-// others (which speak to BU experiences) as PKV testimonials would misrepresent
-// what they're actually about. The live widget stays accurate without that risk.
+// "Featuring" specific reviews (verständliche Beratung / persönliche Betreuung /
+// Kompetenz / PKV-Erfahrung) is configured inside the Trustindex dashboard
+// (pinning/ordering reviews for this widget) — not something controllable
+// from this page's code.
 ---
 
 <section class="bg-white py-16 sm:py-24">
@@ -23,6 +24,10 @@ import { siteConfig } from "@/lib/site";
           angezeigt.
         </p>
       </noscript>
+    </div>
+
+    <div class="mt-10 text-center">
+      <BookingButton location="testimonials" variant="compact" />
     </div>
   </div>
 </section>

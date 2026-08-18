@@ -3,14 +3,14 @@ import PkvLandingLayout from "@/layouts/PkvLandingLayout.astro";
 import Hero from "@/components/pkvLanding/Hero.astro";
 import TrustBar from "@/components/pkvLanding/TrustBar.astro";
 import ProblemSection from "@/components/pkvLanding/ProblemSection.astro";
-import BenefitsSection from "@/components/pkvLanding/BenefitsSection.astro";
 import AudienceSection from "@/components/pkvLanding/AudienceSection.astro";
+import WhyFabioSection from "@/components/pkvLanding/WhyFabioSection.astro";
+import BenefitsSection from "@/components/pkvLanding/BenefitsSection.astro";
 import IdentificationSection from "@/components/pkvLanding/IdentificationSection.astro";
 import HealthSection from "@/components/pkvLanding/HealthSection.astro";
 import ProcessSection from "@/components/pkvLanding/ProcessSection.astro";
-import DifferentiationSection from "@/components/pkvLanding/DifferentiationSection.astro";
-import AdvisorSection from "@/components/pkvLanding/AdvisorSection.astro";
 import Testimonials from "@/components/pkvLanding/Testimonials.astro";
+import AdvisorSection from "@/components/pkvLanding/AdvisorSection.astro";
 import Faq from "@/components/pkvLanding/Faq.astro";
 import FinalCtaSection from "@/components/pkvLanding/FinalCtaSection.astro";
 import { siteConfig } from "@/lib/site";
@@ -39,21 +39,21 @@ const insuranceAgencySchema = {
 
 <PkvLandingLayout
   title="Private Krankenversicherung Kassel | PKV-Beratung"
-  description="Persönliche PKV-Beratung in Kassel & Nordhessen für Angestellte, Selbstständige und Beamte. Jetzt 15-minütiges Erstgespräch mit Fabio Rumpf buchen."
+  description="PKV-Beratung in Kassel & Nordhessen für Angestellte, Selbstständige und Beamte. Finde heraus, ob die private Krankenversicherung zu dir passt. Jetzt 15-minütiges Erstgespräch buchen."
 >
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify(insuranceAgencySchema)} />
 
   <Hero />
   <TrustBar />
   <ProblemSection />
-  <BenefitsSection />
   <AudienceSection />
+  <WhyFabioSection />
+  <BenefitsSection />
   <IdentificationSection />
   <HealthSection />
   <ProcessSection />
-  <DifferentiationSection />
-  <AdvisorSection />
   <Testimonials />
+  <AdvisorSection />
   <Faq />
   <FinalCtaSection />
 </PkvLandingLayout>

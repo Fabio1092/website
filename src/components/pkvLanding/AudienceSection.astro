@@ -1,13 +1,35 @@
 ---
-import { Briefcase, Rocket, Landmark, CheckCircle2 } from "lucide-react";
+import { Briefcase, Rocket, Landmark } from "lucide-react";
 import BookingButton from "@/components/pkvLanding/BookingButton.astro";
 
-const employeeQuestions = [
-  "Lohnt sich die PKV für mich wirklich?",
-  "Was passiert, wenn sich mein Einkommen verändert?",
-  "Wie wirkt sich eine spätere Familienplanung aus?",
-  "Welche Leistungen sollte ein guter Tarif enthalten?",
-  "PKV oder doch lieber freiwillig gesetzlich versichert bleiben?",
+const groups = [
+  {
+    icon: Briefcase,
+    title: "Angestellte",
+    paragraphs: [
+      "Du verdienst über der relevanten Einkommensgrenze oder näherst dich ihr und fragst dich, ob sich ein Wechsel in die PKV wirklich lohnt?",
+      "Dann schauen wir nicht nur auf deinen heutigen Beitrag. Wir betrachten auch Themen wie Leistungen, Familienplanung, berufliche Entwicklung und die langfristigen Konsequenzen deiner Entscheidung.",
+    ],
+    question: "Bin ich mit der PKV langfristig wirklich besser aufgestellt als mit der GKV?",
+  },
+  {
+    icon: Rocket,
+    title: "Selbstständige & Unternehmer",
+    paragraphs: [
+      "Als Selbstständiger oder Unternehmer kannst du deine Krankenversicherung anders gestalten als viele Angestellte. Damit entstehen Chancen – aber auch Entscheidungen, die gut überlegt sein sollten.",
+      "Wir betrachten unter anderem deinen gewünschten Versicherungsschutz, Selbstbeteiligung, Krankentagegeld und deine langfristige finanzielle Planung.",
+    ],
+    question: "Wie baue ich meine PKV so auf, dass sie zu meinem Unternehmen und meinem Leben passt?",
+  },
+  {
+    icon: Landmark,
+    title: "Beamte & Beamtenanwärter",
+    paragraphs: [
+      "Bei Beamten spielen die Beihilfe und die dazu passende private Krankenversicherung eine besondere Rolle.",
+      "Wir schauen uns an, welcher Versicherungsschutz zu deinem Beihilfeanspruch und deiner persönlichen Situation passt und welche Unterschiede du kennen solltest.",
+    ],
+    question: "Welcher Beihilfetarif passt wirklich zu meiner Situation?",
+  },
 ];
 ---
 
@@ -16,66 +38,31 @@ const employeeQuestions = [
     <h2 class="text-center font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Für wen ist meine PKV-Beratung gedacht?</h2>
 
     <div class="mt-12 grid gap-6 lg:grid-cols-3">
-      <div data-reveal class="flex flex-col rounded-3xl border border-black/5 bg-brand-50/25 p-8">
-        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-soft">
-          <Briefcase className="h-5 w-5" aria-hidden="true" />
-        </div>
-        <h3 class="mt-5 font-serif text-xl font-semibold text-ink-950">Angestellte</h3>
-        <p class="mt-3 text-sm leading-relaxed text-ink-700/80">
-          Du bist angestellt und beschäftigst dich mit der Frage, ob du von der gesetzlichen in die
-          private Krankenversicherung wechseln solltest?
-        </p>
-        <p class="mt-4 text-sm font-semibold text-ink-950">Typische Fragen sind:</p>
-        <ul class="mt-3 flex-1 space-y-2">
-          {
-            employeeQuestions.map((question) => (
-              <li class="flex items-start gap-2.5 text-sm leading-relaxed text-ink-700/80">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" aria-hidden="true" />
-                {question}
-              </li>
-            ))
-          }
-        </ul>
-        <p class="mt-5 border-t border-black/[0.06] pt-4 text-sm leading-relaxed text-ink-700/70">Genau diese Fragen schauen wir uns gemeinsam an.</p>
-      </div>
-
-      <div data-reveal style="transition-delay: 90ms" class="flex flex-col rounded-3xl border border-black/5 bg-brand-50/25 p-8">
-        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-soft">
-          <Rocket className="h-5 w-5" aria-hidden="true" />
-        </div>
-        <h3 class="mt-5 font-serif text-xl font-semibold text-ink-950">Selbstständige &amp; Unternehmer</h3>
-        <p class="mt-3 flex-1 text-sm leading-relaxed text-ink-700/80">
-          Als Selbstständiger oder Unternehmer hast du andere Anforderungen an deine
-          Krankenversicherung als ein klassischer Angestellter. Neben dem eigentlichen
-          Versicherungsschutz spielen beispielsweise auch Themen wie Selbstbeteiligung,
-          Krankentagegeld und deine langfristige finanzielle Planung eine Rolle.
-        </p>
-        <p class="mt-5 border-t border-black/[0.06] pt-4 text-sm leading-relaxed text-ink-700/70">
-          Deshalb betrachten wir nicht einfach nur einen Tarif, sondern deine gesamte Situation.
-        </p>
-      </div>
-
-      <div data-reveal style="transition-delay: 180ms" class="flex flex-col rounded-3xl border border-black/5 bg-brand-50/25 p-8">
-        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-soft">
-          <Landmark className="h-5 w-5" aria-hidden="true" />
-        </div>
-        <h3 class="mt-5 font-serif text-xl font-semibold text-ink-950">Beamte &amp; Beamtenanwärter</h3>
-        <p class="mt-3 flex-1 text-sm leading-relaxed text-ink-700/80">
-          Bei Beamten spielt insbesondere das Zusammenspiel aus Beihilfe und privater
-          Krankenversicherung eine wichtige Rolle.
-        </p>
-        <p class="mt-5 border-t border-black/[0.06] pt-4 text-sm leading-relaxed text-ink-700/70">
-          Wir schauen uns an, welche Absicherung zu deiner persönlichen Situation und deinem
-          Beihilfeanspruch passt und welche Unterschiede du kennen solltest, bevor du dich
-          entscheidest.
-        </p>
-      </div>
+      {
+        groups.map((group, index) => (
+          <div data-reveal style={`transition-delay: ${index * 90}ms`} class="flex flex-col rounded-3xl border border-black/5 bg-brand-50/25 p-8">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-soft">
+              <group.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <h3 class="mt-5 font-serif text-xl font-semibold text-ink-950">{group.title}</h3>
+            <div class="mt-3 flex-1 space-y-3 text-sm leading-relaxed text-ink-700/80">
+              {group.paragraphs.map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+            <div class="mt-5 border-t border-black/[0.06] pt-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Typische Frage</p>
+              <p class="mt-1.5 font-serif text-sm italic leading-snug text-ink-950">„{group.question}“</p>
+            </div>
+          </div>
+        ))
+      }
     </div>
 
     <div class="mx-auto mt-14 max-w-lg text-center">
       <p class="text-base leading-relaxed text-ink-700/75">
-        Du findest dich in einer dieser Situationen wieder? Dann lass uns im ersten Schritt kurz
-        kennenlernen und deine Ausgangssituation einordnen.
+        Du erkennst dich wieder? Dann müssen wir noch keinen Tarif auswählen. Im ersten Schritt
+        reichen 15 Minuten, um deine Situation einzuordnen.
       </p>
       <div class="mt-6">
         <BookingButton location="audience" variant="compact" />

@@ -1,48 +1,26 @@
 ---
 import BookingButton from "@/components/pkvLanding/BookingButton.astro";
 
-interface Step {
-  number: string;
-  title: string;
-  intro: string[];
-  list?: string[];
-  outro?: string[];
-}
-
-const steps: Step[] = [
+const steps = [
   {
-    number: "01",
-    title: "15-minütiges Erstgespräch",
-    intro: ["Wir lernen uns kurz kennen und sprechen über deine aktuelle Situation. Dabei klären wir unter anderem:"],
-    list: ["Wo stehst du aktuell?", "Warum beschäftigst du dich mit PKV?", "Welche Fragen sind für dich besonders wichtig?", "Gibt es Besonderheiten, die wir berücksichtigen müssen?"],
-    outro: ["Vor allem finden wir heraus, ob eine weiterführende Beratung für dich sinnvoll ist."],
+    number: "1",
+    title: "Erstgespräch – ca. 15 Minuten",
+    text: "Wir sprechen über deine aktuelle Situation, deine Motivation für die PKV und deine wichtigsten Fragen. Danach wissen wir beide, ob und wie eine weitere Beratung sinnvoll ist.",
   },
   {
-    number: "02",
-    title: "Analyse deiner Situation",
-    intro: [
-      "Wenn es für beide Seiten passt, schauen wir uns deine Situation anschließend detaillierter an. Dabei betrachten wir beispielsweise deinen Berufsstatus, deine Wünsche an den Versicherungsschutz, deine Lebensplanung und gegebenenfalls deine gesundheitliche Vorgeschichte.",
-    ],
+    number: "2",
+    title: "Persönliche Analyse",
+    text: "Wenn es passt, gehen wir anschließend tiefer. Wir betrachten deine berufliche Situation, deine Anforderungen an den Versicherungsschutz, deine Lebensplanung und – soweit relevant – deine gesundheitliche Vorgeschichte.",
   },
   {
-    number: "03",
-    title: "Vergleich sinnvoller Möglichkeiten",
-    intro: [
-      "Erst danach beschäftigen wir uns mit konkreten Lösungen. Dabei geht es nicht ausschließlich um den Beitrag. Wir betrachten auch Leistungen, Bedingungen und die Frage, wie gut eine Lösung langfristig zu deiner Situation passt.",
-    ],
+    number: "3",
+    title: "Lösungen vergleichen & verstehen",
+    text: "Erst jetzt geht es um konkrete Versicherer und Tarife. Dabei schauen wir nicht nur auf den Beitrag, sondern auf die Punkte, die für deine Situation langfristig entscheidend sind. Du bekommst keine Tarifflut, sondern eine nachvollziehbare Einordnung.",
   },
   {
-    number: "04",
-    title: "Verständliche Empfehlung",
-    intro: [
-      "Mein Anspruch ist, dass du am Ende nicht einfach sagst: „Fabio meint, Tarif XY sei gut.“ Sondern: „Ich verstehe, warum diese Lösung zu mir passt.“",
-      "Du sollst die Unterschiede verstehen und deine Entscheidung nachvollziehbar treffen können.",
-    ],
-  },
-  {
-    number: "05",
-    title: "Umsetzung & langfristige Betreuung",
-    intro: ["Wenn du dich für eine Lösung entscheidest, unterstütze ich dich bei der Umsetzung. Und auch danach hast du weiterhin einen persönlichen Ansprechpartner."],
+    number: "4",
+    title: "Entscheidung & langfristige Begleitung",
+    text: "Wenn du dich für eine Lösung entscheidest, unterstütze ich dich bei der Umsetzung. Und auch danach bleibe ich dein Ansprechpartner, wenn Fragen entstehen oder sich dein Leben verändert.",
   },
 ];
 ---
@@ -50,13 +28,13 @@ const steps: Step[] = [
 <section class="scroll-mt-24 bg-white py-16 sm:py-24">
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
-      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">So läuft die Beratung ab</h2>
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">So läuft deine PKV-Beratung ab</h2>
     </div>
 
     <ol class="mt-14 space-y-10">
       {
         steps.map((step, index) => (
-          <li data-reveal style={`transition-delay: ${Math.min(index, 4) * 80}ms`} class="relative flex gap-6 sm:gap-8">
+          <li data-reveal style={`transition-delay: ${index * 80}ms`} class="relative flex gap-6 sm:gap-8">
             <div class="flex flex-col items-center">
               <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-base font-semibold text-white">
                 {step.number}
@@ -65,27 +43,22 @@ const steps: Step[] = [
             </div>
             <div class="min-w-0 pb-2">
               <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">{step.title}</h3>
-              <div class="mt-3 space-y-2.5">
-                {step.intro.map((line) => (
-                  <p class="text-sm leading-relaxed text-ink-700/80 sm:text-base">{line}</p>
-                ))}
-              </div>
-              {step.list && (
-                <ul class="mt-3 space-y-1.5">
-                  {step.list.map((item) => (
-                    <li class="text-sm leading-relaxed text-ink-700/70 sm:text-base">– {item}</li>
-                  ))}
-                </ul>
-              )}
-              {step.outro && step.outro.map((line) => <p class="mt-3 text-sm font-medium text-ink-950">{line}</p>)}
+              <p class="mt-3 text-sm leading-relaxed text-ink-700/80 sm:text-base">{step.text}</p>
             </div>
           </li>
         ))
       }
     </ol>
 
-    <div class="mt-14 text-center">
-      <BookingButton location="process" variant="compact" />
+    <div class="mx-auto mt-14 max-w-lg space-y-4 text-center">
+      <p class="text-base leading-relaxed text-ink-700/75">Mein Ziel ist nicht, dass du sagst:</p>
+      <p class="font-serif text-lg italic text-ink-700/60">„Fabio hat gesagt, dieser Tarif sei der beste.“</p>
+      <p class="text-base text-ink-700/75">Sondern:</p>
+      <p class="font-serif text-xl font-semibold text-ink-950">„Ich verstehe, warum diese Lösung zu mir passt.“</p>
+
+      <div class="pt-4">
+        <BookingButton location="process" variant="compact" />
+      </div>
     </div>
   </div>
 </section>
