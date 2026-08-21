@@ -1,0 +1,38 @@
+---
+import GuideCard from "@/components/ratgeber/GuideCard.astro";
+import { guideCategories, guidesByCategory, categoryAnchors, guideHref } from "@/lib/guides";
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Alle Versicherungs-Ratgeber</h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Nicht jede Versicherung ist für jeden Menschen gleich wichtig. Deshalb findest du meine Ratgeber nach Lebensbereichen sortiert.
+      </p>
+    </div>
+
+    <div class="mt-14 space-y-14">
+      {
+        guideCategories.map((category) => (
+          <div id={categoryAnchors[category]} class="scroll-mt-24">
+            <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">{category}</h3>
+            <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {guidesByCategory(category).map((guide, index) => (
+                <GuideCard
+                  title={guide.title}
+                  teaser={guide.teaser}
+                  href={guideHref(guide.slug)}
+                  ctaLabel="Mehr erfahren"
+                  variant="compact"
+                  comingSoon={guide.status === "coming-soon"}
+                  delay={index * 60}
+                />
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

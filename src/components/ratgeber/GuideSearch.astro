@@ -1,0 +1,85 @@
+---
+import { Search } from "lucide-react";
+import { guides, guideHref } from "@/lib/guides";
+
+const searchIndex = guides.map((g) => ({ title: g.title, category: g.category, href: guideHref(g.slug) }));
+---
+
+<div class="relative mx-auto mt-10 max-w-2xl">
+  <div class="relative rounded-2xl bg-white p-2 shadow-2xl shadow-black/30">
+    <div class="flex items-center gap-3 px-4 py-2.5">
+      <Search className="h-5 w-5 shrink-0 text-ink-700/40" aria-hidden="true" />
+      <input
+        id="guide-search-input"
+        type="search"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="guide-search-results"
+        aria-autocomplete="list"
+        autocomplete="off"
+        placeholder="Nach einer Versicherung suchen …"
+        class="min-w-0 flex-1 border-0 bg-transparent text-base text-ink-950 placeholder:text-ink-700/40 focus:outline-none focus:ring-0"
+      />
+    </div>
+
+    <ul
+      id="guide-search-results"
+      role="listbox"
+      aria-label="Suchergebnisse"
+      class="absolute inset-x-0 top-full z-20 mt-2 hidden max-h-80 overflow-y-auto rounded-2xl border border-black/5 bg-white p-2 shadow-2xl shadow-black/20"
+    >
+    </ul>
+  </div>
+  <p class="mt-3 text-center text-sm text-white/50">z. B. Auslandskrankenversicherung, Privathaftpflicht oder Rechtsschutz</p>
+</div>
+
+<script is:inline define:vars={{ searchIndex }}>
+  const input = document.getElementById("guide-search-input");
+  const results = document.getElementById("guide-search-results");
+
+  function renderResults(query) {
+    const q = query.trim().toLowerCase();
+    if (!q) {
+      results.classList.add("hidden");
+      results.innerHTML = "";
+      input.setAttribute("aria-expanded", "false");
+      return;
+    }
+
+    const matches = searchIndex.filter((item) => item.title.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)).slice(0, 6);
+
+    if (matches.length === 0) {
+      results.innerHTML = `<li class="px-4 py-3 text-sm text-ink-700/60">Keine Treffer. Alle Ratgeber findest du weiter unten in der Übersicht.</li>`;
+    } else {
+      results.innerHTML = matches
+        .map(
+          (item) =>
+            `<li role="option"><a href="${item.href}" class="flex items-center justify-between gap-3 rounded-xl px-4 py-3 text-sm transition-colors hover:bg-brand-50/60"><span class="font-medium text-ink-950">${item.title}</span><span class="shrink-0 text-xs text-ink-700/50">${item.category}</span></a></li>`,
+        )
+        .join("");
+    }
+
+    results.classList.remove("hidden");
+    input.setAttribute("aria-expanded", "true");
+  }
+
+  input?.addEventListener("input", (e) => renderResults(e.target.value));
+  input?.addEventListener("focus", (e) => {
+    if (e.target.value.trim()) renderResults(e.target.value);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!input.contains(e.target) && !results.contains(e.target)) {
+      results.classList.add("hidden");
+      input.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  input?.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      results.classList.add("hidden");
+      input.setAttribute("aria-expanded", "false");
+      input.blur();
+    }
+  });
+</script>

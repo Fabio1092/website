@@ -1,0 +1,36 @@
+---
+import { recentlyUpdatedGuides, guideHref } from "@/lib/guides";
+
+const dateFormatter = new Intl.DateTimeFormat("de-DE", { dateStyle: "long" });
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Neu &amp; aktualisiert</h2>
+      <div class="mx-auto mt-4 max-w-xl space-y-3 text-base leading-relaxed text-ink-700/80">
+        <p>Versicherungsbedingungen und Tarife können sich verändern. Deshalb sollen auch meine Empfehlungen nicht jahrelang unverändert online stehen.</p>
+        <p>Hier siehst du, welche Ratgeber zuletzt überprüft oder aktualisiert wurden.</p>
+      </div>
+    </div>
+
+    <ul class="mt-10 divide-y divide-black/5 overflow-hidden rounded-2xl border border-black/5 bg-white shadow-soft">
+      {
+        recentlyUpdatedGuides.map((guide) => (
+          <li>
+            <a href={guideHref(guide.slug)} class="flex flex-col gap-1.5 px-6 py-5 transition-colors hover:bg-brand-50/40 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+              <div class="min-w-0">
+                <p class="hyphens-auto break-words font-serif text-base font-semibold text-ink-950">{guide.title}</p>
+                {guide.updatedNote && <p class="mt-1 text-sm leading-relaxed text-ink-700/70">{guide.updatedNote}</p>}
+              </div>
+              <div class="flex shrink-0 items-center gap-4 sm:flex-col sm:items-end sm:gap-1">
+                {guide.updatedAt && <time datetime={guide.updatedAt} class="text-xs text-ink-700/50">{dateFormatter.format(new Date(guide.updatedAt))}</time>}
+                <span class="text-sm font-semibold text-brand-700">Ratgeber ansehen →</span>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

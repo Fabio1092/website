@@ -1,0 +1,64 @@
+---
+import GuideSearch from "@/components/ratgeber/GuideSearch.astro";
+import { guideCategories, categoryAnchors } from "@/lib/guides";
+
+const trustTags = ["Persönlich eingeordnet", "Verständlich erklärt", "Regelmäßig aktualisiert"];
+---
+
+<section class="relative overflow-hidden bg-ink-950 text-white">
+  <div class="pointer-events-none absolute -top-40 right-[-10%] h-[32rem] w-[32rem] rounded-full bg-brand-500/20 blur-3xl" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute -bottom-32 left-[-10%] h-[26rem] w-[26rem] rounded-full bg-gold-500/10 blur-3xl" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:py-28 lg:px-8">
+    <span class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300">
+      Versicherungen verstehen. Besser entscheiden.
+    </span>
+
+    <h1 class="mt-6 hyphens-auto break-words text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+      Versicherungen verständlich erklärt. <span class="text-brand-400">Meine Einschätzung</span> statt Versicherungsdeutsch.
+    </h1>
+
+    <div class="mx-auto mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-white/80">
+      <p>
+        Welche Versicherungen brauchst du wirklich? Worauf solltest du bei der Auswahl achten? Und
+        welche Lösungen würde ich mir persönlich genauer anschauen?
+      </p>
+      <p>
+        In meinem Ratgeber findest du verständliche Informationen, meine persönliche Einschätzung
+        zu den wichtigsten Versicherungen und – wo es sinnvoll möglich ist – konkrete
+        Empfehlungen.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/60">
+      {
+        trustTags.map((tag, index) => (
+          <>
+            <span>{tag}</span>
+            {index < trustTags.length - 1 && <span class="h-1 w-1 rounded-full bg-white/30" aria-hidden="true" />}
+          </>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 border-t border-white/10 pt-12">
+      <h2 class="font-serif text-2xl font-semibold sm:text-3xl">Welche Versicherung suchst du?</h2>
+      <p class="mt-2 text-base text-white/70">Suche einfach nach dem Thema, zu dem du gerade eine Frage hast.</p>
+
+      <GuideSearch />
+
+      <div class="mx-auto mt-8 flex max-w-2xl flex-wrap items-center justify-center gap-2.5">
+        {
+          guideCategories.map((category) => (
+            <a
+              href={`#${categoryAnchors[category]}`}
+              class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white/75 transition-colors hover:border-white/30 hover:text-white"
+            >
+              {category}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

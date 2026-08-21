@@ -1,0 +1,42 @@
+---
+import GuideCard from "@/components/ratgeber/GuideCard.astro";
+import { recommendedGuides, guideHref } from "@/lib/guides";
+---
+
+<section class="bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Meine aktuellen Empfehlungen</h2>
+
+      <div class="mx-auto mt-6 space-y-4 text-base leading-relaxed text-ink-700/80">
+        <p>
+          Bei einigen Versicherungen kann ich auch ohne stundenlange Beratung relativ klar sagen,
+          welche Leistungen ich wichtig finde und welche Tarife ich mir aktuell genauer anschauen
+          würde.
+        </p>
+        <p>Deshalb findest du in ausgewählten Ratgebern konkrete Empfehlungen von mir.</p>
+        <p class="font-medium text-ink-950">Wichtig dabei:</p>
+        <p>Ich möchte dir nicht einfach einen Abschlusslink hinlegen.</p>
+        <p>
+          Du sollst vorher verstehen, <strong class="font-semibold text-ink-950">warum ich einen Tarif gut finde, worauf du achten solltest und für wen eine Empfehlung
+          möglicherweise nicht passt.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-3">
+      {
+        recommendedGuides.map((guide, index) => (
+          <GuideCard
+            title={guide.title}
+            teaser={guide.recommendedTeaser ?? guide.teaser}
+            href={guideHref(guide.slug)}
+            ctaLabel="Meine Einschätzung ansehen"
+            comingSoon={guide.status === "coming-soon"}
+            delay={index * 80}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

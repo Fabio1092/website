@@ -1,0 +1,65 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/ratgeber/Hero.astro";
+import SpecialtyCards from "@/components/ratgeber/SpecialtyCards.astro";
+import FeaturedGuides from "@/components/ratgeber/FeaturedGuides.astro";
+import GuideCategoryList from "@/components/ratgeber/GuideCategoryList.astro";
+import Philosophy from "@/components/ratgeber/Philosophy.astro";
+import RatingExplanation from "@/components/ratgeber/RatingExplanation.astro";
+import Recommendations from "@/components/ratgeber/Recommendations.astro";
+import UpdatedGuides from "@/components/ratgeber/UpdatedGuides.astro";
+import GuideCTA from "@/components/ratgeber/GuideCTA.astro";
+import { guides, guideHref } from "@/lib/guides";
+
+const pageTitle = "Versicherungs-Ratgeber | Einschätzungen & Empfehlungen von Fabio Rumpf";
+const pageDescription =
+  "Welche Versicherungen sind sinnvoll? Fabio Rumpf erklärt verständlich, worauf es bei Haftpflicht, Rechtsschutz, Auslandskrankenversicherung & Co. wirklich ankommt.";
+const canonicalUrl = new URL("/ratgeber/", Astro.site).toString();
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: pageTitle,
+  description: pageDescription,
+  inLanguage: "de-DE",
+  url: canonicalUrl,
+  isPartOf: { "@type": "WebSite", name: "Fabio Rumpf Makler", url: new URL("/", Astro.site).toString() },
+  about: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungsmakler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Ratgeber", item: canonicalUrl },
+  ],
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: guides.map((guide, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: guide.title,
+    url: new URL(guideHref(guide.slug), Astro.site).toString(),
+  })),
+};
+---
+
+<Layout title={pageTitle} fullTitle description={pageDescription}>
+  <Hero />
+  <SpecialtyCards />
+  <FeaturedGuides />
+  <GuideCategoryList />
+  <Philosophy />
+  <RatingExplanation />
+  <Recommendations />
+  <UpdatedGuides />
+  <GuideCTA />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(collectionSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(itemListSchema)} />

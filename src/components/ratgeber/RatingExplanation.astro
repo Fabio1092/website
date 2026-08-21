@@ -1,0 +1,130 @@
+---
+import { Target, AlertTriangle, Users, MousePointerClick } from "lucide-react";
+
+const criteria = [
+  {
+    icon: Target,
+    title: "Sinnhaftigkeit",
+    text: "Wie relevant halte ich diese Absicherung grundsätzlich für die jeweilige Zielgruppe? Nicht jede Versicherung löst ein Risiko, das zwingend abgesichert werden muss.",
+  },
+  {
+    icon: AlertTriangle,
+    title: "Finanzielles Risiko",
+    text: "Wie schwer können dich die finanziellen Folgen treffen, wenn du nicht versichert bist? Ein Schaden von 800 Euro ist anders zu bewerten als ein Risiko, das deine finanzielle Existenz gefährden kann.",
+  },
+  {
+    icon: Users,
+    title: "Beratungsbedarf",
+    text: "Kann die Versicherung in einer typischen Situation relativ unkompliziert ausgewählt werden oder hängt die richtige Lösung stark von deiner persönlichen Situation ab? Je komplexer die Entscheidung, desto wichtiger wird individuelle Beratung.",
+  },
+  {
+    icon: MousePointerClick,
+    title: "Online-Abschluss geeignet",
+    text: "Gibt es aus meiner Sicht typische Standardsituationen, in denen ein direkter Online-Abschluss sinnvoll möglich ist? Oder würde ich grundsätzlich empfehlen, die Ausgangssituation vorher individuell zu prüfen?",
+  },
+];
+
+function Dots(score: number) {
+  return Array.from({ length: 5 }, (_, i) => i < score);
+}
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">So bewerte ich Versicherungen.</h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">Damit du meine Einschätzung schnell einordnen kannst, betrachte ich Versicherungen aus verschiedenen Perspektiven.</p>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2">
+      {
+        criteria.map((item, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="flex items-start gap-4 rounded-2xl border border-black/5 bg-brand-50/25 p-6">
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-soft">
+              <item.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <div>
+              <h3 class="font-serif text-lg font-semibold text-ink-950">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-700/75">{item.text}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2">
+      <div class="min-w-0 rounded-2xl border border-black/5 bg-white p-7 shadow-soft">
+        <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Beispiel</p>
+        <h3 class="mt-2 hyphens-auto break-words font-serif text-lg font-semibold text-ink-950">Auslandskrankenversicherung</h3>
+
+        <div class="mt-4 space-y-3">
+          <div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-ink-700/70">Sinnhaftigkeit</span>
+              <span class="font-medium text-ink-950">5 von 5</span>
+            </div>
+            <div class="mt-1.5 flex gap-1.5" role="img" aria-label="Sinnhaftigkeit: 5 von 5">
+              {Dots(5).map((filled) => <span class:list={["h-1.5 w-6 rounded-full", filled ? "bg-brand-500" : "bg-black/10"]} aria-hidden="true" />)}
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-ink-700/70">Beratungsbedarf</span>
+              <span class="font-medium text-ink-950">1 von 5</span>
+            </div>
+            <div class="mt-1.5 flex gap-1.5" role="img" aria-label="Beratungsbedarf: 1 von 5">
+              {Dots(1).map((filled) => <span class:list={["h-1.5 w-6 rounded-full", filled ? "bg-brand-500" : "bg-black/10"]} aria-hidden="true" />)}
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-sm leading-relaxed text-ink-700/75">
+          Für eine gewöhnliche Urlaubsreise lässt sich eine passende Auslandskrankenversicherung häufig relativ unkompliziert auswählen.
+        </p>
+
+        <a href="/ratgeber/auslandskrankenversicherung/" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-800">
+          Meine Einschätzung ansehen →
+        </a>
+      </div>
+
+      <div class="min-w-0 rounded-2xl border border-black/5 bg-white p-7 shadow-soft">
+        <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Beispiel</p>
+        <h3 class="mt-2 hyphens-auto break-words font-serif text-lg font-semibold text-ink-950">Berufsunfähigkeitsversicherung</h3>
+
+        <div class="mt-4 space-y-3">
+          <div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-ink-700/70">Sinnhaftigkeit</span>
+              <span class="font-medium text-ink-950">5 von 5</span>
+            </div>
+            <div class="mt-1.5 flex gap-1.5" role="img" aria-label="Sinnhaftigkeit: 5 von 5">
+              {Dots(5).map((filled) => <span class:list={["h-1.5 w-6 rounded-full", filled ? "bg-brand-500" : "bg-black/10"]} aria-hidden="true" />)}
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-ink-700/70">Beratungsbedarf</span>
+              <span class="font-medium text-ink-950">5 von 5</span>
+            </div>
+            <div class="mt-1.5 flex gap-1.5" role="img" aria-label="Beratungsbedarf: 5 von 5">
+              {Dots(5).map((filled) => <span class:list={["h-1.5 w-6 rounded-full", filled ? "bg-brand-500" : "bg-black/10"]} aria-hidden="true" />)}
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-sm leading-relaxed text-ink-700/75">
+          Bei einer BU würde ich eine pauschale Tarifempfehlung vermeiden. Beruf, Gesundheitsangaben, Versicherungsbedingungen und langfristige Gestaltung sollten individuell
+          betrachtet werden.
+        </p>
+
+        <a href="/bu" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-800">
+          BU-Beratung kennenlernen →
+        </a>
+      </div>
+    </div>
+
+    <p class="mx-auto mt-8 max-w-2xl text-center text-xs italic leading-relaxed text-ink-700/50">
+      Die Bewertungen auf dieser Seite stellen meine persönliche redaktionelle Einschätzung dar und sind keine objektiven Testsiegel.
+    </p>
+  </div>
+</section>

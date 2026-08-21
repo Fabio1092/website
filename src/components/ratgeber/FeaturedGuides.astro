@@ -1,0 +1,29 @@
+---
+import GuideCard from "@/components/ratgeber/GuideCard.astro";
+import { featuredGuides, guideHref } from "@/lib/guides";
+---
+
+<section class="bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Häufig gesucht</h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">Du möchtest schnell zu einem bestimmten Thema? Diese Versicherungen werden besonders häufig nachgefragt.</p>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        featuredGuides.map((guide, index) => (
+          <GuideCard
+            title={guide.title}
+            category={guide.category}
+            teaser={guide.featuredTeaser ?? guide.teaser}
+            href={guideHref(guide.slug)}
+            ctaLabel="Ratgeber ansehen"
+            comingSoon={guide.status === "coming-soon"}
+            delay={index * 80}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

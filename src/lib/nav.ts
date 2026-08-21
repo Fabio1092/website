@@ -32,6 +32,7 @@ export const primaryNav: NavLink[] = [
       { label: "Gesundheitsfragen", href: "/bu-gesundheitsfragen" },
     ],
   },
+  { label: "Ratgeber", href: "/ratgeber" },
   { label: "360° Beratung", href: "/360-beratung" },
   { label: "Über mich", href: "/ueber-mich" },
 ];

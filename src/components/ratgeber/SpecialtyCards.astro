@@ -1,0 +1,72 @@
+---
+import { Briefcase, HeartPulse } from "lucide-react";
+
+const specialties = [
+  {
+    icon: Briefcase,
+    title: "Berufsunfähigkeitsversicherung",
+    paragraphs: [
+      "Dein Einkommen finanziert dein Leben. Bei der Berufsunfähigkeitsversicherung geht es deshalb nicht einfach darum, irgendeinen günstigen Tarif abzuschließen.",
+      "Gesundheitshistorie, Beruf, Versicherungsbedingungen und die richtige Höhe der Absicherung können einen erheblichen Unterschied machen.",
+      "Ich helfe dir dabei, die Lösung zu finden, die zu deiner persönlichen Situation passt.",
+    ],
+    ctaLabel: "Berufsunfähigkeitsversicherung ansehen",
+    href: "/bu",
+  },
+  {
+    icon: HeartPulse,
+    title: "Private Krankenversicherung",
+    paragraphs: [
+      "Eine private Krankenversicherung begleitet dich möglicherweise über Jahrzehnte.",
+      "Deshalb sollte die Entscheidung nicht allein vom heutigen Beitrag abhängen. Entscheidend ist, welche Leistungen du möchtest, welche langfristige Strategie zu dir passt und welche Gesellschaft für deine persönliche Situation interessant ist.",
+    ],
+    ctaLabel: "Private Krankenversicherung ansehen",
+    href: "/private-krankenversicherung-kassel",
+  },
+];
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Bei diesen zwei Themen berate ich individuell.</h2>
+
+      <div class="mx-auto mt-6 space-y-4 text-base leading-relaxed text-ink-700/80">
+        <p>
+          Meine Beratungsschwerpunkte liegen auf der{" "}
+          <strong class="font-semibold text-ink-950">Berufsunfähigkeitsversicherung und der privaten Krankenversicherung</strong>.
+        </p>
+        <p>Bei beiden Themen halte ich wenig von pauschalen Aussagen wie „Tarif A ist der beste“ oder „Anbieter B passt für jeden“.</p>
+        <p>Dafür unterscheiden sich Gesundheit, Beruf, Lebensplanung, Leistungsanforderungen und persönliche Ausgangssituation zu stark.</p>
+        <p>Deshalb findest du zu BU und PKV natürlich jede Menge Informationen von mir – die konkrete Empfehlung entsteht aber erst, nachdem ich deine Situation kenne.</p>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2">
+      {
+        specialties.map((item, index) => (
+          <div data-reveal style={`transition-delay: ${index * 90}ms`} class="min-w-0 flex flex-col rounded-3xl bg-ink-950 p-8 text-white sm:p-10">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-brand-300">
+              <item.icon className="h-6 w-6" aria-hidden="true" />
+            </div>
+            <span class="mt-5 inline-flex w-fit items-center rounded-full bg-gold-500/15 px-3.5 py-1 text-xs font-semibold uppercase tracking-wide text-gold-300">
+              Beratungsschwerpunkt
+            </span>
+            <h3 class="mt-4 hyphens-auto break-words font-serif text-xl font-semibold">{item.title}</h3>
+            <div class="mt-3 flex-1 space-y-3 text-sm leading-relaxed text-white/75">
+              {item.paragraphs.map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+            <a
+              href={item.href}
+              class="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-300 transition-colors hover:text-gold-200"
+            >
+              {item.ctaLabel} →
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

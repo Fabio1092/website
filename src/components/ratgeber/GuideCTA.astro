@@ -1,0 +1,55 @@
+---
+import { siteConfig } from "@/lib/site";
+---
+
+<section class="bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div data-reveal class="flex flex-col rounded-3xl border border-black/5 bg-white p-8 sm:p-10">
+        <h2 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">Du findest deine Situation nicht?</h2>
+        <div class="mt-4 flex-1 space-y-3 text-sm leading-relaxed text-ink-700/80">
+          <p>Nicht jede Versicherungsfrage lässt sich mit einem Ratgeber beantworten.</p>
+          <p>Vielleicht hast du einen bestehenden Vertrag, eine besondere Ausgangssituation oder möchtest einfach wissen, wie ich ein bestimmtes Thema einschätze.</p>
+          <p>Dann schreib mir gerne.</p>
+        </div>
+        <a
+          href={siteConfig.emailHref}
+          class="mt-7 inline-flex w-fit items-center gap-1.5 rounded-full border border-black/10 px-6 py-3 text-sm font-semibold text-ink-950 transition-colors hover:border-black/20 hover:bg-black/[0.02]"
+        >
+          Frage stellen →
+        </a>
+      </div>
+
+      <div data-reveal style="transition-delay: 90ms" class="flex flex-col rounded-3xl bg-ink-950 p-8 text-white sm:p-10">
+        <h2 class="font-serif text-xl font-semibold sm:text-2xl">Du suchst Unterstützung bei BU oder PKV?</h2>
+        <div class="mt-4 flex-1 space-y-3 text-sm leading-relaxed text-white/75">
+          <p>Berufsunfähigkeitsversicherung und private Krankenversicherung sind meine Beratungsschwerpunkte.</p>
+          <p>Wenn du hier nicht nur Informationen suchst, sondern deine persönliche Situation prüfen möchtest, können wir uns unverbindlich kennenlernen.</p>
+        </div>
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="/bu"
+            class="inline-flex items-center justify-center gap-1.5 rounded-full bg-gold-500 px-6 py-3 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+          >
+            BU-Beratung kennenlernen →
+          </a>
+          <a
+            href="/private-krankenversicherung-kassel"
+            class="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/5"
+          >
+            PKV-Beratung kennenlernen →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-14 max-w-2xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-wide text-brand-600">Aus Kassel. Für Nordhessen. Digital in ganz Deutschland.</p>
+      <p class="mt-3 text-sm leading-relaxed text-ink-700/70">
+        Persönliche und verständliche Versicherungsberatung mit klarem Fokus auf
+        Berufsunfähigkeitsversicherung und private Krankenversicherung – ergänzt durch meine
+        Einschätzungen zu weiteren wichtigen Versicherungsthemen.
+      </p>
+    </div>
+  </div>
+</section>
