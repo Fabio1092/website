@@ -1,8 +1,10 @@
 ---
 import { siteConfig } from "@/lib/site";
 
-// Central CTA for the PKV landing page: one URL, one label, everywhere.
-// Change the destination in siteConfig.calendlyPkvUrl — never per-instance.
+// Central CTA for the PKV landing page: one URL and one default label,
+// change the destination in siteConfig.calendlyPkvUrl. The label may be
+// varied per instance via the `label` prop to echo the surrounding
+// paragraph, but every instance still books the exact same appointment.
 const BOOKING_LABEL = "15-minütiges Erstgespräch buchen";
 
 interface Props {
@@ -10,9 +12,11 @@ interface Props {
   location: string;
   variant?: "primary" | "compact" | "sticky" | "text";
   class?: string;
+  /** Overrides the default button text for this instance. */
+  label?: string;
 }
 
-const { location, variant = "primary", class: className = "" } = Astro.props;
+const { location, variant = "primary", class: className = "", label } = Astro.props;
 
 const variantClass = {
   primary:
@@ -32,5 +36,5 @@ const variantClass = {
   data-cta-location={location}
   class={`${variantClass} ${className}`.trim()}
 >
-  {BOOKING_LABEL}
+  {label ?? BOOKING_LABEL}
 </a>
