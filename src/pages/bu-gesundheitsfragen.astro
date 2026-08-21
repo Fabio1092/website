@@ -5,6 +5,7 @@ import TableOfContents from "@/components/buGesundheitsfragen/TableOfContents.as
 import Article from "@/components/buGesundheitsfragen/Article.astro";
 import Faq from "@/components/buGesundheitsfragen/Faq.astro";
 import Conclusion from "@/components/buGesundheitsfragen/Conclusion.astro";
+import RelatedTopic from "@/components/RelatedTopic.astro";
 import FinalCta from "@/components/FinalCta.astro";
 
 const pageTitle = "Gesundheitsfragen in der Berufsunfähigkeitsversicherung: Warum bei der BU jedes Wort entscheidend sein kann";
@@ -42,6 +43,11 @@ const breadcrumbSchema = {
   <Article />
   <Faq />
   <Conclusion />
+  <RelatedTopic
+    title="Denkst du auch über eine private Krankenversicherung nach? Auch dort spielen die Gesundheitsfragen eine zentrale Rolle."
+    href="/pkv-gesundheitsfragen"
+    linkLabel="Gesundheitsfragen in der PKV ansehen"
+  />
   <FinalCta
     id="final-cta"
     title="Du hast Vorerkrankungen oder bist unsicher, was du bei den BU-Gesundheitsfragen angeben musst?"
