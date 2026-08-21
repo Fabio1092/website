@@ -1,0 +1,29 @@
+---
+const facts = [
+  "Die Gesundheitsfragen unterscheiden sich von Gesellschaft zu Gesellschaft.",
+  "Nicht nur die Diagnose zählt – sondern auch Zeitraum und genaue Formulierung der Frage.",
+  "Eine Ja-Antwort ist nicht automatisch problematisch oder gleichbedeutend mit einer Ablehnung.",
+  "Bei relevanten Vorerkrankungen kann eine Risikovoranfrage vor dem eigentlichen Antrag sinnvoll sein.",
+  "Gesundheitsfragen sollten weder verharmlost noch unnötig übererfüllt werden. Entscheidend ist, exakt das zu beantworten, was gefragt wird.",
+];
+---
+
+<section id="wichtigste" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="rounded-3xl border border-black/5 bg-brand-50/30 p-6 sm:p-10">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Das Wichtigste auf einen Blick</p>
+      <p class="mt-2 max-w-2xl text-base leading-relaxed text-ink-700/80">Wenn Du aus diesem Artikel nur fünf Punkte mitnimmst, dann diese:</p>
+
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {
+          facts.map((fact, index) => (
+            <div class="rounded-2xl border border-black/5 bg-white p-5">
+              <span class="font-serif text-2xl font-semibold text-brand-300">{index + 1}</span>
+              <p class="mt-2 text-sm leading-relaxed text-ink-950">{fact}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,239 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+import { Info, AlertTriangle } from "lucide-react";
+
+type Part = string | { b: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "note"; kind: "info" | "warning"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "h3"; text: string };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const sections: Section[] = [
+  {
+    id: "nicht-sofort-antrag",
+    heading: "Warum ich bei Vorerkrankungen nicht einfach sofort einen Antrag stellen würde",
+    blocks: [
+      { type: "p", parts: ["Ein direkter Antrag produziert eine konkrete Entscheidung der Versicherungsgesellschaft."] },
+      {
+        type: "p",
+        parts: ["Wenn bereits im Vorfeld bekannt ist, dass mehrere medizinische Sachverhalte geprüft werden müssen, ist es deshalb häufig sinnvoller, zuerst strukturiert vorzugehen."],
+      },
+      { type: "p", parts: ["Der bessere Ablauf ist:"] },
+      { type: "standalone", text: "Gesundheitshistorie aufarbeiten → Fragen der Gesellschaften prüfen → bei Bedarf Risikovoranfrage → Ergebnisse vergleichen → Antrag stellen." },
+      { type: "p", parts: ["Nicht:"] },
+      { type: "standalone", text: "Antrag stellen → Ablehnung bekommen → danach überlegen, was man eigentlich hätte vorbereiten sollen." },
+    ],
+  },
+  {
+    id: "falsche-angaben",
+    heading: "Was passiert bei falschen oder unvollständigen Gesundheitsangaben?",
+    blocks: [
+      { type: "p", parts: ["Gesundheitsfragen sind kein unverbindlicher Fragebogen."] },
+      { type: "p", parts: ["Sie sind Bestandteil des Versicherungsantrags."] },
+      { type: "note", kind: "warning", text: "Wer eine konkret gestellte Gesundheitsfrage falsch oder unvollständig beantwortet, kann eine Verletzung der vorvertraglichen Anzeigepflicht riskieren." },
+      { type: "p", parts: ["Welche Konsequenzen daraus entstehen können, hängt vom konkreten Einzelfall ab."] },
+      { type: "p", parts: ["Deshalb sollte man zwei Extreme vermeiden."] },
+      { type: "h3", text: "Extrem 1:" },
+      { type: "quote", text: "„Das war doch nichts. Das lasse ich einfach weg.“" },
+      { type: "h3", text: "Extrem 2:" },
+      { type: "quote", text: "„Ich schicke einfach meine komplette medizinische Vergangenheit ungefiltert an den Versicherer.“" },
+      { type: "p", parts: ["Beides ist nicht der professionelle Weg."] },
+      { type: "p", parts: ["Der richtige Ansatz ist:"] },
+      { type: "note", kind: "info", text: "Frage lesen. Zeitraum bestimmen. Formulierung verstehen. Gesundheitshistorie prüfen. Vollständig und wahrheitsgemäß antworten." },
+    ],
+  },
+  {
+    id: "wichtigster-rat",
+    heading: "Mein wichtigster Rat zu Gesundheitsfragen in der PKV",
+    blocks: [
+      { type: "p", parts: ["Versuche nicht, einen Versicherer zu finden, bei dem Du irgendwie möglichst viele Fragen mit „Nein“ beantworten kannst."] },
+      { type: "p", parts: ["Und versuche genauso wenig, Deine komplette medizinische Vergangenheit ungefiltert offenzulegen."] },
+      { type: "p", parts: ["Beides geht am eigentlichen Ziel vorbei."] },
+      { type: "p", parts: ["Das Ziel ist ein Vertrag, bei dem Deine Gesundheitsangaben:"] },
+      { type: "standalone", text: "vollständig, wahrheitsgemäß und passend zu den konkret gestellten Fragen beantwortet wurden." },
+      { type: "p", parts: ["Eine private Krankenversicherung soll Dich möglicherweise mehrere Jahrzehnte begleiten."] },
+      { type: "p", parts: ["Da möchtest Du nicht Jahre später darüber diskutieren müssen, ob beim Antrag etwas hätte angegeben werden müssen."] },
+    ],
+  },
+  {
+    id: "vorerkrankungen-kein-ende",
+    heading: "Du hast Vorerkrankungen? Das bedeutet nicht automatisch das Ende der PKV",
+    blocks: [
+      {
+        type: "p",
+        parts: [
+          "Ein Bandscheibenvorfall, eine frühere Psychotherapie, Allergien, eine Operation oder regelmäßige Medikamente bedeuten nicht automatisch, dass eine private Krankenversicherung ausgeschlossen ist.",
+        ],
+      },
+      { type: "p", parts: ["Aber sie bedeuten:"] },
+      { type: "standalone", text: "Man sollte genauer hinschauen." },
+      { type: "p", parts: ["Welche Gesellschaft fragt danach?"] },
+      { type: "p", parts: ["Wie lange fragt sie zurück?"] },
+      { type: "p", parts: ["Was genau wird gefragt?"] },
+      { type: "p", parts: ["Ist die Erkrankung vollständig ausgeheilt?"] },
+      { type: "p", parts: ["Bestehen heute noch Folgen?"] },
+      { type: "p", parts: ["Wie lange besteht bereits Behandlungs- und Beschwerdefreiheit?"] },
+      { type: "p", parts: ["Und wie bewertet die jeweilige Gesellschaft den Sachverhalt?"] },
+      { type: "standalone", text: "Erst wenn diese Punkte geklärt sind, lässt sich seriös einschätzen, welche Möglichkeiten bestehen." },
+    ],
+  },
+];
+
+const mistakes = [
+  { title: "Den Zeitraum überlesen", parts: ["Drei, fünf oder zehn Jahre können darüber entscheiden, ob ein kompletter medizinischer Sachverhalt innerhalb der Frage liegt."] as Part[] },
+  { title: "Nur an Arztbesuche denken", parts: ["Wenn ausdrücklich nach Beschwerden oder Krankheiten gefragt wird, können auch unbehandelte Beschwerden relevant sein."] as Part[] },
+  { title: "„Angeraten“ ignorieren", parts: ["Eine Therapie oder Operation kann bereits relevant sein, obwohl sie noch gar nicht begonnen wurde."] as Part[] },
+  {
+    title: "Nur auf Jahreszahlen achten",
+    parts: ["Formulierungen wie „bestehen Folgen“ beziehen sich gegebenenfalls auf den heutigen Zustand und nicht auf einen klassischen Rückblickzeitraum."] as Part[],
+  },
+  { title: "Verdachtsdiagnosen unterschätzen", parts: ["Wenn eine Gesellschaft ausdrücklich danach fragt, kann eine nicht bestätigte Verdachtsdiagnose Bedeutung bekommen."] as Part[] },
+  {
+    title: "Medikamentenfragen pauschal beantworten",
+    parts: ["„Aktuell“, „zwölf Monate“, „drei Jahre“, „länger als sechs Wochen“ und „in der Vergangenheit“ sind vollkommen unterschiedliche Formulierungen."] as Part[],
+  },
+  { title: "Bagatellausnahmen nicht beachten", parts: ["Manche Versicherer schließen kleinere Erkrankungen ausdrücklich aus. Andere nicht."] as Part[] },
+  { title: "Zahnthemen unterschätzen", parts: ["Angeratener Zahnersatz, fehlende Zähne, Parodontose oder bestehender Zahnersatz können unterschiedlich abgefragt werden."] as Part[] },
+  { title: "Nur Diagnosen auflisten", parts: ["Eine Diagnose ohne Erklärung des Verlaufs kann ein völlig falsches Bild erzeugen."] as Part[] },
+  {
+    title: "Einen Fragebogen für alle Gesellschaften verwenden, ohne nochmals abzugleichen",
+    parts: [
+      "Eine einmal sauber erstellte Gesundheitshistorie ist eine hervorragende Grundlage. Vor dem endgültigen Antrag muss sie trotzdem mit den ",
+      { b: "konkreten Gesundheitsfragen der ausgewählten Gesellschaft" },
+      " abgeglichen werden.",
+    ] as Part[],
+  },
+];
+
+const steps = [
+  { title: "Gesundheitshistorie grob zusammentragen", body: "Welche Arztbesuche, Behandlungen, Erkrankungen, Beschwerden, Operationen, Medikamente oder sonstigen medizinischen Themen gab es in den typischen Fragezeiträumen?" },
+  { title: "Unklare Sachverhalte identifizieren", body: "Wo fehlen Zeitpunkte? Wo kennst Du die Diagnose nicht genau? Wo bestehen möglicherweise noch Folgen?" },
+  { title: "Bei Bedarf Unterlagen beschaffen", body: "Nur dort, wo sie tatsächlich helfen, Klarheit herzustellen." },
+  { title: "Relevante Vorgänge sauber aufbereiten", body: "Nicht nur die Diagnose nennen, sondern den tatsächlichen Verlauf darstellen." },
+  { title: "Gesundheitsfragen der infrage kommenden Gesellschaften vergleichen", body: "Welche Gesellschaft fragt wie lange zurück? Was wird konkret gefragt? Welche Ausnahmen oder Erweiterungen gibt es?" },
+  { title: "Bei relevanten Vorerkrankungen Risikovoranfrage prüfen", body: "Wie bewerten verschiedene Versicherer den Sachverhalt?" },
+  { title: "Erst danach den endgültigen Antrag stellen", body: "Mit sauber aufbereiteten und exakt auf den Antrag abgestimmten Gesundheitsangaben." },
+];
+
+const noteIcon = { info: Info, warning: AlertTriangle };
+const noteLabel = { info: "Info", warning: "Achtung" };
+const noteClass = { info: "border border-brand-200 bg-brand-50/50", warning: "border border-gold-500/25 bg-gold-500/10" };
+const noteLabelClass = { info: "text-brand-600", warning: "text-gold-700" };
+---
+
+<div class="mx-auto max-w-3xl space-y-24 px-4 py-16 sm:px-6 lg:px-8">
+  {
+    sections.slice(0, 2).map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "note") {
+              const Icon = noteIcon[block.kind];
+              return (
+                <div class={`rounded-2xl px-6 py-5 ${noteClass[block.kind]}`}>
+                  <div class={`flex items-center gap-2 text-xs font-semibold uppercase tracking-wide ${noteLabelClass[block.kind]}`}>
+                    <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                    {noteLabel[block.kind]}
+                  </div>
+                  <p class="mt-2 font-serif text-lg font-medium leading-relaxed text-ink-950">{block.text}</p>
+                </div>
+              );
+            }
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+
+  <section id="fallstricke" class="scroll-mt-24">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">Die häufigsten Fallstricke bei Gesundheitsfragen in der PKV</h2>
+    <div data-reveal class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        mistakes.map((mistake, index) => (
+          <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-soft">
+            <span class="font-serif text-xl font-semibold text-brand-300">{String(index + 1).padStart(2, "0")}</span>
+            <p class="mt-1.5 font-semibold text-ink-950">{mistake.title}</p>
+            <RichParagraph parts={mistake.parts} class="mt-2 text-sm leading-relaxed text-ink-700/80" />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="schritt-fuer-schritt" class="scroll-mt-24">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">So würde ich die Gesundheitsprüfung Schritt für Schritt angehen</h2>
+    <p class="mt-4 text-base leading-relaxed text-ink-700/80">Ich würde die Gesundheitsprüfung niemals isoliert betrachten.</p>
+    <p class="mt-2 text-base leading-relaxed text-ink-700/80">Mein Prozess sieht typischerweise so aus:</p>
+
+    <ol data-reveal class="mt-10 space-y-8">
+      {
+        steps.map((step, index) => (
+          <li class="relative flex gap-5">
+            <div class="flex flex-col items-center">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink-950 text-sm font-semibold text-white">{index + 1}</span>
+              {index < steps.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
+            </div>
+            <div class="min-w-0 pb-2">
+              <p class="font-semibold text-ink-950">{step.title}</p>
+              <p class="mt-1.5 text-sm leading-relaxed text-ink-700/80">{step.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  {
+    sections.slice(2).map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "note") {
+              const Icon = noteIcon[block.kind];
+              return (
+                <div class={`rounded-2xl px-6 py-5 ${noteClass[block.kind]}`}>
+                  <div class={`flex items-center gap-2 text-xs font-semibold uppercase tracking-wide ${noteLabelClass[block.kind]}`}>
+                    <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                    {noteLabel[block.kind]}
+                  </div>
+                  <p class="mt-2 font-serif text-lg font-medium leading-relaxed text-ink-950">{block.text}</p>
+                </div>
+              );
+            }
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

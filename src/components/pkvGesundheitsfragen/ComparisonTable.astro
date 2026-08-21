@@ -1,0 +1,126 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const rows = [
+  {
+    company: "Barmenia",
+    particularity: "Medikamentenfrage auf aktuelle regelmäßige Einnahme ausgerichtet; ambulante Behandlungen drei Jahre; Psyche zehn Jahre",
+    relevance: "Frühere Medikamenteneinnahmen können in der Medikamentenfrage anders behandelt werden, andere Gesundheitsfragen bleiben trotzdem relevant",
+  },
+  {
+    company: "Alte Oldenburger",
+    particularity: "regelmäßige Medikamente drei Jahre; Psyche zehn Jahre; längere Arbeitsunfähigkeiten gesondert abgefragt",
+    relevance: "Schon der Zeitraum der Medikamentenfrage unterscheidet sich deutlich",
+  },
+  {
+    company: "Signal Iduna / Deutscher Ring",
+    particularity: "Brille ausdrücklich abgefragt; ambulante Operationen fünf Jahre; Psyche zehn Jahre",
+    relevance: "Konkrete Einzelabfragen, teilweise aber längere Zeiträume",
+  },
+  {
+    company: "Allianz",
+    particularity: "Psyche fünf Jahre; ambulante Bereiche teilweise drei Jahre; ambulante Operationen fünf Jahre",
+    relevance: "Eine Psychotherapie zwischen fünf und zehn Jahren kann gegenüber Gesellschaften mit Zehn-Jahres-Frist anders relevant sein",
+  },
+  {
+    company: "Inter",
+    particularity: "teilweise detailliertere Zahnfragen",
+    relevance: "Umfangreicher Zahnersatz oder frühere parodontale Erkrankungen können genauer aufbereitet werden müssen",
+  },
+  {
+    company: "uniVersa",
+    particularity: "Frage nach noch bestehenden Folgen früherer Krankheiten, Operationen oder Unfälle",
+    relevance: "Auch sehr alte Ereignisse können relevant bleiben, wenn heute noch Folgen bestehen",
+  },
+  {
+    company: "SDK",
+    particularity: "verschiedene Bagatellausnahmen; ambulante Operationen fünf Jahre; offene Fragen zu chronischen Themen",
+    relevance: "Weniger Aufwand bei definierten Bagatellen, gleichzeitig auf aktuelle Dauerzustände achten",
+  },
+  {
+    company: "HanseMerkur",
+    particularity: "Psyche fünf Jahre; Medikamentenfrage mit weiter gefasstem Vergangenheitsbezug",
+    relevance: "Vorteilhaft kann der kürzere Psychotherapiezeitraum sein, bei Medikamenten muss dagegen genau gelesen werden",
+  },
+  {
+    company: "AXA",
+    particularity: "Psyche grundsätzlich fünf Jahre; Medikamentenfrage mit zusätzlichem Sechs-Wochen-Kriterium",
+    relevance: "Zeigt besonders deutlich, dass nicht nur die Jahreszahl, sondern auch Bedingungen innerhalb der Frage zählen",
+  },
+  {
+    company: "R+V",
+    particularity: "in mehreren Bereichen auch Verdachtsdiagnosen; Medikamentenfrage zwölf Monate",
+    relevance: "Dokumentierte Verdachtsdiagnosen können besondere Bedeutung bekommen",
+  },
+];
+---
+
+<section id="vergleichstabelle" class="scroll-mt-24 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">Die Unterschiede zwischen Gesellschaften auf einen Blick</h2>
+
+    <div class="mt-6 space-y-4">
+      <RichParagraph parts={["Die folgenden Beispiele sollen ausdrücklich ", { b: "kein Ranking der Versicherer" }, " darstellen."]} />
+      <RichParagraph parts={["Ein Fragebogen, der für Kunde A vorteilhaft ist, kann für Kunde B ungünstiger sein."]} />
+      <RichParagraph parts={["Entscheidend ist immer die individuelle Vorgeschichte."]} />
+    </div>
+
+    <p class="mt-6 text-xs leading-relaxed text-ink-700/50">
+      Beispiele anhand der betrachteten Antragsfragen. Maßgeblich ist immer der aktuelle Antrag.
+    </p>
+
+    <div class="mt-6 hidden overflow-x-auto rounded-xl border border-black/5 sm:block">
+      <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+        <thead>
+          <tr class="bg-brand-50/60">
+            <th class="px-4 py-3 font-semibold text-ink-950">Gesellschaft / Beispiel</th>
+            <th class="px-4 py-3 font-semibold text-ink-950">Besonderheit der betrachteten Gesundheitsfragen</th>
+            <th class="px-4 py-3 font-semibold text-ink-950">Warum das relevant sein kann</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-black/5 bg-white">
+          {
+            rows.map((row) => (
+              <tr>
+                <td class="px-4 py-3 align-top font-medium text-ink-950">{row.company}</td>
+                <td class="px-4 py-3 align-top text-ink-700/80">{row.particularity}</td>
+                <td class="px-4 py-3 align-top text-ink-700/80">{row.relevance}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6 space-y-4 sm:hidden">
+      {
+        rows.map((row) => (
+          <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-soft">
+            <p class="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">{row.company}</p>
+            <div class="mt-3">
+              <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">Besonderheit</p>
+              <p class="mt-1 text-sm leading-relaxed text-ink-950">{row.particularity}</p>
+            </div>
+            <div class="mt-3">
+              <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">Warum relevant</p>
+              <p class="mt-1 text-sm leading-relaxed text-ink-950">{row.relevance}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 space-y-4">
+      <RichParagraph parts={["Die Tabelle zeigt das eigentliche Prinzip:"]} />
+      <div class="rounded-2xl border-l-4 border-brand-400 bg-brand-50/60 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Es gibt nicht den einen Gesundheitsfragebogen, der für jeden Menschen automatisch besser ist.
+        </p>
+      </div>
+      <RichParagraph parts={["Entscheidend ist die Kombination aus:"]} />
+      <p class="text-base font-semibold leading-relaxed text-ink-950">
+        Deiner Gesundheitshistorie + der konkreten Fragestellung + der Risikoprüfung der Gesellschaft.
+      </p>
+    </div>
+  </div>
+</section>

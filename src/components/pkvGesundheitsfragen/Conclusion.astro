@@ -1,0 +1,45 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const pairs = [
+  "Fünf Jahre statt zehn Jahre.",
+  "Aktuelle Medikamenteneinnahme statt drei Jahre Rückblick.",
+  "Behandlung statt bestehender Beschwerden.",
+  "Eine gesicherte Diagnose statt ausdrücklich mit abgefragter Verdachtsdiagnose.",
+  "Eine Operation innerhalb eines bestimmten Zeitraums statt heute noch bestehender Folgen einer alten Operation.",
+  "Bagatellerkrankungen, die ausdrücklich ausgenommen werden – oder eben nicht.",
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">Fazit: In der PKV gibt es nicht die eine Gesundheitsprüfung</h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Gesundheitsfragen verschiedener privater Krankenversicherer sehen auf den ersten Blick oft ähnlich aus."]} />
+      <RichParagraph parts={["Im Detail können sie sich erheblich unterscheiden."]} />
+
+      <ul class="space-y-2 pt-2">
+        {
+          pairs.map((pair) => (
+            <li class="flex items-baseline gap-2.5 text-base font-medium leading-relaxed text-ink-950">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {pair}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Diese Unterschiede können darüber entscheiden, welche Informationen im konkreten Antrag erforderlich sind."]} />
+      <RichParagraph parts={["Genau deshalb sollte die Gesundheitsprüfung kein Formular sein, das man nebenbei in zehn Minuten ausfüllt."]} />
+      <RichParagraph parts={["Sie gehört zu den wichtigsten Bestandteilen einer guten PKV-Beratung."]} />
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Je sauberer Deine Gesundheitshistorie aufbereitet ist und je genauer die konkreten Gesundheitsfragen geprüft werden, desto besser ist die Grundlage für eine langfristig
+          saubere Entscheidung.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

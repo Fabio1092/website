@@ -1,0 +1,81 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Muss ich bei jedem PKV-Anbieter dieselben Erkrankungen angeben?",
+    answer:
+      "Nicht zwangsläufig. Maßgeblich ist die konkrete Gesundheitsfrage des jeweiligen Versicherers. Unterschiedliche Zeiträume und Formulierungen können dazu führen, dass ein Sachverhalt bei Gesellschaft A innerhalb der Frage liegt und bei Gesellschaft B nicht.",
+  },
+  {
+    question: "Welche Zeiträume werden in der PKV typischerweise abgefragt?",
+    answer:
+      "Das hängt von Gesellschaft und Themenbereich ab. Ambulante Behandlungen werden häufig für kürzere Zeiträume abgefragt als beispielsweise psychotherapeutische Behandlungen. Entscheidend ist immer der tatsächlich verwendete Antrag.",
+  },
+  {
+    question: "Muss ich Beschwerden angeben, mit denen ich nie beim Arzt war?",
+    answer:
+      "Wenn der Versicherer ausdrücklich nach bestehenden oder bestandenen Beschwerden beziehungsweise Krankheiten fragt – auch wenn diese nicht behandelt wurden –, können solche Beschwerden relevant sein.",
+  },
+  {
+    question: "Muss ich meine komplette Krankenakte beim Versicherer einreichen?",
+    answer:
+      "Nicht grundsätzlich. Bei komplexeren oder unklaren Gesundheitshistorien können Patientenunterlagen sehr hilfreich sein. Sie sollten allerdings eingeordnet und nicht einfach ungeprüft als Sammlung medizinischer Diagnosen weitergereicht werden.",
+  },
+  {
+    question: "Muss ich für einen PKV-Antrag meine Krankenakte zwingend vorher anfordern?",
+    answer:
+      "Nicht in jedem Fall. Bei einer überschaubaren Gesundheitshistorie kann vorhandenes Wissen zusammen mit bestehenden Unterlagen ausreichend sein. Bei vielen Arztkontakten, komplexeren Diagnosen oder Unsicherheiten kann eine Einsicht jedoch sinnvoll sein.",
+  },
+  {
+    question: "Was passiert, wenn in meiner Akte eine Diagnose steht, von der ich nichts wusste?",
+    answer:
+      "Zunächst sollte geklärt werden, was hinter dieser Diagnose steckt. Es kann sich zum Beispiel um eine Verdachts-, Ausschluss- oder Abrechnungsdiagnose handeln. Entscheidend ist der tatsächliche medizinische Sachverhalt und die konkrete Gesundheitsfrage.",
+  },
+  {
+    question: "Ist eine Ja-Antwort automatisch schlecht?",
+    answer:
+      "Nein. Eine Ja-Antwort bedeutet zunächst nur, dass ein Sachverhalt näher betrachtet werden muss. Entscheidend sind Art, Schwere, Ursache, Verlauf und heutiger Gesundheitszustand sowie die Risikobewertung der jeweiligen Gesellschaft.",
+  },
+  {
+    question: "Was ist eine Risikovoranfrage?",
+    answer:
+      "Mit einer Risikovoranfrage kann vor der eigentlichen Antragstellung geprüft werden, wie eine Versicherungsgesellschaft einen gesundheitlichen Sachverhalt voraussichtlich bewertet. Gerade bei Vorerkrankungen kann dies ein wichtiger Bestandteil der Vorbereitung sein.",
+  },
+  {
+    question: "Warum sollte ich nicht einfach direkt einen Antrag stellen?",
+    answer:
+      "Bei einer relevanten Gesundheitshistorie kann eine vorherige strukturierte Prüfung sinnvoller sein. Dadurch können die Gesundheitshistorie vorbereitet und mögliche Gesellschaften gezielter ausgewählt werden, bevor ein verbindlicher Antrag gestellt wird.",
+  },
+  {
+    question: "Welche PKV hat die „besten“ Gesundheitsfragen?",
+    answer:
+      "Diese Frage lässt sich pauschal nicht beantworten. Ein Fragebogen kann für einen Kunden sehr günstig und für einen anderen ungünstig sein. Entscheidend ist immer, welcher Fragebogen zu Deiner konkreten Gesundheitshistorie passt und wie die jeweilige Gesellschaft das Risiko bewertet.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Häufige Fragen zu <span class="text-brand-600">Gesundheitsfragen in der PKV</span>
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

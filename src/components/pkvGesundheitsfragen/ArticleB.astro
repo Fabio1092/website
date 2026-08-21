@@ -1,0 +1,220 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+import { Info, Lightbulb, AlertTriangle, FileText } from "lucide-react";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "note"; kind: "info" | "merksatz" | "warning" | "example"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const sections: Section[] = [
+  {
+    id: "krankenakte-offenlegen",
+    heading: "Muss ich einfach meine komplette Krankenakte offenlegen?",
+    blocks: [
+      { type: "standalone", text: "Nein." },
+      { type: "p", parts: ["Die Gesundheitsprüfung sollte nicht nach dem Prinzip funktionieren:"] },
+      { type: "quote", text: "„Ich gebe dem Versicherer einfach alles, dann bin ich auf der sicheren Seite.“" },
+      { type: "p", parts: ["Das ist genauso wenig sinnvoll wie relevante Informationen bewusst wegzulassen."] },
+      { type: "p", parts: ["Die Gesundheitsfragen sollen vollständig und wahrheitsgemäß beantwortet werden."] },
+      { type: "p", parts: ["Mehr Informationen als tatsächlich verlangt werden, sind aber nicht automatisch besser."] },
+      { type: "p", parts: ["Der richtige Ansatz lautet deshalb:"] },
+      { type: "note", kind: "merksatz", text: "Nicht zu wenig. Nicht wahllos zu viel. Sondern das, was konkret gefragt wurde." },
+    ],
+  },
+  {
+    id: "krankenakte-anfordern",
+    heading: "Muss ich vor dem PKV-Antrag zwingend meine Krankenakte anfordern?",
+    blocks: [
+      { type: "standalone", text: "Nicht in jedem Fall." },
+      {
+        type: "p",
+        parts: [
+          "Wer seine wesentlichen Arztbesuche, Behandlungen und Erkrankungen innerhalb der abgefragten Zeiträume gut kennt, kann seine Gesundheitshistorie häufig bereits mit vorhandenem Wissen und Unterlagen aufarbeiten.",
+        ],
+      },
+      { type: "p", parts: ["Hilfreich können beispielsweise sein:"] },
+      { type: "list", items: ["der eigene Kalender", "vorhandene Arztberichte", "Befunde", "Rechnungen", "Medikationspläne", "oder sonstige medizinische Unterlagen"] },
+      { type: "p", parts: ["Eine vollständige Einsicht in Patientenakten ist nicht automatisch in jedem Fall erforderlich."] },
+      { type: "p", parts: ["Es gibt aber Situationen, in denen sie sehr sinnvoll sein kann."] },
+    ],
+  },
+  {
+    id: "einsicht-sinnvoll",
+    heading: "Wann kann die Einsicht in Krankenakten sinnvoll sein?",
+    blocks: [
+      { type: "p", parts: ["Besonders sinnvoll kann eine genauere Prüfung sein, wenn:"] },
+      {
+        type: "list",
+        items: [
+          "Du innerhalb der relevanten Zeiträume viele verschiedene Ärzte besucht hast",
+          "Du Dich an Diagnosen oder Zeitpunkte nicht mehr sicher erinnerst",
+          "eine umfangreichere Krankengeschichte vorliegt",
+          "Operationen oder längere Behandlungen stattgefunden haben",
+          "psychotherapeutische oder psychiatrische Behandlungen eine Rolle spielen",
+          "regelmäßig Medikamente eingenommen wurden",
+          "Du vermutest, dass Diagnosen dokumentiert wurden, die Dir nicht bekannt sind",
+          "oder Verdachts- beziehungsweise Abrechnungsdiagnosen eine Rolle spielen könnten",
+        ],
+      },
+      { type: "standalone", text: "Gerade bei komplexeren Vorgeschichten sollte man nicht versuchen, die gesamte Gesundheitsprüfung ausschließlich aus dem Gedächtnis heraus zu erledigen." },
+    ],
+  },
+  {
+    id: "diagnosen-vorsicht",
+    heading: "Vorsicht bei Diagnosen in Patientenakten und Abrechnungsdaten",
+    blocks: [
+      { type: "note", kind: "warning", text: "Eine dokumentierte Diagnose erzählt nicht automatisch die komplette medizinische Geschichte." },
+      { type: "p", parts: ["In Unterlagen können beispielsweise auftauchen:"] },
+      { type: "list", items: ["Verdachtsdiagnosen", "Ausschlussdiagnosen", "Abrechnungsdiagnosen", "Dauerdiagnosen", "oder Diagnosen, die längst folgenlos ausgeheilt sind"] },
+      { type: "p", parts: ["Ein Risikoprüfer sieht bei einer reinen Diagnose möglicherweise nur:"] },
+      { type: "quote", text: "„Rückenschmerzen.“" },
+      { type: "p", parts: ["Was er nicht automatisch weiß:"] },
+      {
+        type: "note",
+        kind: "example",
+        text: "Du hattest nach einem Umzug zwei Tage Verspannungen, warst einmal beim Hausarzt und bist seit vier Jahren vollständig beschwerdefrei.",
+      },
+      { type: "p", parts: ["Genau deshalb ist die ", { b: "Aufbereitung des Verlaufs" }, " so wichtig."] },
+      { type: "standalone", text: "Eine Krankenakte einfach ungefiltert weiterzuleiten, beantwortet nicht automatisch alle Fragen sinnvoll." },
+    ],
+  },
+  {
+    id: "sachverhalt-aufbereiten",
+    heading: "So sollte ein relevanter gesundheitlicher Sachverhalt aufbereitet werden",
+    blocks: [
+      { type: "p", parts: ["Bei einer relevanten Vorerkrankung sollte der Versicherer möglichst nachvollziehen können, was tatsächlich passiert ist."] },
+      { type: "p", parts: ["Je nach Fall können folgende Informationen wichtig sein:"] },
+      {
+        type: "list",
+        items: [
+          "Wann traten die Beschwerden erstmals auf?",
+          "Was war die Ursache?",
+          "Welche Diagnose wurde gestellt?",
+          "Welche Untersuchung fand statt?",
+          "Wie wurde behandelt?",
+          "Welche Medikamente wurden eingenommen?",
+          "Wie lange dauerte die Behandlung?",
+          "Bestand eine Arbeitsunfähigkeit?",
+          "Wann war die letzte Behandlung?",
+          "Seit wann besteht Behandlungsfreiheit?",
+          "Seit wann besteht Beschwerdefreiheit?",
+          "Ist die Erkrankung vollständig ausgeheilt?",
+          "Bestehen heute noch Folgen oder Einschränkungen?",
+        ],
+      },
+      { type: "p", parts: ["Wenn es der Wahrheit entspricht, ist beispielsweise die Information wichtig, dass eine Erkrankung"] },
+      { type: "list", items: ["erstmalig oder einmalig aufgetreten ist", "eine nachvollziehbare Ursache hatte", "folgenlos ausgeheilt ist", "und seit längerer Zeit Behandlungs- und Beschwerdefreiheit besteht"] },
+      { type: "standalone", text: "Denn genau dieser Verlauf kann die Risikobewertung erheblich besser einordnen lassen als eine nackte Diagnose." },
+    ],
+  },
+  {
+    id: "ja-antwort",
+    heading: "Eine Ja-Antwort ist nicht automatisch schlecht",
+    blocks: [
+      { type: "p", parts: ["Das ist ein Punkt, der mir besonders wichtig ist."] },
+      { type: "p", parts: ["Viele Interessenten behandeln die Gesundheitsfragen wie einen Test:"] },
+      { type: "standalone", text: "Möglichst überall „Nein“ ankreuzen = gut." },
+      { type: "p", parts: ["Das ist die falsche Denkweise."] },
+      { type: "p", parts: ["Eine Ja-Antwort ist zunächst einmal eine Information."] },
+      { type: "p", parts: ["Entscheidend ist, was dahintersteht."] },
+      { type: "p", parts: ["„Rückenbeschwerden“ können bedeuten:"] },
+      { type: "p", parts: ["einmalige Verspannungen nach einem Umzug."] },
+      { type: "p", parts: ["Oder:"] },
+      { type: "p", parts: ["eine chronische Wirbelsäulenerkrankung mit regelmäßiger Behandlung."] },
+      { type: "p", parts: ["„Psychotherapie“ kann unterschiedliche Ursachen, Verläufe und Zeiträume haben."] },
+      { type: "p", parts: ["„Operation“ kann ein kleiner folgenloser Eingriff gewesen sein oder ein Eingriff mit heute noch bestehenden Einschränkungen."] },
+      { type: "p", parts: ["Deshalb sollte das Ziel niemals sein, irgendwie möglichst viele Nein-Antworten zu produzieren."] },
+      { type: "p", parts: ["Das Ziel ist:"] },
+      { type: "note", kind: "info", text: "Den tatsächlichen Sachverhalt so aufzubereiten, dass die Risikoprüfung ihn korrekt bewerten kann." },
+    ],
+  },
+  {
+    id: "risikovoranfrage",
+    heading: "Warum eine Risikovoranfrage vor dem Antrag sinnvoll sein kann",
+    blocks: [
+      { type: "p", parts: ["Bei einer relevanten Gesundheitshistorie kann es sinnvoll sein, nicht sofort einen verbindlichen Antrag bei der erstbesten Gesellschaft zu stellen."] },
+      { type: "p", parts: ["Stattdessen kann vorab geprüft werden, wie unterschiedliche Versicherer den gesundheitlichen Sachverhalt bewerten."] },
+      { type: "p", parts: ["Genau dafür kann eine ", { a: "Risikovoranfrage", href: "/pkv-risikovoranfrage" }, " eingesetzt werden."] },
+      { type: "p", parts: ["Denn nicht nur die Gesundheitsfragen unterscheiden sich."] },
+      { type: "p", parts: ["Auch die Risikoprüfung der Gesellschaften kann zu unterschiedlichen Ergebnissen kommen."] },
+      { type: "p", parts: ["Derselbe medizinische Sachverhalt kann beispielsweise bei unterschiedlichen Versicherern:"] },
+      { type: "list", items: ["normal angenommen werden", "zu einem Risikozuschlag führen", "weitere Unterlagen erforderlich machen", "oder nicht versicherbar sein"] },
+      { type: "p", parts: ["Das ist einer der Gründe, weshalb ein PKV-Vergleich nicht allein über Preis und Tarifleistungen funktionieren sollte."] },
+      { type: "p", parts: ["Gerade bei Vorerkrankungen gehören immer mehrere Ebenen zusammen:"] },
+      { type: "standalone", text: "Tarifqualität. Gesellschaft. Gesundheitsfragen. Gesundheitshistorie. Risikoprüfung." },
+    ],
+  },
+];
+
+const noteIcon = { info: Info, merksatz: Lightbulb, warning: AlertTriangle, example: FileText };
+const noteLabel = { info: "Info", merksatz: "Merksatz", warning: "Achtung", example: "Beispiel" };
+const noteClass = {
+  info: "border border-brand-200 bg-brand-50/50",
+  merksatz: "border-l-4 border-brand-400 bg-brand-50/60",
+  warning: "border border-gold-500/25 bg-gold-500/10",
+  example: "border border-black/10 bg-black/[0.025]",
+};
+const noteLabelClass = {
+  info: "text-brand-600",
+  merksatz: "text-brand-600",
+  warning: "text-gold-700",
+  example: "text-ink-700/60",
+};
+---
+
+<div class="mx-auto max-w-3xl space-y-24 px-4 py-16 sm:px-6 lg:px-8">
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "note") {
+              const Icon = noteIcon[block.kind];
+              return (
+                <div class={`rounded-2xl px-6 py-5 ${noteClass[block.kind]}`}>
+                  <div class={`flex items-center gap-2 text-xs font-semibold uppercase tracking-wide ${noteLabelClass[block.kind]}`}>
+                    <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                    {noteLabel[block.kind]}
+                  </div>
+                  <p class="mt-2 font-serif text-lg font-medium leading-relaxed text-ink-950">{block.text}</p>
+                </div>
+              );
+            }
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

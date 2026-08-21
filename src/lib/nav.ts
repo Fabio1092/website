@@ -16,6 +16,7 @@ export const primaryNav: NavLink[] = [
       { label: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel" },
       { label: "PKV für Beamte", href: "/pkv-beamte-kassel" },
       { label: "Risikovoranfrage", href: "/pkv-risikovoranfrage" },
+      { label: "Gesundheitsfragen", href: "/pkv-gesundheitsfragen" },
     ],
   },
   {

@@ -1,0 +1,62 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/pkvGesundheitsfragen/Hero.astro";
+import KeyFacts from "@/components/pkvGesundheitsfragen/KeyFacts.astro";
+import TableOfContents from "@/components/pkvGesundheitsfragen/TableOfContents.astro";
+import ArticleA from "@/components/pkvGesundheitsfragen/ArticleA.astro";
+import SoftCta from "@/components/pkvGesundheitsfragen/SoftCta.astro";
+import ComparisonTable from "@/components/pkvGesundheitsfragen/ComparisonTable.astro";
+import ReadingGuide from "@/components/pkvGesundheitsfragen/ReadingGuide.astro";
+import ArticleB from "@/components/pkvGesundheitsfragen/ArticleB.astro";
+import ArticleC from "@/components/pkvGesundheitsfragen/ArticleC.astro";
+import Conclusion from "@/components/pkvGesundheitsfragen/Conclusion.astro";
+import Faq from "@/components/pkvGesundheitsfragen/Faq.astro";
+import Closing from "@/components/pkvGesundheitsfragen/Closing.astro";
+
+const pageTitle = "Gesundheitsfragen PKV: Unterschiede & Fallstricke";
+const pageDescription =
+  "Gesundheitsfragen in der PKV unterscheiden sich deutlich. Erfahre, warum Zeiträume und Formulierungen entscheidend sind und welche Fallstricke Du kennen solltest.";
+const canonicalUrl = new URL("/pkv-gesundheitsfragen", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Gesundheitsfragen in der PKV: Warum Versicherer unterschiedlich genau hinschauen",
+  description: pageDescription,
+  inLanguage: "de-DE",
+  datePublished: "2026-08-21",
+  dateModified: "2026-08-21",
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
+  publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Private Krankenversicherung", item: new URL("/private-krankenversicherung-kassel", Astro.site).toString() },
+    { "@type": "ListItem", position: 3, name: "Gesundheitsfragen", item: canonicalUrl },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Hero />
+  <KeyFacts />
+  <TableOfContents />
+  <ArticleA />
+  <SoftCta id="cta-1" heading="Du erkennst Deine Situation in einem dieser Beispiele wieder?" ctaId="pkv-gesundheitsfragen-cta1" />
+  <ComparisonTable />
+  <ReadingGuide />
+  <ArticleB />
+  <SoftCta id="cta-2" heading="Du hast relevante Vorerkrankungen und möchtest wissen, wie sie bewertet werden?" ctaId="pkv-gesundheitsfragen-cta2" />
+  <ArticleC />
+  <Conclusion />
+  <Faq />
+  <Closing />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

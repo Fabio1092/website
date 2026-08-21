@@ -1,5 +1,5 @@
 ---
-type Part = string | { b: string };
+type Part = string | { b: string } | { a: string; href: string };
 
 interface Props {
   parts: Part[];
@@ -10,5 +10,16 @@ const { parts, class: className = "text-sm leading-relaxed text-ink-700/85 sm:te
 ---
 
 <p class={className}>
-  {parts.map((part) => (typeof part === "string" ? part : <strong class="font-semibold text-ink-950">{part.b}</strong>))}
+  {
+    parts.map((part) => {
+      if (typeof part === "string") return part;
+      if ("href" in part)
+        return (
+          <a href={part.href} class="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800">
+            {part.a}
+          </a>
+        );
+      return <strong class="font-semibold text-ink-950">{part.b}</strong>;
+    })
+  }
 </p>

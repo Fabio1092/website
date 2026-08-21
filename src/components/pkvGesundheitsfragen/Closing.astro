@@ -1,0 +1,49 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+import FinalCta from "@/components/FinalCta.astro";
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">Deine Gesundheitshistorie sollte vor dem Antrag sauber geklärt sein</h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph
+        parts={[
+          "Wenn Du über einen Wechsel in die private Krankenversicherung nachdenkst und in den vergangenen Jahren Arztbesuche, Diagnosen, Medikamente, Operationen oder andere Vorerkrankungen hattest, solltest Du diese nicht einfach spontan aus dem Gedächtnis in irgendeinen Antrag übertragen.",
+        ]}
+      />
+      <RichParagraph parts={["Wir schauen uns zuerst an:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">Was ist tatsächlich passiert?</p>
+      <RichParagraph parts={["Danach:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">Was möchten die jeweiligen Gesellschaften konkret wissen?</p>
+      <RichParagraph parts={["Und wenn notwendig:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">Wie bewerten die infrage kommenden Versicherer Deine Gesundheitshistorie?</p>
+      <RichParagraph parts={["So geht es nicht darum, irgendwie irgendeine private Krankenversicherung zu bekommen."]} />
+      <RichParagraph parts={["Sondern darum, eine Lösung zu finden, bei der"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">Tarif, Gesellschaft, Gesundheitsprüfung und Deine persönliche Situation langfristig zusammenpassen.</p>
+      <RichParagraph parts={["Denn bei einer privaten Krankenversicherung sollte nicht nur der Tarif stimmen."]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">Auch der Weg in den Vertrag sollte sauber sein.</p>
+    </div>
+  </div>
+</section>
+
+<FinalCta
+  id="final-cta"
+  title="Du möchtest Deine PKV-Möglichkeiten prüfen?"
+  titleHighlight="PKV-Möglichkeiten"
+  body="Dann lass uns zuerst Deine persönliche Situation und Deine Gesundheitshistorie strukturiert anschauen – bevor vorschnell ein Antrag gestellt wird."
+  ctaLabel="PKV-Beratung anfragen"
+  ctaId="pkv-gesundheitsfragen-final"
+  closingLine="Persönlich. Ehrlich. Auf Augenhöhe. Kein Verkaufsgespräch, sondern ein ehrlicher Austausch über deine Gesundheitshistorie und mögliche nächste Schritte."
+/>
+
+<section class="bg-white py-8">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <p class="text-xs italic leading-relaxed text-ink-700/55">
+      Wichtiger Hinweis: Gesundheitsfragen, Antragsformulare, Tarifvarianten und Abfragezeiträume können von Versicherern geändert werden. Auch innerhalb einer Gesellschaft
+      können sich Fragen je nach Tarif oder Antragsweg unterscheiden. Die genannten Gesellschaften und Beispiele dienen deshalb der Veranschaulichung der Unterschiede und
+      stellen weder eine pauschale Empfehlung noch ein Ranking dar. Maßgeblich ist immer der zum Zeitpunkt der Antragstellung tatsächlich verwendete Antrag.
+    </p>
+  </div>
+</section>

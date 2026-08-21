@@ -1,0 +1,431 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+import { Info, Lightbulb } from "lucide-react";
+
+type Part = string | { b: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "note"; kind: "info" | "merksatz"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const sections: Section[] = [
+  {
+    id: "warum-fragen",
+    heading: "Warum stellt eine private Krankenversicherung überhaupt Gesundheitsfragen?",
+    blocks: [
+      { type: "p", parts: ["Die private Krankenversicherung funktioniert anders als die gesetzliche Krankenversicherung."] },
+      {
+        type: "p",
+        parts: [
+          "Vor Abschluss des Vertrages prüft der Versicherer unter anderem den Gesundheitszustand der versicherten Person. Dadurch soll eingeschätzt werden, welches gesundheitliche Risiko in den Vertrag aufgenommen wird.",
+        ],
+      },
+      { type: "p", parts: ["Dafür stellen die Gesellschaften Gesundheitsfragen."] },
+      { type: "p", parts: ["Abgefragt werden können zum Beispiel:"] },
+      {
+        type: "list",
+        items: [
+          "ambulante Arztbesuche",
+          "Untersuchungen und Behandlungen",
+          "Krankenhausaufenthalte",
+          "Operationen",
+          "Medikamente",
+          "psychotherapeutische oder psychiatrische Behandlungen",
+          "Arbeitsunfähigkeiten",
+          "chronische Erkrankungen",
+          "Allergien",
+          "unbehandelte Beschwerden",
+          "Zahnerkrankungen und Zahnersatz",
+          "Prothesen oder Implantate",
+          "Suchterkrankungen",
+          "und weitere gesundheitliche Besonderheiten",
+        ],
+      },
+      {
+        type: "p",
+        parts: ["Je nach Gesundheitshistorie kann die Risikoprüfung anschließend beispielsweise zu einer normalen Annahme, einem Risikozuschlag, weiteren Rückfragen oder auch einer Ablehnung führen."],
+      },
+      { type: "p", parts: ["Wichtig ist dabei:"] },
+      { type: "note", kind: "info", text: "Eine Vorerkrankung bedeutet nicht automatisch, dass eine private Krankenversicherung unmöglich ist." },
+      { type: "p", parts: ["Entscheidend ist immer die konkrete Situation."] },
+      { type: "standalone", text: "Was lag vor?" },
+      { type: "standalone", text: "Wann lag es vor?" },
+      { type: "standalone", text: "Wie wurde behandelt?" },
+      { type: "standalone", text: "Wie lange dauerte die Behandlung?" },
+      { type: "standalone", text: "Ist die Erkrankung vollständig ausgeheilt?" },
+      { type: "standalone", text: "Bestehen heute noch Beschwerden oder Folgen?" },
+      { type: "p", parts: ["Und vor allem:"] },
+      { type: "standalone", text: "Wie bewertet die jeweilige Versicherungsgesellschaft genau diesen Sachverhalt?" },
+    ],
+  },
+  {
+    id: "nicht-die-eine",
+    heading: "Es gibt nicht „die Gesundheitsfragen der PKV“",
+    blocks: [
+      { type: "p", parts: ["Genau hier entsteht häufig ein falscher Eindruck."] },
+      { type: "p", parts: ["Viele Interessenten gehen davon aus, dass alle privaten Krankenversicherer ungefähr dasselbe fragen."] },
+      { type: "p", parts: ["Schließlich geht es bei allen um dieselbe Person und dieselbe Gesundheitshistorie."] },
+      { type: "p", parts: ["In der Praxis unterscheiden sich die Anträge aber teilweise erheblich."] },
+      { type: "p", parts: ["Der eine Versicherer fragt beispielsweise drei Jahre nach ambulanten Behandlungen."] },
+      { type: "p", parts: ["Ein anderer interessiert sich bei einem bestimmten Thema für fünf Jahre."] },
+      { type: "p", parts: ["Psychotherapeutische Behandlungen können bei einer Gesellschaft fünf Jahre, bei einer anderen zehn Jahre zurückreichen."] },
+      { type: "p", parts: ["Bei Medikamenten können ebenfalls völlig unterschiedliche Formulierungen verwendet werden."] },
+      { type: "p", parts: ["Und manche Fragen besitzen überhaupt keinen klassischen Drei-, Fünf- oder Zehn-Jahres-Zeitraum."] },
+      { type: "p", parts: ["Das bedeutet:"] },
+      { type: "note", kind: "info", text: "Die medizinische Vorgeschichte bleibt gleich. Aber was davon im Antrag anzugeben ist, kann sich durch die konkrete Frage verändern." },
+      { type: "p", parts: ["Genau deshalb lohnt es sich, genauer hinzuschauen."] },
+    ],
+  },
+  {
+    id: "beispiel-medikamente",
+    heading: "Beispiel 1: Medikamente – ein Thema, völlig unterschiedliche Fragen",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir die Medikamenteneinnahme."] },
+      { type: "p", parts: ["Auf den ersten Blick könnte man denken:"] },
+      { type: "quote", text: "„Entweder ich habe Medikamente genommen oder nicht.“" },
+      { type: "p", parts: ["So einfach ist es nicht."] },
+      { type: "h3", text: "Barmenia: Fokus auf die aktuelle regelmäßige Einnahme" },
+      { type: "p", parts: ["In den betrachteten Gesundheitsfragen der Barmenia wird danach gefragt, ob ", { b: "regelmäßig Arzneimittel eingenommen werden" }, "."] },
+      { type: "p", parts: ["Der Fokus dieser konkreten Frage liegt damit auf der derzeitigen regelmäßigen Einnahme."] },
+      { type: "p", parts: ["Wichtig:"] },
+      {
+        type: "p",
+        parts: [
+          "Das bedeutet nicht automatisch, dass frühere Erkrankungen, wegen denen Medikamente verordnet wurden, irrelevant sind. Sie können über andere Gesundheitsfragen zu Arztbesuchen, Erkrankungen oder Behandlungen trotzdem erfasst werden.",
+        ],
+      },
+      { type: "p", parts: ["Aber die Medikamentenfrage selbst ist vergleichsweise eng formuliert."] },
+      { type: "h3", text: "Alte Oldenburger: drei Jahre Medikamentenhistorie" },
+      { type: "p", parts: ["Bei der Alten Oldenburger wird die regelmäßige Medikamenteneinnahme dagegen über einen Zeitraum von ", { b: "drei Jahren" }, " betrachtet."] },
+      { type: "p", parts: ["Für einen Kunden kann das einen erheblichen Unterschied machen."] },
+      { type: "p", parts: ["Angenommen, jemand hat vor zwei Jahren über mehrere Monate regelmäßig ein Medikament eingenommen, nimmt es heute aber längst nicht mehr."] },
+      { type: "p", parts: ["Bei einer ausschließlich auf die Gegenwart bezogenen Medikamentenfrage ergibt sich eine andere Antwort als bei einer Drei-Jahres-Frage."] },
+      { type: "h3", text: "R+V: zwölf Monate" },
+      { type: "p", parts: ["Bei der R+V wird in den betrachteten Antragsfragen die regelmäßige oder wiederholte Medikamenteneinnahme für einen Zeitraum von ", { b: "zwölf Monaten" }, " abgefragt."] },
+      { type: "p", parts: ["Auch das kann je nach Vorgeschichte interessant sein."] },
+      {
+        type: "p",
+        parts: ["Eine Medikamenteneinnahme, die zwei Jahre zurückliegt, kann damit bei dieser konkreten Medikamentenfrage anders zu behandeln sein als bei einem Versicherer, der drei Jahre zurückfragt."],
+      },
+      { type: "h3", text: "AXA: langer Zeitraum, aber mit einem wichtigen Filter" },
+      { type: "p", parts: ["Besonders schön lässt sich an der AXA zeigen, warum man nicht nur auf die Jahreszahl schauen darf."] },
+      { type: "p", parts: ["Dort wird in den betrachteten Unterlagen bei der Medikamentenfrage zwar ein deutlich längerer Zeitraum verwendet."] },
+      { type: "p", parts: ["Gleichzeitig ist die Frage aber auf Arzneimittel begrenzt, die ", { b: "länger als sechs Wochen" }, " verordnet, eingenommen oder angewendet wurden."] },
+      { type: "p", parts: ["Das ist ein völlig anderes Raster."] },
+      { type: "p", parts: ["Eine kurze Antibiotikatherapie ist eben etwas anderes als eine jahrelange Dauermedikation."] },
+      { type: "h3", text: "HanseMerkur: „in der Vergangenheit“" },
+      { type: "p", parts: ["Noch einmal anders ist eine Formulierung, die auf einen regelmäßigen Konsum von Medikamenten ", { b: "in der Vergangenheit" }, " abstellt."] },
+      { type: "p", parts: ["Hier gibt es nicht automatisch den klar erkennbaren Drei- oder Fünf-Jahres-Zeitraum, an dem man sich sofort orientieren kann."] },
+      { type: "p", parts: ["Gerade solche Fragen verdienen besondere Aufmerksamkeit."] },
+      { type: "h3", text: "Was zeigt dieses Beispiel?" },
+      { type: "p", parts: ["Fünf Versicherer können sich für dasselbe Thema interessieren und trotzdem ganz unterschiedliche Informationen abfragen."] },
+      { type: "p", parts: ["Deshalb ist die richtige Frage nicht:"] },
+      { type: "quote", text: "„Habe ich irgendwann einmal Medikamente genommen?“" },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "quote", text: "„Was möchte diese konkrete Gesellschaft mit dieser konkreten Frage von mir wissen?“" },
+    ],
+  },
+  {
+    id: "beispiel-psychotherapie",
+    heading: "Beispiel 2: Psychotherapie – fünf oder zehn Jahre können entscheidend sein",
+    blocks: [
+      { type: "p", parts: ["Besonders deutlich werden die Unterschiede beim Thema Psyche."] },
+      { type: "p", parts: ["Bei verschiedenen privaten Krankenversicherern werden psychotherapeutische, psychologische oder psychiatrische Behandlungen über unterschiedliche Zeiträume abgefragt."] },
+      {
+        type: "p",
+        parts: [
+          "In den betrachteten Antragsfragen fragen beispielsweise Barmenia, Alte Oldenburger und Signal Iduna beziehungsweise Deutscher Ring bei entsprechenden psychischen beziehungsweise psychotherapeutischen Themen über einen Zeitraum von ",
+          { b: "zehn Jahren" },
+          " zurück.",
+        ],
+      },
+      { type: "p", parts: ["Bei anderen Gesellschaften kann der Zeitraum deutlich kürzer sein."] },
+      { type: "p", parts: ["Bei der Allianz beträgt er in den betrachteten Fragen beispielsweise ", { b: "fünf Jahre" }, "."] },
+      { type: "p", parts: ["Auch bei der HanseMerkur wird das Thema Psyche in den zugrunde liegenden Fragen über ", { b: "fünf Jahre" }, " betrachtet."] },
+      { type: "p", parts: ["Bei der AXA beträgt der Zeitraum grundsätzlich ebenfalls fünf Jahre, wobei einzelne Tarife wiederum abweichende Zeiträume besitzen können."] },
+      { type: "p", parts: ["Und genau dieser letzte Punkt ist wichtig:"] },
+      { type: "note", kind: "info", text: "Nicht einmal innerhalb einer Gesellschaft muss jeder Tarif zwangsläufig mit exakt denselben Zeiträumen arbeiten." },
+      { type: "h3", text: "Ein konkretes Beispiel" },
+      { type: "p", parts: ["Angenommen, Du hattest vor sieben Jahren aufgrund einer schwierigen Lebensphase mehrere psychotherapeutische Sitzungen."] },
+      { type: "p", parts: ["Seitdem:"] },
+      { type: "list", items: ["keine Behandlung", "keine Medikamente", "keine Beschwerden", "keine Rückfälle"] },
+      { type: "p", parts: ["Deine persönliche Gesundheitshistorie ist bei jeder Versicherung identisch."] },
+      { type: "p", parts: ["Trotzdem kann die Antragssituation vollkommen unterschiedlich sein."] },
+      { type: "p", parts: ["Fragt Gesellschaft A fünf Jahre zurück, kann die damalige Behandlung außerhalb dieses konkreten Zeitraums liegen."] },
+      { type: "p", parts: ["Fragt Gesellschaft B zehn Jahre zurück, liegt sie noch innerhalb der Frage."] },
+      { type: "note", kind: "info", text: "Du bist derselbe Mensch mit derselben Vorgeschichte – und trotzdem kann sich die korrekte Antwort unterscheiden." },
+      { type: "p", parts: ["Genau deshalb ist ein pauschaler Satz wie:"] },
+      { type: "quote", text: "„Psychotherapie muss man in der PKV immer zehn Jahre angeben“" },
+      { type: "p", parts: ["zu einfach."] },
+      { type: "standalone", text: "Entscheidend ist der tatsächliche Antrag." },
+    ],
+  },
+  {
+    id: "beispiel-behandlung-beschwerden",
+    heading: "Beispiel 3: „Behandlung“ ist nicht dasselbe wie „Beschwerden“",
+    blocks: [
+      { type: "p", parts: ["Einer der wichtigsten Unterschiede versteckt sich nicht in einer Jahreszahl, sondern in einzelnen Begriffen."] },
+      { type: "p", parts: ["Stell Dir vor, Du hast seit mehreren Monaten regelmäßig Rückenschmerzen."] },
+      { type: "p", parts: ["Du warst deswegen aber noch nie beim Arzt."] },
+      { type: "p", parts: ["Jetzt kommen zwei unterschiedliche Fragen."] },
+      { type: "h3", text: "Variante A:" },
+      { type: "quote", text: "„Wurden Sie wegen Rückenbeschwerden behandelt?“" },
+      { type: "h3", text: "Variante B:" },
+      { type: "quote", text: "„Bestanden Krankheiten oder Beschwerden des Bewegungsapparates – auch wenn diese nicht behandelt wurden?“" },
+      { type: "p", parts: ["Das ist nicht dieselbe Frage."] },
+      { type: "p", parts: ["Bei der ersten geht es um eine Behandlung."] },
+      { type: "p", parts: ["Bei der zweiten können ausdrücklich auch Beschwerden erfasst sein, mit denen Du niemals einen Arzt aufgesucht hast."] },
+      {
+        type: "p",
+        parts: [
+          "In den betrachteten Gesundheitsfragen der Barmenia findet sich genau dieses Prinzip: Neben ambulanten Untersuchungen, Beratungen und Behandlungen werden auch Krankheiten, Behinderungen oder Beschwerden innerhalb des Zeitraums erfasst, die ",
+          { b: "nicht behandelt wurden" },
+          ".",
+        ],
+      },
+      { type: "p", parts: ["Auch andere Gesellschaften verwenden vergleichbare Erweiterungen."] },
+      { type: "p", parts: ["Deshalb solltest Du bei Gesundheitsfragen immer unterscheiden zwischen Begriffen wie:"] },
+      { type: "list", items: ["behandelt", "untersucht", "beraten", "Beschwerden", "Krankheiten", "diagnostiziert", "angeraten", "vorgesehen", "aktuell bestehend"] },
+      { type: "p", parts: ["Diese Wörter sind keine Nebensache."] },
+      { type: "standalone", text: "Sie definieren, wonach gefragt wird." },
+    ],
+  },
+  {
+    id: "beispiel-angeraten",
+    heading: "Beispiel 4: „Angeraten“ – obwohl noch gar nichts passiert ist",
+    blocks: [
+      { type: "p", parts: ["Ein weiterer klassischer Stolperstein ist das Wort ", { b: "„angeraten“" }, "."] },
+      { type: "p", parts: ["Viele Menschen denken bei Gesundheitsfragen ausschließlich an abgeschlossene oder laufende Behandlungen."] },
+      { type: "p", parts: ["Aber eine Gesellschaft kann ausdrücklich auch wissen wollen, ob eine Behandlung empfohlen, geplant oder angeraten wurde."] },
+      { type: "p", parts: ["Ein typisches Beispiel ist der Zahnbereich."] },
+      { type: "p", parts: ["Angenommen, Dein Zahnarzt sagt:"] },
+      { type: "quote", text: "„Diese Krone sollten wir in den nächsten Monaten erneuern.“" },
+      { type: "p", parts: ["Du hast:"] },
+      { type: "list", items: ["noch keinen Termin", "noch keinen Heil- und Kostenplan", "noch keine Behandlung begonnen"] },
+      { type: "p", parts: ["Trotzdem kann die Maßnahme bereits relevant sein, wenn die Gesundheitsfrage ausdrücklich nach ", { b: "angeratenen oder beabsichtigten Behandlungen" }, " fragt."] },
+      { type: "p", parts: ["Das Gleiche kann bei Operationen, Untersuchungen oder anderen Therapien gelten."] },
+      { type: "note", kind: "merksatz", text: "Noch nicht durchgeführt bedeutet nicht automatisch: nicht anzugeben." },
+      { type: "p", parts: ["Entscheidend ist wieder die Formulierung."] },
+    ],
+  },
+  {
+    id: "beispiel-operationen",
+    heading: "Beispiel 5: Ambulante Operationen – drei oder fünf Jahre?",
+    blocks: [
+      { type: "p", parts: ["Auch ambulante Operationen zeigen sehr gut, wie unterschiedlich Gesellschaften fragen."] },
+      { type: "p", parts: ["Bei Signal Iduna beziehungsweise Deutscher Ring werden ambulante Operationen in den betrachteten Gesundheitsfragen über einen Zeitraum von ", { b: "fünf Jahren" }, " erfasst."] },
+      { type: "p", parts: ["Bei der Allianz findet sich für ambulante Operationen ebenfalls ein Zeitraum von fünf Jahren."] },
+      { type: "p", parts: ["Auch die SDK fragt in den zugrunde liegenden Fragen ambulante Operationen über fünf Jahre ab."] },
+      { type: "p", parts: ["Andere private Krankenversicherer arbeiten in diesem Bereich teilweise mit kürzeren Zeiträumen."] },
+      { type: "p", parts: ["Das kann relevant sein."] },
+      { type: "p", parts: ["Angenommen, eine ambulante Operation liegt vier Jahre zurück."] },
+      { type: "p", parts: ["Bei einem Drei-Jahres-Zeitraum kann sie außerhalb der konkreten Frage liegen."] },
+      { type: "p", parts: ["Bei fünf Jahren liegt sie noch darin."] },
+      { type: "p", parts: ["Wieder gilt:"] },
+      { type: "note", kind: "merksatz", text: "Nicht das Ereignis verändert sich. Der Fragebogen verändert sich." },
+    ],
+  },
+  {
+    id: "beispiel-verdachtsdiagnosen",
+    heading: "Beispiel 6: Verdachtsdiagnosen – wenn eine Diagnose nie bestätigt wurde",
+    blocks: [
+      { type: "p", parts: ["Ein besonders unterschätztes Thema sind Verdachtsdiagnosen."] },
+      { type: "p", parts: ["Stell Dir folgende Situation vor:"] },
+      { type: "p", parts: ["Du hast Beschwerden."] },
+      { type: "p", parts: ["Dein Arzt möchte eine bestimmte Erkrankung ausschließen und dokumentiert dafür einen Verdacht."] },
+      { type: "p", parts: ["Es folgen Untersuchungen."] },
+      { type: "p", parts: ["Der Verdacht bestätigt sich nicht."] },
+      { type: "p", parts: ["Für Dich ist die Geschichte erledigt."] },
+      { type: "p", parts: ["Trotzdem kann diese Verdachtsdiagnose noch in Abrechnungsdaten oder der Patientenakte auftauchen."] },
+      { type: "p", parts: ["Bei der R+V wird in den betrachteten Gesundheitsfragen in mehreren Bereichen ausdrücklich auch nach ", { b: "Verdachtsdiagnosen" }, " gefragt."] },
+      {
+        type: "p",
+        parts: ["Damit kann eine Information relevant werden, die ein anderer Versicherer mit einer anders formulierten Frage möglicherweise nicht in derselben Form abfragt."],
+      },
+      { type: "p", parts: ["Genau deshalb ist bei bestimmten Konstellationen ein Blick in die eigenen medizinischen Unterlagen sinnvoll."] },
+      { type: "p", parts: ["Nicht, weil jede dort hinterlegte Diagnose automatisch ein Problem darstellt."] },
+      { type: "p", parts: ["Sondern weil Du wissen solltest, was dokumentiert wurde und ob es mit dem tatsächlichen medizinischen Verlauf übereinstimmt."] },
+    ],
+  },
+  {
+    id: "beispiel-ohne-zeitbegrenzung",
+    heading: "Beispiel 7: Fragen ohne klassische zeitliche Begrenzung",
+    blocks: [
+      {
+        type: "p",
+        parts: ["Manchmal konzentrieren sich Interessenten so stark auf die bekannten Zeiträume von drei, fünf oder zehn Jahren, dass sie die wichtigste Frage übersehen:"],
+      },
+      { type: "standalone", text: "Hat diese Frage überhaupt einen begrenzten Zeitraum?" },
+      { type: "p", parts: ["Ein gutes Beispiel findet sich bei der uniVersa."] },
+      { type: "p", parts: ["Dort wird in den betrachteten Unterlagen sinngemäß danach gefragt, ob ", { b: "Folgen von Krankheiten, Operationen oder Unfällen bestehen" }, "."] },
+      { type: "p", parts: ["Der entscheidende Punkt:"] },
+      { type: "p", parts: ["Hier geht es um den aktuellen Zustand."] },
+      { type: "p", parts: ["Angenommen, Du hattest vor 15 Jahren eine Operation."] },
+      { type: "p", parts: ["Die Operation selbst liegt damit möglicherweise längst außerhalb der üblichen Frage nach stationären Behandlungen."] },
+      {
+        type: "p",
+        parts: ["Wenn heute allerdings noch Folgen bestehen – beispielsweise Bewegungseinschränkungen oder Beschwerden –, kann genau dieser aktuelle Zustand trotzdem relevant sein."],
+      },
+      { type: "p", parts: ["Das zeigt einen fundamentalen Unterschied zwischen:"] },
+      { type: "quote", text: "„Wurden Sie in den letzten fünf Jahren operiert?“" },
+      { type: "p", parts: ["und"] },
+      { type: "quote", text: "„Bestehen heute noch Folgen früherer Operationen?“" },
+      { type: "p", parts: ["Das eine fragt nach einem Ereignis innerhalb eines Zeitraums."] },
+      { type: "standalone", text: "Das andere fragt nach Deinem heutigen Zustand." },
+    ],
+  },
+  {
+    id: "beispiel-bagatellen",
+    heading: "Beispiel 8: Bagatellerkrankungen – was muss wirklich aufgearbeitet werden?",
+    blocks: [
+      { type: "p", parts: ["Auch der Umgang mit kleineren Erkrankungen unterscheidet sich."] },
+      { type: "p", parts: ["Einige Gesellschaften formulieren ausdrücklich sogenannte Bagatellausnahmen."] },
+      { type: "p", parts: ["Bei der SDK werden in den betrachteten Gesundheitsfragen beispielsweise verschiedene folgenlos ausgeheilte Bagatellerkrankungen ausdrücklich ausgenommen."] },
+      { type: "p", parts: ["Dazu zählen unter bestimmten Voraussetzungen unter anderem:"] },
+      {
+        type: "list",
+        items: ["Erkältungen", "Grippe", "Magen-Darm-Infekte", "kleinere Verletzungen wie Prellungen oder Zerrungen", "bestimmte Insektenstiche", "sowie weitere klar definierte kleinere Gesundheitsereignisse"],
+      },
+      { type: "p", parts: ["Auch die Einnahme der Antibabypille ausschließlich zur Empfängnisverhütung wird dort in den zugrunde liegenden Fragen besonders behandelt."] },
+      { type: "p", parts: ["Solche Ausnahmen können die Aufarbeitung der Gesundheitshistorie erheblich vereinfachen."] },
+      { type: "p", parts: ["Andere Versicherer formulieren ihre Fragen breiter oder haben weniger ausdrückliche Bagatellausnahmen."] },
+      { type: "p", parts: ["Das bedeutet aber nicht:"] },
+      { type: "quote", text: "„Eine Erkältung muss in der PKV immer angegeben werden.“" },
+      { type: "p", parts: ["Und genauso wenig:"] },
+      { type: "quote", text: "„Eine Erkältung muss niemals angegeben werden.“" },
+      { type: "p", parts: ["Richtig ist:"] },
+      { type: "standalone", text: "Es kommt auf die konkrete Gesundheitsfrage und deren Ausnahmen an." },
+    ],
+  },
+  {
+    id: "beispiel-brille",
+    heading: "Beispiel 9: Eine Brille kann bereits unterschiedlich abgefragt werden",
+    blocks: [
+      { type: "p", parts: ["Manchmal geht es nicht um komplizierte Erkrankungen, sondern um ganz alltägliche Dinge."] },
+      { type: "p", parts: ["Bei Signal Iduna beziehungsweise Deutscher Ring wird beispielsweise ausdrücklich danach gefragt, ob eine Brille oder Kontaktlinsen getragen, benötigt oder verordnet wurden."] },
+      { type: "p", parts: ["Bei anderen Gesellschaften kann eine Fehlsichtigkeit innerhalb einer allgemeiner formulierten Frage auftauchen."] },
+      { type: "p", parts: ["Auch das zeigt einen wichtigen Punkt:"] },
+      { type: "note", kind: "info", text: "Eine konkrete Frage kann für den Antragsteller sogar angenehmer sein als eine sehr allgemein gehaltene Sammelfrage." },
+      { type: "p", parts: ["Denn je präziser gefragt wird, desto einfacher lässt sich häufig erkennen, was tatsächlich gemeint ist."] },
+    ],
+  },
+  {
+    id: "beispiel-zaehne",
+    heading: "Beispiel 10: Zähne – mehr als nur „fehlen Zähne?“",
+    blocks: [
+      { type: "p", parts: ["Auch im Zahnbereich unterscheiden sich die Gesellschaften."] },
+      { type: "p", parts: ["Je nach Antrag kann beispielsweise gefragt werden nach:"] },
+      {
+        type: "list",
+        items: [
+          "fehlenden Zähnen",
+          "bestehendem Zahnersatz",
+          "Kronen",
+          "Inlays oder Onlays",
+          "herausnehmbarem Zahnersatz",
+          "Parodontose",
+          "kieferorthopädischen Behandlungen",
+          "laufenden Zahnbehandlungen",
+          "oder bereits angeratenen Zahnersatzmaßnahmen",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Bei der Barmenia ist die Fragestellung in den betrachteten Unterlagen beispielsweise stark auf aktuelle oder angeratene zahnärztliche beziehungsweise kieferorthopädische Behandlungen und fehlende Zähne ausgerichtet.",
+        ],
+      },
+      { type: "p", parts: ["Bei der Inter finden sich dagegen unter anderem detailliertere Fragen zu bestehendem Zahnersatz und parodontalen Erkrankungen beziehungsweise Behandlungen."] },
+      { type: "p", parts: ["Für jemanden mit umfangreichem Zahnersatz kann das einen Unterschied machen."] },
+      { type: "p", parts: ["Deshalb gilt auch hier:"] },
+      { type: "standalone", text: "Nicht einfach davon ausgehen, dass „Zähne bei allen gleich gefragt werden“." },
+    ],
+  },
+  {
+    id: "offene-sammelfragen",
+    heading: "Warum offene Sammelfragen besonders aufmerksam gelesen werden sollten",
+    blocks: [
+      { type: "p", parts: ["Neben sehr konkreten Fragen gibt es Anträge mit deutlich offeneren Formulierungen."] },
+      {
+        type: "p",
+        parts: [
+          "Ein Beispiel dafür ist eine in den bereitgestellten Unterlagen dokumentierte Frage, die zusätzlich nach Krankheiten, Unfallfolgen oder körperlichen beziehungsweise geistigen Schäden fragt, soweit diese zuvor noch nicht angegeben wurden.",
+        ],
+      },
+      { type: "p", parts: ["Solche Fragen sind deutlich weiter als:"] },
+      { type: "quote", text: "„Wurden Sie in den letzten drei Jahren wegen Erkrankungen des Bewegungsapparates behandelt?“" },
+      { type: "p", parts: ["Bei offenen Sammelfragen muss deshalb besonders sorgfältig geprüft werden:"] },
+      {
+        type: "list",
+        items: ["Was wurde in den vorherigen Fragen bereits erfasst?", "Was wird zusätzlich verlangt?", "Gibt es einen Zeitraum?", "Geht es um frühere Ereignisse oder aktuelle Zustände?"],
+      },
+      { type: "standalone", text: "Hier zeigt sich besonders deutlich, warum ein Antrag nicht einfach mechanisch mit Ja und Nein abgearbeitet werden sollte." },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-24 px-4 py-16 sm:px-6 lg:px-8">
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "note" && block.kind === "merksatz")
+              return (
+                <div class="rounded-2xl border-l-4 border-brand-400 bg-brand-50/60 px-6 py-5">
+                  <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-600">
+                    <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
+                    Merksatz
+                  </div>
+                  <p class="mt-2 font-serif text-lg font-medium leading-relaxed text-ink-950">{block.text}</p>
+                </div>
+              );
+            if (block.type === "note")
+              return (
+                <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+                  <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-600">
+                    <Info className="h-3.5 w-3.5" aria-hidden="true" />
+                    Info
+                  </div>
+                  <p class="mt-2 font-serif text-lg font-medium leading-relaxed text-ink-950">{block.text}</p>
+                </div>
+              );
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>
