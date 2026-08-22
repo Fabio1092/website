@@ -1,0 +1,8 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import KpiDashboard from "@/components/kpiDashboard/KpiDashboard";
+---
+
+<Layout title="KPI-Dashboard" description="Internes KPI-Dashboard." noindex fullTitle>
+  <KpiDashboard client:only="react" />
+</Layout>

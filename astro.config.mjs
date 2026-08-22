@@ -8,7 +8,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !page.includes("/bu-ausfuellhilfe"),
+      filter: (page) => !page.includes("/bu-ausfuellhilfe") && !page.includes("/dashboard-5598b0a9"),
     }),
   ],
   vite: {
