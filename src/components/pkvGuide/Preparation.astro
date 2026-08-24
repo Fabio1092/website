@@ -1,0 +1,135 @@
+---
+import { CheckCircle2 } from "lucide-react";
+
+const categories = [
+  {
+    title: "Ambulante Behandlungen der letzten 3 Jahre",
+    text: "Bei welchen Ärzten warst du? Welche Beschwerden, Untersuchungen, Diagnosen oder Behandlungen gab es?",
+  },
+  {
+    title: "Stationäre Behandlungen der letzten 5 Jahre",
+    text: "Gab es Krankenhausaufenthalte, Operationen oder andere stationäre Behandlungen?",
+  },
+  {
+    title: "Chronische oder dauerhaft bestehende Erkrankungen",
+    text: "Gibt es Erkrankungen oder Beschwerden, die regelmäßig auftreten, dauerhaft bestehen oder weiterhin behandelt werden?",
+  },
+  {
+    title: "Psychologische oder psychiatrische Untersuchungen",
+    text: "Gab es entsprechende Untersuchungen, Beratungen oder diagnostische Abklärungen?",
+  },
+  {
+    title: "Psychologische oder psychiatrische Behandlungen der letzten 10 Jahre",
+    text: "Gab es beispielsweise Therapien oder andere Behandlungen?",
+  },
+];
+
+const helpfulDocs = [
+  "eine Behandlung erfolgreich abgeschlossen wurde,",
+  "du vollständig auskuriert bzw. beschwerdefrei bist,",
+  "Untersuchungsergebnisse unauffällig waren,",
+  "keine Einschränkungen mehr bestehen,",
+  "keine weitere Behandlung notwendig ist oder",
+  "keine weitere Medikation erforderlich ist.",
+];
+---
+
+<section id="guide-vorbereitung" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      1. Bevor du <span class="text-brand-600">loslegst</span>.
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Bevor du den Risikofragebogen öffnest, nimm dir am besten 5–10 Minuten Zeit und gehe deine
+        gesundheitliche Vorgeschichte einmal grob im Kopf durch.
+      </p>
+      <p>
+        Du musst dabei noch nichts perfekt formulieren. Es geht zunächst nur darum, dass dir beim
+        späteren Ausfüllen nichts Wichtiges durchrutscht.
+      </p>
+      <p>Mach dir dafür am besten ein paar kurze Stichpunkte.</p>
+    </div>
+
+    <h3 class="mt-14 font-serif text-2xl font-semibold text-ink-950">Was war in den letzten Jahren?</h3>
+    <p data-reveal class="mt-4 text-base leading-relaxed text-ink-700/85">Überlege dir insbesondere:</p>
+
+    <div class="mt-8 divide-y divide-black/[0.06] border-t border-black/[0.06]">
+      {
+        categories.map((category, index) => (
+          <div data-reveal style={`transition-delay: ${(index % 5) * 60}ms`} class="py-6">
+            <h4 class="font-serif text-base font-semibold text-ink-950">{category.title}</h4>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/80">{category.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p data-reveal class="mt-10 text-base leading-relaxed text-ink-700/85">
+      Es reicht zunächst völlig aus, wenn du dir dazu kurze Stichpunkte mit ungefährem Zeitraum
+      machst. Zum Beispiel:
+    </p>
+
+    <div data-reveal class="mt-4 space-y-2 rounded-xl bg-white p-5 shadow-sm">
+      <p class="text-sm italic leading-relaxed text-ink-700/80">
+        „2024 – Rückenschmerzen – Hausarzt + Physiotherapie – abgeschlossen“
+      </p>
+      <p class="text-sm italic leading-relaxed text-ink-700/80">
+        „2022 – Knieverletzung beim Fußball – MRT – keine OP – ausgeheilt“
+      </p>
+    </div>
+
+    <p data-reveal class="mt-6 text-base leading-relaxed text-ink-700/85">
+      So hast du einen kleinen persönlichen Überblick vor dir und kannst anschließend wesentlich
+      entspannter durch den digitalen Fragebogen gehen.
+    </p>
+
+    <h3 class="mt-14 font-serif text-2xl font-semibold text-ink-950">Wenn dir bereits medizinische Unterlagen vorliegen</h3>
+
+    <div data-reveal class="mt-6 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Falls du zu einzelnen Behandlungen bereits Arztberichte, Befunde, Entlassungsberichte,
+        Untersuchungsergebnisse, Medikamentenpläne oder ähnliche Unterlagen zu Hause hast, kannst
+        du diese natürlich zur Hilfe nehmen.
+      </p>
+      <p>
+        Besonders hilfreich können Unterlagen sein, aus denen der positive Verlauf einer
+        Erkrankung oder Behandlung hervorgeht – zum Beispiel wenn darin dokumentiert ist, dass:
+      </p>
+    </div>
+
+    <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+      {
+        helpfulDocs.map((doc, index) => (
+          <li data-reveal style={`transition-delay: ${(index % 6) * 60}ms`} class="flex items-start gap-2.5 rounded-xl bg-white p-4 text-sm leading-relaxed text-ink-700/85 shadow-sm">
+            <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-500" aria-hidden="true" />
+            {doc}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mt-6 text-base leading-relaxed text-ink-700/85">
+      Solche Informationen können mir später dabei helfen, den tatsächlichen Verlauf möglichst
+      klar und nachvollziehbar darzustellen.
+    </p>
+
+    <div data-reveal class="mt-8 space-y-2.5 rounded-xl bg-white p-5 shadow-sm">
+      <p class="text-sm font-medium text-ink-950">
+        Wichtig: Du musst für diesen ersten Schritt nicht vorsorglich sämtliche Ärzte kontaktieren
+        oder deine vollständige Krankenakte anfordern.
+      </p>
+      <p class="text-sm leading-relaxed text-ink-700/80">
+        Arbeite zunächst mit dem, was du weißt und was dir bereits vorliegt. Sollten zu einem
+        bestimmten Punkt später noch Informationen oder Unterlagen sinnvoll sein, können wir das
+        gezielt gemeinsam klären.
+      </p>
+    </div>
+
+    <p data-reveal class="mt-8 text-lg font-medium leading-relaxed text-ink-950">
+      Dein Ziel vor dem Start ist also ganz einfach: Verschaffe dir kurz einen Überblick über
+      deine Gesundheitshistorie – danach kannst du mit dem Risikofragebogen loslegen.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,139 @@
+---
+const dateHelpers = [
+  "alte Kalendereinträge oder Termine,",
+  "E-Mails oder Terminbestätigungen deiner Arztpraxis,",
+  "SMS oder andere Nachrichten,",
+  "deine Foto-Mediathek,",
+  "Rechnungen oder Abrechnungen,",
+  "Rezepte oder Medikamentenbestellungen,",
+  "vorhandene Arztberichte oder Befunde,",
+  "Apps oder digitale Patientenportale, die du genutzt hast.",
+];
+
+const unclearFacts = [
+  "welche Diagnose gestellt wurde,",
+  "was bei einer Untersuchung herauskam,",
+  "welche konkrete Behandlung durchgeführt wurde,",
+  "wie lange eine Behandlung dauerte oder",
+  "ob bzw. wann die Behandlung abgeschlossen wurde,",
+];
+---
+
+<section id="guide-unsicher" class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      6. Was mache ich, wenn ich etwas <span class="text-brand-600">nicht mehr genau weiß</span>?
+    </h2>
+
+    <div data-reveal class="mt-8 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p class="text-lg font-semibold text-ink-950">Ganz wichtig: Bitte nicht raten – aber auch nichts einfach weglassen.</p>
+      <p>
+        Es ist vollkommen normal, dass du dich nicht mehr an jedes Datum, jede Untersuchung oder
+        jede Behandlung der vergangenen Jahre exakt erinnern kannst.
+      </p>
+      <p>Dabei müssen wir allerdings zwischen zwei Situationen unterscheiden:</p>
+    </div>
+
+    <div data-reveal class="mt-10 border-t border-black/[0.06] pt-8">
+      <h3 class="font-serif text-xl font-semibold text-ink-950">Du weißt noch, was war – aber nicht mehr genau wann?</h3>
+      <div class="mt-4 space-y-3 text-base leading-relaxed text-ink-700/85">
+        <p>Dann brauchen wir in der Regel nicht den exakten Tag der Behandlung.</p>
+        <p>Versuche stattdessen, den Zeitraum möglichst auf Monat und Jahr einzugrenzen. Zum Beispiel:</p>
+        <p class="italic text-ink-700/70">„Physiotherapie wegen Rückenschmerzen, ungefähr März bis Mai 2023.“</p>
+        <p>Um einen Zeitraum zu rekonstruieren, können dir beispielsweise helfen:</p>
+      </div>
+
+      <ul class="mt-4 grid gap-2.5 sm:grid-cols-2">
+        {
+          dateHelpers.map((item) => (
+            <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="mt-5 text-sm leading-relaxed text-ink-700/75">
+        Oft reicht schon ein kurzer Blick in den Kalender oder in alte E-Mails, um aus „Das müsste
+        irgendwann 2022 gewesen sein“ wieder einen ziemlich konkreten Zeitraum zu machen.
+      </p>
+    </div>
+
+    <div data-reveal class="mt-10 border-t border-black/[0.06] pt-8">
+      <h3 class="font-serif text-xl font-semibold text-ink-950">Du weißt nicht mehr genau, was medizinisch festgestellt oder gemacht wurde?</h3>
+      <div class="mt-4 space-y-3 text-base leading-relaxed text-ink-700/85">
+        <p>Das ist etwas anderes.</p>
+        <p>Wenn du dich beispielsweise noch an einen Arztbesuch erinnerst, aber nicht mehr weißt,</p>
+      </div>
+
+      <ul class="mt-4 space-y-1.5">
+        {
+          unclearFacts.map((item) => (
+            <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-5 space-y-3 text-base leading-relaxed text-ink-700/85">
+        <p class="font-medium text-ink-950">dann solltest du diese Informationen nicht aus dem Gedächtnis heraus erfinden oder vermuten.</p>
+        <p>Schau zunächst, ob dir dazu noch Unterlagen, Befunde, E-Mails oder andere Informationen vorliegen.</p>
+        <p>
+          Wenn sich der Sachverhalt dadurch nicht ausreichend rekonstruieren lässt, kann es
+          sinnvoll oder notwendig sein, die entsprechenden Informationen gezielt bei der
+          behandelnden Arztpraxis anzufragen.
+        </p>
+        <p>
+          Dabei geht es nicht darum, vorsorglich bei jedem Arzt deine vollständige Krankenakte
+          anzufordern. Wir wollen nur dort genauer nachforschen, wo tatsächlich relevante
+          Informationen fehlen.
+        </p>
+      </div>
+    </div>
+
+    <div data-reveal class="mt-10 border-t border-black/[0.06] pt-8">
+      <h3 class="font-serif text-xl font-semibold text-ink-950">Und wann solltest du dich bei mir melden?</h3>
+      <div class="mt-4 space-y-3 text-base leading-relaxed text-ink-700/85">
+        <p>
+          Wenn du dir unsicher bist, ob eine Information überhaupt relevant ist, wie detailliert
+          du sie angeben solltest oder ob dafür tatsächlich noch Unterlagen benötigt werden, melde
+          dich einfach bei mir.
+        </p>
+        <p>Dann schauen wir uns genau diesen Punkt gemeinsam an und entscheiden, was der sinnvollste nächste Schritt ist.</p>
+      </div>
+    </div>
+
+    <div data-reveal class="mt-10 space-y-3 rounded-xl bg-white p-6 shadow-sm">
+      <p class="text-sm font-semibold uppercase tracking-wide text-brand-600">Merke dir</p>
+      <p class="text-sm leading-relaxed text-ink-700/85">
+        <span class="font-medium text-ink-950">Datum unklar?</span> → Zeitraum möglichst über
+        Kalender, E-Mails &amp; Co. rekonstruieren. Monat und Jahr reichen in der Regel aus.
+      </p>
+      <p class="text-sm leading-relaxed text-ink-700/85">
+        <span class="font-medium text-ink-950">Medizinischer Sachverhalt unklar?</span> →
+        Vorhandene Informationen prüfen und gegebenenfalls gezielt beim Arzt nachfragen.
+      </p>
+      <p class="text-sm leading-relaxed text-ink-700/85">
+        <span class="font-medium text-ink-950">Unsicher, was du überhaupt angeben oder anfordern sollst?</span> → Melde dich kurz bei mir.
+      </p>
+    </div>
+
+    <div data-reveal class="mt-14 border-t border-black/[0.06] pt-10">
+      <h3 class="font-serif text-xl font-semibold text-ink-950">9. Was ist mit länger zurückliegenden Beschwerden?</h3>
+      <div class="mt-4 space-y-3 text-base leading-relaxed text-ink-700/85">
+        <p>
+          Orientiere dich immer genau an der jeweiligen Fragestellung und dem dort genannten
+          Zeitraum im digitalen Risikofragebogen.
+        </p>
+        <p>Bitte beantworte die Frage so, wie sie gestellt wird.</p>
+        <p>Du musst nicht selbst entscheiden, ob eine Erkrankung oder Beschwerde „wichtig genug“ ist.</p>
+        <p>Wenn etwas von der jeweiligen Frage erfasst wird, gib es an.</p>
+        <p class="font-medium text-ink-950">Wenn du dir unsicher bist, frag mich kurz.</p>
+        <p>Lieber einmal gemeinsam klären, als eine Angabe selbst zu interpretieren.</p>
+      </div>
+    </div>
+  </div>
+</section>

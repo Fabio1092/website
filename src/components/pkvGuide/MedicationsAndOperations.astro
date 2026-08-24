@@ -1,0 +1,85 @@
+---
+const medicationPoints = [
+  "welches Medikament,",
+  "weshalb es verordnet wurde,",
+  "ungefähr in welchem Zeitraum du es genommen hast,",
+  "ob du es einmalig, zeitweise oder dauerhaft eingenommen hast,",
+  "und ob du es heute noch einnimmst.",
+];
+
+const operationQuestions = [
+  "Warum war die Behandlung notwendig?",
+  "Wann fand sie statt?",
+  "Was wurde gemacht?",
+  "Was war das Ergebnis?",
+  "Gab es Komplikationen?",
+  "Wann war die Behandlung abgeschlossen?",
+  "Gibt es heute noch Beschwerden oder Einschränkungen?",
+  "Sind weitere Behandlungen oder Kontrollen notwendig?",
+];
+---
+
+<section id="guide-medikamente-op" class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-12 sm:grid-cols-2">
+      <div data-reveal>
+        <h2 class="font-serif text-2xl font-semibold text-ink-950">7. Was ist mit Medikamenten?</h2>
+        <p class="mt-4 text-sm leading-relaxed text-ink-700/85">
+          Wenn Medikamente im abgefragten Zeitraum relevant sind, gib möglichst nachvollziehbar
+          an:
+        </p>
+        <ul class="mt-4 space-y-1.5">
+          {
+            medicationPoints.map((point) => (
+              <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+                <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                {point}
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-4 space-y-2.5 text-sm leading-relaxed text-ink-700/85">
+          <p class="font-medium text-ink-950">Auch hier gilt:</p>
+          <p>
+            Wenn du den genauen Zeitraum nicht mehr kennst, versuche ihn zunächst anhand deiner
+            vorhandenen Informationen einzugrenzen.
+          </p>
+          <p>
+            Wenn du dagegen nicht mehr sicher weißt, welches Medikament dir weshalb verschrieben
+            wurde oder wie die Behandlung genau aussah, solltest du nicht einfach raten.
+          </p>
+          <p>Im Zweifel können wir gemeinsam schauen, ob eine weitere Klärung notwendig ist.</p>
+        </div>
+      </div>
+
+      <div data-reveal style="transition-delay: 80ms">
+        <h2 class="font-serif text-2xl font-semibold text-ink-950">8. Was ist mit Operationen oder Krankenhausaufenthalten?</h2>
+        <p class="mt-4 text-sm leading-relaxed text-ink-700/85">
+          Bitte beschreibe auch hier möglichst den gesamten Verlauf. Versuche insbesondere
+          folgende Fragen zu beantworten:
+        </p>
+        <ul class="mt-4 space-y-1.5">
+          {
+            operationQuestions.map((q) => (
+              <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+                <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                {q}
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-4 space-y-2.5 text-sm leading-relaxed text-ink-700/85">
+          <p>
+            Wenn dir hierzu bereits Arzt-, Operations- oder Entlassungsberichte vorliegen, können
+            diese besonders hilfreich sein.
+          </p>
+          <p>
+            Gerade wenn daraus hervorgeht, dass eine Operation erfolgreich verlaufen ist, keine
+            Komplikationen aufgetreten sind und heute keine weiteren Beschwerden oder Behandlungen
+            bestehen, sind das wichtige Informationen für die Aufbereitung deines Falles.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

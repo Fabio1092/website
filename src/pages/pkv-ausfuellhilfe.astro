@@ -1,0 +1,36 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import IntroAndChecklist from "@/components/pkvGuide/IntroAndChecklist.astro";
+import Preparation from "@/components/pkvGuide/Preparation.astro";
+import CoreRule from "@/components/pkvGuide/CoreRule.astro";
+import SevenQuestions from "@/components/pkvGuide/SevenQuestions.astro";
+import BeforeAfterExample from "@/components/pkvGuide/BeforeAfterExample.astro";
+import WhenUnsure from "@/components/pkvGuide/WhenUnsure.astro";
+import MedicationsAndOperations from "@/components/pkvGuide/MedicationsAndOperations.astro";
+import FinalCheck from "@/components/pkvGuide/FinalCheck.astro";
+import WhatHappensNext from "@/components/pkvGuide/WhatHappensNext.astro";
+import ClosingSteps from "@/components/pkvGuide/ClosingSteps.astro";
+---
+
+<Layout
+  title="Deine Ausfüllhilfe zur PKV-Risikovoranfrage"
+  description="So bereitest du deine Gesundheitsangaben für die PKV-Risikovoranfrage optimal vor."
+  fullTitle
+  noindex
+>
+  <PageHero
+    title="Deine Ausfüllhilfe zur PKV-Risikovoranfrage"
+    intro="So bereitest du deine Gesundheitsangaben optimal vor."
+  />
+  <IntroAndChecklist />
+  <Preparation />
+  <CoreRule />
+  <SevenQuestions />
+  <BeforeAfterExample />
+  <WhenUnsure />
+  <MedicationsAndOperations />
+  <FinalCheck />
+  <WhatHappensNext />
+  <ClosingSteps />
+</Layout>

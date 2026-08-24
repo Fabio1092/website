@@ -1,0 +1,91 @@
+---
+import { X, Check } from "lucide-react";
+
+const badFields = [
+  { label: "Diagnose/Beschwerden", value: "Rückenschmerzen" },
+  { label: "Behandlung", value: "Physiotherapie" },
+];
+
+const badQuestions = [
+  "Wann war das?",
+  "Was war die Ursache?",
+  "Gab es eine Diagnose?",
+  "Wurde etwas untersucht?",
+  "Wie lange bestand das Problem?",
+  "Ist die Behandlung beendet?",
+  "Gibt es heute noch Beschwerden?",
+];
+
+const goodFields = [
+  { label: "Beschwerden", value: "Verspannungen und Schmerzen im unteren Rücken nach sportlicher Belastung." },
+  { label: "Zeitraum", value: "Erstmalig März 2023, letzte Behandlung April 2023." },
+  {
+    label: "Untersuchung/Befund",
+    value: "Untersuchung beim Hausarzt. Keine strukturellen Auffälligkeiten festgestellt, keine weiteren Untersuchungen notwendig.",
+  },
+  { label: "Behandlung", value: "Physiotherapie über vier Wochen, keine dauerhafte Medikation." },
+  {
+    label: "Aktueller Zustand",
+    value: "Behandlung vollständig abgeschlossen. Seit April 2023 beschwerdefrei. Keine Einschränkungen und keine weiteren Behandlungen.",
+  },
+];
+---
+
+<section id="guide-beispiel" class="bg-white py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Beispiel: So bitte <span class="text-brand-600">nicht</span> – und so ist es deutlich besser.
+    </h2>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div data-reveal class="overflow-hidden rounded-2xl bg-danger-50/60 shadow-sm">
+        <div class="p-6">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-danger-600">
+            <X className="h-4.5 w-4.5" aria-hidden="true" />
+            4. Beispiel: So bitte nicht
+          </span>
+          <dl class="mt-5 space-y-3">
+            {
+              badFields.map((field) => (
+                <div>
+                  <dt class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">{field.label}</dt>
+                  <dd class="mt-1 text-sm leading-relaxed text-ink-700/85">{field.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+      </div>
+
+      <div data-reveal style="transition-delay: 80ms" class="overflow-hidden rounded-2xl bg-success-50/60 shadow-sm">
+        <div class="p-6">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-success-600">
+            <Check className="h-4.5 w-4.5" aria-hidden="true" />
+            5. Beispiel: So ist es deutlich besser
+          </span>
+          <dl class="mt-5 space-y-3">
+            {
+              goodFields.map((field) => (
+                <div>
+                  <dt class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">{field.label}</dt>
+                  <dd class="mt-1 text-sm leading-relaxed text-ink-700/85">{field.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal class="mt-10 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Damit bleiben für mich und die spätere Risikoprüfung viele Fragen offen:</p>
+      <p class="italic text-ink-700/70">{badQuestions.join(" ")}</p>
+      <p>Solche Rückfragen kosten am Ende vor allem Zeit und können den gesamten Prozess unnötig verlängern.</p>
+    </div>
+
+    <p data-reveal class="mt-6 text-base font-medium leading-relaxed text-ink-950">
+      So entsteht ein nachvollziehbares Gesamtbild, mit dem ich deinen Fall wesentlich effizienter
+      aufbereiten kann.
+    </p>
+  </div>
+</section>
