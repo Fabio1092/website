@@ -3,11 +3,10 @@ import type { KpiData, KpiEntry, KpiField } from "./types";
 const STORAGE_KEY = "fr-makler-kpi-dashboard-v1";
 
 export const DEFAULT_FIELDS: KpiField[] = [
-  { id: "leads", label: "Neue Leads", unit: "", decimals: 0, higherIsBetter: true },
-  { id: "anrufe", label: "Anrufe", unit: "", decimals: 0, higherIsBetter: true },
-  { id: "termine", label: "Termine", unit: "", decimals: 0, higherIsBetter: true },
-  { id: "abschluesse", label: "Abschlüsse", unit: "", decimals: 0, higherIsBetter: true },
-  { id: "beitragssumme", label: "Beitragssumme", unit: "€", decimals: 0, higherIsBetter: true },
+  { id: "pkv-mb", label: "PKV MB", unit: "€", decimals: 2, higherIsBetter: true },
+  { id: "lv-bws", label: "LV BWS", unit: "€", decimals: 2, higherIsBetter: true },
+  { id: "sach-jahresnetto", label: "Sach Jahresnetto", unit: "€", decimals: 2, higherIsBetter: true },
+  { id: "kfz", label: "KFZ", unit: "€", decimals: 2, higherIsBetter: true },
 ];
 
 function emptyData(): KpiData {
