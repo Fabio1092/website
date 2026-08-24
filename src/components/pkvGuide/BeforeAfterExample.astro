@@ -29,6 +29,64 @@ const goodFields = [
     value: "Behandlung vollständig abgeschlossen. Seit April 2023 beschwerdefrei. Keine Einschränkungen und keine weiteren Behandlungen.",
   },
 ];
+
+const moreExamples = [
+  {
+    number: "2",
+    title: "Blinddarmentzündung mit Operation",
+    fields: [
+      { label: "Diagnose/Beschwerden", value: "Akute Blinddarmentzündung (Appendizitis) mit starken Schmerzen im rechten Unterbauch" },
+      { label: "Zeitraum", value: "einmalig 06/2021" },
+      { label: "Behandlung", value: "Stationäre Aufnahme und operative Entfernung des Blinddarms, anschließend reguläre Nachkontrolle" },
+      { label: "Arbeitsunfähigkeit", value: "ca. 3 Wochen" },
+      { label: "Ergebnis", value: "Operation und Heilungsverlauf ohne Komplikationen, folgenlos verheilt" },
+      { label: "Beschwerde- und behandlungsfrei", value: "seit 07/2021" },
+      { label: "Arzt/Krankenhaus", value: "Musterklinik Musterstadt, Chirurgie" },
+    ],
+  },
+  {
+    number: "3",
+    title: "Heuschnupfen / Pollenallergie",
+    fields: [
+      {
+        label: "Diagnose/Beschwerden",
+        value: "Saisonale Pollenallergie gegen Gräser, Weizen und Beifuß, ohne Atemwegsbeteiligung und ohne Asthma",
+      },
+      { label: "Zeitraum", value: "seit ca. 2015, saisonale Beschwerden insbesondere im Frühjahr" },
+      { label: "Behandlung", value: "Bei Beschwerden Einnahme von Cetirizin, keine Hyposensibilisierung empfohlen oder beabsichtigt" },
+      { label: "Arbeitsunfähigkeit", value: "keine" },
+      { label: "Ergebnis", value: "Saisonale Beschwerden, außerhalb der Pollensaison beschwerdefrei" },
+      { label: "Arzt", value: "Dr. Mustermann, Musterstadt" },
+    ],
+  },
+  {
+    number: "4",
+    title: "Vorsorgeuntersuchung",
+    fields: [
+      { label: "Anlass", value: "Regelmäßige frauenärztliche Vorsorgeuntersuchung" },
+      { label: "Zeitraum", value: "ca. 1× jährlich, zuletzt 09/2024" },
+      { label: "Untersuchung/Ergebnis", value: "Keine pathologischen bzw. auffälligen Befunde" },
+      { label: "Arbeitsunfähigkeit", value: "keine" },
+      { label: "Beschwerden", value: "keine" },
+      { label: "Arzt", value: "Dr. Mustermann, Frauenheilkunde, Musterstadt" },
+    ],
+  },
+  {
+    number: "5",
+    title: "Schilddrüsenunterfunktion",
+    fields: [
+      {
+        label: "Diagnose",
+        value: "Schilddrüsenunterfunktion (Hypothyreose) / Hashimoto-Thyreoiditis, keine Knoten, Zysten oder Vergrößerung",
+      },
+      { label: "Zeitraum", value: "seit 2012, Kontrolluntersuchungen ca. alle 2–3 Jahre" },
+      { label: "Behandlung", value: "L-Thyroxin 50" },
+      { label: "Arbeitsunfähigkeit", value: "keine" },
+      { label: "Beschwerden", value: "keine" },
+      { label: "Arzt", value: "Dr. Mustermann, Musterstadt" },
+    ],
+  },
+];
 ---
 
 <section id="guide-beispiel" class="bg-white py-24">
@@ -87,5 +145,54 @@ const goodFields = [
       So entsteht ein nachvollziehbares Gesamtbild, mit dem ich deinen Fall wesentlich effizienter
       aufbereiten kann.
     </p>
+
+    <div class="mt-20 border-t border-black/[0.06] pt-16">
+      <h3 class="font-serif text-2xl font-semibold text-ink-950 sm:text-3xl">
+        So können deine Gesundheitsangaben <span class="text-brand-600">aussehen</span>.
+      </h3>
+
+      <div data-reveal class="mt-6 rounded-xl bg-brand-50/40 p-5">
+        <p class="text-sm leading-relaxed text-ink-700/85">
+          <span class="font-semibold text-ink-950">Wichtig:</span> Die folgenden Beispiele dienen nur
+          zur Orientierung. Bitte übernimm sie nicht einfach, sondern beschreibe deine tatsächliche
+          Situation vollständig und wahrheitsgemäß.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        {
+          moreExamples.map((example, index) => (
+            <div data-reveal style={`transition-delay: ${(index % 4) * 60}ms`} class="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
+              <p class="text-sm font-semibold text-ink-950">
+                Beispiel {example.number} – {example.title}
+              </p>
+              <dl class="mt-4 space-y-3">
+                {example.fields.map((field) => (
+                  <div>
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">{field.label}</dt>
+                    <dd class="mt-1 text-sm leading-relaxed text-ink-700/85">{field.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          ))
+        }
+      </div>
+
+      <div data-reveal class="mt-10 space-y-3 rounded-xl bg-ink-950 p-6 text-white">
+        <p class="text-sm font-semibold uppercase tracking-wide text-brand-300">Merke dir beim Ausfüllen</p>
+        <p class="font-serif text-lg leading-relaxed sm:text-xl">
+          Was war wann, weshalb, von wem und wie behandelt – mit welchem Ergebnis und seit wann ist
+          es wieder weg?
+        </p>
+        <p class="text-sm leading-relaxed text-white/75">
+          Beschreibe deine Gesundheitshistorie <span class="font-semibold text-white">vollständig, konkret und sachlich</span>.
+          Nichts verschweigen, aber auch nichts unnötig dramatisieren.
+        </p>
+        <p class="text-sm leading-relaxed text-white/75">
+          Je einfacher deine Angaben für die Risikoprüfung nachzuvollziehen sind, desto besser.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
