@@ -1,0 +1,44 @@
+---
+import { UploadCloud } from "lucide-react";
+import { siteConfig } from "@/lib/site";
+---
+
+<div data-reveal class="rounded-2xl border border-black/10 bg-white p-6 shadow-sm sm:p-7">
+  <div class="flex items-start gap-4">
+    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+      <UploadCloud className="h-5 w-5" aria-hidden="true" />
+    </div>
+    <div class="min-w-0">
+      <h3 class="font-serif text-lg font-semibold text-ink-950">Unterlagen nachreichen</h3>
+      <p class="mt-2 text-sm leading-relaxed text-ink-700/85">
+        Falls dir bereits Unterlagen wie Arztberichte oder Befunde vorliegen und du sie mir
+        zukommen lassen möchtest, geht das am einfachsten über mein Finanzmanager-Portal. Dort
+        kannst du dich in meinem Kundenportal einloggen und die Dokumente direkt hochladen.
+      </p>
+
+      <div class="mt-5 flex flex-wrap gap-3">
+        <a
+          href={siteConfig.registrationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+        >
+          Portal-Zugang einrichten
+        </a>
+        <a
+          href={siteConfig.loginUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full border border-brand-600 px-5 py-2.5 text-sm font-semibold text-brand-700 transition-colors hover:bg-brand-50"
+        >
+          Im Kundenportal einloggen
+        </a>
+      </div>
+
+      <p class="mt-4 text-xs text-ink-700/60">
+        Neu bei mir? Dann nutze „Portal-Zugang einrichten". Hast du bereits einen Zugang, geht es
+        über „Im Kundenportal einloggen" direkt weiter.
+      </p>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/PageHero.astro";
 import IntroAndChecklist from "@/components/pkvGuide/IntroAndChecklist.astro";
 import Preparation from "@/components/pkvGuide/Preparation.astro";
+import DocumentUploadNote from "@/components/guides/DocumentUploadNote.astro";
 import CoreRule from "@/components/pkvGuide/CoreRule.astro";
 import SevenQuestions from "@/components/pkvGuide/SevenQuestions.astro";
 import BeforeAfterExample from "@/components/pkvGuide/BeforeAfterExample.astro";
@@ -26,6 +27,11 @@ import ClosingSteps from "@/components/pkvGuide/ClosingSteps.astro";
   />
   <IntroAndChecklist />
   <Preparation />
+  <section id="guide-unterlagen-upload" class="bg-brand-50/40 py-16">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <DocumentUploadNote />
+    </div>
+  </section>
   <CoreRule />
   <SevenQuestions />
   <BeforeAfterExample />
