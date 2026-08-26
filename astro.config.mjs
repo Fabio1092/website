@@ -8,7 +8,11 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !page.includes("/bu-ausfuellhilfe") && !page.includes("/bu-kassel-danke") && !page.includes("/pkv-ausfuellhilfe"),
+      filter: (page) =>
+        !page.includes("/bu-ausfuellhilfe") &&
+        !page.includes("/bu-kassel-danke") &&
+        !page.includes("/pkv-ausfuellhilfe") &&
+        !page.includes("/erstgespraech-danke"),
     }),
   ],
   vite: {

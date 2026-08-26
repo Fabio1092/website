@@ -1,0 +1,43 @@
+---
+import { MessageCircleHeart, NotebookPen, CalendarClock } from "lucide-react";
+
+const tips = [
+  {
+    icon: MessageCircleHeart,
+    title: "Sei einfach offen.",
+    text: "Je klarer du deine Situation schilderst, desto besser können wir gemeinsam einschätzen, was für dich sinnvoll ist.",
+  },
+  {
+    icon: NotebookPen,
+    title: "Notiere dir deine Fragen.",
+    text: "Wenn dir bis zum Termin etwas einfällt, schreib es kurz auf. Dann vergessen wir nichts.",
+  },
+  {
+    icon: CalendarClock,
+    title: "Falls etwas dazwischenkommt, sag bitte kurz Bescheid.",
+    text: "In deiner Terminbestätigung findest du die Möglichkeit, deinen Termin zu verschieben oder abzusagen.",
+  },
+];
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-center font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+      Noch <span class="text-brand-600">3 kurze Tipps</span> für unseren Termin
+    </h2>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-3">
+      {
+        tips.map((tip, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="rounded-2xl border border-black/5 bg-brand-50/30 p-7 shadow-soft">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
+              <tip.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <h3 class="mt-5 font-serif text-lg font-semibold text-ink-950">{tip.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{tip.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/erstgespraechDanke/Hero.astro";
+import NextSteps from "@/components/erstgespraechDanke/NextSteps.astro";
+import CallTips from "@/components/erstgespraechDanke/CallTips.astro";
+import FabioSignoff from "@/components/erstgespraechDanke/FabioSignoff.astro";
+import ContactBlock from "@/components/erstgespraechDanke/ContactBlock.astro";
+---
+
+<Layout
+  title="Terminbestätigung | Erstgespräch gebucht"
+  description="Dein kostenloses Erstgespräch ist gebucht. Hier erfährst du, wie es jetzt weitergeht."
+  fullTitle
+  noindex
+>
+  <Hero />
+  <NextSteps />
+  <CallTips />
+  <FabioSignoff />
+  <ContactBlock />
+</Layout>
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: "booking_confirmed" });
+</script>
