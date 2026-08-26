@@ -1,0 +1,65 @@
+---
+import { AlertTriangle } from "lucide-react";
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Eine Sache ist mir <span class="text-brand-600">vor unserem Gespräch</span> besonders wichtig.
+      </h2>
+      <div class="mt-6 space-y-3 text-base leading-relaxed text-ink-700/80">
+        <p>
+          Bei der privaten Krankenversicherung kann es einen großen Unterschied machen, wie man
+          vor einem konkreten Antrag vorgeht.
+        </p>
+        <p>
+          Gerade wegen der Gesundheitsfragen sollte nicht vorschnell irgendwo ein PKV-Antrag
+          gestellt werden.
+        </p>
+        <p>
+          Deshalb schauen wir uns deine Ausgangslage strukturiert an und besprechen, wie du dabei
+          am besten vorgehst.
+        </p>
+      </div>
+    </div>
+
+    <div data-reveal class="mx-auto mt-8 flex max-w-2xl items-start gap-4 rounded-2xl border border-gold-500/20 bg-gold-50 px-6 py-5">
+      <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-gold-600" aria-hidden="true" />
+      <div>
+        <p class="text-sm font-semibold leading-relaxed text-ink-950">
+          Bitte stelle deshalb bis zu unserem Gespräch nicht aufgrund unserer Terminvereinbarung
+          vorschnell einen neuen PKV-Antrag und kündige auch keine bestehende Kranken- oder
+          Krankenzusatzversicherung.
+        </p>
+        <p class="mt-2 text-sm text-ink-700/70">Wir schauen uns erst an, was für dich sinnvoll ist.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div data-reveal class="rounded-3xl border border-black/5 bg-ink-950 p-7 text-white">
+        <h3 class="font-serif text-lg font-semibold">Du bist bereits privat versichert?</h3>
+        <p class="mt-3 text-sm leading-relaxed text-white/70">
+          Perfekt. Dann musst du vor unserem Termin ebenfalls nichts verändern. Wenn du möchtest,
+          kannst du deinen bestehenden Vertrag bereithalten. Für das erste Kennenlernen ist das
+          aber noch kein Muss.
+        </p>
+        <div class="mt-4 rounded-xl border border-gold-500/20 bg-gold-500/10 px-4 py-3">
+          <p class="text-sm font-semibold text-gold-300">Ein neuer Vertrag ist nicht automatisch ein besserer Vertrag.</p>
+        </div>
+        <p class="mt-4 text-sm leading-relaxed text-white/70">
+          Wir schauen uns zuerst an, was du bereits hast und ob überhaupt Handlungsbedarf besteht.
+        </p>
+      </div>
+
+      <div data-reveal style="transition-delay: 80ms" class="rounded-3xl border border-brand-200 bg-brand-50/30 p-7">
+        <h3 class="font-serif text-lg font-semibold text-ink-950">Du bist noch gesetzlich versichert?</h3>
+        <p class="mt-3 text-sm leading-relaxed text-ink-700/80">
+          Dann machen wir auch hier nicht direkt den nächsten Tarifvergleich auf. Wir klären
+          zunächst deine Ausgangssituation und schauen uns anschließend an, ob und wie ein Wechsel
+          in die PKV für dich sinnvoll sein könnte.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

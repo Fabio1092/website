@@ -1,0 +1,28 @@
+---
+import PkvLandingLayout from "@/layouts/PkvLandingLayout.astro";
+import Hero from "@/components/pkvDanke/Hero.astro";
+import NextSteps from "@/components/pkvDanke/NextSteps.astro";
+import BeforeCallNotice from "@/components/pkvDanke/BeforeCallNotice.astro";
+import CallTips from "@/components/pkvDanke/CallTips.astro";
+import FabioSignoff from "@/components/pkvDanke/FabioSignoff.astro";
+import ContactBlock from "@/components/pkvDanke/ContactBlock.astro";
+---
+
+<PkvLandingLayout
+  title="Terminbestätigung | PKV-Erstgespräch gebucht"
+  description="Dein kostenloses PKV-Erstgespräch ist gebucht. Hier erfährst du, wie es jetzt weitergeht und worauf du dich vor unserem Gespräch nicht vorbereiten musst."
+  noindex
+  showStickyCta={false}
+>
+  <Hero />
+  <NextSteps />
+  <BeforeCallNotice />
+  <CallTips />
+  <FabioSignoff />
+  <ContactBlock />
+</PkvLandingLayout>
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: "booking_confirmed" });
+</script>
