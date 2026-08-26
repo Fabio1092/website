@@ -1,0 +1,118 @@
+---
+import { siteConfig } from "@/lib/site";
+---
+
+<section id="vergleichsrechner" class="scroll-mt-24 bg-brand-50/30 py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Jetzt Auslandsreisekrankenversicherung vergleichen
+    </h2>
+
+    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+      <div class="rounded-xl border border-black/5 bg-white p-5">
+        <p class="font-medium text-ink-950">Du möchtest einfach meiner Empfehlung folgen?</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-700/80">Dann kannst du im Vergleichsrechner gezielt nach der HanseMerkur schauen.</p>
+      </div>
+      <div class="rounded-xl border border-black/5 bg-white p-5">
+        <p class="font-medium text-ink-950">Du möchtest selbst vergleichen?</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-700/80">
+          Dann kannst du dir die verfügbaren Tarife und Leistungen ansehen und den
+          Versicherungsschutz auswählen, der zu deiner Reise passt.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-xl border border-black/5 border-l-4 border-l-brand-500 bg-white p-5">
+      <p class="font-medium text-ink-950">Mein Tipp: Mach aus einer einfachen Versicherung keine Doktorarbeit.</p>
+      <p class="mt-2 text-sm leading-relaxed text-ink-700/80">
+        Für einen normalen Urlaub würde ich vor allem auf einen vernünftigen Schutz für medizinische
+        Behandlungen, einen guten Krankenrücktransport, die maximale Reisedauer und – je nach
+        Reiseart – ausreichend hohe Rettungs- und Bergungskosten achten.
+      </p>
+      <p class="mt-2 text-sm leading-relaxed text-ink-700/80">
+        Bei längeren oder ungewöhnlichen Auslandsaufenthalten solltest du dagegen genauer prüfen, ob
+        eine klassische Auslandsreisekrankenversicherung überhaupt die richtige Lösung ist.
+      </p>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-10 max-w-4xl px-4 sm:px-6 lg:px-8">
+    <h3 class="font-serif text-lg font-semibold text-ink-950">Vergleichsrechner</h3>
+    <p class="mt-2 text-sm leading-relaxed text-ink-700/75">
+      Hier kannst du deine Auslandsreisekrankenversicherung berechnen, vergleichen und direkt
+      online abschließen.
+    </p>
+
+    <div class="relative mt-6 min-h-[560px] overflow-x-auto rounded-2xl border border-black/5 bg-white p-4 shadow-soft sm:p-6">
+      <div id="covomo-skeleton" class="absolute inset-4 animate-pulse space-y-4 sm:inset-6" aria-hidden="true">
+        <div class="h-8 w-2/3 rounded-lg bg-black/5"></div>
+        <div class="h-11 rounded-lg bg-black/5"></div>
+        <div class="h-11 rounded-lg bg-black/5"></div>
+        <div class="h-11 w-1/2 rounded-lg bg-black/5"></div>
+        <p class="pt-2 text-center text-xs text-ink-700/40">Vergleichsrechner wird geladen …</p>
+      </div>
+
+      <div
+        id="covomo-iframe-widget"
+        data-embed-type="iframe"
+        data-type="travel"
+        data-affiliate="eyJhZmZpbGlhdGVfaWQiOiI1OTE0OTA4NTk4IiwiYSI6IjU5MTQ5MDg1OTgiLCJzb3VyY2UiOiI1OTE0OTA2MTYyIiwic291cmNlX3JlZmVyZW5jZSI6ImRlbXYtbGl2ZS0yNzcwNiIsInBhcnRuZXJfdG9rZW4iOiIiLCJvcmlnaW4iOiJwb3J0YWwuY292b21vLmRlIn0"
+        data-search="product_subtypes=6&amp;contract_type=1"
+        class="relative min-h-[560px]"
+      >
+      </div>
+
+      <div id="covomo-fallback" hidden class="rounded-xl border border-black/5 bg-brand-50/30 p-5 text-sm leading-relaxed text-ink-700/80">
+        <p class="font-medium text-ink-950">Der Vergleichsrechner konnte gerade nicht geladen werden.</p>
+        <p class="mt-2">
+          Das kann zum Beispiel an einem Ad- oder Skript-Blocker liegen. Du erreichst mich in der
+          Zwischenzeit gerne direkt:
+        </p>
+        <p class="mt-3 space-x-4">
+          <a href={siteConfig.phoneHref} class="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800">{siteConfig.phone}</a>
+          <a href={siteConfig.emailHref} class="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800">{siteConfig.email}</a>
+        </p>
+      </div>
+    </div>
+
+    <noscript>
+      <p class="mt-4 text-sm text-ink-700/70">
+        Der Vergleichsrechner benötigt JavaScript. Du erreichst mich alternativ direkt unter
+        {siteConfig.phone} oder {siteConfig.email}.
+      </p>
+    </noscript>
+  </div>
+</section>
+
+<script is:inline src="https://cdn.covomo.de/integrations/widget/covomoIframeWidget.js"></script>
+<script is:inline>
+  (function () {
+    var widget = document.getElementById("covomo-iframe-widget");
+    var skeleton = document.getElementById("covomo-skeleton");
+    var fallback = document.getElementById("covomo-fallback");
+    if (!widget) return;
+
+    var settled = false;
+    function hideSkeleton() {
+      if (settled) return;
+      settled = true;
+      if (skeleton) skeleton.hidden = true;
+    }
+
+    var observer = new MutationObserver(function () {
+      if (widget.children.length > 0) {
+        hideSkeleton();
+        observer.disconnect();
+      }
+    });
+    observer.observe(widget, { childList: true });
+
+    setTimeout(function () {
+      observer.disconnect();
+      hideSkeleton();
+      if (widget.children.length === 0 && fallback) {
+        fallback.hidden = false;
+      }
+    }, 8000);
+  })();
+</script>

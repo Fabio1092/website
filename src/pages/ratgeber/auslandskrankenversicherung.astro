@@ -1,0 +1,66 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/auslandskrankenversicherung/Hero.astro";
+import KeyFacts from "@/components/auslandskrankenversicherung/KeyFacts.astro";
+import TableOfContents from "@/components/auslandskrankenversicherung/TableOfContents.astro";
+import WhyNeeded from "@/components/auslandskrankenversicherung/WhyNeeded.astro";
+import CoverageComparison from "@/components/auslandskrankenversicherung/CoverageComparison.astro";
+import KeyBenefits from "@/components/auslandskrankenversicherung/KeyBenefits.astro";
+import TripDurationStrategy from "@/components/auslandskrankenversicherung/TripDurationStrategy.astro";
+import LongStays from "@/components/auslandskrankenversicherung/LongStays.astro";
+import TripCancellation from "@/components/auslandskrankenversicherung/TripCancellation.astro";
+import Recommendation from "@/components/auslandskrankenversicherung/Recommendation.astro";
+import RecommendationFit from "@/components/auslandskrankenversicherung/RecommendationFit.astro";
+import ComparisonCalculator from "@/components/auslandskrankenversicherung/ComparisonCalculator.astro";
+import Faq from "@/components/auslandskrankenversicherung/Faq.astro";
+import Closing from "@/components/auslandskrankenversicherung/Closing.astro";
+import StickyCompareBar from "@/components/auslandskrankenversicherung/StickyCompareBar.astro";
+
+const pageTitle = "Auslandsreisekrankenversicherung: Ratgeber & Empfehlung";
+const pageDescription = "Warum eine Auslandsreisekrankenversicherung für mich Pflicht ist, worauf du bei den Leistungen achten solltest und welchen Tarif ich aktuell empfehle.";
+const canonicalUrl = new URL("/ratgeber/auslandskrankenversicherung/", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Auslandsreisekrankenversicherung: Für mich ein absolutes Muss",
+  description: pageDescription,
+  inLanguage: "de-DE",
+  datePublished: "2026-08-26",
+  dateModified: "2026-08-26",
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
+  publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Ratgeber", item: new URL("/ratgeber/", Astro.site).toString() },
+    { "@type": "ListItem", position: 3, name: "Auslandsreisekrankenversicherung", item: canonicalUrl },
+  ],
+};
+---
+
+<Layout title={pageTitle} fullTitle description={pageDescription}>
+  <Hero />
+  <KeyFacts />
+  <TableOfContents />
+  <WhyNeeded />
+  <CoverageComparison />
+  <KeyBenefits />
+  <TripDurationStrategy />
+  <LongStays />
+  <TripCancellation />
+  <Recommendation />
+  <RecommendationFit />
+  <ComparisonCalculator />
+  <Faq />
+  <Closing />
+  <StickyCompareBar />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

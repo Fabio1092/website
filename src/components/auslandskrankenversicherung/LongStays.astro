@@ -1,0 +1,58 @@
+---
+import ComparisonSplit from "@/components/ComparisonSplit.astro";
+
+const situations = [
+  "eine Weltreise planst",
+  "mehrere Monate im Ausland verbringen möchtest",
+  "ein Auslandssemester machst",
+  "Work & Travel planst",
+  "als Expat ins Ausland gehst",
+  "generell länger als die im Tarif vorgesehene maximale Reisedauer unterwegs bist",
+];
+---
+
+<section id="laengere-aufenthalte" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">Was ist bei längeren Auslandsaufenthalten?</h2>
+
+    <p class="mt-6 text-base leading-relaxed text-ink-700/85">
+      Hier müssen wir zwischen einem normalen Urlaub und einem echten längeren Auslandsaufenthalt
+      unterscheiden. Wenn du beispielsweise …
+    </p>
+
+    <ul class="mt-5 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
+      {
+        situations.map((item) => (
+          <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-6 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>… würde ich nicht einfach blind eine klassische Jahres-Auslandsreisekrankenversicherung abschließen.</p>
+      <p>Dann brauchst du einen Tarif, der genau für längere Auslandsaufenthalte vorgesehen ist.</p>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-8 max-w-4xl px-4 sm:px-6 lg:px-8">
+    <ComparisonSplit
+      columns={[
+        {
+          tone: "brand",
+          label: "Normaler Urlaub",
+          heading: "Klassische Auslandsreisekrankenversicherung",
+          points: ["Für gewöhnliche Urlaubsreisen bis zur maximalen Reisedauer des Tarifs."],
+        },
+        {
+          tone: "ink",
+          label: "Mehrere Monate im Ausland",
+          heading: "Spezielle Langzeitlösung prüfen",
+          points: ["Für Weltreise, Auslandssemester, Work & Travel, Expat-Aufenthalt oder generell längere Auslandsaufenthalte."],
+        },
+      ]}
+    />
+  </div>
+</section>

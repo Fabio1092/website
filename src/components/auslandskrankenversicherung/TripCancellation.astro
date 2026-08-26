@@ -1,0 +1,44 @@
+---
+import ComparisonSplit from "@/components/ComparisonSplit.astro";
+---
+
+<section id="reiseruecktritt" class="scroll-mt-24 bg-brand-50/30 py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Brauche ich zusätzlich eine Reiserücktrittsversicherung?
+    </h2>
+
+    <div class="mt-6 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Das ist eine andere Frage.</p>
+      <p>Und hier bin ich deutlich weniger pauschal als bei der Auslandsreisekrankenversicherung.</p>
+      <p>Die beiden Versicherungen sichern unterschiedliche Risiken ab:</p>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-6 max-w-4xl px-4 sm:px-6 lg:px-8">
+    <ComparisonSplit
+      columns={[
+        {
+          tone: "brand",
+          label: "Auslandsreisekrankenversicherung",
+          points: ["Du wirst während deiner Reise krank oder verletzt und es entstehen medizinische Kosten."],
+        },
+        {
+          tone: "ink",
+          label: "Reiserücktrittsversicherung",
+          points: ["Du kannst eine gebuchte Reise aufgrund eines versicherten Ereignisses nicht antreten und es entstehen Stornokosten."],
+        },
+      ]}
+    />
+  </div>
+
+  <div class="mx-auto mt-6 max-w-2xl px-4 sm:px-6 lg:px-8">
+    <div class="space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>
+        Eine Reiserücktrittsversicherung kann insbesondere bei teuren Reisen interessant sein. Für
+        mich ist sie aber nicht auf derselben „Pflichtstufe" wie die Auslandsreisekrankenversicherung.
+      </p>
+      <p>Dazu wird es deshalb einen eigenen Ratgeber geben.</p>
+    </div>
+  </div>
+</section>

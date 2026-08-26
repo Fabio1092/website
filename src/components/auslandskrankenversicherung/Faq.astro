@@ -1,0 +1,55 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Brauche ich innerhalb der EU eine Auslandsreisekrankenversicherung?",
+    answer:
+      "Ich würde auch innerhalb der EU nicht darauf verzichten. Zwar besteht für gesetzlich Versicherte grundsätzlich Schutz über die europäische Krankenversicherung, dennoch können Leistungslücken und Eigenbeteiligungen bestehen. Insbesondere ein Krankenrücktransport nach Deutschland wird von der GKV grundsätzlich nicht übernommen.",
+  },
+  {
+    question: "Brauche ich sie auch als Privatversicherter?",
+    answer:
+      "Meine Empfehlung lautet ja. Je nach PKV-Tarif kann bereits umfangreicher Auslandsschutz bestehen. Eine zusätzliche Auslandsreisekrankenversicherung kann trotzdem Lücken schließen und außerdem dabei helfen, Selbstbehalt oder eine mögliche Beitragsrückerstattung der PKV nicht wegen kleinerer Auslandsrechnungen zu belasten.",
+  },
+  {
+    question: "Gilt eine Jahres-Auslandsreisekrankenversicherung das ganze Jahr?",
+    answer:
+      "Der Vertrag kann das ganze Jahr gelten, die Dauer der einzelnen Reise ist aber häufig begrenzt. Deshalb solltest du vor allem bei längeren Aufenthalten die konkrete maximale Reisedauer deines Tarifs prüfen.",
+  },
+  {
+    question: "Kann ich die Versicherung noch abschließen, wenn ich schon im Ausland bin?",
+    answer:
+      "Bei klassischen Auslandsreisekrankenversicherungen solltest du den Schutz vor Reisebeginn abschließen. Für Personen, die bereits im Ausland sind oder einen längeren Aufenthalt planen, können spezielle Lösungen erforderlich sein.",
+  },
+  {
+    question: "Ist die HanseMerkur immer die beste Auslandskrankenversicherung?",
+    answer:
+      "So würde ich es bewusst nicht formulieren. Sie ist meine aktuelle Empfehlung für den klassischen Anwendungsfall. Je nach Reisedauer, Reiseziel und persönlichen Anforderungen kann ein anderer Tarif besser passen. Genau deshalb kannst du über den Vergleichsrechner auch andere Angebote gegenüberstellen.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Häufige Fragen zur <span class="text-brand-600">Auslandsreisekrankenversicherung</span>
+    </h2>
+
+    <div data-reveal class="mt-8">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

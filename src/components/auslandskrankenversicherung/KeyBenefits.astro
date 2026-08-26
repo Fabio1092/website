@@ -1,0 +1,83 @@
+---
+import { Stethoscope, Ambulance, LifeBuoy, Smile, CalendarClock } from "lucide-react";
+
+const items = [
+  {
+    icon: Stethoscope,
+    title: "1. Ambulante und stationäre Behandlungen",
+    paragraphs: [
+      "Wenn du im Ausland krank wirst oder einen Unfall hast, sollte der Tarif die versicherten Kosten notwendiger ärztlicher und stationärer Behandlungen übernehmen.",
+      "Dazu können je nach Tarif beispielsweise auch Arznei- und Verbandmittel, notwendige Untersuchungen und medizinische Transporte gehören.",
+    ],
+  },
+  {
+    icon: Ambulance,
+    title: "2. Krankenrücktransport",
+    paragraphs: [
+      "Für mich einer der wichtigsten Punkte überhaupt.",
+      "Denn hier kann ein erheblicher finanzieller Aufwand entstehen.",
+      "Achte deshalb nicht nur darauf, ob ein Rücktransport versichert ist, sondern auch unter welchen Voraussetzungen.",
+      "Eine Formulierung wie „medizinisch sinnvoll und vertretbar\" kann beispielsweise weiter gehen als eine Leistung, die ausschließlich bei medizinischer Notwendigkeit vorgesehen ist. Die konkreten Versicherungsbedingungen des gewählten Tarifs sind hier entscheidend.",
+    ],
+  },
+  {
+    icon: LifeBuoy,
+    title: "3. Such-, Rettungs- und Bergungskosten",
+    paragraphs: [
+      "Gerade wenn du im Urlaub wandern gehst, Bergtouren machst oder anderweitig aktiv unterwegs bist, würde ich auch auf diesen Punkt schauen.",
+      "Hier können sich Tarife insbesondere durch die versicherten Höchstbeträge unterscheiden.",
+    ],
+  },
+  {
+    icon: Smile,
+    title: "4. Zahnbehandlungen im Notfall",
+    paragraphs: [
+      "Eine Auslandsreisekrankenversicherung ersetzt natürlich keine vollständige Zahnzusatzversicherung.",
+      "Eine akute schmerzstillende Zahnbehandlung und je nach Tarif beispielsweise provisorischer Zahnersatz sollten aber mitgedacht werden.",
+    ],
+  },
+  {
+    icon: CalendarClock,
+    title: "5. Reisedauer",
+    paragraphs: [
+      "Das wird gerne übersehen.",
+      "Eine Jahres-Auslandsreisekrankenversicherung bedeutet nicht automatisch, dass du 365 Tage am Stück im Ausland versichert bist.",
+      "Bei klassischen Tarifen ist die Dauer einer einzelnen versicherten Reise begrenzt. In den vorliegenden Beispielen werden etwa bis zu 56 Tage je Reise genannt.",
+      "Planst du eine Weltreise, ein Auslandssemester, Work & Travel oder generell einen längeren Aufenthalt, brauchst du möglicherweise einen dafür ausgelegten Versicherungsschutz.",
+    ],
+  },
+];
+---
+
+<section id="leistungen" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto max-w-2xl break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Welche Leistungen sollte eine gute Auslandsreisekrankenversicherung haben?
+    </h2>
+    <p class="mt-4 max-w-2xl text-base leading-relaxed text-ink-700/80">
+      Nicht jeder Tarif ist identisch. Trotzdem gibt es einige Punkte, auf die ich besonders achten würde.
+    </p>
+
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      {
+        items.map((item, index) => (
+          <div
+            data-reveal
+            style={`transition-delay: ${index * 60}ms`}
+            class:list={["rounded-2xl border border-black/5 bg-brand-50/25 p-6", index === items.length - 1 && items.length % 2 !== 0 && "sm:col-span-2 sm:mx-auto sm:max-w-[calc(50%-0.625rem)]"]}
+          >
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-soft">
+              <item.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <h3 class="mt-4 font-serif text-base font-semibold text-ink-950">{item.title}</h3>
+            <div class="mt-2.5 space-y-2.5 text-sm leading-relaxed text-ink-700/80">
+              {item.paragraphs.map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

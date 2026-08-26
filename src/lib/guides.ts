@@ -48,7 +48,7 @@ export const guides: Guide[] = [
       "Kleine Beiträge, aber im Ernstfall ein großer Unterschied. Ich zeige dir, warum ich eine Auslandskrankenversicherung für sinnvoll halte und worauf ich bei einem Tarif achten würde.",
     recommendedTeaser: "Welche Leistungen ich wichtig finde und welchen Tarif ich aktuell für normale Urlaubsreisen interessant finde.",
     updatedNote: "Tarifauswahl und Inhalte zuletzt geprüft.",
-    status: "coming-soon",
+    status: "published",
     featured: true,
     recommended: true,
     recentlyUpdated: true,
@@ -57,7 +57,7 @@ export const guides: Guide[] = [
       beratungsbedarf: 1,
       note: "Für eine gewöhnliche Urlaubsreise lässt sich eine passende Auslandskrankenversicherung häufig relativ unkompliziert auswählen.",
     },
-    updatedAt: "2026-08-21",
+    updatedAt: "2026-08-26",
   },
   {
     slug: "reiseruecktrittsversicherung",

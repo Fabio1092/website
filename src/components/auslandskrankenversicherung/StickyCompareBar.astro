@@ -1,0 +1,28 @@
+---
+---
+
+<div
+  id="ak-sticky-cta"
+  class="fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-black/5 bg-white/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 shadow-[0_-4px_16px_-4px_rgba(10,10,10,0.12)] backdrop-blur transition-transform duration-300 sm:hidden"
+>
+  <a
+    href="#vergleichsrechner"
+    class="flex w-full items-center justify-center rounded-full bg-gold-500 px-5 py-3 text-sm font-semibold text-ink-950 transition-colors hover:bg-gold-400"
+  >
+    Tarife vergleichen
+  </a>
+</div>
+
+<script>
+  const bar = document.getElementById("ak-sticky-cta");
+  if (bar) {
+    const heroEl = document.querySelector("#guide-hero");
+    const onScroll = () => {
+      const threshold = heroEl ? heroEl.getBoundingClientRect().bottom + window.scrollY : 500;
+      const shouldShow = window.scrollY > threshold;
+      bar.classList.toggle("translate-y-full", !shouldShow);
+    };
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+</script>
