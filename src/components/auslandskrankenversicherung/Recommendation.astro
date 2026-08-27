@@ -1,12 +1,23 @@
 ---
-import { Globe2, Stethoscope, Ambulance, LifeBuoy, Repeat } from "lucide-react";
+import { Globe2, Stethoscope, Ambulance, Repeat } from "lucide-react";
 
 const points = [
-  { icon: Globe2, text: "Weltweiter Schutz für Auslandsreisen" },
-  { icon: Stethoscope, text: "Ambulante und stationäre Heilbehandlungen" },
-  { icon: Ambulance, text: "Krankenrücktransport" },
-  { icon: LifeBuoy, text: "Notfallleistungen" },
-  { icon: Repeat, text: "Beliebig viele Reisen im Jahr innerhalb der maximalen Reisedauer" },
+  { icon: Globe2, title: "Weltweiter Versicherungsschutz", text: "Schutz für Auslandsreisen weltweit." },
+  {
+    icon: Stethoscope,
+    title: "Ambulante und stationäre Behandlung",
+    text: "Notwendige ärztliche und stationäre Behandlungen im Ausland sind abgesichert.",
+  },
+  {
+    icon: Ambulance,
+    title: "Krankenrücktransport",
+    text: "Für mich einer der wichtigsten Punkte bei einer Auslandsreisekrankenversicherung.",
+  },
+  {
+    icon: Repeat,
+    title: "Schutz für mehrere Reisen im Jahr",
+    text: "Beliebig viele Reisen im Jahr, solange die einzelne Reise die maximale Reisedauer nicht überschreitet.",
+  },
 ];
 ---
 
@@ -39,16 +50,16 @@ const points = [
     </div>
 
     <div data-reveal class="mx-auto mt-10 max-w-xl rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-7">
-      <p class="text-sm leading-relaxed text-white/75">
-        Die HanseMerkur bietet in dem zugrunde gelegten Jahres-Reisekrankenversicherungstarif unter
-        anderem:
-      </p>
-      <ul class="mt-4 space-y-3">
+      <h3 class="font-serif text-lg font-semibold text-white">Was mir bei der HanseMerkur wichtig ist</h3>
+      <ul class="mt-4 space-y-4">
         {
           points.map((point) => (
-            <li class="flex items-start gap-3 text-sm text-white/85">
+            <li class="flex items-start gap-3">
               <point.icon className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-400" aria-hidden="true" />
-              {point.text}
+              <div>
+                <p class="text-sm font-medium text-white">{point.title}</p>
+                <p class="mt-0.5 text-sm leading-relaxed text-white/70">{point.text}</p>
+              </div>
             </li>
           ))
         }
