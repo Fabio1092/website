@@ -15,6 +15,9 @@ import ComparisonCalculator from "@/components/auslandskrankenversicherung/Compa
 import Faq from "@/components/auslandskrankenversicherung/Faq.astro";
 import Closing from "@/components/auslandskrankenversicherung/Closing.astro";
 import StickyCompareBar from "@/components/auslandskrankenversicherung/StickyCompareBar.astro";
+import { guides } from "@/lib/guides";
+
+const guide = guides.find((g) => g.slug === "auslandskrankenversicherung")!;
 
 const pageTitle = "Auslandsreisekrankenversicherung: Ratgeber & Empfehlung";
 const pageDescription = "Warum eine Auslandsreisekrankenversicherung für mich Pflicht ist, worauf du bei den Leistungen achten solltest und welchen Tarif ich aktuell empfehle.";
@@ -23,11 +26,11 @@ const canonicalUrl = new URL("/ratgeber/auslandskrankenversicherung/", Astro.sit
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "Auslandsreisekrankenversicherung: Für mich ein absolutes Muss",
+  headline: "Auslandsreisekrankenversicherung: Meine Empfehlung & Vergleich",
   description: pageDescription,
   inLanguage: "de-DE",
   datePublished: "2026-08-26",
-  dateModified: "2026-08-26",
+  dateModified: guide.updatedAt,
   mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
   author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
   publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },

@@ -10,29 +10,23 @@ import { siteConfig } from "@/lib/site";
 
     <div class="mt-6 grid gap-4 sm:grid-cols-2">
       <div class="rounded-xl border border-black/5 bg-white p-5">
-        <p class="font-medium text-ink-950">Du möchtest einfach meiner Empfehlung folgen?</p>
-        <p class="mt-2 text-sm leading-relaxed text-ink-700/80">Dann kannst du im Vergleichsrechner gezielt nach der HanseMerkur schauen.</p>
+        <p class="font-medium text-ink-950">Du willst meiner Empfehlung folgen?</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-700/80">Schau dir im Vergleich auch die HanseMerkur an.</p>
       </div>
       <div class="rounded-xl border border-black/5 bg-white p-5">
-        <p class="font-medium text-ink-950">Du möchtest selbst vergleichen?</p>
-        <p class="mt-2 text-sm leading-relaxed text-ink-700/80">
-          Dann kannst du dir die verfügbaren Tarife und Leistungen ansehen und den
-          Versicherungsschutz auswählen, der zu deiner Reise passt.
-        </p>
+        <p class="font-medium text-ink-950">Du willst selbst vergleichen?</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-700/80">Achte insbesondere auf:</p>
+        <ul class="mt-2 space-y-1.5">
+          {
+            ["Krankenrücktransport", "Maximale Reisedauer", "Rettungs- und Bergungskosten", "Ambulante und stationäre Leistungen"].map((item) => (
+              <li class="flex items-baseline gap-2 text-sm leading-relaxed text-ink-700/80">
+                <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
       </div>
-    </div>
-
-    <div class="mt-6 rounded-xl border border-black/5 border-l-4 border-l-brand-500 bg-white p-5">
-      <p class="font-medium text-ink-950">Mein Tipp: Mach aus einer einfachen Versicherung keine Doktorarbeit.</p>
-      <p class="mt-2 text-sm leading-relaxed text-ink-700/80">
-        Für einen normalen Urlaub würde ich vor allem auf einen vernünftigen Schutz für medizinische
-        Behandlungen, einen guten Krankenrücktransport, die maximale Reisedauer und – je nach
-        Reiseart – ausreichend hohe Rettungs- und Bergungskosten achten.
-      </p>
-      <p class="mt-2 text-sm leading-relaxed text-ink-700/80">
-        Bei längeren oder ungewöhnlichen Auslandsaufenthalten solltest du dagegen genauer prüfen, ob
-        eine klassische Auslandsreisekrankenversicherung überhaupt die richtige Lösung ist.
-      </p>
     </div>
   </div>
 
@@ -63,11 +57,11 @@ import { siteConfig } from "@/lib/site";
       </div>
 
       <div id="covomo-fallback" hidden class="rounded-xl border border-black/5 bg-brand-50/30 p-5 text-sm leading-relaxed text-ink-700/80">
-        <p class="font-medium text-ink-950">Der Vergleichsrechner konnte gerade nicht geladen werden.</p>
-        <p class="mt-2">
-          Das kann zum Beispiel an einem Ad- oder Skript-Blocker liegen. Du erreichst mich in der
-          Zwischenzeit gerne direkt:
+        <p class="font-medium text-ink-950">
+          Der Vergleichsrechner konnte gerade nicht geladen werden. Bitte lade die Seite erneut oder
+          versuche es später noch einmal.
         </p>
+        <p class="mt-2">Du erreichst mich in der Zwischenzeit auch gerne direkt:</p>
         <p class="mt-3 space-x-4">
           <a href={siteConfig.phoneHref} class="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800">{siteConfig.phone}</a>
           <a href={siteConfig.emailHref} class="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800">{siteConfig.email}</a>
