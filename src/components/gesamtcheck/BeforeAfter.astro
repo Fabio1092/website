@@ -1,0 +1,44 @@
+---
+import ComparisonSplit from "@/components/ComparisonSplit.astro";
+---
+
+<section class="bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Von einzelnen Verträgen zu einem <span class="text-brand-600">vollständigen System</span>.
+      </h2>
+    </div>
+
+    <div class="mt-12">
+      <ComparisonSplit
+        columns={[
+          {
+            tone: "neutral",
+            label: "Vorher",
+            points: [
+              "Einzelne Versicherungen",
+              "Verschiedene Abschlusszeitpunkte",
+              "Unterschiedliche Prioritäten",
+              "Offene Fragen",
+              "Themen, um die man sich „irgendwann noch kümmern müsste“",
+            ],
+          },
+          {
+            tone: "brand",
+            label: "Nachher",
+            points: [
+              "Ein vollständiger Überblick",
+              "Klare Prioritäten",
+              "Ein definiertes Budget",
+              "Ein abgestimmtes Versorgungskonzept",
+              "Ein klarer Plan für heute und die Zukunft",
+            ],
+          },
+        ]}
+      />
+    </div>
+
+    <p class="mt-10 text-center font-serif text-2xl font-semibold text-ink-950 sm:text-3xl">Verstanden. Entschieden. Abgehakt.</p>
+  </div>
+</section>

@@ -1,0 +1,73 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import { gesamtcheckWhatsappUrl } from "@/lib/gesamtcheck";
+
+const points = [
+  "Wir nehmen uns die zusätzliche Zeit.",
+  "Wir schauen das komplette Bild an.",
+  "Du entscheidest, was für dich wichtig ist.",
+  "Du legst dein Budget fest.",
+  "Und daraus entsteht dein persönlicher Plan.",
+];
+
+const dashboard = [
+  { label: "Bestehendes geprüft" },
+  { label: "Prioritäten geklärt" },
+  { label: "Budget definiert" },
+  { label: "Persönlicher Plan" },
+];
+---
+
+<section class="relative overflow-hidden bg-ink-950 py-20 text-white sm:py-28">
+  <div
+    class="pointer-events-none absolute left-1/2 top-0 h-[28rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/15 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="pointer-events-none absolute -bottom-24 right-[-8%] h-72 w-72 rounded-full bg-gold-500/10 blur-3xl" aria-hidden="true"></div>
+
+  <div data-reveal class="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+    <h2 class="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">Deine BU bzw. PKV lösen wir sowieso.</h2>
+    <p class="mt-4 text-base text-white/60">Die einzige Frage ist:</p>
+    <p class="mx-auto mt-4 max-w-xl font-serif text-2xl font-semibold leading-snug sm:text-3xl">
+      Wenn wir deine Situation ohnehin gemeinsam im Detail anschauen – warum sollten wir danach mit
+      einem unvollständigen Bild aufhören?
+    </p>
+
+    <ul class="mx-auto mt-10 grid max-w-md grid-cols-1 gap-x-8 gap-y-3 text-left sm:grid-cols-2">
+      {
+        points.map((point) => (
+          <li class="flex items-center gap-2.5 text-sm text-white/80">
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
+            {point}
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href={gesamtcheckWhatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cta="final-cta"
+      class="shadow-lift mt-10 inline-flex items-center justify-center gap-1.5 rounded-full bg-gold-500 px-8 py-4 text-sm font-semibold text-ink-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+    >
+      Ja, Gesamtcheck mit einplanen
+      <span aria-hidden="true">→</span>
+    </a>
+    <p class="mt-6 text-sm text-white/50">Ich plane die zusätzliche Zeit direkt für unseren gemeinsamen Termin ein.</p>
+
+    <div class="mx-auto mt-14 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+      {
+        dashboard.map((item, index) => (
+          <div style={`transition-delay: ${index * 80}ms`} class="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-6">
+            <CheckCircle2 className="mx-auto h-5 w-5 text-brand-400" aria-hidden="true" />
+            <p class="mt-3 text-xs font-semibold uppercase tracking-wide text-white/70">{item.label}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-12 font-serif text-2xl font-semibold text-white sm:text-3xl">Klarheit über deine komplette Absicherung.</p>
+  </div>
+</section>

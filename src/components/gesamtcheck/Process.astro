@@ -1,0 +1,123 @@
+---
+import { Layers } from "lucide-react";
+
+interface Step {
+  number: string;
+  title: string;
+  intro: string[];
+  questions?: string[];
+  highlight?: string;
+}
+
+const steps: Step[] = [
+  {
+    number: "01",
+    title: "Zuerst geht es um dich.",
+    intro: ["Bevor wir über einzelne Lösungen sprechen, klären wir, was du eigentlich erwartest."],
+    questions: [
+      "Was ist dir bei deiner Absicherung besonders wichtig?",
+      "Welche Ansprüche hast du an meine Beratung?",
+      "Wie wichtig ist dir Preis-Leistung?",
+      "Wie detailliert möchtest du beraten werden?",
+      "Über welche Kanäle möchtest du mit mir kommunizieren?",
+      "Wie häufig wünschst du dir zukünftig Kontakt?",
+    ],
+    highlight: "Die Beratung richtet sich nach dir.",
+  },
+  {
+    number: "02",
+    title: "Wir verschaffen uns einen vollständigen Überblick.",
+    intro: [
+      "Danach gehen wir strukturiert durch die relevanten Themenwelten deiner persönlichen Absicherung.",
+      "Mein Anspruch ist dabei nicht, dass du jede mögliche Lösung auswählst. Mein Anspruch ist: Du sollst jeden für dich wichtigen Bereich verstehen und anschließend eine bewusste Entscheidung treffen können.",
+      "Am Ende weißt du genau: Das brauche ich. Das habe ich bereits gut gelöst. Das möchte ich später angehen. Und das brauche ich aktuell nicht.",
+    ],
+    highlight: "Du sollst jeden wichtigen Bereich verstehen und anschließend bewusst entscheiden können.",
+  },
+  {
+    number: "03",
+    title: "Du setzt deine Prioritäten.",
+    intro: ["Nicht jedes Thema ist gleich wichtig. Deshalb sortieren wir gemeinsam:"],
+    questions: ["Was hat für dich höchste Priorität?", "Was möchtest du ebenfalls lösen?", "Was kann warten?", "Was spielt für deine aktuelle Situation keine Rolle?"],
+    highlight: "Dadurch entsteht kein Sammelsurium verschiedener Produkte. Sondern eine klare Reihenfolge.",
+  },
+  {
+    number: "04",
+    title: "Du bestimmst dein Wohlfühlbudget.",
+    intro: [
+      "Erst nachdem klar ist, was dir wichtig ist, definieren wir den finanziellen Rahmen.",
+      "Wie viel möchtest du monatlich für deine persönliche Absicherung und Vorsorge einplanen?",
+    ],
+    highlight: "Diesen Rahmen gibst du vor. Anschließend priorisieren wir die gewünschten Lösungen innerhalb dieses Rahmens.",
+  },
+  {
+    number: "05",
+    title: "Daraus entsteht dein persönlicher Plan.",
+    intro: ["Jetzt beginnt meine eigentliche Arbeit. Ich berücksichtige:"],
+    highlight:
+      "Was bereits stark gelöst ist, bleibt Bestandteil deines Plans. Was verbessert werden sollte, optimieren wir. Was dir wichtig ist, priorisieren wir. Und was aktuell nicht relevant ist, stellen wir bewusst zurück.",
+  },
+];
+
+const concept = ["Bestehende Absicherung", "Wünsche", "Prioritäten", "Lebenssituation", "Zukunftspläne", "Budget"];
+---
+
+<section class="scroll-mt-24 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        So funktioniert dein persönlicher <span class="text-brand-600">Gesamtcheck</span>
+      </h2>
+    </div>
+
+    <ol class="mt-14 space-y-10">
+      {
+        steps.map((step, index) => (
+          <li data-reveal style={`transition-delay: ${Math.min(index, 4) * 80}ms`} class="relative flex gap-6 sm:gap-8">
+            <div class="flex flex-col items-center">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-base font-semibold text-white">
+                {step.number}
+              </span>
+              {index < steps.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
+            </div>
+            <div class="min-w-0 pb-2">
+              <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">{step.title}</h3>
+              <div class="mt-3 space-y-2.5">
+                {step.intro.map((line) => (
+                  <p class="text-sm leading-relaxed text-ink-700/80 sm:text-base">{line}</p>
+                ))}
+              </div>
+
+              {step.questions && (
+                <ul class="mt-4 space-y-2">
+                  {step.questions.map((q) => (
+                    <li class="flex items-start gap-2.5 text-sm leading-relaxed text-ink-700/75">
+                      <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400" aria-hidden="true" />
+                      {q}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {step.number === "05" && (
+                <div class="mt-5 space-y-4">
+                  <div class="flex flex-wrap gap-2">
+                    {concept.map((item) => (
+                      <span class="rounded-full border border-black/10 bg-white px-3 py-1 text-xs text-ink-700/70">{item}</span>
+                    ))}
+                  </div>
+                  <div class="flex items-center gap-3 rounded-2xl bg-ink-950 px-5 py-4 text-white">
+                    <Layers className="h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
+                    <p class="font-serif text-base font-semibold uppercase tracking-wide">Dein persönliches Versorgungskonzept</p>
+                  </div>
+                </div>
+              )}
+
+              {step.highlight && <p class="mt-4 text-sm font-medium text-ink-950">{step.highlight}</p>}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

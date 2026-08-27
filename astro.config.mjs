@@ -13,7 +13,8 @@ export default defineConfig({
         !page.includes("/bu-kassel-danke") &&
         !page.includes("/pkv-ausfuellhilfe") &&
         !page.includes("/erstgespraech-danke") &&
-        !page.includes("/pkv-kassel-danke"),
+        !page.includes("/pkv-kassel-danke") &&
+        !page.includes("/gesamtcheck"),
     }),
   ],
   vite: {

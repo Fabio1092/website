@@ -1,0 +1,116 @@
+---
+import { CheckCircle2, CircleDot, Circle } from "lucide-react";
+import { gesamtcheckWhatsappUrl } from "@/lib/gesamtcheck";
+
+const nutzenpunkte = [
+  "Du erkennst, was für dich wirklich wichtig ist.",
+  "Du siehst, was bereits gut gelöst ist.",
+  "Du priorisierst, was jetzt Sinn ergibt.",
+  "Du bestimmst das Budget, das zu deinem Leben passt.",
+];
+
+const rows = [
+  { label: "BU / PKV", status: "Wird aktuell gemeinsam gelöst", active: true },
+  { label: "Gesamte Absicherung", status: "Noch nicht vollständig geprüft", active: false },
+  { label: "Persönliche Prioritäten", status: "Noch offen", active: false },
+  { label: "Wohlfühlbudget", status: "Noch nicht festgelegt", active: false },
+  { label: "Gesamtplan", status: "Noch offen", active: false },
+];
+---
+
+<section id="gesamtcheck-hero" class="relative overflow-hidden bg-white">
+  <div class="pointer-events-none absolute -top-32 right-[-8%] h-96 w-96 rounded-full bg-brand-100/50 blur-3xl" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute bottom-[-10%] left-[-6%] h-72 w-72 rounded-full bg-gold-100/40 blur-3xl" aria-hidden="true"></div>
+
+  <div class="relative mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:items-start lg:gap-16 lg:py-20 lg:px-8">
+    <div class="min-w-0 lg:col-start-1 lg:row-start-1">
+      <span class="inline-flex items-center rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-700">
+        Deine BU / PKV bleibt unsere Priorität Nr. 1
+      </span>
+
+      <h1 class="mt-6 hyphens-auto break-words text-4xl font-semibold leading-[1.15] tracking-tight text-ink-950 sm:text-5xl">
+        Erst lösen wir dein <span class="text-brand-600">eigentliches Anliegen</span>.
+      </h1>
+
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-700/80">
+        Und wenn wir schon zusammensitzen, sorgen wir dafür, dass du auch beim Rest deiner
+        Absicherung endlich Klarheit hast.
+      </p>
+
+      <ul class="mt-7 flex max-w-md flex-col gap-2.5">
+        {
+          nutzenpunkte.map((point) => (
+            <li class="flex items-start gap-2.5 text-sm text-ink-700/85">
+              <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+              {point}
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="mt-6 max-w-xl font-medium text-ink-950">
+        Und daraus entsteht ein klarer Plan für deine persönliche Absicherung.
+      </p>
+    </div>
+
+    <div class="min-w-0 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center">
+      <div data-reveal class="relative">
+        <div
+          class="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-500/10 blur-xl"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="shadow-lift rounded-3xl border border-black/5 bg-white p-6 sm:p-8">
+          <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Dein persönlicher Überblick</p>
+
+          <dl class="mt-5 divide-y divide-black/[0.06]">
+            {
+              rows.map((row) => (
+                <div class="flex items-start gap-3 py-3.5 first:pt-0 last:pb-0">
+                  {row.active ? (
+                    <CircleDot className="mt-0.5 h-5 w-5 shrink-0 text-brand-500" aria-hidden="true" />
+                  ) : (
+                    <Circle className="mt-0.5 h-5 w-5 shrink-0 text-ink-700/25" aria-hidden="true" />
+                  )}
+                  <div class="min-w-0 flex-1">
+                    <dt class="text-sm font-semibold text-ink-950">{row.label}</dt>
+                    <dd class:list={["mt-0.5 text-xs", row.active ? "text-brand-600" : "text-ink-700/55"]}>{row.status}</dd>
+                  </div>
+                </div>
+              ))
+            }
+          </dl>
+
+          <div class="mt-6 border-t border-black/[0.06] pt-5">
+            <div class="flex gap-1.5" aria-hidden="true">
+              <span class="h-1.5 flex-1 rounded-full bg-brand-500"></span>
+              <span class="h-1.5 flex-1 rounded-full bg-black/[0.07]"></span>
+              <span class="h-1.5 flex-1 rounded-full bg-black/[0.07]"></span>
+              <span class="h-1.5 flex-1 rounded-full bg-black/[0.07]"></span>
+              <span class="h-1.5 flex-1 rounded-full bg-black/[0.07]"></span>
+            </div>
+            <p class="mt-3 text-sm font-medium text-ink-950">
+              Der nächste Schritt: <span class="text-brand-600">Das komplette Bild.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="min-w-0 lg:col-start-1 lg:row-start-2 lg:self-start">
+      <div class="flex flex-col items-start gap-3">
+        <a
+          href={gesamtcheckWhatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="hero-gesamtcheck"
+          class="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-gold-500 px-8 py-4 text-base font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+        >
+          Ja, Gesamtcheck mit einplanen
+          <span aria-hidden="true">→</span>
+        </a>
+        <p class="text-sm text-ink-700/60">Wir planen für unseren gemeinsamen Termin einfach entsprechend mehr Zeit ein.</p>
+      </div>
+    </div>
+  </div>
+</section>

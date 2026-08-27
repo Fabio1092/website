@@ -1,0 +1,72 @@
+---
+import { Eye, LayoutDashboard, ListChecks, Wallet2, Users, Moon } from "lucide-react";
+
+const cards = [
+  {
+    icon: Eye,
+    title: "Klarheit",
+    text: "Du weißt, welche Themen für deine Situation relevant sind.",
+  },
+  {
+    icon: LayoutDashboard,
+    title: "Überblick",
+    text: "Du kennst deine gesamte Absicherung und weißt, wie die einzelnen Bereiche zusammenspielen.",
+  },
+  {
+    icon: ListChecks,
+    title: "Prioritäten",
+    text: "Du weißt, was heute wichtig ist und welche Themen später relevant werden können.",
+  },
+  {
+    icon: Wallet2,
+    title: "Budgetkontrolle",
+    text: "Deine Absicherung orientiert sich an dem finanziellen Rahmen, den du selbst festgelegt hast.",
+  },
+  {
+    icon: Users,
+    title: "Einen Ansprechpartner",
+    text: "Du hast für deine Versicherungs- und Vorsorgethemen eine zentrale Anlaufstelle.",
+  },
+];
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Am Ende hast du nicht einfach einzelne Versicherungen.
+      </h2>
+      <p class="mt-3 font-serif text-2xl font-semibold text-brand-600 sm:text-3xl">Du hast einen Plan.</p>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        cards.map((card, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="rounded-2xl border border-black/5 bg-white p-7 shadow-soft">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <card.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <h3 class="mt-5 font-serif text-lg font-semibold text-ink-950">{card.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{card.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div data-reveal class="relative mt-6 overflow-hidden rounded-3xl border border-brand-200/60 bg-brand-50/50 p-8 sm:p-10">
+      <div class="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-brand-400/15 blur-3xl" aria-hidden="true"></div>
+      <div class="relative flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+        <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-brand-600 shadow-soft">
+          <Moon className="h-7 w-7" aria-hidden="true" />
+        </div>
+        <div>
+          <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">Ruhe im Kopf</h3>
+          <p class="mt-2 max-w-2xl text-base leading-relaxed text-ink-700/80">
+            Du musst nicht ständig überlegen: „Da war doch noch irgendein Thema, um das ich mich
+            irgendwann kümmern müsste." Du weißt, wo du stehst.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

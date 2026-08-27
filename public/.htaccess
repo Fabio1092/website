@@ -7,3 +7,11 @@ RewriteRule ^(.*)$ https://fr-makler.de/$1 [L,R=301]
 
 # Ensure the charset is sent in the HTTP response header, not just in the HTML meta tag
 AddDefaultCharset UTF-8
+
+# Private, unlisted page: reinforce the noindex meta tags with an HTTP header.
+# Not listed in robots.txt on purpose — that file is public and would broadcast the URL.
+<IfModule mod_headers.c>
+  RewriteCond %{REQUEST_URI} ^/gesamtcheck
+  RewriteRule ^ - [E=NOINDEX_ROUTE:1]
+  Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet" env=NOINDEX_ROUTE
+</IfModule>

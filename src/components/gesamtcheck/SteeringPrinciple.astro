@@ -1,0 +1,73 @@
+---
+import { Flag, Compass, CheckCircle2, CircleDashed } from "lucide-react";
+
+const chips = [
+  {
+    icon: Flag,
+    label: "Wichtig",
+    text: "Das möchte ich vernünftig lösen.",
+    tone: "border-brand-200 bg-brand-50/60",
+    iconTone: "bg-white text-brand-600",
+  },
+  {
+    icon: Compass,
+    label: "Interessant",
+    text: "Das möchte ich besser verstehen und danach entscheiden.",
+    tone: "border-gold-200 bg-gold-50/60",
+    iconTone: "bg-white text-gold-700",
+  },
+  {
+    icon: CheckCircle2,
+    label: "Bereits gut gelöst",
+    text: "Das passt zu meiner Situation und wird in meinem Gesamtplan berücksichtigt.",
+    tone: "border-black/10 bg-white",
+    iconTone: "bg-brand-50 text-brand-600",
+  },
+  {
+    icon: CircleDashed,
+    label: "Aktuell nicht relevant",
+    text: "Das hat für mich momentan keine Priorität.",
+    tone: "border-black/5 bg-black/[0.025]",
+    iconTone: "bg-white text-ink-700/50",
+  },
+];
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Du sitzt dabei jederzeit <span class="text-brand-600">am Steuer</span>.
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-ink-700/80">
+        Wir gehen gemeinsam strukturiert durch die Themen, die für deine persönliche Absicherung
+        relevant sein können. Bei jedem einzelnen Bereich entscheidest du selbst:
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-4 sm:grid-cols-2">
+      {
+        chips.map((chip, index) => (
+          <div
+            data-reveal
+            style={`transition-delay: ${index * 80}ms`}
+            class:list={["rounded-2xl border p-6 transition-transform duration-200 sm:hover:-translate-y-1 sm:hover:shadow-soft", chip.tone]}
+          >
+            <div class:list={["flex h-11 w-11 items-center justify-center rounded-xl", chip.iconTone]}>
+              <chip.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <p class="mt-4 text-sm font-semibold uppercase tracking-wide text-ink-950">{chip.label}</p>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">{chip.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mx-auto mt-10 max-w-lg text-center">
+      <p class="text-base leading-relaxed text-ink-700/80">
+        So entsteht Schritt für Schritt genau die Absicherung, die zu dir passt.
+      </p>
+      <p class="mt-1 font-medium text-ink-950">Nicht mehr. Nicht weniger.</p>
+    </div>
+  </div>
+</section>

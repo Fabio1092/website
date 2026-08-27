@@ -1,0 +1,71 @@
+---
+import { ShieldCheck, Target, CircleDashed, Wallet } from "lucide-react";
+
+const cards = [
+  {
+    icon: ShieldCheck,
+    title: "Was ist bereits gut gelöst?",
+    text: "Dann berücksichtigen wir es genauso in deinem persönlichen Plan.",
+  },
+  {
+    icon: Target,
+    title: "Wo gibt es Handlungsbedarf?",
+    text: "Dann verstehst du, warum das Thema relevant ist und welche Möglichkeiten du hast.",
+  },
+  {
+    icon: CircleDashed,
+    title: "Was ist aktuell nicht wichtig?",
+    text: "Dann bekommt es bewusst keine Priorität.",
+  },
+  {
+    icon: Wallet,
+    title: "Was passt finanziell zu dir?",
+    text: "Du gibst den monatlichen Rahmen vor.",
+  },
+];
+---
+
+<section class="bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Warum sich der Gesamtcheck <span class="text-brand-600">gerade jetzt</span> lohnt
+      </h2>
+      <div class="mt-5 space-y-3 text-base leading-relaxed text-ink-700/80">
+        <p>
+          Du bist ursprünglich wegen deiner Berufsunfähigkeitsversicherung oder deiner privaten
+          Krankenversicherung zu mir gekommen. Genau dieses Thema bearbeiten wir zuerst
+          vollständig.
+        </p>
+        <p>
+          Gleichzeitig beschäftigen wir uns dabei ohnehin intensiv mit deiner persönlichen
+          Situation, deinen Wünschen und deinen Zukunftsplänen.
+        </p>
+        <p>
+          Deshalb können wir die Gelegenheit nutzen und im Anschluss noch einen Schritt
+          weitergehen: Statt nur ein einzelnes Puzzleteil zu lösen, schauen wir uns einmal das
+          komplette Bild an.
+        </p>
+      </div>
+      <p class="mt-6 text-base font-medium text-ink-950">
+        Das Ziel ist simpel: Du sollst danach genau wissen, was bereits gut gelöst ist, welche
+        Themen für dich relevant sind, wo du etwas optimieren möchtest und welcher finanzielle
+        Rahmen sich für dich gut anfühlt.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {
+        cards.map((card, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="rounded-2xl border border-black/5 bg-white p-7 shadow-soft">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <card.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <h3 class="mt-5 font-serif text-lg font-semibold text-ink-950">{card.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{card.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
