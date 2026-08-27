@@ -1,0 +1,77 @@
+---
+import type { LucideIcon } from "lucide-react";
+
+interface Item {
+  icon: LucideIcon;
+  label: string;
+}
+
+interface Props {
+  items: readonly [Item, Item, Item, Item];
+}
+
+const { items } = Astro.props;
+const [topLeft, topRight, bottomLeft, bottomRight] = items;
+---
+
+<div class="priority-circle">
+  <div class="hidden sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-x-5 sm:gap-y-10">
+    <div class="flex items-center justify-end gap-3 text-right">
+      <span class="text-sm font-medium text-ink-950">{topLeft.label}</span>
+      <span class="h-px w-6 shrink-0 bg-black/15" aria-hidden="true"></span>
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 text-white">
+        <topLeft.icon className="h-5 w-5" aria-hidden="true" />
+      </span>
+    </div>
+    <div class="row-span-2 self-center">
+      <div class="relative aspect-square w-40 rounded-full bg-black/[0.035] lg:w-48">
+        <div class="absolute inset-[15%] flex flex-col items-center justify-center rounded-full bg-white text-center shadow-lift">
+          <slot />
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 text-left">
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 text-white">
+        <topRight.icon className="h-5 w-5" aria-hidden="true" />
+      </span>
+      <span class="h-px w-6 shrink-0 bg-black/15" aria-hidden="true"></span>
+      <span class="text-sm font-medium text-ink-950">{topRight.label}</span>
+    </div>
+
+    <div class="flex items-center justify-end gap-3 text-right">
+      <span class="text-sm font-medium text-ink-950">{bottomLeft.label}</span>
+      <span class="h-px w-6 shrink-0 bg-black/15" aria-hidden="true"></span>
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 text-white">
+        <bottomLeft.icon className="h-5 w-5" aria-hidden="true" />
+      </span>
+    </div>
+    <div class="flex items-center gap-3 text-left">
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 text-white">
+        <bottomRight.icon className="h-5 w-5" aria-hidden="true" />
+      </span>
+      <span class="h-px w-6 shrink-0 bg-black/15" aria-hidden="true"></span>
+      <span class="text-sm font-medium text-ink-950">{bottomRight.label}</span>
+    </div>
+  </div>
+
+  <div class="sm:hidden">
+    <div class="relative mx-auto aspect-square w-40">
+      <div class="absolute inset-0 rounded-full bg-black/[0.035]"></div>
+      <div class="absolute inset-[15%] flex flex-col items-center justify-center rounded-full bg-white text-center shadow-lift">
+        <slot />
+      </div>
+    </div>
+    <div class="mx-auto mt-6 grid max-w-xs grid-cols-2 gap-3">
+      {
+        items.map((item) => (
+          <div class="flex flex-col items-center gap-2 rounded-2xl bg-black/[0.02] py-4 text-center">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-ink-950 text-white">
+              <item.icon className="h-4.5 w-4.5" aria-hidden="true" />
+            </span>
+            <span class="text-xs font-medium text-ink-950">{item.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

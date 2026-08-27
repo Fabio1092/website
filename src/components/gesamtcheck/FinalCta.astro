@@ -5,16 +5,17 @@ import { gesamtcheckWhatsappUrl } from "@/lib/gesamtcheck";
 const points = [
   "Wir nehmen uns die zusätzliche Zeit.",
   "Wir schauen das komplette Bild an.",
-  "Du entscheidest, was für dich wichtig ist.",
+  "Du setzt deine Prioritäten.",
   "Du legst dein Budget fest.",
   "Und daraus entsteht dein persönlicher Plan.",
 ];
 
 const dashboard = [
-  { label: "Bestehendes geprüft" },
-  { label: "Prioritäten geklärt" },
-  { label: "Budget definiert" },
-  { label: "Persönlicher Plan" },
+  { label: "Lebenssituation erfasst" },
+  { label: "Ziele definiert" },
+  { label: "Prioritäten gesetzt" },
+  { label: "Budget festgelegt" },
+  { label: "Versorgungskonzept erstellt" },
 ];
 ---
 
@@ -57,7 +58,7 @@ const dashboard = [
     </a>
     <p class="mt-6 text-sm text-white/50">Ich plane die zusätzliche Zeit direkt für unseren gemeinsamen Termin ein.</p>
 
-    <div class="mx-auto mt-14 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+    <div class="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
       {
         dashboard.map((item, index) => (
           <div style={`transition-delay: ${index * 80}ms`} class="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-6">

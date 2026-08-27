@@ -1,0 +1,265 @@
+---
+import { SlidersHorizontal, PiggyBank, Volleyball, Home, UsersRound, Car, Briefcase, Flag, Target, Trophy } from "lucide-react";
+
+const contactChannels = ["Telefon", "WhatsApp", "Mobil", "E-Mail"];
+const activeChannels = new Set(["WhatsApp", "Mobil"]);
+const frequencies = ["jährlich", "alle 2 Jahre"];
+
+const lifeAreas = [
+  { icon: PiggyBank, label: "Vermögenswerte" },
+  { icon: Volleyball, label: "Freizeit" },
+  { icon: Home, label: "Wohnsituation" },
+  { icon: UsersRound, label: "Familiäre Situation" },
+  { icon: Car, label: "Mobilität" },
+  { icon: Briefcase, label: "Berufliche Situation" },
+];
+
+const goals = [
+  { icon: Flag, label: "Kurzfristig", range: "0 – 2 Jahre" },
+  { icon: Target, label: "Mittelfristig", range: "3 – 7 Jahre" },
+  { icon: Trophy, label: "Langfristig", range: "ab 8 Jahren" },
+];
+
+const steps = [
+  {
+    title: "Welche Erwartungen hast du?",
+    text: "Zuerst klären wir, wie Beratung für dich aussehen soll. Nicht jeder Kunde erwartet dasselbe. Deshalb definieren wir gemeinsam, wie detailliert du beraten werden möchtest, wie wichtig dir Preis-Leistung ist und wie unsere Zusammenarbeit künftig aussehen soll.",
+  },
+  {
+    title: "Wie ist deine Lebenssituation?",
+    text: "Danach betrachten wir deine tatsächliche Lebenssituation. Denn sinnvoller Versicherungsschutz entsteht nicht aus Standardpaketen. Er entsteht daraus, was du besitzt, was du planst, wer zu deinem Leben gehört und welche Risiken für dich tatsächlich relevant sind.",
+  },
+  {
+    title: "Deine Ziele & Wünsche",
+    text: "Und wir schauen nicht nur auf heute. Was möchtest du in den nächsten zwei Jahren erreichen? Was verändert sich möglicherweise mittelfristig? Und wo möchtest du langfristig stehen? Dein Versorgungskonzept soll sich an deinem Leben orientieren.",
+  },
+];
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Deine Absicherung beginnt nicht mit einem Produkt.</h2>
+      <p class="mt-2 font-serif text-xl font-semibold text-brand-600 sm:text-2xl">Sondern mit deinem Leben.</p>
+      <p class="mt-5 text-base leading-relaxed text-ink-700/80">
+        Bevor wir über einzelne Lösungen sprechen, schauen wir gemeinsam auf deine persönliche
+        Situation. Was ist dir wichtig? Wie möchtest du beraten werden? Welche Ziele hast du? Was
+        soll deine Absicherung heute und in Zukunft für dich leisten? Danach erst entsteht dein
+        persönlicher Plan.
+      </p>
+    </div>
+
+    <div class="foundation-walkthrough relative mt-16 lg:grid lg:grid-cols-[0.95fr_1.15fr] lg:gap-16">
+      <div class="lg:py-8">
+        <div class="step-trigger" data-step-index="0">
+          <div class="flex items-center gap-3 lg:hidden">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+              <SlidersHorizontal className="h-4.5 w-4.5" aria-hidden="true" />
+            </span>
+            <h3 class="font-serif text-xl font-semibold text-ink-950">{steps[0].title}</h3>
+          </div>
+          <h3 class="step-title hidden font-serif text-2xl font-semibold text-ink-950 transition-opacity duration-300 lg:block">{steps[0].title}</h3>
+          <p class="step-text mt-3 text-base leading-relaxed text-ink-700/75 transition-opacity duration-300">{steps[0].text}</p>
+
+          <div class="mt-6 rounded-3xl border border-black/5 bg-white p-6 shadow-soft sm:p-7 lg:hidden">
+            <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Preis/Leistungs-Skala</p>
+            <div class="relative mt-4 h-1.5 rounded-full bg-black/[0.06]">
+              <div class="h-1.5 w-[60%] rounded-full bg-ink-950"></div>
+              <span class="absolute top-1/2 left-[60%] h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-ink-950 shadow-soft"></span>
+            </div>
+            <div class="mt-2 flex justify-between text-[11px] text-ink-700/45">
+              <span>1 · Preis</span>
+              <span>10 · Leistung</span>
+            </div>
+            <p class="mt-6 text-xs font-semibold uppercase tracking-wide text-brand-600">Priorisierter Kontaktweg</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              {
+                contactChannels.map((channel) => (
+                  <span
+                    class:list={[
+                      "rounded-full border px-3 py-1.5 text-xs font-medium",
+                      activeChannels.has(channel) ? "border-ink-950 bg-ink-950 text-white" : "border-black/10 text-ink-700/60",
+                    ]}
+                  >
+                    {channel}
+                  </span>
+                ))
+              }
+            </div>
+            <p class="mt-5 text-xs font-semibold uppercase tracking-wide text-brand-600">Gewünschte Service-Frequenz</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              {frequencies.map((f) => <span class="rounded-full border border-black/10 px-3 py-1.5 text-xs font-medium text-ink-700/60">{f}</span>)}
+            </div>
+          </div>
+        </div>
+
+        <div class="step-trigger mt-14 lg:mt-0 lg:min-h-[26rem] lg:py-8" data-step-index="1">
+          <div class="flex items-center gap-3 lg:hidden">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+              <UsersRound className="h-4.5 w-4.5" aria-hidden="true" />
+            </span>
+            <h3 class="font-serif text-xl font-semibold text-ink-950">{steps[1].title}</h3>
+          </div>
+          <h3 class="step-title hidden font-serif text-2xl font-semibold text-ink-950 transition-opacity duration-300 lg:block">{steps[1].title}</h3>
+          <p class="step-text mt-3 text-base leading-relaxed text-ink-700/75 transition-opacity duration-300">{steps[1].text}</p>
+
+          <div class="mt-6 rounded-3xl border border-black/5 bg-white p-6 shadow-soft sm:p-7 lg:hidden">
+            <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Wie ist deine Lebenssituation?</p>
+            <div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {
+                lifeAreas.map((area) => (
+                  <div class="flex flex-col items-center gap-2 rounded-2xl bg-black/[0.02] py-5 text-center">
+                    <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink-700 shadow-soft">
+                      <area.icon className="h-4.5 w-4.5" aria-hidden="true" />
+                    </span>
+                    <span class="text-xs font-medium text-ink-950">{area.label}</span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="step-trigger mt-14 lg:mt-0 lg:min-h-[26rem] lg:py-8" data-step-index="2">
+          <div class="flex items-center gap-3 lg:hidden">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+              <Target className="h-4.5 w-4.5" aria-hidden="true" />
+            </span>
+            <h3 class="font-serif text-xl font-semibold text-ink-950">{steps[2].title}</h3>
+          </div>
+          <h3 class="step-title hidden font-serif text-2xl font-semibold text-ink-950 transition-opacity duration-300 lg:block">{steps[2].title}</h3>
+          <p class="step-text mt-3 text-base leading-relaxed text-ink-700/75 transition-opacity duration-300">{steps[2].text}</p>
+
+          <div class="mt-6 rounded-3xl border border-black/5 bg-white p-6 shadow-soft sm:p-7 lg:hidden">
+            <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Deine Ziele &amp; Wünsche</p>
+            <div class="relative mt-8">
+              <div class="absolute left-[16.6%] right-[16.6%] top-6 h-px bg-black/10" aria-hidden="true"></div>
+              <div class="relative flex justify-between">
+                {
+                  goals.map((goal) => (
+                    <div class="flex w-1/3 flex-col items-center text-center">
+                      <span class="flex h-12 w-12 items-center justify-center rounded-full bg-ink-950 text-white">
+                        <goal.icon className="h-5 w-5" aria-hidden="true" />
+                      </span>
+                      <p class="mt-3 text-xs font-semibold text-ink-950 sm:text-sm">{goal.label}</p>
+                      <p class="text-[10px] text-ink-700/50 sm:text-[11px]">{goal.range}</p>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden lg:sticky lg:top-28 lg:block lg:h-[28rem]">
+        <div class="relative h-full">
+          <div class="step-panel absolute inset-0 rounded-3xl border border-black/5 bg-white p-8 opacity-100 shadow-soft transition-opacity duration-500 motion-reduce:transition-none" data-panel-index="0">
+            <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Preis/Leistungs-Skala</p>
+            <div class="relative mt-5 h-2 rounded-full bg-black/[0.06]">
+              <div class="h-2 w-[60%] rounded-full bg-ink-950"></div>
+              <span class="absolute top-1/2 left-[60%] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-ink-950 shadow-soft"></span>
+            </div>
+            <div class="mt-2 flex justify-between text-xs text-ink-700/45">
+              <span>1 · Preis</span>
+              <span>10 · Leistung</span>
+            </div>
+
+            <p class="mt-9 text-xs font-semibold uppercase tracking-wide text-brand-600">Priorisierter Kontaktweg</p>
+            <div class="mt-4 flex flex-wrap gap-2.5">
+              {
+                contactChannels.map((channel) => (
+                  <span
+                    class:list={[
+                      "rounded-full border px-4 py-2 text-sm font-medium",
+                      activeChannels.has(channel) ? "border-ink-950 bg-ink-950 text-white" : "border-black/10 text-ink-700/60",
+                    ]}
+                  >
+                    {channel}
+                  </span>
+                ))
+              }
+            </div>
+
+            <p class="mt-9 text-xs font-semibold uppercase tracking-wide text-brand-600">Gewünschte Service-Frequenz</p>
+            <div class="mt-4 flex flex-wrap gap-2.5">
+              {frequencies.map((f) => <span class="rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-ink-700/60">{f}</span>)}
+            </div>
+          </div>
+
+          <div class="step-panel absolute inset-0 rounded-3xl border border-black/5 bg-white p-8 opacity-0 shadow-soft transition-opacity duration-500 motion-reduce:transition-none" data-panel-index="1">
+            <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Wie ist deine Lebenssituation?</p>
+            <div class="mt-6 grid grid-cols-3 gap-4">
+              {
+                lifeAreas.map((area) => (
+                  <div class="flex flex-col items-center gap-2.5 rounded-2xl bg-black/[0.02] py-6 text-center">
+                    <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white text-ink-700 shadow-soft">
+                      <area.icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <span class="text-xs font-medium text-ink-950">{area.label}</span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="step-panel absolute inset-0 rounded-3xl border border-black/5 bg-white p-8 opacity-0 shadow-soft transition-opacity duration-500 motion-reduce:transition-none" data-panel-index="2">
+            <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Deine Ziele &amp; Wünsche</p>
+            <div class="relative mt-14">
+              <div class="absolute left-[16.6%] right-[16.6%] top-7 h-px bg-black/10" aria-hidden="true"></div>
+              <div class="relative flex justify-between">
+                {
+                  goals.map((goal) => (
+                    <div class="flex w-1/3 flex-col items-center text-center">
+                      <span class="flex h-14 w-14 items-center justify-center rounded-full bg-ink-950 text-white">
+                        <goal.icon className="h-6 w-6" aria-hidden="true" />
+                      </span>
+                      <p class="mt-4 text-sm font-semibold text-ink-950">{goal.label}</p>
+                      <p class="text-xs text-ink-700/50">{goal.range}</p>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const container = document.querySelector(".foundation-walkthrough");
+  if (container && window.matchMedia("(min-width: 1024px)").matches) {
+    const triggers = Array.from(container.querySelectorAll<HTMLElement>(".step-trigger"));
+    const panels = Array.from(container.querySelectorAll<HTMLElement>(".step-panel"));
+    const titles = Array.from(container.querySelectorAll<HTMLElement>(".step-title"));
+    const texts = Array.from(container.querySelectorAll<HTMLElement>(".step-text"));
+
+    const setActive = (index: number) => {
+      panels.forEach((panel) => {
+        panel.classList.toggle("opacity-0", panel.dataset.panelIndex !== String(index));
+        panel.classList.toggle("opacity-100", panel.dataset.panelIndex === String(index));
+      });
+      triggers.forEach((_trigger, i) => {
+        const dim = i !== index;
+        titles[i]?.classList.toggle("opacity-40", dim);
+        texts[i]?.classList.toggle("opacity-40", dim);
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number((entry.target as HTMLElement).dataset.stepIndex);
+            setActive(index);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -40% 0px", threshold: 0 },
+    );
+
+    triggers.forEach((trigger) => observer.observe(trigger));
+  }
+</script>

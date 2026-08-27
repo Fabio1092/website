@@ -1,0 +1,188 @@
+---
+import {
+  Shield,
+  SquarePlus,
+  BarChart3,
+  Sunrise,
+  Umbrella,
+  Scale,
+  Home,
+  Sofa,
+  Car,
+  UsersRound,
+  CircleDollarSign,
+  Accessibility,
+  UserRound,
+  Star,
+} from "lucide-react";
+
+const themenwelten = [
+  {
+    id: "basis",
+    label: "Basis-Absicherung",
+    icon: Shield,
+    solutions: [
+      { icon: Umbrella, title: "Haftpflicht", tagline: "Schutz vor Schäden an Dritten – aktiv wie passiv.", bausteine: 7 },
+      { icon: Scale, title: "Rechtsschutz", tagline: "Dein gutes Recht auf deiner Seite.", bausteine: 5 },
+      { icon: Home, title: "Wohngebäude", tagline: "Umfassender Schutz für dein Eigenheim.", bausteine: 6 },
+      { icon: Sofa, title: "Hausrat & Glas", tagline: "Umfassender Schutz für deine Lieblingsstücke.", bausteine: 6 },
+      { icon: Car, title: "Kraftfahrzeuge", tagline: "Schutz für dein Kfz.", bausteine: 8 },
+      { icon: UsersRound, title: "Hinterbliebenenschutz", tagline: "Finanzieller Schutz für deine Familie.", bausteine: 5 },
+      { icon: CircleDollarSign, title: "Einkommensschutz", tagline: "Lebensstandard unter allen Umständen absichern.", bausteine: 5 },
+      { icon: Accessibility, title: "Unfallschutz", tagline: "Finanzielle Hilfe nach einem Unfall.", bausteine: 5 },
+    ],
+  },
+  {
+    id: "gesundheit",
+    label: "Gesundheit & Vorsorge",
+    icon: SquarePlus,
+    solutions: [
+      { icon: SquarePlus, title: "Private Krankenvollversicherung", tagline: "Deine Gesundheit an erster Stelle.", bausteine: 6 },
+      { icon: UserRound, title: "Krankenzusatz & GKV", tagline: "Optimaler Schutz rund um die gesetzliche Kasse.", bausteine: 6 },
+    ],
+  },
+  {
+    id: "vermoegen",
+    label: "Vermögensaufbau & Sparen",
+    icon: BarChart3,
+    solutions: [
+      { icon: BarChart3, title: "Vermögensaufbau & Sparen", tagline: "Smarte Lösungen – mehr aus deinem Geld.", bausteine: 4 },
+      { icon: UsersRound, title: "Vorsorge für Kinder", tagline: "Vermögensaufbau für die Kinder.", bausteine: 3 },
+    ],
+  },
+  {
+    id: "alter",
+    label: "Lebensqualität im Alter",
+    icon: Sunrise,
+    solutions: [{ icon: Sunrise, title: "Lebensqualität im Alter", tagline: "Den gewohnten Lebensstandard im Alter erhalten.", bausteine: 4 }],
+  },
+] as const;
+
+const importanceLevels = [
+  { label: "Aktuell nicht wichtig", stars: 1 },
+  { label: "Wichtig", stars: 2 },
+  { label: "Sehr wichtig", stars: 3 },
+];
+---
+
+<section class="scroll-mt-24 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Themen entdecken und priorisieren</h2>
+      <p class="mt-4 text-base leading-relaxed text-ink-700/80">
+        Du bekommst den Überblick – und entscheidest. Wir gehen die relevanten Möglichkeiten
+        gemeinsam durch. Du verstehst, welche Themen für deine Situation eine Rolle spielen und
+        setzt anschließend selbst deine Prioritäten.
+      </p>
+    </div>
+
+    <div class="themenwelten-tabs mt-12">
+      <div class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0" role="tablist" aria-label="Themenwelten">
+        {
+          themenwelten.map((tw, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`tab-btn-${tw.id}`}
+              aria-selected={i === 0}
+              aria-controls={`tab-panel-${tw.id}`}
+              data-tab-index={i}
+              class:list={[
+                "tab-btn inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors",
+                i === 0 ? "border-ink-950 bg-ink-950 text-white" : "border-black/10 text-ink-700/70 hover:border-black/20",
+              ]}
+            >
+              <tw.icon className="h-4 w-4" aria-hidden="true" />
+              {tw.label}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="mt-8">
+        {
+          themenwelten.map((tw, i) => (
+            <div id={`tab-panel-${tw.id}`} role="tabpanel" aria-labelledby={`tab-btn-${tw.id}`} class="tab-panel" data-panel-index={i} hidden={i !== 0}>
+              <div class="grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:gap-8">
+                <div class="rounded-3xl border border-black/5 bg-white p-6 shadow-soft">
+                  <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-ink-950 text-white">
+                    <tw.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <h3 class="mt-4 font-serif text-lg font-semibold text-ink-950">{tw.label}</h3>
+                  <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-600">Wie wichtig ist dir das Thema?</p>
+                  <div class="mt-3 space-y-2">
+                    {importanceLevels.map((level) => (
+                      <div
+                        class:list={[
+                          "flex items-center gap-2.5 rounded-xl border px-3.5 py-2.5",
+                          level.stars === 2 ? "border-brand-200 bg-brand-50/60" : "border-black/5 bg-white",
+                        ]}
+                      >
+                        <div class="flex gap-0.5" aria-hidden="true">
+                          {Array.from({ length: 3 }).map((_, s) => (
+                            <Star className={`h-3.5 w-3.5 ${s < level.stars ? "fill-gold-500 text-gold-500" : "text-black/15"}`} />
+                          ))}
+                        </div>
+                        <span class="text-sm text-ink-700/80">{level.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">
+                    Passende Lösungen · {tw.solutions.length} {tw.solutions.length === 1 ? "Lösung" : "Lösungen"}
+                  </p>
+                  <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                    {tw.solutions.map((sol) => (
+                      <div class="flex items-start gap-3 rounded-2xl border border-black/5 bg-white p-4 shadow-soft">
+                        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                          <sol.icon className="h-4.5 w-4.5" aria-hidden="true" />
+                        </span>
+                        <div class="min-w-0">
+                          <p class="text-sm font-semibold text-ink-950">{sol.title}</p>
+                          <p class="mt-0.5 text-xs leading-relaxed text-ink-700/65">{sol.tagline}</p>
+                          <p class="mt-1.5 text-[11px] font-medium text-ink-700/45">{sol.bausteine} Bausteine wählbar</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <p class="mx-auto mt-12 max-w-lg text-center font-serif text-xl font-semibold text-ink-950 sm:text-2xl">
+      Erst verstehen. Dann priorisieren. Dann entscheiden.
+    </p>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector(".themenwelten-tabs");
+  if (root) {
+    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>(".tab-btn"));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>(".tab-panel"));
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const index = btn.dataset.tabIndex;
+        buttons.forEach((b) => {
+          const active = b === btn;
+          b.setAttribute("aria-selected", String(active));
+          b.classList.toggle("border-ink-950", active);
+          b.classList.toggle("bg-ink-950", active);
+          b.classList.toggle("text-white", active);
+          b.classList.toggle("border-black/10", !active);
+          b.classList.toggle("text-ink-700/70", !active);
+        });
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.panelIndex !== index;
+        });
+      });
+    });
+  }
+</script>

@@ -1,0 +1,48 @@
+---
+import { Shield, SquarePlus, BarChart3, Sunrise } from "lucide-react";
+import PriorityCircle from "@/components/gesamtcheck/PriorityCircle.astro";
+import { gesamtcheckWhatsappUrl } from "@/lib/gesamtcheck";
+
+const items = [
+  { icon: Shield, label: "Basis-Absicherung" },
+  { icon: SquarePlus, label: "Gesundheit & Vorsorge" },
+  { icon: BarChart3, label: "Vermögensaufbau & Sparen" },
+  { icon: Sunrise, label: "Lebensqualität im Alter" },
+] as const;
+---
+
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Erst deine Prioritäten. Dann dein Budget.</h2>
+      <p class="mt-4 text-base leading-relaxed text-ink-700/80">
+        Du entscheidest, welcher monatliche Rahmen sich für dich gut anfühlt. Anschließend bringen
+        wir deine wichtigsten Themen innerhalb dieses Budgets in eine sinnvolle Reihenfolge.
+      </p>
+    </div>
+
+    <div data-reveal class="mt-14">
+      <PriorityCircle items={items}>
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-ink-700/45">Monatliches Budget</p>
+        <p class="mt-1 font-serif text-2xl font-semibold text-ink-950">0 €</p>
+      </PriorityCircle>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-xl rounded-2xl border border-brand-200/60 bg-brand-50/50 p-6 text-center sm:p-7">
+      <p class="font-serif text-lg font-semibold text-ink-950 sm:text-xl">Du gibst den Rahmen vor. Wir machen daraus den Plan.</p>
+    </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href={gesamtcheckWhatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cta="budget-section-cta"
+        class="inline-flex items-center justify-center gap-1.5 rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+      >
+        Ja, Gesamtcheck mit einplanen
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>

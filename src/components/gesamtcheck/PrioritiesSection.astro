@@ -1,0 +1,34 @@
+---
+import { Shield, SquarePlus, BarChart3, Sunrise, Target } from "lucide-react";
+import PriorityCircle from "@/components/gesamtcheck/PriorityCircle.astro";
+
+const items = [
+  { icon: Shield, label: "Basis-Absicherung" },
+  { icon: SquarePlus, label: "Gesundheit & Vorsorge" },
+  { icon: BarChart3, label: "Vermögensaufbau & Sparen" },
+  { icon: Sunrise, label: "Lebensqualität im Alter" },
+] as const;
+---
+
+<section class="bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Du entscheidest, was dir wichtig ist.</h2>
+      <p class="mt-4 text-base leading-relaxed text-ink-700/80">
+        Wir gehen gemeinsam durch die relevanten Bereiche – du setzt die Prioritäten.
+      </p>
+    </div>
+
+    <div data-reveal class="mt-14">
+      <PriorityCircle items={items}>
+        <Target className="h-5 w-5 text-brand-600" aria-hidden="true" />
+        <p class="mt-1.5 text-xs font-semibold uppercase tracking-wide text-ink-950">Deine Prioritäten</p>
+        <p class="mt-0.5 text-[11px] text-ink-700/50">4 Themenwelten</p>
+      </PriorityCircle>
+    </div>
+
+    <p class="mx-auto mt-12 max-w-lg text-center text-base leading-relaxed text-ink-700/80">
+      So entsteht Schritt für Schritt genau die Absicherung, die zu dir passt.
+    </p>
+  </div>
+</section>
