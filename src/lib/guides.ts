@@ -205,7 +205,7 @@ export function guideHref(slug: string): string {
 export const featuredGuides = guides.filter((g) => g.featured);
 export const recommendedGuides = guides.filter((g) => g.recommended);
 export const recentlyUpdatedGuides = guides
-  .filter((g) => g.recentlyUpdated && g.updatedAt)
+  .filter((g) => g.status === "published" && g.recentlyUpdated && g.updatedAt)
   .sort((a, b) => (b.updatedAt! > a.updatedAt! ? 1 : -1));
 
 export function guidesByCategory(category: GuideCategory): Guide[] {

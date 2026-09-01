@@ -11,7 +11,7 @@ import FinalCta from "@/components/FinalCta.astro";
 const pageTitle = "Gesundheitsfragen in der Berufsunfähigkeitsversicherung: Warum bei der BU jedes Wort entscheidend sein kann";
 const pageDescription =
   "BU-Gesundheitsfragen im Detail: Warum Wortlaut und Zeitraum über die Versicherbarkeit entscheiden — mit Praxisbeispielen und Versichererübersicht.";
-const canonicalUrl = new URL("/bu-gesundheitsfragen", Astro.site).toString();
+const canonicalUrl = new URL("/bu-gesundheitsfragen/", Astro.site).toString();
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -31,13 +31,13 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
-    { "@type": "ListItem", position: 2, name: "Berufsunfähigkeitsversicherung", item: new URL("/bu", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Berufsunfähigkeitsversicherung", item: new URL("/bu/", Astro.site).toString() },
     { "@type": "ListItem", position: 3, name: "Gesundheitsfragen", item: canonicalUrl },
   ],
 };
 ---
 
-<Layout title="BU Gesundheitsfragen: Wortlaut, Zeiträume & Risikoprüfung" description={pageDescription}>
+<Layout title="BU Gesundheitsfragen: Zeiträume & Risikoprüfung | Fabio Rumpf" description={pageDescription} fullTitle>
   <Hero />
   <TableOfContents />
   <Article />
@@ -45,7 +45,7 @@ const breadcrumbSchema = {
   <Conclusion />
   <RelatedTopic
     title="Denkst du auch über eine private Krankenversicherung nach? Auch dort spielen die Gesundheitsfragen eine zentrale Rolle."
-    href="/pkv-gesundheitsfragen"
+    href="/pkv-gesundheitsfragen/"
     linkLabel="Gesundheitsfragen in der PKV ansehen"
   />
   <FinalCta

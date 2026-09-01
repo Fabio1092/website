@@ -57,14 +57,16 @@ const searchIndex = guides.map((g) => ({
       results.innerHTML = `<li class="px-4 py-3 text-sm text-ink-700/60">Keine Treffer. Alle Ratgeber findest du weiter unten in der Übersicht.</li>`;
     } else {
       results.innerHTML = matches
-        .map(
-          (item) =>
-            `<li role="option"><a href="${item.href}" class="flex items-center justify-between gap-3 rounded-xl px-4 py-3 text-sm transition-colors hover:bg-brand-50/60"><span class="min-w-0 truncate font-medium text-ink-950">${item.title}</span><span class="flex shrink-0 items-center gap-2"><span class="text-xs text-ink-700/50">${item.category}</span>${
-              item.comingSoon
-                ? '<span class="inline-flex items-center rounded-full border border-gold-200 bg-gold-50 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-gold-700">Soon</span>'
-                : ""
-            }</span></a></li>`,
-        )
+        .map((item) => {
+          const inner = `<span class="min-w-0 truncate font-medium text-ink-950">${item.title}</span><span class="flex shrink-0 items-center gap-2"><span class="text-xs text-ink-700/50">${item.category}</span>${
+            item.comingSoon
+              ? '<span class="inline-flex items-center rounded-full border border-gold-200 bg-gold-50 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-gold-700">Soon</span>'
+              : ""
+          }</span>`;
+          return item.comingSoon
+            ? `<li role="option"><span class="flex items-center justify-between gap-3 rounded-xl px-4 py-3 text-sm">${inner}</span></li>`
+            : `<li role="option"><a href="${item.href}" class="flex items-center justify-between gap-3 rounded-xl px-4 py-3 text-sm transition-colors hover:bg-brand-50/60">${inner}</a></li>`;
+        })
         .join("");
     }
 

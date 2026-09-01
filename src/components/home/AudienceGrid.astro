@@ -29,8 +29,6 @@ const audiences = [
   },
 ];
 
-const track = [...audiences, ...audiences];
-const originalCount = audiences.length;
 ---
 
 <section class="overflow-hidden bg-white py-24">
@@ -50,24 +48,17 @@ const originalCount = audiences.length;
     data-reveal
     class="group relative mt-14 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
   >
-    <div class="flex w-max gap-6 [animation-play-state:running] motion-safe:animate-marquee motion-safe:group-hover:[animation-play-state:paused]">
+    <div id="audience-marquee-track" class="flex w-max gap-6 [animation-play-state:running] motion-safe:group-hover:[animation-play-state:paused]">
       {
-        track.map((audience, index) => {
-          const isClone = index >= originalCount;
-          const TitleTag = isClone ? "p" : "h3";
-          return (
-            <div
-              class="flex w-[19rem] shrink-0 flex-col rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:w-[22rem]"
-              aria-hidden={isClone ? "true" : undefined}
-            >
-              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
-                <audience.icon className="h-5 w-5" aria-hidden="true" />
-              </div>
-              <TitleTag class="mt-5 font-serif text-lg font-semibold text-ink-950">{audience.title}</TitleTag>
-              <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{audience.description}</p>
+        audiences.map((audience) => (
+          <div class="flex w-[19rem] shrink-0 flex-col rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:w-[22rem]">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
+              <audience.icon className="h-5 w-5" aria-hidden="true" />
             </div>
-          );
-        })
+            <h3 class="mt-5 font-serif text-lg font-semibold text-ink-950">{audience.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{audience.description}</p>
+          </div>
+        ))
       }
     </div>
   </div>
@@ -83,3 +74,18 @@ const originalCount = audiences.length;
     </a>
   </div>
 </section>
+
+<script>
+  // Duplicate the track client-side (not in the server-rendered HTML) so the
+  // seamless CSS loop still works without doubling this content for crawlers.
+  const track = document.getElementById("audience-marquee-track");
+  if (track && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const clones = Array.from(track.children).map((node) => {
+      const clone = node.cloneNode(true) as HTMLElement;
+      clone.setAttribute("aria-hidden", "true");
+      return clone;
+    });
+    clones.forEach((clone) => track.appendChild(clone));
+    track.classList.add("animate-marquee");
+  }
+</script>

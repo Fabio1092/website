@@ -11,9 +11,9 @@ import UpdatedGuides from "@/components/ratgeber/UpdatedGuides.astro";
 import GuideCTA from "@/components/ratgeber/GuideCTA.astro";
 import { guides, guideHref } from "@/lib/guides";
 
-const pageTitle = "Versicherungs-Ratgeber | Einschätzungen & Empfehlungen von Fabio Rumpf";
+const pageTitle = "Versicherungs-Ratgeber | Fabio Rumpf";
 const pageDescription =
-  "Welche Versicherungen sind sinnvoll? Fabio Rumpf erklärt verständlich, worauf es bei Haftpflicht, Rechtsschutz, Auslandskrankenversicherung & Co. wirklich ankommt.";
+  "Welche Versicherungen sind sinnvoll? Fabio Rumpf erklärt verständlich, worauf es bei Haftpflicht, Rechtsschutz & Co. wirklich ankommt.";
 const canonicalUrl = new URL("/ratgeber/", Astro.site).toString();
 
 const collectionSchema = {
@@ -36,10 +36,12 @@ const breadcrumbSchema = {
   ],
 };
 
+const publishedGuides = guides.filter((guide) => guide.status === "published");
+
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  itemListElement: guides.map((guide, index) => ({
+  itemListElement: publishedGuides.map((guide, index) => ({
     "@type": "ListItem",
     position: index + 1,
     name: guide.title,
