@@ -1,0 +1,49 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/wissen/Hero.astro";
+import TopicAreas from "@/components/wissen/TopicAreas.astro";
+---
+
+<Layout
+  title="BU & PKV Wissen | Fabio Rumpf"
+  description="Wissen rund um Berufsunfähigkeitsversicherung und private Krankenversicherung – verständlich erklärt, praxisnah und ohne Versicherungsdeutsch."
+  fullTitle
+>
+  <Hero
+    eyebrow="Wissensbibliothek"
+    title="Wissen rund um Berufsunfähigkeit & private Krankenversicherung"
+    titleHighlight="Berufsunfähigkeit & private Krankenversicherung"
+    intro={[
+      "Hier findest du ausführliche, verständliche und praxisnahe Informationen rund um meine beiden Spezialgebiete: die Berufsunfähigkeitsversicherung und die private Krankenversicherung.",
+      "Kein Versicherungsdeutsch, sondern nachvollziehbar erklärtes Fachwissen – damit du Entscheidungen besser einordnen kannst.",
+    ]}
+  />
+
+  <TopicAreas />
+
+  <section class="bg-brand-50/40 py-16 sm:py-20">
+    <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+        Noch Fragen zu deiner persönlichen Situation?
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-base leading-relaxed text-ink-700/75">
+        Wissen ersetzt keine individuelle Beratung. Wenn du deine konkrete Situation besprechen
+        möchtest, führt dich der passende Weg direkt zur jeweiligen Beratung.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href="/berufsunfaehigkeitsversicherung-kassel/"
+          class="inline-flex items-center justify-center rounded-full bg-ink-950 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5"
+        >
+          Zur BU-Beratung
+        </a>
+        <a
+          href="/private-krankenversicherung-kassel/"
+          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold text-ink-950 transition-colors hover:border-brand-300"
+        >
+          Zur PKV-Beratung
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

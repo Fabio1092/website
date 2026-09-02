@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/wissen/Hero.astro";
+import TopicCategoryList from "@/components/wissen/TopicCategoryList.astro";
+import AvailableNow from "@/components/wissen/AvailableNow.astro";
+import { pkvWissenCategories, pkvAvailableLinks } from "@/lib/wissen";
+---
+
+<Layout
+  title="Private Krankenversicherung Wissen & Ratgeber | Fabio Rumpf"
+  description="Private Krankenversicherung verständlich erklärt: Wechsel, Leistungen, Gesundheitsprüfung, Beiträge und wichtige Entscheidungen rund um die PKV."
+  fullTitle
+>
+  <Hero
+    eyebrow="PKV-Wissen"
+    title="Private Krankenversicherung: Wissen & Ratgeber"
+    titleHighlight="Wissen & Ratgeber"
+    intro={[
+      "Hier beantworte ich die wichtigsten Fragen zur privaten Krankenversicherung verständlich und praxisnah – von den Grundlagen bis zu Entscheidungen, die dich langfristig begleiten.",
+    ]}
+  />
+
+  <TopicCategoryList categories={pkvWissenCategories} />
+
+  <AvailableNow
+    title="Bereits verfügbar"
+    intro="Diese Themen sind schon jetzt ausführlich aufbereitet."
+    links={pkvAvailableLinks}
+    hubHref="/private-krankenversicherung-kassel/"
+    hubLabel="Zur PKV-Beratung in Kassel"
+  />
+</Layout>

@@ -17,6 +17,7 @@ export const primaryNav: NavLink[] = [
       { label: "PKV für Beamte", href: "/pkv-beamte-kassel/" },
       { label: "Risikovoranfrage", href: "/pkv-risikovoranfrage/" },
       { label: "Gesundheitsfragen", href: "/pkv-gesundheitsfragen/" },
+      { label: "PKV-Wissen", href: "/wissen/private-krankenversicherung/" },
     ],
   },
   {
@@ -30,6 +31,7 @@ export const primaryNav: NavLink[] = [
       { label: "BU/DU für Beamte", href: "/bu-beamte-kassel/" },
       { label: "Risikovoranfrage", href: "/bu-risikovoranfrage/" },
       { label: "Gesundheitsfragen", href: "/bu-gesundheitsfragen/" },
+      { label: "BU-Wissen", href: "/wissen/berufsunfaehigkeitsversicherung/" },
     ],
   },
   { label: "360° Beratung", href: "/360-beratung/" },

@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/wissen/Hero.astro";
+import TopicCategoryList from "@/components/wissen/TopicCategoryList.astro";
+import AvailableNow from "@/components/wissen/AvailableNow.astro";
+import { buWissenCategories, buAvailableLinks } from "@/lib/wissen";
+---
+
+<Layout
+  title="Berufsunfähigkeitsversicherung Wissen & Ratgeber | Fabio Rumpf"
+  description="Berufsunfähigkeitsversicherung verständlich erklärt: Vertragsgestaltung, Gesundheitsfragen, Bedingungen und wichtige Entscheidungen rund um die BU."
+  fullTitle
+>
+  <Hero
+    eyebrow="BU-Wissen"
+    title="Berufs­unfähigkeits­versicherung: Wissen & Ratgeber"
+    titleHighlight="Wissen & Ratgeber"
+    intro={[
+      "Hier beantworte ich die wichtigsten Fragen zur Berufsunfähigkeitsversicherung verständlich und praxisnah – von den Grundlagen bis zu Vertragsdetails, die im Leistungsfall wirklich zählen.",
+    ]}
+  />
+
+  <TopicCategoryList categories={buWissenCategories} />
+
+  <AvailableNow
+    title="Bereits verfügbar"
+    intro="Diese Themen sind schon jetzt ausführlich aufbereitet."
+    links={buAvailableLinks}
+    hubHref="/berufsunfaehigkeitsversicherung-kassel/"
+    hubLabel="Zur BU-Beratung in Kassel"
+  />
+</Layout>

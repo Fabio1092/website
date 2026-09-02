@@ -1,0 +1,86 @@
+---
+import { ShieldCheck, HeartPulse, ArrowRight } from "lucide-react";
+
+const areas = [
+  {
+    icon: ShieldCheck,
+    dark: false,
+    title: "Berufsunfähigkeitsversicherung",
+    short: "BU-Wissen",
+    description:
+      "Wissen zu Vertragsgestaltung, Gesundheitsfragen, Leistungsfall, Bedingungen und wichtigen Entscheidungen rund um die BU.",
+    href: "/wissen/berufsunfaehigkeitsversicherung/",
+    cta: "BU-Wissen entdecken",
+  },
+  {
+    icon: HeartPulse,
+    dark: true,
+    title: "Private Krankenversicherung",
+    short: "PKV-Wissen",
+    description:
+      "Wissen zu Wechsel, Leistungen, Gesundheitsprüfung, Beiträgen und wichtigen Entscheidungen rund um die PKV.",
+    href: "/wissen/private-krankenversicherung/",
+    cta: "PKV-Wissen entdecken",
+  },
+];
+---
+
+<section class="bg-white py-20 sm:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="shadow-lift grid overflow-hidden rounded-3xl lg:grid-cols-2">
+      {
+        areas.map((area) => (
+          <a
+            href={area.href}
+            data-reveal
+            class:list={[
+              "group relative flex flex-col justify-between p-10 transition-colors duration-300 sm:p-12 lg:p-14",
+              area.dark ? "bg-ink-950 text-white" : "bg-brand-50/60 text-ink-950",
+            ]}
+          >
+            <div
+              class:list={[
+                "pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl transition-opacity duration-500 group-hover:opacity-80",
+                area.dark ? "bg-brand-500/20 opacity-60" : "bg-gold-400/20 opacity-50",
+              ]}
+              aria-hidden="true"
+            />
+
+            <div class="relative">
+              <div
+                class:list={[
+                  "flex h-14 w-14 items-center justify-center rounded-2xl",
+                  area.dark ? "bg-white/10 text-brand-300" : "bg-white text-brand-600 shadow-sm",
+                ]}
+              >
+                <area.icon className="h-6 w-6" aria-hidden="true" />
+              </div>
+              <p
+                class:list={[
+                  "mt-6 text-xs font-semibold uppercase tracking-wider",
+                  area.dark ? "text-brand-300" : "text-brand-600",
+                ]}
+              >
+                {area.short}
+              </p>
+              <h2 class="mt-2 font-serif text-2xl font-semibold sm:text-3xl">{area.title}</h2>
+              <p class:list={["mt-4 max-w-md text-base leading-relaxed", area.dark ? "text-white/70" : "text-ink-700/75"]}>
+                {area.description}
+              </p>
+            </div>
+
+            <div
+              class:list={[
+                "relative mt-10 inline-flex items-center gap-1.5 text-sm font-semibold",
+                area.dark ? "text-brand-300" : "text-brand-700",
+              ]}
+            >
+              {area.cta}
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

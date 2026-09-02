@@ -1,0 +1,39 @@
+---
+import { ArrowRight } from "lucide-react";
+import type { WissenLink } from "@/lib/wissen";
+
+interface Props {
+  title: string;
+  intro: string;
+  links: WissenLink[];
+  hubHref: string;
+  hubLabel: string;
+}
+
+const { title, intro, links, hubHref, hubLabel } = Astro.props;
+---
+
+<section class="border-y border-black/[0.06] bg-white py-16 sm:py-20">
+  <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{title}</h2>
+    <p class="mx-auto mt-3 max-w-xl text-base leading-relaxed text-ink-700/75">{intro}</p>
+
+    <div class="mx-auto mt-8 flex max-w-2xl flex-wrap items-center justify-center gap-2.5">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-medium text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <a href={hubHref} class="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-800">
+      {hubLabel}
+      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+    </a>
+  </div>
+</section>
