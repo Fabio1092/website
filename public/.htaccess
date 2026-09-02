@@ -5,6 +5,10 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\.fr-makler\.de$ [NC]
 RewriteRule ^(.*)$ https://fr-makler.de/$1 [L,R=301]
 
+# Permanent redirect: BU main page migrated from /bu/ to its SEO-optimized URL.
+# Query strings are preserved automatically by mod_rewrite (no QSD flag set).
+RewriteRule ^bu/?$ https://fr-makler.de/berufsunfaehigkeitsversicherung-kassel/ [R=301,L]
+
 # Ensure the charset is sent in the HTTP response header, not just in the HTML meta tag
 AddDefaultCharset UTF-8
 

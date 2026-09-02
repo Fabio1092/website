@@ -21,9 +21,9 @@ export const primaryNav: NavLink[] = [
   },
   {
     label: "BU",
-    href: "/bu/",
+    href: "/berufsunfaehigkeitsversicherung-kassel/",
     children: [
-      { label: "BU im Überblick", href: "/bu/" },
+      { label: "BU im Überblick", href: "/berufsunfaehigkeitsversicherung-kassel/" },
       { label: "BU für Angestellte", href: "/bu-angestellte-kassel/" },
       { label: "BU für Selbstständige", href: "/bu-selbststaendige-kassel/" },
       { label: "BU für Studenten", href: "/bu-studenten-kassel/" },
