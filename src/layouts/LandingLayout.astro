@@ -11,11 +11,13 @@ interface Props {
   description: string;
   /** Exclude this page from search engine indexing (e.g. post-booking confirmation pages). */
   noindex?: boolean;
+  /** Robots meta content used when noindex is set. Defaults to fully deindexed + no link-following. */
+  robots?: string;
   /** Hide the persistent mobile booking bar (e.g. on pages where the visitor already booked). */
   showStickyCta?: boolean;
 }
 
-const { title, description, noindex = false, showStickyCta = true } = Astro.props;
+const { title, description, noindex = false, robots = "noindex, nofollow", showStickyCta = true } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = `${title} · Fabio Rumpf Makler`;
 const ogImageUrl = new URL("/images/og-image.jpg", Astro.site);
@@ -30,7 +32,7 @@ const ogImageUrl = new URL("/images/og-image.jpg", Astro.site);
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalUrl} />
     <AnalyticsDataLayer />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {noindex && <meta name="robots" content={robots} />}
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
