@@ -14,7 +14,11 @@ export default defineConfig({
         !page.includes("/pkv-ausfuellhilfe") &&
         !page.includes("/erstgespraech-danke") &&
         !page.includes("/pkv-kassel-danke") &&
-        !page.includes("/gesamtcheck"),
+        !page.includes("/gesamtcheck") &&
+        // Conversion landing pages: kept live + crawlable (noindex, follow),
+        // just not offered for indexing via the sitemap.
+        !page.endsWith("/bu-kassel/") &&
+        !page.endsWith("/pkv-kassel/"),
     }),
   ],
   vite: {
