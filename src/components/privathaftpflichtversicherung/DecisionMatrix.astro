@@ -1,0 +1,53 @@
+---
+import { decisionMatrix, liabilityRecommendations } from "@/lib/privathaftpflicht";
+---
+
+<section class="bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Meine Entscheidungsmatrix auf einen <span class="text-brand-600">Blick</span>
+    </h2>
+
+    <div class="mt-6 hidden overflow-hidden rounded-2xl border border-black/5 shadow-soft sm:block">
+      <table class="w-full border-collapse text-left text-sm">
+        <thead>
+          <tr class="bg-brand-50/50">
+            <th class="px-5 py-3.5 font-semibold text-ink-950">Kundenprofil</th>
+            <th class="px-5 py-3.5 font-semibold text-ink-950">Meine Empfehlung</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-black/5">
+          {
+            decisionMatrix.map((row) => {
+              const rec = liabilityRecommendations[row.recommendation];
+              return (
+                <tr class="bg-white">
+                  <td class="px-5 py-4 text-ink-700/85">{row.profile}</td>
+                  <td class="px-5 py-4 font-medium text-ink-950">
+                    {rec.insurer} – {rec.tariff}
+                  </td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6 space-y-3 sm:hidden">
+      {
+        decisionMatrix.map((row) => {
+          const rec = liabilityRecommendations[row.recommendation];
+          return (
+            <div class="rounded-xl border border-black/5 bg-brand-50/25 p-4">
+              <p class="text-sm text-ink-700/75">{row.profile}</p>
+              <p class="mt-1.5 font-medium text-ink-950">
+                {rec.insurer} – {rec.tariff}
+              </p>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

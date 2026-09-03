@@ -1,0 +1,21 @@
+---
+import LiabilityRecommendationWizard from "@/components/privathaftpflichtversicherung/LiabilityRecommendationWizard.tsx";
+---
+
+<section id="wizard" class="scroll-mt-24 bg-brand-50/30 py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+        Welche Privathaftpflicht würde ich dir <span class="text-brand-600">empfehlen</span>?
+      </h2>
+      <p class="mx-auto mt-3 max-w-lg text-base leading-relaxed text-ink-700/80">
+        Beantworte ein paar kurze Fragen und ich zeige dir die Lösung, die ich in deiner Situation
+        wählen würde.
+      </p>
+    </div>
+
+    <div data-reveal class="mt-8">
+      <LiabilityRecommendationWizard client:visible />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+import { CheckCircle2 } from "lucide-react";
+
+const facts = [
+  { bold: "Eine Privathaftpflicht schützt dich vor finanziellen Folgen, wenn du anderen einen versicherten Schaden zufügst.", rest: "" },
+  { bold: "Sie prüft zunächst, ob du überhaupt haftest.", rest: "" },
+  { bold: "Berechtigte Forderungen werden im vereinbarten Umfang bezahlt.", rest: "" },
+  { bold: "Unberechtigte Forderungen werden für dich abgewehrt.", rest: "" },
+  { bold: "Gerade hohe Personenschäden können finanziell existenzbedrohend werden.", rest: "" },
+  { bold: "Eine vernünftige Privathaftpflicht ist dagegen vergleichsweise günstig.", rest: "" },
+  { bold: "Für mich gehört sie deshalb in praktisch jeden Haushalt.", rest: "" },
+];
+---
+
+<section id="wichtigste" class="scroll-mt-24 bg-white py-14 sm:py-16">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <div class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Das Wichtigste in 30 Sekunden</p>
+
+      <ul class="mt-6 space-y-4">
+        {
+          facts.map((fact) => (
+            <li class="flex items-start gap-3">
+              <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+              <p class="text-sm leading-relaxed text-ink-700/85">
+                <span class="font-semibold text-ink-950">{fact.bold}</span> {fact.rest}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="mt-6 border-t border-black/5 pt-5 font-serif text-base leading-snug text-ink-950">
+        Die entscheidende Frage ist für mich nicht, ob du eine Privathaftpflicht brauchst – sondern
+        ob dein Vertrag vernünftig aufgestellt ist.
+      </p>
+    </div>
+  </div>
+</section>

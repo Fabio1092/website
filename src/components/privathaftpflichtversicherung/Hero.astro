@@ -2,7 +2,7 @@
 import GuideAssessment from "@/components/ratgeber/GuideAssessment.astro";
 import { guides } from "@/lib/guides";
 
-const guide = guides.find((g) => g.slug === "auslandskrankenversicherung")!;
+const guide = guides.find((g) => g.slug === "privathaftpflichtversicherung")!;
 const updatedLabel = new Intl.DateTimeFormat("de-DE", { day: "numeric", month: "long", year: "numeric" }).format(new Date(guide.updatedAt!));
 ---
 
@@ -12,39 +12,51 @@ const updatedLabel = new Intl.DateTimeFormat("de-DE", { day: "numeric", month: "
 
   <div class="relative mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
     <a
-      href="/ratgeber/#reisen-ausland"
+      href="/ratgeber/#haftung-recht"
       class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-300 transition-colors hover:text-brand-200"
     >
-      Ratgeber · Reisen &amp; Ausland
+      Ratgeber · Haftung &amp; Recht
     </a>
 
     <h1 class="mt-5 hyphens-auto break-words text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-      Auslandsreisekrankenversicherung: <span class="text-brand-400">Meine Empfehlung &amp; Vergleich</span>
+      Privathaftpflichtversicherung: <span class="text-brand-400">Meine Empfehlung &amp; Vergleich</span>
     </h1>
 
     <p class="mt-4 max-w-xl font-serif text-xl leading-snug text-white sm:text-2xl">
-      Für mich ein absolutes Muss, sobald du Deutschland verlässt.
+      Für mich eine der Versicherungen, die praktisch jeder haben sollte.
     </p>
 
     <p class="mt-4 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-      Meine Einschätzung, worauf du beim Versicherungsschutz achten solltest und welche
-      Auslandsreisekrankenversicherung ich empfehle.
+      Ein Missgeschick kann jedem passieren. Problematisch wird es dann, wenn daraus ein großer
+      Personen-, Sach- oder Vermögensschaden entsteht und du dafür haftest. Genau deshalb gehört
+      eine gute Privathaftpflichtversicherung für mich in praktisch jeden Haushalt.
     </p>
 
-    <GuideAssessment beratungsbedarf="gering" wer="praktisch alle Auslandsreisenden" favoriten="HanseMerkur" />
+    <p class="mt-4 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+      Die gute Nachricht: Du musst daraus keine Wissenschaft machen. Wenn die entscheidenden
+      Leistungen enthalten sind und der Tarif zu deiner persönlichen Situation passt, lässt sich
+      das Thema sehr unkompliziert lösen.
+    </p>
+
+    <GuideAssessment
+      beratungsbedarf="gering"
+      wer="praktisch jeder"
+      favoritenLabel="Meine Favoriten"
+      favoriten="Adam Riese, Haftpflichtkasse, Baloise & Die Bayerische – je nach persönlicher Situation"
+    />
 
     <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
       <a
-        href="#empfehlung"
+        href="#wizard"
         class="inline-flex items-center justify-center rounded-full bg-gold-500 px-6 py-3 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
       >
-        Meine Empfehlung ansehen
+        Meine Empfehlung finden
       </a>
       <a
-        href="#vergleichsrechner"
+        href="#leistungsmerkmale"
         class="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition-colors hover:border-white/40 hover:text-white"
       >
-        Tarife vergleichen
+        Worauf kommt es an?
       </a>
     </div>
 

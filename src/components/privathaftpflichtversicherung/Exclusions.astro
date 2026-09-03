@@ -1,0 +1,33 @@
+---
+const exclusions = [
+  "vorsätzlich verursachte Schäden",
+  "klassische Eigenschäden",
+  "bestimmte Schäden zwischen mitversicherten Personen",
+  "Schäden durch Hunde oder Pferde",
+  "versicherungspflichtige Kraftfahrzeuge",
+  "Jagdrisiken",
+];
+---
+
+<section id="nicht-versichert" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Was ist normalerweise <span class="text-brand-600">nicht versichert</span>?
+    </h2>
+
+    <ul class="mt-6 space-y-2.5">
+      {
+        exclusions.map((item) => (
+          <li class="flex items-baseline gap-2 text-sm leading-relaxed text-ink-700/80">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-black/20" aria-hidden="true" />
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-6 text-sm leading-relaxed text-ink-700/70">
+      Für einige dieser Bereiche sind separate Versicherungslösungen notwendig.
+    </p>
+  </div>
+</section>

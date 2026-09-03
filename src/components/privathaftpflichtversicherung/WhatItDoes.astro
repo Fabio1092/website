@@ -1,0 +1,52 @@
+---
+import { Search, Banknote, ShieldCheck } from "lucide-react";
+
+const steps = [
+  {
+    icon: Search,
+    title: "Prüfen",
+    text: "Der Versicherer prüft zunächst, ob überhaupt eine Schadenersatzpflicht besteht.",
+  },
+  {
+    icon: Banknote,
+    title: "Zahlen",
+    text: "Ist eine Forderung berechtigt und versichert, übernimmt die Haftpflichtversicherung den Schaden innerhalb der vereinbarten Bedingungen.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Abwehren",
+    text: "Ist die Forderung unberechtigt, wehrt die Haftpflichtversicherung sie ab – falls erforderlich auch gerichtlich.",
+  },
+];
+---
+
+<section id="was-macht-sie" class="scroll-mt-24 bg-brand-50/30 py-14 sm:py-20">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Was macht eine Haftpflichtversicherung <span class="text-brand-600">eigentlich</span>?
+    </h2>
+
+    <div class="mt-8 grid gap-5 sm:grid-cols-3">
+      {
+        steps.map((step, index) => (
+          <div data-reveal style={`transition-delay: ${index * 80}ms`} class="rounded-2xl border border-black/5 bg-white p-6 shadow-soft">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <step.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <p class="mt-4 font-serif text-lg font-semibold text-ink-950">{step.title}</p>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/75">{step.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-6 text-xs italic leading-relaxed text-ink-700/60">
+      Dieser dritte Punkt wird häufig als passiver Rechtsschutz bezeichnet.
+    </p>
+
+    <p class="mt-8 font-serif text-lg leading-snug text-ink-950">
+      Eine gute Haftpflichtversicherung ist also nicht einfach nur jemand, der Rechnungen bezahlt.
+      Sie prüft zuerst, ob du diese Rechnung überhaupt bezahlen musst.
+    </p>
+  </div>
+</section>

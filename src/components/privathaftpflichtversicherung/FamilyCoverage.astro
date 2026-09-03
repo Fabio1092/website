@@ -1,0 +1,45 @@
+---
+const constellations = ["Singles", "Paare", "Familien", "Alleinerziehende"];
+const triggers = ["Zusammenziehen", "Heirat", "Geburt eines Kindes", "Trennung", "Auszug von Kindern"];
+---
+
+<section id="familie" class="scroll-mt-24 bg-brand-50/30 py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Wer ist eigentlich über die Privathaftpflicht <span class="text-brand-600">versichert</span>?
+    </h2>
+
+    <p class="mt-5 text-base leading-relaxed text-ink-700/85">Je nach Tarif gibt es unterschiedliche Vertragsmodelle für:</p>
+    <ul class="mt-3 flex flex-wrap gap-2.5">
+      {constellations.map((item) => <li class="rounded-full border border-black/10 bg-white px-3.5 py-1.5 text-sm font-medium text-ink-950">{item}</li>)}
+    </ul>
+
+    <p class="mt-6 text-base leading-relaxed text-ink-700/85">
+      Bei Familientarifen können Kinder abhängig von den jeweiligen Bedingungen über den Vertrag
+      der Eltern mitversichert sein.
+    </p>
+
+    <p class="mt-4 text-base leading-relaxed text-ink-700/85">Bei Veränderungen wie:</p>
+    <ul class="mt-3 space-y-1.5">
+      {
+        triggers.map((item) => (
+          <li class="flex items-baseline gap-2 text-sm leading-relaxed text-ink-700/80">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-4 text-base leading-relaxed text-ink-700/85">sollte geprüft werden, ob die Vertragskonstellation noch passt.</p>
+
+    <div class="mt-8 rounded-2xl border border-black/5 bg-white p-6 shadow-soft">
+      <p class="font-serif text-lg font-semibold text-ink-950">Deliktunfähige Kinder</p>
+      <p class="mt-2.5 text-sm leading-relaxed text-ink-700/80">
+        Eltern haften nicht automatisch für ihre Kinder – die rechtliche Haftung hängt unter
+        anderem vom Alter des Kindes und einer möglichen Verletzung der Aufsichtspflicht ab. Auch
+        wenn ein Kind rechtlich nicht für einen Schaden verantwortlich gemacht werden kann, kann
+        eine entsprechende Leistung im Tarif trotzdem sehr sinnvoll sein.
+      </p>
+    </div>
+  </div>
+</section>

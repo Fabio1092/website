@@ -1,0 +1,53 @@
+---
+import { liabilityRecommendations } from "@/lib/privathaftpflicht";
+
+const cards = Object.values(liabilityRecommendations);
+---
+
+<section id="tarifempfehlungen" class="scroll-mt-24 bg-ink-950 py-16 text-white sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+        Meine Empfehlungen zur <span class="text-brand-400">Privathaftpflicht</span>
+      </h2>
+
+      <div class="mx-auto mt-6 max-w-xl space-y-3 text-left text-base leading-relaxed text-white/80">
+        <p class="italic text-white/70">„Alles klar Fabio. Worauf ich achten soll, habe ich verstanden. Aber welche Haftpflicht soll ich jetzt nehmen?“</p>
+        <p>Genau dafür habe ich eine klare Entscheidungsmatrix.</p>
+        <p>
+          Ich möchte nicht, dass du dich durch 50 Gesellschaften und hunderte Tarifmerkmale
+          arbeitest.
+        </p>
+        <p class="font-medium text-white">
+          Ein paar Informationen zu deiner persönlichen Situation reichen aus, um dir zu zeigen,
+          welchen Tarif ich dir empfehlen würde.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {
+        cards.map((card, index) => (
+          <div data-reveal style={`transition-delay: ${index * 70}ms`} class="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 p-2">
+              <img src={card.logo} alt={`${card.insurer} Logo`} class="h-full w-full object-contain" width="40" height="40" loading="lazy" />
+            </div>
+            <p class="mt-4 font-serif text-lg font-semibold text-white">
+              {card.insurer} <span class="text-white/50">– {card.tariff}</span>
+            </p>
+            <p class="mt-2 text-sm leading-relaxed text-white/70">{card.shortAssessment}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href="#wizard"
+        class="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+      >
+        Meine passende Empfehlung finden
+      </a>
+    </div>
+  </div>
+</section>

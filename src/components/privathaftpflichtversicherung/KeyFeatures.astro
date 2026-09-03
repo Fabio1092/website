@@ -1,0 +1,92 @@
+---
+const mustHaves = [
+  {
+    title: "Hohe Deckungssumme",
+    highlight: "Mindestens 50 Mio. Euro",
+    text: "Gerade bei schweren Personenschäden sollte die Versicherungssumme nicht knapp kalkuliert sein.",
+  },
+  {
+    title: "Forderungsausfalldeckung",
+    text: "Auch der Fall sollte vernünftig abgesichert sein, dass dir selbst jemand einen Schaden zufügt, der seine Verpflichtung anschließend finanziell nicht erfüllen kann.",
+  },
+  {
+    title: "Privater und beruflicher Schlüsselverlust",
+    text: "Insbesondere der Verlust beruflich überlassener Schlüssel kann durch größere Schließanlagen teuer werden.",
+  },
+  {
+    title: "Mietsachschäden",
+    text: "Schäden an gemieteten Wohnungen, Ferienwohnungen oder vergleichbaren gemieteten Sachen müssen vernünftig berücksichtigt sein.",
+  },
+  {
+    title: "Gemietete und geliehene Sachen",
+    text: "Auch Schäden an Sachen, die dir nicht gehören, sondern die du geliehen oder gemietet hast, sollten vernünftig abgesichert sein.",
+  },
+  {
+    title: "Gefälligkeitsschäden",
+    text: "Wenn du beispielsweise einem Freund beim Umzug hilfst und dabei etwas beschädigst, möchte ich hier keinen unnötigen Streit über den Versicherungsschutz.",
+  },
+  {
+    title: "Deliktunfähige Kinder",
+    text: "Besonders für Familien relevant. Auch wenn ein Kind rechtlich nicht für einen Schaden verantwortlich gemacht werden kann, kann eine entsprechende Leistung im Tarif sehr sinnvoll sein.",
+  },
+  {
+    title: "Weltweiter Versicherungsschutz",
+    text: "Der Versicherungsschutz sollte nicht an der deutschen Grenze enden.",
+  },
+  {
+    title: "Best-Leistungs-Garantie",
+    text: "Leistungsstarke Auffangmechanismen sind für mich ein Qualitätsmerkmal moderner Haftpflichttarife.",
+  },
+];
+
+const situational = [
+  "Heizöltank / Gewässerschäden",
+  "Bauvorhaben",
+  "Neuwertentschädigung",
+  "Be- und Entladeschäden",
+  "geliehene Fahrzeuge",
+  "besondere berufliche Risiken",
+];
+---
+
+<section id="leistungsmerkmale" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Darauf würde ich bei einer guten Privathaftpflicht <span class="text-brand-600">achten</span>
+    </h2>
+    <p class="mt-4 max-w-2xl text-base leading-relaxed text-ink-700/80">
+      Es gibt unzählige Tarifmerkmale. Nicht jeder kleine Unterschied ist für mich entscheidend.
+      Ein paar Punkte möchte ich bei einer modernen Privathaftpflicht aber definitiv vernünftig
+      gelöst sehen.
+    </p>
+
+    <p class="mt-10 text-xs font-semibold uppercase tracking-wide text-brand-600">Pflichtmerkmale aus meiner Sicht</p>
+    <div class="mt-5 grid gap-4 sm:grid-cols-2">
+      {
+        mustHaves.map((item, index) => (
+          <div data-reveal style={`transition-delay: ${(index % 4) * 60}ms`} class="rounded-xl border border-black/5 bg-brand-50/25 p-5">
+            <p class="font-medium text-ink-950">{item.title}</p>
+            {item.highlight && <p class="mt-1 font-serif text-lg font-semibold text-brand-700">{item.highlight}</p>}
+            <p class="mt-1.5 text-sm leading-relaxed text-ink-700/75">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 rounded-2xl border border-black/5 bg-white p-6 shadow-soft sm:p-7">
+      <p class="font-serif text-lg font-semibold text-ink-950">Weitere Punkte, die je nach Situation wichtig werden können</p>
+      <ul class="mt-4 flex flex-wrap gap-2.5">
+        {
+          situational.map((item) => (
+            <li class="rounded-full border border-black/10 bg-brand-50/30 px-3.5 py-1.5 text-xs font-medium text-ink-700/80">{item}</li>
+          ))
+        }
+      </ul>
+      <p class="mt-5 text-sm leading-relaxed text-ink-700/80">
+        Nicht jeder braucht jeden Sonderbaustein. Genau deshalb entscheide ich bei der
+        Tarifempfehlung nicht nur danach, welcher Tarif auf dem Papier möglichst viele
+        Leistungsmerkmale hat, sondern welcher Tarif zur jeweiligen Situation passt.
+      </p>
+    </div>
+  </div>
+</section>

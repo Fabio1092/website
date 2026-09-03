@@ -79,11 +79,11 @@ export const guides: Guide[] = [
     featuredTeaser: "Für mich gehört sie zu den wichtigsten Versicherungen überhaupt. Entscheidend ist aber nicht nur, dass du eine hast – sondern wie gut du abgesichert bist.",
     recommendedTeaser: "Welche Tarifmerkmale für mich entscheidend sind und worauf ich bei einer modernen Privathaftpflicht achten würde.",
     updatedNote: "Leistungskriterien und Empfehlungen zuletzt geprüft.",
-    status: "coming-soon",
+    status: "published",
     featured: true,
     recommended: true,
     recentlyUpdated: true,
-    updatedAt: "2026-08-21",
+    updatedAt: "2026-09-03",
   },
   {
     slug: "hundehalterhaftpflichtversicherung",

@@ -1,0 +1,63 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Ist eine Privathaftpflichtversicherung Pflicht?",
+    answer: "Nein, gesetzlich grundsätzlich nicht. Für mich gehört sie trotzdem zu den wichtigsten privaten Versicherungen.",
+  },
+  {
+    question: "Welche Deckungssumme sollte eine Privathaftpflicht haben?",
+    answer: "Meine Orientierung sind mindestens 50 Millionen Euro.",
+  },
+  {
+    question: "Brauche ich als Familie einen Familientarif?",
+    answer: "Die Vertragskonstellation sollte die tatsächlich zu versichernden Personen korrekt abbilden.",
+  },
+  {
+    question: "Haften Eltern automatisch für ihre Kinder?",
+    answer: "Nein. Die rechtliche Haftung hängt unter anderem vom Alter des Kindes und einer möglichen Verletzung der Aufsichtspflicht ab.",
+  },
+  {
+    question: "Was bedeutet Forderungsausfalldeckung?",
+    answer: "Sie kann helfen, wenn dir jemand einen versicherten Haftpflichtschaden zufügt, seine berechtigte Verpflichtung aber nicht erfüllen kann.",
+  },
+  {
+    question: "Ist Schlüsselverlust wichtig?",
+    answer: "Für mich ja – insbesondere beruflich überlassene Schlüssel können teuer werden.",
+  },
+  {
+    question: "Sind Hunde automatisch in der Privathaftpflicht versichert?",
+    answer: "Nein. Für Hunde kann eine separate Tierhalterhaftpflicht notwendig sein.",
+  },
+  {
+    question: "Ich bin Beamter – welche Haftpflicht soll ich nehmen?",
+    answer:
+      "Nutze meine Empfehlungskaskade. Bei klassischen Beamtenfällen entscheide ich abhängig von deiner Situation zwischen Haftpflichtkasse und Baloise. Bei besonderen Dienst-/Amtshaftpflichtkonstellationen empfehle ich die Bayerische – Prestige. Wenn du nicht sicher bist, ob deine Tätigkeit ein Sonderfall ist, schreib mir kurz.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Häufige Fragen zur <span class="text-brand-600">Privathaftpflichtversicherung</span>
+    </h2>
+
+    <div data-reveal class="mt-8">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

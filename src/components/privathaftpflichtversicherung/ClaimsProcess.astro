@@ -1,0 +1,35 @@
+---
+const steps = [
+  { number: "1", title: "Schaden dokumentieren", text: "Fotos, Informationen zum Ablauf und Kontaktdaten sichern." },
+  { number: "2", title: "Nicht vorschnell zahlen", text: "Nicht einfach eine Forderung anerkennen oder Geld überweisen." },
+  { number: "3", title: "Schaden melden", text: "Versicherer bzw. Fabio zeitnah informieren." },
+  { number: "4", title: "Prüfung abwarten", text: "Die Haftpflichtversicherung prüft, ob und in welcher Höhe überhaupt eine Verpflichtung besteht." },
+];
+---
+
+<section id="schadenfall" class="scroll-mt-24 bg-brand-50/30 py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Was solltest du im <span class="text-brand-600">Schadenfall</span> machen?
+    </h2>
+
+    <ol class="mt-8 space-y-5">
+      {
+        steps.map((step) => (
+          <li class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-semibold text-white">{step.number}</span>
+            <div>
+              <p class="font-medium text-ink-950">{step.title}</p>
+              <p class="mt-1 text-sm leading-relaxed text-ink-700/75">{step.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="mt-8 rounded-xl border border-black/5 bg-white p-5 text-sm leading-relaxed text-ink-700/80">
+      Im Zweifel lieber einmal kurz zu viel melden bzw. nachfragen als eigenständig eine Forderung
+      anerkennen.
+    </p>
+  </div>
+</section>

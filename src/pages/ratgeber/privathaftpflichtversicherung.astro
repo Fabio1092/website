@@ -1,0 +1,72 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/privathaftpflichtversicherung/Hero.astro";
+import KeyFacts from "@/components/privathaftpflichtversicherung/KeyFacts.astro";
+import TableOfContents from "@/components/privathaftpflichtversicherung/TableOfContents.astro";
+import WhyNeeded from "@/components/privathaftpflichtversicherung/WhyNeeded.astro";
+import WhatItDoes from "@/components/privathaftpflichtversicherung/WhatItDoes.astro";
+import KeyFeatures from "@/components/privathaftpflichtversicherung/KeyFeatures.astro";
+import FamilyCoverage from "@/components/privathaftpflichtversicherung/FamilyCoverage.astro";
+import Exclusions from "@/components/privathaftpflichtversicherung/Exclusions.astro";
+import RecommendationCards from "@/components/privathaftpflichtversicherung/RecommendationCards.astro";
+import Wizard from "@/components/privathaftpflichtversicherung/Wizard.astro";
+import DecisionMatrix from "@/components/privathaftpflichtversicherung/DecisionMatrix.astro";
+import CivilServantSpecialCase from "@/components/privathaftpflichtversicherung/CivilServantSpecialCase.astro";
+import WhyDifferent from "@/components/privathaftpflichtversicherung/WhyDifferent.astro";
+import ClaimsProcess from "@/components/privathaftpflichtversicherung/ClaimsProcess.astro";
+import Faq from "@/components/privathaftpflichtversicherung/Faq.astro";
+import Closing from "@/components/privathaftpflichtversicherung/Closing.astro";
+import { guides } from "@/lib/guides";
+
+const guide = guides.find((g) => g.slug === "privathaftpflichtversicherung")!;
+
+const pageTitle = "Privathaftpflichtversicherung: Vergleich & meine Empfehlungen | Fabio Rumpf";
+const pageDescription =
+  "Welche Privathaftpflicht ist sinnvoll? Fabio Rumpf erklärt die wichtigsten Leistungen und zeigt dir mit einer einfachen Entscheidungshilfe seine persönlichen Tarifempfehlungen.";
+const canonicalUrl = new URL("/ratgeber/privathaftpflichtversicherung/", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Privathaftpflichtversicherung: Meine Empfehlung & Vergleich",
+  description: pageDescription,
+  inLanguage: "de-DE",
+  datePublished: "2026-09-03",
+  dateModified: guide.updatedAt,
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
+  publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Ratgeber", item: new URL("/ratgeber/", Astro.site).toString() },
+    { "@type": "ListItem", position: 3, name: "Privathaftpflichtversicherung", item: canonicalUrl },
+  ],
+};
+---
+
+<Layout title={pageTitle} fullTitle description={pageDescription}>
+  <Hero />
+  <KeyFacts />
+  <TableOfContents />
+  <WhyNeeded />
+  <WhatItDoes />
+  <KeyFeatures />
+  <FamilyCoverage />
+  <Exclusions />
+  <RecommendationCards />
+  <Wizard />
+  <DecisionMatrix />
+  <CivilServantSpecialCase />
+  <WhyDifferent />
+  <ClaimsProcess />
+  <Faq />
+  <Closing />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
