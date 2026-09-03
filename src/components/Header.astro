@@ -222,12 +222,37 @@ function isActive(href: string) {
   document.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // Locking scroll via `overflow: hidden` on <html> alone doesn't reliably stop
+  // touch scrolling on iOS/Android — the background can still drag underneath a
+  // fixed header. Pinning the body in place (and restoring the exact scroll
+  // position on close) is the pattern that actually holds on real devices.
+  let lockedScrollY = 0;
+
+  const lockBodyScroll = () => {
+    lockedScrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  };
+
+  const unlockBodyScroll = () => {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    window.scrollTo(0, lockedScrollY);
+  };
+
   const setMenuOpen = (open: boolean) => {
     if (menu) menu.style.gridTemplateRows = open ? "1fr" : "0fr";
     toggle?.setAttribute("aria-expanded", String(open));
     iconOpen?.classList.toggle("hidden", open);
     iconClose?.classList.toggle("hidden", !open);
-    document.documentElement.classList.toggle("overflow-hidden", open);
+    if (open) lockBodyScroll();
+    else unlockBodyScroll();
   };
 
   toggle?.addEventListener("click", () => {
