@@ -4,11 +4,12 @@ import { CheckCircle2 } from "lucide-react";
 interface Props {
   beratungsbedarf: string;
   wer: string;
-  favoriten: string;
+  favoriten: string | string[];
   favoritenLabel?: string;
 }
 
 const { beratungsbedarf, wer, favoriten, favoritenLabel = "Mein Favorit" } = Astro.props;
+const favoritenList = Array.isArray(favoriten) ? favoriten : null;
 ---
 
 <div data-reveal class="mt-8 max-w-md rounded-2xl border border-black/5 bg-white p-5 shadow-lg sm:p-6">
@@ -25,7 +26,21 @@ const { beratungsbedarf, wer, favoriten, favoritenLabel = "Mein Favorit" } = Ast
     </li>
     <li class="flex items-start gap-2.5 text-sm">
       <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" aria-hidden="true" />
-      <span class="text-ink-950">{favoritenLabel}: <span class="font-medium">{favoriten}</span></span>
+      {favoritenList ? (
+        <span class="text-ink-950">
+          {favoritenLabel}:
+          <ul class="mt-2 space-y-1.5">
+            {favoritenList.map((item) => (
+              <li class="flex items-baseline gap-2">
+                <span class="text-brand-500" aria-hidden="true">•</span>
+                <span class="font-medium">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </span>
+      ) : (
+        <span class="text-ink-950">{favoritenLabel}: <span class="font-medium">{favoriten}</span></span>
+      )}
     </li>
   </ul>
 </div>

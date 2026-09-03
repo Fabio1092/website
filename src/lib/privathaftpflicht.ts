@@ -21,7 +21,7 @@ export const liabilityRecommendations: Record<RecommendationId, InsurerRecommend
     insurer: "Adam Riese",
     tariff: "riesig",
     shortAssessment:
-      "Sehr günstig und gute Onlineprozesse. Für klassische Fälle meine erste Wahl, solange die Entscheidungsmatrix dies zulässt.",
+      "Sehr günstig und gute Onlineprozesse. Für den klassischen Fall ohne Besonderheiten meine erste Empfehlung.",
     logo: "/images/insurers/adam-riese.png",
     checkoutUrl: null,
   },
@@ -94,7 +94,7 @@ export const wizardSteps: Record<StepId, WizardStep> = {
         label: "Ja",
         value: "ja",
         next: "haftpflichtkasse",
-        reason: "Für Kunden ab 60 ist die Haftpflichtkasse in meiner Entscheidungsmatrix meine bevorzugte Lösung.",
+        reason: "Für Kunden ab 60 ist die Haftpflichtkasse meine bevorzugte Lösung.",
       },
     ],
   },

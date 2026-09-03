@@ -200,7 +200,7 @@ export default function LiabilityRecommendationWizard() {
           <p className="text-center text-xs font-semibold uppercase tracking-wide text-brand-600">Meine Empfehlung für dich</p>
 
           <div className="mx-auto mt-5 flex max-w-md flex-col items-center text-center">
-            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-black/5 bg-brand-50/30 p-3">
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-black/5 bg-brand-50 p-3">
               <img
                 src={recommendation.logo}
                 alt={`${recommendation.insurer} Logo`}

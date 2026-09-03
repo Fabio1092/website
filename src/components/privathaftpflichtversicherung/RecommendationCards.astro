@@ -13,7 +13,7 @@ const cards = Object.values(liabilityRecommendations);
 
       <div class="mx-auto mt-6 max-w-xl space-y-3 text-left text-base leading-relaxed text-white/80">
         <p class="italic text-white/70">„Alles klar Fabio. Worauf ich achten soll, habe ich verstanden. Aber welche Haftpflicht soll ich jetzt nehmen?“</p>
-        <p>Genau dafür habe ich eine klare Entscheidungsmatrix.</p>
+        <p>Genau dafür habe ich für die wichtigsten Situationen eine klare Empfehlung.</p>
         <p>
           Ich möchte nicht, dass du dich durch 50 Gesellschaften und hunderte Tarifmerkmale
           arbeitest.
@@ -29,7 +29,7 @@ const cards = Object.values(liabilityRecommendations);
       {
         cards.map((card, index) => (
           <div data-reveal style={`transition-delay: ${index * 70}ms`} class="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 p-2">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white p-2">
               <img src={card.logo} alt={`${card.insurer} Logo`} class="h-full w-full object-contain" width="40" height="40" loading="lazy" />
             </div>
             <p class="mt-4 font-serif text-lg font-semibold text-white">

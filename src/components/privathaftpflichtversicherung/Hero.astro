@@ -1,9 +1,11 @@
 ---
 import GuideAssessment from "@/components/ratgeber/GuideAssessment.astro";
 import { guides } from "@/lib/guides";
+import { liabilityRecommendations } from "@/lib/privathaftpflicht";
 
 const guide = guides.find((g) => g.slug === "privathaftpflichtversicherung")!;
 const updatedLabel = new Intl.DateTimeFormat("de-DE", { day: "numeric", month: "long", year: "numeric" }).format(new Date(guide.updatedAt!));
+const favoritenList = Object.values(liabilityRecommendations).map((rec) => `${rec.insurer} – ${rec.tariff}`);
 ---
 
 <section id="guide-hero" class="relative overflow-hidden bg-ink-950 text-white">
@@ -42,7 +44,7 @@ const updatedLabel = new Intl.DateTimeFormat("de-DE", { day: "numeric", month: "
       beratungsbedarf="gering"
       wer="praktisch jeder"
       favoritenLabel="Meine Favoriten"
-      favoriten="Adam Riese, Haftpflichtkasse, Baloise & Die Bayerische – je nach persönlicher Situation"
+      favoriten={favoritenList}
     />
 
     <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
