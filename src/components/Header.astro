@@ -131,7 +131,7 @@ function isActive(href: string) {
     style="grid-template-rows: 0fr"
   >
     <div class="overflow-hidden">
-      <nav class="space-y-1 border-t border-white/10 px-4 pb-6 pt-4" aria-label="Mobile Navigation">
+      <nav class="mobile-nav-scroll space-y-1 border-t border-white/10 px-4 pb-6 pt-4" aria-label="Mobile Navigation">
         {
           primaryNav.map((link) => (
             <div>
@@ -195,6 +195,17 @@ function isActive(href: string) {
   .nav-dropdown.is-open .nav-dropdown-chevron {
     transform: rotate(180deg);
   }
+
+  /* The mobile menu can be taller than the viewport (PKV/BU submenus + CTAs).
+     Bound it to the space below the header bar and let it scroll internally,
+     instead of silently clipping the lower items via the parent's overflow-hidden. */
+  .mobile-nav-scroll {
+    max-height: calc(100vh - 5rem);
+    max-height: calc(100dvh - 5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
 </style>
 
 <script>
@@ -216,6 +227,7 @@ function isActive(href: string) {
     toggle?.setAttribute("aria-expanded", String(open));
     iconOpen?.classList.toggle("hidden", open);
     iconClose?.classList.toggle("hidden", !open);
+    document.documentElement.classList.toggle("overflow-hidden", open);
   };
 
   toggle?.addEventListener("click", () => {
