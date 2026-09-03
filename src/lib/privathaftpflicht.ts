@@ -22,7 +22,7 @@ export const liabilityRecommendations: Record<RecommendationId, InsurerRecommend
     tariff: "riesig",
     shortAssessment:
       "Sehr günstig und gute Onlineprozesse. Für klassische Fälle meine erste Wahl, solange die Entscheidungsmatrix dies zulässt.",
-    logo: "/images/insurers/adam-riese.svg",
+    logo: "/images/insurers/adam-riese.png",
     checkoutUrl: null,
   },
   haftpflichtkasse: {
@@ -30,7 +30,7 @@ export const liabilityRecommendations: Record<RecommendationId, InsurerRecommend
     insurer: "Die Haftpflichtkasse",
     tariff: "Einfach komplett",
     shortAssessment: "Für mich besonders stark bei Service und Leistung.",
-    logo: "/images/insurers/haftpflichtkasse.svg",
+    logo: "/images/insurers/haftpflichtkasse.png",
     checkoutUrl: null,
   },
   baloise: {
@@ -39,7 +39,7 @@ export const liabilityRecommendations: Record<RecommendationId, InsurerRecommend
     tariff: "Ambiente Top All-in",
     shortAssessment:
       "Preislich sehr attraktiv und deshalb insbesondere bei Beamten eine interessante Alternative, wenn der Preis stärker gewichtet wird.",
-    logo: "/images/insurers/baloise.svg",
+    logo: "/images/insurers/baloise.png",
     checkoutUrl: null,
   },
   bayerische: {
@@ -48,7 +48,7 @@ export const liabilityRecommendations: Record<RecommendationId, InsurerRecommend
     tariff: "Prestige",
     shortAssessment:
       "Meine Lösung für besondere Beamtenkonstellationen und Fälle, in denen die benötigte Dienst- bzw. Amtshaftpflicht über die normale Auswahl nicht sauber abgebildet werden kann.",
-    logo: "/images/insurers/die-bayerische.svg",
+    logo: "/images/insurers/die-bayerische.webp",
     checkoutUrl: null,
   },
 };
