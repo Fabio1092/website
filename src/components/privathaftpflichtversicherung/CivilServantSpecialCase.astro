@@ -1,5 +1,6 @@
 ---
-import { siteConfig } from "@/lib/site";
+import { MessageCircle } from "lucide-react";
+import { beamterUnsureWhatsAppUrl } from "@/lib/privathaftpflicht";
 
 const roles = [
   "Bundes- oder Landesbehörden",
@@ -57,11 +58,14 @@ const roles = [
       <p class="font-medium text-ink-950">Du bist dir bei deiner Tätigkeit nicht sicher?</p>
       <p class="mt-2 text-sm leading-relaxed text-ink-700/80">Dann schreib mir kurz, bevor du abschließt.</p>
       <a
-        href={siteConfig.emailHref}
-        data-cta="phv_beamter_contact_clicked"
+        href={beamterUnsureWhatsAppUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cta="phv_whatsapp_clicked"
         class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-800"
       >
-        Fabio fragen →
+        <MessageCircle className="h-4 w-4" aria-hidden="true" />
+        Fabio per WhatsApp fragen
       </a>
     </div>
   </div>

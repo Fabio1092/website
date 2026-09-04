@@ -1,18 +1,14 @@
+import { siteConfig } from "@/lib/site";
+
 export type RecommendationId = "adam-riese" | "haftpflichtkasse" | "baloise" | "bayerische";
 
 export interface InsurerRecommendation {
   id: RecommendationId;
   insurer: string;
   tariff: string;
-  /** Short assessment shown on the four-card overview (section 12). */
+  /** Short assessment shown on the four-card overview. */
   shortAssessment: string;
   logo: string;
-  /**
-   * Central place to fill in the real checkout link once available.
-   * Stays null until then — the wizard renders a disabled "Online-Abschluss folgt"
-   * state instead of a non-functional public link.
-   */
-  checkoutUrl: string | null;
 }
 
 export const liabilityRecommendations: Record<RecommendationId, InsurerRecommendation> = {
@@ -23,7 +19,6 @@ export const liabilityRecommendations: Record<RecommendationId, InsurerRecommend
     shortAssessment:
       "Sehr günstig und gute Onlineprozesse. Für den klassischen Fall ohne Besonderheiten meine erste Empfehlung.",
     logo: "/images/insurers/adam-riese.png",
-    checkoutUrl: null,
   },
   haftpflichtkasse: {
     id: "haftpflichtkasse",
@@ -31,7 +26,6 @@ export const liabilityRecommendations: Record<RecommendationId, InsurerRecommend
     tariff: "Einfach komplett",
     shortAssessment: "Für mich besonders stark bei Service und Leistung.",
     logo: "/images/insurers/haftpflichtkasse.png",
-    checkoutUrl: null,
   },
   baloise: {
     id: "baloise",
@@ -40,7 +34,6 @@ export const liabilityRecommendations: Record<RecommendationId, InsurerRecommend
     shortAssessment:
       "Preislich sehr attraktiv und deshalb insbesondere bei Beamten eine interessante Alternative, wenn der Preis stärker gewichtet wird.",
     logo: "/images/insurers/baloise.png",
-    checkoutUrl: null,
   },
   bayerische: {
     id: "bayerische",
@@ -49,11 +42,10 @@ export const liabilityRecommendations: Record<RecommendationId, InsurerRecommend
     shortAssessment:
       "Meine Lösung für besondere Beamtenkonstellationen und Fälle, in denen die benötigte Dienst- bzw. Amtshaftpflicht über die normale Auswahl nicht sauber abgebildet werden kann.",
     logo: "/images/insurers/die-bayerische.webp",
-    checkoutUrl: null,
   },
 };
 
-export type StepId = "beamter" | "alter" | "sonderfall" | "prioritaet" | "haushalt";
+export type StepId = "haushalt" | "beamter" | "alter" | "sonderfall" | "prioritaet";
 
 export interface WizardOption {
   label: string;
@@ -72,6 +64,15 @@ export interface WizardStep {
 }
 
 export const wizardSteps: Record<StepId, WizardStep> = {
+  haushalt: {
+    id: "haushalt",
+    question: "Wer soll versichert werden?",
+    options: [
+      { label: "Nur ich", value: "single", next: "beamter" },
+      { label: "Ich und mein Partner / meine Partnerin", value: "couple", next: "beamter" },
+      { label: "Familie", value: "family", next: "beamter" },
+    ],
+  },
   beamter: {
     id: "beamter",
     question: "Bist du Beamter bzw. Beamtin im aktiven Dienst?",
@@ -88,7 +89,8 @@ export const wizardSteps: Record<StepId, WizardStep> = {
         label: "Nein",
         value: "nein",
         next: "adam-riese",
-        reason: "Du bist kein Beamter im aktiven Dienst und unter 60. Für diesen klassischen Fall ist Adam Riese aufgrund des sehr attraktiven Beitrags und der guten Onlineprozesse meine erste Wahl.",
+        reason:
+          "Du bist kein Beamter im aktiven Dienst und unter 60. Für diesen klassischen Fall ist Adam Riese aufgrund des sehr attraktiven Beitrags und der guten digitalen Prozesse meine erste Wahl.",
       },
       {
         label: "Ja",
@@ -107,7 +109,8 @@ export const wizardSteps: Record<StepId, WizardStep> = {
         label: "Ja",
         value: "ja",
         next: "bayerische",
-        reason: "Bei deiner Beamtenkonstellation möchte ich die Dienst- bzw. Amtshaftpflicht sauber abbilden. Für diesen Sonderfall ist die Bayerische meine Empfehlung.",
+        reason:
+          "Bei deiner Beamtenkonstellation möchte ich die Dienst- bzw. Amtshaftpflicht sauber abbilden. Für diesen Sonderfall ist die Bayerische meine Empfehlung.",
       },
       { label: "Ich bin unsicher", value: "unsicher", next: "unsure" },
       { label: "Nein", value: "nein", next: "prioritaet" },
@@ -131,21 +134,97 @@ export const wizardSteps: Record<StepId, WizardStep> = {
       },
     ],
   },
-  haushalt: {
-    id: "haushalt",
-    question: "Wer soll versichert werden?",
-    options: [
-      { label: "Nur ich", value: "nur-ich", next: "haushalt" },
-      { label: "Ich und mein Partner / meine Partnerin", value: "paar", next: "haushalt" },
-      { label: "Familie", value: "familie", next: "haushalt" },
-    ],
-  },
 };
 
 export const decisionMatrix: { profile: string; recommendation: RecommendationId }[] = [
-  { profile: "Singles, Paare & Familien, nicht Beamter und unter 60", recommendation: "adam-riese" },
-  { profile: "Nicht-Beamte ab 60", recommendation: "haftpflichtkasse" },
-  { profile: "Beamte im aktiven Dienst, Fokus Service", recommendation: "haftpflichtkasse" },
-  { profile: "Beamte im aktiven Dienst, Fokus Preis", recommendation: "baloise" },
-  { profile: "Beamte mit besonderer Dienst-/Amtshaftpflicht bzw. Sonderfall", recommendation: "bayerische" },
+  { profile: "Nicht Beamter, unter 60", recommendation: "adam-riese" },
+  { profile: "Nicht Beamter, ab 60", recommendation: "haftpflichtkasse" },
+  { profile: "Beamter, Service wichtiger", recommendation: "haftpflichtkasse" },
+  { profile: "Beamter, Preis stärker im Fokus", recommendation: "baloise" },
+  { profile: "Besondere Dienst-/Amtshaftpflicht bzw. Sonderfall", recommendation: "bayerische" },
 ];
+
+// ---------------------------------------------------------------------------
+// WhatsApp handoff (replaces the previous direct-checkout flow entirely)
+// ---------------------------------------------------------------------------
+
+export type Household = "single" | "couple" | "family";
+
+export const householdLabels: Record<Household, string> = {
+  single: "Nur ich",
+  couple: "Ich und mein Partner / meine Partnerin",
+  family: "Familie",
+};
+
+const civilServantLabels: Record<"ja" | "nein", string> = { ja: "Ja", nein: "Nein" };
+const ageGroupLabels: Record<"unter60" | "ab60", string> = { unter60: "unter 60", ab60: "60 oder älter" };
+const officialLiabilityLabels: Record<"ja" | "nein", string> = { ja: "Ja", nein: "Nein" };
+const priorityLabels: Record<"service" | "preis", string> = {
+  service: "Sehr guter Service – dafür dürfen es auch ein paar Euro mehr sein.",
+  preis: "Ein möglichst attraktiver Preis bei trotzdem sehr guter Absicherung.",
+};
+
+/** Only the fields actually asked along the taken decision path are set. */
+export interface WizardAnswers {
+  household?: Household;
+  civilServant?: "ja" | "nein";
+  ageGroup?: "unter60" | "ab60";
+  officialLiability?: "ja" | "nein";
+  priority?: "service" | "preis";
+}
+
+export interface AnswerSummaryLine {
+  label: string;
+  value: string;
+}
+
+/** Drives both the on-page "Deine Angaben" summary and the WhatsApp message — single source of truth. */
+export function buildAnswerSummary(answers: WizardAnswers): AnswerSummaryLine[] {
+  const lines: AnswerSummaryLine[] = [];
+  if (answers.household) lines.push({ label: "Versicherungsschutz für", value: householdLabels[answers.household] });
+  if (answers.civilServant) lines.push({ label: "Beamter im aktiven Dienst", value: civilServantLabels[answers.civilServant] });
+  if (answers.ageGroup) lines.push({ label: "Alter", value: ageGroupLabels[answers.ageGroup] });
+  if (answers.officialLiability) lines.push({ label: "Dienst-/Amtshaftpflicht", value: officialLiabilityLabels[answers.officialLiability] });
+  if (answers.priority) lines.push({ label: "Priorität", value: priorityLabels[answers.priority] });
+  return lines;
+}
+
+export function buildWhatsAppMessage(recommendation: InsurerRecommendation, answers: WizardAnswers): string {
+  const summary = buildAnswerSummary(answers);
+  const lines = [
+    "Hallo Fabio,",
+    "",
+    "ich habe deine Empfehlungshilfe zur Privathaftpflicht genutzt und möchte den empfohlenen Tarif gerne umsetzen.",
+    "",
+    "Meine Empfehlung:",
+    `Gesellschaft: ${recommendation.insurer}`,
+    `Tarif: ${recommendation.tariff}`,
+    "",
+    "Meine Angaben:",
+    ...summary.map((line) => `${line.label}: ${line.value}`),
+    "",
+    "Bitte gib mir kurz Bescheid, welche Angaben oder Unterlagen du für den Abschluss noch von mir benötigst.",
+    "",
+    "Viele Grüße",
+  ];
+  return lines.join("\n");
+}
+
+export function buildWhatsAppUrl(message: string): string {
+  return `${siteConfig.whatsappUrl}?text=${encodeURIComponent(message)}`;
+}
+
+export const beamterUnsureMessage = `Hallo Fabio,
+
+ich bin Beamter bzw. Beamtin und interessiere mich für eine Privathaftpflicht mit Dienst-/Amtshaftpflicht.
+
+Ich bin mir bei meiner konkreten Tätigkeit allerdings unsicher, welche Lösung passend ist.
+
+Meine Tätigkeit / Berufsbezeichnung:
+[bitte ergänzen]
+
+Kannst du mir kurz sagen, welche Variante du empfehlen würdest?
+
+Viele Grüße`;
+
+export const beamterUnsureWhatsAppUrl = buildWhatsAppUrl(beamterUnsureMessage);

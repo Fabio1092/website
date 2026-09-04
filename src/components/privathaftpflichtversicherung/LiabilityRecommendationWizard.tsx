@@ -1,7 +1,17 @@
 import { useState } from "react";
-import { ArrowLeft, RotateCcw, ShieldCheck } from "lucide-react";
-import { wizardSteps, liabilityRecommendations, type StepId, type RecommendationId } from "@/lib/privathaftpflicht";
-import { siteConfig } from "@/lib/site";
+import { ArrowLeft, RotateCcw, MessageCircle } from "lucide-react";
+import {
+  wizardSteps,
+  liabilityRecommendations,
+  buildAnswerSummary,
+  buildWhatsAppMessage,
+  buildWhatsAppUrl,
+  beamterUnsureWhatsAppUrl,
+  type StepId,
+  type RecommendationId,
+  type WizardAnswers,
+  type Household,
+} from "@/lib/privathaftpflicht";
 
 declare global {
   interface Window {
@@ -13,6 +23,7 @@ type Outcome = RecommendationId | "unsure" | null;
 
 interface HistoryEntry {
   stepId: StepId;
+  answers: WizardAnswers;
 }
 
 function pushEvent(event: string) {
@@ -22,35 +33,28 @@ function pushEvent(event: string) {
 }
 
 function nextPathTotal(stepId: StepId, next: string): number | null {
-  if (stepId === "beamter") return next === "alter" ? 3 : 4;
-  if (stepId === "sonderfall") return next === "bayerische" ? 3 : 4;
+  if (stepId === "sonderfall" && next === "prioritaet") return 4;
   return null;
 }
 
-const householdLabels: Record<string, string> = {
-  "nur-ich": "Nur ich",
-  paar: "Ich und mein Partner / meine Partnerin",
-  familie: "Familie",
-};
+const INITIAL_PATH_TOTAL = 3;
 
 export default function LiabilityRecommendationWizard() {
-  const [currentStepId, setCurrentStepId] = useState<StepId>("beamter");
+  const [currentStepId, setCurrentStepId] = useState<StepId>("haushalt");
   const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [answers, setAnswers] = useState<WizardAnswers>({});
   const [outcome, setOutcome] = useState<Outcome>(null);
-  const [pendingRecommendation, setPendingRecommendation] = useState<RecommendationId | null>(null);
   const [pendingReason, setPendingReason] = useState<string>("");
-  const [household, setHousehold] = useState<string | null>(null);
-  const [pathTotal, setPathTotal] = useState<number | null>(null);
+  const [pathTotal, setPathTotal] = useState<number>(INITIAL_PATH_TOTAL);
   const [hasStarted, setHasStarted] = useState(false);
 
   const reset = () => {
-    setCurrentStepId("beamter");
+    setCurrentStepId("haushalt");
     setHistory([]);
+    setAnswers({});
     setOutcome(null);
-    setPendingRecommendation(null);
     setPendingReason("");
-    setHousehold(null);
-    setPathTotal(null);
+    setPathTotal(INITIAL_PATH_TOTAL);
   };
 
   const goBack = () => {
@@ -58,10 +62,9 @@ export default function LiabilityRecommendationWizard() {
     const prev = history[history.length - 1];
     setHistory(history.slice(0, -1));
     setCurrentStepId(prev.stepId);
+    setAnswers(prev.answers);
     setOutcome(null);
-    setPendingRecommendation(null);
     setPendingReason("");
-    setHousehold(null);
   };
 
   const selectOption = (value: string, next: string, reason?: string) => {
@@ -73,54 +76,49 @@ export default function LiabilityRecommendationWizard() {
     const total = nextPathTotal(currentStepId, next);
     if (total !== null) setPathTotal(total);
 
+    const historyBefore = [...history, { stepId: currentStepId, answers }];
+
+    const updatedAnswers: WizardAnswers = { ...answers };
+    if (currentStepId === "haushalt") updatedAnswers.household = value as Household;
+    else if (currentStepId === "beamter") updatedAnswers.civilServant = value as "ja" | "nein";
+    else if (currentStepId === "alter") updatedAnswers.ageGroup = value === "ja" ? "ab60" : "unter60";
+    else if (currentStepId === "sonderfall" && value !== "unsicher") updatedAnswers.officialLiability = value as "ja" | "nein";
+    else if (currentStepId === "prioritaet") updatedAnswers.priority = value as "service" | "preis";
+
+    setAnswers(updatedAnswers);
+
     if (next === "unsure") {
-      setHistory([...history, { stepId: currentStepId }]);
+      setHistory(historyBefore);
       setOutcome("unsure");
+      pushEvent("phv_beamter_unsure");
       return;
     }
-
-    if (next === "haushalt") {
-      // The household step itself just records the answer and reveals the result.
-      setHousehold(value);
-      if (pendingRecommendation) {
-        setOutcome(pendingRecommendation);
-        pushEvent("phv_wizard_completed");
-        pushEvent(`phv_recommendation_${pendingRecommendation}`);
-      }
-      return;
-    }
-
-    setHistory([...history, { stepId: currentStepId }]);
 
     if (next in liabilityRecommendations) {
-      setPendingRecommendation(next as RecommendationId);
+      setHistory(historyBefore);
       setPendingReason(reason ?? "");
-      setCurrentStepId("haushalt");
+      setOutcome(next as RecommendationId);
+      pushEvent("phv_wizard_completed");
+      pushEvent(`phv_recommendation_${next}`);
       return;
     }
 
+    setHistory(historyBefore);
     setCurrentStepId(next as StepId);
-  };
-
-  const resolveUnsureAsSpecialCase = () => {
-    setHistory([...history, { stepId: "sonderfall" }]);
-    setPendingRecommendation("bayerische");
-    setPendingReason(wizardSteps.sonderfall.options.find((o) => o.value === "ja")?.reason ?? "");
-    setPathTotal(3);
-    setOutcome(null);
-    setCurrentStepId("haushalt");
   };
 
   const stepNumber = history.length + 1;
   const showResult = outcome && outcome !== "unsure";
   const recommendation = showResult ? liabilityRecommendations[outcome as RecommendationId] : null;
+  const summary = showResult ? buildAnswerSummary(answers) : [];
+  const whatsappUrl = recommendation ? buildWhatsAppUrl(buildWhatsAppMessage(recommendation, answers)) : "";
 
   return (
     <div className="rounded-3xl border border-black/5 bg-white p-6 shadow-soft sm:p-8">
       {!outcome && (
         <div className="mb-6 flex items-center justify-between gap-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">
-            {pathTotal ? `Frage ${stepNumber} von ${pathTotal}` : `Frage ${stepNumber}`}
+            Frage {stepNumber} von {pathTotal}
           </p>
           {history.length > 0 && (
             <button
@@ -162,27 +160,27 @@ export default function LiabilityRecommendationWizard() {
       {outcome === "unsure" && (
         <div className="animate-[fadeIn_0.3s_ease-out] text-center">
           <p className="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">
-            Schreib mir bitte kurz, bevor du abschließt.
+            Du bist dir bei deiner Tätigkeit nicht sicher?
           </p>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink-700/75">
-            Bei besonderen Dienst- oder Amtshaftpflichtkonstellationen schaue ich mir deine
-            Tätigkeit lieber persönlich an, statt hier zu raten.
+            Kein Problem. Schreib mir einfach kurz deine genaue Berufsbezeichnung und Tätigkeit.
+            Dann sage ich dir, wie ich es lösen würde.
           </p>
           <div className="mt-6 flex flex-col items-center gap-3">
             <a
-              href={siteConfig.emailHref}
-              data-cta="phv_beamter_contact_clicked"
-              className="inline-flex w-full max-w-xs items-center justify-center rounded-full bg-gold-500 px-6 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+              href={beamterUnsureWhatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta="phv_whatsapp_clicked"
+              className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
             >
-              Fabio fragen
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              Fabio per WhatsApp fragen
             </a>
-            <button
-              type="button"
-              onClick={resolveUnsureAsSpecialCase}
-              className="text-sm font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800"
-            >
-              Ich weiß inzwischen, dass es ein Sonderfall ist
-            </button>
+            <p className="max-w-xs text-xs leading-relaxed text-ink-700/50">
+              Es wird noch nichts automatisch versendet. Die Nachricht öffnet sich zunächst nur in
+              WhatsApp.
+            </p>
           </div>
           <button
             type="button"
@@ -218,35 +216,34 @@ export default function LiabilityRecommendationWizard() {
             <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Warum diese Empfehlung?</p>
             <p className="mt-2 text-sm leading-relaxed text-ink-700/85">{pendingReason}</p>
 
-            {household && (
-              <p className="mt-4 text-sm text-ink-700/70">
-                Deine Auswahl: <span className="font-medium text-ink-950">{householdLabels[household]}</span>
-              </p>
+            {summary.length > 0 && (
+              <div className="mt-5 w-full rounded-xl border border-black/5 bg-brand-50/25 p-4 text-left">
+                <p className="text-xs font-semibold uppercase tracking-wide text-ink-700/50">Deine Angaben</p>
+                <ul className="mt-2.5 space-y-1">
+                  {summary.map((line) => (
+                    <li key={line.label} className="text-sm text-ink-700/80">
+                      {line.label}: <span className="font-medium text-ink-950">{line.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
 
             <div className="mt-7 flex w-full flex-col items-center gap-3">
-              {recommendation.checkoutUrl ? (
-                <a
-                  href={recommendation.checkoutUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cta="phv_checkout_clicked"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-6 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
-                >
-                  Jetzt online abschließen
-                </a>
-              ) : (
-                <span
-                  aria-disabled="true"
-                  className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-6 py-3.5 text-sm font-semibold text-ink-700/50"
-                >
-                  <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-                  Online-Abschluss folgt
-                </span>
-              )}
-              <button type="button" onClick={reset} className="text-sm font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800">
-                Auswahl ändern
-              </button>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta="phv_whatsapp_clicked"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+              >
+                <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                Tarif über WhatsApp anfragen
+              </a>
+              <p className="text-xs leading-relaxed text-ink-700/50">
+                Es wird noch nichts automatisch versendet. Die Nachricht öffnet sich zunächst nur
+                in WhatsApp.
+              </p>
             </div>
           </div>
         </div>
