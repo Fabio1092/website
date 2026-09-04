@@ -1,6 +1,12 @@
+export interface WissenTopic {
+  label: string;
+  /** Set once the topic has its own published article. */
+  href?: string;
+}
+
 export interface WissenTopicCategory {
   name: string;
-  topics: string[];
+  topics: WissenTopic[];
 }
 
 export interface WissenLink {
@@ -12,32 +18,42 @@ export const buWissenCategories: WissenTopicCategory[] = [
   {
     name: "Grundlagen",
     topics: [
-      "Wie funktioniert eine Berufsunfähigkeitsversicherung?",
-      "Wie hoch sollte die BU-Rente sein?",
-      "Wie lange sollte eine BU laufen?",
-      "Für wen ist eine BU sinnvoll?",
+      { label: "Wie funktioniert eine Berufsunfähigkeitsversicherung?" },
+      { label: "Wie hoch sollte die BU-Rente sein?" },
+      { label: "Wie lange sollte eine BU laufen?" },
+      { label: "Für wen ist eine BU sinnvoll?" },
     ],
   },
   {
     name: "Vertragsgestaltung",
-    topics: ["Leistungsdynamik", "Beitragsdynamik", "Nachversicherung", "Laufzeit & Endalter"],
+    topics: [{ label: "Leistungsdynamik" }, { label: "Beitragsdynamik" }, { label: "Nachversicherung" }, { label: "Laufzeit & Endalter" }],
   },
   {
     name: "Versicherungsbedingungen",
-    topics: ["Abstrakte Verweisung", "Konkrete Verweisung", "Prognosezeitraum", "Wichtige BU-Klauseln"],
+    topics: [
+      { label: "Abstrakte Verweisung" },
+      { label: "Konkrete Verweisung" },
+      { label: "Prognosezeitraum" },
+      { label: "Wichtige BU-Klauseln" },
+    ],
   },
   {
     name: "Gesundheit & Antrag",
-    topics: ["Gesundheitsfragen", "Risikovoranfrage", "Vorerkrankungen", "Arztunterlagen"],
+    topics: [
+      { label: "Gesundheitsfragen", href: "/bu-gesundheitsfragen/" },
+      { label: "Risikovoranfrage", href: "/bu-risikovoranfrage/" },
+      { label: "Vorerkrankungen" },
+      { label: "Arztunterlagen" },
+    ],
   },
   {
     name: "Alternativen & Sonderfälle",
     topics: [
-      "Alternativen zur Berufsunfähigkeitsversicherung",
-      "BU für Beamte",
-      "BU für Selbstständige",
-      "BU für Studenten",
-      "BU für Angestellte",
+      { label: "Alternativen zur Berufsunfähigkeitsversicherung" },
+      { label: "BU für Beamte" },
+      { label: "BU für Selbstständige" },
+      { label: "BU für Studenten" },
+      { label: "BU für Angestellte" },
     ],
   },
 ];
@@ -45,23 +61,39 @@ export const buWissenCategories: WissenTopicCategory[] = [
 export const pkvWissenCategories: WissenTopicCategory[] = [
   {
     name: "Grundlagen",
-    topics: ["Wie funktioniert die PKV?", "Für wen lohnt sich die PKV?", "PKV vs. GKV", "Voraussetzungen für die PKV"],
+    topics: [
+      { label: "Wie funktioniert die PKV?" },
+      { label: "Für wen lohnt sich die PKV?" },
+      { label: "PKV vs. GKV" },
+      { label: "Voraussetzungen für die PKV" },
+    ],
   },
   {
     name: "Beiträge & Tarife",
-    topics: ["Was kostet eine PKV?", "Selbstbehalt", "Beitragsentwicklung", "Tarifwechsel"],
+    topics: [{ label: "Was kostet eine PKV?" }, { label: "Selbstbehalt" }, { label: "Beitragsentwicklung" }, { label: "Tarifwechsel" }],
   },
   {
     name: "Gesundheit & Antrag",
-    topics: ["Gesundheitsfragen", "Risikovoranfrage", "Vorerkrankungen", "Gesundheitsprüfung"],
+    topics: [
+      { label: "Gesundheitsfragen", href: "/pkv-gesundheitsfragen/" },
+      { label: "Risikovoranfrage", href: "/pkv-risikovoranfrage/" },
+      { label: "Vorerkrankungen" },
+      { label: "Gesundheitsprüfung" },
+    ],
   },
   {
     name: "Zielgruppen",
-    topics: ["PKV für Angestellte", "PKV für Selbstständige", "PKV für Beamte"],
+    topics: [{ label: "PKV für Angestellte" }, { label: "PKV für Selbstständige" }, { label: "PKV für Beamte" }],
   },
   {
     name: "Wechsel & langfristige Entscheidungen",
-    topics: ["Wechsel in die PKV", "Zurück in die GKV", "PKV im Alter", "Familienplanung & Kinder", "Tarifoptimierung"],
+    topics: [
+      { label: "Wechsel in die PKV" },
+      { label: "Zurück in die GKV" },
+      { label: "PKV im Alter" },
+      { label: "Familienplanung & Kinder" },
+      { label: "Tarifoptimierung" },
+    ],
   },
 ];
 
