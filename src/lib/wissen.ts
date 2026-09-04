@@ -50,10 +50,10 @@ export const buWissenCategories: WissenTopicCategory[] = [
     name: "Alternativen & Sonderfälle",
     topics: [
       { label: "Alternativen zur Berufsunfähigkeitsversicherung" },
-      { label: "BU für Beamte" },
-      { label: "BU für Selbstständige" },
-      { label: "BU für Studenten" },
-      { label: "BU für Angestellte" },
+      { label: "BU für Beamte", href: "/bu-beamte-kassel/" },
+      { label: "BU für Selbstständige", href: "/bu-selbststaendige-kassel/" },
+      { label: "BU für Studenten", href: "/bu-studenten-kassel/" },
+      { label: "BU für Angestellte", href: "/bu-angestellte-kassel/" },
     ],
   },
 ];
@@ -83,7 +83,11 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
   },
   {
     name: "Zielgruppen",
-    topics: [{ label: "PKV für Angestellte" }, { label: "PKV für Selbstständige" }, { label: "PKV für Beamte" }],
+    topics: [
+      { label: "PKV für Angestellte", href: "/pkv-angestellte-kassel/" },
+      { label: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel/" },
+      { label: "PKV für Beamte", href: "/pkv-beamte-kassel/" },
+    ],
   },
   {
     name: "Wechsel & langfristige Entscheidungen",
