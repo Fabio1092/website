@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { ArrowLeft, RotateCcw, MessageCircle } from "lucide-react";
+import { ArrowLeft, ChevronDown, RotateCcw, MessageCircle } from "lucide-react";
 import {
   wizardSteps,
   liabilityRecommendations,
+  civilServantJobGroups,
   buildAnswerSummary,
   buildWhatsAppMessage,
   buildWhatsAppUrl,
-  beamterUnsureWhatsAppUrl,
+  jobGroupUnsureWhatsAppUrl,
   type StepId,
   type RecommendationId,
   type WizardAnswers,
@@ -19,7 +20,7 @@ declare global {
   }
 }
 
-type Outcome = RecommendationId | "unsure" | null;
+type Outcome = RecommendationId | null;
 
 interface HistoryEntry {
   stepId: StepId;
@@ -33,7 +34,7 @@ function pushEvent(event: string) {
 }
 
 function nextPathTotal(stepId: StepId, next: string): number | null {
-  if (stepId === "sonderfall" && next === "prioritaet") return 4;
+  if (stepId === "berufsgruppe" && next === "prioritaet") return 4;
   return null;
 }
 
@@ -47,6 +48,9 @@ export default function LiabilityRecommendationWizard() {
   const [pendingReason, setPendingReason] = useState<string>("");
   const [pathTotal, setPathTotal] = useState<number>(INITIAL_PATH_TOTAL);
   const [hasStarted, setHasStarted] = useState(false);
+  const [jobGroupsOpen, setJobGroupsOpen] = useState(false);
+  const [jobGroupsHover, setJobGroupsHover] = useState(false);
+  const jobGroupsVisible = jobGroupsOpen || jobGroupsHover;
 
   const reset = () => {
     setCurrentStepId("haushalt");
@@ -55,6 +59,8 @@ export default function LiabilityRecommendationWizard() {
     setOutcome(null);
     setPendingReason("");
     setPathTotal(INITIAL_PATH_TOTAL);
+    setJobGroupsOpen(false);
+    setJobGroupsHover(false);
   };
 
   const goBack = () => {
@@ -65,6 +71,8 @@ export default function LiabilityRecommendationWizard() {
     setAnswers(prev.answers);
     setOutcome(null);
     setPendingReason("");
+    setJobGroupsOpen(false);
+    setJobGroupsHover(false);
   };
 
   const selectOption = (value: string, next: string, reason?: string) => {
@@ -77,22 +85,17 @@ export default function LiabilityRecommendationWizard() {
     if (total !== null) setPathTotal(total);
 
     const historyBefore = [...history, { stepId: currentStepId, answers }];
+    setJobGroupsOpen(false);
+    setJobGroupsHover(false);
 
     const updatedAnswers: WizardAnswers = { ...answers };
     if (currentStepId === "haushalt") updatedAnswers.household = value as Household;
     else if (currentStepId === "beamter") updatedAnswers.civilServant = value as "ja" | "nein";
     else if (currentStepId === "alter") updatedAnswers.ageGroup = value === "ja" ? "ab60" : "unter60";
-    else if (currentStepId === "sonderfall" && value !== "unsicher") updatedAnswers.officialLiability = value as "ja" | "nein";
+    else if (currentStepId === "berufsgruppe") updatedAnswers.jobGroup = value as "ja" | "nein";
     else if (currentStepId === "prioritaet") updatedAnswers.priority = value as "service" | "preis";
 
     setAnswers(updatedAnswers);
-
-    if (next === "unsure") {
-      setHistory(historyBefore);
-      setOutcome("unsure");
-      pushEvent("phv_beamter_unsure");
-      return;
-    }
 
     if (next in liabilityRecommendations) {
       setHistory(historyBefore);
@@ -108,7 +111,7 @@ export default function LiabilityRecommendationWizard() {
   };
 
   const stepNumber = history.length + 1;
-  const showResult = outcome && outcome !== "unsure";
+  const showResult = Boolean(outcome);
   const recommendation = showResult ? liabilityRecommendations[outcome as RecommendationId] : null;
   const summary = showResult ? buildAnswerSummary(answers) : [];
   const whatsappUrl = recommendation ? buildWhatsAppUrl(buildWhatsAppMessage(recommendation, answers)) : "";
@@ -154,42 +157,53 @@ export default function LiabilityRecommendationWizard() {
               </button>
             ))}
           </div>
-        </div>
-      )}
 
-      {outcome === "unsure" && (
-        <div className="animate-[fadeIn_0.3s_ease-out] text-center">
-          <p className="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">
-            Du bist dir bei deiner Tätigkeit nicht sicher?
-          </p>
-          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink-700/75">
-            Kein Problem. Schreib mir einfach kurz deine genaue Berufsbezeichnung und Tätigkeit.
-            Dann sage ich dir, wie ich es lösen würde.
-          </p>
-          <div className="mt-6 flex flex-col items-center gap-3">
-            <a
-              href={beamterUnsureWhatsAppUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cta="phv_whatsapp_clicked"
-              className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
-            >
-              <MessageCircle className="h-4 w-4" aria-hidden="true" />
-              Fabio per WhatsApp fragen
-            </a>
-            <p className="max-w-xs text-xs leading-relaxed text-ink-700/50">
-              Es wird noch nichts automatisch versendet. Die Nachricht öffnet sich zunächst nur in
-              WhatsApp.
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={goBack}
-            className="mt-6 inline-flex items-center gap-1 text-xs font-medium text-ink-700/60 transition-colors hover:text-ink-950"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
-            Zurück
-          </button>
+          {currentStepId === "berufsgruppe" && (
+            <div className="mt-5">
+              <button
+                type="button"
+                onClick={() => setJobGroupsOpen((open) => !open)}
+                onMouseEnter={() => setJobGroupsHover(true)}
+                onMouseLeave={() => setJobGroupsHover(false)}
+                aria-expanded={jobGroupsVisible}
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-700 transition-colors hover:text-brand-800"
+              >
+                <ChevronDown
+                  className={`h-3.5 w-3.5 transition-transform duration-150 ${jobGroupsVisible ? "rotate-180" : ""}`}
+                  aria-hidden="true"
+                />
+                {jobGroupsVisible ? "Berufsgruppen ausblenden" : "Typische Berufsgruppen anzeigen"}
+              </button>
+
+              {jobGroupsVisible && (
+                <ul className="mt-3 space-y-1.5 rounded-xl border border-black/5 bg-brand-50/25 p-4">
+                  {civilServantJobGroups.map((group) => (
+                    <li key={group.label} className="text-sm leading-relaxed text-ink-700/80">
+                      <span className="font-medium text-ink-950">{group.label}</span>
+                      {group.examples && <span className="text-ink-700/60"> ({group.examples.join(", ")})</span>}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <div className="mt-5 rounded-xl border border-black/10 bg-white p-4">
+                <p className="text-sm leading-relaxed text-ink-700/80">
+                  Du bist dir nicht sicher, ob deine Tätigkeit dazugehört? Schreib mir kurz bei
+                  WhatsApp – dann prüfe ich das für dich.
+                </p>
+                <a
+                  href={jobGroupUnsureWhatsAppUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cta="phv_whatsapp_clicked"
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-800"
+                >
+                  <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                  Fabio kurz fragen
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       )}
 

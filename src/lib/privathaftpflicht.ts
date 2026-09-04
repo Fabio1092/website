@@ -45,13 +45,13 @@ export const liabilityRecommendations: Record<RecommendationId, InsurerRecommend
   },
 };
 
-export type StepId = "haushalt" | "beamter" | "alter" | "sonderfall" | "prioritaet";
+export type StepId = "haushalt" | "beamter" | "alter" | "berufsgruppe" | "prioritaet";
 
 export interface WizardOption {
   label: string;
   value: string;
-  /** Next step, a final recommendation, or the "unsure" contact bridge. */
-  next: StepId | RecommendationId | "unsure";
+  /** Next step or a final recommendation. */
+  next: StepId | RecommendationId;
   /** Short reasoning shown on the result card when this option leads there. */
   reason?: string;
 }
@@ -62,6 +62,25 @@ export interface WizardStep {
   hint?: string;
   options: WizardOption[];
 }
+
+export interface CivilServantJobGroup {
+  label: string;
+  examples?: string[];
+}
+
+/** Shown as an optional disclosure on the "berufsgruppe" step, not a permanent list. */
+export const civilServantJobGroups: CivilServantJobGroup[] = [
+  { label: "Lehrer" },
+  { label: "Polizeibeamte" },
+  { label: "Verwaltungsbeamte" },
+  { label: "Finanzbeamte" },
+  { label: "Justizbeamte", examples: ["Rechtspfleger", "Gerichtsvollzieher", "Justizvollzugsbeamte"] },
+  { label: "Richter" },
+  { label: "Feuerwehrbeamte" },
+  { label: "Soldaten" },
+  { label: "Professoren / Schulleiter" },
+  { label: "Förster / Vermessungsbeamte" },
+];
 
 export const wizardSteps: Record<StepId, WizardStep> = {
   haushalt: {
@@ -78,7 +97,7 @@ export const wizardSteps: Record<StepId, WizardStep> = {
     question: "Bist du Beamter bzw. Beamtin im aktiven Dienst?",
     options: [
       { label: "Nein", value: "nein", next: "alter" },
-      { label: "Ja", value: "ja", next: "sonderfall" },
+      { label: "Ja", value: "ja", next: "berufsgruppe" },
     ],
   },
   alter: {
@@ -100,20 +119,18 @@ export const wizardSteps: Record<StepId, WizardStep> = {
       },
     ],
   },
-  sonderfall: {
-    id: "sonderfall",
-    question: "Benötigst du eine besondere Dienst-/Amtshaftpflicht oder lässt sich deine konkrete Tätigkeit bei der Haftpflichtkasse nicht sauber abbilden?",
-    hint: "Wenn du nicht sicher bist, wähle „Ich bin unsicher“.",
+  berufsgruppe: {
+    id: "berufsgruppe",
+    question: "Gehörst du zu einer dieser Berufsgruppen?",
     options: [
+      { label: "Ja, meine Berufsgruppe ist dabei", value: "ja", next: "prioritaet" },
       {
-        label: "Ja",
-        value: "ja",
+        label: "Nein, meine Berufsgruppe ist nicht dabei",
+        value: "nein",
         next: "bayerische",
         reason:
-          "Bei deiner Beamtenkonstellation möchte ich die Dienst- bzw. Amtshaftpflicht sauber abbilden. Für diesen Sonderfall ist die Bayerische meine Empfehlung.",
+          "Deine Berufsgruppe fällt nicht in die von mir hier standardmäßig abgebildeten Beamtenberufe. Für diese Konstellationen ist die Bayerische – Prestige meine Empfehlung.",
       },
-      { label: "Ich bin unsicher", value: "unsicher", next: "unsure" },
-      { label: "Nein", value: "nein", next: "prioritaet" },
     ],
   },
   prioritaet: {
@@ -141,7 +158,7 @@ export const decisionMatrix: { profile: string; recommendation: RecommendationId
   { profile: "Nicht Beamter, ab 60", recommendation: "haftpflichtkasse" },
   { profile: "Beamter, Service wichtiger", recommendation: "haftpflichtkasse" },
   { profile: "Beamter, Preis stärker im Fokus", recommendation: "baloise" },
-  { profile: "Besondere Dienst-/Amtshaftpflicht bzw. Sonderfall", recommendation: "bayerische" },
+  { profile: "Beamter, Berufsgruppe nicht in der Standardauswahl", recommendation: "bayerische" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -158,7 +175,7 @@ export const householdLabels: Record<Household, string> = {
 
 const civilServantLabels: Record<"ja" | "nein", string> = { ja: "Ja", nein: "Nein" };
 const ageGroupLabels: Record<"unter60" | "ab60", string> = { unter60: "unter 60", ab60: "60 oder älter" };
-const officialLiabilityLabels: Record<"ja" | "nein", string> = { ja: "Ja", nein: "Nein" };
+const jobGroupLabels: Record<"ja" | "nein", string> = { ja: "Ja", nein: "Nein" };
 const priorityLabels: Record<"service" | "preis", string> = {
   service: "Sehr guter Service – dafür dürfen es auch ein paar Euro mehr sein.",
   preis: "Ein möglichst attraktiver Preis bei trotzdem sehr guter Absicherung.",
@@ -169,7 +186,7 @@ export interface WizardAnswers {
   household?: Household;
   civilServant?: "ja" | "nein";
   ageGroup?: "unter60" | "ab60";
-  officialLiability?: "ja" | "nein";
+  jobGroup?: "ja" | "nein";
   priority?: "service" | "preis";
 }
 
@@ -184,7 +201,7 @@ export function buildAnswerSummary(answers: WizardAnswers): AnswerSummaryLine[] 
   if (answers.household) lines.push({ label: "Versicherungsschutz für", value: householdLabels[answers.household] });
   if (answers.civilServant) lines.push({ label: "Beamter im aktiven Dienst", value: civilServantLabels[answers.civilServant] });
   if (answers.ageGroup) lines.push({ label: "Alter", value: ageGroupLabels[answers.ageGroup] });
-  if (answers.officialLiability) lines.push({ label: "Dienst-/Amtshaftpflicht", value: officialLiabilityLabels[answers.officialLiability] });
+  if (answers.jobGroup) lines.push({ label: "Berufsgruppe aus Standardauswahl", value: jobGroupLabels[answers.jobGroup] });
   if (answers.priority) lines.push({ label: "Priorität", value: priorityLabels[answers.priority] });
   return lines;
 }
@@ -228,3 +245,18 @@ Kannst du mir kurz sagen, welche Variante du empfehlen würdest?
 Viele Grüße`;
 
 export const beamterUnsureWhatsAppUrl = buildWhatsAppUrl(beamterUnsureMessage);
+
+export const jobGroupUnsureMessage = `Hallo Fabio,
+
+ich bin Beamter bzw. Beamtin und interessiere mich für eine Privathaftpflicht inklusive Dienst-/Amtshaftpflicht.
+
+Ich bin mir nicht sicher, ob meine konkrete Tätigkeit zu den aufgeführten Berufsgruppen gehört.
+
+Meine Berufsbezeichnung / Tätigkeit:
+[bitte ergänzen]
+
+Kannst du mir kurz sagen, welche Lösung du mir empfehlen würdest?
+
+Viele Grüße`;
+
+export const jobGroupUnsureWhatsAppUrl = buildWhatsAppUrl(jobGroupUnsureMessage);
