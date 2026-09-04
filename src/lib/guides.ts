@@ -117,7 +117,7 @@ export const guides: Guide[] = [
     category: "Gesundheit & Vorsorge",
     teaser: "Welche Leistungen entscheidend sein können und warum hohe Prozentangaben allein noch keinen guten Tarif ausmachen.",
     featuredTeaser: "Hohe Erstattungen klingen gut. Entscheidend ist allerdings, was ein Tarif tatsächlich leistet, wenn größere Behandlungen anstehen.",
-    status: "coming-soon",
+    status: "published",
     featured: true,
     recommended: false,
     recentlyUpdated: false,
