@@ -143,14 +143,13 @@ export default function DentalCostSimulator() {
   function selectTreatment(id: TreatmentId) {
     if (!hasStarted) {
       setHasStarted(true);
-      pushEvent("dental_simulator_started");
+      pushEvent("zahnzusatz_rechner_started");
     }
     setTreatmentId(id);
     setBonusLevel(null);
     setTariff(null);
     setCostOverride(null);
     setIsEditingCost(false);
-    pushEvent(`dental_treatment_${id}_selected`);
   }
 
   function selectBonus(level: BonusLevel) {
@@ -160,7 +159,8 @@ export default function DentalCostSimulator() {
 
   function selectTariff(level: TariffLevel) {
     setTariff(level);
-    pushEvent(`dental_tariff_${level}_selected`);
+    pushEvent(`zahnzusatz_${level}_selected`);
+    pushEvent("zahnzusatz_rechner_completed");
   }
 
   function openCostEditor() {
@@ -518,7 +518,7 @@ export default function DentalCostSimulator() {
             href={getDentalCheckoutUrl(selectedTariffConfig.level)}
             target="_blank"
             rel="noopener noreferrer"
-            data-cta="dental_allianz_checkout_clicked"
+            data-cta="zahnzusatz_allianz_checkout_clicked"
             className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
           >
             {selectedTariffConfig.name} online berechnen &amp; beantragen

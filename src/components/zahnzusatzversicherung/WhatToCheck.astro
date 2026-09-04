@@ -1,0 +1,45 @@
+---
+const points = [
+  "Worauf beziehen sich die angegebenen 75, 90 oder 100 %?",
+  "Wird die Leistung der gesetzlichen Krankenkasse angerechnet?",
+  "Welche Leistungen gelten für Implantate, Kronen, Brücken und Inlays?",
+  "Wie sehen die Leistungsbegrenzungen in den ersten Jahren aus?",
+  "Welche Zahnbehandlungen sind zusätzlich versichert?",
+  "Gibt es Wartezeiten?",
+  "Wie werden fehlende Zähne behandelt?",
+  "Welche Gesundheitsfragen werden gestellt?",
+  "Gibt es den Tarif mit Altersrückstellungen?",
+  "Wie funktioniert die Leistungsabrechnung im Alltag?",
+];
+---
+
+<section id="worauf-achten" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Was solltest du bei einer Zahnzusatzversicherung <span class="text-brand-600">beachten</span>?
+    </h2>
+
+    <p class="mt-5 text-base leading-relaxed text-ink-700/85">
+      Ein hoher Prozentsatz allein macht noch keinen guten Tarif. Ich würde mir insbesondere
+      anschauen:
+    </p>
+
+    <ul class="mt-5 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+      {
+        points.map((point) => (
+          <li class="flex items-baseline gap-2 text-sm leading-relaxed text-ink-700/80">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+            {point}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-6 rounded-2xl border border-black/5 bg-brand-50/30 p-6">
+      <p class="font-serif text-lg font-semibold text-ink-950">
+        Gerade die Frage, worauf sich ein Prozentsatz eigentlich bezieht, ist entscheidend.
+      </p>
+      <p class="mt-2 text-sm leading-relaxed text-ink-700/80">„90 %“ bedeutet nicht automatisch bei jedem Tarif dasselbe.</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+---
+const cards = [
+  {
+    level: 75,
+    title: "MeinZahnschutz 75",
+    text: "Für dich interessant, wenn du einen guten Grundschutz möchtest und bereit bist, bei Zahnersatz bewusst einen höheren Eigenanteil selbst zu tragen.",
+    quote: "„Ich möchte das große Risiko reduzieren, aber nicht jeden Euro absichern.“",
+  },
+  {
+    level: 90,
+    title: "MeinZahnschutz 90",
+    text: "Für dich interessant, wenn du deinen Eigenanteil bei hochwertigem Zahnersatz deutlich begrenzen möchtest.",
+    quote: "„Ein kleinerer Eigenanteil ist okay. Mehrere tausend Euro möchte ich aber nicht plötzlich selbst zahlen.“",
+  },
+  {
+    level: 100,
+    title: "MeinZahnschutz 100",
+    text: "Für dich interessant, wenn du im versicherten Leistungsfall möglichst wenig Eigenanteil beim hochwertigen Zahnersatz behalten möchtest.",
+    quote: "„Wenn ich das Risiko versichere, möchte ich es möglichst umfassend absichern.“",
+  },
+];
+---
+
+<section id="allianz-variante" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Welche Allianz-Variante passt zu <span class="text-brand-600">dir</span>?
+    </h2>
+
+    <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
+      {
+        cards.map((card) => (
+          <div class="flex flex-col rounded-2xl border border-black/5 bg-brand-50/25 p-6">
+            <h3 class="font-serif text-lg font-semibold text-ink-950">{card.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/80">{card.text}</p>
+
+            <div class="mt-4 flex-1 rounded-xl border border-black/5 bg-white p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">Deine Haltung</p>
+              <p class="mt-1.5 font-serif text-sm italic text-ink-950">{card.quote}</p>
+            </div>
+
+            <a
+              href="#eigenanteil-berechnen"
+              class="mt-5 inline-flex min-h-[44px] items-center justify-center rounded-full border border-brand-300 px-5 py-2.5 text-sm font-semibold text-brand-700 transition-colors hover:border-brand-400 hover:bg-brand-50"
+            >
+              {card.title} berechnen
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,48 @@
+---
+import { MessageCircle } from "lucide-react";
+import { dentalContactWhatsAppUrl } from "@/lib/dentalCalculator";
+
+const situations = [
+  "Zähne fehlen und noch nicht ersetzt wurden,",
+  "eine Behandlung angeraten wurde,",
+  "eine Behandlung läuft,",
+  "umfangreiche Zahnthemen bekannt sind,",
+  "oder du bei den Gesundheitsfragen unsicher bist.",
+];
+---
+
+<section id="vorher-kontaktieren" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Wann solltest du mich <span class="text-brand-600">vorher</span> kontaktieren?
+    </h2>
+
+    <p class="mt-5 text-base leading-relaxed text-ink-700/85">Nicht jeder Fall gehört einfach in den Online-Abschluss.</p>
+    <p class="mt-2 text-base leading-relaxed text-ink-700/85">Ich würde mich vorher bei dir einmischen, wenn beispielsweise bereits:</p>
+
+    <ul class="mt-4 space-y-1.5">
+      {
+        situations.map((item) => (
+          <li class="flex items-baseline gap-2 text-sm leading-relaxed text-ink-700/80">
+            <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-black/20" aria-hidden="true" />
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-6 rounded-2xl border border-black/10 bg-brand-50/30 p-6">
+      <p class="font-medium text-ink-950">Dann lieber einmal vorher sauber prüfen.</p>
+      <a
+        href={dentalContactWhatsAppUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cta="zahnzusatz_contact_clicked"
+        class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-800"
+      >
+        <MessageCircle className="h-4 w-4" aria-hidden="true" />
+        Fabio fragen
+      </a>
+    </div>
+  </div>
+</section>

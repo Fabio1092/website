@@ -1,0 +1,42 @@
+---
+import { CheckCircle2 } from "lucide-react";
+
+const facts = [
+  "Die gesetzliche Krankenversicherung beteiligt sich bei Zahnersatz über einen sogenannten Festzuschuss.",
+  "Dieser orientiert sich an der vorgesehenen Regelversorgung – nicht automatisch an den tatsächlichen Kosten deiner gewünschten hochwertigen Behandlung.",
+  "Mit einem lückenlos geführten Bonusheft kann sich der Festzuschuss erhöhen.",
+  "Entscheidest du dich beispielsweise für ein hochwertiges Implantat statt der Regelversorgung, kann trotzdem ein erheblicher Eigenanteil bleiben.",
+  "Eine Zahnzusatzversicherung kann diesen Eigenanteil deutlich reduzieren.",
+];
+---
+
+<section id="wichtigste" class="scroll-mt-24 bg-white py-14 sm:py-16">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <div class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Das Wichtigste in 30 Sekunden</p>
+
+      <ul class="mt-6 space-y-4">
+        {
+          facts.map((fact) => (
+            <li class="flex items-start gap-3">
+              <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+              <p class="text-sm leading-relaxed text-ink-700/85">{fact}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-6 border-t border-black/5 pt-5">
+        <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">Meine Empfehlung</p>
+        <p class="mt-2 font-serif text-base leading-snug text-ink-950">
+          Kümmere dich darum, solange deine Zähne gesund sind und noch keine Behandlung angeraten
+          wurde.
+        </p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-700/80">
+          Denn wenn eine Behandlung bereits empfohlen, geplant oder begonnen wurde, lässt sich
+          genau dieser Fall normalerweise nicht einfach nachträglich versichern.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

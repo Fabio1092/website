@@ -1,0 +1,70 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Ist eine Zahnzusatzversicherung wirklich sinnvoll?",
+    answer:
+      "Für mich grundsätzlich ja – insbesondere für gesetzlich Krankenversicherte, die hohe Eigenanteile bei hochwertiger Zahnmedizin nicht bewusst selbst tragen möchten. Wenn du das mögliche Risiko kennst, ausreichend Liquidität hast und die Kosten bewusst selbst übernehmen möchtest, kannst du natürlich auch auf eine Versicherung verzichten.",
+  },
+  {
+    question: "Wann sollte ich eine Zahnzusatzversicherung abschließen?",
+    answer:
+      "Aus meiner Sicht so früh wie sinnvoll – idealerweise solange deine Zähne gesund sind und noch keine Behandlung angeraten wurde. Eine Zahnzusatzversicherung erst dann abzuschließen, wenn bereits eine größere Behandlung bevorsteht, funktioniert bei normalen Tarifen in der Regel nicht.",
+  },
+  {
+    question: "Was bezahlt die gesetzliche Krankenversicherung bei Zahnersatz?",
+    answer:
+      "Die gesetzliche Krankenversicherung beteiligt sich über einen befundbezogenen Festzuschuss. Dieser orientiert sich an der vorgesehenen Regelversorgung und nicht automatisch an den tatsächlichen Kosten einer hochwertigen Versorgung wie beispielsweise eines Implantats.",
+  },
+  {
+    question: "Was bedeutet 90 % bei einer Zahnzusatzversicherung?",
+    answer:
+      "Bei der hier empfohlenen Tariflogik werden gesetzliche Krankenversicherung und Zahnzusatzversicherung gemeinsam betrachtet. Genau deshalb berechnet der Rechner nicht einfach „90 % vom Restbetrag“.",
+  },
+  {
+    question: "Sind 75 %, 90 % oder 100 % besser?",
+    answer:
+      "Mehr Leistung bedeutet grundsätzlich einen geringeren möglichen Eigenanteil. Ob du tatsächlich 100 % benötigst, ist aber eine persönliche Entscheidung. Wenn du einen Teil der Kosten problemlos selbst tragen möchtest, können auch 75 oder 90 % bewusst gewählt werden.",
+  },
+  {
+    question: "Warum empfehle ich einen Tarif mit Altersrückstellungen?",
+    answer:
+      "Weil ich eine Zahnzusatzversicherung langfristig denke. Die Variante mit Altersrückstellungen ist zu Beginn teurer, vermeidet aber rein altersbedingte Beitragssprünge aus einer tariflichen Altersstaffelung. Allgemeine Beitragsanpassungen können trotzdem möglich sein.",
+  },
+  {
+    question: "Kann ich die Versicherung abschließen, wenn bereits eine Behandlung geplant ist?",
+    answer:
+      "Hier musst du aufpassen. Bei bereits angeratenen, geplanten oder laufenden Behandlungen ist ein normaler Neuabschluss für diesen konkreten Behandlungsbedarf regelmäßig nicht die richtige Lösung. Kontaktiere mich im Zweifel vorher.",
+  },
+  {
+    question: "Muss ich aus Kassel kommen?",
+    answer:
+      "Nein. Mein Standort ist Kassel, die Beratung und Betreuung funktioniert aber genauso digital in ganz Deutschland. Wenn du aus Kassel oder Nordhessen kommst und einen Versicherungsmakler vor Ort möchtest, kannst du natürlich genauso persönlich auf mich zukommen.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-brand-50/30 py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Häufige Fragen zur <span class="text-brand-600">Zahnzusatzversicherung</span>
+    </h2>
+
+    <div data-reveal class="mt-8">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

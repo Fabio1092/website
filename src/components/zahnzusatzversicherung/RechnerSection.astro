@@ -1,0 +1,28 @@
+---
+import DentalCostSimulator from "@/components/zahnzusatzversicherung/DentalCostSimulator.tsx";
+---
+
+<section id="zahnersatz-kosten" class="scroll-mt-24 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Was kann Zahnersatz eigentlich <span class="text-brand-600">kosten</span>?
+    </h2>
+
+    <p class="mt-4 max-w-2xl text-base leading-relaxed text-ink-700/80">
+      Hier würde ich nicht mit irgendwelchen Horrorzahlen arbeiten. Mach es selbst.
+    </p>
+
+    <div id="eigenanteil-berechnen" class="scroll-mt-24">
+      <h3 class="mt-10 font-serif text-xl font-semibold text-ink-950 sm:text-2xl">Berechne deinen möglichen Eigenanteil</h3>
+
+      <p class="mt-3 max-w-2xl text-sm leading-relaxed text-ink-700/60">
+        Die dargestellten Kosten sind Orientierungswerte für typische Beispielbehandlungen. Dein
+        tatsächlicher Heil- und Kostenplan kann davon abweichen.
+      </p>
+
+      <div class="mt-8">
+        <DentalCostSimulator client:visible />
+      </div>
+    </div>
+  </div>
+</section>

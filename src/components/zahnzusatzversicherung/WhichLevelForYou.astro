@@ -1,0 +1,50 @@
+---
+const situations = [
+  {
+    quote: "„Das kann und möchte ich problemlos selbst bezahlen.“",
+    answer: "Dann kann eine niedrigere Absicherung völlig ausreichen.",
+  },
+  {
+    quote: "„Einen gewissen Eigenanteil finde ich okay, aber mehrere tausend Euro möchte ich nicht tragen.“",
+    answer: "Dann würde ich mir die 90-%-Variante genauer ansehen.",
+  },
+  {
+    quote: "„Genau dieses Risiko möchte ich möglichst vollständig aus meinem privaten Budget herausnehmen.“",
+    answer: "Dann ist die 100-%-Variante die konsequenteste Lösung.",
+  },
+];
+---
+
+<section id="welche-stufe" class="scroll-mt-24 bg-brand-50/30 py-14 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Welche Stufe würde <span class="text-brand-600">ich</span> wählen?
+    </h2>
+
+    <div class="mt-6 space-y-4 text-base leading-relaxed text-ink-700/85">
+      <p>Ich würde die Entscheidung nicht daran festmachen, welcher Tarif auf dem Papier „am besten“ aussieht.</p>
+      <p>Frag dich stattdessen:</p>
+      <p class="font-serif text-lg italic text-ink-950">
+        Wie würde es sich für mich anfühlen, wenn ich morgen 2.000 oder 3.000 Euro für meine Zähne
+        bezahlen müsste?
+      </p>
+    </div>
+
+    <div class="mt-6 space-y-4">
+      {
+        situations.map((s) => (
+          <div class="rounded-2xl border border-black/5 bg-white p-6 shadow-soft">
+            <p class="font-serif text-base font-semibold text-ink-950">{s.quote}</p>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/80">{s.answer}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-6 space-y-2 text-sm leading-relaxed text-ink-700/70">
+      <p>Deshalb gefällt mir auch der Rechner auf dieser Seite:</p>
+      <p>Du entscheidest nicht aufgrund einer abstrakten Prozentzahl.</p>
+      <p class="font-medium text-ink-950">Du siehst vorher, was diese Prozentzahl für deinen Geldbeutel bedeuten kann.</p>
+    </div>
+  </div>
+</section>

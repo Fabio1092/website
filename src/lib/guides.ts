@@ -119,8 +119,9 @@ export const guides: Guide[] = [
     featuredTeaser: "Hohe Erstattungen klingen gut. Entscheidend ist allerdings, was ein Tarif tatsächlich leistet, wenn größere Behandlungen anstehen.",
     status: "published",
     featured: true,
-    recommended: false,
-    recentlyUpdated: false,
+    recommended: true,
+    recentlyUpdated: true,
+    updatedAt: "2026-09-04",
   },
   {
     slug: "unfallversicherung",

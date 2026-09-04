@@ -2,6 +2,8 @@
 // Alle Kosten-, GKV- und Tarifwerte werden ausschließlich hier gepflegt und
 // von der UI (DentalCostSimulator.tsx) nur gelesen, nie dupliziert.
 
+import { siteConfig } from "@/lib/site";
+
 export type TreatmentId = "inlay" | "crown" | "bridge" | "implant";
 export type GkvModel = "filling" | "crown" | "single-tooth-gap";
 export type BonusLevel = "none" | "bonus5" | "bonus10";
@@ -206,3 +208,18 @@ export function formatEuro(value: number): string {
   if (!Number.isFinite(value)) return "–";
   return euroFormatter.format(value);
 }
+
+// ---------------------------------------------------------------------------
+// Kontakt vor dem Online-Abschluss (z. B. bei bereits angeratener Behandlung).
+// ---------------------------------------------------------------------------
+
+export const dentalContactMessage = `Hallo Fabio,
+
+ich interessiere mich für eine Zahnzusatzversicherung, möchte aber vorher kurz mit dir klären, ob mein Fall in den normalen Online-Abschluss passt.
+
+Kurz zu meiner Situation:
+[bitte ergänzen]
+
+Viele Grüße`;
+
+export const dentalContactWhatsAppUrl = `${siteConfig.whatsappUrl}?text=${encodeURIComponent(dentalContactMessage)}`;
