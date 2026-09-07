@@ -4,9 +4,14 @@ type Part = string | { b: string } | { a: string; href: string };
 interface Props {
   parts: Part[];
   class?: string;
+  boldClass?: string;
 }
 
-const { parts, class: className = "text-sm leading-relaxed text-ink-700/85 sm:text-base" } = Astro.props;
+const {
+  parts,
+  class: className = "text-sm leading-relaxed text-ink-700/85 sm:text-base",
+  boldClass = "text-ink-950",
+} = Astro.props;
 ---
 
 <p class={className}>
@@ -19,7 +24,7 @@ const { parts, class: className = "text-sm leading-relaxed text-ink-700/85 sm:te
             {part.a}
           </a>
         );
-      return <strong class="font-semibold text-ink-950">{part.b}</strong>;
+      return <strong class={`font-semibold ${boldClass}`}>{part.b}</strong>;
     })
   }
 </p>

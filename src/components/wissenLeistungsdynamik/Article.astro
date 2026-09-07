@@ -1,0 +1,500 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+import Graphic1 from "@/components/wissenLeistungsdynamik/Graphic1.astro";
+import Graphic2 from "@/components/wissenLeistungsdynamik/Graphic2.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "callout"; text: string }
+  | { type: "insight"; title: string; parts: Part[][] }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "resultsList"; items: { label: string; value: string }[] }
+  | { type: "steps"; items: { title: string; body: string }[] }
+  | { type: "table"; headers: string[]; rows: string[][] }
+  | { type: "compare"; labelA: string; textA: string; labelB: string; textB: string };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+  extra?: "graphic1" | "graphic2";
+}
+
+const sections: Section[] = [
+  {
+    id: "was-ist-leistungsdynamik",
+    heading: "Was ist eine Leistungsdynamik?",
+    blocks: [
+      {
+        type: "p",
+        parts: [
+          "Die Leistungsdynamik gehört zu den Bausteinen einer Berufsunfähigkeitsversicherung, die auf den ersten Blick ziemlich eindeutig sinnvoll erscheinen: Wirst du berufsunfähig, steigt deine BU-Rente während des Leistungsbezugs jedes Jahr um einen vorher vereinbarten Prozentsatz – beispielsweise um 1, 2 oder 3 Prozent.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Gerade bei einer lang andauernden Berufsunfähigkeit kann das wichtig werden. Denn eine BU-Rente, die heute ausreicht, kann über viele Jahre durch Inflation deutlich an Kaufkraft verlieren.",
+        ],
+      },
+      { type: "p", parts: ["Trotzdem empfehle ich eine Leistungsdynamik nicht pauschal jedem Kunden."] },
+      {
+        type: "p",
+        parts: [
+          "Die Leistungsdynamik wird häufig auch als ",
+          { b: "garantierte Rentensteigerung im Leistungsfall" },
+          " bezeichnet. Sie greift erst, nachdem eine versicherte Berufsunfähigkeit eingetreten ist und der Versicherer die vereinbarte BU-Rente zahlt.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Angenommen, du hast eine monatliche BU-Rente von 2.000 Euro vereinbart und wirst berufsunfähig. Ohne garantierte Leistungsdynamik bleibt deine garantierte BU-Rente grundsätzlich bei 2.000 Euro monatlich.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Hast du dagegen beispielsweise eine Leistungsdynamik von 2 Prozent vereinbart, erhöht sich deine garantierte BU-Rente während eines andauernden Leistungsfalls regelmäßig um den vertraglich festgelegten Prozentsatz. Je länger die Berufsunfähigkeit dauert, desto stärker macht sich dieser Effekt bemerkbar.",
+        ],
+      },
+      { type: "h3", text: "Wie entwickelt sich eine BU-Rente mit Leistungsdynamik?" },
+      {
+        type: "p",
+        parts: ["Nehmen wir als vereinfachtes Beispiel eine anfängliche BU-Rente von 2.000 Euro monatlich. Bei einer jährlichen Erhöhung ergibt sich ungefähr folgende Entwicklung:"],
+      },
+      {
+        type: "table",
+        headers: ["Dauer des Leistungsbezugs", "Ohne Leistungsdynamik", "2 % Leistungsdynamik", "3 % Leistungsdynamik"],
+        rows: [
+          ["Beginn", "2.000 €", "2.000 €", "2.000 €"],
+          ["nach 5 Jahren", "2.000 €", "ca. 2.208 €", "ca. 2.319 €"],
+          ["nach 10 Jahren", "2.000 €", "ca. 2.438 €", "ca. 2.688 €"],
+          ["nach 20 Jahren", "2.000 €", "ca. 2.972 €", "ca. 3.612 €"],
+          ["nach 30 Jahren", "2.000 €", "ca. 3.623 €", "ca. 4.855 €"],
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Die Tabelle zeigt zwei Dinge sehr deutlich. Kurzfristig ist der Unterschied noch überschaubar. Bei einer sehr langen Berufsunfähigkeit kann sich die Leistungsdynamik dagegen erheblich auswirken.",
+        ],
+      },
+      {
+        type: "callout",
+        text: "Vereinfachtes Rechenbeispiel. Die tatsächliche Rentenentwicklung hängt vom vertraglich vereinbarten Beginn und der konkreten Ausgestaltung der Leistungsdynamik ab.",
+      },
+    ],
+    extra: "graphic1",
+  },
+  {
+    id: "leistungsdynamik-vs-beitragsdynamik",
+    heading: "Leistungsdynamik und Beitragsdynamik sind nicht dasselbe",
+    blocks: [
+      { type: "p", parts: ["Die Begriffe Leistungsdynamik und Beitragsdynamik werden häufig miteinander verwechselt. Sie erfüllen aber unterschiedliche Aufgaben."] },
+      {
+        type: "p",
+        parts: [
+          "Eine Beitragsdynamik wirkt grundsätzlich vor Eintritt einer Berufsunfähigkeit. Dabei erhöhen sich regelmäßig der Beitrag und die versicherte BU-Rente. Damit kann die Absicherung während des Berufslebens mitwachsen.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Die Leistungsdynamik wirkt dagegen nach Eintritt des Leistungsfalls. Sobald du berufsunfähig bist und die vereinbarte BU-Rente erhältst, erhöht sich diese entsprechend der vereinbarten Leistungsdynamik.",
+        ],
+      },
+      {
+        type: "compare",
+        labelA: "Beitragsdynamik",
+        textA: "Anpassung von Beitrag und BU-Rente vor dem Leistungsfall.",
+        labelB: "Leistungsdynamik",
+        textB: "Garantierte Erhöhung der BU-Rente während des Leistungsfalls.",
+      },
+      { type: "p", parts: ["Beide Bausteine lösen damit unterschiedliche Probleme."] },
+    ],
+  },
+  {
+    id: "warum-gibt-es-sie",
+    heading: "Warum gibt es überhaupt eine Leistungsdynamik?",
+    blocks: [
+      { type: "p", parts: ["Der wesentliche Hintergrund ist der langfristige Kaufkraftverlust durch Inflation."] },
+      {
+        type: "p",
+        parts: [
+          "2.000 Euro monatliche BU-Rente können heute ausreichend erscheinen. Wenn du diese Rente aber über 20 oder sogar 30 Jahre beziehen musst, sieht die Situation möglicherweise ganz anders aus.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Bei einer angenommenen durchschnittlichen Inflation von 2 Prozent hätten 2.000 Euro in 20 Jahren nur noch eine Kaufkraft von ungefähr ",
+          { b: "1.346 Euro" },
+          " in heutigen Preisen. Nach 30 Jahren wären es nur noch rund ",
+          { b: "1.104 Euro" },
+          " heutiger Kaufkraft.",
+        ],
+      },
+      { type: "p", parts: ["Die nominale Zahlung beträgt zwar weiterhin 2.000 Euro. Was du dir davon kaufen kannst, nimmt jedoch ab."] },
+      { type: "standalone", text: "Genau dieses Risiko soll eine Leistungsdynamik zumindest teilweise abfedern." },
+    ],
+  },
+  {
+    id: "ist-sie-sinnvoll",
+    heading: "Ist eine Leistungsdynamik sinnvoll?",
+    blocks: [
+      { type: "p", parts: ["Meine Antwort darauf lautet: Ja – aber eingeschränkt und nicht um jeden Preis."] },
+      { type: "p", parts: ["Ich halte die Leistungsdynamik grundsätzlich für einen sinnvollen Baustein einer Berufsunfähigkeitsversicherung. Sie steht bei meiner persönlichen Priorisierung allerdings nicht an erster Stelle."] },
+      { type: "p", parts: ["Bevor ich darüber nachdenke, ob eine BU-Rente im Leistungsfall jedes Jahr um 1, 2 oder 3 Prozent steigt, möchte ich zunächst zwei andere Fragen beantworten:"] },
+      { type: "quote", text: "Ist die BU-Rente von Anfang an hoch genug? Und: Läuft der Vertrag lange genug?" },
+      { type: "standalone", text: "Denn eine Leistungsdynamik kann eine zu niedrig angesetzte BU-Rente oder eine zu kurze Vertragslaufzeit nicht ersetzen." },
+    ],
+  },
+  {
+    id: "hoehere-bu-rente-wichtiger",
+    heading: "Warum ich eine höhere BU-Rente meistens der Leistungsdynamik vorziehe",
+    blocks: [
+      { type: "p", parts: ["Eine garantierte Leistungsdynamik kostet zusätzlichen Beitrag. Und genau deshalb muss man sich eine wichtige Frage stellen:"] },
+      { type: "quote", text: "Was könnte ich mit diesem zusätzlichen Beitrag alternativ machen?" },
+      {
+        type: "p",
+        parts: [
+          "Wenn ich die Wahl habe, beispielsweise eine niedrigere BU-Rente mit hoher Leistungsdynamik oder von Beginn an eine höhere BU-Rente zu versichern, würde ich in vielen Fällen zunächst die höhere Ausgangsrente wählen.",
+        ],
+      },
+      { type: "p", parts: ["Der Grund ist einfach: Die höhere BU-Rente steht ab dem ersten Tag des Leistungsfalls zur Verfügung. Die Leistungsdynamik muss dagegen erst über mehrere Jahre ihre Wirkung entfalten."] },
+      {
+        type: "callout",
+        text: "Du hast die Wahl zwischen einer niedrigeren Rente, die später stärker wächst, und einer höheren Rente, die dir sofort zur Verfügung steht.",
+      },
+      { type: "p", parts: ["Wenn die höhere Ausgangsrente finanziell und versicherungstechnisch möglich ist, ist sie für mich häufig der wichtigere Hebel."] },
+    ],
+  },
+  {
+    id: "was-kostet-sie",
+    heading: "Was kostet eine Leistungsdynamik?",
+    blocks: [
+      { type: "p", parts: ["Hier gibt es keine allgemeingültige Zahl."] },
+      {
+        type: "p",
+        parts: [
+          "Wie viel eine Leistungsdynamik zusätzlich kostet, hängt unter anderem vom Versicherer, Tarif, Eintrittsalter, Beruf, der versicherten BU-Rente und der gewünschten Höhe der Dynamik ab. Sie ist aber kein kostenloser Zusatzbaustein.",
+        ],
+      },
+      { type: "p", parts: ["Deshalb würde ich die Leistungsdynamik nie isoliert betrachten. Die bessere Frage lautet nicht:"] },
+      { type: "quote", text: "„Sind 2 Prozent Leistungsdynamik sinnvoll?“" },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "quote", text: "„Wie setze ich mein verfügbares Budget für meine Berufsunfähigkeitsversicherung am sinnvollsten ein?“" },
+      {
+        type: "p",
+        parts: [
+          "Wenn der zusätzliche Beitrag für eine Leistungsdynamik alternativ genutzt werden kann, um eine deutlich höhere BU-Rente zu vereinbaren, würde ich zunächst genau diese Möglichkeit prüfen. Erst wenn die Ausgangsrente sinnvoll ausgeschöpft ist, wird die Leistungsdynamik für mich interessanter.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "ueberschuesse",
+    heading: "Können Überschüsse die Leistungsdynamik ersetzen?",
+    blocks: [
+      { type: "p", parts: ["Im Leistungsfall kann eine BU-Rente bei manchen Tarifen zusätzlich durch Überschüsse steigen. Das sollte allerdings nicht mit einer garantierten Leistungsdynamik verwechselt werden."] },
+      { type: "p", parts: ["Der entscheidende Unterschied steckt bereits im Wort ", { b: "garantiert" }, "."] },
+      { type: "p", parts: ["Eine vertraglich vereinbarte Leistungsdynamik ist Bestandteil der garantierten Leistung. Eine zusätzliche Erhöhung aus Überschüssen ist dagegen nicht in gleicher Weise garantiert und kann sich verändern."] },
+      { type: "p", parts: ["Ich würde mögliche Überschüsse deshalb nicht als Ersatz für eine garantierte Leistungsdynamik einplanen. Wenn sie später zusätzlich entstehen: gut."] },
+      { type: "standalone", text: "Meine langfristige Absicherungsplanung würde ich darauf aber nicht aufbauen." },
+    ],
+  },
+  {
+    id: "wann-besonders-empfehlenswert",
+    heading: "Wann empfehle ich eine Leistungsdynamik besonders?",
+    blocks: [
+      { type: "p", parts: ["Es gibt eine Situation, in der sich meine Bewertung deutlich verändert:"] },
+      { type: "callout", text: "Wenn die maximal versicherbare BU-Rente bereits ausgeschöpft wurde, diese aber trotzdem nicht bedarfsgerecht ist." },
+      { type: "p", parts: ["Das kommt insbesondere bei jungen Menschen vor."] },
+      {
+        type: "p",
+        parts: [
+          "Schüler können beispielsweise häufig nur eine begrenzte BU-Rente absichern. Bei Studenten gibt es ebenfalls feste Höchstgrenzen. Und auch bei Berufseinsteigern hängt die maximal mögliche BU-Rente vom tatsächlichen Einkommen und den Annahmerichtlinien des jeweiligen Versicherers ab.",
+        ],
+      },
+      { type: "p", parts: ["Typische Größenordnungen aus der Beratung können beispielsweise sein:"] },
+      {
+        type: "resultsList",
+        items: [
+          { label: "Schüler", value: "häufig bis etwa 1.500 € monatliche BU-Rente" },
+          { label: "Studenten", value: "häufig bis etwa 2.000 € monatliche BU-Rente" },
+          { label: "Berufseinsteiger (Einkommen um ca. 3.000 €)", value: "häufig etwa 1.800–2.200 € monatliche BU-Rente" },
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Das sind ausdrücklich Orientierungswerte und keine allgemeingültigen Grenzen. Die konkrete finanzielle Angemessenheit unterscheidet sich zwischen Versicherern und hängt von der individuellen Situation ab.",
+        ],
+      },
+      { type: "h3", text: "Warum junge Menschen ein besonderes Risiko haben" },
+      { type: "p", parts: ["Bei Schülern, Studenten und jungen Berufseinsteigern kommen zwei Faktoren zusammen: Die anfänglich versicherbare BU-Rente kann relativ niedrig sein. Gleichzeitig kann eine mögliche Leistungsdauer extrem lang sein."] },
+      {
+        type: "p",
+        parts: [
+          "Wer erst mit 55 Jahren berufsunfähig wird, befindet sich in einer völlig anderen Situation als jemand, der bereits mit 20 oder 25 Jahren dauerhaft berufsunfähig wird. Bei einem sehr jungen Menschen kann die BU-Rente theoretisch über mehrere Jahrzehnte benötigt werden. Und genau dann wird die langfristige Entwicklung der Rente relevant.",
+        ],
+      },
+      { type: "p", parts: ["Deshalb würde ich bei jungen Menschen nicht einfach pauschal sagen:"] },
+      { type: "quote", text: "„Leistungsdynamik ist zu teuer, lass sie weg.“" },
+      { type: "standalone", text: "Hier muss man genauer hinschauen." },
+    ],
+  },
+  {
+    id: "schueler",
+    heading: "Leistungsdynamik für Schüler",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir einen Schüler, der maximal 1.500 Euro BU-Rente absichern kann. Sein späterer finanzieller Bedarf wird wahrscheinlich deutlich höher sein. Eine höhere Rente kann heute aber möglicherweise schlicht nicht versichert werden."] },
+      { type: "p", parts: ["Dann hilft mein Grundsatz „erst einmal eine höhere BU-Rente vereinbaren“ nicht weiter. Denn die maximale Ausgangsrente ist bereits ausgeschöpft."] },
+      { type: "p", parts: ["In einer solchen Situation halte ich eine möglichst gute Leistungsdynamik für sehr sinnvoll. Warum? Weil eine Berufsunfähigkeit theoretisch bereits sehr früh eintreten und anschließend über Jahrzehnte bestehen kann."] },
+      { type: "p", parts: ["Bei einer anfänglichen BU-Rente von 1.500 Euro und einer garantierten Leistungsdynamik von 3 Prozent würde sich die Rente rein rechnerisch ungefähr folgendermaßen entwickeln:"] },
+      {
+        type: "resultsList",
+        items: [
+          { label: "Nach 10 Jahren", value: "ca. 2.016 €" },
+          { label: "Nach 20 Jahren", value: "ca. 2.709 €" },
+          { label: "Nach 30 Jahren", value: "ca. 3.641 €" },
+          { label: "Nach 40 Jahren", value: "ca. 4.893 €" },
+        ],
+      },
+      { type: "standalone", text: "Gerade bei sehr jungen Menschen zeigt sich dadurch die langfristige Wirkung einer Leistungsdynamik." },
+    ],
+  },
+  {
+    id: "studenten",
+    heading: "Leistungsdynamik für Studenten",
+    blocks: [
+      { type: "p", parts: ["Ähnlich sehe ich es bei Studenten."] },
+      { type: "p", parts: ["Angenommen, ein Student kann aktuell maximal 2.000 Euro BU-Rente absichern. Nach dem Studium und einigen Jahren im Berufsleben könnte sein Einkommen wesentlich höher sein und damit auch sein tatsächlicher Absicherungsbedarf."] },
+      { type: "p", parts: ["Normalerweise kann die BU-Rente später beispielsweise über Nachversicherungsmöglichkeiten oder andere vertragliche Erhöhungsoptionen angepasst werden. Das funktioniert aber nur, solange die Voraussetzungen dafür erfüllt sind und noch kein Leistungsfall eingetreten ist."] },
+      { type: "p", parts: ["Was passiert, wenn der Student bereits vorher langfristig berufsunfähig wird? Dann steht zunächst die ursprünglich vereinbarte Rente zur Verfügung."] },
+      { type: "p", parts: ["Genau deshalb bekommt die Leistungsdynamik bei Studenten für mich einen deutlich höheren Stellenwert. Wenn die maximal mögliche Ausgangsrente bereits ausgeschöpft ist, würde ich hier – sofern Beitrag und Tarif passen – eher zu einer hohen Leistungsdynamik von beispielsweise 2 oder 3 Prozent tendieren."] },
+      {
+        type: "p",
+        parts: [
+          "Dieses Thema ist Teil meiner ",
+          { a: "BU-Beratung für Studenten", href: "/bu-studenten-kassel/" },
+          " – gerade weil bei einer noch begrenzten Ausgangsrente jede zusätzliche Absicherung zählt.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "berufseinsteiger",
+    heading: "Leistungsdynamik für Berufseinsteiger",
+    blocks: [
+      { type: "p", parts: ["Auch bei Berufseinsteigern kann eine ähnliche Situation entstehen. Gerade zu Beginn des Berufslebens ist das Einkommen häufig noch deutlich niedriger als einige Jahre später. Dadurch kann auch die maximal versicherbare BU-Rente begrenzt sein."] },
+      { type: "p", parts: ["Bei einem Einkommen um etwa 3.000 Euro können – abhängig vom konkreten Einkommen, Versicherer und dessen Regeln zur finanziellen Angemessenheit – beispielsweise Grenzen im Bereich von ungefähr 1.800 bis 2.200 Euro BU-Rente entstehen."] },
+      { type: "p", parts: ["Wenn eine höhere Rente aktuell nicht versicherbar ist, kann die Leistungsdynamik eine sinnvolle zusätzliche Absicherung für einen langfristigen Leistungsfall darstellen."] },
+      { type: "standalone", text: "Je jünger die versicherte Person und je niedriger die maximal mögliche Ausgangsrente, desto genauer würde ich mir die Leistungsdynamik ansehen." },
+    ],
+  },
+  {
+    id: "1-2-oder-3-prozent",
+    heading: "1, 2 oder 3 Prozent Leistungsdynamik – was ist sinnvoll?",
+    blocks: [
+      { type: "p", parts: ["Auch darauf gibt es für mich keine pauschale Antwort. Ich würde wieder nach meiner Prioritätenfolge gehen."] },
+      { type: "p", parts: ["Deine BU-Rente ist noch nicht ausgeschöpft? Dann würde ich zunächst prüfen, ob das Budget besser in eine höhere Ausgangsrente investiert werden kann."] },
+      { type: "p", parts: ["Deine Laufzeit endet deutlich vor dem 67. Lebensjahr? Dann würde ich zunächst die Laufzeit prüfen."] },
+      { type: "p", parts: ["BU-Rente und Laufzeit sind sinnvoll ausgeschöpft und du hast noch Budget? Dann kann eine Leistungsdynamik von 1 bis 3 Prozent sinnvoll sein."] },
+      {
+        type: "p",
+        parts: [
+          "Du bist Schüler, Student oder Berufseinsteiger und kannst trotz maximal ausgeschöpfter finanzieller Angemessenheit keine bedarfsgerechte BU-Rente versichern? Dann würde ich eine hohe Leistungsdynamik deutlich stärker gewichten und – wenn Tarif und Budget es ermöglichen – auch 2 oder 3 Prozent in Betracht ziehen.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "meine-prioritaeten",
+    heading: "Meine Prioritäten bei der Gestaltung einer BU",
+    blocks: [
+      { type: "p", parts: ["Ich würde eine Berufsunfähigkeitsversicherung deshalb in dieser Reihenfolge aufbauen:"] },
+      {
+        type: "steps",
+        items: [
+          {
+            title: "BU-Rente möglichst weit ausschöpfen",
+            body: "Die vereinbarte BU-Rente sollte im Rahmen der finanziellen Angemessenheit möglichst hoch und vor allem bedarfsgerecht sein. Im Leistungsfall muss zunächst einmal das Geld reichen, das tatsächlich ausgezahlt wird.",
+          },
+          {
+            title: "Laufzeit möglichst bis zum 67. Lebensjahr",
+            body: "Eine hohe BU-Rente hilft nur begrenzt, wenn die Versicherung beispielsweise bereits mit 60 oder 62 Jahren endet und anschließend mehrere Jahre bis zum regulären Rentenbeginn überbrückt werden müssen.",
+          },
+          {
+            title: "Danach die Leistungsdynamik",
+            body: "Sind BU-Rente und Laufzeit im Rahmen der finanziellen Angemessenheit ausgeschöpft und ist noch Budget vorhanden, kann eine garantierte Leistungsdynamik von 1 bis 3 Prozent sinnvoll sein.",
+          },
+        ],
+      },
+      {
+        type: "insight",
+        title: "Meine Einschätzung",
+        parts: [
+          ["Ich würde die Leistungsdynamik niemals isoliert betrachten."],
+          [
+            "Für mich lautet die Reihenfolge: ",
+            { b: "BU-Rente im Rahmen der finanziellen Angemessenheit möglichst weit ausschöpfen, Laufzeit möglichst bis zum 67. Lebensjahr, danach prüfen, ob noch Budget für eine Leistungsdynamik vorhanden ist." },
+          ],
+          [
+            "Wenn ich mich zwischen einer bedarfsgerechteren BU-Rente und einer hohen Leistungsdynamik entscheiden müsste, würde ich in vielen Fällen zunächst die höhere BU-Rente wählen. Denn sie steht im Leistungsfall sofort zur Verfügung.",
+          ],
+          [
+            "Anders sieht es aus, wenn eine höhere BU-Rente gar nicht mehr versicherbar ist. Gerade bei Schülern, Studenten und jungen Berufseinsteigern kann deshalb eine hohe Leistungsdynamik aus meiner Sicht besonders sinnvoll sein.",
+          ],
+        ],
+      },
+      { type: "p", parts: ["Wenn die maximale BU-Rente bereits ausgeschöpft ist und trotzdem eine Versorgungslücke besteht, kann eine Leistungsdynamik besonders wichtig werden. Das betrifft insbesondere Schüler, Studenten und junge Berufseinsteiger."] },
+      { type: "h3", text: "Entscheidungshilfe" },
+      {
+        type: "table",
+        headers: ["Situation", "Meine Einschätzung"],
+        rows: [
+          ["BU-Rente noch nicht ausgeschöpft", "zuerst BU-Rente erhöhen"],
+          ["Laufzeit deutlich vor 67", "zuerst Laufzeit prüfen"],
+          ["BU-Rente maximal + Laufzeit bis 67", "Leistungsdynamik prüfen"],
+          ["Schüler mit begrenzter BU-Rente", "Leistungsdynamik besonders relevant"],
+          ["Student mit maximaler BU-Rente", "Leistungsdynamik besonders relevant"],
+          ["Junger Berufseinsteiger mit begrenzter BU-Rente", "Leistungsdynamik häufig sinnvoll"],
+        ],
+      },
+    ],
+    extra: "graphic2",
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        {section.extra === "graphic2" && (
+          <div class="mt-6">
+            <Graphic2 />
+          </div>
+        )}
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "callout")
+              return (
+                <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+                  <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">{block.text}</p>
+                </div>
+              );
+            if (block.type === "insight")
+              return (
+                <div class="rounded-2xl border border-ink-950/10 bg-ink-950 px-6 py-6 text-white sm:px-8 sm:py-7">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand-300">{block.title}</p>
+                  <div class="mt-4 space-y-3">
+                    {block.parts.map((parts) => (
+                      <RichParagraph parts={parts} class="text-sm leading-relaxed text-white/85 sm:text-base" boldClass="text-white" />
+                    ))}
+                  </div>
+                </div>
+              );
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "resultsList")
+              return (
+                <ul class="divide-y divide-black/5 overflow-hidden rounded-xl border border-black/5 bg-white">
+                  {block.items.map((item) => (
+                    <li class="flex items-center justify-between gap-4 px-5 py-3.5 text-sm">
+                      <span class="font-medium text-ink-950">{item.label}</span>
+                      <span class="text-ink-700/80">{item.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "steps")
+              return (
+                <ol class="space-y-6 pt-2">
+                  {block.items.map((item, index) => (
+                    <li class="flex gap-4">
+                      <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink-950 text-sm font-semibold text-white">
+                        {index + 1}
+                      </span>
+                      <div class="min-w-0 pt-0.5">
+                        <p class="font-semibold text-ink-950">{item.title}</p>
+                        <p class="mt-1 text-sm leading-relaxed text-ink-700/80">{item.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              );
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            if (block.type === "compare")
+              return (
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-2xl border border-black/5 bg-white p-5">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{block.labelA}</p>
+                    <p class="mt-2 font-serif text-base leading-relaxed text-ink-950">{block.textA}</p>
+                  </div>
+                  <div class="rounded-2xl border border-black/5 bg-white p-5">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{block.labelB}</p>
+                    <p class="mt-2 font-serif text-base leading-relaxed text-ink-950">{block.textB}</p>
+                  </div>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+        {section.extra === "graphic1" && (
+          <div class="mt-8">
+            <Graphic1 />
+          </div>
+        )}
+      </section>
+    ))
+  }
+</div>

@@ -26,7 +26,12 @@ export const buWissenCategories: WissenTopicCategory[] = [
   },
   {
     name: "Vertragsgestaltung",
-    topics: [{ label: "Leistungsdynamik" }, { label: "Beitragsdynamik" }, { label: "Nachversicherung" }, { label: "Laufzeit & Endalter" }],
+    topics: [
+      { label: "Leistungsdynamik", href: "/wissen/berufsunfaehigkeitsversicherung/leistungsdynamik/" },
+      { label: "Beitragsdynamik" },
+      { label: "Nachversicherung" },
+      { label: "Laufzeit & Endalter" },
+    ],
   },
   {
     name: "Versicherungsbedingungen",
@@ -102,6 +107,7 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
 ];
 
 export const buAvailableLinks: WissenLink[] = [
+  { label: "Leistungsdynamik in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/leistungsdynamik/" },
   { label: "Gesundheitsfragen bei der BU", href: "/bu-gesundheitsfragen/" },
   { label: "Risikovoranfrage zur BU", href: "/bu-risikovoranfrage/" },
   { label: "BU für Angestellte", href: "/bu-angestellte-kassel/" },

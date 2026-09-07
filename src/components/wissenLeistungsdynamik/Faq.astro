@@ -1,0 +1,61 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Was ist eine Leistungsdynamik in der BU?",
+    answer:
+      "Die Leistungsdynamik erhöht die BU-Rente während eines laufenden Leistungsfalls jedes Jahr um einen vorher vereinbarten Prozentsatz, beispielsweise um 1, 2 oder 3 Prozent. Sie greift erst, nachdem eine Berufsunfähigkeit eingetreten ist und der Versicherer die Rente zahlt.",
+  },
+  {
+    question: "Ist eine Leistungsdynamik sinnvoll?",
+    answer:
+      "Ja, aber eingeschränkt und nicht um jeden Preis. Ich halte sie für einen sinnvollen Baustein – vorrangig sind aus meiner Sicht aber eine möglichst hohe, bedarfsgerechte BU-Rente und eine möglichst lange Laufzeit bis zum 67. Lebensjahr. Erst danach prüfe ich, ob noch Budget für eine Leistungsdynamik vorhanden ist.",
+  },
+  {
+    question: "Was ist der Unterschied zwischen Leistungsdynamik und Beitragsdynamik?",
+    answer:
+      "Eine Beitragsdynamik erhöht Beitrag und versicherte BU-Rente vor Eintritt einer Berufsunfähigkeit, damit die Absicherung während des Berufslebens mitwächst. Die Leistungsdynamik wirkt dagegen erst nach Eintritt des Leistungsfalls und erhöht die bereits laufende BU-Rente.",
+  },
+  {
+    question: "Sind 1, 2 oder 3 Prozent Leistungsdynamik sinnvoll?",
+    answer:
+      "Das hängt von der individuellen Situation ab. Sind BU-Rente und Laufzeit im Rahmen der finanziellen Angemessenheit bereits ausgeschöpft und ist noch Budget vorhanden, kann eine Leistungsdynamik von 1 bis 3 Prozent sinnvoll sein. Bei Schülern, Studenten und jungen Berufseinsteigern mit begrenzter maximaler BU-Rente würde ich eine hohe Leistungsdynamik stärker gewichten.",
+  },
+  {
+    question: "Ist eine höhere BU-Rente wichtiger als eine Leistungsdynamik?",
+    answer:
+      "In vielen Fällen ja. Eine höhere Ausgangsrente steht ab dem ersten Tag des Leistungsfalls vollständig zur Verfügung, während die Leistungsdynamik ihre Wirkung erst über mehrere Jahre entfaltet. Deshalb prüfe ich zuerst, ob das Budget besser in eine höhere BU-Rente investiert werden kann.",
+  },
+  {
+    question: "Ist eine Leistungsdynamik für Schüler und Studenten sinnvoll?",
+    answer:
+      "Häufig ja, weil die maximal versicherbare BU-Rente bei Schülern und Studenten oft begrenzt ist, eine Berufsunfähigkeit aber theoretisch bereits sehr früh eintreten und über Jahrzehnte bestehen kann. Wenn die Ausgangsrente bereits ausgeschöpft ist, bekommt die Leistungsdynamik hier einen höheren Stellenwert.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Häufige Fragen zur <span class="text-brand-600">Leistungsdynamik</span>
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

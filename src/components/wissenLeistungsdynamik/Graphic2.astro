@@ -1,0 +1,39 @@
+---
+const priorities = [
+  { title: "Ausreichende BU-Rente", text: "Im Rahmen der finanziellen Angemessenheit möglichst hoch und bedarfsgerecht." },
+  { title: "Laufzeit möglichst bis 67", text: "Eine hohe Rente hilft wenig, wenn der Vertrag Jahre vor der Rente endet." },
+  { title: "Leistungsdynamik", text: "Wenn Rente und Laufzeit ausgeschöpft sind und noch Budget vorhanden ist." },
+];
+---
+
+<figure class="not-prose" aria-label="Prioritäten bei der BU: Rentenhöhe, Laufzeit und Leistungsdynamik">
+  <div class="rounded-2xl border border-black/5 bg-white p-5 sm:p-7">
+    <ol class="relative space-y-6">
+      {
+        priorities.map((item, index) => (
+          <li class="flex gap-4">
+            <div class="flex flex-col items-center">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink-950 text-sm font-semibold text-white">
+                {index + 1}
+              </span>
+              {index < priorities.length - 1 && <span class="mt-1 w-px flex-1 bg-black/10" aria-hidden="true" />}
+            </div>
+            <div class="min-w-0 pb-1">
+              <p class="font-serif text-base font-semibold text-ink-950">{item.title}</p>
+              <p class="mt-1 text-sm leading-relaxed text-ink-700/80">{item.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-2 rounded-xl border border-brand-200 bg-brand-50/50 px-5 py-4">
+      <p class="text-sm leading-relaxed text-ink-950">
+        <span class="font-semibold">Besondere Relevanz</span> bei Schülern, Studenten und jungen
+        Berufseinsteigern mit begrenzter maximaler BU-Rente.
+      </p>
+    </div>
+  </div>
+
+  <figcaption class="mt-3 text-xs leading-relaxed text-ink-700/55">Prioritäten bei der BU: Rentenhöhe, Laufzeit und Leistungsdynamik.</figcaption>
+</figure>

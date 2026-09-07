@@ -1,0 +1,52 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/wissenLeistungsdynamik/Hero.astro";
+import TableOfContents from "@/components/wissenLeistungsdynamik/TableOfContents.astro";
+import Article from "@/components/wissenLeistungsdynamik/Article.astro";
+import Faq from "@/components/wissenLeistungsdynamik/Faq.astro";
+import Fazit from "@/components/wissenLeistungsdynamik/Fazit.astro";
+
+const pageTitle = "Leistungsdynamik BU: Sinnvoll? 1, 2 oder 3 Prozent";
+const pageDescription = "Ist eine Leistungsdynamik in der BU sinnvoll? Erfahre, wann 1–3 % sinnvoll sind und warum BU-Rente und Laufzeit oft wichtiger sind.";
+const canonicalUrl = new URL("/wissen/berufsunfaehigkeitsversicherung/leistungsdynamik/", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: pageTitle,
+  description: pageDescription,
+  inLanguage: "de-DE",
+  datePublished: "2026-09-07",
+  dateModified: "2026-09-07",
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
+  publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Wissen", item: new URL("/wissen/", Astro.site).toString() },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Berufsunfähigkeitsversicherung",
+      item: new URL("/wissen/berufsunfaehigkeitsversicherung/", Astro.site).toString(),
+    },
+    { "@type": "ListItem", position: 4, name: "Leistungsdynamik", item: canonicalUrl },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} fullTitle>
+  <Hero />
+  <TableOfContents />
+  <Article />
+  <Faq />
+  <Fazit />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
