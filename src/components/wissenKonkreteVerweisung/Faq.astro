@@ -1,0 +1,61 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Was bedeutet konkrete Verweisung in der BU?",
+    answer:
+      "Bei der konkreten Verweisung wird geprüft, ob du tatsächlich eine andere Tätigkeit ausübst, die nach den Versicherungsbedingungen deiner bisherigen Lebensstellung entspricht. Ist das der Fall, kann dies Auswirkungen auf die BU-Leistung haben.",
+  },
+  {
+    question: "Was ist der Unterschied zwischen abstrakter und konkreter Verweisung?",
+    answer: "Bei der abstrakten Verweisung geht es um eine Tätigkeit, die du theoretisch ausüben könntest. Bei der konkreten Verweisung übst du die neue Tätigkeit tatsächlich aus.",
+  },
+  {
+    question: "Kann mich mein Versicherer zwingen, einen anderen Beruf anzunehmen?",
+    answer: "Eine konkrete Verweisung setzt gerade voraus, dass du tatsächlich eine andere Tätigkeit ausübst. Sie bedeutet nicht, dass der Versicherer dich einfach verpflichten kann, freiwillig einen neuen Beruf aufzunehmen.",
+  },
+  {
+    question: "Darf ich während des Bezugs einer BU-Rente arbeiten?",
+    answer: "Grundsätzlich kann das möglich sein. Ob und wie sich die Tätigkeit auf deine BU-Rente auswirkt, hängt unter anderem vom neuen Beruf, deiner bisherigen Lebensstellung und den konkreten Vertragsbedingungen ab.",
+  },
+  {
+    question: "Gibt es eine feste Einkommensgrenze?",
+    answer:
+      "Nicht pauschal für jeden Vertrag und jeden Einzelfall. Bei vielen Bedingungen spielen Einkommensunterschiede von ungefähr 20 Prozent als Orientierung eine Rolle. Die genaue Regelung muss aber immer im jeweiligen Bedingungswerk geprüft werden.",
+  },
+  {
+    question: "Ist ein Tarif ohne konkrete Verweisung automatisch besser?",
+    answer: "Ein weitgehender oder vollständiger Verzicht kann einen Mehrwert darstellen. Ich würde die Auswahl einer BU allerdings niemals nur von diesem einen Punkt abhängig machen.",
+  },
+  {
+    question: "Kann eine einfache Nebentätigkeit meine BU-Rente gefährden?",
+    answer: "Nicht automatisch. Entscheidend ist nicht nur, dass du arbeitest. Es muss geprüft werden, ob die neue Tätigkeit nach den Versicherungsbedingungen tatsächlich deiner bisherigen Lebensstellung entspricht.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Häufige Fragen zur <span class="text-brand-600">konkreten Verweisung</span>
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

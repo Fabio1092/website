@@ -36,8 +36,8 @@ export const buWissenCategories: WissenTopicCategory[] = [
   {
     name: "Versicherungsbedingungen",
     topics: [
-      { label: "Abstrakte Verweisung" },
-      { label: "Konkrete Verweisung" },
+      { label: "Abstrakte Verweisung", href: "/wissen/berufsunfaehigkeitsversicherung/abstrakte-verweisung/" },
+      { label: "Konkrete Verweisung", href: "/wissen/berufsunfaehigkeitsversicherung/konkrete-verweisung/" },
       { label: "Prognosezeitraum" },
       { label: "Wichtige BU-Klauseln" },
     ],
@@ -108,6 +108,8 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
 
 export const buAvailableLinks: WissenLink[] = [
   { label: "Leistungsdynamik in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/leistungsdynamik/" },
+  { label: "Abstrakte Verweisung in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/abstrakte-verweisung/" },
+  { label: "Konkrete Verweisung in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/konkrete-verweisung/" },
   { label: "Gesundheitsfragen bei der BU", href: "/bu-gesundheitsfragen/" },
   { label: "Risikovoranfrage zur BU", href: "/bu-risikovoranfrage/" },
   { label: "BU für Angestellte", href: "/bu-angestellte-kassel/" },

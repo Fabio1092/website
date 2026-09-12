@@ -1,0 +1,294 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "keyFacts"; items: string[] }
+  | { type: "insight"; title: string; parts: Part[][] }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "compare"; labelA: string; textA: string; labelB: string; textB: string };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const sections: Section[] = [
+  {
+    id: "das-wichtigste-auf-einen-blick",
+    heading: "Das Wichtigste zur abstrakten Verweisung auf einen Blick",
+    blocks: [
+      {
+        type: "keyFacts",
+        items: [
+          "Bei einer abstrakten Verweisung kann der Versicherer auf eine andere theoretisch mögliche Tätigkeit verweisen.",
+          "Du musst diese andere Tätigkeit tatsächlich nicht ausüben.",
+          "Die mögliche Tätigkeit muss unter anderem zu deinen Fähigkeiten, deiner Ausbildung und deiner bisherigen Lebensstellung passen.",
+          "Ein sauberer Verzicht auf die abstrakte Verweisung ist bei heutigen leistungsstarken BU-Tarifen weitgehend Standard.",
+          "Gerade bei älteren Verträgen oder besonderen Regelungen sollte trotzdem genau in die Versicherungsbedingungen geschaut werden.",
+          "Der Verzicht ist wichtig – allein macht er einen BU-Tarif aber noch nicht automatisch gut.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "was-ist-die-abstrakte-verweisung",
+    heading: "Was ist die abstrakte Verweisung?",
+    blocks: [
+      {
+        type: "p",
+        parts: ["Bei einer Berufsunfähigkeitsversicherung wird grundsätzlich geprüft, ob du deinen zuletzt ausgeübten Beruf aus gesundheitlichen Gründen noch in dem erforderlichen Umfang ausüben kannst."],
+      },
+      { type: "p", parts: ["Entscheidend ist dabei nicht einfach nur deine Berufsbezeichnung."] },
+      { type: "p", parts: ["Es geht darum, wie dein Beruf in gesunden Tagen tatsächlich ausgestaltet war."] },
+      { type: "standalone", text: "Genau hier wird die abstrakte Verweisung interessant." },
+      { type: "p", parts: ["Enthält ein Vertrag kein ausreichendes Verweisungsverbot, könnte der Versicherer argumentieren:"] },
+      {
+        type: "quote",
+        text: "Du kannst deinen bisherigen Beruf zwar nicht mehr ausüben, aufgrund deiner Ausbildung, deiner Kenntnisse, deiner Fähigkeiten und deiner gesundheitlichen Möglichkeiten könntest du aber noch eine andere Tätigkeit ausüben, die deiner bisherigen Lebensstellung entspricht.",
+      },
+      { type: "p", parts: ["Dabei ist das Entscheidende:"] },
+      { type: "standalone", text: "Du musst diese Tätigkeit gar nicht tatsächlich ausüben." },
+      { type: "p", parts: ["Es reicht bei einer abstrakten Verweisung grundsätzlich aus, dass eine entsprechende andere Tätigkeit theoretisch in Betracht kommt."] },
+      { type: "standalone", text: "Deshalb empfinde ich diese Regelung in einer modernen Berufsunfähigkeitsversicherung als problematisch." },
+    ],
+  },
+  {
+    id: "beispiel-abstrakte-verweisung",
+    heading: "Ein einfaches Beispiel zur abstrakten Verweisung",
+    blocks: [
+      { type: "p", parts: ["Stell dir vor, du arbeitest in einem körperlich anspruchsvollen technischen Beruf."] },
+      { type: "p", parts: ["Aufgrund gesundheitlicher Beschwerden kannst du wesentliche körperliche Tätigkeiten deines bisherigen Berufs dauerhaft nicht mehr erledigen."] },
+      { type: "p", parts: ["Eine andere, überwiegend organisatorische oder kaufmännische Tätigkeit wäre gesundheitlich möglicherweise noch möglich."] },
+      { type: "p", parts: ["Enthält dein Vertrag eine abstrakte Verweisungsmöglichkeit, könnte sich die Frage stellen, ob du auf eine solche andere Tätigkeit verwiesen werden kannst."] },
+      { type: "standalone", text: "Das bedeutet nicht, dass jede beliebige Tätigkeit ausreicht." },
+      { type: "p", parts: ["Die neue Tätigkeit muss grundsätzlich unter anderem zu deiner Ausbildung, deinen Fähigkeiten und deiner bisherigen Lebensstellung passen."] },
+      { type: "p", parts: ["Trotzdem entsteht eine Diskussion, die ich bei einer guten Berufsunfähigkeitsversicherung möglichst vermeiden möchte."] },
+      { type: "p", parts: ["Denn eigentlich soll die BU genau den Beruf absichern, den du vor Eintritt der gesundheitlichen Einschränkungen tatsächlich ausgeübt hast."] },
+    ],
+  },
+  {
+    id: "verzicht-auf-die-abstrakte-verweisung",
+    heading: "Was bedeutet „Verzicht auf die abstrakte Verweisung“?",
+    blocks: [
+      { type: "p", parts: ["Verzichtet ein Versicherer auf die abstrakte Verweisung, kann er die Leistung nicht allein mit dem Argument ablehnen:"] },
+      { type: "quote", text: "„Du könntest theoretisch noch einen anderen Beruf ausüben.“" },
+      { type: "standalone", text: "Das ist ein wichtiger Unterschied." },
+      { type: "p", parts: ["Damit konzentriert sich die Prüfung stärker auf den zuletzt ausgeübten Beruf, so wie dieser vor Eintritt der gesundheitlichen Beeinträchtigung tatsächlich ausgestaltet war."] },
+      { type: "p", parts: ["Der Verzicht bedeutet allerdings nicht automatisch, dass bei jeder gesundheitlichen Einschränkung eine BU-Rente gezahlt wird."] },
+      { type: "p", parts: ["Auch dann müssen natürlich die übrigen Voraussetzungen des Vertrages erfüllt sein."] },
+      { type: "p", parts: ["Dazu gehören beispielsweise der vereinbarte Grad der Berufsunfähigkeit, die konkrete gesundheitliche Einschränkung und die tatsächliche Ausgestaltung deiner beruflichen Tätigkeit."] },
+      { type: "p", parts: ["Der Verzicht auf die abstrakte Verweisung beseitigt also einen möglichen Streitpunkt."] },
+      { type: "standalone", text: "Er ersetzt aber nicht die übrige Leistungsprüfung." },
+    ],
+  },
+  {
+    id: "ausbildung-faehigkeiten-lebensstellung",
+    heading: "Welche Rolle spielen Ausbildung, Fähigkeiten und Lebensstellung?",
+    blocks: [
+      { type: "p", parts: ["Auch eine mögliche Verweisung kann nicht völlig losgelöst vom bisherigen Berufsleben betrachtet werden."] },
+      { type: "p", parts: ["Es geht nicht darum, dass theoretisch irgendeine Arbeit ausgeübt werden könnte."] },
+      { type: "p", parts: ["Relevant sind insbesondere Punkte wie:"] },
+      {
+        type: "list",
+        items: [
+          "Ausbildung und berufliche Qualifikation",
+          "vorhandene Kenntnisse und Fähigkeiten",
+          "körperliche und geistige Anforderungen",
+          "bisheriges Einkommen",
+          "soziale Wertschätzung des bisherigen Berufs",
+          "bisherige wirtschaftliche und soziale Lebensstellung",
+        ],
+      },
+      { type: "p", parts: ["Gerade der Begriff der „Lebensstellung“ ist dabei wichtig."] },
+      { type: "p", parts: ["Ein Versicherer kann nicht einfach jede Tätigkeit heranziehen, die gesundheitlich noch irgendwie möglich wäre."] },
+      { type: "p", parts: ["Genau diese Abgrenzungsfragen können in der Praxis allerdings kompliziert werden."] },
+      { type: "standalone", text: "Und genau deshalb ist ein klar formulierter Verzicht auf die abstrakte Verweisung aus meiner Sicht so wichtig." },
+    ],
+  },
+  {
+    id: "verzicht-heute-noch-besonders",
+    heading: "Ist der Verzicht auf die abstrakte Verweisung heute noch etwas Besonderes?",
+    blocks: [
+      { type: "p", parts: ["Hier sollte man sauber unterscheiden."] },
+      { type: "standalone", text: "Der Verzicht ist wichtig." },
+      { type: "p", parts: ["Er ist bei vielen heutigen leistungsstarken BU-Tarifen allerdings kein außergewöhnliches Alleinstellungsmerkmal mehr."] },
+      { type: "p", parts: ["Anders gesagt:"] },
+      { type: "standalone", text: "Ein Tarif ohne sauberen Verzicht auf die abstrakte Verweisung würde bei meiner Auswahl sehr kritisch betrachtet werden." },
+      { type: "p", parts: ["Umgekehrt würde ich einen Tarif aber niemals allein deshalb empfehlen, weil der Versicherer mit dem Verzicht auf die abstrakte Verweisung wirbt."] },
+      { type: "p", parts: ["Dafür gibt es bei einer Berufsunfähigkeitsversicherung viel zu viele weitere Punkte, die mindestens genauso genau geprüft werden müssen."] },
+      { type: "p", parts: ["Dazu gehören beispielsweise die Nachversicherungsmöglichkeiten, die Definition des versicherten Berufs, Regelungen beim Ausscheiden aus dem Berufsleben, die Laufzeit, die Höhe der BU-Rente und die weitere technische Ausgestaltung des Vertrages."] },
+      { type: "standalone", text: "Der Verzicht ist für mich deshalb eher eine wichtige Grundvoraussetzung als ein besonderes Qualitätsmerkmal." },
+    ],
+  },
+  {
+    id: "vorsicht-bei-aelteren-bu-vertraegen",
+    heading: "Vorsicht bei älteren BU-Verträgen",
+    blocks: [
+      { type: "p", parts: ["Besonders interessant wird das Thema bei älteren Berufsunfähigkeitsversicherungen."] },
+      { type: "p", parts: ["Was heute bei vielen Tarifen selbstverständlich erscheint, war in älteren Vertragsgenerationen nicht immer so geregelt."] },
+      { type: "p", parts: ["Deshalb sollte ein bestehender BU-Vertrag nicht nur anhand des Versicherers oder des heutigen Tarifnamens beurteilt werden."] },
+      { type: "standalone", text: "Entscheidend sind die Versicherungsbedingungen, die beim damaligen Vertragsabschluss tatsächlich vereinbart wurden." },
+      { type: "p", parts: ["Zwei Kunden können beim gleichen Versicherer versichert sein und trotzdem deutlich unterschiedliche Vertragsbedingungen haben, wenn ihre Verträge aus unterschiedlichen Tarifgenerationen stammen."] },
+      { type: "p", parts: ["Wer einen älteren Vertrag besitzt, sollte deshalb konkret prüfen, wie die Verweisung im eigenen Bedingungswerk geregelt ist."] },
+    ],
+  },
+  {
+    id: "versteckte-abstrakte-verweisung-berufspause",
+    heading: "Die „versteckte“ abstrakte Verweisung: Was passiert bei längerer Berufspause?",
+    blocks: [
+      { type: "p", parts: ["Ein weiterer Punkt wird häufig übersehen."] },
+      { type: "p", parts: ["Auch wenn ein Tarif grundsätzlich auf die abstrakte Verweisung verzichtet, sollte geprüft werden, was in den Bedingungen passiert, wenn du für längere Zeit aus dem Berufsleben ausscheidest."] },
+      { type: "p", parts: ["Das kann beispielsweise relevant werden bei:"] },
+      {
+        type: "list",
+        items: ["Elternzeit", "längerer beruflicher Auszeit", "Sabbatical", "längeren Reisen", "Arbeitslosigkeit", "dauerhaftem Ausscheiden aus dem Berufsleben"],
+      },
+      { type: "p", parts: ["Manche ältere oder speziell ausgestaltete Bedingungen unterscheiden zwischen einem vorübergehenden und einem dauerhaften Ausscheiden aus dem Berufsleben."] },
+      { type: "p", parts: ["Dadurch kann sich verändern, welcher Beruf oder welche Tätigkeit für die Beurteilung einer Berufsunfähigkeit maßgeblich ist."] },
+      { type: "p", parts: ["Deshalb reicht es nicht immer, irgendwo in einer Tarifübersicht einen Haken bei „Verzicht auf abstrakte Verweisung“ zu sehen."] },
+      { type: "standalone", text: "Im Zweifel muss die konkrete Formulierung in den Versicherungsbedingungen gelesen werden." },
+    ],
+  },
+  {
+    id: "abstrakte-und-konkrete-verweisung-unterschied",
+    heading: "Abstrakte und konkrete Verweisung: Was ist der Unterschied?",
+    blocks: [
+      { type: "p", parts: ["Die beiden Begriffe klingen ähnlich, beschreiben aber zwei unterschiedliche Situationen."] },
+      { type: "p", parts: ["Bei der abstrakten Verweisung geht es um eine andere Tätigkeit, die du theoretisch ausüben könntest."] },
+      { type: "p", parts: ["Bei der konkreten Verweisung geht es dagegen um eine andere Tätigkeit, die du tatsächlich ausübst."] },
+      { type: "p", parts: ["Einfach gesagt:"] },
+      {
+        type: "compare",
+        labelA: "Abstrakt",
+        textA: "Theoretischer anderer Beruf.",
+        labelB: "Konkret",
+        textB: "Tatsächlich ausgeübter anderer Beruf.",
+      },
+      { type: "p", parts: ["Das ist für die Beurteilung einer Berufsunfähigkeitsversicherung ein erheblicher Unterschied."] },
+      {
+        type: "p",
+        parts: [
+          "Wenn du genauer wissen möchtest, wann eine tatsächlich ausgeübte neue Tätigkeit Auswirkungen auf deine BU-Rente haben kann, findest du dazu meinen ausführlichen ",
+          { a: "Artikel zur konkreten Verweisung", href: "/wissen/berufsunfaehigkeitsversicherung/konkrete-verweisung/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "alten-vertrag-kuendigen",
+    heading: "Muss ich einen alten Vertrag ohne guten Verweisungsverzicht sofort kündigen?",
+    blocks: [
+      { type: "standalone", text: "Nein." },
+      { type: "p", parts: ["Ein alter Vertrag sollte niemals allein aufgrund eines einzelnen Bedingungspunktes vorschnell gekündigt werden."] },
+      { type: "p", parts: ["Bei einem Neuabschluss spielen unter anderem dein heutiges Alter, dein Gesundheitszustand, dein Beruf, mögliche Ausschlüsse oder Risikozuschläge und der aktuelle Beitrag eine Rolle."] },
+      { type: "p", parts: ["Eine neue BU kann deshalb trotz modernerer Bedingungen insgesamt schlechter für dich sein."] },
+      { type: "p", parts: ["Der richtige Weg ist normalerweise:"] },
+      { type: "p", parts: ["Zuerst den bestehenden Vertrag analysieren."] },
+      { type: "p", parts: ["Danach prüfen, welche Alternativen heute überhaupt realistisch abschließbar wären."] },
+      { type: "p", parts: ["Und erst dann entscheiden, ob eine Veränderung sinnvoll ist."] },
+      { type: "standalone", text: "Eine bestehende Berufsunfähigkeitsversicherung sollte niemals gekündigt werden, bevor eine mögliche neue Absicherung verbindlich geklärt ist." },
+    ],
+  },
+  {
+    id: "meine-einschaetzung",
+    heading: "Meine Einschätzung zur abstrakten Verweisung",
+    blocks: [
+      {
+        type: "insight",
+        title: "Meine Einschätzung",
+        parts: [
+          ["Ich würde heute grundsätzlich auf einen sauberen Verzicht auf die abstrakte Verweisung achten."],
+          ["Gleichzeitig würde ich diesem Punkt nicht mehr die Bedeutung geben, die manche Werbeaussagen vermitteln."],
+          ["Bei einem modernen, leistungsstarken BU-Tarif erwarte ich eine vernünftige Regelung zur abstrakten Verweisung."],
+          ["Damit beginnt die Tarifprüfung für mich aber erst."],
+          [
+            "Die wirklich interessanten Unterschiede liegen häufig in den Details der Versicherungsbedingungen, den späteren Erhöhungsmöglichkeiten, der technischen Ausgestaltung und der Frage, wie gut der Vertrag langfristig zur persönlichen Situation passt.",
+          ],
+          ["Mein Fazit lautet deshalb:"],
+          [{ b: "Der Verzicht auf die abstrakte Verweisung ist wichtig." }],
+          ["Er sollte aber kein Grund sein, die restlichen Bedingungen einer Berufsunfähigkeitsversicherung weniger genau zu prüfen."],
+        ],
+      },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "keyFacts")
+              return (
+                <div class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+                  <ul class="space-y-4">
+                    {block.items.map((item) => (
+                      <li class="flex items-start gap-3">
+                        <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+                        <p class="text-sm leading-relaxed text-ink-700/85">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            if (block.type === "insight")
+              return (
+                <div class="rounded-2xl border border-ink-950/10 bg-ink-950 px-6 py-6 text-white sm:px-8 sm:py-7">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand-300">{block.title}</p>
+                  <div class="mt-4 space-y-3">
+                    {block.parts.map((parts) => (
+                      <RichParagraph parts={parts} class="text-sm leading-relaxed text-white/85 sm:text-base" boldClass="text-white" />
+                    ))}
+                  </div>
+                </div>
+              );
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "compare")
+              return (
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-2xl border border-black/5 bg-white p-5">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{block.labelA}</p>
+                    <p class="mt-2 font-serif text-base leading-relaxed text-ink-950">{block.textA}</p>
+                  </div>
+                  <div class="rounded-2xl border border-black/5 bg-white p-5">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{block.labelB}</p>
+                    <p class="mt-2 font-serif text-base leading-relaxed text-ink-950">{block.textB}</p>
+                  </div>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

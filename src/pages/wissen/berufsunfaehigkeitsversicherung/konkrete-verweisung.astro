@@ -1,0 +1,53 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/wissenKonkreteVerweisung/Hero.astro";
+import TableOfContents from "@/components/wissenKonkreteVerweisung/TableOfContents.astro";
+import Article from "@/components/wissenKonkreteVerweisung/Article.astro";
+import Faq from "@/components/wissenKonkreteVerweisung/Faq.astro";
+import Fazit from "@/components/wissenKonkreteVerweisung/Fazit.astro";
+
+const pageTitle = "Konkrete Verweisung in der BU | Fabio Rumpf";
+const pageDescription =
+  "Konkrete Verweisung in der BU erklärt: Wann ein neuer Beruf die BU-Rente beeinflussen kann und welche Rolle Lebensstellung und Einkommen dabei spielen.";
+const canonicalUrl = new URL("/wissen/berufsunfaehigkeitsversicherung/konkrete-verweisung/", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: pageTitle,
+  description: pageDescription,
+  inLanguage: "de-DE",
+  datePublished: "2026-09-12",
+  dateModified: "2026-09-12",
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
+  publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Wissen", item: new URL("/wissen/", Astro.site).toString() },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Berufsunfähigkeitsversicherung",
+      item: new URL("/wissen/berufsunfaehigkeitsversicherung/", Astro.site).toString(),
+    },
+    { "@type": "ListItem", position: 4, name: "Konkrete Verweisung", item: canonicalUrl },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} fullTitle>
+  <Hero />
+  <TableOfContents />
+  <Article />
+  <Faq />
+  <Fazit />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

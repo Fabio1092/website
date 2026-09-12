@@ -1,0 +1,327 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "keyFacts"; items: string[] }
+  | { type: "insight"; title: string; parts: Part[][] }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "compare"; labelA: string; textA: string; labelB: string; textB: string };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const sections: Section[] = [
+  {
+    id: "das-wichtigste-auf-einen-blick",
+    heading: "Das Wichtigste zur konkreten Verweisung auf einen Blick",
+    blocks: [
+      {
+        type: "keyFacts",
+        items: [
+          "Eine konkrete Verweisung setzt grundsätzlich eine tatsächlich ausgeübte andere Tätigkeit voraus.",
+          "Der Versicherer kann dich nicht einfach dazu zwingen, einen neuen Beruf aufzunehmen.",
+          "Entscheidend ist, ob die neue Tätigkeit deiner bisherigen Lebensstellung entspricht.",
+          "Dabei können unter anderem Einkommen, Ausbildung, Fähigkeiten und soziale Wertschätzung eine Rolle spielen.",
+          "Eine neue Tätigkeit führt nicht automatisch zum Wegfall der BU-Rente.",
+          "Die genaue Regelung unterscheidet sich zwischen den Versicherungsbedingungen.",
+          "Einige Tarife sehen weitergehende oder vollständige Verzichtsregelungen vor.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "was-bedeutet-konkrete-verweisung",
+    heading: "Was bedeutet konkrete Verweisung?",
+    blocks: [
+      { type: "p", parts: ["Stell dir folgende Situation vor:"] },
+      { type: "p", parts: ["Du kannst deinen bisherigen Beruf aus gesundheitlichen Gründen nicht mehr ausüben und erhältst deshalb eine BU-Rente."] },
+      { type: "p", parts: ["Nach einiger Zeit möchtest du trotzdem wieder beruflich aktiv werden."] },
+      { type: "p", parts: ["Vielleicht geht es dir gesundheitlich besser."] },
+      { type: "p", parts: ["Vielleicht möchtest du wieder eine Aufgabe haben."] },
+      { type: "p", parts: ["Vielleicht möchtest du mehr soziale Kontakte."] },
+      { type: "p", parts: ["Oder die versicherte BU-Rente reicht alleine nicht aus, um deinen gewünschten Lebensstandard zu finanzieren."] },
+      { type: "p", parts: ["Du nimmst deshalb freiwillig eine andere berufliche Tätigkeit auf."] },
+      { type: "standalone", text: "Genau jetzt kann die konkrete Verweisung relevant werden." },
+      { type: "p", parts: ["Der Versicherer prüft dann nicht, welchen Beruf du theoretisch ausüben könntest."] },
+      { type: "p", parts: ["Er betrachtet die Tätigkeit, die du tatsächlich aufgenommen hast."] },
+      { type: "standalone", text: "Entspricht diese neue Tätigkeit nach den Bedingungen deiner bisherigen Lebensstellung, kann dies Auswirkungen auf die BU-Leistung haben." },
+    ],
+  },
+  {
+    id: "wichtigster-unterschied-zur-abstrakten-verweisung",
+    heading: "Der wichtigste Unterschied zur abstrakten Verweisung",
+    blocks: [
+      { type: "p", parts: ["Die Abgrenzung lässt sich sehr einfach merken:"] },
+      {
+        type: "compare",
+        labelA: "Abstrakte Verweisung",
+        textA: "Theoretisch mögliche Tätigkeit.",
+        labelB: "Konkrete Verweisung",
+        textB: "Tatsächlich ausgeübte Tätigkeit.",
+      },
+      {
+        type: "p",
+        parts: [
+          "Bei einem guten Verzicht auf die ",
+          { a: "abstrakte Verweisung", href: "/wissen/berufsunfaehigkeitsversicherung/abstrakte-verweisung/" },
+          " kann der Versicherer grundsätzlich nicht verlangen, dass du einen anderen Beruf aufnimmst, nur weil du diesen theoretisch noch ausüben könntest.",
+        ],
+      },
+      { type: "p", parts: ["Bei der konkreten Verweisung hast du die neue Tätigkeit dagegen bereits selbst aufgenommen."] },
+      { type: "standalone", text: "Das ist ein völlig anderer Ausgangspunkt." },
+      { type: "p", parts: ["Deshalb sollte man beide Regelungen bei der Bewertung einer Berufsunfähigkeitsversicherung getrennt voneinander betrachten."] },
+    ],
+  },
+  {
+    id: "wann-kann-konkrete-verweisung-moeglich-sein",
+    heading: "Wann kann eine konkrete Verweisung möglich sein?",
+    blocks: [
+      { type: "p", parts: ["Nicht jede neue Tätigkeit führt automatisch dazu, dass deine BU-Rente eingestellt wird."] },
+      { type: "p", parts: ["Der Versicherer muss prüfen, ob die tatsächlich ausgeübte Tätigkeit die Voraussetzungen der jeweiligen Versicherungsbedingungen erfüllt."] },
+      { type: "p", parts: ["Typischerweise spielen mehrere Punkte eine Rolle."] },
+      { type: "h3", text: "1. Du übst die neue Tätigkeit tatsächlich aus" },
+      { type: "standalone", text: "Das ist die Grundvoraussetzung." },
+      { type: "p", parts: ["Nur weil du theoretisch noch etwas anderes arbeiten könntest, handelt es sich nicht um eine konkrete Verweisung."] },
+      { type: "p", parts: ["Ohne tatsächlich ausgeübte neue Tätigkeit fehlt genau der Punkt, der die konkrete von der abstrakten Verweisung unterscheidet."] },
+      { type: "h3", text: "2. Die neue Tätigkeit muss zu deinen Fähigkeiten passen" },
+      { type: "p", parts: ["Je nach Bedingungswerk wird beispielsweise auf Ausbildung, Kenntnisse, Erfahrung und vorhandene Fähigkeiten abgestellt."] },
+      { type: "p", parts: ["Ein völlig fachfremder Job mit deutlich niedrigeren Anforderungen ist deshalb nicht automatisch mit deinem bisherigen Beruf vergleichbar."] },
+      { type: "h3", text: "3. Die bisherige Lebensstellung muss berücksichtigt werden" },
+      { type: "standalone", text: "Ein besonders wichtiger Begriff ist die bisherige Lebensstellung." },
+      { type: "p", parts: ["Sie wird nicht nur durch das Einkommen bestimmt."] },
+      { type: "p", parts: ["Auch die soziale Wertschätzung und die berufliche Stellung können eine Rolle spielen."] },
+      { type: "p", parts: ["Deshalb genügt es nicht, ausschließlich zwei Gehaltsabrechnungen miteinander zu vergleichen."] },
+      { type: "h3", text: "4. Das Einkommen spielt eine wichtige Rolle" },
+      { type: "p", parts: ["Auch das Einkommen der neuen Tätigkeit wird bei vielen Bedingungswerken berücksichtigt."] },
+      { type: "p", parts: ["Häufig findet man Regelungen oder Orientierungsgrößen, nach denen eine deutliche Einkommensreduzierung gegen eine vergleichbare Lebensstellung spricht."] },
+      { type: "standalone", text: "In vielen Bedingungen spielt eine Größenordnung von rund 20 Prozent Einkommensunterschied eine Rolle." },
+      { type: "p", parts: ["Das bedeutet allerdings nicht, dass es eine pauschale 20-Prozent-Regel gibt, die für jeden Vertrag und jeden Fall identisch gilt."] },
+      { type: "p", parts: ["Manche Versicherungsbedingungen definieren eigene Grenzen, andere orientieren sich stärker an der Rechtsprechung und den individuellen Umständen."] },
+      { type: "p", parts: ["Auch eine geringere Einkommenseinbuße kann im Einzelfall relevant sein."] },
+      { type: "standalone", text: "Deshalb muss immer das konkrete Bedingungswerk betrachtet werden." },
+    ],
+  },
+  {
+    id: "beispiel-konkrete-verweisung-greift",
+    heading: "Beispiel: Wann könnte die konkrete Verweisung greifen?",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir an, jemand arbeitet vor Eintritt der Berufsunfähigkeit in einem qualifizierten technischen Beruf."] },
+      { type: "p", parts: ["Aufgrund gesundheitlicher Einschränkungen kann die ursprüngliche Tätigkeit dauerhaft nicht mehr ausgeübt werden und die BU-Leistung wird anerkannt."] },
+      { type: "p", parts: ["Später nimmt die versicherte Person freiwillig eine andere Tätigkeit auf."] },
+      { type: "p", parts: ["Die neue Tätigkeit:"] },
+      {
+        type: "list",
+        items: [
+          "erfordert eine vergleichbare Qualifikation,",
+          "besitzt eine ähnliche berufliche Stellung,",
+          "führt zu einem annähernd vergleichbaren Einkommen",
+          "und entspricht insgesamt weitgehend der bisherigen Lebensstellung.",
+        ],
+      },
+      { type: "standalone", text: "In einer solchen Konstellation kann die konkrete Verweisung relevant werden." },
+      { type: "p", parts: ["Der Versicherer könnte je nach Vertragsbedingungen prüfen, ob die Voraussetzungen für die weitere Zahlung der BU-Rente noch vorliegen."] },
+    ],
+  },
+  {
+    id: "beispiel-konkrete-verweisung-schwierig",
+    heading: "Beispiel: Wann dürfte eine konkrete Verweisung deutlich schwieriger sein?",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir dagegen eine Person mit einem hochqualifizierten akademischen Beruf."] },
+      { type: "p", parts: ["Nach Eintritt der Berufsunfähigkeit kann der bisherige Beruf nicht mehr ausgeübt werden."] },
+      { type: "p", parts: ["Die Person nimmt später aus persönlichen Gründen eine einfache Teilzeittätigkeit auf."] },
+      { type: "p", parts: ["Die neue Tätigkeit liegt hinsichtlich Qualifikation, Verantwortung, Einkommen und sozialer Stellung deutlich unter dem früheren Beruf."] },
+      { type: "standalone", text: "Allein die Tatsache, dass wieder gearbeitet wird, bedeutet nicht automatisch, dass der Versicherer die BU-Rente einstellen kann." },
+      { type: "p", parts: ["Denn eine tatsächlich ausgeübte Tätigkeit ist noch lange nicht automatisch eine Tätigkeit, die der bisherigen Lebensstellung entspricht."] },
+    ],
+  },
+  {
+    id: "arbeiten-trotz-bu-rente",
+    heading: "Darf ich trotz BU-Rente wieder arbeiten?",
+    blocks: [
+      { type: "p", parts: ["Grundsätzlich kann eine berufliche Tätigkeit während des Bezugs einer BU-Rente möglich sein."] },
+      { type: "p", parts: ["Das wird häufig falsch verstanden."] },
+      { type: "standalone", text: "Eine anerkannte Berufsunfähigkeit bedeutet nicht automatisch, dass du überhaupt keiner Tätigkeit mehr nachgehen darfst." },
+      { type: "p", parts: ["Entscheidend ist zunächst, ob du deinen versicherten Beruf im erforderlichen Umfang noch ausüben kannst."] },
+      { type: "p", parts: ["Wenn du anschließend eine andere Tätigkeit aufnimmst, muss geprüft werden, ob diese neue Tätigkeit nach deinem Vertrag eine konkrete Verweisung ermöglicht."] },
+      { type: "p", parts: ["Deshalb lautet die Frage nicht einfach:"] },
+      { type: "quote", text: "„Darf ich während der BU arbeiten?“" },
+      { type: "p", parts: ["Die bessere Frage lautet:"] },
+      { type: "quote", text: "„Welche Auswirkungen hat meine konkret ausgeübte neue Tätigkeit auf meinen individuellen BU-Vertrag?“" },
+      { type: "p", parts: ["Und diese Frage lässt sich nur anhand der konkreten Tätigkeit und der Versicherungsbedingungen sauber beantworten."] },
+    ],
+  },
+  {
+    id: "ist-jeder-hinzuverdienst-problematisch",
+    heading: "Ist jeder Hinzuverdienst problematisch?",
+    blocks: [
+      { type: "standalone", text: "Nein." },
+      { type: "p", parts: ["Hinzuverdienst und konkrete Verweisung sind nicht automatisch dasselbe."] },
+      { type: "p", parts: ["Das Einkommen ist ein wichtiger Bestandteil der Prüfung, aber nicht der einzige."] },
+      { type: "p", parts: ["Relevant können außerdem sein:"] },
+      {
+        type: "list",
+        items: ["berufliche Qualifikation", "tatsächliche Aufgaben", "Verantwortung", "soziale Wertschätzung", "Arbeitszeit", "gesundheitliche Anforderungen", "bisherige Lebensstellung"],
+      },
+      { type: "p", parts: ["Deshalb sollte man bei einer neuen Tätigkeit nicht ausschließlich auf eine bestimmte Einkommensgrenze schauen."] },
+      { type: "standalone", text: "Die Gesamtbetrachtung ist entscheidend." },
+    ],
+  },
+  {
+    id: "nachpruefung",
+    heading: "Was passiert bei der Nachprüfung?",
+    blocks: [
+      { type: "p", parts: ["Ein BU-Versicherer kann nach Anerkennung eines Leistungsfalls unter den vertraglichen Voraussetzungen prüfen, ob die Voraussetzungen für die Leistung weiterhin vorliegen."] },
+      { type: "p", parts: ["Dabei kann auch eine neu aufgenommene Tätigkeit relevant werden."] },
+      { type: "p", parts: ["Ist jemand weiterhin im ursprünglichen Beruf berufsunfähig, übt inzwischen aber eine andere vergleichbare Tätigkeit aus, kann die konkrete Verweisung im Rahmen der Nachprüfung eine Rolle spielen."] },
+      { type: "standalone", text: "Genau deshalb sollte man die Regelungen zur konkreten Verweisung nicht erst dann lesen, wenn bereits ein Leistungsfall eingetreten ist." },
+      { type: "p", parts: ["Sie gehören aus meiner Sicht zur Tarifprüfung vor Vertragsabschluss."] },
+    ],
+  },
+  {
+    id: "neuen-beruf-wieder-aufgeben",
+    heading: "Was passiert, wenn ich den neuen Beruf später wieder aufgebe?",
+    blocks: [
+      { type: "p", parts: ["Auch diese Situation kann relevant werden."] },
+      { type: "p", parts: ["Wurde eine BU-Leistung wegen einer tatsächlich ausgeübten vergleichbaren Tätigkeit nicht mehr gezahlt und wird diese Tätigkeit später beendet, ist damit nicht automatisch jede weitere Entwicklung ausgeschlossen."] },
+      { type: "standalone", text: "Besteht im ursprünglich versicherten Beruf weiterhin Berufsunfähigkeit, kann ein Leistungsanspruch grundsätzlich wieder relevant werden." },
+      { type: "p", parts: ["Wie das konkret geprüft wird, hängt vom individuellen Sachverhalt und den jeweiligen Versicherungsbedingungen ab."] },
+      { type: "p", parts: ["Auch hier sollte deshalb nicht mit pauschalen Aussagen gearbeitet werden."] },
+    ],
+  },
+  {
+    id: "vollstaendiger-verzicht-konkrete-verweisung",
+    heading: "Wie wichtig ist ein vollständiger Verzicht auf die konkrete Verweisung?",
+    blocks: [
+      { type: "p", parts: ["Inzwischen gibt es am Markt Tarife oder besondere Regelungen, die bei der konkreten Verweisung weitergehen."] },
+      { type: "p", parts: ["Teilweise existieren Verzichtsregelungen für bestimmte Berufsgruppen, teilweise auch weitergehende Lösungen."] },
+      { type: "p", parts: ["Ein solcher Verzicht kann für die versicherte Person natürlich attraktiv sein."] },
+      { type: "standalone", text: "Er schafft Klarheit." },
+      { type: "p", parts: ["Wer im ursprünglich versicherten Beruf weiterhin berufsunfähig ist, reduziert damit das Risiko, dass eine freiwillig aufgenommene andere Tätigkeit zur Diskussion über die weitere BU-Leistung führt."] },
+      { type: "standalone", text: "Trotzdem würde ich einen BU-Tarif nicht allein nach diesem Merkmal auswählen." },
+    ],
+  },
+  {
+    id: "meine-einschaetzung",
+    heading: "Meine Einschätzung zur konkreten Verweisung",
+    blocks: [
+      {
+        type: "insight",
+        title: "Meine Einschätzung",
+        parts: [
+          ["Ich bewerte die konkrete Verweisung anders als die abstrakte Verweisung."],
+          ["Bei der abstrakten Verweisung halte ich einen sauberen Verzicht für eine wichtige Grundvoraussetzung."],
+          ["Bei der konkreten Verweisung ist die Situation differenzierter."],
+          [
+            "Wenn jemand freiwillig einen neuen Beruf ausübt, dort eine vergleichbare berufliche Stellung erreicht und ein ähnliches Einkommen erzielt, ist zumindest nachvollziehbar, warum Versicherungsbedingungen diesen Fall anders behandeln als eine rein theoretische Verweisungsmöglichkeit.",
+          ],
+          ["Ein vollständiger Verzicht auf die konkrete Verweisung kann trotzdem einen echten Mehrwert bieten."],
+          ["Ich würde dafür aber nicht automatisch wichtige andere Punkte einer Berufsunfähigkeitsversicherung opfern."],
+          [
+            "Für mich sind beispielsweise eine ausreichend hohe BU-Rente, eine passende Laufzeit, gute Erhöhungsmöglichkeiten und insgesamt starke Versicherungsbedingungen weiterhin entscheidend.",
+          ],
+          ["Ein einzelnes besonderes Tarifmerkmal sollte deshalb nie isoliert betrachtet werden."],
+        ],
+      },
+    ],
+  },
+  {
+    id: "akademiker-lebensstellung",
+    heading: "Gerade bei Akademikern ist die Lebensstellung entscheidend",
+    blocks: [
+      { type: "p", parts: ["Bei hochqualifizierten Berufen kann die konkrete Verweisung in der Praxis besonders interessant sein."] },
+      {
+        type: "p",
+        parts: [
+          "Wer beispielsweise einen Beruf mit hoher fachlicher Qualifikation, Verantwortung und entsprechender gesellschaftlicher sowie wirtschaftlicher Stellung ausgeübt hat, findet nicht automatisch eine neue Tätigkeit, die in allen relevanten Punkten vergleichbar ist.",
+        ],
+      },
+      { type: "standalone", text: "Eine einfache Nebentätigkeit führt deshalb nicht automatisch zur konkreten Verweisung." },
+      { type: "p", parts: ["Je größer der Unterschied zwischen alter und neuer Tätigkeit bei Qualifikation, Verantwortung, Einkommen und sozialer Stellung ist, desto wichtiger wird die genaue Prüfung der Lebensstellung."] },
+      { type: "p", parts: ["Das zeigt noch einmal:"] },
+      { type: "standalone", text: "Es reicht nicht aus, nur festzustellen, dass jemand wieder arbeitet." },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "keyFacts")
+              return (
+                <div class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+                  <ul class="space-y-4">
+                    {block.items.map((item) => (
+                      <li class="flex items-start gap-3">
+                        <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+                        <p class="text-sm leading-relaxed text-ink-700/85">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            if (block.type === "insight")
+              return (
+                <div class="rounded-2xl border border-ink-950/10 bg-ink-950 px-6 py-6 text-white sm:px-8 sm:py-7">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand-300">{block.title}</p>
+                  <div class="mt-4 space-y-3">
+                    {block.parts.map((parts) => (
+                      <RichParagraph parts={parts} class="text-sm leading-relaxed text-white/85 sm:text-base" boldClass="text-white" />
+                    ))}
+                  </div>
+                </div>
+              );
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "compare")
+              return (
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-2xl border border-black/5 bg-white p-5">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{block.labelA}</p>
+                    <p class="mt-2 font-serif text-base leading-relaxed text-ink-950">{block.textA}</p>
+                  </div>
+                  <div class="rounded-2xl border border-black/5 bg-white p-5">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{block.labelB}</p>
+                    <p class="mt-2 font-serif text-base leading-relaxed text-ink-950">{block.textB}</p>
+                  </div>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

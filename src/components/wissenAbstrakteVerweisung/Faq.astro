@@ -1,0 +1,59 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Was bedeutet abstrakte Verweisung in der BU?",
+    answer:
+      "Bei der abstrakten Verweisung kann eine theoretisch mögliche andere Tätigkeit berücksichtigt werden, obwohl du diese Tätigkeit tatsächlich gar nicht ausübst. Voraussetzung ist, dass die Tätigkeit nach den jeweiligen Vertragsbedingungen unter anderem zu deinen Fähigkeiten und deiner bisherigen Lebensstellung passt.",
+  },
+  {
+    question: "Sollte eine BU auf die abstrakte Verweisung verzichten?",
+    answer: "Aus meiner Sicht ja. Bei einer modernen, leistungsstarken Berufsunfähigkeitsversicherung sollte ein sauberer Verzicht auf die abstrakte Verweisung vorhanden sein.",
+  },
+  {
+    question: "Ist der Verzicht heute noch ein besonderes Qualitätsmerkmal?",
+    answer:
+      "Nicht unbedingt. Bei vielen heutigen guten BU-Tarifen gehört der Verzicht inzwischen zum erwartbaren Standard. Entscheidend ist deshalb, auch die übrigen Versicherungsbedingungen zu vergleichen.",
+  },
+  {
+    question: "Was ist der Unterschied zur konkreten Verweisung?",
+    answer: "Bei der abstrakten Verweisung geht es um einen Beruf, den du theoretisch ausüben könntest. Bei der konkreten Verweisung geht es um eine andere Tätigkeit, die du tatsächlich ausübst.",
+  },
+  {
+    question: "Können ältere Verträge anders geregelt sein?",
+    answer:
+      "Ja. Gerade ältere Tarifgenerationen können andere Verweisungsregelungen oder besondere Bestimmungen beim Ausscheiden aus dem Berufsleben enthalten. Entscheidend ist immer das konkrete Bedingungswerk des eigenen Vertrages.",
+  },
+  {
+    question: "Ist Elternzeit für die abstrakte Verweisung relevant?",
+    answer:
+      "Das kann je nach Vertragsbedingungen relevant sein. Wichtig ist, wie der Versicherer ein vorübergehendes oder dauerhaftes Ausscheiden aus dem Berufsleben definiert und welcher Beruf anschließend für die BU-Prüfung maßgeblich bleibt.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Häufige Fragen zur <span class="text-brand-600">abstrakten Verweisung</span>
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
