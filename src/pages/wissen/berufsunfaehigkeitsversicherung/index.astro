@@ -7,20 +7,24 @@ import { buWissenCategories, buAvailableLinks } from "@/lib/wissen";
 ---
 
 <Layout
-  title="Berufsunfähigkeitsversicherung Wissen & Ratgeber | Fabio Rumpf"
-  description="Berufsunfähigkeitsversicherung verständlich erklärt: Vertragsgestaltung, Gesundheitsfragen, Bedingungen und wichtige Entscheidungen rund um die BU."
+  title="BU-Wissen & Ratgeber | Fabio Rumpf"
+  description="BU-Wissen von Fabio Rumpf: verständliche Ratgeber zu Vertragsbedingungen, Leistungsdynamik, Verweisung, Gesundheitsfragen und Risikovoranfrage."
   fullTitle
 >
   <Hero
     eyebrow="BU-Wissen"
-    title="Berufs­unfähigkeits­versicherung: Wissen & Ratgeber"
-    titleHighlight="Wissen & Ratgeber"
+    title="BU-Wissen: Berufsunfähigkeitsversicherung verständlich erklärt"
+    titleHighlight="Berufsunfähigkeitsversicherung"
     intro={[
-      "Hier beantworte ich die wichtigsten Fragen zur Berufsunfähigkeitsversicherung verständlich und praxisnah – von den Grundlagen bis zu Vertragsdetails, die im Leistungsfall wirklich zählen.",
+      "Hier findest du meine Ratgeber zu wichtigen Fragen rund um die Berufsunfähigkeitsversicherung – von Vertragsgestaltung und Verweisungsklauseln bis zu Gesundheitsangaben und Risikovoranfrage.",
     ]}
   />
 
-  <TopicCategoryList categories={buWissenCategories} />
+  <TopicCategoryList
+    categories={buWissenCategories}
+    heading="Themen im BU-Wissen"
+    intro="Die Inhalte sind nach Themen geordnet. Bereits veröffentlichte Artikel kannst du direkt öffnen; weitere BU-Themen ergänze ich Schritt für Schritt."
+  />
 
   <AvailableNow
     title="Bereits verfügbar"

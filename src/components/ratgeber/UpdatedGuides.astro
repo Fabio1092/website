@@ -2,6 +2,12 @@
 import { recentlyUpdatedGuides, guideHref } from "@/lib/guides";
 
 const dateFormatter = new Intl.DateTimeFormat("de-DE", { dateStyle: "long" });
+
+const ctaLabels: Record<string, string> = {
+  auslandskrankenversicherung: "Ratgeber zur Auslandskrankenversicherung",
+  privathaftpflichtversicherung: "Ratgeber zur Privathaftpflicht",
+  zahnzusatzversicherung: "Ratgeber zur Zahnzusatzversicherung",
+};
 ---
 
 <section class="bg-white py-16 sm:py-24">
@@ -25,7 +31,7 @@ const dateFormatter = new Intl.DateTimeFormat("de-DE", { dateStyle: "long" });
               </div>
               <div class="flex shrink-0 items-center gap-4 sm:flex-col sm:items-end sm:gap-1">
                 {guide.updatedAt && <time datetime={guide.updatedAt} class="text-xs text-ink-700/50">{dateFormatter.format(new Date(guide.updatedAt))}</time>}
-                <span class="text-sm font-semibold text-brand-700">Ratgeber ansehen →</span>
+                <span class="text-sm font-semibold text-brand-700">{ctaLabels[guide.slug] ?? "Ratgeber ansehen"} →</span>
               </div>
             </a>
           </li>

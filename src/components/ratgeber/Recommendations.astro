@@ -1,6 +1,12 @@
 ---
 import GuideCard from "@/components/ratgeber/GuideCard.astro";
 import { recommendedGuides, guideHref } from "@/lib/guides";
+
+const ctaLabels: Record<string, string> = {
+  auslandskrankenversicherung: "Meine Einschätzung zur Auslandskrankenversicherung",
+  privathaftpflichtversicherung: "Meine Einschätzung zur Privathaftpflicht",
+  zahnzusatzversicherung: "Meine Einschätzung zur Zahnzusatzversicherung",
+};
 ---
 
 <section class="bg-brand-50/30 py-16 sm:py-24">
@@ -31,7 +37,7 @@ import { recommendedGuides, guideHref } from "@/lib/guides";
             title={guide.title}
             teaser={guide.recommendedTeaser ?? guide.teaser}
             href={guideHref(guide.slug)}
-            ctaLabel="Meine Einschätzung ansehen"
+            ctaLabel={ctaLabels[guide.slug] ?? "Meine Einschätzung ansehen"}
             comingSoon={guide.status === "coming-soon"}
             delay={index * 80}
           />

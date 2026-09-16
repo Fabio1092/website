@@ -7,20 +7,24 @@ import { pkvWissenCategories, pkvAvailableLinks } from "@/lib/wissen";
 ---
 
 <Layout
-  title="Private Krankenversicherung Wissen & Ratgeber | Fabio Rumpf"
-  description="Private Krankenversicherung verständlich erklärt: Wechsel, Leistungen, Gesundheitsprüfung, Beiträge und wichtige Entscheidungen rund um die PKV."
+  title="PKV-Wissen & Ratgeber | Fabio Rumpf"
+  description="PKV-Wissen von Fabio Rumpf: verständliche Ratgeber zu Tarifen, Leistungen, Gesundheitsangaben, Risikovoranfrage und langfristigen Entscheidungen."
   fullTitle
 >
   <Hero
     eyebrow="PKV-Wissen"
-    title="Private Krankenversicherung: Wissen & Ratgeber"
-    titleHighlight="Wissen & Ratgeber"
+    title="PKV-Wissen: Private Krankenversicherung verständlich erklärt"
+    titleHighlight="Private Krankenversicherung"
     intro={[
-      "Hier beantworte ich die wichtigsten Fragen zur privaten Krankenversicherung verständlich und praxisnah – von den Grundlagen bis zu Entscheidungen, die dich langfristig begleiten.",
+      "Hier findest du meine Ratgeber zu wichtigen Fragen rund um die private Krankenversicherung – von Tarifen und Leistungen bis zu Gesundheitsangaben, Risikovoranfrage und langfristigen Entscheidungen.",
     ]}
   />
 
-  <TopicCategoryList categories={pkvWissenCategories} />
+  <TopicCategoryList
+    categories={pkvWissenCategories}
+    heading="Themen im PKV-Wissen"
+    intro="Die Inhalte sind nach Themen geordnet. Verfügbare Artikel kannst du direkt öffnen; weitere PKV-Themen ergänze ich Schritt für Schritt."
+  />
 
   <AvailableNow
     title="Bereits verfügbar"
