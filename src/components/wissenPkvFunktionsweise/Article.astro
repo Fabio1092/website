@@ -1,0 +1,748 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "keyFacts"; items: string[] }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const sections: Section[] = [
+  {
+    id: "das-wichtigste-auf-einen-blick",
+    heading: "Das Wichtigste auf einen Blick",
+    blocks: [
+      {
+        type: "keyFacts",
+        items: [
+          "Die private Krankenversicherung basiert auf einem individuellen Versicherungsvertrag.",
+          "Der konkrete Tarif und seine Versicherungsbedingungen bestimmen den Leistungsumfang.",
+          "Der PKV-Beitrag wird grundsätzlich nicht als Prozentsatz des Einkommens berechnet.",
+          "Eintrittsalter, Leistungsumfang und Gesundheitszustand bei Vertragsbeginn beeinflussen die Kalkulation.",
+          "Vor Abschluss eines regulären PKV-Tarifs findet grundsätzlich eine Gesundheitsprüfung statt.",
+          "Privatversicherte erhalten ambulante Rechnungen in der Regel selbst und reichen sie anschließend beim Versicherer ein.",
+          "Für jede privat versicherte Person besteht grundsätzlich ein eigener Versicherungsschutz mit einem eigenen Beitrag.",
+          "Die PKV bildet Alterungsrückstellungen für höhere durchschnittliche Gesundheitskosten im späteren Leben.",
+          "Eine Erkrankung nach Vertragsabschluss führt nicht dazu, dass allein deshalb der persönliche Beitrag individuell erhöht wird.",
+          "Beiträge können sich dennoch verändern, wenn sich maßgebliche Kalkulationsgrundlagen eines Tarifs verändern.",
+          "Innerhalb des bestehenden Versicherers besteht ein gesetzlich geregeltes Tarifwechselrecht.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "was-ist-eine-private-krankenversicherung",
+    heading: "1. Was ist eine private Krankenversicherung?",
+    blocks: [
+      { type: "p", parts: ["Die private Krankenversicherung ist eine vertraglich geregelte Absicherung von Krankheitskosten."] },
+      { type: "p", parts: ["Du vereinbarst mit einem Versicherungsunternehmen einen bestimmten Versicherungsschutz."] },
+      { type: "p", parts: ["Dieser kann beispielsweise Leistungen für folgende Bereiche enthalten:"] },
+      {
+        type: "list",
+        items: [
+          "ambulante Behandlungen",
+          "Medikamente",
+          "Heilmittel",
+          "Hilfsmittel",
+          "Psychotherapie",
+          "Krankenhausbehandlungen",
+          "Zahnbehandlungen",
+          "Zahnersatz",
+          "Vorsorge",
+          "Leistungen im Ausland",
+        ],
+      },
+      { type: "p", parts: ["Welche Leistungen tatsächlich versichert sind, ergibt sich aus dem jeweiligen Tarif und den dazugehörigen Versicherungsbedingungen."] },
+      { type: "standalone", text: "Das ist ein wesentlicher Unterschied zur gesetzlichen Krankenversicherung." },
+      {
+        type: "p",
+        parts: [
+          "In der GKV ist ein großer Teil des Leistungsrahmens gesetzlich vorgegeben. In der PKV entsteht der individuelle Leistungsanspruch dagegen vor allem aus dem abgeschlossenen Versicherungsvertrag.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Nach § 192 Versicherungsvertragsgesetz erstattet eine Krankheitskostenversicherung im vereinbarten Umfang insbesondere Aufwendungen für medizinisch notwendige Heilbehandlungen wegen Krankheit oder Unfallfolgen sowie weitere vertraglich vereinbarte Leistungen.",
+        ],
+      },
+      { type: "p", parts: ["Das entscheidende Wort lautet dabei:"] },
+      { type: "quote", text: "„im vereinbarten Umfang“" },
+      { type: "p", parts: ["Nicht jede private Krankenversicherung bietet automatisch denselben Leistungsumfang."] },
+      { type: "p", parts: ["Deshalb gibt es nicht einfach „die PKV“."] },
+      { type: "standalone", text: "Es gibt unterschiedliche Tarife mit teilweise erheblichen Unterschieden in ihren Versicherungsbedingungen." },
+    ],
+  },
+  {
+    id: "wer-kann-sich-privat-krankenversichern",
+    heading: "2. Wer kann sich privat krankenversichern?",
+    blocks: [
+      { type: "p", parts: ["Nicht jede Person kann jederzeit frei zwischen gesetzlicher und privater Krankenversicherung wählen."] },
+      { type: "p", parts: ["Welche Möglichkeiten bestehen, hängt vom sozialversicherungsrechtlichen Status ab."] },
+      { type: "h3", text: "Arbeitnehmer" },
+      { type: "p", parts: ["Bei Arbeitnehmern spielt insbesondere die Jahresarbeitsentgeltgrenze eine Rolle."] },
+      {
+        type: "p",
+        parts: [
+          "Arbeitnehmer, deren regelmäßiges Jahresarbeitsentgelt die jeweils geltende Grenze übersteigt und bei denen die weiteren gesetzlichen Voraussetzungen erfüllt sind, können versicherungsfrei in der gesetzlichen Krankenversicherung werden.",
+        ],
+      },
+      { type: "standalone", text: "Für das Jahr 2026 beträgt die allgemeine Jahresarbeitsentgeltgrenze 77.400 Euro." },
+      { type: "p", parts: ["Diese Grenze wird regelmäßig angepasst."] },
+      { type: "p", parts: ["Deshalb sollte bei späterer Nutzung dieser Information immer geprüft werden, welche Grenze im betreffenden Jahr gilt."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr zur Beratung für diese Zielgruppe findest du unter ",
+          { a: "PKV für Angestellte", href: "/pkv-angestellte-kassel/" },
+          ".",
+        ],
+      },
+      { type: "h3", text: "Selbstständige und Freiberufler" },
+      { type: "p", parts: ["Selbstständige und Freiberufler unterliegen häufig nicht der allgemeinen Versicherungspflicht als Arbeitnehmer."] },
+      { type: "standalone", text: "Abhängig von ihrer individuellen Situation können sie sich freiwillig gesetzlich oder privat krankenversichern." },
+      {
+        type: "p",
+        parts: [
+          "Mehr zur Beratung für diese Zielgruppe findest du unter ",
+          { a: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel/" },
+          ".",
+        ],
+      },
+      { type: "h3", text: "Beamte" },
+      { type: "p", parts: ["Bei Beamten ist zusätzlich die Beihilfe relevant."] },
+      { type: "p", parts: ["Der Dienstherr beteiligt sich über die Beihilfe an bestimmten beihilfefähigen Krankheitskosten."] },
+      { type: "p", parts: ["Die private Krankenversicherung deckt dann typischerweise den verbleibenden Kostenanteil ab."] },
+      { type: "standalone", text: "Aus diesem Grund funktionieren PKV-Tarife für Beamte anders als klassische Vollkostentarife für Arbeitnehmer oder Selbstständige." },
+      {
+        type: "p",
+        parts: [
+          "Mehr zur Beratung für diese Zielgruppe findest du unter ",
+          { a: "PKV für Beamte", href: "/pkv-beamte-kassel/" },
+          ".",
+        ],
+      },
+      { type: "h3", text: "Studenten" },
+      { type: "p", parts: ["Auch Studenten können unter bestimmten Voraussetzungen zwischen gesetzlicher und privater Krankenversicherung wählen."] },
+      { type: "p", parts: ["Dabei gelten eigene sozialversicherungsrechtliche Regelungen und Fristen."] },
+      { type: "p", parts: ["Die Frage:"] },
+      { type: "quote", text: "„Darf ich mich privat versichern?“" },
+      { type: "p", parts: ["sollte deshalb immer von einer zweiten Frage getrennt werden:"] },
+      { type: "quote", text: "„Passt die private Krankenversicherung auch langfristig zu meiner persönlichen Situation?“" },
+      { type: "standalone", text: "Beides ist nicht dasselbe." },
+    ],
+  },
+  {
+    id: "wie-kommt-ein-pkv-vertrag-zustande",
+    heading: "3. Wie kommt ein PKV-Vertrag zustande?",
+    blocks: [
+      { type: "p", parts: ["Wer eine reguläre private Krankenvollversicherung abschließen möchte, stellt einen Antrag bei einem privaten Krankenversicherer."] },
+      { type: "p", parts: ["Teil dieses Antrags sind normalerweise Gesundheitsfragen."] },
+      { type: "p", parts: ["Der Versicherer fragt beispielsweise nach:"] },
+      {
+        type: "list",
+        items: ["Erkrankungen", "Beschwerden", "Untersuchungen", "Behandlungen", "Medikamenteneinnahmen", "Psychotherapie", "Krankenhausaufenthalten", "bestimmten Diagnosen"],
+      },
+      { type: "p", parts: ["Dabei gelten je nach Versicherer unterschiedliche Fragestellungen und Abfragezeiträume."] },
+      { type: "p", parts: ["Der Versicherer verwendet diese Angaben, um das bei Vertragsbeginn bestehende gesundheitliche Risiko einzuschätzen."] },
+      { type: "p", parts: ["Abhängig vom Ergebnis kann ein Antrag beispielsweise:"] },
+      {
+        type: "list",
+        items: [
+          "zu normalen Bedingungen angenommen werden",
+          "mit einem Risikozuschlag angenommen werden",
+          "in bestimmten Konstellationen mit einem Leistungsausschluss angeboten werden",
+          "zurückgestellt werden",
+          "oder abgelehnt werden",
+        ],
+      },
+      { type: "p", parts: ["Für besondere gesetzliche Tarife wie den Basistarif gelten andere Regeln."] },
+      { type: "standalone", text: "Im Basistarif dürfen beispielsweise wegen eines erhöhten gesundheitlichen Risikos keine Risikozuschläge oder Leistungsausschlüsse vereinbart werden." },
+    ],
+  },
+  {
+    id: "warum-sind-gesundheitsfragen-wichtig",
+    heading: "4. Warum sind die Gesundheitsfragen so wichtig?",
+    blocks: [
+      { type: "p", parts: ["Die Gesundheitsprüfung gehört zu den wichtigsten Schritten beim Abschluss einer privaten Krankenversicherung."] },
+      {
+        type: "p",
+        parts: [
+          "Nach § 19 Versicherungsvertragsgesetz müssen Antragsteller die ihnen bekannten gefahrerheblichen Umstände angeben, nach denen der Versicherer in Textform fragt.",
+        ],
+      },
+      { type: "standalone", text: "Deshalb sollte man Gesundheitsfragen nicht nach Erinnerung oder Gefühl beantworten." },
+      { type: "p", parts: ["Entscheidend ist, was der Versicherer konkret wissen möchte und welcher Zeitraum abgefragt wird."] },
+      { type: "p", parts: ["Je nach gesundheitlicher Vorgeschichte kann es sinnvoll sein, beispielsweise:"] },
+      {
+        type: "list",
+        items: ["Patientenakten anzufordern", "Diagnosen zu prüfen", "Arztunterlagen einzusehen", "Abrechnungsdaten zu kontrollieren", "unklare Diagnosen mit dem behandelnden Arzt zu besprechen"],
+      },
+      {
+        type: "p",
+        parts: [
+          "Eine Diagnose in einer Patientenakte bedeutet dabei nicht automatisch, dass sie medizinisch richtig, aktuell oder für jeden Versicherer gleich relevant ist.",
+        ],
+      },
+      { type: "p", parts: ["Trotzdem sollte eine unklare Dokumentation vor Antragstellung geklärt werden."] },
+      { type: "p", parts: ["Bei umfangreicheren Vorerkrankungen kann zusätzlich eine Risikovoranfrage sinnvoll sein."] },
+      { type: "p", parts: ["Dabei wird zunächst geprüft, wie Versicherer eine gesundheitliche Vorgeschichte voraussichtlich bewerten."] },
+      {
+        type: "p",
+        parts: [
+          "Auf dieser Website gibt es dazu eigene vertiefende Inhalte zu ",
+          { a: "PKV-Gesundheitsfragen", href: "/pkv-gesundheitsfragen/" },
+          " und zur ",
+          { a: "PKV-Risikovoranfrage", href: "/pkv-risikovoranfrage/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "wie-wird-der-beitrag-berechnet",
+    heading: "5. Wie wird der Beitrag in der PKV berechnet?",
+    blocks: [
+      { type: "p", parts: ["Einer der größten Unterschiede zwischen gesetzlicher und privater Krankenversicherung liegt in der Beitragsberechnung."] },
+      { type: "standalone", text: "Der reguläre PKV-Beitrag wird grundsätzlich nicht aus dem laufenden Einkommen berechnet." },
+      { type: "p", parts: ["Zu den wichtigen Faktoren bei Vertragsbeginn gehören insbesondere:"] },
+      { type: "h3", text: "Eintrittsalter" },
+      { type: "p", parts: ["Das Eintrittsalter beeinflusst die Kalkulation."] },
+      { type: "p", parts: ["Wer später in die PKV eintritt, hat weniger Zeit, Alterungsrückstellungen aufzubauen."] },
+      { type: "p", parts: ["Dadurch ist bei ansonsten vergleichbarer Tarifgestaltung typischerweise ein höherer Beitrag erforderlich."] },
+      { type: "h3", text: "Gesundheitszustand" },
+      { type: "p", parts: ["Der Gesundheitszustand wird bei Vertragsbeginn im Rahmen der Risikoprüfung berücksichtigt."] },
+      { type: "p", parts: ["Bestehende gesundheitliche Risiken können beispielsweise zu einem Risikozuschlag führen."] },
+      { type: "h3", text: "Leistungsumfang" },
+      { type: "p", parts: ["Auch der gewählte Leistungsumfang beeinflusst den Beitrag."] },
+      {
+        type: "p",
+        parts: [
+          "Ein Tarif mit umfangreicheren versicherten Leistungen benötigt grundsätzlich eine andere Kalkulation als ein Tarif mit deutlich begrenzterem Leistungsumfang.",
+        ],
+      },
+      { type: "h3", text: "Selbstbehalt" },
+      { type: "p", parts: ["Auch ein vereinbarter Selbstbehalt beeinflusst den Beitrag."] },
+      { type: "p", parts: ["Übernimmt die versicherte Person einen größeren Teil ihrer Krankheitskosten selbst, kann dies den Versicherungsbeitrag reduzieren."] },
+      { type: "p", parts: ["Wichtig ist deshalb:"] },
+      { type: "standalone", text: "Ein höheres Einkommen macht einen bestehenden PKV-Tarif nicht automatisch teurer." },
+      { type: "p", parts: ["Ein sinkendes Einkommen macht denselben Tarif aber auch nicht automatisch günstiger."] },
+      { type: "standalone", text: "Der Beitrag und das Einkommen sind grundsätzlich voneinander getrennte Größen." },
+    ],
+  },
+  {
+    id: "aequivalenzprinzip",
+    heading: "6. Was bedeutet das Äquivalenzprinzip?",
+    blocks: [
+      { type: "p", parts: ["Die private Krankenversicherung kalkuliert ihre Beiträge nach dem sogenannten Äquivalenzprinzip."] },
+      { type: "p", parts: ["Vereinfacht bedeutet das:"] },
+      {
+        type: "standalone",
+        text: "Beiträge und erwartete Versicherungsleistungen sollen für ein Versichertenkollektiv langfristig in einem kalkulatorischen Verhältnis zueinander stehen.",
+      },
+      { type: "p", parts: ["Der Versicherer betrachtet dabei unter anderem die voraussichtlich entstehenden Gesundheitskosten und weitere versicherungsmathematische Rechnungsgrundlagen."] },
+      { type: "p", parts: ["Das unterscheidet sich vom Finanzierungsprinzip der gesetzlichen Krankenversicherung."] },
+      { type: "p", parts: ["Wichtig für das Verständnis ist:"] },
+      { type: "quote", text: "Die PKV ist keine persönliche Sparkasse, bei der jeder Versicherte exakt seine eigenen späteren Krankheitskosten anspart." },
+      { type: "p", parts: ["Die Versicherung funktioniert weiterhin über Kollektive und Risikoausgleich."] },
+      { type: "standalone", text: "Die Alterungsrückstellungen sind Bestandteil dieser langfristigen Kalkulation." },
+    ],
+  },
+  {
+    id: "alterungsrueckstellungen",
+    heading: "7. Was sind Alterungsrückstellungen?",
+    blocks: [
+      { type: "p", parts: ["Mit zunehmendem Alter steigen statistisch die durchschnittlichen Ausgaben für medizinische Leistungen."] },
+      {
+        type: "p",
+        parts: [
+          "Würde eine private Krankenversicherung ausschließlich die jeweils im aktuellen Alter erwarteten Kosten berechnen, müssten die Beiträge allein aufgrund des Älterwerdens stark ansteigen.",
+        ],
+      },
+      { type: "standalone", text: "Deshalb werden Alterungsrückstellungen aufgebaut." },
+      { type: "p", parts: ["Vereinfacht funktioniert das folgendermaßen:"] },
+      { type: "p", parts: ["In jüngeren Jahren liegt der kalkulierte Beitrag teilweise über den durchschnittlich erwarteten Gesundheitskosten des jeweiligen Alters."] },
+      { type: "p", parts: ["Ein Teil dieses Beitrags fließt in die Alterungsrückstellungen."] },
+      { type: "p", parts: ["In höheren Altersstufen können diese Rückstellungen dazu beitragen, die steigenden durchschnittlichen Krankheitskosten mitzufinanzieren."] },
+      { type: "standalone", text: "Das bedeutet allerdings nicht, dass PKV-Beiträge im Laufe des Lebens niemals steigen können." },
+      { type: "p", parts: ["Alterungsrückstellungen sollen den kalkulierten Effekt des Älterwerdens berücksichtigen."] },
+      { type: "p", parts: ["Andere Veränderungen der Rechnungsgrundlagen können trotzdem Beitragsanpassungen erforderlich machen."] },
+    ],
+  },
+  {
+    id: "teurer-bei-krankheit",
+    heading: "8. Wird meine PKV teurer, wenn ich krank werde?",
+    blocks: [
+      {
+        type: "standalone",
+        text: "Nein – jedenfalls nicht in dem Sinne, dass dein individueller Beitrag nach Vertragsabschluss erhöht wird, nur weil du persönlich krank wirst oder hohe Rechnungen einreichst.",
+      },
+      { type: "p", parts: ["Der Gesundheitszustand wird grundsätzlich beim Eintritt in die Versicherung bewertet."] },
+      { type: "p", parts: ["Verschlechtert sich dein Gesundheitszustand später, führt dies nicht zu einem neuen individuellen Risikozuschlag aufgrund dieser Erkrankung."] },
+      { type: "p", parts: ["Das ist ein wichtiger Grundgedanke der Versicherung."] },
+      {
+        type: "standalone",
+        text: "Wer nach Vertragsabschluss beispielsweise eine chronische Erkrankung entwickelt, wird nicht jedes Jahr neu medizinisch bewertet und erhält deshalb keinen persönlichen Krankheitszuschlag.",
+      },
+    ],
+  },
+  {
+    id: "warum-koennen-beitraege-steigen",
+    heading: "9. Warum können PKV-Beiträge trotzdem steigen?",
+    blocks: [
+      { type: "p", parts: ["Dass eine individuelle Erkrankung keine persönliche Beitragserhöhung auslöst, bedeutet nicht, dass ein PKV-Beitrag dauerhaft unverändert bleibt."] },
+      { type: "p", parts: ["Die Kalkulation eines Tarifs basiert auf verschiedenen Rechnungsgrundlagen."] },
+      { type: "standalone", text: "Verändern sich maßgebliche Grundlagen dauerhaft stärker als kalkuliert, kann eine Beitragsanpassung erforderlich werden." },
+      { type: "p", parts: ["Mögliche Ursachen können unter anderem sein:"] },
+      {
+        type: "list",
+        items: ["veränderte durchschnittliche Leistungsausgaben", "steigende Behandlungskosten", "medizinischer Fortschritt", "Veränderungen versicherungsmathematischer Rechnungsgrundlagen"],
+      },
+      { type: "p", parts: ["Beitragsanpassungen sind gesetzlich geregelt."] },
+      { type: "p", parts: ["Bei der substitutiven privaten Krankenversicherung ist eine Anpassung nicht einfach eine freie Preisentscheidung des Versicherers."] },
+      {
+        type: "p",
+        parts: [
+          "Die gesetzlichen Voraussetzungen und die versicherungsmathematische Kalkulation müssen berücksichtigt werden; bei entsprechenden Anpassungen ist zudem ein unabhängiger Treuhänder eingebunden.",
+        ],
+      },
+      { type: "p", parts: ["Deshalb sollte man zwei Dinge klar voneinander trennen:"] },
+      { type: "list", items: ["persönlicher Gesundheitszustand", "Beitragsentwicklung des gesamten Tarifs bzw. Versichertenkollektivs"] },
+    ],
+  },
+  {
+    id: "welche-leistungen-uebernimmt-die-pkv",
+    heading: "10. Welche Leistungen übernimmt eine private Krankenversicherung?",
+    blocks: [
+      { type: "p", parts: ["Darauf gibt es keine pauschale Antwort."] },
+      { type: "p", parts: ["Der Leistungsumfang hängt vom jeweiligen Tarif ab."] },
+      { type: "p", parts: ["Typische Leistungsbereiche sind beispielsweise:"] },
+      {
+        type: "table",
+        headers: ["Bereich", "Mögliche Tarifunterschiede"],
+        rows: [
+          ["Ambulante Behandlung", "Arztwahl, Erstattungshöhen, Gebührenordnung"],
+          ["Arzneimittel", "Voraussetzungen und mögliche Begrenzungen"],
+          ["Heilmittel", "Physiotherapie, Ergotherapie, Logopädie und weitere Leistungen"],
+          ["Hilfsmittel", "Art, Umfang und Erstattung bestimmter Hilfsmittel"],
+          ["Psychotherapie", "Verfahren, Sitzungszahlen und Genehmigungsregelungen"],
+          ["Krankenhaus", "allgemeine Krankenhausleistungen, Zimmer, Wahlarzt"],
+          ["Zahnbehandlung", "Zahnbehandlung, Zahnersatz und Implantate"],
+          ["Kieferorthopädie", "Umfang und Voraussetzungen"],
+          ["Vorsorge", "Umfang über gesetzliche Programme hinaus"],
+          ["Ausland", "Dauer und geografischer Umfang des Versicherungsschutzes"],
+        ],
+      },
+      { type: "p", parts: ["Deshalb ist die Aussage:"] },
+      { type: "quote", text: "„Ich bin privat versichert.“" },
+      { type: "p", parts: ["allein noch keine Aussage über die Qualität des Versicherungsschutzes."] },
+      { type: "standalone", text: "Zwei privat versicherte Personen können bei unterschiedlichen Tarifen einen erheblich unterschiedlichen Leistungsumfang haben." },
+      { type: "p", parts: ["Auch innerhalb desselben Versicherungsunternehmens können sich Tarife deutlich unterscheiden."] },
+    ],
+  },
+  {
+    id: "wie-funktioniert-eine-arztrechnung",
+    heading: "11. Wie funktioniert eine Arztrechnung in der PKV?",
+    blocks: [
+      { type: "p", parts: ["Die private Krankenversicherung arbeitet überwiegend nach dem Kostenerstattungsprinzip."] },
+      { type: "p", parts: ["Bei einer ambulanten Behandlung besteht normalerweise zunächst ein Vertragsverhältnis zwischen Patient und behandelndem Arzt."] },
+      { type: "p", parts: ["Der Patient erhält die Rechnung."] },
+      { type: "p", parts: ["Diese Rechnung wird anschließend beim privaten Krankenversicherer eingereicht."] },
+      { type: "p", parts: ["Der Versicherer prüft, welche Kosten entsprechend dem abgeschlossenen Tarif erstattungsfähig sind."] },
+      { type: "p", parts: ["Heute erfolgt die Einreichung häufig digital über eine App oder ein Kundenportal."] },
+      { type: "p", parts: ["Ärztliche Leistungen werden grundsätzlich anhand der Gebührenordnung für Ärzte abgerechnet."] },
+      { type: "p", parts: ["Für zahnärztliche Leistungen gilt die Gebührenordnung für Zahnärzte."] },
+      { type: "p", parts: ["Wichtig ist:"] },
+      { type: "standalone", text: "Rechnungsbetrag und Erstattungsbetrag müssen nicht zwingend identisch sein." },
+      { type: "p", parts: ["Unterschiede können beispielsweise entstehen durch:"] },
+      {
+        type: "list",
+        items: [
+          "einen vereinbarten Selbstbehalt",
+          "tarifliche Begrenzungen",
+          "nicht versicherte Leistungen",
+          "Gebühren oberhalb tariflich erstattungsfähiger Grenzen",
+          "besondere tarifliche Voraussetzungen",
+        ],
+      },
+      { type: "p", parts: ["Deshalb ist der konkrete Tarif auch bei der späteren Abrechnung entscheidend."] },
+    ],
+  },
+  {
+    id: "muss-ich-jede-rechnung-selbst-bezahlen",
+    heading: "12. Muss ich jede Rechnung zuerst selbst bezahlen?",
+    blocks: [
+      { type: "standalone", text: "Nicht unbedingt." },
+      { type: "p", parts: ["Ambulante Rechnungen werden dem Privatpatienten normalerweise direkt gestellt."] },
+      { type: "p", parts: ["Das bedeutet aber nicht, dass die Rechnung zwingend bereits bezahlt sein muss, bevor sie beim Versicherer eingereicht werden kann."] },
+      { type: "p", parts: ["In vielen Fällen kann eine Rechnung unmittelbar nach Erhalt digital eingereicht werden."] },
+      { type: "p", parts: ["Der Versicherer überweist die tariflich vorgesehene Erstattung anschließend an den Versicherungsnehmer."] },
+      { type: "p", parts: ["Bei stationären Krankenhausbehandlungen gibt es außerdem häufig direkte Abrechnungen zwischen Krankenhaus und Versicherer."] },
+      {
+        type: "standalone",
+        text: "Gerade bei größeren stationären Kosten ist deshalb die Vorstellung falsch, dass Privatversicherte grundsätzlich jede Krankenhausrechnung zunächst vollständig aus eigener Tasche vorfinanzieren müssen.",
+      },
+    ],
+  },
+  {
+    id: "was-ist-ein-selbstbehalt",
+    heading: "13. Was ist ein Selbstbehalt?",
+    blocks: [
+      { type: "p", parts: ["Ein Selbstbehalt ist der Teil der Krankheitskosten, den der Versicherte nach den vertraglichen Regeln selbst trägt."] },
+      { type: "p", parts: ["Ein einfaches Beispiel:"] },
+      { type: "p", parts: ["Ein Tarif sieht einen jährlichen Selbstbehalt von 600 Euro vor."] },
+      {
+        type: "p",
+        parts: [
+          "Je nach konkreter Tarifgestaltung trägt die versicherte Person dann einen bestimmten Anteil ihrer erstattungsfähigen Kosten selbst, bevor beziehungsweise während der Versicherer die darüber hinausgehenden tariflichen Leistungen übernimmt.",
+        ],
+      },
+      { type: "p", parts: ["Es gibt verschiedene Modelle."] },
+      { type: "p", parts: ["Beispielsweise:"] },
+      {
+        type: "list",
+        items: ["fester jährlicher Selbstbehalt", "prozentuale Eigenbeteiligung", "Eigenbeteiligung mit jährlichem Höchstbetrag", "Selbstbehalte nur für bestimmte Leistungsbereiche"],
+      },
+      { type: "standalone", text: "Ein höherer Selbstbehalt kann den monatlichen Beitrag reduzieren." },
+      { type: "p", parts: ["Dabei sollte allerdings nicht nur auf die Beitragsersparnis geschaut werden."] },
+      { type: "p", parts: ["Entscheidend ist auch, welcher Eigenanteil bei regelmäßig anfallenden Behandlungskosten tatsächlich selbst getragen werden muss."] },
+    ],
+  },
+  {
+    id: "was-ist-eine-beitragsrueckerstattung",
+    heading: "14. Was ist eine Beitragsrückerstattung?",
+    blocks: [
+      { type: "p", parts: ["Manche private Krankenversicherungstarife sehen eine Beitragsrückerstattung vor."] },
+      {
+        type: "p",
+        parts: [
+          "Dabei kann der Versicherte unter bestimmten Voraussetzungen einen Teil seiner gezahlten Beiträge zurückerhalten, wenn über einen festgelegten Zeitraum keine oder nur bestimmte Leistungen eingereicht werden.",
+        ],
+      },
+      { type: "p", parts: ["Es gibt unterschiedliche Modelle."] },
+      { type: "p", parts: ["Eine Beitragsrückerstattung kann beispielsweise:"] },
+      { type: "list", items: ["vertraglich garantiert", "erfolgsabhängig", "oder aus verschiedenen Bestandteilen zusammengesetzt"] },
+      { type: "p", parts: ["sein."] },
+      { type: "standalone", text: "Sie sollte deshalb nicht automatisch wie ein sicherer dauerhafter Beitragsrabatt betrachtet werden." },
+      {
+        type: "p",
+        parts: ["Außerdem sollte eine mögliche Beitragsrückerstattung nicht dazu führen, medizinisch notwendige Untersuchungen oder Behandlungen allein aus finanziellen Gründen zu vermeiden."],
+      },
+      { type: "p", parts: ["Ob es wirtschaftlich sinnvoll ist, kleinere Rechnungen selbst zu tragen oder einzureichen, hängt vom konkreten Tarif und der Höhe der möglichen Rückerstattung ab."] },
+    ],
+  },
+  {
+    id: "wie-funktioniert-der-arbeitgeberzuschuss",
+    heading: "15. Wie funktioniert der Arbeitgeberzuschuss?",
+    blocks: [
+      { type: "p", parts: ["Privat versicherte Arbeitnehmer müssen ihren Krankenversicherungsbeitrag nicht vollständig allein tragen."] },
+      { type: "p", parts: ["Unter den gesetzlichen Voraussetzungen beteiligt sich der Arbeitgeber am Beitrag."] },
+      { type: "p", parts: ["Der Arbeitgeberzuschuss ist allerdings begrenzt."] },
+      { type: "p", parts: ["Vereinfacht gilt:"] },
+      { type: "standalone", text: "Der Arbeitgeber zahlt höchstens die Hälfte des tatsächlich zuschussfähigen privaten Krankenversicherungsbeitrags." },
+      { type: "p", parts: ["Gleichzeitig kann der Zuschuss nicht höher sein als der gesetzlich bestimmte Höchstzuschuss."] },
+      { type: "p", parts: ["Dieser orientiert sich an dem Arbeitgeberanteil, der bei einer entsprechenden gesetzlichen Krankenversicherung anfallen würde."] },
+      { type: "p", parts: ["Deshalb übernimmt der Arbeitgeber nicht automatisch unbegrenzt die Hälfte jedes beliebig hohen PKV-Beitrags."] },
+      { type: "p", parts: ["Bei Selbstständigen gibt es naturgemäß keinen Arbeitgeber, der einen solchen Zuschuss zahlt."] },
+    ],
+  },
+  {
+    id: "pkv-fuer-beamte",
+    heading: "16. Wie funktioniert die PKV für Beamte?",
+    blocks: [
+      { type: "p", parts: ["Bei Beamten spielt die Beihilfe eine zentrale Rolle."] },
+      { type: "p", parts: ["Der Dienstherr übernimmt über die Beihilfe einen bestimmten Anteil der beihilfefähigen Krankheitskosten."] },
+      { type: "p", parts: ["Wie hoch dieser Anteil ausfällt, hängt insbesondere vom Beihilferecht und der persönlichen Situation ab."] },
+      { type: "p", parts: ["Die private Krankenversicherung versichert anschließend typischerweise den verbleibenden Kostenanteil."] },
+      { type: "p", parts: ["Ein vereinfachtes Beispiel:"] },
+      {
+        type: "standalone",
+        text: "Besteht ein Beihilfeanspruch von 50 Prozent, muss über die private Krankenversicherung typischerweise nicht noch einmal eine vollständige 100-prozentige Krankheitskostendeckung abgesichert werden.",
+      },
+      { type: "p", parts: ["Stattdessen gibt es speziell auf die Beihilfe abgestimmte Tarife."] },
+      { type: "p", parts: ["Deshalb lassen sich PKV-Beiträge und Tarife von Beamten nicht sinnvoll direkt mit denen eines privat versicherten Angestellten vergleichen."] },
+    ],
+  },
+  {
+    id: "pkv-fuer-familien-und-kinder",
+    heading: "17. Wie funktioniert die PKV für Familien und Kinder?",
+    blocks: [
+      { type: "p", parts: ["In der privaten Krankenversicherung gibt es grundsätzlich keine beitragsfreie Familienversicherung wie in der gesetzlichen Krankenversicherung."] },
+      { type: "standalone", text: "Jede privat versicherte Person benötigt einen eigenen Versicherungsschutz und grundsätzlich einen eigenen Beitrag." },
+      { type: "p", parts: ["Ein Kind kann deshalb beispielsweise einen eigenen PKV-Vertrag erhalten."] },
+      { type: "p", parts: ["Das bedeutet allerdings nicht, dass jedes Kind automatisch privat versichert werden muss, sobald ein Elternteil privat versichert ist."] },
+      { type: "p", parts: ["Ob beispielsweise eine beitragsfreie Familienversicherung in der gesetzlichen Krankenversicherung möglich ist, hängt von verschiedenen gesetzlichen Voraussetzungen ab."] },
+      {
+        type: "p",
+        parts: ["Bei Familien mit einem gesetzlich und einem privat versicherten Elternteil können unter anderem Einkommen, Versicherungsstatus und Familienkonstellation eine Rolle spielen."],
+      },
+      { type: "p", parts: ["Bei einer langfristigen PKV-Entscheidung sollte deshalb nicht nur der Beitrag einer einzelnen Person betrachtet werden."] },
+      { type: "standalone", text: "Eine spätere Familienplanung kann die Gesamtkosten der Krankenversicherung deutlich verändern." },
+    ],
+  },
+  {
+    id: "arbeitsunfaehigkeit",
+    heading: "18. Was passiert bei längerer Arbeitsunfähigkeit?",
+    blocks: [
+      { type: "p", parts: ["Die private Krankheitskostenvollversicherung übernimmt grundsätzlich Krankheitskosten."] },
+      { type: "p", parts: ["Sie ersetzt aber nicht automatisch das Einkommen, das bei längerer Arbeitsunfähigkeit wegfällt."] },
+      { type: "p", parts: ["Dafür gibt es die Krankentagegeldversicherung."] },
+      { type: "p", parts: ["Bei Arbeitnehmern ist beispielsweise relevant, wann die Entgeltfortzahlung des Arbeitgebers endet."] },
+      { type: "p", parts: ["Bei Selbstständigen kann ein Einkommensausfall je nach beruflicher Situation deutlich früher wirtschaftlich relevant werden."] },
+      { type: "p", parts: ["Deshalb müssen zwei unterschiedliche Risiken getrennt betrachtet werden:"] },
+      { type: "list", items: ["Kosten einer medizinischen Behandlung", "Einkommensverlust durch Arbeitsunfähigkeit"] },
+      { type: "standalone", text: "Die private Krankenversicherung und das Krankentagegeld erfüllen unterschiedliche Aufgaben." },
+    ],
+  },
+  {
+    id: "pflegeversicherung",
+    heading: "19. Gehört die Pflegeversicherung zur PKV?",
+    blocks: [
+      { type: "p", parts: ["Wer privat krankenversichert ist, benötigt grundsätzlich auch eine private Pflege-Pflichtversicherung."] },
+      { type: "p", parts: ["Grundsätzlich folgt die Pflegeversicherung dem System der Krankenversicherung."] },
+      { type: "p", parts: ["Privat Krankenversicherte sind deshalb in der privaten Pflege-Pflichtversicherung abgesichert."] },
+      { type: "standalone", text: "Krankenversicherung und Pflegepflichtversicherung werden häufig gemeinsam dargestellt und bezahlt, sind aber unterschiedliche Versicherungsbestandteile." },
+      { type: "p", parts: ["Das ist auch bei Beiträgen und Arbeitgeberzuschüssen zu berücksichtigen."] },
+    ],
+  },
+  {
+    id: "tarifwechsel-innerhalb-des-versicherers",
+    heading: "20. Was passiert bei einem Tarifwechsel innerhalb des Versicherers?",
+    blocks: [
+      { type: "p", parts: ["Ein wichtiger Bestandteil des PKV-Systems ist das gesetzliche Tarifwechselrecht."] },
+      {
+        type: "p",
+        parts: [
+          "§ 204 Versicherungsvertragsgesetz ermöglicht einen Wechsel in andere Tarife mit gleichartigem Versicherungsschutz innerhalb des bestehenden Versicherungsunternehmens.",
+        ],
+      },
+      { type: "p", parts: ["Dabei werden die aus dem bestehenden Vertrag erworbenen Rechte und die Alterungsrückstellung nach den gesetzlichen Vorgaben berücksichtigt."] },
+      { type: "standalone", text: "Sind die Leistungen des neuen Tarifs gleich oder geringer, ist für den bereits vorhandenen Versicherungsschutz grundsätzlich keine komplett neue Gesundheitsprüfung erforderlich." },
+      { type: "p", parts: ["Enthält der gewünschte neue Tarif dagegen zusätzliche oder höhere Leistungen, kann der Versicherer für diese Mehrleistungen unter anderem:"] },
+      { type: "list", items: ["einen Risikozuschlag", "einen Leistungsausschluss", "oder unter den gesetzlichen Voraussetzungen eine Wartezeit"] },
+      { type: "p", parts: ["verlangen."] },
+      { type: "p", parts: ["Ein interner Tarifwechsel ist deshalb etwas anderes als der Wechsel zu einem komplett neuen Versicherungsunternehmen."] },
+    ],
+  },
+  {
+    id: "wechsel-zu-anderem-pkv-unternehmen",
+    heading: "21. Was passiert beim Wechsel zu einem anderen PKV-Unternehmen?",
+    blocks: [
+      { type: "p", parts: ["Ein Versichererwechsel ist deutlich weitreichender als ein interner Tarifwechsel."] },
+      { type: "p", parts: ["Beim neuen Versicherer beginnt grundsätzlich ein neues Vertragsverhältnis."] },
+      { type: "p", parts: ["Dabei können erneut eine Rolle spielen:"] },
+      {
+        type: "list",
+        items: [
+          "aktuelles Alter",
+          "heutiger Gesundheitszustand",
+          "neue Gesundheitsprüfung",
+          "gewünschter Leistungsumfang",
+          "Beitrag des neuen Tarifs",
+          "Umgang mit vorhandenen Alterungsrückstellungen",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Für Verträge, die nach dem 1. Januar 2009 abgeschlossen wurden, sieht § 204 VVG bei einem Versichererwechsel unter bestimmten Voraussetzungen die Übertragung des Teils der Alterungsrückstellung vor, dessen Leistungen dem Basistarif entsprechen.",
+        ],
+      },
+      {
+        type: "p",
+        parts: ["Das bedeutet aber nicht, dass sämtliche beim bisherigen Versicherer kalkulierten Alterungsrückstellungen vollständig zum neuen Unternehmen übertragen werden."],
+      },
+      { type: "standalone", text: "Ein Wechsel des PKV-Unternehmens sollte deshalb nicht mit einem einfachen Anbieterwechsel bei einem Strom- oder Mobilfunkvertrag verglichen werden." },
+    ],
+  },
+  {
+    id: "zurueck-in-die-gkv",
+    heading: "22. Kann ich jederzeit zurück in die gesetzliche Krankenversicherung?",
+    blocks: [
+      { type: "standalone", text: "Nein." },
+      { type: "p", parts: ["Ein Wechsel in die private Krankenversicherung kann nicht zu jedem beliebigen Zeitpunkt ohne weitere Voraussetzungen rückgängig gemacht werden."] },
+      { type: "p", parts: ["Ob später Versicherungspflicht in der gesetzlichen Krankenversicherung entsteht, hängt von der jeweiligen gesetzlichen und persönlichen Situation ab."] },
+      { type: "p", parts: ["Eine Rolle können beispielsweise spielen:"] },
+      { type: "list", items: ["Beschäftigungsstatus", "Einkommen", "Alter", "bisheriger Versicherungsverlauf", "Art der Erwerbstätigkeit"] },
+      { type: "p", parts: ["Für Personen ab einem bestimmten Alter gelten zudem besondere gesetzliche Einschränkungen."] },
+      { type: "p", parts: ["Deshalb sollte eine private Krankenversicherung nicht allein unter der Annahme abgeschlossen werden:"] },
+      { type: "quote", text: "„Wenn es irgendwann nicht mehr passt, gehe ich einfach zurück in die gesetzliche Krankenversicherung.“" },
+      { type: "standalone", text: "Ob dies später möglich ist, muss anhand der dann bestehenden gesetzlichen Voraussetzungen geprüft werden." },
+    ],
+  },
+  {
+    id: "pkv-und-gkv-im-vergleich",
+    heading: "23. PKV und GKV funktionieren nach unterschiedlichen Prinzipien",
+    blocks: [
+      { type: "p", parts: ["Beide Systeme dienen der Absicherung von Krankheitskosten."] },
+      { type: "p", parts: ["Ihre Funktionsweise unterscheidet sich jedoch deutlich."] },
+      {
+        type: "table",
+        headers: ["Thema", "Gesetzliche Krankenversicherung", "Private Krankenversicherung"],
+        rows: [
+          ["Beitrag", "grundsätzlich einkommensabhängig bis zu gesetzlichen Grenzen", "tarif- und risikobasiert kalkuliert"],
+          ["Gesundheitsprüfung", "beim normalen Zugang grundsätzlich keine", "bei regulären PKV-Tarifen grundsätzlich vorhanden"],
+          ["Leistungsumfang", "wesentlich gesetzlich bestimmt", "wesentlich vertraglich bestimmt"],
+          ["Abrechnung", "überwiegend Sachleistungsprinzip", "überwiegend Kostenerstattungsprinzip"],
+          ["Alterungsrückstellungen", "keine individuellen PKV-Alterungsrückstellungen", "Bestandteil der langfristigen Kalkulation"],
+          ["Familienversicherung", "unter Voraussetzungen beitragsfrei möglich", "grundsätzlich eigener Vertrag und Beitrag je privat versicherter Person"],
+          ["Tarifgestaltung", "gesetzlicher Leistungsrahmen und Satzungsleistungen", "unterschiedliche vertragliche Tarifkonzepte"],
+          ["Tarifwechsel", "Wechsel zwischen gesetzlichen Krankenkassen", "interner PKV-Tarifwechsel und Versichererwechsel sind zu unterscheiden"],
+        ],
+      },
+      { type: "p", parts: ["Aus diesen Unterschieden lässt sich nicht pauschal ableiten, dass eines der beiden Systeme für jeden Menschen besser ist."] },
+      { type: "standalone", text: "Welche Form der Krankenversicherung langfristig passt, hängt von der individuellen Situation und den gewünschten Rahmenbedingungen ab." },
+      {
+        type: "p",
+        parts: [
+          "Einen ausführlichen Systemvergleich findest du im Artikel ",
+          { a: "GKV und PKV im Vergleich", href: "/wissen/private-krankenversicherung/gkv-oder-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "warum-ist-der-tarif-so-wichtig",
+    heading: "24. Warum ist der konkrete Tarif so wichtig?",
+    blocks: [
+      { type: "p", parts: ["Die Bezeichnung „private Krankenversicherung“ sagt noch wenig darüber aus, wie gut der konkrete Versicherungsschutz tatsächlich ist."] },
+      { type: "standalone", text: "Entscheidend sind die Versicherungsbedingungen des gewählten Tarifs." },
+      { type: "p", parts: ["Einzelne Unterschiede können beispielsweise erst viele Jahre später relevant werden."] },
+      { type: "p", parts: ["Dazu gehören unter anderem Regelungen für:"] },
+      {
+        type: "list",
+        items: [
+          "Hilfsmittel",
+          "Heilmittel",
+          "Psychotherapie",
+          "Zahnersatz",
+          "stationäre Behandlung",
+          "Gebühren oberhalb bestimmter Sätze",
+          "Auslandsschutz",
+          "Anschlussheilbehandlungen",
+          "Reha",
+          "Vorsorge",
+          "ambulante Transportkosten",
+          "bestimmte Behandlungsmethoden",
+        ],
+      },
+      { type: "p", parts: ["Auch zwei Tarife desselben Versicherungsunternehmens können sich dabei deutlich unterscheiden."] },
+      { type: "p", parts: ["Deshalb sollte ein PKV-Vergleich nicht nur beantworten:"] },
+      { type: "quote", text: "„Was kostet der Tarif heute?“" },
+      { type: "p", parts: ["Mindestens genauso wichtig ist:"] },
+      { type: "quote", text: "„Welche Leistungen sind langfristig vertraglich garantiert?“" },
+    ],
+  },
+  {
+    id: "was-sollte-man-vor-abschluss-verstehen",
+    heading: "25. Was sollte man vor einem PKV-Abschluss verstehen?",
+    blocks: [
+      { type: "p", parts: ["Vor einem langfristigen Wechsel in die private Krankenversicherung sollten insbesondere folgende Punkte verstanden sein:"] },
+      {
+        type: "list",
+        items: [
+          "Wer darf sich überhaupt privat versichern?",
+          "Wie funktioniert die Gesundheitsprüfung?",
+          "Welche gesundheitlichen Angaben werden verlangt?",
+          "Wie unterscheiden sich PKV-Tarife?",
+          "Welche Leistungen sind vertraglich garantiert?",
+          "Wie funktioniert der Selbstbehalt?",
+          "Wie funktioniert der Arbeitgeberzuschuss?",
+          "Welche Auswirkungen kann Familienplanung haben?",
+          "Wie wird Krankentagegeld abgesichert?",
+          "Wie funktionieren Alterungsrückstellungen?",
+          "Warum können Beiträge angepasst werden?",
+          "Wie funktioniert ein interner Tarifwechsel?",
+          "Was passiert bei einem Versichererwechsel?",
+          "Unter welchen Voraussetzungen wäre später eine Rückkehr in die GKV möglich?",
+        ],
+      },
+      { type: "standalone", text: "Erst wenn diese Punkte gemeinsam betrachtet werden, lässt sich die Funktionsweise einer privaten Krankenversicherung vollständig einordnen." },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "keyFacts")
+              return (
+                <div class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+                  <ul class="space-y-4">
+                    {block.items.map((item) => (
+                      <li class="flex items-start gap-3">
+                        <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+                        <p class="text-sm leading-relaxed text-ink-700/85">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

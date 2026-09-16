@@ -1,0 +1,57 @@
+---
+const entries = [
+  { id: "das-wichtigste-auf-einen-blick", label: "Das Wichtigste auf einen Blick" },
+  { id: "was-ist-eine-private-krankenversicherung", label: "Was ist eine private Krankenversicherung?" },
+  { id: "wer-kann-sich-privat-krankenversichern", label: "Wer kann sich privat krankenversichern?" },
+  { id: "wie-kommt-ein-pkv-vertrag-zustande", label: "Wie kommt ein PKV-Vertrag zustande?" },
+  { id: "warum-sind-gesundheitsfragen-wichtig", label: "Warum sind die Gesundheitsfragen so wichtig?" },
+  { id: "wie-wird-der-beitrag-berechnet", label: "Wie wird der Beitrag berechnet?" },
+  { id: "aequivalenzprinzip", label: "Was bedeutet das Äquivalenzprinzip?" },
+  { id: "alterungsrueckstellungen", label: "Was sind Alterungsrückstellungen?" },
+  { id: "teurer-bei-krankheit", label: "Wird meine PKV teurer, wenn ich krank werde?" },
+  { id: "warum-koennen-beitraege-steigen", label: "Warum können Beiträge trotzdem steigen?" },
+  { id: "welche-leistungen-uebernimmt-die-pkv", label: "Welche Leistungen übernimmt die PKV?" },
+  { id: "wie-funktioniert-eine-arztrechnung", label: "Wie funktioniert eine Arztrechnung?" },
+  { id: "muss-ich-jede-rechnung-selbst-bezahlen", label: "Muss ich Rechnungen selbst bezahlen?" },
+  { id: "was-ist-ein-selbstbehalt", label: "Was ist ein Selbstbehalt?" },
+  { id: "was-ist-eine-beitragsrueckerstattung", label: "Was ist eine Beitragsrückerstattung?" },
+  { id: "wie-funktioniert-der-arbeitgeberzuschuss", label: "Wie funktioniert der Arbeitgeberzuschuss?" },
+  { id: "pkv-fuer-beamte", label: "Wie funktioniert die PKV für Beamte?" },
+  { id: "pkv-fuer-familien-und-kinder", label: "Wie funktioniert die PKV für Familien und Kinder?" },
+  { id: "arbeitsunfaehigkeit", label: "Was passiert bei längerer Arbeitsunfähigkeit?" },
+  { id: "pflegeversicherung", label: "Gehört die Pflegeversicherung zur PKV?" },
+  { id: "tarifwechsel-innerhalb-des-versicherers", label: "Tarifwechsel innerhalb des Versicherers" },
+  { id: "wechsel-zu-anderem-pkv-unternehmen", label: "Wechsel zu einem anderen PKV-Unternehmen" },
+  { id: "zurueck-in-die-gkv", label: "Kann ich zurück in die GKV?" },
+  { id: "pkv-und-gkv-im-vergleich", label: "PKV und GKV im Vergleich" },
+  { id: "warum-ist-der-tarif-so-wichtig", label: "Warum ist der konkrete Tarif so wichtig?" },
+  { id: "was-sollte-man-vor-abschluss-verstehen", label: "Was sollte man vor einem Abschluss verstehen?" },
+  { id: "fazit", label: "Fazit" },
+  { id: "faq", label: "FAQ" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>

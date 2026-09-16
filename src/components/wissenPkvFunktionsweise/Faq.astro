@@ -1,0 +1,84 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Wie funktioniert die private Krankenversicherung einfach erklärt?",
+    answer:
+      "Du schließt einen individuellen Vertrag mit einem privaten Krankenversicherer ab. Der gewählte Tarif legt fest, welche Krankheitskosten übernommen werden. Der Beitrag wird unter anderem anhand des Eintrittsalters, des Gesundheitszustands bei Vertragsbeginn und des gewählten Leistungsumfangs kalkuliert. Rechnungen werden anschließend entsprechend den Tarifbedingungen beim Versicherer zur Erstattung eingereicht.",
+  },
+  {
+    question: "Hängt der PKV-Beitrag vom Einkommen ab?",
+    answer:
+      "Grundsätzlich nicht. Der reguläre PKV-Beitrag wird nicht als Prozentsatz des laufenden Einkommens berechnet. Maßgeblich sind insbesondere die Kalkulation des Tarifs, das Eintrittsalter, der Leistungsumfang und der Gesundheitszustand bei Vertragsbeginn.",
+  },
+  {
+    question: "Wird meine PKV teurer, wenn ich krank werde?",
+    answer:
+      "Eine Erkrankung nach Vertragsabschluss führt nicht dazu, dass allein deshalb dein persönlicher Beitrag aufgrund dieser Erkrankung erhöht wird. Beitragsanpassungen betreffen die Kalkulation des jeweiligen Tarifs beziehungsweise Versichertenkollektivs.",
+  },
+  {
+    question: "Muss ich als Privatpatient Arztrechnungen selbst bezahlen?",
+    answer:
+      "Im ambulanten Bereich erhältst du Rechnungen in der Regel selbst und reichst sie bei deinem Versicherer zur Erstattung ein. Die Rechnung muss dafür nicht zwingend bereits bezahlt worden sein. Im stationären Bereich sind je nach Kostenart auch direkte Abrechnungen zwischen Krankenhaus und Versicherer üblich.",
+  },
+  {
+    question: "Sind die Leistungen bei jeder privaten Krankenversicherung gleich?",
+    answer: "Nein. Der Leistungsumfang hängt vom konkreten Tarif und dessen Versicherungsbedingungen ab. Zwischen verschiedenen PKV-Tarifen können erhebliche Leistungsunterschiede bestehen.",
+  },
+  {
+    question: "Gibt es in der PKV eine kostenlose Familienversicherung?",
+    answer:
+      "Nein. Für privat versicherte Familienmitglieder besteht grundsätzlich ein eigener Vertrag mit eigenem Beitrag. Ob beispielsweise Kinder alternativ gesetzlich familienversichert werden können, hängt von den gesetzlichen Voraussetzungen der jeweiligen Familie ab.",
+  },
+  {
+    question: "Was sind Alterungsrückstellungen?",
+    answer:
+      "Alterungsrückstellungen sind Bestandteil der langfristigen PKV-Kalkulation. In jüngeren Jahren werden Mittel zurückgestellt, um die statistisch steigenden durchschnittlichen Gesundheitskosten späterer Lebensphasen mitzufinanzieren.",
+  },
+  {
+    question: "Steigt mein PKV-Beitrag automatisch, nur weil ich älter werde?",
+    answer:
+      "Das Älterwerden und die damit statistisch steigenden Gesundheitskosten werden über die ursprüngliche Kalkulation und Alterungsrückstellungen berücksichtigt. Beiträge können dennoch angepasst werden, wenn sich andere maßgebliche Rechnungsgrundlagen verändern.",
+  },
+  {
+    question: "Kann ich innerhalb meiner PKV den Tarif wechseln?",
+    answer:
+      "Ja. § 204 VVG regelt ein Tarifwechselrecht innerhalb des eigenen Versicherungsunternehmens. Erworbene Rechte und Alterungsrückstellungen werden dabei nach den gesetzlichen Vorgaben berücksichtigt. Für zusätzliche Leistungen kann eine neue Risikoprüfung hinsichtlich dieser Mehrleistungen erforderlich werden.",
+  },
+  {
+    question: "Kann ich einfach zu einer anderen PKV wechseln?",
+    answer:
+      "Ein Wechsel zu einem anderen Versicherungsunternehmen ist möglich, sollte aber anders bewertet werden als ein interner Tarifwechsel. Beim neuen Unternehmen können unter anderem das heutige Alter, eine neue Gesundheitsprüfung und die Regeln zur Übertragung von Alterungsrückstellungen eine Rolle spielen.",
+  },
+  {
+    question: "Kann ich später einfach zurück in die GKV?",
+    answer: "Nicht automatisch. Ob eine Rückkehr in die gesetzliche Krankenversicherung möglich ist, hängt von den dann geltenden gesetzlichen Voraussetzungen und der persönlichen Situation ab.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Häufige Fragen zur <span class="text-brand-600">Funktionsweise der PKV</span>
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
