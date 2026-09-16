@@ -1,0 +1,710 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "keyFacts"; items: string[] }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const sections: Section[] = [
+  {
+    id: "das-wichtigste-auf-einen-blick",
+    heading: "Das Wichtigste auf einen Blick",
+    blocks: [
+      {
+        type: "keyFacts",
+        items: [
+          "In Deutschland ist die deutliche Mehrheit der Bevölkerung gesetzlich krankenversichert.",
+          "Der Zugang zur GKV richtet sich hauptsächlich nach gesetzlichen Versicherungspflichten und Versicherungsberechtigungen.",
+          "Der Zugang zur PKV setzt grundsätzlich voraus, dass keine Versicherungspflicht in der GKV entgegensteht.",
+          "In der GKV findet beim Eintritt keine Gesundheitsprüfung statt.",
+          "In regulären PKV-Tarifen gehört eine Gesundheitsprüfung grundsätzlich zum Aufnahmeverfahren.",
+          "Der GKV-Beitrag richtet sich im Wesentlichen nach beitragspflichtigen Einnahmen bis zur Beitragsbemessungsgrenze.",
+          "Der PKV-Beitrag ist grundsätzlich nicht vom laufenden Einkommen abhängig.",
+          "In der GKV können Kinder, Ehegatten und eingetragene Lebenspartner unter bestimmten Voraussetzungen beitragsfrei familienversichert werden.",
+          "In der PKV benötigt grundsätzlich jede versicherte Person einen eigenen Versicherungsschutz.",
+          "Die GKV-Leistungen basieren wesentlich auf gesetzlichen Vorgaben.",
+          "Die PKV-Leistungen ergeben sich wesentlich aus dem abgeschlossenen Tarif und dessen Versicherungsbedingungen.",
+          "In der GKV dominiert das Sachleistungsprinzip.",
+          "In der PKV dominiert das Kostenerstattungsprinzip.",
+          "Im Ruhestand bleibt der GKV-Beitrag grundsätzlich einkommensbezogen, während der PKV-Beitrag weiterhin tarifbezogen ist.",
+          "Die PKV bildet Alterungsrückstellungen, um statistisch höhere Krankheitskosten späterer Lebensphasen zu berücksichtigen.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "gkv-und-pkv-im-ueberblick",
+    heading: "GKV und PKV im direkten Überblick",
+    blocks: [
+      {
+        type: "table",
+        headers: ["Thema", "Gesetzliche Krankenversicherung", "Private Krankenversicherung"],
+        rows: [
+          ["Anzahl der Versicherten", "rund 74,2 Mio. Versicherte Anfang 2026", "rund 8,79 Mio. Vollversicherte Ende 2025"],
+          ["Grundprinzip", "Solidarprinzip", "Versicherungsvertrag und Äquivalenzprinzip"],
+          ["Zugang", "vor allem durch gesetzlichen Versicherungsstatus", "nur bei entsprechender Versicherungsfreiheit bzw. Zugangsmöglichkeit"],
+          ["Arbeitnehmer", "grundsätzlich GKV-pflichtig bis zur Jahresarbeitsentgeltgrenze", "Wechselmöglichkeit bei Versicherungsfreiheit"],
+          ["Gesundheitsprüfung", "keine Gesundheitsprüfung für die normale Mitgliedschaft", "bei regulären Tarifen grundsätzlich Gesundheitsprüfung"],
+          ["Beitrag", "abhängig von beitragspflichtigen Einnahmen bis zur Beitragsbemessungsgrenze", "abhängig insbesondere von Tarif, Eintrittsalter und Gesundheitszustand bei Beginn"],
+          ["Familienversicherung", "unter Voraussetzungen beitragsfrei möglich", "grundsätzlich eigener Vertrag und Beitrag pro Person"],
+          ["Leistungen", "wesentlich gesetzlich geregelt", "wesentlich vertraglich vereinbart"],
+          ["Abrechnung", "überwiegend Sachleistungsprinzip", "überwiegend Kostenerstattungsprinzip"],
+          ["Beitrag im Alter", "weiterhin abhängig von beitragspflichtigen Einnahmen und Versicherungsstatus", "grundsätzlich einkommensunabhängiger Tarifbeitrag mit Alterungsrückstellungen"],
+        ],
+      },
+    ],
+  },
+  {
+    id: "wie-viele-versicherte",
+    heading: "1. Wie viele Menschen sind in GKV und PKV versichert?",
+    blocks: [
+      { type: "p", parts: ["Die gesetzliche Krankenversicherung ist das mit Abstand größere der beiden Systeme."] },
+      { type: "p", parts: ["Nach Angaben des Bundesministeriums für Gesundheit waren zum 1. Januar 2026 rund 74,2 Millionen Menschen gesetzlich krankenversichert."] },
+      { type: "p", parts: ["Davon waren rund:"] },
+      { type: "list", items: ["58,6 Millionen beitragszahlende Mitglieder", "15,6 Millionen beitragsfrei mitversicherte Familienangehörige und Kinder"] },
+      { type: "p", parts: ["Die Zahl zeigt bereits eine Besonderheit des gesetzlichen Systems:"] },
+      { type: "standalone", text: "Ein erheblicher Teil der GKV-Versicherten zahlt keinen eigenen Krankenversicherungsbeitrag, sondern ist über die Familienversicherung abgesichert." },
+      { type: "p", parts: ["In der privaten Krankenvollversicherung waren nach den zuletzt veröffentlichten Branchenzahlen für 2025 rund 8,79 Millionen Personen versichert."] },
+      { type: "p", parts: ["Wichtig ist bei solchen Zahlen die Unterscheidung zwischen:"] },
+      { type: "list", items: ["privater Krankenvollversicherung", "privaten Zusatzversicherungen"] },
+      { type: "p", parts: ["Viele gesetzlich Krankenversicherte besitzen zusätzlich eine private Zusatzversicherung, beispielsweise für Zahnleistungen, stationäre Wahlleistungen oder Auslandsreisen."] },
+      { type: "p", parts: ["Diese Personen sind dadurch jedoch nicht privat vollversichert."] },
+      { type: "p", parts: ["Für einen Vergleich zwischen GKV und PKV ist deshalb die Zahl der privat Vollversicherten relevant."] },
+      { type: "p", parts: ["Die genannten Zahlen haben nicht exakt denselben statistischen Stichtag. Sie zeigen aber die Größenordnung der beiden Systeme:"] },
+      { type: "standalone", text: "Die GKV versichert den überwiegenden Teil der Bevölkerung, während die private Krankenvollversicherung ein deutlich kleineres Versichertenkollektiv umfasst." },
+    ],
+  },
+  {
+    id: "grundprinzipien",
+    heading: "2. Nach welchen Grundprinzipien funktionieren GKV und PKV?",
+    blocks: [
+      { type: "p", parts: ["Bevor man einzelne Unterschiede betrachtet, hilft es, die grundlegende Systemlogik zu verstehen."] },
+      { type: "h3", text: "Das Solidarprinzip der GKV" },
+      { type: "p", parts: ["Die gesetzliche Krankenversicherung basiert wesentlich auf dem Solidarprinzip."] },
+      { type: "p", parts: ["Vereinfacht bedeutet das:"] },
+      { type: "standalone", text: "Die Beitragshöhe richtet sich grundsätzlich nach der finanziellen Leistungsfähigkeit des Mitglieds und nicht nach dessen individuellem Krankheitsrisiko." },
+      {
+        type: "p",
+        parts: [
+          "Ein junger gesunder Arbeitnehmer zahlt deshalb bei gleichem beitragspflichtigem Einkommen grundsätzlich denselben Krankenversicherungsbeitrag wie ein gleich verdienender Arbeitnehmer mit erheblichen Vorerkrankungen.",
+        ],
+      },
+      { type: "p", parts: ["Alter und Gesundheitszustand bestimmen den individuellen GKV-Beitrag nicht."] },
+      { type: "p", parts: ["Zusätzlich findet ein Ausgleich zwischen unterschiedlichen Gruppen statt:"] },
+      { type: "list", items: ["Gesunde und Kranke", "jüngere und ältere Versicherte", "höhere und niedrigere Einkommen", "Alleinstehende und Familien"] },
+      { type: "h3", text: "Das Äquivalenzprinzip der PKV" },
+      { type: "p", parts: ["Die private Krankenversicherung funktioniert anders."] },
+      { type: "p", parts: ["Bei Vertragsbeginn wird ein individueller Versicherungsschutz vereinbart."] },
+      { type: "p", parts: ["Der Beitrag wird auf Grundlage des gewählten Tarifs und versicherungsmathematischer Kalkulationsgrundlagen bestimmt."] },
+      { type: "p", parts: ["Zu den wesentlichen Faktoren gehören insbesondere:"] },
+      { type: "list", items: ["Eintrittsalter", "gewählter Leistungsumfang", "Gesundheitszustand bei Vertragsbeginn", "möglicher Selbstbehalt"] },
+      { type: "standalone", text: "Das aktuelle Einkommen des Versicherten bestimmt den regulären PKV-Beitrag dagegen grundsätzlich nicht." },
+      { type: "p", parts: ["Die PKV bildet zusätzlich Alterungsrückstellungen, um statistisch steigende Krankheitskosten späterer Lebensphasen in der langfristigen Kalkulation zu berücksichtigen."] },
+    ],
+  },
+  {
+    id: "wer-kommt-in-die-gkv",
+    heading: "3. Wer kommt in die gesetzliche Krankenversicherung?",
+    blocks: [
+      { type: "p", parts: ["Ein großer Teil der Bevölkerung ist kraft Gesetzes in der GKV versicherungspflichtig."] },
+      { type: "p", parts: ["Zu den typischen Gruppen gehören beispielsweise:"] },
+      { type: "list", items: ["Arbeitnehmer unterhalb der Jahresarbeitsentgeltgrenze", "Auszubildende", "viele Studierende", "Bezieher bestimmter Sozialleistungen", "viele Rentner bei erfüllten Voraussetzungen", "weitere gesetzlich definierte Personengruppen"] },
+      { type: "p", parts: ["Für Arbeitnehmer ist insbesondere die Jahresarbeitsentgeltgrenze wichtig."] },
+      { type: "standalone", text: "Im Jahr 2026 beträgt die allgemeine Jahresarbeitsentgeltgrenze 77.400 Euro." },
+      { type: "p", parts: ["Ein Arbeitnehmer, dessen regelmäßiges Jahresarbeitsentgelt die maßgebliche Grenze nicht überschreitet, ist grundsätzlich gesetzlich krankenversicherungspflichtig."] },
+      { type: "p", parts: ["Liegt das regelmäßige Jahresarbeitsentgelt oberhalb der Grenze und sind die gesetzlichen Voraussetzungen für Versicherungsfreiheit erfüllt, kann die Wahl zwischen freiwilliger GKV und PKV möglich werden."] },
+      { type: "p", parts: ["Die Grenze wird regelmäßig angepasst."] },
+      { type: "p", parts: ["Deshalb sollte bei einer konkreten Entscheidung immer der für das betreffende Jahr geltende Wert geprüft werden."] },
+    ],
+  },
+  {
+    id: "wer-kann-in-die-pkv-wechseln",
+    heading: "4. Wer kann in die private Krankenversicherung wechseln?",
+    blocks: [
+      { type: "p", parts: ["Die PKV steht nicht automatisch jedem offen."] },
+      { type: "p", parts: ["Entscheidend ist zunächst, ob eine Person überhaupt die Möglichkeit hat, sich privat zu versichern."] },
+      { type: "p", parts: ["Typische Personengruppen sind beispielsweise:"] },
+      {
+        type: "list",
+        items: [
+          "Arbeitnehmer oberhalb der maßgeblichen Jahresarbeitsentgeltgrenze",
+          "Selbstständige und Freiberufler ohne anderweitige Versicherungspflicht",
+          "Beamte",
+          "bestimmte Studenten",
+          "weitere versicherungsfreie Personen",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Mehr zur Beratung für diese Zielgruppen findest du unter ",
+          { a: "PKV für Angestellte", href: "/pkv-angestellte-kassel/" },
+          ", ",
+          { a: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel/" },
+          " und ",
+          { a: "PKV für Beamte", href: "/pkv-beamte-kassel/" },
+          ".",
+        ],
+      },
+      { type: "p", parts: ["Wichtig ist:"] },
+      { type: "standalone", text: "Versicherungsfreiheit bedeutet nicht automatisch, dass man in die PKV wechseln muss." },
+      { type: "p", parts: ["Ein Arbeitnehmer oberhalb der Jahresarbeitsentgeltgrenze kann grundsätzlich auch freiwillig gesetzlich krankenversichert bleiben."] },
+      { type: "p", parts: ["Die Frage nach dem Zugang zur PKV und die Frage, welches System langfristig besser zur persönlichen Situation passt, sind deshalb voneinander zu trennen."] },
+    ],
+  },
+  {
+    id: "systemwechsel-nicht-in-beide-richtungen",
+    heading: "5. Ein Systemwechsel funktioniert nicht in beide Richtungen gleich",
+    blocks: [
+      { type: "p", parts: ["Ein wichtiger Unterschied zwischen den beiden Systemen wird häufig erst später relevant."] },
+      { type: "p", parts: ["Wer die Voraussetzungen erfüllt, kann von der GKV in die PKV wechseln."] },
+      { type: "standalone", text: "Eine spätere Rückkehr von der PKV in die GKV ist dagegen nicht jederzeit frei möglich." },
+      { type: "p", parts: ["Dafür muss grundsätzlich erneut ein gesetzlicher Zugang zur GKV entstehen, beispielsweise durch Versicherungspflicht."] },
+      { type: "p", parts: ["Für Personen ab Vollendung des 55. Lebensjahres gelten zusätzliche gesetzliche Einschränkungen."] },
+      { type: "p", parts: ["Deshalb sollte die Entscheidung zwischen GKV und PKV nicht wie ein kurzfristiger Wechsel zwischen zwei beliebig austauschbaren Anbietern betrachtet werden."] },
+      { type: "p", parts: ["Es handelt sich um zwei unterschiedliche Versicherungssysteme mit eigenen Zugangsvoraussetzungen."] },
+    ],
+  },
+  {
+    id: "gesundheitspruefung-in-der-gkv",
+    heading: "6. Gibt es in der GKV eine Gesundheitsprüfung?",
+    blocks: [
+      { type: "standalone", text: "Nein." },
+      { type: "p", parts: ["Für die normale Mitgliedschaft in der gesetzlichen Krankenversicherung findet keine Gesundheitsprüfung statt."] },
+      { type: "p", parts: ["Vorerkrankungen verändern grundsätzlich weder den Zugang zur GKV noch den individuellen Beitrag."] },
+      { type: "p", parts: ["Es spielt deshalb für die Mitgliedschaft keine Rolle, ob eine Person beispielsweise:"] },
+      { type: "list", items: ["chronisch erkrankt ist", "bereits Operationen hatte", "regelmäßig Medikamente benötigt", "psychotherapeutisch behandelt wurde", "eine Behinderung hat", "hohe Behandlungskosten verursacht"] },
+      { type: "p", parts: ["Die GKV unterscheidet bei der Beitragsberechnung nicht danach, welches individuelle Krankheitsrisiko ein Mitglied mitbringt."] },
+      { type: "standalone", text: "Das entspricht dem Solidarprinzip." },
+    ],
+  },
+  {
+    id: "gesundheitspruefung-in-der-pkv",
+    heading: "7. Gibt es in der PKV eine Gesundheitsprüfung?",
+    blocks: [
+      { type: "p", parts: ["Bei regulären privaten Krankenversicherungstarifen grundsätzlich ja."] },
+      { type: "p", parts: ["Vor Vertragsabschluss stellt der Versicherer Gesundheitsfragen."] },
+      { type: "p", parts: ["Gefragt werden abhängig vom jeweiligen Versicherer beispielsweise:"] },
+      { type: "list", items: ["Erkrankungen", "Beschwerden", "Behandlungen", "Untersuchungen", "Medikamente", "Krankenhausaufenthalte", "psychotherapeutische Behandlungen", "bestimmte Diagnosen"] },
+      { type: "p", parts: ["Der Versicherer bewertet anschließend das gesundheitliche Risiko bei Vertragsbeginn."] },
+      { type: "p", parts: ["Mögliche Ergebnisse können beispielsweise sein:"] },
+      { type: "list", items: ["Annahme zu normalen Bedingungen", "Annahme mit Risikozuschlag", "in bestimmten Konstellationen ein Leistungsausschluss", "Zurückstellung", "Ablehnung"] },
+      { type: "p", parts: ["Für besondere gesetzliche Tarife wie den Basistarif gelten andere Vorgaben."] },
+      { type: "p", parts: ["Dort darf ein erhöhtes gesundheitliches Risiko beispielsweise nicht zu einem Risikozuschlag oder Leistungsausschluss führen."] },
+      { type: "p", parts: ["Wichtig ist außerdem:"] },
+      {
+        type: "standalone",
+        text: "Eine spätere Erkrankung führt bei einem bestehenden regulären PKV-Vertrag nicht dazu, dass allein deswegen der persönliche Beitrag neu nach dem individuellen Gesundheitszustand berechnet wird.",
+      },
+      { type: "p", parts: ["Die Risikoprüfung ist vor allem beim Eintritt beziehungsweise bei später gewünschten Mehrleistungen relevant."] },
+      {
+        type: "p",
+        parts: [
+          "Auf dieser Website gibt es dazu eigene vertiefende Inhalte zu ",
+          { a: "PKV-Gesundheitsfragen", href: "/pkv-gesundheitsfragen/" },
+          " und zur ",
+          { a: "PKV-Risikovoranfrage", href: "/pkv-risikovoranfrage/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "gesundheitszustand-unterschied",
+    heading: "8. Gesundheitszustand: einer der größten strukturellen Unterschiede",
+    blocks: [
+      { type: "p", parts: ["Der Gesundheitszustand verdeutlicht besonders gut, wie unterschiedlich beide Systeme funktionieren."] },
+      { type: "p", parts: ["In der GKV gilt vereinfacht:"] },
+      { type: "quote", text: "Dein Gesundheitszustand ist für deinen individuellen Mitgliedsbeitrag grundsätzlich unerheblich." },
+      { type: "p", parts: ["In der PKV gilt:"] },
+      { type: "quote", text: "Dein Gesundheitszustand kann bei Vertragsbeginn Einfluss darauf haben, zu welchen Bedingungen ein regulärer Tarif abgeschlossen werden kann." },
+      { type: "p", parts: ["Nach erfolgtem Vertragsabschluss wird dagegen nicht jedes Jahr erneut geprüft, ob du inzwischen kränker geworden bist."] },
+      { type: "standalone", text: "Das individuelle Krankheitsrisiko wird also zu unterschiedlichen Zeitpunkten unterschiedlich behandelt." },
+    ],
+  },
+  {
+    id: "beitrag-in-der-gkv",
+    heading: "9. Wie wird der Beitrag in der GKV berechnet?",
+    blocks: [
+      { type: "p", parts: ["Die GKV berechnet Beiträge grundsätzlich auf Basis beitragspflichtiger Einnahmen."] },
+      { type: "p", parts: ["Für Arbeitnehmer spielt insbesondere das Arbeitsentgelt eine Rolle."] },
+      { type: "standalone", text: "2026 beträgt der allgemeine Beitragssatz zur gesetzlichen Krankenversicherung 14,6 Prozent." },
+      { type: "p", parts: ["Hinzu kommt der kassenindividuelle Zusatzbeitrag."] },
+      { type: "p", parts: ["Der durchschnittliche Zusatzbeitragssatz beträgt für 2026 2,9 Prozent."] },
+      { type: "p", parts: ["Die Beiträge werden allerdings nur bis zur Beitragsbemessungsgrenze berechnet."] },
+      { type: "p", parts: ["Diese beträgt im Jahr 2026:"] },
+      { type: "standalone", text: "5.812,50 Euro monatlich beziehungsweise 69.750 Euro jährlich." },
+      { type: "p", parts: ["Einkommen oberhalb dieser Grenze erhöht den Krankenversicherungsbeitrag nicht weiter."] },
+      { type: "p", parts: ["Bei Arbeitnehmern tragen Arbeitgeber und Arbeitnehmer die Beiträge zur Krankenversicherung einschließlich des Zusatzbeitrags grundsätzlich jeweils zur Hälfte."] },
+      { type: "p", parts: ["Die Pflegeversicherung wird zusätzlich betrachtet."] },
+    ],
+  },
+  {
+    id: "jahresarbeitsentgeltgrenze-vs-beitragsbemessungsgrenze",
+    heading: "10. Warum sind Jahresarbeitsentgeltgrenze und Beitragsbemessungsgrenze nicht dasselbe?",
+    blocks: [
+      { type: "p", parts: ["Diese beiden Begriffe werden häufig verwechselt."] },
+      { type: "p", parts: ["Sie haben unterschiedliche Aufgaben."] },
+      { type: "h3", text: "Jahresarbeitsentgeltgrenze" },
+      { type: "p", parts: ["Die Jahresarbeitsentgeltgrenze entscheidet bei Arbeitnehmern grundsätzlich darüber, ob Versicherungspflicht in der GKV besteht."] },
+      { type: "p", parts: ["2026 beträgt die allgemeine Grenze:"] },
+      { type: "standalone", text: "77.400 Euro jährlich." },
+      { type: "h3", text: "Beitragsbemessungsgrenze" },
+      { type: "p", parts: ["Die Beitragsbemessungsgrenze bestimmt dagegen, bis zu welcher Höhe beitragspflichtige Einnahmen für die Berechnung des GKV-Beitrags berücksichtigt werden."] },
+      { type: "p", parts: ["2026 beträgt sie:"] },
+      { type: "standalone", text: "69.750 Euro jährlich." },
+      { type: "p", parts: ["Die Beitragsbemessungsgrenze ist damit niedriger als die allgemeine Jahresarbeitsentgeltgrenze."] },
+      { type: "standalone", text: "Ein Arbeitnehmer kann deshalb bereits den maximalen GKV-Beitrag zahlen und trotzdem weiterhin gesetzlich pflichtversichert sein." },
+    ],
+  },
+  {
+    id: "beitrag-in-der-pkv",
+    heading: "11. Wie wird der Beitrag in der PKV berechnet?",
+    blocks: [
+      { type: "p", parts: ["In der privaten Krankenversicherung wird der reguläre Beitrag nicht als Prozentsatz des Einkommens berechnet."] },
+      { type: "p", parts: ["Entscheidend sind bei Vertragsbeginn insbesondere:"] },
+      { type: "list", items: ["Eintrittsalter", "gewählter Tarif", "versicherter Leistungsumfang", "Gesundheitszustand", "möglicher Risikozuschlag", "Selbstbehalt"] },
+      { type: "standalone", text: "Ein höheres Einkommen führt deshalb nicht automatisch zu einem höheren PKV-Beitrag." },
+      { type: "p", parts: ["Umgekehrt gilt allerdings ebenfalls:"] },
+      { type: "p", parts: ["Wenn das Einkommen später sinkt, reduziert sich der bestehende PKV-Beitrag dadurch nicht automatisch."] },
+      { type: "p", parts: ["Das ist für den langfristigen Vergleich entscheidend."] },
+      { type: "p", parts: ["Die GKV koppelt die Beitragsberechnung wesentlich an Einkommen."] },
+      { type: "standalone", text: "Die PKV koppelt die Beitragsberechnung wesentlich an den versicherten Tarif und ihre versicherungsmathematische Kalkulation." },
+    ],
+  },
+  {
+    id: "beispiel-beitragsvergleich",
+    heading: "12. Beispiel: Warum ein reiner Beitragsvergleich wenig aussagt",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir zwei Arbeitnehmer mit identischem Einkommen."] },
+      { type: "p", parts: ["Person A ist gesetzlich versichert."] },
+      { type: "p", parts: ["Der GKV-Beitrag ergibt sich aus dem beitragspflichtigen Einkommen bis zur Beitragsbemessungsgrenze und den geltenden Beitragssätzen."] },
+      { type: "p", parts: ["Person B ist privat versichert."] },
+      { type: "p", parts: ["Der PKV-Beitrag hängt dagegen unter anderem von Eintrittsalter, Tarif, Leistungsumfang und gegebenenfalls Risikozuschlägen ab."] },
+      { type: "p", parts: ["Verdoppelt sich später das Einkommen von Person B, verdoppelt sich ihr PKV-Beitrag dadurch nicht."] },
+      { type: "p", parts: ["Sinkt ihr Einkommen dagegen deutlich, reduziert sich der PKV-Beitrag aufgrund dieses Einkommensrückgangs ebenfalls nicht automatisch."] },
+      { type: "standalone", text: "Allein der heutige Monatsbeitrag sagt deshalb wenig darüber aus, welches System langfristig finanziell besser zur persönlichen Situation passt." },
+    ],
+  },
+  {
+    id: "familie-in-der-gkv",
+    heading: "13. Wie funktioniert die Familie in der GKV?",
+    blocks: [
+      { type: "p", parts: ["Ein wesentlicher Bestandteil der gesetzlichen Krankenversicherung ist die Familienversicherung."] },
+      { type: "p", parts: ["Unter bestimmten Voraussetzungen können insbesondere:"] },
+      { type: "list", items: ["Kinder", "Ehegatten", "eingetragene Lebenspartner"] },
+      { type: "p", parts: ["ohne eigenen Krankenversicherungsbeitrag familienversichert werden."] },
+      { type: "standalone", text: "2026 liegt die regelmäßige Einkommensgrenze für eine Familienversicherung grundsätzlich bei 565 Euro monatlich." },
+      { type: "p", parts: ["Bei einer geringfügigen Beschäftigung gilt eine Grenze von 603 Euro monatlich."] },
+      { type: "p", parts: ["Zusätzlich müssen weitere gesetzliche Voraussetzungen erfüllt sein."] },
+      { type: "p", parts: ["Die Familienversicherung kann insbesondere für Haushalte mit nur einem oder einem deutlich höheren Haupteinkommen einen erheblichen Unterschied bei den Gesamtkosten der Krankenversicherung ausmachen."] },
+    ],
+  },
+  {
+    id: "kinder-in-der-gkv",
+    heading: "14. Wie sind Kinder in der GKV versichert?",
+    blocks: [
+      { type: "p", parts: ["Sind die Voraussetzungen erfüllt, können Kinder beitragsfrei über ein gesetzlich versichertes Elternteil familienversichert sein."] },
+      { type: "p", parts: ["Wie lange eine Familienversicherung möglich ist, hängt unter anderem von:"] },
+      { type: "list", items: ["Alter", "Schul- oder Berufsausbildung", "Studium", "Erwerbstätigkeit", "eigenem Einkommen"] },
+      { type: "p", parts: ["ab."] },
+      { type: "p", parts: ["Besondere Regeln gelten, wenn ein Elternteil gesetzlich und das andere privat versichert ist."] },
+      {
+        type: "standalone",
+        text: "Eine beitragsfreie Familienversicherung kann insbesondere ausgeschlossen sein, wenn der privat versicherte Elternteil mit dem gesetzlich versicherten Elternteil verheiratet oder in einer eingetragenen Lebenspartnerschaft verbunden ist, regelmäßig mehr verdient als der gesetzlich versicherte Elternteil und sein Einkommen oberhalb der maßgeblichen Jahresarbeitsentgeltgrenze liegt.",
+      },
+      { type: "p", parts: ["Die konkrete Familienkonstellation sollte deshalb immer einzeln geprüft werden."] },
+    ],
+  },
+  {
+    id: "familie-in-der-pkv",
+    heading: "15. Wie funktioniert die Familie in der PKV?",
+    blocks: [
+      { type: "p", parts: ["In der privaten Krankenversicherung gibt es keine beitragsfreie Familienversicherung nach dem GKV-Prinzip."] },
+      { type: "standalone", text: "Grundsätzlich benötigt jede privat versicherte Person einen eigenen Versicherungsschutz." },
+      { type: "p", parts: ["Das bedeutet:"] },
+      { type: "p", parts: ["Ein privat versicherter Arbeitnehmer zahlt seinen eigenen Beitrag."] },
+      { type: "p", parts: ["Ein privat versicherter Ehepartner benötigt ebenfalls einen eigenen Vertrag."] },
+      { type: "p", parts: ["Ein privat versichertes Kind benötigt ebenfalls einen eigenen Versicherungsschutz."] },
+      { type: "p", parts: ["Deshalb sollte beim Vergleich zwischen GKV und PKV niemals nur der Beitrag einer einzelnen Person betrachtet werden."] },
+      { type: "standalone", text: "Die Familienkonstellation kann einen erheblichen Einfluss auf die Gesamtkosten haben." },
+    ],
+  },
+  {
+    id: "neugeborene-in-der-pkv",
+    heading: "16. Gibt es bei Neugeborenen in der PKV immer eine Gesundheitsprüfung?",
+    blocks: [
+      { type: "standalone", text: "Nein." },
+      { type: "p", parts: ["Für Neugeborene gibt es eine wichtige Sonderregelung."] },
+      { type: "p", parts: ["§ 198 Versicherungsvertragsgesetz regelt die sogenannte Kindernachversicherung."] },
+      {
+        type: "p",
+        parts: [
+          "Besteht am Tag der Geburt für mindestens ein Elternteil eine entsprechende Krankenversicherung, muss der Versicherer das Neugeborene unter den gesetzlichen Voraussetzungen ohne Risikozuschläge und Wartezeiten versichern.",
+        ],
+      },
+      { type: "p", parts: ["Dafür muss das Kind insbesondere rechtzeitig angemeldet werden."] },
+      { type: "standalone", text: "Die Anmeldung muss spätestens zwei Monate nach der Geburt rückwirkend erfolgen." },
+      { type: "p", parts: ["Der beantragte Versicherungsschutz darf dabei grundsätzlich nicht höher oder umfassender sein als der Versicherungsschutz des versicherten Elternteils."] },
+      { type: "p", parts: ["Der Versicherer darf außerdem eine Mindestversicherungsdauer des Elternteils vorsehen, die höchstens drei Monate betragen darf."] },
+      { type: "p", parts: ["Diese Kindernachversicherung ist ein wichtiger Unterschied zur normalen Aufnahme eines neuen Versicherten in einen regulären PKV-Tarif."] },
+    ],
+  },
+  {
+    id: "welches-system-guenstiger-fuer-familien",
+    heading: "17. Welches System ist für Familien günstiger?",
+    blocks: [
+      { type: "p", parts: ["Darauf gibt es keine allgemeingültige Antwort."] },
+      { type: "p", parts: ["Die Antwort hängt unter anderem ab von:"] },
+      { type: "list", items: ["Anzahl der Kinder", "Versicherungsstatus beider Eltern", "Einkommen beider Eltern", "gewünschtem Versicherungsschutz", "Arbeitgeberzuschuss", "Beihilfeansprüchen", "zukünftiger Familienplanung"] },
+      { type: "p", parts: ["Ein Einverdiener-Haushalt mit mehreren beitragsfrei familienversicherten Kindern funktioniert finanziell anders als ein Haushalt mit zwei gut verdienenden Eltern."] },
+      { type: "p", parts: ["Bei Beamten können sich wiederum völlig andere Konstellationen ergeben, weil Ehepartner und Kinder gegebenenfalls Beihilfeansprüche besitzen."] },
+      { type: "p", parts: ["Die Familienversicherung ist deshalb kein Nebenthema."] },
+      { type: "standalone", text: "Sie gehört zu den zentralen Punkten beim langfristigen Systemvergleich." },
+    ],
+  },
+  {
+    id: "leistungen-in-der-gkv",
+    heading: "18. Wie funktionieren die Leistungen in der GKV?",
+    blocks: [
+      { type: "p", parts: ["Die Leistungen der gesetzlichen Krankenversicherung basieren wesentlich auf gesetzlichen Vorgaben des Sozialgesetzbuches V."] },
+      { type: "p", parts: ["§ 2 SGB V regelt unter anderem, dass die Krankenkassen die gesetzlich vorgesehenen Leistungen zur Verfügung stellen."] },
+      { type: "p", parts: ["Gleichzeitig gilt das Wirtschaftlichkeitsgebot aus § 12 SGB V."] },
+      { type: "p", parts: ["Danach müssen Leistungen:"] },
+      { type: "list", items: ["ausreichend", "zweckmäßig", "wirtschaftlich"] },
+      { type: "p", parts: ["sein und dürfen das Maß des Notwendigen nicht überschreiten."] },
+      { type: "standalone", text: "Der Kern des Leistungsanspruchs wird deshalb nicht individuell zwischen Versichertem und Krankenkasse ausgehandelt." },
+      { type: "p", parts: ["Er ergibt sich aus gesetzlichen Regelungen und den darauf aufbauenden Strukturen des GKV-Systems."] },
+      { type: "p", parts: ["Zusätzlich können Krankenkassen bestimmte Satzungs- oder Zusatzleistungen anbieten."] },
+      { type: "p", parts: ["Dadurch können sich einzelne Krankenkassen durchaus unterscheiden."] },
+      { type: "p", parts: ["Der grundsätzliche Leistungsrahmen ist jedoch gesetzlich geprägt."] },
+    ],
+  },
+  {
+    id: "koennen-sich-gkv-leistungen-veraendern",
+    heading: "19. Können sich GKV-Leistungen verändern?",
+    blocks: [
+      { type: "standalone", text: "Ja." },
+      {
+        type: "p",
+        parts: [
+          "Weil der Leistungsrahmen der gesetzlichen Krankenversicherung wesentlich durch Gesetze und weitere Regelungen des GKV-Systems bestimmt wird, kann er durch gesetzgeberische oder regulatorische Veränderungen angepasst werden.",
+        ],
+      },
+      { type: "p", parts: ["Der einzelne Versicherte besitzt deshalb keinen individuell ausgehandelten Versicherungsvertrag, der für jeden einzelnen Leistungsbereich dauerhaft einen persönlichen Tarifumfang definiert."] },
+      { type: "p", parts: ["Das ist weder automatisch ein Vorteil noch ein Nachteil."] },
+      { type: "standalone", text: "Es ist zunächst ein struktureller Unterschied zur privaten Krankenversicherung." },
+    ],
+  },
+  {
+    id: "leistungen-in-der-pkv",
+    heading: "20. Wie funktionieren die Leistungen in der PKV?",
+    blocks: [
+      { type: "p", parts: ["In der privaten Krankenversicherung ergibt sich der Leistungsanspruch wesentlich aus dem abgeschlossenen Versicherungsvertrag."] },
+      {
+        type: "p",
+        parts: [
+          "§ 192 Versicherungsvertragsgesetz verpflichtet den privaten Krankenversicherer, im vereinbarten Umfang Aufwendungen für medizinisch notwendige Heilbehandlungen und weitere vereinbarte Leistungen zu erstatten.",
+        ],
+      },
+      { type: "standalone", text: "Entscheidend ist deshalb der konkrete Tarif." },
+      { type: "p", parts: ["Zwischen verschiedenen Tarifen können erhebliche Unterschiede bestehen."] },
+      { type: "p", parts: ["Beispielsweise bei:"] },
+      {
+        type: "list",
+        items: ["ambulanten Behandlungen", "Gebührenordnung", "Arzneimitteln", "Heilmitteln", "Hilfsmitteln", "Psychotherapie", "Krankenhausbehandlung", "Zahnersatz", "Kieferorthopädie", "Vorsorge", "Rehabilitationsleistungen", "Auslandsschutz"],
+      },
+      { type: "p", parts: ["Deshalb bedeutet:"] },
+      { type: "quote", text: "„privat versichert“" },
+      { type: "p", parts: ["nicht automatisch:"] },
+      { type: "quote", text: "„umfangreich versichert“." },
+    ],
+  },
+  {
+    id: "ist-pkv-automatisch-besser-bei-leistungen",
+    heading: "21. Ist die PKV bei Leistungen automatisch besser?",
+    blocks: [
+      { type: "standalone", text: "Nein." },
+      { type: "p", parts: ["Eine pauschale Aussage wäre fachlich nicht sinnvoll."] },
+      { type: "p", parts: ["Ein leistungsstarker PKV-Tarif kann in verschiedenen Bereichen deutlich umfangreichere vertragliche Leistungen vorsehen als der gesetzliche Leistungskatalog."] },
+      { type: "p", parts: ["Gleichzeitig können schwach ausgestaltete PKV-Tarife relevante Begrenzungen enthalten."] },
+      { type: "p", parts: ["Deshalb muss bei der privaten Krankenversicherung immer der konkrete Tarif betrachtet werden."] },
+      { type: "p", parts: ["Die entscheidende Gegenüberstellung lautet nicht:"] },
+      { type: "quote", text: "GKV gegen PKV." },
+      { type: "p", parts: ["Sondern bei einer konkreten Leistungsanalyse:"] },
+      { type: "quote", text: "gesetzlicher Leistungsanspruch gegen den tatsächlich gewählten privaten Tarif." },
+    ],
+  },
+  {
+    id: "pkv-versicherer-leistungen-verweigern",
+    heading: "22. Kann sich ein PKV-Versicherer später einfach weigern, vereinbarte Leistungen zu zahlen?",
+    blocks: [
+      { type: "p", parts: ["Der Versicherer ist an den bestehenden Versicherungsvertrag und die gesetzlichen Vorgaben gebunden."] },
+      { type: "standalone", text: "Entscheidend bleibt allerdings, ob eine Behandlung nach den Vertragsbedingungen tatsächlich versichert und erstattungsfähig ist." },
+      { type: "p", parts: ["Deshalb sollte nicht nur geprüft werden, ob ein Tarif heute bestimmte Leistungen bewirbt."] },
+      { type: "p", parts: ["Wesentlich sind die zugrunde liegenden Versicherungsbedingungen."] },
+      { type: "p", parts: ["Sie definieren, unter welchen Voraussetzungen ein Leistungsanspruch besteht."] },
+    ],
+  },
+  {
+    id: "abrechnung-in-der-gkv",
+    heading: "23. Wie funktioniert die Abrechnung in der GKV?",
+    blocks: [
+      { type: "p", parts: ["Die GKV arbeitet überwiegend nach dem Sachleistungsprinzip."] },
+      { type: "p", parts: ["Versicherte zeigen beispielsweise beim Arzt ihre elektronische Gesundheitskarte vor."] },
+      { type: "p", parts: ["Medizinische Leistungen werden anschließend innerhalb des gesetzlichen Systems zwischen Leistungserbringern und den zuständigen Abrechnungsstellen beziehungsweise Krankenkassen abgerechnet."] },
+      { type: "p", parts: ["Der Versicherte erhält für die normale vertragsärztliche Behandlung in der Regel keine vollständige Arztrechnung."] },
+      { type: "p", parts: ["Ausnahmen bestehen beispielsweise bei:"] },
+      { type: "list", items: ["gesetzlichen Zuzahlungen", "Selbstzahlerleistungen", "individuellen Gesundheitsleistungen", "bestimmten privat vereinbarten Leistungen"] },
+      { type: "p", parts: ["Das Sachleistungsprinzip bedeutet vereinfacht:"] },
+      { type: "standalone", text: "Der Versicherte erhält grundsätzlich die medizinische Leistung, ohne die regulären Behandlungskosten zunächst selbst abrechnen zu müssen." },
+    ],
+  },
+  {
+    id: "abrechnung-in-der-pkv",
+    heading: "24. Wie funktioniert die Abrechnung in der PKV?",
+    blocks: [
+      { type: "p", parts: ["In der privaten Krankenversicherung dominiert das Kostenerstattungsprinzip."] },
+      { type: "p", parts: ["Bei ambulanten Behandlungen erhält der Patient in der Regel selbst eine Rechnung."] },
+      { type: "p", parts: ["Diese reicht er anschließend beim privaten Krankenversicherer ein."] },
+      { type: "p", parts: ["Der Versicherer prüft die Rechnung anhand:"] },
+      { type: "list", items: ["des abgeschlossenen Tarifs", "der Versicherungsbedingungen", "der medizinischen Notwendigkeit", "der jeweiligen Gebührenregelungen"] },
+      { type: "p", parts: ["und erstattet den tariflich vorgesehenen Betrag."] },
+      { type: "p", parts: ["Ärztliche Leistungen werden typischerweise auf Grundlage der Gebührenordnung für Ärzte abgerechnet."] },
+      { type: "p", parts: ["Für zahnärztliche Leistungen gilt die Gebührenordnung für Zahnärzte."] },
+      { type: "standalone", text: "Rechnungsbetrag und Erstattungsbetrag müssen deshalb nicht zwingend identisch sein." },
+    ],
+  },
+  {
+    id: "privatpatient-vorfinanzierung",
+    heading: "25. Muss ein Privatpatient immer alles vorfinanzieren?",
+    blocks: [
+      { type: "standalone", text: "Nein." },
+      { type: "p", parts: ["Diese Aussage wäre zu pauschal."] },
+      { type: "p", parts: ["Eine ambulante Rechnung wird zwar grundsätzlich dem Patienten gestellt."] },
+      { type: "p", parts: ["Sie kann jedoch häufig bereits unmittelbar nach Erhalt beim Versicherer eingereicht werden."] },
+      { type: "p", parts: ["Es ist nicht generell erforderlich, dass die Rechnung zuerst aus eigenen Mitteln bezahlt wurde."] },
+      { type: "p", parts: ["Bei stationären Krankenhausbehandlungen sind zudem direkte Abrechnungen zwischen Krankenhaus und Versicherer möglich."] },
+      { type: "p", parts: ["Deshalb sollte zwischen:"] },
+      { type: "quote", text: "„Der Patient ist Rechnungsempfänger“" },
+      { type: "p", parts: ["und"] },
+      { type: "quote", text: "„Der Patient muss jede Rechnung vollständig langfristig vorfinanzieren“" },
+      { type: "p", parts: ["unterschieden werden."] },
+    ],
+  },
+  {
+    id: "gkv-beitrag-im-alter",
+    heading: "26. Was passiert mit dem GKV-Beitrag im Alter?",
+    blocks: [
+      { type: "p", parts: ["Auch im Ruhestand bleibt die gesetzliche Krankenversicherung grundsätzlich einkommensbezogen."] },
+      { type: "p", parts: ["Die genaue Beitragsberechnung hängt allerdings davon ab, welchen Versicherungsstatus der Rentner besitzt."] },
+      { type: "h3", text: "Pflichtversicherte Rentner" },
+      { type: "p", parts: ["Bei Pflichtversicherten in der Krankenversicherung der Rentner werden insbesondere Beiträge aus der gesetzlichen Rente berücksichtigt."] },
+      { type: "standalone", text: "Auf den Krankenversicherungsbeitrag aus der gesetzlichen Rente beteiligt sich die gesetzliche Rentenversicherung grundsätzlich zur Hälfte." },
+      { type: "p", parts: ["Auch aus bestimmten Versorgungsbezügen, beispielsweise Betriebsrenten, sowie bestimmten Arbeitseinkommen können Krankenversicherungsbeiträge entstehen."] },
+      { type: "h3", text: "Freiwillig gesetzlich versicherte Rentner" },
+      { type: "p", parts: ["Bei freiwillig gesetzlich versicherten Rentnern können zusätzlich weitere Einnahmen für die Beitragsberechnung relevant sein."] },
+      { type: "p", parts: ["Dazu können beispielsweise gehören:"] },
+      { type: "list", items: ["Kapitalerträge", "Einkünfte aus Vermietung und Verpachtung", "weitere Einnahmen"] },
+      { type: "p", parts: ["jeweils innerhalb der gesetzlichen Beitragsregeln und bis zur Beitragsbemessungsgrenze."] },
+      { type: "p", parts: ["Deshalb ist für die Frage nach den GKV-Beiträgen im Ruhestand nicht nur die Höhe der gesetzlichen Rente wichtig."] },
+      { type: "standalone", text: "Auch der spätere Versicherungsstatus spielt eine wesentliche Rolle." },
+    ],
+  },
+  {
+    id: "sinkt-gkv-beitrag-im-ruhestand",
+    heading: "27. Sinkt der GKV-Beitrag automatisch im Ruhestand?",
+    blocks: [
+      { type: "p", parts: ["Häufig sinken die beitragspflichtigen Einnahmen beim Übergang vom Erwerbsleben in den Ruhestand."] },
+      { type: "p", parts: ["Dadurch kann auch der Krankenversicherungsbeitrag sinken."] },
+      { type: "p", parts: ["Eine pauschale Aussage ist trotzdem nicht möglich."] },
+      { type: "p", parts: ["Entscheidend sind insbesondere:"] },
+      { type: "list", items: ["Höhe der gesetzlichen Rente", "Versorgungsbezüge", "Arbeitseinkommen", "Versicherungsstatus als Pflichtmitglied oder freiwilliges Mitglied", "gegebenenfalls weitere beitragspflichtige Einnahmen"] },
+      { type: "standalone", text: "Der GKV-Beitrag bleibt also grundsätzlich an die beitragsrechtlich relevanten Einkünfte gekoppelt." },
+    ],
+  },
+  {
+    id: "pkv-beitrag-im-alter",
+    heading: "28. Was passiert mit dem PKV-Beitrag im Alter?",
+    blocks: [
+      { type: "p", parts: ["Der PKV-Beitrag wird nicht automatisch niedriger, nur weil mit dem Renteneintritt das Einkommen sinkt."] },
+      { type: "p", parts: ["Das liegt daran, dass der Beitrag nicht am laufenden Einkommen orientiert ist."] },
+      { type: "p", parts: ["Gleichzeitig berücksichtigt die PKV bereits während der Vertragslaufzeit die statistisch steigenden Gesundheitskosten höherer Lebensalter."] },
+      { type: "p", parts: ["Dafür werden Alterungsrückstellungen gebildet."] },
+      { type: "p", parts: ["Vereinfacht bedeutet das:"] },
+      { type: "p", parts: ["In jüngeren Jahren wird ein Teil des Beitrags für spätere Lebensphasen zurückgestellt."] },
+      { type: "standalone", text: "Mit zunehmendem Alter können diese Rückstellungen dazu beitragen, die höheren statistischen Gesundheitskosten zu finanzieren." },
+      { type: "p", parts: ["Das individuelle Älterwerden wird dadurch bereits in der langfristigen Tarifkalkulation berücksichtigt."] },
+    ],
+  },
+  {
+    id: "alterungsrueckstellung-bedeutet-nicht-keine-steigerung",
+    heading: "29. Bedeutet Alterungsrückstellung, dass PKV-Beiträge im Alter nicht steigen?",
+    blocks: [
+      { type: "standalone", text: "Nein." },
+      { type: "p", parts: ["Alterungsrückstellungen verhindern nicht jede zukünftige Beitragsanpassung."] },
+      { type: "p", parts: ["Sie dienen dazu, die statistisch steigenden Krankheitskosten aufgrund des Älterwerdens innerhalb der langfristigen Kalkulation zu berücksichtigen."] },
+      { type: "p", parts: ["Andere Rechnungsgrundlagen können sich trotzdem verändern."] },
+      { type: "p", parts: ["Beispielsweise:"] },
+      { type: "list", items: ["allgemeine medizinische Kosten", "tatsächliche Versicherungsleistungen des Kollektivs", "Lebenserwartung", "weitere versicherungsmathematische Grundlagen"] },
+      { type: "standalone", text: "Verändern sich maßgebliche Rechnungsgrundlagen dauerhaft, kann eine Beitragsanpassung erforderlich werden." },
+      { type: "p", parts: ["Die gesetzlichen Voraussetzungen hierfür sind insbesondere in § 203 VVG geregelt."] },
+    ],
+  },
+  {
+    id: "zuschuss-fuer-privat-versicherte-rentner",
+    heading: "30. Bekommen privat versicherte Rentner einen Zuschuss?",
+    blocks: [
+      { type: "p", parts: ["Privat krankenversicherte Bezieher einer gesetzlichen Rente können unter den gesetzlichen Voraussetzungen einen Zuschuss der gesetzlichen Rentenversicherung zu ihrer Krankenversicherung erhalten."] },
+      { type: "p", parts: ["Dieser Zuschuss muss beantragt werden."] },
+      { type: "p", parts: ["Seine Höhe orientiert sich unter anderem am allgemeinen Beitragssatz und am maßgeblichen durchschnittlichen Zusatzbeitrag der gesetzlichen Krankenversicherung."] },
+      { type: "standalone", text: "Der Zuschuss ist allerdings begrenzt und kann insbesondere nicht höher sein als die Hälfte der tatsächlichen zuschussfähigen privaten Krankenversicherungsbeiträge." },
+      { type: "p", parts: ["Die PKV wird dadurch im Ruhestand nicht einkommensabhängig."] },
+      { type: "p", parts: ["Der Zuschuss reduziert lediglich einen Teil der vom Versicherten zu tragenden Kosten."] },
+    ],
+  },
+  {
+    id: "entscheidender-unterschied-im-alter",
+    heading: "31. GKV oder PKV im Alter: Was ist der entscheidende Unterschied?",
+    blocks: [
+      { type: "p", parts: ["Der wichtigste Unterschied liegt weiterhin im Finanzierungsprinzip."] },
+      { type: "p", parts: ["In der GKV hängt die Beitragshöhe auch im Ruhestand wesentlich von beitragspflichtigen Einnahmen und vom Versicherungsstatus ab."] },
+      { type: "p", parts: ["In der PKV bleibt der Beitrag grundsätzlich tarifbezogen und vom aktuellen Einkommen unabhängig."] },
+      { type: "p", parts: ["Dafür arbeitet die PKV mit Alterungsrückstellungen und weiteren Mechanismen zur langfristigen Beitragskalkulation."] },
+      { type: "p", parts: ["Deshalb wäre die Aussage:"] },
+      { type: "quote", text: "„Die GKV ist im Alter immer günstiger“" },
+      { type: "p", parts: ["genauso zu pauschal wie:"] },
+      { type: "quote", text: "„Die PKV ist im Alter immer günstiger“." },
+      { type: "standalone", text: "Die tatsächliche Belastung hängt von der individuellen Situation ab." },
+    ],
+  },
+  {
+    id: "vergleich-nur-ueber-beitrag-greift-zu-kurz",
+    heading: "32. Ein Vergleich nur über den heutigen Beitrag greift zu kurz",
+    blocks: [
+      { type: "p", parts: ["Wer GKV und PKV vergleichen möchte, sollte nicht nur folgende Frage stellen:"] },
+      { type: "quote", text: "„Was zahle ich heute pro Monat?“" },
+      { type: "p", parts: ["Mindestens genauso wichtig sind:"] },
+      {
+        type: "list",
+        items: [
+          "Wie entwickelt sich mein Einkommen?",
+          "Plane ich Kinder?",
+          "Soll ein Partner möglicherweise ohne eigenes Einkommen mitversichert werden?",
+          "Welche Leistungen sind mir wichtig?",
+          "Wie sieht mein Gesundheitszustand beim PKV-Eintritt aus?",
+          "Welche Leistungen sind im privaten Tarif tatsächlich vertraglich geregelt?",
+          "Welche Einnahmen werde ich voraussichtlich im Ruhestand haben?",
+          "Wie wichtig ist mir das Sachleistungs- oder Kostenerstattungsprinzip?",
+          "Wie flexibel möchte ich zwischen unterschiedlichen Leistungsniveaus sein?",
+        ],
+      },
+      { type: "standalone", text: "Erst wenn diese Punkte gemeinsam betrachtet werden, entsteht ein sinnvoller Systemvergleich." },
+    ],
+  },
+  {
+    id: "unterschiedliche-logiken",
+    heading: "33. GKV und PKV verfolgen unterschiedliche Logiken",
+    blocks: [
+      { type: "p", parts: ["Die gesetzliche Krankenversicherung ist wesentlich solidarisch und einkommensbezogen organisiert."] },
+      { type: "p", parts: ["Die private Krankenversicherung ist wesentlich tarif-, vertrags- und kalkulationsbezogen organisiert."] },
+      { type: "p", parts: ["Daraus entstehen typische Unterschiede:"] },
+      { type: "p", parts: ["Die GKV kann Familienangehörige unter bestimmten Voraussetzungen beitragsfrei einbeziehen."] },
+      { type: "p", parts: ["Die PKV kalkuliert grundsätzlich für jede versicherte Person einen eigenen Beitrag."] },
+      { type: "p", parts: ["Die GKV nimmt keine individuelle Gesundheitsprüfung vor."] },
+      { type: "p", parts: ["Die PKV berücksichtigt das gesundheitliche Risiko grundsätzlich beim Eintritt in reguläre Tarife."] },
+      { type: "p", parts: ["Die GKV bietet einen wesentlich gesetzlich definierten Leistungsrahmen."] },
+      { type: "p", parts: ["Die PKV arbeitet mit vertraglich definierten Tarifleistungen."] },
+      { type: "p", parts: ["Die GKV rechnet überwiegend über das Sachleistungsprinzip ab."] },
+      { type: "p", parts: ["Die PKV arbeitet überwiegend nach dem Kostenerstattungsprinzip."] },
+      { type: "standalone", text: "Keine dieser Eigenschaften lässt sich isoliert als grundsätzlich besser oder schlechter bewerten." },
+      { type: "p", parts: ["Entscheidend ist, welche Systemlogik zur jeweiligen Lebenssituation passt."] },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "keyFacts")
+              return (
+                <div class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+                  <ul class="space-y-4">
+                    {block.items.map((item) => (
+                      <li class="flex items-start gap-3">
+                        <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+                        <p class="text-sm leading-relaxed text-ink-700/85">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

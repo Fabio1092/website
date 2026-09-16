@@ -1,0 +1,88 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const sources = [
+  "Bundesministerium für Gesundheit: Gesetzliche Krankenversicherung",
+  "Bundesministerium für Gesundheit: Versicherte in der gesetzlichen Krankenversicherung",
+  "Bundesministerium für Gesundheit: Beiträge der gesetzlichen Krankenversicherung",
+  "Bundesministerium für Gesundheit: Wechsel zwischen GKV und PKV",
+  "GKV-Spitzenverband: Zahlen und Grafiken zur gesetzlichen und privaten Krankenversicherung",
+  "Deutsche Rentenversicherung: Kranken- und Pflegeversicherung der Rentner",
+  "Deutsche Rentenversicherung: Zuschuss zur Krankenversicherung",
+  "Sozialgesetzbuch V § 2 – Leistungen",
+  "Sozialgesetzbuch V § 10 – Familienversicherung",
+  "Sozialgesetzbuch V § 12 – Wirtschaftlichkeitsgebot",
+  "Versicherungsvertragsgesetz § 192 – Vertragstypische Leistungen der privaten Krankenversicherung",
+  "Versicherungsvertragsgesetz § 198 – Kindernachversicherung",
+  "Versicherungsvertragsgesetz § 203 – Prämien- und Bedingungsanpassung",
+  "Verband der Privaten Krankenversicherung: Branchenzahlen",
+  "Verband der Privaten Krankenversicherung: Beitragskalkulation und Alterungsrückstellungen",
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Fazit: GKV und PKV lassen sich nicht auf einen Beitragsvergleich reduzieren
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Gesetzliche und private Krankenversicherung sichern dasselbe grundlegende Risiko ab, funktionieren aber nach unterschiedlichen Prinzipien."] } />
+      <RichParagraph parts={["Die GKV ist wesentlich einkommens- und solidarorientiert."]} />
+      <RichParagraph parts={["Die PKV ist wesentlich tarif-, vertrags- und kalkulationsorientiert."]} />
+      <RichParagraph parts={["Diese unterschiedlichen Prinzipien beeinflussen nahezu jeden Bereich:"]} />
+
+      <ul class="space-y-2">
+        {
+          ["Zugang", "Gesundheitsprüfung", "Beiträge", "Familie", "Leistungen", "Abrechnung", "finanzielle Situation im Alter"].map((item) => (
+            <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Deshalb gibt es keine seriöse allgemeingültige Antwort auf die Frage, welches der beiden Systeme grundsätzlich besser ist."]} />
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Ein sinnvoller Vergleich muss die persönliche Lebenssituation, die Familienplanung, die
+          Einkommensentwicklung, den gewünschten Versicherungsschutz und die langfristige Finanzierung
+          berücksichtigen.
+        </p>
+      </div>
+
+      <RichParagraph
+        parts={[
+          "Wer zunächst die Funktionsweise der privaten Krankenversicherung im Detail verstehen möchte, findet dazu im PKV-Wissen den Grundlagenartikel „",
+          { a: "Wie funktioniert die private Krankenversicherung?", href: "/wissen/private-krankenversicherung/wie-funktioniert-die-pkv/" },
+          "“.",
+        ]}
+      />
+    </div>
+
+    <div class="mt-14 border-t border-black/5 pt-8">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Quellen und rechtliche Grundlagen</p>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/60">
+        Für diesen Artikel wurden insbesondere folgende öffentlich zugänglichen Primärquellen und
+        Rechtsgrundlagen berücksichtigt:
+      </p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-ink-700/60">{source}</li>
+          ))
+        }
+      </ul>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Stand der Zahlen und gesetzlichen Angaben: September 2026.</p>
+    </div>
+
+    <div class="mt-10 border-t border-black/5 pt-8">
+      <RichParagraph
+        parts={["Zurück zum ", { a: "PKV-Wissen", href: "/wissen/private-krankenversicherung/" }]}
+        class="text-sm font-semibold text-ink-700/85"
+      />
+    </div>
+  </div>
+</section>

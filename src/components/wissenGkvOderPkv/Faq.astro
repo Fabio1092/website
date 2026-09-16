@@ -1,0 +1,80 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Was ist der größte Unterschied zwischen GKV und PKV?",
+    answer:
+      "Der grundlegende Unterschied liegt im System. Die GKV arbeitet wesentlich nach dem Solidarprinzip und berechnet Beiträge anhand beitragspflichtiger Einnahmen. Die PKV basiert auf einem individuellen Versicherungsvertrag und kalkuliert Beiträge insbesondere anhand von Tarif, Eintrittsalter und Gesundheitszustand bei Vertragsbeginn.",
+  },
+  {
+    question: "Wie viele Menschen sind gesetzlich und privat versichert?",
+    answer:
+      "Anfang 2026 waren rund 74,2 Millionen Menschen gesetzlich krankenversichert. Die private Krankenvollversicherung zählte nach den für 2025 veröffentlichten Zahlen rund 8,79 Millionen Vollversicherte. Die jeweiligen Zahlen beziehen sich nicht auf exakt denselben statistischen Stichtag.",
+  },
+  {
+    question: "Muss man für die GKV Gesundheitsfragen beantworten?",
+    answer: "Nein. Bei der normalen Mitgliedschaft in einer gesetzlichen Krankenversicherung gibt es keine Risikoprüfung anhand des individuellen Gesundheitszustands.",
+  },
+  {
+    question: "Muss man für die PKV Gesundheitsfragen beantworten?",
+    answer:
+      "Bei regulären PKV-Tarifen grundsätzlich ja. Der Versicherer bewertet das gesundheitliche Risiko bei Vertragsbeginn. Für bestimmte gesetzliche Sondertarife und die Kindernachversicherung gelten besondere Regelungen.",
+  },
+  {
+    question: "Ist die PKV immer leistungsstärker als die GKV?",
+    answer: "Nein. Der Leistungsumfang der PKV hängt vom konkret abgeschlossenen Tarif ab. Gute Tarife können in vielen Bereichen umfangreichere Leistungen vorsehen, während andere Tarife relevante Begrenzungen besitzen.",
+  },
+  {
+    question: "Sind Kinder in der GKV kostenlos versichert?",
+    answer: "Kinder können unter den gesetzlichen Voraussetzungen beitragsfrei familienversichert werden. Ob dies möglich ist, hängt unter anderem vom Versicherungsstatus und Einkommen der Eltern sowie weiteren Voraussetzungen ab.",
+  },
+  {
+    question: "Sind Kinder in der PKV kostenlos versichert?",
+    answer: "Nein. Privat versicherte Kinder benötigen grundsätzlich einen eigenen Versicherungsschutz mit eigenem Beitrag. Für Neugeborene gibt es allerdings unter den Voraussetzungen des § 198 VVG ein besonderes Recht auf Kindernachversicherung.",
+  },
+  {
+    question: "Was passiert mit dem GKV-Beitrag im Alter?",
+    answer:
+      "Der Beitrag bleibt grundsätzlich einkommensbezogen. Welche Einnahmen berücksichtigt werden, hängt unter anderem davon ab, ob ein Rentner pflichtversichert in der Krankenversicherung der Rentner oder freiwillig gesetzlich versichert ist.",
+  },
+  {
+    question: "Was passiert mit dem PKV-Beitrag im Alter?",
+    answer:
+      "Der Beitrag bleibt grundsätzlich vom Einkommen unabhängig und tarifbezogen. Alterungsrückstellungen dienen dazu, statistisch höhere Krankheitskosten späterer Lebensphasen in der Kalkulation zu berücksichtigen. Beitragsanpassungen können trotzdem auftreten.",
+  },
+  {
+    question: "Ist die GKV im Alter automatisch günstiger als die PKV?",
+    answer: "Nein. Eine pauschale Aussage ist nicht möglich. Die tatsächliche Belastung hängt in beiden Systemen von unterschiedlichen Faktoren ab.",
+  },
+  {
+    question: "Kann ich später jederzeit von der PKV zurück in die GKV?",
+    answer: "Nein. Eine Rückkehr setzt grundsätzlich einen entsprechenden gesetzlichen Zugang zur GKV voraus. Besonders ab Vollendung des 55. Lebensjahres bestehen zusätzliche Einschränkungen.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Häufige Fragen zu <span class="text-brand-600">GKV und PKV</span>
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

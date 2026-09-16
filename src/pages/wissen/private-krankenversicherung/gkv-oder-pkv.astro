@@ -1,0 +1,53 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/wissenGkvOderPkv/Hero.astro";
+import TableOfContents from "@/components/wissenGkvOderPkv/TableOfContents.astro";
+import Article from "@/components/wissenGkvOderPkv/Article.astro";
+import Faq from "@/components/wissenGkvOderPkv/Faq.astro";
+import Fazit from "@/components/wissenGkvOderPkv/Fazit.astro";
+
+const pageTitle = "GKV oder PKV? Unterschiede im Vergleich | Fabio Rumpf";
+const pageDescription =
+  "GKV und PKV im Vergleich: Unterschiede bei Zugang, Gesundheitsprüfung, Beiträgen, Familie, Leistungen, Abrechnung und Beiträgen im Alter.";
+const canonicalUrl = new URL("/wissen/private-krankenversicherung/gkv-oder-pkv/", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "GKV oder PKV? Gesetzliche und private Krankenversicherung im Vergleich",
+  description: pageDescription,
+  inLanguage: "de-DE",
+  datePublished: "2026-09-16",
+  dateModified: "2026-09-16",
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
+  publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Wissen", item: new URL("/wissen/", Astro.site).toString() },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "PKV-Wissen",
+      item: new URL("/wissen/private-krankenversicherung/", Astro.site).toString(),
+    },
+    { "@type": "ListItem", position: 4, name: "GKV oder PKV?", item: canonicalUrl },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} fullTitle>
+  <Hero />
+  <TableOfContents />
+  <Article />
+  <Faq />
+  <Fazit />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

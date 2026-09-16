@@ -1,0 +1,66 @@
+---
+const entries = [
+  { id: "das-wichtigste-auf-einen-blick", label: "Das Wichtigste auf einen Blick" },
+  { id: "gkv-und-pkv-im-ueberblick", label: "GKV und PKV im direkten Überblick" },
+  { id: "wie-viele-versicherte", label: "Wie viele Menschen sind versichert?" },
+  { id: "grundprinzipien", label: "Nach welchen Grundprinzipien funktionieren sie?" },
+  { id: "wer-kommt-in-die-gkv", label: "Wer kommt in die GKV?" },
+  { id: "wer-kann-in-die-pkv-wechseln", label: "Wer kann in die PKV wechseln?" },
+  { id: "systemwechsel-nicht-in-beide-richtungen", label: "Funktioniert ein Wechsel in beide Richtungen?" },
+  { id: "gesundheitspruefung-in-der-gkv", label: "Gesundheitsprüfung in der GKV?" },
+  { id: "gesundheitspruefung-in-der-pkv", label: "Gesundheitsprüfung in der PKV?" },
+  { id: "gesundheitszustand-unterschied", label: "Gesundheitszustand als struktureller Unterschied" },
+  { id: "beitrag-in-der-gkv", label: "Wie wird der Beitrag in der GKV berechnet?" },
+  { id: "jahresarbeitsentgeltgrenze-vs-beitragsbemessungsgrenze", label: "Jahresarbeitsentgeltgrenze vs. Beitragsbemessungsgrenze" },
+  { id: "beitrag-in-der-pkv", label: "Wie wird der Beitrag in der PKV berechnet?" },
+  { id: "beispiel-beitragsvergleich", label: "Beispiel: Warum ein Beitragsvergleich wenig aussagt" },
+  { id: "familie-in-der-gkv", label: "Wie funktioniert die Familie in der GKV?" },
+  { id: "kinder-in-der-gkv", label: "Wie sind Kinder in der GKV versichert?" },
+  { id: "familie-in-der-pkv", label: "Wie funktioniert die Familie in der PKV?" },
+  { id: "neugeborene-in-der-pkv", label: "Gesundheitsprüfung bei Neugeborenen in der PKV?" },
+  { id: "welches-system-guenstiger-fuer-familien", label: "Welches System ist für Familien günstiger?" },
+  { id: "leistungen-in-der-gkv", label: "Wie funktionieren die Leistungen in der GKV?" },
+  { id: "koennen-sich-gkv-leistungen-veraendern", label: "Können sich GKV-Leistungen verändern?" },
+  { id: "leistungen-in-der-pkv", label: "Wie funktionieren die Leistungen in der PKV?" },
+  { id: "ist-pkv-automatisch-besser-bei-leistungen", label: "Ist die PKV automatisch besser?" },
+  { id: "pkv-versicherer-leistungen-verweigern", label: "Kann der Versicherer Leistungen verweigern?" },
+  { id: "abrechnung-in-der-gkv", label: "Wie funktioniert die Abrechnung in der GKV?" },
+  { id: "abrechnung-in-der-pkv", label: "Wie funktioniert die Abrechnung in der PKV?" },
+  { id: "privatpatient-vorfinanzierung", label: "Muss ich als Privatpatient vorfinanzieren?" },
+  { id: "gkv-beitrag-im-alter", label: "Was passiert mit dem GKV-Beitrag im Alter?" },
+  { id: "sinkt-gkv-beitrag-im-ruhestand", label: "Sinkt der GKV-Beitrag im Ruhestand?" },
+  { id: "pkv-beitrag-im-alter", label: "Was passiert mit dem PKV-Beitrag im Alter?" },
+  { id: "alterungsrueckstellung-bedeutet-nicht-keine-steigerung", label: "Bedeutet das: keine Beitragssteigerung?" },
+  { id: "zuschuss-fuer-privat-versicherte-rentner", label: "Zuschuss für privat versicherte Rentner?" },
+  { id: "entscheidender-unterschied-im-alter", label: "Der entscheidende Unterschied im Alter" },
+  { id: "vergleich-nur-ueber-beitrag-greift-zu-kurz", label: "Warum ein reiner Beitragsvergleich zu kurz greift" },
+  { id: "unterschiedliche-logiken", label: "GKV und PKV verfolgen unterschiedliche Logiken" },
+  { id: "fazit", label: "Fazit" },
+  { id: "faq", label: "FAQ" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>

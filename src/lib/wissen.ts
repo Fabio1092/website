@@ -67,9 +67,9 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
   {
     name: "Grundlagen",
     topics: [
-      { label: "Wie funktioniert die PKV?" },
+      { label: "Wie funktioniert die private Krankenversicherung?", href: "/wissen/private-krankenversicherung/wie-funktioniert-die-pkv/" },
       { label: "Für wen lohnt sich die PKV?" },
-      { label: "PKV vs. GKV" },
+      { label: "GKV oder PKV? Gesetzliche und private Krankenversicherung im Vergleich", href: "/wissen/private-krankenversicherung/gkv-oder-pkv/" },
       { label: "Voraussetzungen für die PKV" },
     ],
   },
@@ -119,6 +119,8 @@ export const buAvailableLinks: WissenLink[] = [
 ];
 
 export const pkvAvailableLinks: WissenLink[] = [
+  { label: "Wie funktioniert die private Krankenversicherung?", href: "/wissen/private-krankenversicherung/wie-funktioniert-die-pkv/" },
+  { label: "GKV oder PKV? Gesetzliche und private Krankenversicherung im Vergleich", href: "/wissen/private-krankenversicherung/gkv-oder-pkv/" },
   { label: "Gesundheitsfragen bei der PKV", href: "/pkv-gesundheitsfragen/" },
   { label: "Risikovoranfrage zur PKV", href: "/pkv-risikovoranfrage/" },
   { label: "PKV für Angestellte", href: "/pkv-angestellte-kassel/" },
