@@ -8,10 +8,11 @@ const services = [
     title: "Berufsunfähigkeits­versicherung",
     short: "BU",
     description:
-      "Deine Arbeitskraft ist dein wertvollstes Kapital. Ich unterstütze dich dabei, die passende Berufsunfähigkeitsversicherung zu finden und auf eine saubere Gesundheitsprüfung zu achten.",
-    points: ["Individuelle Analyse", "Hilfe bei Gesundheitsfragen", "Vergleich verschiedener Anbieter", "Begleitung im Leistungsfall"],
+      "Bei einer BU geht es nicht nur um den Tarif. Rentenhöhe, Vertragsbedingungen, Gesundheitsangaben und die Risikoprüfung müssen zusammenpassen. Ich unterstütze dich dabei, diese Punkte strukturiert zu prüfen.",
+    points: ["Passende BU-Rentenhöhe", "Gesundheitsangaben aufbereiten", "Risikovoranfrage bei Bedarf", "Tarife und Bedingungen vergleichen"],
     href: "/berufsunfaehigkeitsversicherung-kassel/",
     cta: "Mehr zur BU-Beratung",
+    ctaId: "home_service_bu",
   },
   {
     icon: HeartPulse,
@@ -19,10 +20,11 @@ const services = [
     title: "Private Kranken­versicherung",
     short: "PKV",
     description:
-      "Die Entscheidung für oder gegen die private Krankenversicherung sollte gut durchdacht sein. Ich begleite dich von der Analyse bis zur langfristigen Betreuung.",
-    points: ["PKV-Wechsel prüfen", "Selbständige, Beamte & Angestellte", "Anbietervergleich", "Langfristige Betreuung"],
+      "Bei der PKV sollte zuerst geklärt werden, ob das System langfristig zu deiner Situation passt. Anschließend geht es um Leistungen, Gesundheitsprüfung, Tarifbedingungen und eine langfristig tragfähige Auswahl.",
+    points: ["GKV und PKV einordnen", "Gesundheitsangaben aufbereiten", "Risikovoranfrage bei Bedarf", "Tarife und Leistungen vergleichen"],
     href: "/private-krankenversicherung-kassel/",
     cta: "Mehr zur PKV-Beratung",
+    ctaId: "home_service_pkv",
   },
 ];
 ---
@@ -30,7 +32,7 @@ const services = [
 <section class="bg-white py-24">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl">
-      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">So kann ich <span class="text-brand-600">dich unterstützen</span></h2>
+      <h2 class="hyphens-auto break-words text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Meine Schwerpunkte: <span class="text-brand-600">Berufsunfähigkeitsversicherung und private Krankenversicherung</span></h2>
       <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
         Ich habe mich bewusst auf zwei der wichtigsten Themen der finanziellen Absicherung
         spezialisiert. So profitierst du von einer Beratung mit klarem Fokus, fundiertem
@@ -44,6 +46,7 @@ const services = [
           <a
             href={service.href}
             data-reveal
+            data-cta={service.ctaId}
             class:list={[
               "group relative flex flex-col justify-between p-10 transition-colors duration-300 sm:p-12 lg:p-14",
               service.dark ? "bg-ink-950 text-white" : "bg-brand-50/60 text-ink-950",

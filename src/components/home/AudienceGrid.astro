@@ -1,91 +1,84 @@
 ---
-import { Briefcase, Building2, Users, Landmark } from "lucide-react";
-import { siteConfig } from "@/lib/site";
+import { Briefcase, Building2, Landmark, GraduationCap } from "lucide-react";
 
 const audiences = [
   {
     icon: Briefcase,
     title: "Angestellte & Akademiker",
     description:
-      "Du bist angestellt oder Akademiker und möchtest deine Arbeitskraft langfristig absichern? Ich helfe dir, die passende BU und PKV zu finden — verständlich, transparent und auf deine Situation abgestimmt.",
+      "Bei Angestellten spielen Einkommen, berufliche Entwicklung und langfristige Absicherung eine zentrale Rolle.",
+    links: [
+      { label: "BU für Angestellte", href: "/bu-angestellte-kassel/", ctaId: "home_audience_bu_employees" },
+      { label: "PKV für Angestellte", href: "/pkv-angestellte-kassel/", ctaId: "home_audience_pkv_employees" },
+    ],
   },
   {
     icon: Building2,
     title: "Selbstständige & Unternehmer",
     description:
-      "Du führst dein eigenes Unternehmen und willst dich, deine Familie und dein Business optimal absichern? Gemeinsam entwickeln wir Lösungen, die zu dir und deinem Leben passen.",
-  },
-  {
-    icon: Users,
-    title: "Familien & Gutverdiener",
-    description:
-      "Du möchtest das Beste für deine Liebsten und gleichzeitig deine Gesundheit und dein Einkommen schützen? Ich zeige dir, wie du heute clever vorsorgst.",
+      "Für Selbstständige müssen Absicherung und Krankenversicherung auch bei schwankendem Einkommen und langfristiger Unternehmensplanung funktionieren.",
+    links: [
+      { label: "BU für Selbstständige", href: "/bu-selbststaendige-kassel/", ctaId: "home_audience_bu_selfemployed" },
+      { label: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel/", ctaId: "home_audience_pkv_selfemployed" },
+    ],
   },
   {
     icon: Landmark,
     title: "Beamte & Referendare",
     description:
-      "Als Beamter oder Referendar hast du besondere Möglichkeiten bei der Absicherung. Ich begleite dich bei der optimalen Auswahl.",
+      "Bei Beamten gelten durch Dienstunfähigkeit und Beihilfe besondere Rahmenbedingungen für BU beziehungsweise DU und PKV.",
+    links: [
+      { label: "BU für Beamte", href: "/bu-beamte-kassel/", ctaId: "home_audience_bu_civilservants" },
+      { label: "PKV für Beamte", href: "/pkv-beamte-kassel/", ctaId: "home_audience_pkv_civilservants" },
+    ],
+  },
+  {
+    icon: GraduationCap,
+    title: "Studenten & Berufseinsteiger",
+    description:
+      "Bei Studenten kann eine frühe BU-Absicherung relevant sein, weil Gesundheitszustand, Studiengang und späterer Beruf die Versicherbarkeit und Gestaltung beeinflussen können.",
+    links: [
+      { label: "BU für Studenten", href: "/bu-studenten-kassel/", ctaId: "home_audience_bu_students" },
+    ],
   },
 ];
-
 ---
 
-<section class="overflow-hidden bg-white py-24">
+<section class="bg-white py-24">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl">
       <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
-        Meine Beratung passt zu dir, wenn du <span class="text-brand-600">deine Zukunft absichern</span> willst.
+        BU- und PKV-Beratung für <span class="text-brand-600">unterschiedliche Lebenssituationen</span>
       </h2>
       <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
-        Egal, in welcher Lebensphase du gerade stehst – ich helfe dir dabei, die passende
-        Absicherung für deine Gesundheit, deine Arbeitskraft und deine Familie zu finden.
+        Je nach Beruf und Lebensphase unterscheiden sich Anforderungen an BU und PKV deutlich. Hier
+        findest du die passenden Informationen für deine Situation.
       </p>
     </div>
-  </div>
 
-  <div
-    data-reveal
-    class="group relative mt-14 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
-  >
-    <div id="audience-marquee-track" class="flex w-max gap-6 [animation-play-state:running] motion-safe:group-hover:[animation-play-state:paused]">
+    <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
       {
         audiences.map((audience) => (
-          <div class="flex w-[19rem] shrink-0 flex-col rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:w-[22rem]">
+          <div data-reveal class="flex flex-col rounded-2xl border border-black/5 bg-brand-50/30 p-6">
             <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
               <audience.icon className="h-5 w-5" aria-hidden="true" />
             </div>
             <h3 class="mt-5 font-serif text-lg font-semibold text-ink-950">{audience.title}</h3>
             <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{audience.description}</p>
+            <div class="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+              {audience.links.map((link) => (
+                <a
+                  href={link.href}
+                  data-cta={link.ctaId}
+                  class="text-sm font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
         ))
       }
     </div>
   </div>
-
-  <div class="mx-auto mt-12 max-w-6xl px-4 text-center sm:px-6 lg:px-8">
-    <a
-      href={siteConfig.calendlyUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center justify-center rounded-full bg-ink-950 px-7 py-3.5 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-ink-800"
-    >
-      Jetzt Termin vereinbaren
-    </a>
-  </div>
 </section>
-
-<script>
-  // Duplicate the track client-side (not in the server-rendered HTML) so the
-  // seamless CSS loop still works without doubling this content for crawlers.
-  const track = document.getElementById("audience-marquee-track");
-  if (track && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const clones = Array.from(track.children).map((node) => {
-      const clone = node.cloneNode(true) as HTMLElement;
-      clone.setAttribute("aria-hidden", "true");
-      return clone;
-    });
-    clones.forEach((clone) => track.appendChild(clone));
-    track.classList.add("animate-marquee");
-  }
-</script>

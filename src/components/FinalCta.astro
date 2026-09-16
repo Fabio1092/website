@@ -77,6 +77,6 @@ const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
       {ctaLabel}
     </a>
 
-    <p class="mt-6 text-sm text-white/50">{closingLine}</p>
+    {closingLine && <p class="mt-6 text-sm text-white/50">{closingLine}</p>}
   </div>
 </section>

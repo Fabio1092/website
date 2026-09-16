@@ -4,9 +4,9 @@ import { siteConfig } from "@/lib/site";
 
 const badges = [
   "Spezialisiert auf BU & PKV",
+  "300+ durchgeführte Risikovoranfragen",
   "Persönlich in Kassel & Nordhessen",
-  "Persönliche Begleitung im Leistungsfall",
-  "Ungebunden & transparent",
+  "Digital deutschlandweit",
 ];
 ---
 
@@ -32,11 +32,12 @@ const badges = [
         Aus Kassel. Für Nordhessen. Digital in ganz Deutschland.
       </span>
       <h1 class="mt-6 hyphens-auto break-words text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-        Spezialisiert auf <span class="text-brand-400">Berufsunfähigkeits- &amp; private Kranken&shy;versicherung</span> in Kassel.
+        Spezialisiert auf <span class="text-brand-400">Berufsunfähigkeitsversicherung &amp; private Krankenversicherung</span> in Kassel.
       </h1>
       <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/70 lg:mx-0">
-        Dein Versicherungsmakler aus Nordhessen für BU- und PKV-Beratung — persönlich,
-        verständlich und ungebunden.
+        Als Versicherungsmakler in Kassel unterstütze ich dich bei BU und PKV – von
+        Gesundheitsangaben und Risikovoranfrage bis zur Tarifauswahl und langfristigen
+        Betreuung. Persönlich in Nordhessen, digital deutschlandweit.
       </p>
 
       <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
@@ -44,17 +45,22 @@ const badges = [
           href={siteConfig.calendlyUrl}
           target="_blank"
           rel="noopener noreferrer"
+          data-cta="home_hero_booking"
           class="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
         >
           Kostenloses Erstgespräch buchen
         </a>
         <a
           href="#beratungsablauf"
+          data-cta="home_hero_process"
           class="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:border-white/40 hover:bg-white/5 sm:w-auto"
         >
-          Beratung kennenlernen
+          So läuft die Beratung ab
         </a>
       </div>
+      <p class="mt-4 text-center text-xs text-white/50 lg:text-left">
+        15 Minuten · kostenlos &amp; unverbindlich
+      </p>
 
       <ul class="mx-auto mt-12 grid max-w-lg grid-cols-1 gap-x-8 gap-y-4 text-left sm:grid-cols-2 lg:mx-0">
         {
@@ -89,7 +95,7 @@ const badges = [
           <div class="flex text-gold-400">
             {Array.from({ length: 5 }).map(() => <Star className="h-4 w-4 fill-current" aria-hidden="true" />)}
           </div>
-          <span class="text-sm font-medium text-white/90 whitespace-nowrap">5.0 · 36 Bewertungen</span>
+          <span class="text-sm font-medium text-white/90 whitespace-nowrap">{siteConfig.reviewRating.toFixed(1)} · {siteConfig.reviewCount} Bewertungen</span>
         </div>
       </div>
     </div>

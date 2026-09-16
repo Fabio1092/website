@@ -1,0 +1,77 @@
+---
+import { ClipboardList, Search, ArrowRight } from "lucide-react";
+
+const cards = [
+  {
+    icon: ClipboardList,
+    title: "Gesundheitsfragen in der BU",
+    text: "Welche Behandlungen, Diagnosen und Beschwerden angegeben werden müssen, hängt von den konkreten Gesundheitsfragen und Abfragezeiträumen des Versicherers ab. Eine saubere Aufbereitung ist deshalb wichtiger als eine Antwort aus dem Gedächtnis.",
+    linkText: "Gesundheitsfragen in der BU verstehen",
+    href: "/bu-gesundheitsfragen/",
+    ctaId: "home_health_bu_questions",
+  },
+  {
+    icon: Search,
+    title: "Risikovoranfrage bei der BU",
+    text: "Bei Vorerkrankungen kann vor einem verbindlichen Antrag geprüft werden, wie Versicherer die gesundheitliche Vorgeschichte einschätzen. So lassen sich mögliche Annahmebedingungen vorab besser einordnen.",
+    linkText: "BU-Risikovoranfrage verstehen",
+    href: "/bu-risikovoranfrage/",
+    ctaId: "home_health_bu_risk",
+  },
+  {
+    icon: ClipboardList,
+    title: "Gesundheitsfragen in der PKV",
+    text: "Auch in der PKV unterscheiden sich Gesundheitsfragen und Abfragezeiträume zwischen Versicherern. Entscheidend ist, die tatsächlich gestellten Fragen vollständig und nachvollziehbar zu beantworten.",
+    linkText: "Gesundheitsfragen in der PKV verstehen",
+    href: "/pkv-gesundheitsfragen/",
+    ctaId: "home_health_pkv_questions",
+  },
+  {
+    icon: Search,
+    title: "Risikovoranfrage bei der PKV",
+    text: "Bei einer gesundheitlichen Vorgeschichte kann eine Risikovoranfrage zeigen, wie verschiedene Versicherer die Situation bewerten, bevor ein verbindlicher Antrag gestellt wird.",
+    linkText: "PKV-Risikovoranfrage verstehen",
+    href: "/pkv-risikovoranfrage/",
+    ctaId: "home_health_pkv_risk",
+  },
+];
+---
+
+<section class="bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Gesundheitsfragen und Risikovoranfrage bei <span class="text-brand-600">BU &amp; PKV</span>
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
+        Bei BU und PKV kann die gesundheitliche Vorgeschichte entscheidend dafür sein, ob und zu
+        welchen Bedingungen Versicherungsschutz möglich ist. Deshalb sollten Gesundheitsangaben vor
+        einem Antrag sorgfältig aufbereitet werden. Bei Vorerkrankungen kann zusätzlich eine
+        Risikovoranfrage sinnvoll sein.
+      </p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {
+        cards.map((card) => (
+          <a
+            href={card.href}
+            data-reveal
+            data-cta={card.ctaId}
+            class="group flex flex-col rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-colors duration-300 hover:border-brand-200"
+          >
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <card.icon className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <h3 class="mt-5 font-serif text-lg font-semibold text-ink-950">{card.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{card.text}</p>
+            <div class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700">
+              {card.linkText}
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

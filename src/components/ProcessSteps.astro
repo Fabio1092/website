@@ -15,6 +15,7 @@ interface Props {
   intro: string;
   steps: Step[];
   ctaLabel?: string;
+  ctaId?: string;
   closing?: { title: string; text: string };
 }
 
@@ -25,6 +26,7 @@ const {
   intro,
   steps,
   ctaLabel = "Telefonisches Erstgespräch vereinbaren",
+  ctaId,
   closing,
 } = Astro.props;
 
@@ -72,6 +74,7 @@ const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
             href={siteConfig.calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-cta={ctaId}
             class="mt-6 inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
           >
             {ctaLabel}
@@ -83,6 +86,7 @@ const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
             href={siteConfig.calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-cta={ctaId}
             class="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
           >
             {ctaLabel}

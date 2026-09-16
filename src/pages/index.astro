@@ -1,15 +1,39 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { siteConfig } from "@/lib/site";
 import HomeHero from "@/components/home/HomeHero.astro";
-import PartnerLogos from "@/components/home/PartnerLogos.astro";
 import Testimonials from "@/components/home/Testimonials.astro";
 import Services from "@/components/home/Services.astro";
+import HealthQuestions from "@/components/home/HealthQuestions.astro";
 import AudienceGrid from "@/components/home/AudienceGrid.astro";
-import ValueProps from "@/components/home/ValueProps.astro";
+import PartnerLogos from "@/components/home/PartnerLogos.astro";
 import ProcessSteps from "@/components/ProcessSteps.astro";
 import AboutTeaser from "@/components/home/AboutTeaser.astro";
 import Faq from "@/components/home/Faq.astro";
 import FinalCta from "@/components/FinalCta.astro";
+
+// Organization-Schema für die Startseite — bewusst ohne aggregateRating/review
+// (Trustindex-Zahlen sind nicht als gepinnte Daten für Structured Data gedacht)
+// und ohne LocalBusiness/InsuranceAgency, da hier keine öffentlich besuchbare
+// Geschäftsadresse als Kundenstandort angegeben werden soll.
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": new URL("/#organization", Astro.site).toString(),
+  name: "Fabio Rumpf",
+  alternateName: "Fabio Rumpf Versicherungs- und Finanzmakler",
+  url: new URL("/", Astro.site).toString(),
+  telephone: "+4956194033160",
+  description:
+    "Versicherungsmakler in Kassel, spezialisiert auf Berufsunfähigkeitsversicherung und private Krankenversicherung. Persönlich in Nordhessen und digital deutschlandweit.",
+  logo: new URL("/images/Logo.png", Astro.site).toString(),
+  founder: {
+    "@type": "Person",
+    name: "Fabio Rumpf",
+    url: new URL("/ueber-mich/", Astro.site).toString(),
+  },
+  sameAs: [siteConfig.instagramUrl],
+};
 ---
 
 <Layout
@@ -17,47 +41,57 @@ import FinalCta from "@/components/FinalCta.astro";
   description="Versicherungsmakler in Kassel, spezialisiert auf BU & PKV. Über 300 durchgeführte Risikovoranfragen. Persönlich vor Ort und digital deutschlandweit."
   fullTitle
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(organizationSchema)} />
+
   <HomeHero />
   <Testimonials />
   <Services />
-  <PartnerLogos />
+  <HealthQuestions />
   <AudienceGrid />
-  <ValueProps />
+  <PartnerLogos />
   <ProcessSteps
-    title="In 4 einfachen Schritten zu deiner optimalen Absicherung."
-    intro="Transparenter Prozess, klare Schritte und eine Beratung, die sich ganz nach dir richtet."
+    title="So läuft die BU- und PKV-Beratung ab"
+    intro="Von der ersten Einordnung bis zur langfristigen Betreuung: vier klare Schritte."
+    ctaLabel="Kostenloses Erstgespräch buchen"
+    ctaId="home_process_booking"
     steps={[
       {
         number: "1",
         duration: "ca. 15 Min.",
-        title: "Telefonisches Erstgespräch",
+        title: "Erstgespräch",
         description:
-          "Wir sprechen über deine aktuelle Situation, deine beruflichen Pläne und die Themen, die dir wichtig sind. Gemeinsam finden wir heraus, ob eine private Krankenversicherung oder eine Absicherung deiner Arbeitskraft für dich sinnvoll ist.",
+          "Wir klären dein Anliegen, deine Ausgangssituation und ob eine BU- oder PKV-Beratung für dich aktuell relevant ist.",
       },
       {
         number: "2",
         duration: "ca. 45–90 Min.",
-        title: "Persönliche Bedarfsanalyse",
+        title: "Analyse & Gesundheitsdaten",
         description:
-          "Ich analysiere deine individuelle Situation und prüfe, welche Anforderungen an deine BU oder PKV gestellt werden. Dabei berücksichtige ich sowohl deine aktuelle Lebenssituation als auch deine langfristigen Ziele.",
+          "Wir erfassen deine Anforderungen und bereiten – soweit erforderlich – Gesundheitsangaben und vorhandene Unterlagen strukturiert auf.",
       },
       {
         number: "3",
         duration: "ca. 60 Min.",
-        title: "Passende Strategie & Empfehlung",
+        title: "Marktvergleich & Empfehlung",
         description:
-          "Du erhältst eine verständliche Empfehlung mit passenden Lösungen und Tarifen. Dabei geht es nicht um möglichst viele Optionen, sondern um die Lösung, die langfristig am besten zu dir passt.",
+          "Ich vergleiche passende Tarife und Bedingungen und erläutere dir nachvollziehbar, welche Unterschiede für deine Situation relevant sind.",
       },
       {
         number: "4",
         duration: "Langfristig",
-        title: "Begleitung über den Abschluss hinaus",
+        title: "Umsetzung & Begleitung",
         description:
-          "Ich begleite dich bei der Umsetzung und stehe dir auch danach langfristig zur Seite – bei Fragen, Anpassungen oder Veränderungen deiner Lebenssituation.",
+          "Wenn du dich für eine Lösung entscheidest, begleite ich die Umsetzung und bleibe Ansprechpartner für spätere Fragen, Anpassungen und den Leistungsfall.",
       },
     ]}
   />
   <AboutTeaser />
   <Faq />
-  <FinalCta />
+  <FinalCta
+    title="Du möchtest deine BU oder PKV konkret prüfen?"
+    body="Im 15-minütigen Erstgespräch klären wir, worum es dir geht, welche nächsten Schritte sinnvoll sind und ob ich der passende Ansprechpartner für dein Thema bin."
+    ctaId="home_final_booking"
+    badges={["15 Minuten · kostenlos & unverbindlich", "Kein Abschluss im Erstgespräch"]}
+    closingLine=""
+  />
 </Layout>

@@ -20,4 +20,8 @@ export const siteConfig = {
   instagramUrl: "https://www.instagram.com/fr.makler/",
   trustindexEmbedSrc:
     "https://cdn.trustindex.io/loader.js?53c36bf38dcb982a3916f4a1aa8",
+  // Zentrale Pflege der Bewertungszahlen (Hero-Badge + Testimonials-Sektion
+  // lesen beide von hier) — rein statisch, keine automatische Trustindex-Abfrage.
+  reviewRating: 5.0,
+  reviewCount: 36,
 };
