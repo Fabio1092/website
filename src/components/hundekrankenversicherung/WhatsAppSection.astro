@@ -1,0 +1,50 @@
+---
+import { MessageCircle } from "lucide-react";
+import RichParagraph from "@/components/RichParagraph.astro";
+import HanseMerkurLogo from "./HanseMerkurLogo.astro";
+import { dogWhatsAppUrl } from "@/lib/dogInsurance";
+---
+
+<section id="whatsapp-anfrage" class="scroll-mt-24 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <div class="rounded-3xl border border-black/5 bg-brand-50/30 p-7 text-center sm:p-10">
+      <div class="mx-auto flex h-12 w-24 items-center justify-center rounded-xl border border-black/5 bg-white p-2">
+        <HanseMerkurLogo />
+      </div>
+
+      <h2 class="hyphens-auto mt-5 break-words font-serif text-2xl font-semibold text-ink-950 sm:text-3xl">
+        Du möchtest wissen, was die HanseMerkur für deinen Hund kostet?
+      </h2>
+
+      <div class="mx-auto mt-5 max-w-lg space-y-3 text-left text-base leading-relaxed text-ink-700/85">
+        <RichParagraph parts={["Da ich an dieser Stelle keinen direkten Online-Abschluss integrieren kann, schreib mir einfach kurz über WhatsApp."]} />
+        <RichParagraph
+          parts={[
+            "Am besten schickst du mir direkt ",
+            { b: "Rasse, Geburtsdatum und Namen deines Hundes" },
+            " und ob du eher eine ",
+            { b: "Krankenvollversicherung oder nur OP-Schutz" },
+            " möchtest.",
+          ]}
+        />
+        <RichParagraph parts={["Dann kann ich dir die passende Variante und den Beitrag nennen."]} />
+      </div>
+
+      <a
+        href={dogWhatsAppUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cta="dog_health_whatsapp_clicked"
+        class="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:inline-flex sm:w-auto"
+      >
+        <MessageCircle className="h-4 w-4" aria-hidden="true" />
+        HanseMerkur für meinen Hund per WhatsApp anfragen
+      </a>
+
+      <p class="mx-auto mt-4 max-w-md text-xs leading-relaxed text-ink-700/60">
+        Es wird nichts automatisch versendet. WhatsApp öffnet lediglich die vorbereitete
+        Nachricht – du kannst sie vor dem Absenden noch ändern.
+      </p>
+    </div>
+  </div>
+</section>

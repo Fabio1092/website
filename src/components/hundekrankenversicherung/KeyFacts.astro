@@ -1,0 +1,40 @@
+---
+import { CheckCircle2 } from "lucide-react";
+
+const facts = [
+  "Eine Hunde-OP-Versicherung konzentriert sich vor allem auf das große Kostenrisiko einer notwendigen Operation. Sie ist günstiger, übernimmt dafür aber nicht jeden normalen Tierarztbesuch.",
+  "Eine Hundekrankenversicherung geht deutlich weiter. Sie kann neben Operationen beispielsweise auch ambulante und stationäre Behandlungen, Diagnostik, Medikamente und – abhängig vom Tarif – weitere Leistungen übernehmen.",
+  "Wenn du nur das wirklich große finanzielle Risiko absichern möchtest und laufende Tierarztkosten problemlos selbst tragen kannst, kann eine OP-Versicherung sinnvoll sein.",
+  "Wenn du dagegen möglichst umfassend abgesichert sein möchtest, würde ich die Krankenvollversicherung wählen.",
+];
+---
+
+<section id="wichtigste" class="scroll-mt-24 bg-white py-14 sm:py-16">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <div class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Das Wichtigste in 30 Sekunden</p>
+
+      <ul class="mt-6 space-y-4">
+        {
+          facts.map((fact) => (
+            <li class="flex items-start gap-3">
+              <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+              <p class="text-sm leading-relaxed text-ink-700/85">{fact}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-6 border-t border-black/5 pt-5">
+        <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">Meine Empfehlung</p>
+        <p class="mt-2 font-serif text-base leading-snug text-ink-950">Meine bevorzugte Lösung ist die HanseMerkur Premium plus.</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-700/80">
+          Der Grund ist nicht nur ein einzelnes Leistungsmerkmal. Mir gefällt die Kombination aus
+          sehr umfassendem Schutz, hohen beziehungsweise teilweise unbegrenzten Leistungen,
+          4-facher GOT inklusive Notdienstgebühren, flexibler Selbstbeteiligung und aus meiner
+          Erfahrung sehr guter Leistungsabwicklung.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

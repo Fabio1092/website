@@ -1,0 +1,386 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+import { treatmentCosts, dogHealthPricingExample, dogOpPricingExample } from "@/lib/dogInsurance";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; parts: Part[] }
+  | { type: "h3"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "callout"; parts: Part[] }
+  | { type: "costTable" }
+  | { type: "resultsList"; items: { label: string; value: string }[] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const sections: Section[] = [
+  {
+    id: "warum-teuer",
+    heading: "Warum können Tierarztkosten so teuer werden?",
+    blocks: [
+      {
+        type: "p",
+        parts: ["Seit der Anpassung der Gebührenordnung für Tierärzte ist es für Hundehalter noch wichtiger geworden, sich mit dem möglichen finanziellen Risiko zu beschäftigen."],
+      },
+      {
+        type: "p",
+        parts: [
+          "Ein Tierarzt stellt schließlich nicht nur einen einzigen pauschalen Behandlungspreis in Rechnung. Eine Behandlung kann aus Untersuchung, Diagnostik, Bildgebung, Narkose, Medikamenten, Material, Operation, Klinikaufenthalt und Nachsorge bestehen.",
+        ],
+      },
+      { type: "p", parts: ["Abgerechnet wird über die Gebührenordnung für Tierärzte – kurz GOT."] },
+      {
+        type: "p",
+        parts: ["Je nach Aufwand und Situation können unterschiedliche Gebührensätze angesetzt werden. Gerade im tierärztlichen Notdienst können hohe Abrechnungssätze relevant werden."],
+      },
+      {
+        type: "p",
+        parts: ["Deshalb gehört für mich ein vernünftiger Schutz bis zum ", { b: "4-fachen GOT-Satz" }, " zu den wichtigen Merkmalen eines leistungsstarken Tarifs."],
+      },
+      {
+        type: "p",
+        parts: [
+          "Bei der HanseMerkur erstatten Premium und Premium plus aktuell bis zum ",
+          { b: "4-fachen GOT-Satz inklusive Notdienstgebühren" },
+          ". Im Komfort-Tarif sind es bis zum 3-fachen Satz.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "was-kann-behandlung-kosten",
+    heading: "Was kann eine Behandlung beim Hund kosten?",
+    blocks: [
+      { type: "p", parts: ["Ein paar Größenordnungen machen das Risiko greifbarer."] },
+      { type: "p", parts: ["Die HanseMerkur nennt aktuell beispielsweise ungefähr:"] },
+      { type: "costTable" },
+      { type: "p", parts: ["Das sind Orientierungswerte und natürlich keine garantierten Tierarztpreise für deinen individuellen Fall."] },
+      { type: "p", parts: ["Und das ist für mich der entscheidende Punkt:"] },
+      {
+        type: "callout",
+        parts: [
+          "Du versicherst deinen Hund nicht, weil jeder Tierarztbesuch 5.000 Euro kostet. Du versicherst ihn, weil einzelne Behandlungen genau diese Größenordnung erreichen können.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "hundekranken-oder-op-versicherung",
+    heading: "Hundekrankenversicherung oder Hunde-OP-Versicherung?",
+    blocks: [
+      { type: "p", parts: ["Beides wird häufig miteinander vermischt, obwohl es einen entscheidenden Unterschied gibt."] },
+      { type: "h3", text: "Die Hunde-OP-Versicherung" },
+      { type: "p", parts: ["Die OP-Versicherung ist der schlankere Schutz."] },
+      {
+        type: "p",
+        parts: ["Sie konzentriert sich auf medizinisch notwendige Operationen und – abhängig vom Tarif – die damit verbundenen Leistungen rund um den Eingriff."],
+      },
+      { type: "p", parts: ["Das können beispielsweise die Operation selbst, bestimmte diagnostische Maßnahmen, Klinikunterbringung, Nachbehandlung oder Physiotherapie sein."] },
+      { type: "p", parts: ["Normale Tierarztbehandlungen ohne Operation gehören dagegen nicht einfach automatisch dazu."] },
+      { type: "p", parts: ["Für mich ist eine OP-Versicherung deshalb interessant, wenn du sagst:"] },
+      {
+        type: "quote",
+        text: "„Die normalen Tierarztrechnungen bezahle ich selbst. Ich möchte mich lediglich davor schützen, dass mich plötzlich eine Operation mehrere tausend Euro kostet.“",
+      },
+      { type: "p", parts: ["Dann deckst du einen großen Teil des eigentlichen Katastrophenrisikos zu einem vergleichsweise niedrigen Monatsbeitrag ab."] },
+      { type: "h3", text: "Die Hundekrankenversicherung" },
+      { type: "p", parts: ["Die Krankenvollversicherung geht wesentlich weiter."] },
+      {
+        type: "p",
+        parts: [
+          "Neben Operationen können hier auch allgemeine ambulante und stationäre Behandlungen, umfangreiche Diagnostik, Medikamente sowie je nach Tarif weitere Behandlungsmethoden und Zusatzleistungen enthalten sein.",
+        ],
+      },
+      { type: "p", parts: ["Die HanseMerkur berücksichtigt beispielsweise Diagnostik, Medikamente, Operationen, stationäre Behandlung sowie alternative Therapieformen in ihrer Krankenvollversicherung."] },
+      { type: "p", parts: ["Wer möglichst wenig finanzielle Überraschungen beim Tierarzt haben möchte, ist aus meiner Sicht damit besser aufgestellt."] },
+      { type: "p", parts: ["Dafür ist der Monatsbeitrag natürlich höher als bei der reinen OP-Versicherung."] },
+    ],
+  },
+  {
+    id: "worauf-achten",
+    heading: "Worauf würde ich bei einer Hundekrankenversicherung achten?",
+    blocks: [
+      { type: "p", parts: ["Ich würde nicht einfach danach auswählen, welcher Tarif im Vergleichsrechner zwei Euro günstiger ist."] },
+      { type: "p", parts: ["Viel wichtiger sind für mich Fragen wie:"] },
+      {
+        type: "list",
+        items: [
+          "Wie hoch ist die maximale Erstattung?",
+          "Gibt es eine Jahreshöchstleistung?",
+          "Bis zu welchem GOT-Satz wird gezahlt?",
+          "Ist der tierärztliche Notdienst vernünftig berücksichtigt?",
+          "Kannst du Tierarzt und Klinik frei wählen?",
+          "Wie werden chronische oder rassetypische Erkrankungen behandelt?",
+          "Wie sehen Wartezeiten aus?",
+          "Sind Diagnostik und Nachbehandlung enthalten?",
+          "Wie funktioniert die Selbstbeteiligung?",
+          "Gibt es Schutz bei längeren Auslandsaufenthalten?",
+          "Und ganz wichtig: Was passiert, wenn dein Hund bereits mehrere teure Behandlungen hatte?",
+        ],
+      },
+      { type: "p", parts: ["Genau diese Punkte entscheiden im Ernstfall deutlich mehr als ein paar Euro Beitragsunterschied."] },
+    ],
+  },
+  {
+    id: "warum-hansemerkur",
+    heading: "Warum ich die HanseMerkur empfehle",
+    blocks: [
+      { type: "p", parts: ["Ich würde jetzt folgendes machen:"] },
+      { type: "p", parts: ["Wenn ein Kunde zu mir kommt und einen leistungsstarken Schutz für seinen Hund möchte, schaue ich mir aktuell zuerst die HanseMerkur an."] },
+      {
+        type: "p",
+        parts: ["Mir gefällt aus der Praxis vor allem die Kombination aus ", { b: "sehr umfangreichen Leistungen und einer aus meiner Sicht unkomplizierten Schadenabwicklung" }, "."],
+      },
+      { type: "p", parts: ["Dazu kommt für mich ein sehr faires Preis-Leistungs-Verhältnis."] },
+      { type: "p", parts: ["Die Gesellschaft bietet drei Stufen:"] },
+      { type: "list", items: ["Komfort", "Premium", "Premium plus"] },
+      { type: "p", parts: ["Meine klare Präferenz ist ", { b: "Premium plus" }, "."] },
+    ],
+  },
+  {
+    id: "besondere-erkrankungen",
+    heading: "Ein wichtiger Unterschied: HD, ED und andere besondere Diagnosen",
+    blocks: [
+      { type: "p", parts: ["Gerade bei Hunden können bestimmte Erkrankungen finanziell richtig relevant werden."] },
+      { type: "p", parts: ["Ein gutes Beispiel sind Hüft- und Ellenbogendysplasien."] },
+      { type: "p", parts: ["Im aktuellen HanseMerkur-Tarifvergleich sind Operationen und Heilbehandlungen bei besonderen Erkrankungen und Diagnosen im Komfort-Tarif nicht enthalten."] },
+      { type: "p", parts: ["Premium leistet hierfür bis 5.000 Euro."] },
+      { type: "p", parts: ["Premium plus bietet hier eine unbegrenzte Leistung im Rahmen der Bedingungen."] },
+      { type: "p", parts: ["Auch die Wartezeit unterscheidet sich:"] },
+      { type: "p", parts: ["Bei Premium beträgt die besondere Wartezeit aktuell zwölf Monate, bei Premium plus sechs Monate."] },
+      { type: "p", parts: ["Für mich ist genau das ein gutes Beispiel dafür, warum ich nicht nur den Monatsbeitrag vergleichen würde."] },
+    ],
+  },
+  {
+    id: "physiotherapie-nachbehandlung",
+    heading: "Physiotherapie, Osteopathie und Chiropraktik",
+    blocks: [
+      { type: "p", parts: ["Nach einer größeren Operation hört die Behandlung nicht unbedingt auf, wenn der Hund die Klinik verlässt."] },
+      { type: "p", parts: ["Gerade nach orthopädischen Eingriffen können Physiotherapie und weitere Nachsorgemaßnahmen relevant werden."] },
+      { type: "p", parts: ["In der Krankenvollversicherung berücksichtigt die HanseMerkur diese Leistungen je nach Tarif unterschiedlich umfangreich."] },
+      { type: "p", parts: ["Premium plus sieht beispielsweise einen längeren Zeitraum von bis zu 60 Tagen nach einer Operation vor und darüber hinaus ein zusätzliches jährliches Budget."] },
+      { type: "p", parts: ["Premium arbeitet mit 30 Tagen, Komfort mit 15 Tagen."] },
+      { type: "p", parts: ["Auch alternative Behandlungsmethoden wie Akupunktur, Homöopathie oder Lasertherapie werden in den höheren Tarifstufen umfangreicher berücksichtigt."] },
+    ],
+  },
+  {
+    id: "vorsorge-zahn",
+    heading: "Vorsorge: nett – aber für mich nicht der Hauptgrund für die Versicherung",
+    blocks: [
+      { type: "p", parts: ["Premium enthält aktuell eine Vorsorgepauschale von 75 Euro, Premium plus von 100 Euro."] },
+      { type: "p", parts: ["Bei Premium plus kann zusätzlich der Baustein ", { b: "Vorsorge Plus" }, " gewählt werden."] },
+      { type: "p", parts: ["Dann steigt das entsprechende Vorsorgebudget laut HanseMerkur auf 250 Euro im Jahr; darüber hinaus gehören weitere Leistungen zum Baustein."] },
+      { type: "p", parts: ["Das finde ich gut."] },
+      { type: "p", parts: ["Trotzdem würde ich persönlich eine Hundekrankenversicherung nicht wegen einer Impfung oder Wurmkur auswählen."] },
+      { type: "p", parts: ["Die kann ich im Zweifel selbst bezahlen."] },
+      {
+        type: "p",
+        parts: [{ b: "Ich möchte den Tarif vor allem für die Rechnungen haben, bei denen ich nicht mehr über 80 oder 150 Euro, sondern über 3.000, 5.000 oder noch mehr Euro spreche." }],
+      },
+      { type: "h3", text: "Zahnbehandlungen können optional ergänzt werden" },
+      { type: "p", parts: ["Bei Premium und Premium plus lässt sich aktuell ein Zahn-Baustein ergänzen."] },
+      {
+        type: "p",
+        parts: [
+          "Der umfasst laut HanseMerkur unter anderem veterinärmedizinisch notwendige Zahnextraktionen, Wurzelbehandlungen, Zahnfüllungen, Zahnersatz sowie die Korrektur bestimmter Zahn- und Kieferanomalien.",
+        ],
+      },
+      { type: "p", parts: ["Ob du diesen Baustein benötigst, würde ich davon abhängig machen, wie umfassend du deinen Schutz aufstellen möchtest."] },
+    ],
+  },
+  {
+    id: "kosten",
+    heading: "Und was kostet Premium plus?",
+    blocks: [
+      { type: "p", parts: ["Hier gefällt mir die HanseMerkur ebenfalls."] },
+      { type: "p", parts: ["Der Beitrag hängt natürlich unter anderem von Rasse, Alter, Leistungsstufe, Selbstbeteiligung und optionalen Bausteinen ab."] },
+      {
+        type: "p",
+        parts: [
+          "Als aktuelles Preisbeispiel nennt die HanseMerkur für einen Jack Russell Terrier oder Australian Shepherd im ersten Lebensjahr bei 500 Euro Selbstbeteiligung und monatlicher Zahlweise ungefähr:",
+        ],
+      },
+      { type: "resultsList", items: dogHealthPricingExample.map((p) => ({ label: p.tier, value: p.price })) },
+      { type: "p", parts: ["Mit Zahnbaustein liegt Premium plus im Beispiel bei 42,44 Euro."] },
+      { type: "p", parts: ["Das ist natürlich ", { b: "kein Preisversprechen für deinen Hund" }, "."] },
+      { type: "p", parts: ["Aber es zeigt für mich ganz gut, weshalb ich Premium plus preislich interessant finde:"] },
+      {
+        type: "p",
+        parts: ["Der Abstand zwischen Premium und Premium plus ist in diesem Beispiel relativ überschaubar, während sich der Leistungsumfang an mehreren wichtigen Stellen verbessert."],
+      },
+    ],
+  },
+  {
+    id: "premium-plus-op-versicherung",
+    heading: "Wenn dir die Vollversicherung zu teuer ist: Premium plus als Hunde-OP-Versicherung",
+    blocks: [
+      { type: "p", parts: ["Genau hier finde ich die HanseMerkur ebenfalls interessant."] },
+      { type: "p", parts: ["Du kannst auch nur das große Operationsrisiko versichern."] },
+      { type: "p", parts: ["In der aktuellen Hunde-OP-Versicherung gibt es ebenfalls Komfort, Premium und Premium plus."] },
+      {
+        type: "p",
+        parts: [
+          "Premium plus bietet aktuell eine ",
+          { b: "unbegrenzte Jahreshöchstentschädigung für versicherte Operationen" },
+          ", bis zum 4-fachen GOT-Satz inklusive Notdienstgebühren, bis zu 60 Tage Klinikunterbringung beziehungsweise Nachbehandlung und 60 Tage Physiotherapie, Osteopathie oder Chiropraktik nach der OP.",
+        ],
+      },
+      { type: "p", parts: ["Bei besonderen Erkrankungen wie HD oder ED ist der Schutz im Rahmen der Bedingungen ebenfalls unbegrenzt."] },
+      { type: "p", parts: ["Zum Vergleich nennt die HanseMerkur aktuell für einen jungen Jack Russell Terrier oder Australian Shepherd mit 500 Euro Selbstbeteiligung monatlich ungefähr:"] },
+      { type: "resultsList", items: dogOpPricingExample.map((p) => ({ label: p.tier, value: p.price })) },
+      { type: "p", parts: ["Das zeigt ziemlich gut, warum eine OP-Versicherung als Mindestabsicherung interessant sein kann."] },
+    ],
+  },
+  {
+    id: "fruehzeitig-versichern",
+    heading: "Warum du deinen Hund möglichst früh versichern solltest",
+    blocks: [
+      { type: "p", parts: ["Hier würde ich nicht warten, bis der Hund die ersten Probleme hat."] },
+      { type: "p", parts: ["Vorerkrankungen und bereits bekannte Beschwerden können die Versicherbarkeit beeinflussen."] },
+      { type: "p", parts: ["Gesundheitsfragen sollten deshalb vollständig und korrekt beantwortet werden."] },
+      { type: "p", parts: ["Das Prinzip ist simpel:"] },
+      { type: "standalone", parts: [{ b: "Versichere das Risiko, bevor es eingetreten ist." }] },
+      { type: "p", parts: ["Nicht danach."] },
+      { type: "p", parts: ["Bei der HanseMerkur liegt das reguläre Höchstaufnahmealter für die Hundekrankenversicherung aktuell grundsätzlich bei acht Jahren."] },
+      { type: "p", parts: ["Für bestimmte Konstellationen können zusätzliche Grenzen gelten."] },
+    ],
+  },
+  {
+    id: "wartezeiten",
+    heading: "Wartezeiten solltest du kennen",
+    blocks: [
+      { type: "p", parts: ["Auch ein neu abgeschlossener Vertrag bedeutet nicht, dass ab der nächsten Minute jede Krankheit abgesichert ist."] },
+      { type: "p", parts: ["Bei der HanseMerkur beträgt die allgemeine Wartezeit derzeit einen Monat."] },
+      { type: "p", parts: ["Bei einem Unfall entfällt die Wartezeit."] },
+      { type: "p", parts: ["Bei bestimmten Erkrankungen und Diagnosen gelten längere Fristen:"] },
+      { type: "p", parts: ["Premium sieht aktuell zwölf Monate vor, Premium plus sechs Monate."] },
+      { type: "p", parts: ["Für Prothesen und Implantate gelten in Premium und Premium plus zwölf Monate."] },
+      { type: "p", parts: ["Auch hier zeigt sich für mich wieder der Vorteil von Premium plus."] },
+    ],
+  },
+  {
+    id: "tierarztwahl-notdienst",
+    heading: "Freie Tierarztwahl und Notdienst",
+    blocks: [
+      { type: "p", parts: ["Ein Tarif sollte dir im Ernstfall nicht vorschreiben, dass du mit deinem Hund erst einmal quer durchs Land fahren musst."] },
+      { type: "p", parts: ["Die HanseMerkur bietet in allen drei aktuellen Tarifvarianten freie Tierarzt- und Klinikwahl."] },
+      { type: "p", parts: ["Premium und Premium plus erstatten bis zum 4-fachen GOT-Satz einschließlich Notdienstgebühren."] },
+      { type: "p", parts: ["Gerade bei einem akuten Notfall halte ich das für wichtig."] },
+      {
+        type: "p",
+        parts: ["Wenn mein Hund nachts mit einer Magendrehung in die Tierklinik muss, möchte ich in diesem Moment nicht darüber diskutieren, ob der Tarif nur einen niedrigen Gebührensatz übernimmt."],
+      },
+      { type: "h3", text: "Was mir bei der HanseMerkur außerdem gefällt" },
+      { type: "p", parts: ["Die Rechnung kann digital beziehungsweise über die ServiceApp eingereicht werden."] },
+      { type: "p", parts: ["Eine direkte Abrechnung mit dem Tierarzt ist grundsätzlich möglich."] },
+      { type: "p", parts: ["Die HanseMerkur bietet außerdem Kündigungsschutz im Schadenfall ab Versicherungsbeginn."] },
+      { type: "p", parts: ["Das sind vielleicht keine spektakulären Marketingpunkte."] },
+      { type: "p", parts: ["In der Praxis finde ich sie aber wichtig."] },
+      { type: "p", parts: ["Denn ein guter Tarif ist für mich nicht nur einer, der auf einem PDF hervorragend aussieht."] },
+      { type: "standalone", parts: [{ b: "Er muss auch funktionieren, wenn du ihn tatsächlich brauchst." }] },
+      { type: "p", parts: ["Und genau mit dieser Abwicklung habe ich bei der HanseMerkur eine sehr gute Erfahrung."] },
+    ],
+  },
+];
+
+interface Props {
+  /** Rendert nur diese Section-IDs (in ihrer Reihenfolge im sections-Array),
+   *  damit sich bespoke Komponenten (TariffTiers, PremiumPlusRecommendation, …)
+   *  an der richtigen Stelle zwischen den Fließtext-Abschnitten einfügen
+   *  lassen. Ohne Prop werden alle Sections gerendert. */
+  ids?: string[];
+  /** Startwert für die Hintergrund-Alternierung, damit der Wechsel weiß/
+   *  brand-getönt über mehrere <Article ids=… />-Aufrufe hinweg konsistent
+   *  bleibt statt bei jedem Aufruf neu bei 0 zu beginnen. */
+  startIndex?: number;
+}
+
+const { ids, startIndex = 0 } = Astro.props;
+const visibleSections = ids ? sections.filter((s) => ids.includes(s.id)) : sections;
+---
+
+<div class="space-y-0">
+  {
+    visibleSections.map((section, i) => {
+      const index = startIndex + i;
+      return (
+      <section id={section.id} class={`scroll-mt-24 py-14 sm:py-20 ${index % 2 === 0 ? "bg-white" : "bg-brand-50/30"}`}>
+        <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+          <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+          <div data-reveal class="mt-6 space-y-4">
+            {section.blocks.map((block) => {
+              if (block.type === "p") return <RichParagraph parts={block.parts} class="text-base leading-relaxed text-ink-700/85" />;
+              if (block.type === "standalone")
+                return <RichParagraph parts={block.parts} class="text-base font-medium leading-relaxed text-ink-950" boldClass="text-ink-950" />;
+              if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+              if (block.type === "quote")
+                return (
+                  <blockquote class="border-l-2 border-brand-200 pl-5">
+                    <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                  </blockquote>
+                );
+              if (block.type === "list")
+                return (
+                  <ul class="space-y-2">
+                    {block.items.map((item) => (
+                      <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                        <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                );
+              if (block.type === "callout")
+                return (
+                  <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+                    <RichParagraph parts={block.parts} class="font-serif text-lg font-medium leading-relaxed text-ink-950" boldClass="text-ink-950" />
+                  </div>
+                );
+              if (block.type === "resultsList")
+                return (
+                  <ul class="divide-y divide-black/5 overflow-hidden rounded-xl border border-black/5 bg-white">
+                    {block.items.map((item) => (
+                      <li class="flex items-center justify-between gap-4 px-5 py-3.5 text-sm">
+                        <span class="font-medium text-ink-950">{item.label}</span>
+                        <span class="text-ink-700/80">{item.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                );
+              if (block.type === "costTable")
+                return (
+                  <div class="overflow-x-auto rounded-xl border border-black/5 bg-white">
+                    <table class="w-full border-collapse text-left text-sm">
+                      <thead>
+                        <tr class="bg-brand-50/60">
+                          <th class="px-4 py-3 font-semibold text-ink-950">Beispiel</th>
+                          <th class="px-4 py-3 text-right font-semibold text-ink-950">Orientierungswert</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-black/5">
+                        {treatmentCosts.map((row) => (
+                          <tr>
+                            <td class="px-4 py-3 text-ink-700/85">{row.label}</td>
+                            <td class="px-4 py-3 text-right font-medium text-ink-950">{row.value}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                );
+              return null;
+            })}
+          </div>
+        </div>
+      </section>
+      );
+    })
+  }
+</div>

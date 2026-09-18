@@ -1,0 +1,51 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import HanseMerkurLogo from "./HanseMerkurLogo.astro";
+
+const points = [
+  "grundsätzlich unbegrenzte Jahreshöchstentschädigung",
+  "Schutz bis zum 4-fachen GOT-Satz inklusive Notdienst",
+  "umfangreichere Leistungen bei besonderen Erkrankungen",
+  "kürzere besondere Wartezeit gegenüber Premium",
+  "umfangreichere Nachbehandlung",
+  "weltweiter Schutz bei vorübergehenden Auslandsaufenthalten von aktuell bis zu zwölf Monaten",
+  "optionaler Zahn-Baustein",
+  "optional Vorsorge Plus",
+];
+---
+
+<section id="warum-premium-plus-favorit" class="scroll-mt-24 bg-ink-950 py-16 text-white sm:py-24">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-4">
+      <div class="flex h-12 w-20 shrink-0 items-center justify-center rounded-xl bg-white p-2">
+        <HanseMerkurLogo />
+      </div>
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-300">Meine Empfehlung</p>
+    </div>
+
+    <h2 class="mt-5 hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
+      HanseMerkur <span class="text-brand-400">Premium plus</span>
+    </h2>
+
+    <div class="mt-6 space-y-4 text-base leading-relaxed text-white/80">
+      <p>Premium plus trifft aus meiner Sicht genau den Punkt, den eine Versicherung treffen sollte:</p>
+      <p class="font-serif text-lg font-medium text-white">Die wirklich großen Risiken möglichst sauber aus dem eigenen Geldbeutel herausnehmen.</p>
+      <p>Die für mich stärksten Punkte sind:</p>
+    </div>
+
+    <ul class="mt-4 space-y-3">
+      {
+        points.map((point) => (
+          <li class="flex items-start gap-2.5 text-sm leading-relaxed text-white/85">
+            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />
+            {point}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+      <p class="font-serif text-lg font-semibold text-white">Das ist der Tarif, den ich mir persönlich als Erstes ansehen würde.</p>
+    </div>
+  </div>
+</section>

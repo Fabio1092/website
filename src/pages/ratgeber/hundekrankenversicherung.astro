@@ -1,0 +1,64 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/hundekrankenversicherung/Hero.astro";
+import KeyFacts from "@/components/hundekrankenversicherung/KeyFacts.astro";
+import TableOfContents from "@/components/hundekrankenversicherung/TableOfContents.astro";
+import Article from "@/components/hundekrankenversicherung/Article.astro";
+import TariffTiers from "@/components/hundekrankenversicherung/TariffTiers.astro";
+import PremiumPlusRecommendation from "@/components/hundekrankenversicherung/PremiumPlusRecommendation.astro";
+import Deductible from "@/components/hundekrankenversicherung/Deductible.astro";
+import FullVsOpComparison from "@/components/hundekrankenversicherung/FullVsOpComparison.astro";
+import Fazit from "@/components/hundekrankenversicherung/Fazit.astro";
+import WhatsAppSection from "@/components/hundekrankenversicherung/WhatsAppSection.astro";
+import { guides } from "@/lib/guides";
+
+const guide = guides.find((g) => g.slug === "hundekrankenversicherung")!;
+
+const pageTitle = "Hundekrankenversicherung & OP-Versicherung: Kosten & Empfehlung | Fabio Rumpf";
+const pageDescription =
+  "Was kostet eine Hundekrankenversicherung? Versicherungsmakler Fabio Rumpf aus Kassel erklärt Tierarztkosten, OP-Schutz, Selbstbeteiligung und seine HanseMerkur Premium-plus-Empfehlung.";
+const canonicalUrl = new URL("/ratgeber/hundekrankenversicherung/", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Hundekrankenversicherung & Hunde-OP-Versicherung: Kosten, Leistungen & meine Empfehlung",
+  description: pageDescription,
+  inLanguage: "de-DE",
+  datePublished: "2026-09-18",
+  dateModified: guide.updatedAt,
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
+  publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Ratgeber", item: new URL("/ratgeber/", Astro.site).toString() },
+    { "@type": "ListItem", position: 3, name: "Hundekrankenversicherung", item: canonicalUrl },
+  ],
+};
+---
+
+<Layout title={pageTitle} fullTitle description={pageDescription}>
+  <Hero />
+  <KeyFacts />
+  <TableOfContents />
+  <Article ids={["warum-teuer", "was-kann-behandlung-kosten", "hundekranken-oder-op-versicherung", "worauf-achten", "warum-hansemerkur"]} startIndex={0} />
+  <TariffTiers />
+  <Article ids={["besondere-erkrankungen", "physiotherapie-nachbehandlung", "vorsorge-zahn"]} startIndex={5} />
+  <PremiumPlusRecommendation />
+  <Article ids={["kosten"]} startIndex={8} />
+  <Deductible />
+  <Article ids={["premium-plus-op-versicherung"]} startIndex={9} />
+  <FullVsOpComparison />
+  <Article ids={["fruehzeitig-versichern", "wartezeiten", "tierarztwahl-notdienst"]} startIndex={10} />
+  <Fazit />
+  <WhatsAppSection />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

@@ -1,0 +1,63 @@
+---
+const entries = [
+  { id: "wichtigste", label: "Das Wichtigste in 30 Sekunden" },
+  { id: "warum-teuer", label: "Warum können Tierarztkosten so teuer werden?" },
+  { id: "was-kann-behandlung-kosten", label: "Was kann eine Behandlung beim Hund kosten?" },
+  { id: "hundekranken-oder-op-versicherung", label: "Hundekrankenversicherung oder Hunde-OP-Versicherung?" },
+  { id: "worauf-achten", label: "Worauf würde ich achten?" },
+  { id: "warum-hansemerkur", label: "Warum ich die HanseMerkur empfehle" },
+  { id: "komfort-premium-premium-plus", label: "Komfort, Premium oder Premium plus?" },
+  { id: "besondere-erkrankungen", label: "Besondere Erkrankungen" },
+  { id: "physiotherapie-nachbehandlung", label: "Physiotherapie & Nachbehandlung" },
+  { id: "vorsorge-zahn", label: "Vorsorge & Zahn" },
+  { id: "warum-premium-plus-favorit", label: "Warum Premium plus mein Favorit ist" },
+  { id: "kosten", label: "Kosten" },
+  { id: "selbstbeteiligung", label: "Selbstbeteiligung" },
+  { id: "premium-plus-op-versicherung", label: "Premium plus als OP-Versicherung" },
+  { id: "krankenvollversicherung-oder-op", label: "Krankenvollversicherung oder nur OP?" },
+  { id: "fruehzeitig-versichern", label: "Frühzeitig versichern" },
+  { id: "wartezeiten", label: "Wartezeiten" },
+  { id: "tierarztwahl-notdienst", label: "Tierarztwahl & Notdienst" },
+  { id: "fazit", label: "Fazit" },
+  { id: "whatsapp-anfrage", label: "WhatsApp-Anfrage" },
+];
+---
+
+<section class="bg-brand-50/30 py-8 sm:py-12">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <details class="group rounded-2xl border border-black/5 bg-white p-6 shadow-soft sm:p-7">
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+        <span class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Ratgebers</span>
+        <svg
+          class="h-4 w-4 shrink-0 text-brand-600 transition-transform duration-200 group-open:rotate-180"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </summary>
+      <nav aria-label="Inhaltsverzeichnis">
+        <ul class="mt-5 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+          {
+            entries.map((entry, index) => (
+              <li>
+                <a
+                  href={`#${entry.id}`}
+                  class="group/link flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+                >
+                  <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover/link:text-brand-600">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span class="underline decoration-transparent underline-offset-2 group-hover/link:decoration-brand-300">{entry.label}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </details>
+  </div>
+</section>
