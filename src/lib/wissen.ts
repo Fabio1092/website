@@ -30,7 +30,7 @@ export const buWissenCategories: WissenTopicCategory[] = [
       { label: "Leistungsdynamik", href: "/wissen/berufsunfaehigkeitsversicherung/leistungsdynamik/" },
       { label: "Beitragsdynamik" },
       { label: "Nachversicherung" },
-      { label: "Laufzeit & Endalter" },
+      { label: "Endalter in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/endalter/" },
     ],
   },
   {
@@ -108,6 +108,7 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
 
 export const buAvailableLinks: WissenLink[] = [
   { label: "Leistungsdynamik in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/leistungsdynamik/" },
+  { label: "Endalter in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/endalter/" },
   { label: "Abstrakte Verweisung in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/abstrakte-verweisung/" },
   { label: "Konkrete Verweisung in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/konkrete-verweisung/" },
   { label: "Gesundheitsfragen bei der BU", href: "/bu-gesundheitsfragen/" },

@@ -1,0 +1,76 @@
+---
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion.tsx";
+
+const faqs: FaqItem[] = [
+  {
+    question: "Welches Endalter sollte ich bei einer BU wählen?",
+    answer:
+      "Für mich ist 67 grundsätzlich der Ausgangspunkt. Die Laufzeit sollte möglichst bis zum geplanten Übergang in die Altersvorsorge reichen. Ist eine ausreichend hohe BU-Rente bis 67 nicht finanzierbar, kann eine kürzere Laufzeit als bewusster Kompromiss betrachtet werden.",
+  },
+  {
+    question: "Reicht eine BU bis 60?",
+    answer:
+      "Eine BU bis 60 kann einen großen Teil des Erwerbslebens absichern. Gleichzeitig entsteht danach eine erhebliche mögliche Versorgungslücke. Ich würde Endalter 60 deshalb normalerweise nur wählen, wenn eine längere Absicherung finanziell nicht sinnvoll darstellbar ist.",
+  },
+  {
+    question: "Ist Endalter 65 ein sinnvoller Kompromiss?",
+    answer:
+      "Endalter 65 kann bei begrenztem Budget ein Kompromiss sein. Man sollte sich aber bewusst machen, dass bei einer dauerhaft bestehenden Berufsunfähigkeit die Zeit danach bis zum geplanten Rentenbeginn selbst finanziert werden muss.",
+  },
+  {
+    question: "Was ist wichtiger: hohe BU-Rente oder Endalter 67?",
+    answer:
+      "Wenn ich tatsächlich zwischen beiden priorisieren muss, ist für mich eine ausreichend hohe BU-Rente wichtiger. Eine zu niedrige Rente belastet dich während der gesamten Leistungsdauer. Ein niedrigeres Endalter erzeugt die Versorgungslücke dagegen erst in den letzten Jahren.",
+  },
+  {
+    question: "Kann ich meine BU später einfach bis 67 verlängern?",
+    answer:
+      "Darauf sollte man sich nicht verlassen. Manche Tarife besitzen Verlängerungsmöglichkeiten, diese können aber an konkrete Voraussetzungen gebunden sein. Eine frei verfügbare Verlängerung ohne Bedingungen ist nicht selbstverständlich.",
+  },
+  {
+    question: "Was ist, wenn ich sowieso mit 60 aufhören möchte zu arbeiten?",
+    answer:
+      "Wenn du mit 60 tatsächlich finanziell unabhängig bist, kannst du dann prüfen, ob die BU noch benötigt wird. Das ist aus meiner Sicht flexibler, als heute bereits fest davon auszugehen, dass deine finanzielle Situation in mehreren Jahrzehnten genau wie geplant aussehen wird.",
+  },
+  {
+    question: "Warum wird eine BU mit Endalter 67 teurer?",
+    answer:
+      "Der Versicherer trägt das Risiko länger und müsste bei einem dauerhaften Leistungsfall gegebenenfalls länger zahlen. Eine verkürzte Laufzeit reduziert deshalb häufig den Beitrag. Die konkrete Differenz hängt stark von Alter, Beruf, Rentenhöhe und Tarif ab.",
+  },
+  {
+    question: "Sollte ich lieber gar keine BU abschließen, wenn ich mir Endalter 67 nicht leisten kann?",
+    answer:
+      "Das wäre für mich die falsche Schlussfolgerung. Wenn eine fachlich sinnvolle BU bis 67 nicht finanzierbar ist, sollte geprüft werden, welche Gestaltung mit dem verfügbaren Budget einen möglichst großen Teil des Risikos sinnvoll absichert. Ein kürzeres Endalter kann dabei eine Option sein.",
+  },
+  {
+    question: "Was ist der Unterschied zwischen Versicherungsdauer und Leistungsdauer?",
+    answer:
+      "Die Versicherungsdauer legt vereinfacht fest, bis wann eine Berufsunfähigkeit eintreten muss. Die Leistungsdauer bestimmt, bis wann eine bereits anerkannte Leistung maximal gezahlt werden kann. Beide Zeiträume können tariflich identisch sein, müssen es aber nicht.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<section id="faq" class="scroll-mt-24 bg-brand-50/40 py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="hyphens-auto break-words font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
+        Häufige Fragen zum <span class="text-brand-600">Endalter</span> der Berufsunfähigkeitsversicherung
+      </h2>
+    </div>
+    <div data-reveal class="mt-12">
+      <FaqAccordion client:visible faqs={faqs} />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />

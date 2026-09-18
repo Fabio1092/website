@@ -1,0 +1,597 @@
+---
+import { CheckCircle2 } from "lucide-react";
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type InsightEntry = { kind: "text"; parts: Part[] } | { kind: "list"; items: string[] };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "keyFacts"; items: string[] }
+  | { type: "insight"; title: string; entries: InsightEntry[] }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "callout"; text: string }
+  | { type: "compare"; labelA: string; textA: string; labelB: string; textB: string };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introParts: Part[][] = [
+  [
+    "Das Endalter gehört zu den wichtigsten Entscheidungen beim Abschluss einer ",
+    { a: "Berufsunfähigkeitsversicherung", href: "/berufsunfaehigkeitsversicherung-kassel/" },
+    ".",
+  ],
+  ["Soll die BU bis 60 laufen? Bis 63? Bis 65? Oder konsequent bis 67?"],
+  [
+    "Auf den ersten Blick wirkt eine kürzere Laufzeit attraktiv. Je früher der Versicherungsschutz endet, desto geringer ist in der Regel auch der Beitrag. Gerade bei Berufen mit hohen BU-Beiträgen kann der Unterschied erheblich sein.",
+  ],
+  [
+    "Das Problem: Mit einem niedrigeren Endalter spart man nicht an einer nebensächlichen Zusatzleistung. Man verkürzt genau den Zeitraum, in dem die eigene Arbeitskraft eigentlich abgesichert sein soll.",
+  ],
+];
+
+const sections: Section[] = [
+  {
+    id: "das-wichtigste-auf-einen-blick",
+    heading: "Das Wichtigste auf einen Blick",
+    blocks: [
+      {
+        type: "keyFacts",
+        items: [
+          "Eine BU sollte aus meiner Sicht grundsätzlich bis 67 kalkuliert werden.",
+          "Noch wichtiger ist allerdings, dass die versicherte BU-Rente im Leistungsfall tatsächlich ausreicht.",
+          "Wenn das Budget für eine ausreichend hohe BU-Rente bis 67 nicht reicht, würde ich deshalb nicht automatisch die Rentenhöhe massiv reduzieren.",
+          "In bestimmten Fällen kann es sinnvoller sein, eine vernünftige Rentenhöhe mit einem etwas niedrigeren Endalter zu kombinieren.",
+          "Ein niedrigeres Endalter reduziert den Beitrag, verkürzt aber gleichzeitig den Zeitraum, für den das Einkommen abgesichert ist.",
+          "Besonders problematisch kann eine kurze Laufzeit werden, wenn die Berufsunfähigkeit bereits Jahre vor Vertragsende eintritt und dauerhaft bestehen bleibt.",
+          "Eine spätere Verlängerung der BU-Laufzeit ist nicht automatisch möglich.",
+          "Wer früher finanziell unabhängig wird, kann eine ursprünglich länger laufende BU später neu bewerten.",
+          "Eine kurze Laufzeit sollte immer ein bewusst gewählter Kompromiss sein und nicht die Standardlösung, nur weil der Monatsbeitrag dadurch günstiger aussieht.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "was-bedeutet-das-endalter",
+    heading: "1. Was bedeutet das Endalter bei einer Berufsunfähigkeitsversicherung?",
+    blocks: [
+      {
+        type: "p",
+        parts: [
+          "Das Endalter legt fest, bis zu welchem Alter der vereinbarte Versicherungsschutz beziehungsweise die Leistung einer Berufsunfähigkeitsversicherung reichen soll.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Wer beispielsweise eine BU mit Endalter 67 abschließt, plant den Schutz grundsätzlich bis zum Übergang in die reguläre Altersvorsorge.",
+        ],
+      },
+      { type: "p", parts: ["Bei einem Endalter von 60 endet dieser Schutz entsprechend deutlich früher."] },
+      { type: "p", parts: ["Das klingt zunächst banal. Die wirtschaftliche Bedeutung ist allerdings enorm."] },
+      {
+        type: "p",
+        parts: ["Denn die BU soll nicht nur das Risiko absichern, mit 30, 40 oder 50 für einige Jahre auszufallen."],
+      },
+      {
+        type: "standalone",
+        text: "Sie soll gerade auch den Fall auffangen, dass eine Berufsunfähigkeit dauerhaft bestehen bleibt.",
+      },
+      {
+        type: "p",
+        parts: [
+          "Wer mit 48 berufsunfähig wird und bis 67 nicht mehr in seinen Beruf zurückkehren kann, benötigt möglicherweise fast zwei Jahrzehnte lang eine BU-Rente.",
+        ],
+      },
+      { type: "p", parts: ["Die Frage nach dem Endalter lautet deshalb nicht:"] },
+      { type: "quote", text: "„Bis wann glaube ich, dass ich arbeiten möchte?“" },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "quote", text: "„Bis wann wäre ich finanziell auf mein Arbeitseinkommen angewiesen, wenn mein Plan nicht aufgeht?“" },
+      { type: "standalone", text: "Das ist ein entscheidender Unterschied." },
+    ],
+  },
+  {
+    id: "versicherungsdauer-und-leistungsdauer",
+    heading: "2. Versicherungsdauer und Leistungsdauer sind nicht immer dasselbe",
+    blocks: [
+      { type: "p", parts: ["Beim Endalter sollte man zwei Begriffe auseinanderhalten:"] },
+      { type: "standalone", text: "Versicherungsdauer und Leistungsdauer." },
+      {
+        type: "p",
+        parts: [
+          "Die Versicherungsdauer beschreibt vereinfacht den Zeitraum, in dem eine Berufsunfähigkeit eintreten muss, damit grundsätzlich ein Leistungsanspruch entstehen kann.",
+        ],
+      },
+      {
+        type: "p",
+        parts: ["Die Leistungsdauer beschreibt dagegen, wie lange eine anerkannte BU-Rente maximal gezahlt werden kann."],
+      },
+      { type: "p", parts: ["Bei vielen klassischen BU-Verträgen laufen beide Zeiträume bis zum gleichen Endalter."] },
+      {
+        type: "p",
+        parts: [
+          "Es sind aber auch Konstruktionen denkbar, bei denen beispielsweise die Versicherungsdauer mit 60 endet, während eine bereits vorher eingetretene und fortbestehende Berufsunfähigkeit theoretisch noch bis 67 geleistet werden kann.",
+        ],
+      },
+      { type: "standalone", text: "Das klingt zunächst interessant." },
+      { type: "p", parts: ["Der entscheidende Nachteil:"] },
+      {
+        type: "p",
+        parts: [
+          "Tritt die Berufsunfähigkeit erst nach dem Ende der Versicherungsdauer ein, besteht aus diesem Vertrag kein entsprechender neuer Leistungsanspruch mehr.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Solche Modelle sollte man deshalb nicht automatisch als gleichwertigen Ersatz für einen vollständigen Versicherungsschutz bis 67 betrachten.",
+        ],
+      },
+      {
+        type: "standalone",
+        text: "Entscheidend sind immer die konkreten Versicherungsbedingungen und die tatsächliche Beitragsersparnis.",
+      },
+    ],
+  },
+  {
+    id: "warum-endalter-67-ausgangspunkt",
+    heading: "3. Warum ist Endalter 67 für mich der Ausgangspunkt?",
+    blocks: [
+      { type: "p", parts: ["Die heutige Regelaltersgrenze liegt für jüngere Jahrgänge grundsätzlich bei 67 Jahren."] },
+      { type: "p", parts: ["Deshalb orientiere ich die Laufzeit einer BU grundsätzlich an diesem Alter."] },
+      { type: "p", parts: ["Die Logik dahinter ist einfach:"] },
+      {
+        type: "p",
+        parts: [
+          "Solange du zur Finanzierung deines Lebens auf deine Arbeitskraft angewiesen bist, besteht ein wirtschaftliches Risiko, wenn genau diese Arbeitskraft aus gesundheitlichen Gründen wegfällt.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Wenn deine Altersvorsorge erst mit 67 ausreichend zur Verfügung steht, dein BU-Vertrag aber bereits mit 60 endet, entstehen sieben Jahre, für die du eine andere belastbare Finanzierung benötigst.",
+        ],
+      },
+      {
+        type: "standalone",
+        text: "Und diese Lücke entsteht nicht nur dann, wenn du ausgerechnet mit 60 Jahren berufsunfähig wirst.",
+      },
+      { type: "standalone", text: "Das ist eine der häufigsten Fehlannahmen beim Thema Endalter." },
+    ],
+  },
+  {
+    id: "denkfehler-bei-kurzer-laufzeit",
+    heading: "4. Der entscheidende Denkfehler bei einer kurzen Laufzeit",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir an, du schließt eine BU mit einer monatlichen Rente von 2.000 Euro und Endalter 60 ab."] },
+      { type: "p", parts: ["Viele denken dabei ungefähr so:"] },
+      {
+        type: "quote",
+        text: "„Bis 60 bin ich abgesichert. Danach habe ich bestimmt genug Vermögen aufgebaut und brauche die BU nicht mehr.“",
+      },
+      { type: "standalone", text: "Das kann funktionieren." },
+      { type: "p", parts: ["Aber es setzt voraus, dass dein Leben bis dahin tatsächlich so verläuft wie geplant."] },
+      {
+        type: "p",
+        parts: ["Das eigentliche Risiko besteht darin, lange vor dem 60. Lebensjahr berufsunfähig zu werden und dauerhaft berufsunfähig zu bleiben."],
+      },
+      { type: "p", parts: ["Angenommen, eine Berufsunfähigkeit tritt bereits mit 50 ein."] },
+      { type: "p", parts: ["Deine BU zahlt zunächst bis zum vereinbarten Endalter 60."] },
+      { type: "standalone", text: "Danach endet die Leistung." },
+      { type: "p", parts: ["Wenn du deine Altersvorsorge aber erst für 67 geplant hast, fehlen anschließend sieben Jahre."] },
+      { type: "p", parts: ["Bei einer BU-Rente von 2.000 Euro sind das allein:"] },
+      { type: "callout", text: "2.000 Euro × 12 Monate × 7 Jahre = 168.000 Euro." },
+      {
+        type: "p",
+        parts: ["Dabei sind Inflation, mögliche Rentendynamiken und Auswirkungen auf die eigene Altersvorsorge noch nicht berücksichtigt."],
+      },
+      {
+        type: "p",
+        parts: [
+          "Wenn du wissen möchtest, wie eine BU-Rente über eine solche lange Leistungsdauer hinweg auch gegen Inflation abgesichert werden kann, findest du dazu meinen Artikel zur ",
+          { a: "Leistungsdynamik in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/leistungsdynamik/" },
+          ".",
+        ],
+      },
+      { type: "p", parts: ["Das Problem einer kurzen Laufzeit sind also nicht nur „ein paar Jahre weniger Versicherung“."] },
+      { type: "standalone", text: "Es kann eine erhebliche Finanzierungslücke am Ende einer bereits langen Berufsunfähigkeit entstehen." },
+    ],
+  },
+  {
+    id: "ich-moechte-nicht-bis-67-arbeiten",
+    heading: "5. „Ich möchte sowieso nicht bis 67 arbeiten“",
+    blocks: [
+      { type: "p", parts: ["Das höre ich als Argument gegen eine lange BU-Laufzeit immer wieder."] },
+      { type: "standalone", text: "Und der Wunsch ist völlig nachvollziehbar." },
+      { type: "p", parts: ["Vielleicht möchtest du mit 60 finanziell unabhängig sein."] },
+      { type: "p", parts: ["Vielleicht soll die Immobilie bis dahin abbezahlt sein."] },
+      {
+        type: "p",
+        parts: ["Vielleicht investierst du regelmäßig und planst, deutlich früher nicht mehr auf dein Arbeitseinkommen angewiesen zu sein."],
+      },
+      { type: "standalone", text: "Das Problem ist nicht dieser Plan." },
+      { type: "standalone", text: "Das Problem ist, dass du heute nicht weißt, ob er funktioniert." },
+      {
+        type: "p",
+        parts: [
+          "Wenn du gesund bleibst, dein Einkommen sich wie erwartet entwickelt und dein Vermögensaufbau funktioniert, kannst du mit 60 möglicherweise tatsächlich feststellen:",
+        ],
+      },
+      { type: "quote", text: "„Ich brauche meine BU nicht mehr.“" },
+      {
+        type: "p",
+        parts: ["Dann kannst du den bestehenden Schutz neu bewerten und – abhängig vom Vertrag und deiner Situation – reduzieren oder beenden."],
+      },
+      { type: "standalone", text: "Andersherum ist es deutlich schwieriger." },
+      {
+        type: "p",
+        parts: [
+          "Wenn du heute nur bis 60 abschließt und mit 55 feststellst, dass du doch bis 67 Schutz brauchst, solltest du nicht davon ausgehen, dass du die Laufzeit einfach sieben Jahre verlängern kannst.",
+        ],
+      },
+      { type: "p", parts: ["Genau deshalb halte ich es grundsätzlich für sinnvoller, die Option auf einen längeren Schutz zunächst zu sichern."] },
+    ],
+  },
+  {
+    id: "spaetere-verlaengerung-problematisch",
+    heading: "6. Warum eine spätere Verlängerung problematisch sein kann",
+    blocks: [
+      { type: "p", parts: ["Das Endalter sollte bereits beim Abschluss bewusst gewählt werden."] },
+      { type: "p", parts: ["Denn ein bestehender BU-Vertrag lässt sich später nicht zwangsläufig einfach von beispielsweise 60 auf 67 verlängern."] },
+      { type: "p", parts: ["Je nach Tarif können bestimmte Verlängerungsmöglichkeiten oder Garantien existieren."] },
+      { type: "p", parts: ["Diese sind jedoch regelmäßig an die konkreten Versicherungsbedingungen und bestimmte Voraussetzungen gebunden."] },
+      { type: "p", parts: ["Mögliche Voraussetzungen können beispielsweise sein:"] },
+      {
+        type: "list",
+        items: [
+          "ein bestimmtes Höchstalter",
+          "festgelegte Fristen",
+          "ein weiterhin zulässiger Beruf",
+          "bestimmte Voraussetzungen zum Vertragsstatus",
+          "keine bereits eingetretene Berufs- oder Arbeitsunfähigkeit",
+          "vertraglich definierte Ereignisse",
+        ],
+      },
+      { type: "p", parts: ["Hinzu kommt:"] },
+      {
+        type: "p",
+        parts: [
+          "Wenn stattdessen später ein neuer oder zusätzlicher Vertrag abgeschlossen werden muss, können das dann höhere Eintrittsalter, ein veränderter Beruf und insbesondere eine inzwischen umfangreichere Gesundheitshistorie relevant werden.",
+        ],
+      },
+      { type: "p", parts: ["Mit 25 oder 30 kann ein Abschluss gesundheitlich unkompliziert sein."] },
+      { type: "p", parts: ["Mit 50 oder 55 kann die Ausgangssituation völlig anders aussehen."] },
+      { type: "standalone", text: "Deshalb würde ich nicht darauf planen, eine heute bewusst zu kurze Laufzeit später problemlos korrigieren zu können." },
+    ],
+  },
+  {
+    id: "warum-wird-bu-bis-67-teurer",
+    heading: "7. Warum wird eine BU mit Endalter 67 teurer?",
+    blocks: [
+      { type: "p", parts: ["Eine längere Laufzeit kostet normalerweise mehr."] },
+      { type: "standalone", text: "Das ist logisch." },
+      {
+        type: "p",
+        parts: ["Der Versicherer trägt das Risiko über einen längeren Zeitraum und muss eine mögliche BU-Rente im dauerhaften Leistungsfall potenziell länger zahlen."],
+      },
+      { type: "p", parts: ["Deshalb kann die Beitragsdifferenz zwischen Endaltern wie 60, 63, 65 und 67 durchaus deutlich sein."] },
+      { type: "p", parts: ["Wie groß der Unterschied konkret ausfällt, hängt unter anderem ab von:"] },
+      { type: "list", items: ["Eintrittsalter", "Beruf", "BU-Rentenhöhe", "Versicherer", "Tarif", "Gesundheitszustand", "zusätzlichen Vertragsbausteinen"] },
+      { type: "p", parts: ["Deshalb ist es durchaus realistisch, dass jemand vor folgender Entscheidung steht:"] },
+      { type: "standalone", text: "BU bis 67 – fachlich besser, aber finanziell schwer darstellbar." },
+      { type: "p", parts: ["Oder:"] },
+      { type: "standalone", text: "kürzeres Endalter – nicht optimal, dafür bezahlbar." },
+      { type: "standalone", text: "Und genau an dieser Stelle ist mir eine differenzierte Betrachtung wichtig." },
+    ],
+  },
+  {
+    id: "rentenhoehe-oder-endalter",
+    heading: "8. Was ist wichtiger: Rentenhöhe oder Endalter?",
+    blocks: [
+      { type: "p", parts: ["Wenn ich priorisieren muss, steht für mich die ausreichend hohe BU-Rente noch vor dem maximalen Endalter."] },
+      { type: "standalone", text: "Warum?" },
+      { type: "p", parts: ["Eine zu niedrige BU-Rente ist ab dem ersten Monat eines Leistungsfalls problematisch."] },
+      {
+        type: "p",
+        parts: ["Wenn du beispielsweise tatsächlich 2.000 Euro monatlich benötigst, aber nur 1.200 Euro versichert hast, fehlen dir im Leistungsfall jeden Monat 800 Euro."],
+      },
+      { type: "p", parts: ["Dabei spielt es keine Rolle, ob du mit 30, 45 oder 60 berufsunfähig wirst."] },
+      { type: "standalone", text: "Die Unterversicherung besteht über die gesamte Leistungsdauer." },
+      { type: "p", parts: ["Ein zu niedriges Endalter hat eine andere Wirkung."] },
+      { type: "p", parts: ["Bis zum vereinbarten Vertragsende steht zunächst die volle versicherte BU-Rente zur Verfügung."] },
+      { type: "standalone", text: "Das Problem entsteht erst in den Jahren, die am Ende fehlen." },
+      { type: "p", parts: ["Deshalb lautet meine Priorisierung:"] },
+      { type: "standalone", text: "Zuerst eine BU-Rente, die im Ernstfall wirtschaftlich wirklich hilft." },
+      { type: "standalone", text: "Danach die Laufzeit möglichst bis 67." },
+      { type: "p", parts: ["Das bedeutet ausdrücklich nicht, dass die Laufzeit unwichtig ist."] },
+      { type: "standalone", text: "Im Gegenteil." },
+      { type: "p", parts: ["Wenn beides finanzierbar ist, würde ich eine sinnvolle Rentenhöhe und Endalter 67 wählen."] },
+    ],
+  },
+  {
+    id: "beispiel-zur-priorisierung",
+    heading: "9. Ein einfaches Beispiel zur Priorisierung",
+    blocks: [
+      { type: "p", parts: ["Stell dir vereinfacht zwei Möglichkeiten vor."] },
+      { type: "compare", labelA: "Variante A", textA: "2.000 Euro BU-Rente bis 65.", labelB: "Variante B", textB: "1.300 Euro BU-Rente bis 67." },
+      { type: "p", parts: ["Welche Variante im Einzelfall sinnvoller ist, hängt von der persönlichen Situation ab."] },
+      { type: "p", parts: ["Das Beispiel zeigt aber das grundsätzliche Problem."] },
+      { type: "p", parts: ["Bei Variante B fehlen im Leistungsfall von Beginn an 700 Euro jeden Monat."] },
+      { type: "p", parts: ["Wirst du mit 40 berufsunfähig, kann dich diese Unterversicherung über viele Jahre begleiten."] },
+      { type: "p", parts: ["Bei Variante A besteht dagegen zunächst die volle Absicherung von 2.000 Euro."] },
+      { type: "standalone", text: "Die konkrete Versorgungslücke entsteht erst ab 65." },
+      {
+        type: "p",
+        parts: ["Deshalb würde ich nicht reflexartig eine deutlich zu geringe BU-Rente akzeptieren, nur damit auf dem Vertrag unbedingt „67“ steht."],
+      },
+      { type: "p", parts: ["Das Ziel bleibt trotzdem:"] },
+      { type: "standalone", text: "Eine ausreichend hohe BU-Rente bis 67." },
+      { type: "standalone", text: "Die Verkürzung der Laufzeit ist für mich die Ausweichlösung, nicht die Wunschlösung." },
+    ],
+  },
+  {
+    id: "wann-niedrigeres-endalter-sinnvoll",
+    heading: "10. Wann kann ein niedrigeres Endalter sinnvoll sein?",
+    blocks: [
+      { type: "p", parts: ["Der wesentliche Grund ist für mich das Budget."] },
+      {
+        type: "p",
+        parts: ["Wenn eine ausreichend hohe BU-Rente bis 67 problemlos finanzierbar ist, sehe ich normalerweise keinen Grund, die Laufzeit bewusst zu verkürzen."],
+      },
+      { type: "p", parts: ["Anders sieht es aus, wenn die Beitragsbelastung so hoch ist, dass die Alternative lautet:"] },
+      { type: "list", items: ["gar keine BU abzuschließen", "oder die BU-Rente so stark zu reduzieren, dass der Schutz im Leistungsfall kaum noch ausreicht."] },
+      {
+        type: "p",
+        parts: ["Dann kann beispielsweise Endalter 65 oder – bei sehr hoher Beitragsbelastung – auch ein früheres Ende als Kompromiss betrachtet werden."],
+      },
+      { type: "standalone", text: "Das ist nicht perfekt." },
+      { type: "p", parts: ["Aber Versicherungsschutz für einen großen Teil des Erwerbslebens kann sinnvoller sein als gar kein Versicherungsschutz."] },
+      { type: "p", parts: ["Ich würde diesen Kompromiss dann allerdings genau so benennen:"] },
+      { type: "standalone", text: "Wir sparen nicht einfach Beitrag." },
+      { type: "standalone", text: "Wir übernehmen bewusst einen Teil des Risikos in den letzten Berufsjahren selbst." },
+      { type: "standalone", text: "Diese Transparenz ist mir wichtig." },
+    ],
+  },
+  {
+    id: "nicht-an-der-rentenhoehe-sparen",
+    heading: "11. Warum ich nicht zuerst an der Rentenhöhe sparen würde",
+    blocks: [
+      { type: "p", parts: ["Eine Berufsunfähigkeitsversicherung soll einen wesentlichen Teil des wegfallenden Arbeitseinkommens auffangen."] },
+      {
+        type: "p",
+        parts: ["Wenn die BU-Rente von Beginn an zu niedrig gewählt wird, kann zwar formal eine Versicherung bestehen – finanziell löst sie das eigentliche Problem aber möglicherweise nicht."],
+      },
+      { type: "p", parts: ["Eine BU-Rente von beispielsweise 1.000 Euro klingt besser als gar keine Leistung."] },
+      { type: "p", parts: ["Wenn die monatlichen Fixkosten und der notwendige Lebensunterhalt aber deutlich höher sind, bleibt trotz Versicherung eine erhebliche Lücke."] },
+      { type: "p", parts: ["Deshalb sollte der Beitrag nicht dadurch künstlich passend gemacht werden, dass die Rentenhöhe immer weiter reduziert wird."] },
+      { type: "standalone", text: "Eine Versicherung ist nicht allein deshalb sinnvoll gestaltet, weil sie günstig ist." },
+      { type: "standalone", text: "Sie muss im Leistungsfall ihre Aufgabe erfüllen können." },
+    ],
+  },
+  {
+    id: "altersvorsorge-bei-laengerer-bu",
+    heading: "12. Was passiert mit der Altersvorsorge bei längerer Berufsunfähigkeit?",
+    blocks: [
+      { type: "p", parts: ["Ein weiterer Punkt wird beim Endalter häufig übersehen."] },
+      { type: "p", parts: ["Eine private BU-Rente ersetzt zunächst Einkommen."] },
+      {
+        type: "p",
+        parts: [
+          "Sie führt aber nicht automatisch dazu, dass dein ursprünglich geplanter Vermögens- und Altersvorsorgeaufbau genauso weiterläuft wie bei fortdauernder Erwerbstätigkeit.",
+        ],
+      },
+      { type: "p", parts: ["Fällt das Arbeitseinkommen weg, können beispielsweise Sparraten für:"] },
+      { type: "list", items: ["private Altersvorsorge", "Wertpapierdepot", "Immobilienfinanzierung", "zusätzliche Rücklagen"] },
+      { type: "standalone", text: "deutlich schwieriger zu finanzieren sein." },
+      {
+        type: "p",
+        parts: [
+          "Auch die spätere gesetzliche oder berufsständische Versorgung kann sich abhängig von der persönlichen Situation anders entwickeln als ursprünglich geplant.",
+        ],
+      },
+      { type: "standalone", text: "Deshalb ist eine Lücke zwischen BU-Endalter und geplanter Altersvorsorge besonders kritisch." },
+      { type: "p", parts: ["Man muss dann möglicherweise nicht nur den laufenden Lebensunterhalt bis zum Rentenbeginn finanzieren."] },
+      { type: "p", parts: ["Unter Umständen wurde gleichzeitig weniger Altersvorsorge aufgebaut als ursprünglich vorgesehen."] },
+    ],
+  },
+  {
+    id: "beitragsersparnis-investieren",
+    heading: "13. Kann ich nicht einfach die Beitragsersparnis investieren?",
+    blocks: [
+      { type: "p", parts: ["Theoretisch kann man natürlich sagen:"] },
+      { type: "standalone", text: "Ich wähle eine BU bis 60 oder 65 und investiere die Beitragsdifferenz jeden Monat." },
+      { type: "p", parts: ["Das kann funktionieren – wenn das Leben entsprechend verläuft."] },
+      { type: "p", parts: ["Der entscheidende Punkt ist der Zeitpunkt einer möglichen Berufsunfähigkeit."] },
+      { type: "p", parts: ["Wirst du früh berufsunfähig, fällt möglicherweise nicht nur dein Arbeitseinkommen weg."] },
+      { type: "p", parts: ["Auch der geplante Sparbetrag müsste anschließend aus der BU-Rente oder anderem Vermögen finanziert werden."] },
+      {
+        type: "p",
+        parts: ["Das Depot, das später die fehlenden BU-Jahre finanzieren sollte, wächst dann möglicherweise deutlich langsamer als geplant."],
+      },
+      { type: "p", parts: ["Ein Wertpapierdepot kann deshalb selbstverständlich Teil einer langfristigen Vermögensplanung sein."] },
+      { type: "standalone", text: "Es ist aber nicht automatisch ein Ersatz für fehlenden BU-Versicherungsschutz." },
+    ],
+  },
+  {
+    id: "gestaffelte-bu-laufzeiten",
+    heading: "14. Sind gestaffelte BU-Laufzeiten eine Lösung?",
+    blocks: [
+      { type: "p", parts: ["Eine weitere Möglichkeit sind gestaffelte Laufzeiten."] },
+      { type: "p", parts: ["Beispielsweise könnte ein Teil der BU-Rente bis 67 laufen und ein weiterer Teil nur bis 60 oder 65."] },
+      { type: "p", parts: ["Die Idee dahinter:"] },
+      { type: "standalone", text: "In jüngeren Jahren ist der finanzielle Bedarf häufig höher." },
+      { type: "p", parts: ["Später sind möglicherweise:"] },
+      { type: "list", items: ["die Immobilie weiter abbezahlt", "die Kinder finanziell selbstständig", "mehr Vermögen vorhanden", "weniger laufende Verpflichtungen vorhanden."] },
+      { type: "p", parts: ["Das kann in bestimmten Konstellationen ein denkbares Modell sein."] },
+      { type: "p", parts: ["Man muss sich aber bewusst machen, was dadurch passiert:"] },
+      { type: "standalone", text: "Die versicherte BU-Rente fällt zu den vereinbarten Zeitpunkten tatsächlich ab." },
+      {
+        type: "p",
+        parts: ["Ob die eigenen Ausgaben und finanziellen Verpflichtungen später ebenfalls genauso sinken, weiß man beim Abschluss häufig noch nicht."],
+      },
+      { type: "p", parts: ["Hinzu kommen Inflation und ein möglicherweise steigender Lebensstandard."] },
+      { type: "p", parts: ["Ich würde eine solche Konstruktion deshalb nicht allein wählen, weil sie auf dem Papier besonders ausgeklügelt aussieht."] },
+      { type: "standalone", text: "Entscheidend bleibt, ob die später verbleibende BU-Rente tatsächlich ausreichen würde." },
+    ],
+  },
+  {
+    id: "finanziell-unabhaengig-mit-60",
+    heading: "15. Was ist, wenn ich mit 60 finanziell unabhängig bin?",
+    blocks: [
+      { type: "standalone", text: "Dann hat sich deine Planung gelohnt." },
+      {
+        type: "p",
+        parts: [
+          "Wenn du zu diesem Zeitpunkt ausreichend Vermögen besitzt, deine Altersvorsorge solide finanziert ist und du selbst bei dauerhaftem Wegfall deines Arbeitseinkommens keine BU-Rente mehr benötigst, kannst du deinen Schutz neu bewerten.",
+        ],
+      },
+      { type: "p", parts: ["Genau das ist aus meiner Sicht der entscheidende Unterschied."] },
+      { type: "p", parts: ["Eine ursprünglich bis 67 vereinbarte BU gibt dir die Möglichkeit, später zu sagen:"] },
+      { type: "quote", text: "„Ich brauche diese Absicherung nicht mehr.“" },
+      { type: "p", parts: ["Bei einer von Anfang an nur bis 60 vereinbarten BU kannst du mit 60 dagegen nicht einfach sagen:"] },
+      { type: "quote", text: "„Ich brauche sie doch noch sieben Jahre.“" },
+      { type: "p", parts: ["Zumindest nicht mit der Sicherheit, dass eine Verlängerung dann noch problemlos möglich ist."] },
+      { type: "standalone", text: "Diese Flexibilität hat einen Wert." },
+    ],
+  },
+  {
+    id: "regelaltersgrenze-spaeter-angehoben",
+    heading: "16. Was passiert, wenn die Regelaltersgrenze später angehoben wird?",
+    blocks: [
+      { type: "p", parts: ["Heute wird für die Planung vieler jüngerer Versicherter mit einer Regelaltersgrenze von 67 Jahren gearbeitet."] },
+      { type: "p", parts: ["Wie die gesetzlichen Altersgrenzen in mehreren Jahrzehnten aussehen, lässt sich heute nicht sicher vorhersagen."] },
+      { type: "p", parts: ["Einige BU-Tarife enthalten für bestimmte Veränderungen der Regelaltersgrenze Verlängerungsoptionen."] },
+      { type: "p", parts: ["Solche Regelungen sollte man allerdings genau in den Versicherungsbedingungen prüfen."] },
+      { type: "p", parts: ["Sie können beispielsweise an:"] },
+      { type: "list", items: ["Fristen", "Höchstalter", "berufliche Voraussetzungen", "den Vertragsstatus", "weitere tarifliche Bedingungen"] },
+      { type: "standalone", text: "geknüpft sein." },
+      { type: "p", parts: ["Eine Verlängerungsoption kann deshalb ein sinnvoller Vertragsbestandteil sein."] },
+      { type: "standalone", text: "Sie ersetzt aus meiner Sicht aber nicht die Entscheidung über eine vernünftige ursprüngliche Laufzeit." },
+    ],
+  },
+  {
+    id: "meine-einschaetzung",
+    heading: "17. Meine Einschätzung zum Endalter in der BU",
+    blocks: [
+      {
+        type: "insight",
+        title: "Meine Einschätzung",
+        entries: [
+          { kind: "text", parts: ["Ich würde eine BU grundsätzlich zunächst mit Endalter 67 rechnen."] },
+          { kind: "text", parts: ["Danach schaue ich auf:"] },
+          { kind: "list", items: ["die notwendige BU-Rentenhöhe", "den Beitrag", "die finanzielle Belastbarkeit des Kunden."] },
+          { kind: "text", parts: ["Wenn eine ausreichend hohe BU-Rente bis 67 finanzierbar ist, ist das für mich die bevorzugte Gestaltung."] },
+          { kind: "text", parts: ["Wenn der Beitrag jedoch so hoch wird, dass die Alternative lautet:"] },
+          { kind: "text", parts: ["deutlich zu geringe BU-Rente oder gar keine BU,"] },
+          { kind: "text", parts: ["dann bin ich bereit, über ein kürzeres Endalter zu sprechen."] },
+          { kind: "text", parts: ["Denn die Prioritäten sind aus meiner Sicht nicht gleichwertig."] },
+          { kind: "text", parts: ["Eine zu geringe BU-Rente verursacht während der gesamten Berufsunfähigkeit ein Problem."] },
+          { kind: "text", parts: ["Ein zu niedriges Endalter verursacht das Problem erst am Ende der Laufzeit."] },
+          { kind: "text", parts: ["Deshalb steht die Rentenhöhe für mich an erster Stelle."] },
+          { kind: "text", parts: ["Danach kommt die Laufzeit."] },
+          { kind: "text", parts: ["Und diese sollte – sofern finanziell vernünftig darstellbar – bis 67 reichen."] },
+        ],
+      },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-4 px-4 pt-16 sm:px-6 lg:px-8">
+  {introParts.map((parts) => <RichParagraph parts={parts} class="text-base leading-relaxed text-ink-700/85 sm:text-lg" />)}
+</div>
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 pt-12 pb-16 sm:px-6 lg:px-8">
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "keyFacts")
+              return (
+                <div class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+                  <ul class="space-y-4">
+                    {block.items.map((item) => (
+                      <li class="flex items-start gap-3">
+                        <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-brand-600" aria-hidden="true" />
+                        <p class="text-sm leading-relaxed text-ink-700/85">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            if (block.type === "insight")
+              return (
+                <div class="rounded-2xl border border-ink-950/10 bg-ink-950 px-6 py-6 text-white sm:px-8 sm:py-7">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand-300">{block.title}</p>
+                  <div class="mt-4 space-y-3">
+                    {block.entries.map((entry) =>
+                      entry.kind === "list" ? (
+                        <ul class="space-y-1.5 pl-1">
+                          {entry.items.map((item) => (
+                            <li class="flex items-baseline gap-2.5 text-sm leading-relaxed text-white/85 sm:text-base">
+                              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-300" aria-hidden="true" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <RichParagraph parts={entry.parts} class="text-sm leading-relaxed text-white/85 sm:text-base" boldClass="text-white" />
+                      ),
+                    )}
+                  </div>
+                </div>
+              );
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "callout")
+              return (
+                <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+                  <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">{block.text}</p>
+                </div>
+              );
+            if (block.type === "compare")
+              return (
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-2xl border border-black/5 bg-white p-5">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{block.labelA}</p>
+                    <p class="mt-2 font-serif text-base leading-relaxed text-ink-950">{block.textA}</p>
+                  </div>
+                  <div class="rounded-2xl border border-black/5 bg-white p-5">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">{block.labelB}</p>
+                    <p class="mt-2 font-serif text-base leading-relaxed text-ink-950">{block.textB}</p>
+                  </div>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

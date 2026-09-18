@@ -1,0 +1,49 @@
+---
+const entries = [
+  { id: "das-wichtigste-auf-einen-blick", label: "Das Wichtigste auf einen Blick" },
+  { id: "was-bedeutet-das-endalter", label: "Was bedeutet das Endalter?" },
+  { id: "versicherungsdauer-und-leistungsdauer", label: "Versicherungsdauer und Leistungsdauer" },
+  { id: "warum-endalter-67-ausgangspunkt", label: "Warum Endalter 67 der Ausgangspunkt ist" },
+  { id: "denkfehler-bei-kurzer-laufzeit", label: "Der Denkfehler bei kurzer Laufzeit" },
+  { id: "ich-moechte-nicht-bis-67-arbeiten", label: "„Ich möchte nicht bis 67 arbeiten“" },
+  { id: "spaetere-verlaengerung-problematisch", label: "Warum eine spätere Verlängerung problematisch ist" },
+  { id: "warum-wird-bu-bis-67-teurer", label: "Warum wird Endalter 67 teurer?" },
+  { id: "rentenhoehe-oder-endalter", label: "Rentenhöhe oder Endalter?" },
+  { id: "beispiel-zur-priorisierung", label: "Ein Beispiel zur Priorisierung" },
+  { id: "wann-niedrigeres-endalter-sinnvoll", label: "Wann ist ein niedrigeres Endalter sinnvoll?" },
+  { id: "nicht-an-der-rentenhoehe-sparen", label: "Warum nicht an der Rentenhöhe sparen?" },
+  { id: "altersvorsorge-bei-laengerer-bu", label: "Altersvorsorge bei längerer BU" },
+  { id: "beitragsersparnis-investieren", label: "Beitragsersparnis einfach investieren?" },
+  { id: "gestaffelte-bu-laufzeiten", label: "Gestaffelte BU-Laufzeiten" },
+  { id: "finanziell-unabhaengig-mit-60", label: "Finanziell unabhängig mit 60" },
+  { id: "regelaltersgrenze-spaeter-angehoben", label: "Wird die Regelaltersgrenze angehoben?" },
+  { id: "meine-einschaetzung", label: "Meine Einschätzung" },
+  { id: "fazit", label: "Fazit" },
+  { id: "faq", label: "FAQ" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>
