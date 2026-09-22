@@ -1,21 +1,12 @@
 ---
-// Logo-Slot für die HanseMerkur: kein Markenasset im Projekt vorhanden, daher
-// wird hier nur der Pfad vorbereitet (siehe Task-Vorgabe). Schlägt das Bild
-// fehl, zeigt sich stattdessen sauber der Gesellschaftsname als Text – kein
-// kaputtes Bild-Icon in Produktion, bis das echte Logo ergänzt wird.
+// Logo-Slot für die HanseMerkur: kein Markenasset im Projekt vorhanden.
+// Bis ein echtes Logo ergänzt wird, zeigt sich stattdessen sauber der
+// Gesellschaftsname als Text — kein <img> auf eine nicht existierende Datei,
+// damit kein 404 ausgelöst wird.
 interface Props {
   class?: string;
 }
 const { class: className = "h-full w-full object-contain" } = Astro.props;
 ---
 
-<img
-  src="/images/insurers/hansemerkur.svg"
-  alt="HanseMerkur Logo"
-  class={className}
-  width="120"
-  height="40"
-  loading="lazy"
-  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-/>
-<span class="hidden h-full w-full items-center justify-center font-serif text-xs font-semibold text-ink-950 sm:text-sm">HanseMerkur</span>
+<span class:list={["flex items-center justify-center font-serif text-xs font-semibold text-ink-950 sm:text-sm", className]}>HanseMerkur</span>
