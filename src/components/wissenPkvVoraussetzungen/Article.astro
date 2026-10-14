@@ -1,0 +1,468 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  {
+    type: "p",
+    parts: [
+      "Und selbst wenn du grundsätzlich in die PKV wechseln darfst, bedeutet das noch nicht automatisch, dass dich ein privater Krankenversicherer zu normalen Bedingungen aufnehmen muss.",
+    ],
+  },
+  { type: "p", parts: ["Genau deshalb muss man bei den Voraussetzungen für die PKV zwei Fragen voneinander trennen:"] },
+  { type: "standalone", text: "1. Darfst du dich überhaupt privat krankenversichern?" },
+  { type: "p", parts: ["und"] },
+  { type: "standalone", text: "2. Nimmt dich ein privater Krankenversicherer aufgrund deiner gesundheitlichen Situation an?" },
+  { type: "p", parts: ["Diese Unterscheidung ist wichtig."] },
+  {
+    type: "p",
+    parts: [
+      "Ein Angestellter kann beispielsweise die notwendige Einkommensgrenze überschreiten und damit grundsätzlich Zugang zur PKV haben – aufgrund seiner gesundheitlichen Vorgeschichte aber trotzdem Schwierigkeiten bei der Aufnahme bekommen.",
+    ],
+  },
+  {
+    type: "p",
+    parts: [
+      "Umgekehrt benötigt ein Selbstständiger grundsätzlich keine bestimmte Einkommenshöhe, um sich privat versichern zu können. Trotzdem sollte geprüft werden, ob die PKV finanziell und langfristig überhaupt zu seiner Situation passt.",
+    ],
+  },
+  {
+    type: "p",
+    parts: [
+      "In diesem Artikel zeige ich dir, ",
+      {
+        b: "welche Voraussetzungen für die private Krankenversicherung gelten, wie hoch die Einkommensgrenze für Angestellte 2026 ist und welche Rolle Beruf, Gesundheit und Alter spielen.",
+      },
+    ],
+  },
+];
+
+const sections: Section[] = [
+  {
+    id: "pkv-voraussetzungen-im-ueberblick",
+    heading: "Die PKV-Voraussetzungen im Überblick",
+    blocks: [
+      { type: "p", parts: ["Ob du dich privat krankenversichern kannst, hängt zunächst von deinem Versicherungsstatus ab."] },
+      {
+        type: "p",
+        parts: [
+          "Grundsätzlich steht der Wechsel insbesondere Personen offen, die nicht der Versicherungspflicht in der gesetzlichen Krankenversicherung unterliegen. Dazu gehören beispielsweise Selbstständige, Beamte sowie Arbeitnehmer mit einem Einkommen oberhalb der Versicherungspflichtgrenze. Auch freiwillig gesetzlich Versicherte können grundsätzlich in die PKV wechseln.",
+        ],
+      },
+      {
+        type: "table",
+        headers: ["Personengruppe", "Zugang zur PKV grundsätzlich möglich?", "Wichtigste Voraussetzung"],
+        rows: [
+          ["Angestellte", "Ja", "Einkommen oberhalb der Jahresarbeitsentgeltgrenze"],
+          ["Selbstständige", "Häufig ja", "keine bestehende GKV-Versicherungspflicht"],
+          ["Beamte", "Ja", "keine JAEG erforderlich"],
+          ["Studenten", "Unter bestimmten Voraussetzungen", "Befreiung von der studentischen Versicherungspflicht"],
+          ["Freiwillig GKV-Versicherte", "Ja", "Versicherungsfreiheit / freiwillige Mitgliedschaft"],
+        ],
+      },
+      { type: "p", parts: ["Aber das ist nur die rechtliche Seite."] },
+      { type: "p", parts: ["Bei einem normalen PKV-Antrag kommt anschließend die gesundheitliche Prüfung durch den Versicherer hinzu."] },
+    ],
+  },
+  {
+    id: "voraussetzungen-angestellte",
+    heading: "Welche Voraussetzungen gelten für Angestellte?",
+    blocks: [
+      { type: "p", parts: ["Bei Angestellten ist vor allem eine Zahl entscheidend:"] },
+      { type: "standalone", text: "die Jahresarbeitsentgeltgrenze – kurz JAEG." },
+      { type: "p", parts: ["Sie wird auch als ", { b: "Versicherungspflichtgrenze" }, " bezeichnet."] },
+      { type: "p", parts: ["Im Jahr 2026 beträgt die allgemeine Jahresarbeitsentgeltgrenze:"] },
+      { type: "standalone", text: "77.400 Euro brutto pro Jahr" },
+      { type: "p", parts: ["beziehungsweise"] },
+      { type: "standalone", text: "6.450 Euro brutto pro Monat." },
+      { type: "p", parts: ["Die Grenze wird regelmäßig angepasst."] },
+      {
+        type: "p",
+        parts: [
+          "Liegt dein regelmäßiges Jahresarbeitsentgelt oberhalb der für dich geltenden Grenze und besteht keine anderweitige Versicherungspflicht, kannst du grundsätzlich zwischen freiwilliger gesetzlicher und privater Krankenversicherung wählen.",
+        ],
+      },
+      { type: "p", parts: ["Wichtig dabei:"] },
+      { type: "standalone", text: "77.400 Euro Einkommen bedeuten nicht automatisch, dass die PKV die richtige Entscheidung ist." },
+      {
+        type: "p",
+        parts: ["Die Grenze beantwortet zunächst nur die Frage, ob du als normaler Angestellter grundsätzlich aus der gesetzlichen Versicherungspflicht herausfallen kannst."],
+      },
+      { type: "p", parts: ["Ob sich die PKV anschließend für dich lohnt, ist eine vollkommen andere Frage."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr dazu findest du in meinem Artikel ",
+          { a: "Für wen lohnt sich die PKV?", href: "/wissen/private-krankenversicherung/fuer-wen-lohnt-sich-die-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "jaeg-vs-beitragsbemessungsgrenze",
+    heading: "Jahresarbeitsentgeltgrenze und Beitragsbemessungsgrenze sind nicht dasselbe",
+    blocks: [
+      { type: "p", parts: ["Hier entsteht regelmäßig Verwirrung."] },
+      { type: "p", parts: ["2026 gibt es unter anderem diese beiden Werte:"] },
+      { type: "p", parts: [{ b: "Jahresarbeitsentgeltgrenze:" }] },
+      { type: "standalone", text: "77.400 Euro jährlich" },
+      { type: "p", parts: [{ b: "Beitragsbemessungsgrenze der Krankenversicherung:" }] },
+      { type: "standalone", text: "69.750 Euro jährlich" },
+      {
+        type: "p",
+        parts: ["Die Beitragsbemessungsgrenze bestimmt vereinfacht gesagt, bis zu welchem Einkommen Beiträge in der gesetzlichen Krankenversicherung berechnet werden."],
+      },
+      { type: "p", parts: ["Sie entscheidet aber bei einem normalen Angestellten nicht darüber, ob er in die PKV wechseln darf."] },
+      { type: "p", parts: ["Für die Versicherungsfreiheit ist grundsätzlich die Jahresarbeitsentgeltgrenze relevant."] },
+      { type: "p", parts: ["Das ist ein wichtiger Unterschied."] },
+      { type: "p", parts: ["Du kannst also bereits den maximalen einkommensabhängigen GKV-Beitrag erreichen und trotzdem noch gesetzlich versicherungspflichtig sein."] },
+    ],
+  },
+  {
+    id: "einkuenfte-fuer-die-jaeg",
+    heading: "Welche Einkünfte zählen für die Jahresarbeitsentgeltgrenze?",
+    blocks: [
+      { type: "p", parts: ["Entscheidend ist nicht einfach das, was irgendwann auf deiner jährlichen Lohnabrechnung steht."] },
+      { type: "p", parts: ["Betrachtet wird das ", { b: "regelmäßige Jahresarbeitsentgelt" }, "."] },
+      {
+        type: "p",
+        parts: [
+          "Dazu zählt insbesondere dein laufendes Arbeitsentgelt. Auch regelmäßig zu erwartende Sonderzahlungen können berücksichtigt werden. Einmalzahlungen werden beispielsweise berücksichtigt, wenn mit hinreichender Sicherheit davon ausgegangen werden kann, dass sie mindestens einmal jährlich gezahlt werden.",
+        ],
+      },
+      { type: "p", parts: ["Bei schwankenden Vergütungsbestandteilen muss eine vorausschauende Prognose erfolgen."] },
+      { type: "p", parts: ["Gerade bei:"] },
+      { type: "p", parts: ["Bonuszahlungen, Provisionen, variablen Vergütungen, Arbeitgeberwechseln oder Gehaltserhöhungen"] },
+      {
+        type: "p",
+        parts: ["würde ich deshalb nicht einfach selbst Monatsgehalt × 12 rechnen und daraus ableiten, dass ein PKV-Wechsel möglich ist."],
+      },
+      { type: "p", parts: ["Die sozialversicherungsrechtliche Einstufung sollte sauber feststehen."] },
+    ],
+  },
+  {
+    id: "wann-wechseln-angestellte",
+    heading: "Wann kann ein Angestellter tatsächlich in die PKV wechseln?",
+    blocks: [
+      { type: "p", parts: ["Auch hier kommt es auf die Situation an."] },
+      {
+        type: "p",
+        parts: [
+          "Beginnst du eine neue Beschäftigung und liegt dein prognostiziertes regelmäßiges Jahresarbeitsentgelt von Beginn an oberhalb der geltenden JAEG, kann Versicherungsfreiheit grundsätzlich direkt bestehen.",
+        ],
+      },
+      { type: "p", parts: ["Anders sieht es aus, wenn du zunächst gesetzlich pflichtversichert bist und dein Einkommen beispielsweise durch eine Gehaltserhöhung über die Grenze steigt."] },
+      {
+        type: "p",
+        parts: [
+          "Dann endet die Versicherungspflicht grundsätzlich erst zum Ablauf des Kalenderjahres – und nur, wenn das voraussichtliche regelmäßige Arbeitsentgelt auch die im folgenden Kalenderjahr geltende Jahresarbeitsentgeltgrenze überschreitet.",
+        ],
+      },
+      { type: "p", parts: ["Deshalb kann die Antwort auf:"] },
+      { type: "standalone", text: "„Ich verdiene jetzt mehr als die JAEG – kann ich sofort in die PKV?“" },
+      { type: "p", parts: ["auch lauten:"] },
+      { type: "standalone", text: "Noch nicht." },
+    ],
+  },
+  {
+    id: "besondere-jaeg",
+    heading: "Gibt es eine besondere Jahresarbeitsentgeltgrenze?",
+    blocks: [
+      { type: "p", parts: ["Ja."] },
+      { type: "p", parts: ["Für eine bestimmte Gruppe von Arbeitnehmern gilt eine niedrigere besondere Jahresarbeitsentgeltgrenze."] },
+      {
+        type: "p",
+        parts: [
+          "Sie betrifft grundsätzlich Arbeitnehmer, die bereits am ",
+          { b: "31. Dezember 2002" },
+          " wegen Überschreitens der damaligen Grenze versicherungsfrei und privat krankenversichert waren.",
+        ],
+      },
+      { type: "p", parts: ["Für diese sogenannten Bestandsfälle beträgt die besondere JAEG im Jahr 2026:"] },
+      { type: "standalone", text: "69.750 Euro." },
+      { type: "p", parts: ["Für die große Mehrheit der heutigen Interessenten spielt diese Sonderregelung allerdings keine Rolle."] },
+    ],
+  },
+  {
+    id: "voraussetzungen-selbststaendige",
+    heading: "Welche Voraussetzungen gelten für Selbstständige?",
+    blocks: [
+      { type: "p", parts: ["Bei Selbstständigen gibt es grundsätzlich ", { b: "keine Jahresarbeitsentgeltgrenze wie bei Angestellten" }, "."] },
+      {
+        type: "p",
+        parts: [
+          "Wer hauptberuflich selbstständig tätig ist und dadurch nicht mehr der gesetzlichen Versicherungspflicht unterliegt, kann grundsätzlich entscheiden, ob er freiwillig gesetzlich versichert bleibt oder sich privat krankenversichert.",
+        ],
+      },
+      { type: "p", parts: ["Das bedeutet:"] },
+      { type: "p", parts: ["Ein Selbstständiger muss nicht erst 77.400 Euro verdienen, um überhaupt eine PKV abschließen zu dürfen."] },
+      { type: "p", parts: ["Aber daraus sollte man nicht den falschen Schluss ziehen:"] },
+      { type: "standalone", text: "„Selbstständig = PKV.“" },
+      {
+        type: "p",
+        parts: ["Für mich gehören bei Selbstständigen insbesondere die Stabilität des Einkommens, vorhandene Rücklagen, Krankentagegeld, Familienplanung und langfristige Beitragsbelastung in die Entscheidung."],
+      },
+      { type: "p", parts: ["Denn der PKV-Beitrag reduziert sich nicht automatisch, nur weil dein Gewinn in einem schlechten Geschäftsjahr fällt."] },
+      {
+        type: "p",
+        parts: ["Mehr dazu findest du unter ", { a: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel/" }, "."],
+      },
+    ],
+  },
+  {
+    id: "voraussetzungen-beamte",
+    heading: "Welche Voraussetzungen gelten für Beamte?",
+    blocks: [
+      {
+        type: "p",
+        parts: ["Beamte benötigen grundsätzlich ebenfalls ", { b: "kein Einkommen oberhalb der Jahresarbeitsentgeltgrenze" }, ", um sich privat krankenversichern zu können."],
+      },
+      { type: "p", parts: ["Beamte gehören zu den Personengruppen, die grundsätzlich nicht aufgrund ihres Einkommens der normalen GKV-Versicherungspflicht eines Arbeitnehmers unterliegen."] },
+      { type: "p", parts: ["Hinzu kommt häufig das Beihilfesystem."] },
+      {
+        type: "p",
+        parts: [
+          "Je nach Dienstherr und individueller Situation übernimmt die Beihilfe einen Teil der beihilfefähigen Krankheitskosten. Über einen passenden privaten Tarif wird dann der verbleibende Teil abgesichert.",
+        ],
+      },
+      { type: "p", parts: ["Die konkrete Ausgestaltung hängt allerdings von deinem Beihilfeanspruch und den für dich geltenden Regelungen ab."] },
+      {
+        type: "p",
+        parts: ["Mehr dazu findest du unter ", { a: "PKV für Beamte", href: "/pkv-beamte-kassel/" }, "."],
+      },
+    ],
+  },
+  {
+    id: "studenten-pkv",
+    heading: "Können sich Studenten privat krankenversichern?",
+    blocks: [
+      { type: "p", parts: ["Auch Studenten können unter bestimmten Voraussetzungen privat krankenversichert sein."] },
+      { type: "p", parts: ["Grundsätzlich besteht zu Beginn des Studiums häufig zunächst Versicherungspflicht in der studentischen gesetzlichen Krankenversicherung."] },
+      {
+        type: "p",
+        parts: [
+          "Wer sich stattdessen privat versichern möchte, kann unter den gesetzlichen Voraussetzungen eine ",
+          { b: "Befreiung von dieser Versicherungspflicht" },
+          " beantragen.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Der Antrag muss grundsätzlich innerhalb von drei Monaten nach Beginn der Versicherungspflicht gestellt werden. Eine solche Befreiung kann grundsätzlich nicht einfach widerrufen werden und wirkt regelmäßig für die weitere Studiendauer.",
+        ],
+      },
+      { type: "p", parts: ["Genau deshalb sollte diese Entscheidung nicht nur anhand eines kurzfristigen Beitragsvergleichs getroffen werden."] },
+    ],
+  },
+  {
+    id: "reichen-gesetzliche-voraussetzungen",
+    heading: "Reicht es, die gesetzlichen Voraussetzungen zu erfüllen?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Das ist wahrscheinlich die wichtigste Aussage dieses Artikels."] },
+      { type: "p", parts: ["Du kannst sämtliche gesetzlichen Voraussetzungen erfüllen und trotzdem noch keinen normalen PKV-Vertrag haben."] },
+      { type: "p", parts: ["Denn anschließend kommt die zweite Ebene:"] },
+      { type: "standalone", text: "die Annahme durch den privaten Krankenversicherer." },
+      { type: "p", parts: ["Bei normalen PKV-Tarifen prüft der Versicherer vor Vertragsabschluss unter anderem deinen Gesundheitszustand."] },
+      {
+        type: "p",
+        parts: ["Abhängig von deiner gesundheitlichen Vorgeschichte kann ein Antrag beispielsweise normal angenommen, mit einem Risikozuschlag versehen oder unter Umständen auch abgelehnt werden."],
+      },
+      { type: "p", parts: ["Deshalb unterscheide ich immer zwischen:"] },
+      { type: "standalone", text: "Zugang zur PKV" },
+      { type: "p", parts: ["und"] },
+      { type: "standalone", text: "Versicherbarkeit in der PKV." },
+      { type: "p", parts: ["Das sind zwei verschiedene Dinge."] },
+    ],
+  },
+  {
+    id: "rolle-gesundheitspruefung",
+    heading: "Welche Rolle spielt die Gesundheitsprüfung?",
+    blocks: [
+      { type: "p", parts: ["Eine sehr große."] },
+      {
+        type: "p",
+        parts: [
+          "Bei der Antragstellung werden Gesundheitsfragen gestellt. Je nach Versicherer und Antrag können beispielsweise zurückliegende ambulante und stationäre Behandlungen, Diagnosen, Medikamente, Therapien oder weitere gesundheitliche Umstände relevant sein.",
+        ],
+      },
+      { type: "p", parts: ["Dabei ist entscheidend, die Fragen vollständig und korrekt zu beantworten."] },
+      { type: "p", parts: ["Aber auch die Bewertung durch die Versicherer unterscheidet sich."] },
+      { type: "p", parts: ["Eine bestimmte Vorerkrankung kann bei Versicherer A anders bewertet werden als bei Versicherer B."] },
+      { type: "p", parts: ["Deshalb würde ich bei relevanten Vorerkrankungen nicht einfach mehrere normale PKV-Anträge stellen."] },
+      { type: "p", parts: ["Stattdessen kann zunächst geprüft werden, wie unterschiedliche Versicherer die gesundheitliche Situation einschätzen."] },
+      {
+        type: "p",
+        parts: ["Genau dafür nutze ich die ", { a: "PKV-Risikovoranfrage", href: "/pkv-risikovoranfrage/" }, "."],
+      },
+      {
+        type: "p",
+        parts: [
+          "Mehr zur Aufbereitung deiner Gesundheitshistorie findest du außerdem unter ",
+          { a: "Gesundheitsfragen in der PKV", href: "/pkv-gesundheitsfragen/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "hoechstalter-pkv",
+    heading: "Gibt es ein Höchstalter für die PKV?",
+    blocks: [
+      { type: "p", parts: ["Eine pauschale gesetzliche Grenze nach dem Motto:"] },
+      { type: "standalone", text: "„Ab 50 darf man nicht mehr in die PKV“" },
+      { type: "p", parts: ["gibt es so nicht."] },
+      { type: "p", parts: ["Das bedeutet allerdings nicht, dass das Eintrittsalter unwichtig wäre."] },
+      {
+        type: "p",
+        parts: ["Das Eintrittsalter spielt bei der Kalkulation einer privaten Krankenversicherung eine Rolle. Zudem kann der Versicherer bei normalen Tarifen im Rahmen der gesetzlichen Vorgaben einen Antrag prüfen und gegebenenfalls ablehnen."],
+      },
+      { type: "p", parts: ["Vor allem sollte ein später PKV-Wechsel deshalb besonders sorgfältig geprüft werden."] },
+      { type: "p", parts: ["Denn eine private Krankenversicherung sollte nicht mit dem Gedanken abgeschlossen werden:"] },
+      { type: "standalone", text: "„Wenn es nicht funktioniert, gehe ich später einfach wieder zurück in die GKV.“" },
+      { type: "p", parts: ["Der Wechsel zurück ist an gesetzliche Voraussetzungen gebunden und kann insbesondere in höherem Alter deutlich schwieriger werden."] },
+    ],
+  },
+  {
+    id: "kinder-familienplanung",
+    heading: "Sind Kinder oder Familienplanung ein Hindernis für die PKV?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Kinder zu haben oder eine Familie zu planen verhindert grundsätzlich nicht den Zugang zur privaten Krankenversicherung."] },
+      { type: "p", parts: ["Es beeinflusst aber die Frage, ", { b: "ob die PKV wirtschaftlich und strukturell zu deiner Familie passt." }] },
+      { type: "p", parts: ["Der entscheidende Unterschied:"] },
+      { type: "p", parts: ["In der gesetzlichen Krankenversicherung können Familienangehörige unter bestimmten Voraussetzungen beitragsfrei familienversichert werden."] },
+      { type: "p", parts: ["In der privaten Krankenversicherung benötigt grundsätzlich jede privat versicherte Person einen eigenen Versicherungsschutz."] },
+      { type: "p", parts: ["Deshalb gehören Zugangsvoraussetzungen und Sinnhaftigkeit wieder getrennt betrachtet."] },
+      {
+        type: "p",
+        parts: ["Du kannst sämtliche Voraussetzungen für die PKV erfüllen – und trotzdem feststellen, dass die GKV aufgrund deiner konkreten Familienkonstellation besser zu dir passt."],
+      },
+    ],
+  },
+  {
+    id: "haeufigste-missverstaendnisse",
+    heading: "Die häufigsten Missverständnisse bei den PKV-Voraussetzungen",
+    blocks: [
+      { type: "standalone", text: "„Ich verdiene mehr als die Beitragsbemessungsgrenze, also darf ich in die PKV.“" },
+      { type: "p", parts: ["Nicht zwingend. Für Angestellte ist grundsätzlich die Jahresarbeitsentgeltgrenze entscheidend."] },
+      { type: "standalone", text: "„Ich bin selbstständig, deshalb brauche ich mindestens 77.400 Euro Einkommen.“" },
+      { type: "p", parts: ["Nein. Die JAEG ist bei Selbstständigen grundsätzlich nicht die Zugangshürde wie bei Angestellten."] },
+      { type: "standalone", text: "„Ich bin über der JAEG, also muss mich jede PKV aufnehmen.“" },
+      { type: "p", parts: ["Nein. Die Versicherungsfreiheit und die Annahme durch einen privaten Versicherer sind zwei getrennte Fragen."] },
+      { type: "standalone", text: "„Mit einer Vorerkrankung kann ich grundsätzlich nicht in die PKV.“" },
+      {
+        type: "p",
+        parts: ["Auch das lässt sich nicht pauschal sagen. Entscheidend sind unter anderem Diagnose, Verlauf, Behandlung, Zeitraum und die Risikoprüfung des jeweiligen Versicherers."],
+      },
+      { type: "standalone", text: "„Wenn ich die PKV-Voraussetzungen erfülle, sollte ich wechseln.“" },
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Du ", { b: "kannst" }, " wechseln und du ", { b: "solltest" }, " wechseln sind zwei vollkommen unterschiedliche Aussagen."] },
+    ],
+  },
+  {
+    id: "reihenfolge-vor-wechsel",
+    heading: "Meine Reihenfolge vor einem PKV-Wechsel",
+    blocks: [
+      { type: "p", parts: ["Ich würde die Entscheidung deshalb immer in dieser Reihenfolge angehen:"] },
+      {
+        type: "list",
+        items: [
+          "1. Besteht grundsätzlich Zugang zur PKV?",
+          "2. Ist deine gesundheitliche Versicherbarkeit geklärt?",
+          "3. Passt das System langfristig zu deinem Beruf, Einkommen und deiner Familienplanung?",
+          "4. Welche Leistungen möchtest du absichern?",
+          "5. Welche Versicherer und Tarife erfüllen diese Anforderungen?",
+        ],
+      },
+      { type: "p", parts: ["Nicht andersherum."] },
+      { type: "p", parts: ["Ein Tarifvergleich bringt dir wenig, wenn bereits Schritt eins oder zwei ungeklärt ist."] },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

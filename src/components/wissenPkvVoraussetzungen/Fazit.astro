@@ -1,0 +1,102 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const sources = [
+  "Bundesministerium für Gesundheit: Wechsel zwischen GKV und PKV",
+  "Bundesministerium für Gesundheit: Versicherte in der gesetzlichen Krankenversicherung",
+  "Bundesministerium für Gesundheit: Private Krankenversicherung",
+  "Bundesministerium für Arbeit und Soziales: Sozialversicherungsrechengrößen 2026",
+  "Deutsche Rentenversicherung: Jahresarbeitsentgeltgrenze",
+  "Sozialgesetzbuch V § 8 – Befreiung von der Versicherungspflicht (Studenten)",
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Fazit: Welche Voraussetzungen musst du für die PKV erfüllen?
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Die Voraussetzungen hängen stark davon ab, in welcher beruflichen Situation du dich befindest."]} />
+      <RichParagraph
+        parts={[
+          "Für Angestellte ist vor allem die Jahresarbeitsentgeltgrenze entscheidend. Sie liegt 2026 regulär bei ",
+          { b: "77.400 Euro jährlich beziehungsweise 6.450 Euro monatlich" },
+          ".",
+        ]}
+      />
+      <RichParagraph
+        parts={[
+          "Selbstständige und Beamte benötigen diese Einkommensgrenze grundsätzlich nicht. Bei Studenten gelten wiederum besondere Regeln zur Befreiung von der gesetzlichen Versicherungspflicht.",
+        ]}
+      />
+      <RichParagraph parts={["Damit ist allerdings erst die ", { b: "rechtliche Zugangsvoraussetzung" }, " geklärt."]} />
+      <RichParagraph
+        parts={["Danach muss geprüft werden, ob und zu welchen Bedingungen dich ein privater Krankenversicherer aufgrund deiner gesundheitlichen Ausgangssituation versichern würde."]}
+      />
+      <RichParagraph parts={["Und erst danach kommt für mich die wichtigste Frage:"]} />
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Nur weil du in die PKV darfst – passt die PKV auch langfristig zu dir?
+        </p>
+      </div>
+
+      <RichParagraph
+        parts={[
+          "Genau diese Frage behandle ich ausführlich im Artikel ",
+          { a: "Für wen lohnt sich die PKV?", href: "/wissen/private-krankenversicherung/fuer-wen-lohnt-sich-die-pkv/" },
+          ".",
+        ]}
+      />
+    </div>
+  </div>
+</section>
+
+<section id="pkv-voraussetzungen-gemeinsam-pruefen" class="scroll-mt-24 bg-brand-50/30 py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      PKV-Voraussetzungen gemeinsam prüfen
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph
+        parts={[
+          "Wenn du wissen möchtest, ob du die Voraussetzungen für eine private Krankenversicherung erfüllst und ob ein Wechsel in deiner Situation überhaupt sinnvoll ist, können wir genau das gemeinsam prüfen.",
+        ]}
+      />
+      <RichParagraph
+        parts={["Mein Standort ist Kassel und mein regionaler Schwerpunkt liegt in Nordhessen. Die Beratung ist persönlich vor Ort in Kassel oder digital möglich."]}
+      />
+      <RichParagraph parts={["Dabei beginnen wir nicht direkt mit Versicherern und Tarifen."]} />
+      <RichParagraph
+        parts={["Zuerst klären wir deinen Versicherungsstatus, deine persönliche Situation und – wenn relevant – deine gesundheitliche Ausgangslage."]}
+      />
+      <RichParagraph parts={[{ a: "Mehr zur PKV-Beratung in Kassel", href: "/private-krankenversicherung-kassel/" }]} />
+    </div>
+
+    <div class="mt-14 border-t border-black/5 pt-8">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Quellen und weiterführende Informationen</p>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/60">
+        Für diesen Artikel wurden insbesondere folgende öffentlich zugänglichen Primärquellen und
+        Rechtsgrundlagen berücksichtigt:
+      </p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-ink-700/60">{source}</li>
+          ))
+        }
+      </ul>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Stand der gesetzlichen Angaben: Oktober 2026.</p>
+    </div>
+
+    <div class="mt-10 border-t border-black/5 pt-8">
+      <RichParagraph
+        parts={["Zurück zum ", { a: "PKV-Wissen", href: "/wissen/private-krankenversicherung/" }]}
+        class="text-sm font-semibold text-ink-700/85"
+      />
+    </div>
+  </div>
+</section>
