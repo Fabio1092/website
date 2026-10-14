@@ -1,0 +1,499 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  { type: "p", parts: ["Denn die entscheidende Frage lautet nicht:"] },
+  { type: "standalone", text: "„Ist die PKV besser als die GKV?“" },
+  { type: "p", parts: ["Sondern:"] },
+  { type: "standalone", text: "„Passt das System der privaten Krankenversicherung langfristig zu meinem Leben?“" },
+  {
+    type: "p",
+    parts: [
+      "Dabei spielen dein Beruf, dein Einkommen, dein Gesundheitszustand, deine Familienplanung, deine Ansprüche an medizinische Leistungen und deine finanzielle Planung eine Rolle.",
+    ],
+  },
+  { type: "p", parts: ["Wer ausschließlich den heutigen Monatsbeitrag vergleicht, macht sich die Entscheidung deshalb zu einfach."] },
+  {
+    type: "p",
+    parts: [
+      "In diesem Artikel zeige ich dir, ",
+      {
+        b: "für wen sich eine private Krankenversicherung besonders lohnen kann, wann ich genauer hinschauen würde und in welchen Situationen die gesetzliche Krankenversicherung möglicherweise besser zu deinem Leben passt.",
+      },
+    ],
+  },
+];
+
+const sections: Section[] = [
+  {
+    id: "was-bedeutet-die-pkv-lohnt-sich",
+    heading: "Was bedeutet eigentlich: „Die PKV lohnt sich“?",
+    blocks: [
+      { type: "p", parts: ["Viele verbinden diese Frage automatisch mit dem Beitrag."] },
+      {
+        type: "p",
+        parts: [
+          "Du zahlst beispielsweise heute 950 Euro für die gesetzliche Kranken- und Pflegeversicherung und könntest dich für 700 Euro privat versichern. Also sparst du 250 Euro – und die PKV lohnt sich.",
+        ],
+      },
+      { type: "standalone", text: "So einfach ist es nicht." },
+      {
+        type: "p",
+        parts: [
+          "Eine Krankenversicherung begleitet dich möglicherweise mehrere Jahrzehnte. In dieser Zeit können sich dein Einkommen, dein Beruf, deine Gesundheit und deine familiäre Situation mehrfach verändern.",
+        ],
+      },
+      { type: "p", parts: ["Deshalb bedeutet „lohnt sich“ für mich nicht:"] },
+      { type: "standalone", text: "Wie viel spare ich nächsten Monat?" },
+      { type: "p", parts: ["Sondern:"] },
+      {
+        type: "standalone",
+        text: "Welches System bietet mir langfristig das bessere Gesamtpaket aus Leistungen, Beitrag, Planbarkeit und Flexibilität für meine persönliche Lebenssituation?",
+      },
+      {
+        type: "p",
+        parts: [
+          "Bei der PKV kommt zusätzlich hinzu, dass sich der Beitrag grundsätzlich nicht nach deinem aktuellen Einkommen richtet. Maßgeblich sind insbesondere Tarif, Leistungsumfang, Eintrittsalter und gesundheitliche Ausgangssituation beim Eintritt.",
+        ],
+      },
+      { type: "p", parts: ["Das kann ein Vorteil sein. Es kann in bestimmten Lebensphasen aber auch zum Nachteil werden."] },
+      { type: "p", parts: ["Genau deshalb muss die Entscheidung langfristig gedacht werden."] },
+    ],
+  },
+  {
+    id: "fuer-wen-besonders-lohnend",
+    heading: "Für wen kann sich die PKV besonders lohnen?",
+    blocks: [
+      { type: "p", parts: ["Es gibt drei Gruppen, für die eine private Krankenversicherung besonders häufig interessant ist:"] },
+      { type: "standalone", text: "Beamte, gutverdienende Angestellte sowie Selbstständige und Unternehmer." },
+      {
+        type: "p",
+        parts: ["Das bedeutet allerdings nicht, dass die PKV für jeden Menschen innerhalb dieser Gruppen automatisch die richtige Entscheidung ist."],
+      },
+      { type: "h3", text: "1. Beamte und Referendare" },
+      { type: "p", parts: ["Für Beamte ist die private Krankenversicherung häufig besonders interessant."] },
+      { type: "p", parts: ["Der Grund liegt im Beihilfesystem."] },
+      {
+        type: "p",
+        parts: [
+          "Im klassischen Beihilfemodell übernimmt der Dienstherr einen bestimmten Teil der beihilfefähigen Krankheitskosten. Über eine private Krankenversicherung muss deshalb häufig nur der verbleibende Teil abgesichert werden.",
+        ],
+      },
+      { type: "p", parts: ["Dadurch unterscheidet sich die Ausgangssituation deutlich von der eines normalen Angestellten."] },
+      {
+        type: "p",
+        parts: ["Beamte gehören außerdem grundsätzlich zu den Personengruppen, denen der Wechsel in die private Krankenversicherung offenstehen kann."],
+      },
+      { type: "p", parts: ["Trotzdem sollte auch hier nicht einfach irgendein Beihilfetarif abgeschlossen werden."] },
+      {
+        type: "p",
+        parts: [
+          "Entscheidend sind unter anderem die konkreten Versicherungsbedingungen, dein Beihilfeanspruch, mögliche Veränderungen deiner beruflichen Situation und deine Gesundheitsgeschichte.",
+        ],
+      },
+      {
+        type: "p",
+        parts: ["Mehr dazu findest du auf meiner Seite ", { a: "PKV für Beamte", href: "/pkv-beamte-kassel/" }, "."],
+      },
+      { type: "h3", text: "2. Gutverdienende Angestellte" },
+      { type: "p", parts: ["Auch für Angestellte kann die PKV sehr interessant sein."] },
+      { type: "p", parts: ["Allerdings gibt es zunächst eine gesetzliche Zugangsvoraussetzung."] },
+      {
+        type: "p",
+        parts: [
+          "Angestellte können sich grundsätzlich privat versichern, wenn ihr regelmäßiges Jahresarbeitsentgelt oberhalb der maßgeblichen Jahresarbeitsentgeltgrenze liegt. 2026 beträgt diese regulär ",
+          { b: "77.400 Euro pro Jahr beziehungsweise 6.450 Euro monatlich" },
+          ".",
+        ],
+      },
+      { type: "p", parts: ["Aber:"] },
+      { type: "standalone", text: "Nur weil du in die PKV wechseln darfst, heißt das noch lange nicht, dass du wechseln solltest." },
+      {
+        type: "p",
+        parts: [
+          "Für einen Angestellten finde ich die PKV besonders prüfenswert, wenn das Einkommen langfristig stabil ist, Wert auf hochwertige und vertraglich definierte Leistungen gelegt wird und die Entscheidung nicht nur aus einem kurzfristigen Beitragsvorteil heraus getroffen wird.",
+        ],
+      },
+      { type: "p", parts: ["Besonders wichtig ist die Familienplanung."] },
+      {
+        type: "p",
+        parts: [
+          "Wer heute alleinstehend ist und gut verdient, hat möglicherweise eine vollkommen andere Ausgangssituation als dieselbe Person fünf Jahre später mit Partner, zwei Kindern und Teilzeitwunsch.",
+        ],
+      },
+      {
+        type: "p",
+        parts: ["Mehr dazu findest du unter ", { a: "Private Krankenversicherung für Angestellte", href: "/pkv-angestellte-kassel/" }, "."],
+      },
+      { type: "h3", text: "3. Selbstständige und Unternehmer" },
+      { type: "p", parts: ["Für Selbstständige funktioniert die Entscheidung noch einmal anders."] },
+      {
+        type: "p",
+        parts: [
+          "Eine Jahresarbeitsentgeltgrenze wie bei Angestellten ist für hauptberuflich Selbstständige grundsätzlich nicht die entscheidende Zugangshürde. Wenn keine gesetzliche Versicherungspflicht entgegensteht, kann zwischen freiwilliger gesetzlicher und privater Absicherung gewählt werden.",
+        ],
+      },
+      { type: "p", parts: ["Gerade für wirtschaftlich stabile Selbstständige kann die PKV deshalb interessant sein."] },
+      { type: "p", parts: ["Gleichzeitig gibt es einen entscheidenden Unterschied zum Angestellten:"] },
+      { type: "standalone", text: "Es gibt keinen normalen Arbeitgeber, der automatisch einen Teil des Beitrags übernimmt." },
+      { type: "p", parts: ["Der komplette Krankenversicherungsbeitrag gehört deshalb in deine eigene Finanzplanung."] },
+      { type: "p", parts: ["Noch wichtiger wird das bei schwankenden Einnahmen."] },
+      { type: "p", parts: ["Sinkt dein Gewinn in einem schlechten Geschäftsjahr deutlich, sinkt der bestehende PKV-Beitrag dadurch nicht automatisch mit."] },
+      {
+        type: "p",
+        parts: [
+          "Deshalb achte ich bei Selbstständigen besonders auf Einkommensstabilität, Rücklagen, Krankentagegeld, Selbstbehalt, Familienplanung und die langfristige Tragbarkeit.",
+        ],
+      },
+      {
+        type: "p",
+        parts: ["Mehr dazu findest du unter ", { a: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel/" }, "."],
+      },
+    ],
+  },
+  {
+    id: "einordnung-nach-lebenssituation",
+    heading: "Eine schnelle Einordnung nach Lebenssituation",
+    blocks: [
+      {
+        type: "table",
+        headers: ["Situation", "PKV grundsätzlich interessant?", "Worauf ich besonders achten würde"],
+        rows: [
+          ["Beamter mit Beihilfe", "häufig", "Beihilfetarif, Leistungen, Gesundheit"],
+          ["Gutverdienender Angestellter", "häufig prüfenswert", "Einkommen, Familie, Arbeitgeberzuschuss"],
+          ["Wirtschaftlich stabiler Selbstständiger", "häufig prüfenswert", "Einkommensschwankungen, Krankentagegeld, Rücklagen"],
+          ["Junger, gesunder Single", "kann interessant sein", "nicht nur nach dem Einstiegsbeitrag entscheiden"],
+          ["Familie mit mehreren Kindern", "individuell", "Gesamtkosten der ganzen Familie"],
+          ["Alleinverdiener mit nicht berufstätigem Partner", "genau vergleichen", "mögliche GKV-Familienversicherung"],
+          ["Stark schwankendes Einkommen", "eher vorsichtig prüfen", "langfristige Beitragsbelastung"],
+          ["Relevante Vorerkrankungen", "individuell", "Versicherbarkeit zuerst klären"],
+          ["Wechsel nur zum Geldsparen", "aus meiner Sicht keine gute Grundlage", "Systementscheidung statt kurzfristiger Ersparnis"],
+        ],
+      },
+    ],
+  },
+  {
+    id: "jung-und-gesund",
+    heading: "Ist die PKV besonders für junge und gesunde Menschen sinnvoll?",
+    blocks: [
+      { type: "p", parts: ["Jung und gesund zu sein kann den Einstieg in die PKV erleichtern."] },
+      { type: "standalone", text: "Aber es ist kein ausreichender Grund für einen Wechsel." },
+      {
+        type: "p",
+        parts: [
+          "Natürlich spielen Eintrittsalter und Gesundheitszustand bei der Kalkulation und Annahme eines privaten Krankenversicherungsvertrages eine wichtige Rolle. Bei regulären PKV-Tarifen erfolgt grundsätzlich eine Gesundheitsprüfung; Vorerkrankungen können je nach Situation Einfluss auf Annahme und Beitrag haben.",
+        ],
+      },
+      { type: "p", parts: ["Dadurch kann ein junger und gesunder Antragsteller zunächst attraktive Konditionen erhalten."] },
+      { type: "p", parts: ["Die eigentliche Frage lautet aber trotzdem:"] },
+      { type: "standalone", text: "Passt die PKV auch noch zu meinem Leben, wenn ich 35, 45 oder 60 bin?" },
+      {
+        type: "p",
+        parts: [
+          "Wer mit 28 Jahren ausschließlich wegen eines günstigen Einstiegsbeitrags wechselt, aber Familienplanung, Karriere, Altersvorsorge und langfristige Beitragsbelastung ignoriert, hat keine gute PKV-Entscheidung getroffen.",
+        ],
+      },
+      { type: "p", parts: ["Er hat lediglich einen günstigen Tarif gekauft."] },
+      { type: "p", parts: ["Das ist etwas anderes."] },
+    ],
+  },
+  {
+    id: "familie-und-pkv",
+    heading: "Wann kann eine Familie gegen die PKV sprechen?",
+    blocks: [
+      { type: "p", parts: ["Die Familienplanung ist einer der Punkte, die ich vor einem PKV-Wechsel besonders genau bespreche."] },
+      { type: "p", parts: ["Denn zwischen GKV und PKV besteht hier ein grundlegender Unterschied."] },
+      {
+        type: "p",
+        parts: [
+          "In der gesetzlichen Krankenversicherung können Ehe- beziehungsweise Lebenspartner und Kinder unter bestimmten Voraussetzungen beitragsfrei familienversichert werden. In der PKV benötigt grundsätzlich jede privat versicherte Person einen eigenen Versicherungsschutz.",
+        ],
+      },
+      { type: "p", parts: ["Deshalb kann sich die Rechnung mit Kindern deutlich verändern."] },
+      {
+        type: "p",
+        parts: [
+          "Ein gutverdienender Single kann beispielsweise von einer PKV überzeugt sein. Bekommt dieselbe Person später zwei Kinder und reduziert der Partner gleichzeitig seine Berufstätigkeit, muss die gesamte Situation neu betrachtet werden.",
+        ],
+      },
+      { type: "p", parts: ["Das heißt aber auch nicht:"] },
+      { type: "standalone", text: "„PKV und Familie passen grundsätzlich nicht zusammen.“" },
+      { type: "p", parts: ["Das wäre genauso pauschal falsch."] },
+      { type: "p", parts: ["Entscheidend ist die tatsächliche Konstellation:"] },
+      {
+        type: "p",
+        parts: [
+          "Wer verdient wie viel? Wie ist der Partner versichert? Wo werden die Kinder versichert? Besteht Anspruch auf Familienversicherung? Wie hoch sind die Beiträge für die Kinder? Welche Leistungen werden gewünscht?",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Deshalb vergleiche ich bei Familien nicht den Beitrag einer einzelnen Person, sondern die ",
+          { b: "Gesamtsituation des Haushalts" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "vorsicht-bei-der-pkv",
+    heading: "Wann würde ich bei der PKV eher vorsichtig sein?",
+    blocks: [
+      { type: "p", parts: ["Es gibt einige Motive, bei denen ich nicht sofort nach einem Tarif suchen würde."] },
+      { type: "p", parts: ["Besonders kritisch finde ich den Satz:"] },
+      { type: "standalone", text: "„Ich will in die PKV, weil sie günstiger ist.“" },
+      { type: "p", parts: ["Ein Beitragsvorteil kann schön sein. Er sollte aber das Ergebnis einer guten Entscheidung sein – nicht deren Grundlage."] },
+      {
+        type: "p",
+        parts: [
+          "Auch bei dauerhaft unsicherem Einkommen muss genauer gerechnet werden. Das gilt besonders für Selbstständige, weil sich der PKV-Beitrag nicht automatisch proportional zu einem Einkommensrückgang reduziert.",
+        ],
+      },
+      { type: "p", parts: ["Genauso relevant sind Familienpläne, ein möglicher späterer Teilzeitwunsch und bereits bestehende Erkrankungen."] },
+      { type: "p", parts: ["Und wer die PKV mit dem Gedanken abschließt:"] },
+      { type: "standalone", text: "„Wenn es irgendwann nicht mehr passt, gehe ich einfach zurück in die GKV“" },
+      { type: "p", parts: ["sollte sich vorher genauer mit den gesetzlichen Regeln beschäftigen."] },
+      {
+        type: "p",
+        parts: [
+          "Ein beliebiger Wechsel zurück in die gesetzliche Krankenversicherung ist nicht vorgesehen. Eine Rückkehr setzt wieder einen entsprechenden gesetzlichen Zugang voraus; ab dem 55. Lebensjahr bestehen zusätzliche Einschränkungen.",
+        ],
+      },
+      { type: "p", parts: ["Die PKV sollte deshalb als langfristige Systementscheidung behandelt werden."] },
+    ],
+  },
+  {
+    id: "gesundheit-und-entscheidung",
+    heading: "Wie wichtig ist deine Gesundheit für die Entscheidung?",
+    blocks: [
+      { type: "p", parts: ["Sehr wichtig."] },
+      {
+        type: "p",
+        parts: [
+          "Bevor ich mit einem Interessenten intensiv über einzelne PKV-Tarife spreche, möchte ich wissen, ob und zu welchen Bedingungen Versicherungsschutz überhaupt realistisch möglich ist.",
+        ],
+      },
+      { type: "p", parts: ["Bei einem regulären PKV-Antrag prüft der Versicherer deine gesundheitliche Vorgeschichte."] },
+      {
+        type: "p",
+        parts: [
+          "Abhängig von Erkrankung, Behandlung und Versicherer können sich unterschiedliche Ergebnisse ergeben – beispielsweise normale Annahme, Risikozuschlag oder unter Umständen auch eine Ablehnung.",
+        ],
+      },
+      { type: "p", parts: ["Das Problem:"] },
+      { type: "standalone", text: "Versicherer bewerten nicht jede Diagnose identisch." },
+      {
+        type: "p",
+        parts: [
+          "Deshalb kann es sinnvoll sein, die Gesundheitshistorie zunächst sauber aufzubereiten und anschließend über eine ",
+          { a: "PKV-Risikovoranfrage", href: "/pkv-risikovoranfrage/" },
+          " zu prüfen, welche Möglichkeiten bestehen.",
+        ],
+      },
+      {
+        type: "p",
+        parts: ["Mehr zu diesem Thema findest du auch in meinem Artikel zu den ", { a: "Gesundheitsfragen in der PKV", href: "/pkv-gesundheitsfragen/" }, "."],
+      },
+    ],
+  },
+  {
+    id: "beispiele-aus-der-praxis",
+    heading: "Vier typische Beispiele aus der Praxis",
+    blocks: [
+      { type: "h3", text: "Beispiel 1: Gutverdienender Angestellter, 31, alleinstehend" },
+      {
+        type: "p",
+        parts: ["Er verdient deutlich oberhalb der Versicherungspflichtgrenze, hat ein stabiles Einkommen und legt großen Wert auf einen hochwertigen Versicherungsschutz."],
+      },
+      { type: "p", parts: ["Kinder sind in den kommenden Jahren möglich, aber noch nicht konkret geplant."] },
+      {
+        type: "p",
+        parts: [
+          { b: "Meine Einschätzung:" },
+          " Die PKV sollte definitiv geprüft werden. Aber nicht nur anhand des heutigen Beitrags. Familienplanung, mögliche Elternzeit, Tarifqualität und langfristige Kosten gehören in die Entscheidung.",
+        ],
+      },
+      { type: "h3", text: "Beispiel 2: Selbstständige Unternehmerin, 38, stabile Gewinne" },
+      {
+        type: "p",
+        parts: ["Das Unternehmen ist etabliert, ausreichende Rücklagen sind vorhanden und die Einnahmen sind seit mehreren Jahren stabil."],
+      },
+      {
+        type: "p",
+        parts: ["Sie möchte einen hochwertigen Versicherungsschutz und kann ihren Krankenversicherungsbeitrag langfristig in ihrer Finanzplanung berücksichtigen."],
+      },
+      {
+        type: "p",
+        parts: [
+          { b: "Meine Einschätzung:" },
+          " Gute Ausgangslage für eine ergebnisoffene PKV-Prüfung. Zusätzlich muss insbesondere das Krankentagegeld sauber auf ihre unternehmerische Situation abgestimmt werden.",
+        ],
+      },
+      { type: "h3", text: "Beispiel 3: Beamter, 29, gesund" },
+      {
+        type: "p",
+        parts: ["Er erhält Beihilfe und benötigt entsprechend seiner konkreten Beihilfesituation ergänzenden Krankenversicherungsschutz."],
+      },
+      {
+        type: "p",
+        parts: [
+          { b: "Meine Einschätzung:" },
+          " Hier ist eine PKV häufig besonders naheliegend. Entscheidend ist trotzdem, welchen Beihilfetarif er wählt und wie gut dessen Versicherungsbedingungen langfristig sind.",
+        ],
+      },
+      { type: "h3", text: "Beispiel 4: Angestellter, verheiratet, zwei Kinder geplant" },
+      {
+        type: "p",
+        parts: ["Das Einkommen liegt über der Versicherungspflichtgrenze. Die Partnerin möchte nach der Geburt mehrere Jahre nur eingeschränkt arbeiten."],
+      },
+      {
+        type: "p",
+        parts: [
+          { b: "Meine Einschätzung:" },
+          " Nicht einfach den aktuellen PKV-Beitrag mit seinem persönlichen GKV-Beitrag vergleichen. Hier muss die komplette zukünftige Familienkonstellation gerechnet und bewertet werden.",
+        ],
+      },
+      { type: "p", parts: ["Genau solche Fälle zeigen:"] },
+      { type: "standalone", text: "Dieselbe PKV kann für zwei Menschen mit gleichem Einkommen vollkommen unterschiedlich sinnvoll sein." },
+    ],
+  },
+  {
+    id: "sieben-fragen-vor-dem-wechsel",
+    heading: "Diese sieben Fragen solltest du vor einem PKV-Wechsel beantworten",
+    blocks: [
+      {
+        type: "list",
+        items: [
+          "1. Erfülle ich überhaupt die Voraussetzungen für einen Wechsel?",
+          "2. Wie stabil ist meine berufliche und finanzielle Situation langfristig?",
+          "3. Wie sieht meine Familienplanung aus?",
+          "4. Welche medizinischen Leistungen sind mir wirklich wichtig?",
+          "5. Wie ist meine gesundheitliche Ausgangssituation?",
+          "6. Kann ich den Beitrag auch bei Veränderungen meiner Lebenssituation langfristig tragen?",
+          "7. Verstehe ich, dass ich mich für ein anderes Versicherungssystem entscheide – und nicht nur für einen günstigeren Tarif?",
+        ],
+      },
+      { type: "p", parts: ["Wenn du diese Fragen sauber beantworten kannst, wird die eigentliche Tarifauswahl deutlich einfacher."] },
+    ],
+  },
+  {
+    id: "tarif-ist-die-zweite-frage",
+    heading: "Welcher Tarif passt, ist erst die zweite Frage",
+    blocks: [
+      { type: "p", parts: ["Das ist ein Punkt, der bei der PKV häufig falsch herum angegangen wird."] },
+      { type: "p", parts: ["Interessenten suchen nach:"] },
+      { type: "p", parts: ["„Beste PKV 2026“"] },
+      { type: "p", parts: ["„Günstigste private Krankenversicherung“"] },
+      { type: "p", parts: ["„PKV Testsieger“"] },
+      { type: "p", parts: ["oder:"] },
+      { type: "p", parts: ["„Welche PKV ist die beste?“"] },
+      { type: "p", parts: ["Ich würde anders anfangen."] },
+      { type: "p", parts: [{ b: "Schritt eins:" }, " Passt die PKV grundsätzlich zu deinem Leben?"] },
+      { type: "p", parts: [{ b: "Schritt zwei:" }, " Welche Leistungen brauchst du?"] },
+      { type: "p", parts: [{ b: "Schritt drei:" }, " Wie sieht deine gesundheitliche Ausgangslage aus?"] },
+      { type: "p", parts: [{ b: "Erst dann" }, " kommt die Frage, welcher Versicherer und welcher Tarif diese Anforderungen sinnvoll erfüllt."] },
+      {
+        type: "p",
+        parts: [
+          "Wenn du zunächst verstehen möchtest, wie Beiträge, Leistungen, Rechnungen und Alterungsrückstellungen grundsätzlich funktionieren, findest du dazu meinen Grundlagenartikel ",
+          { a: "Wie funktioniert die private Krankenversicherung?", href: "/wissen/private-krankenversicherung/wie-funktioniert-die-pkv/" },
+          ".",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Einen ausführlichen strukturellen Vergleich der beiden Systeme findest du außerdem unter ",
+          { a: "GKV oder PKV?", href: "/wissen/private-krankenversicherung/gkv-oder-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

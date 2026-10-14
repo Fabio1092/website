@@ -1,0 +1,41 @@
+---
+const entries = [
+  { id: "was-bedeutet-die-pkv-lohnt-sich", label: "Was bedeutet eigentlich: „Die PKV lohnt sich“?" },
+  { id: "fuer-wen-besonders-lohnend", label: "Für wen kann sich die PKV besonders lohnen?" },
+  { id: "einordnung-nach-lebenssituation", label: "Eine schnelle Einordnung nach Lebenssituation" },
+  { id: "jung-und-gesund", label: "Ist die PKV besonders für junge und gesunde Menschen sinnvoll?" },
+  { id: "familie-und-pkv", label: "Wann kann eine Familie gegen die PKV sprechen?" },
+  { id: "vorsicht-bei-der-pkv", label: "Wann würde ich bei der PKV eher vorsichtig sein?" },
+  { id: "gesundheit-und-entscheidung", label: "Wie wichtig ist deine Gesundheit für die Entscheidung?" },
+  { id: "beispiele-aus-der-praxis", label: "Vier typische Beispiele aus der Praxis" },
+  { id: "sieben-fragen-vor-dem-wechsel", label: "Diese sieben Fragen solltest du vor einem PKV-Wechsel beantworten" },
+  { id: "tarif-ist-die-zweite-frage", label: "Welcher Tarif passt, ist erst die zweite Frage" },
+  { id: "fazit", label: "Fazit" },
+  { id: "pkv-beratung-in-kassel-nordhessen", label: "PKV-Beratung in Kassel & Nordhessen" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>
