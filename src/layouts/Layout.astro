@@ -2,6 +2,7 @@
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import CookieConsent from "@/components/CookieConsent.astro";
+import ConsentMode from "@/components/ConsentMode.astro";
 import AnalyticsDataLayer from "@/components/AnalyticsDataLayer.astro";
 import "@/styles/global.css";
 
@@ -24,6 +25,7 @@ const ogImageUrl = new URL("/images/og-image.jpg", Astro.site);
 <html lang="de" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+    <ConsentMode />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/images/Logo.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

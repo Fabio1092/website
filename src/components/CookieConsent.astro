@@ -36,21 +36,7 @@
 
 <script is:inline>
   (function () {
-    var GTM_ID = "GTM-TVZRXZ9";
     var STORAGE_KEY = "cookie-consent";
-
-    function loadGTM() {
-      if (window.gtmLoaded) return;
-      window.gtmLoaded = true;
-
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-
-      var script = document.createElement("script");
-      script.async = true;
-      script.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
-      document.head.appendChild(script);
-    }
 
     function showBanner() {
       var banner = document.getElementById("cookie-consent");
@@ -63,9 +49,7 @@
     }
 
     var stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === "accepted") {
-      loadGTM();
-    } else if (stored !== "rejected") {
+    if (stored !== "accepted" && stored !== "rejected") {
       showBanner();
     }
 
@@ -75,7 +59,12 @@
     if (acceptBtn) {
       acceptBtn.addEventListener("click", function () {
         localStorage.setItem(STORAGE_KEY, "accepted");
-        loadGTM();
+        window.gtag("consent", "update", {
+          analytics_storage: "granted",
+          ad_storage: "granted",
+          ad_user_data: "granted",
+          ad_personalization: "granted",
+        });
         hideBanner();
       });
     }
@@ -83,6 +72,12 @@
     if (rejectBtn) {
       rejectBtn.addEventListener("click", function () {
         localStorage.setItem(STORAGE_KEY, "rejected");
+        window.gtag("consent", "update", {
+          analytics_storage: "denied",
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+        });
         hideBanner();
       });
     }
