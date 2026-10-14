@@ -1,0 +1,78 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const sources = [
+  "Bundesministerium für Gesundheit: Beitragsbemessungsgrenzen und Beitragssätze in der gesetzlichen Krankenversicherung 2026",
+  "Bundesministerium für Arbeit und Soziales: Sozialversicherungsrechengrößen 2026",
+  "Gesetze im Internet: Sozialgesetzbuch V § 257 – Beitragszuschüsse für Beschäftigte",
+  "Gesetze im Internet: Versicherungsaufsichtsgesetz § 149 – Alterungsrückstellung in der Krankenversicherung (gesetzlicher 10-%-Zuschlag)",
+  "Verband der Privaten Krankenversicherung (PKV-Verband): durchschnittlicher PKV-Beitrag 2026",
+  "Marktbeispiele für konkrete PKV-Tarifbeiträge: https://marcusknispel.com/private-krankenversicherung-kosten/",
+];
+---
+
+<section id="pkv-kosten-individuell-berechnen" class="scroll-mt-24 bg-brand-50/30 py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      PKV-Kosten individuell berechnen lassen
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph
+        parts={["Wenn du wissen möchtest, was eine private Krankenversicherung ", { b: "für dich konkret" }, " kostet, müssen wir deine persönliche Situation betrachten."]}
+      />
+      <RichParagraph parts={["Entscheidend sind unter anderem:"]} />
+
+      <ul class="space-y-2">
+        {
+          [
+            "dein Alter",
+            "dein Berufsstatus",
+            "deine gewünschten Leistungen",
+            "deine gesundheitliche Vorgeschichte",
+            "dein gewünschter Selbstbehalt",
+            "dein Krankentagegeld",
+            "bei Angestellten der Arbeitgeberzuschuss",
+            "deine Familienplanung",
+          ].map((item) => (
+            <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Mein Standort ist Kassel und mein regionaler Schwerpunkt liegt in Nordhessen."]} />
+      <RichParagraph parts={["Die Beratung ist persönlich vor Ort in Kassel oder digital möglich."]} />
+      <RichParagraph parts={["Dabei geht es nicht darum, dir den billigsten PKV-Tarif zu zeigen."]} />
+      <RichParagraph
+        parts={["Es geht darum, einen leistungsstarken Versicherungsschutz zu finden, dessen Beitrag zu deiner heutigen und langfristigen finanziellen Situation passt."]}
+      />
+      <RichParagraph parts={[{ a: "Mehr zur PKV-Beratung in Kassel", href: "/private-krankenversicherung-kassel/" }]} />
+    </div>
+
+    <div class="mt-14 border-t border-black/5 pt-8">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Quellen und weiterführende Informationen</p>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/60">
+        Für diesen Artikel wurden insbesondere folgende öffentlich zugänglichen Primärquellen,
+        Rechtsgrundlagen und veröffentlichten Markt- bzw. Tarifbeispiele berücksichtigt:
+      </p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-ink-700/60">{source}</li>
+          ))
+        }
+      </ul>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Stand der gesetzlichen Angaben und Beispielwerte: Oktober 2026.</p>
+    </div>
+
+    <div class="mt-10 border-t border-black/5 pt-8">
+      <RichParagraph
+        parts={["Zurück zum ", { a: "PKV-Wissen", href: "/wissen/private-krankenversicherung/" }]}
+        class="text-sm font-semibold text-ink-700/85"
+      />
+    </div>
+  </div>
+</section>

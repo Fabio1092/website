@@ -1,0 +1,698 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  { type: "p", parts: ["Alle drei Aussagen können richtig sein."] },
+  {
+    type: "p",
+    parts: ["Denn anders als in der gesetzlichen Krankenversicherung wird dein Beitrag in der PKV nicht einfach anhand deines Einkommens berechnet."],
+  },
+  {
+    type: "p",
+    parts: [
+      "Entscheidend sind unter anderem dein Eintrittsalter, dein Gesundheitszustand, der gewünschte Leistungsumfang, der Selbstbehalt und die konkrete Kalkulation des Versicherers.",
+    ],
+  },
+  { type: "p", parts: ["Deshalb ist jede Zahl in diesem Artikel zunächst eine Orientierung."] },
+  { type: "standalone", text: "Dein persönlicher PKV-Beitrag kann deutlich davon abweichen." },
+  { type: "p", parts: ["Trotzdem halte ich wenig davon, bei der Frage nach den Kosten nur mit „Es kommt darauf an“ zu antworten."] },
+  {
+    type: "p",
+    parts: ["Wer über einen Wechsel in die private Krankenversicherung nachdenkt, möchte zumindest wissen, in welcher Größenordnung sich vernünftiger Versicherungsschutz bewegt."],
+  },
+  { type: "p", parts: ["Genau darum geht es hier."] },
+];
+
+const sections: Section[] = [
+  {
+    id: "pkv-kosten-2026-ueberblick",
+    heading: "PKV-Kosten 2026 auf einen Blick",
+    blocks: [
+      { type: "p", parts: ["Wenn du nur eine erste Größenordnung suchst:"] },
+      { type: "p", parts: ["Der PKV-Verband erwartet für 2026 einen durchschnittlichen PKV-Beitrag von rund ", { b: "617 Euro monatlich" }, "."] },
+      { type: "p", parts: ["Wichtig ist allerdings die Einordnung:"] },
+      { type: "standalone", text: "Dieser Durchschnittswert ist kein typischer Angebotspreis für einen Neuabschluss." },
+      { type: "p", parts: ["Dein persönlicher Beitrag kann deutlich darunter oder darüber liegen."] },
+      {
+        type: "p",
+        parts: [
+          "Bei einem gesunden 30-Jährigen zeigt eine veröffentlichte Marktübersicht beispielsweise – je nach Leistungsniveau – eine grobe Bandbreite von etwa ",
+          { b: "250 bis 800 Euro monatlich" },
+          ".",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Ein konkretes veröffentlichtes Tarifbeispiel für einen 30-jährigen Angestellten liegt inklusive Krankenversicherung, privater Pflegepflichtversicherung, Krankentagegeld und gesetzlichem 10-%-Zuschlag bei rund ",
+          { b: "552 Euro monatlich" },
+          ".",
+        ],
+      },
+      { type: "p", parts: ["Für Angestellte kommt anschließend noch der Arbeitgeberzuschuss hinzu."] },
+      { type: "p", parts: ["Selbstständige tragen ihren Beitrag grundsätzlich selbst."] },
+      { type: "p", parts: ["Beamte mit Beihilfe haben wiederum eine völlig andere Ausgangssituation."] },
+      {
+        type: "standalone",
+        text: "Die entscheidende Zahl ist deshalb nicht „der durchschnittliche PKV-Beitrag“, sondern der Beitrag für dein Alter, deine Gesundheit, deine gewünschten Leistungen und deine berufliche Situation.",
+      },
+    ],
+  },
+  {
+    id: "was-kostet-eine-pkv-ungefaehr",
+    heading: "Was kostet eine PKV ungefähr?",
+    blocks: [
+      { type: "p", parts: ["Bei einem gesunden 30-Jährigen können sich je nach Leistungsniveau beispielsweise folgende Größenordnungen ergeben:"] },
+      {
+        type: "table",
+        headers: ["Tarifniveau", "Grobe monatliche Größenordnung"],
+        rows: [
+          ["Einfacherer Einstiegsschutz", "ca. 250–400 €"],
+          ["Solider Schutz", "ca. 350–500 €"],
+          ["Sehr guter Schutz", "ca. 500–650 €"],
+          ["Premiumschutz", "ca. 600–800 €"],
+        ],
+      },
+      { type: "p", parts: ["Diese Werte sind ausdrücklich ", { b: "keine Tarifempfehlung und keine Beitragsgarantie" }, "."] },
+      {
+        type: "p",
+        parts: ["Sie stammen aus veröffentlichten Markt- und Tarifbeispielen und sollen lediglich zeigen, wie unterschiedlich die Kosten einer PKV ausfallen können."],
+      },
+      { type: "p", parts: ["Vor allem solltest du aus einer solchen Tabelle nicht ableiten:"] },
+      { type: "p", parts: ["„Ich bin 30, also kostet meine PKV 550 Euro.“"] },
+      { type: "p", parts: ["Richtiger wäre:"] },
+      {
+        type: "standalone",
+        text: "„Bei meinem Alter könnte diese Größenordnung realistisch sein. Was ich tatsächlich zahle, hängt von Tarif, Gesundheit und Leistungsumfang ab.“",
+      },
+    ],
+  },
+  {
+    id: "warum-nicht-pauschal-berechenbar",
+    heading: "Warum lässt sich der PKV-Beitrag nicht pauschal berechnen?",
+    blocks: [
+      { type: "p", parts: ["Vor allem fünf Faktoren beeinflussen deinen Beitrag."] },
+      { type: "h3", text: "1. Dein Eintrittsalter" },
+      { type: "p", parts: ["Das Eintrittsalter ist ein wesentlicher Faktor."] },
+      { type: "p", parts: ["Ein 28-Jähriger startet normalerweise mit einer anderen Beitragskalkulation als ein 48-Jähriger."] },
+      { type: "p", parts: ["Ein Grund dafür ist, dass bei einem früheren Eintritt mehr Zeit besteht, Alterungsrückstellungen aufzubauen."] },
+      { type: "p", parts: ["Veröffentlichte Tarifbeispiele zeigen, wie stark sich das Eintrittsalter auswirken kann."] },
+      { type: "p", parts: ["Innerhalb derselben Tarifserie lagen Beiträge – abhängig vom Leistungsniveau – ungefähr bei:"] },
+      {
+        type: "table",
+        headers: ["Eintrittsalter", "Grobe Bandbreite innerhalb der betrachteten Tarifserie"],
+        rows: [
+          ["30 Jahre", "ca. 280–570 €"],
+          ["40 Jahre", "ca. 400–790 €"],
+          ["45 Jahre", "ca. 490–1.000 €"],
+        ],
+      },
+      { type: "p", parts: ["Wichtig:"] },
+      { type: "p", parts: ["Das sind Werte aus konkreten Tarifbeispielen."] },
+      { type: "standalone", text: "Sie sind keine allgemeingültige Preisliste für den gesamten PKV-Markt." },
+      { type: "p", parts: ["Sie zeigen aber sehr gut, warum ein Tarif mit 30 Jahren anders kalkuliert wird als mit 45 Jahren."] },
+      { type: "h3", text: "2. Dein Gesundheitszustand" },
+      { type: "p", parts: ["Bei einem normalen Antrag auf private Krankenversicherung erfolgt grundsätzlich eine Gesundheitsprüfung."] },
+      { type: "p", parts: ["Vorerkrankungen können dazu führen, dass ein Versicherer beispielsweise einen Risikozuschlag verlangt."] },
+      {
+        type: "p",
+        parts: ["Dadurch können zwei Menschen mit gleichem Alter und gleichem Beruf für einen vergleichbaren Versicherungsschutz unterschiedliche Beiträge zahlen."],
+      },
+      { type: "p", parts: ["Deshalb würde ich bei relevanten Vorerkrankungen nicht zuerst darüber diskutieren, ob ein Tarif 600 oder 700 Euro kostet."] },
+      { type: "p", parts: ["Zuerst sollte geklärt werden, zu welchen Bedingungen Versicherungsschutz überhaupt möglich ist."] },
+      {
+        type: "p",
+        parts: ["Genau dafür kann eine ", { a: "PKV-Risikovoranfrage", href: "/pkv-risikovoranfrage/" }, " sinnvoll sein."],
+      },
+      {
+        type: "p",
+        parts: [
+          "Mehr zur Aufbereitung deiner gesundheitlichen Vorgeschichte findest du außerdem unter ",
+          { a: "Gesundheitsfragen in der PKV", href: "/pkv-gesundheitsfragen/" },
+          ".",
+        ],
+      },
+      { type: "h3", text: "3. Der Leistungsumfang" },
+      { type: "p", parts: ["Eine PKV ist kein einheitliches Produkt."] },
+      { type: "p", parts: ["Zwischen einem günstigen Tarif und einem leistungsstarken Tarif können erhebliche Unterschiede bestehen."] },
+      { type: "p", parts: ["Zum Beispiel bei:"] },
+      {
+        type: "list",
+        items: [
+          "ambulanter Behandlung",
+          "stationärer Behandlung",
+          "Ein- oder Zweibettzimmer",
+          "privatärztlicher Behandlung",
+          "Zahnersatz",
+          "Psychotherapie",
+          "Hilfsmitteln",
+          "Heilmitteln",
+          "Vorsorge",
+          "Auslandsschutz",
+          "Gebührenordnung",
+          "Erstattung über die Höchstsätze der Gebührenordnung",
+          "offenen oder geschlossenen Hilfsmittelkatalogen",
+        ],
+      },
+      { type: "p", parts: ["Deshalb ist der günstigste Tarif nicht automatisch der beste."] },
+      { type: "p", parts: ["Ein Tarif für 420 Euro kann für dich deutlich schlechter geeignet sein als einer für 620 Euro."] },
+      { type: "standalone", text: "Der Beitrag ist immer nur eine Seite der Entscheidung." },
+      {
+        type: "p",
+        parts: [
+          "Wenn du zunächst verstehen möchtest, wie die PKV grundsätzlich funktioniert, findest du dazu meinen Artikel ",
+          { a: "Wie funktioniert die private Krankenversicherung?", href: "/wissen/private-krankenversicherung/wie-funktioniert-die-pkv/" },
+          ".",
+        ],
+      },
+      { type: "h3", text: "4. Der Selbstbehalt" },
+      { type: "p", parts: ["Mit einem höheren Selbstbehalt kann der monatliche Beitrag sinken."] },
+      { type: "p", parts: ["Dafür übernimmst du einen größeren Teil deiner Behandlungskosten selbst."] },
+      { type: "p", parts: ["Gerade bei Selbstständigen kann ein sinnvoll gewählter Selbstbehalt interessant sein."] },
+      {
+        type: "p",
+        parts: ["Aber ein niedriger Monatsbeitrag bringt wenig, wenn du dafür im Leistungsfall einen unangemessen hohen Eigenanteil tragen musst."],
+      },
+      { type: "p", parts: ["Ich würde deshalb immer betrachten:"] },
+      { type: "standalone", text: "Jahresbeitrag + möglicher Selbstbehalt = tatsächliche mögliche Gesamtbelastung." },
+      { type: "p", parts: ["Für Angestellte kommt ein weiterer Punkt hinzu:"] },
+      { type: "p", parts: ["Der Arbeitgeber beteiligt sich grundsätzlich nicht an deinem Selbstbehalt."] },
+      { type: "p", parts: ["Ein sehr hoher Selbstbehalt kann deshalb trotz niedrigerem Tarifbeitrag finanziell unattraktiv sein."] },
+      { type: "h3", text: "5. Krankentagegeld, Pflege und weitere Bausteine" },
+      { type: "p", parts: ["Wenn jemand sagt:"] },
+      { type: "p", parts: ["„Meine PKV kostet 550 Euro.“"] },
+      { type: "p", parts: ["muss man eigentlich erst fragen:"] },
+      { type: "standalone", text: "Was ist darin enthalten?" },
+      { type: "p", parts: ["Bei einer vollständigen Kostenbetrachtung können beispielsweise folgende Bausteine dazugehören:"] },
+      {
+        type: "list",
+        items: [
+          "Krankenvollversicherung",
+          "private Pflegepflichtversicherung",
+          "Krankentagegeld",
+          "gesetzlicher 10-%-Zuschlag",
+          "möglicher Beitragsentlastungstarif",
+          "Selbstbehalt",
+        ],
+      },
+      { type: "p", parts: ["Gerade bei Selbstständigen ist das Krankentagegeld ein wichtiger Bestandteil der Absicherung."] },
+      { type: "p", parts: ["Bei Angestellten beginnt ein Krankentagegeld häufig nach Ende der gesetzlichen Entgeltfortzahlung."] },
+      { type: "p", parts: ["Die konkrete Ausgestaltung hängt aber von Einkommen und persönlicher Situation ab."] },
+    ],
+  },
+  {
+    id: "gesetzlicher-zehn-prozent-zuschlag",
+    heading: "Was ist der gesetzliche 10-%-Zuschlag?",
+    blocks: [
+      { type: "p", parts: ["Bei vielen PKV-Beitragsbeispielen findest du zusätzlich einen sogenannten gesetzlichen 10-%-Zuschlag."] },
+      { type: "p", parts: ["Dieser Zuschlag dient der zusätzlichen Beitragsentlastung im Alter."] },
+      {
+        type: "p",
+        parts: [
+          "In der substitutiven Krankheitskostenvollversicherung wird er nach den gesetzlichen Regeln grundsätzlich spätestens ab dem Kalenderjahr nach Vollendung des 21. Lebensjahres erhoben und endet mit Ablauf des Kalenderjahres, in dem die versicherte Person 60 Jahre alt wird.",
+        ],
+      },
+      { type: "p", parts: ["Die daraus aufgebauten Mittel werden der Alterungsrückstellung zugeführt und später zur Beitragsentlastung eingesetzt."] },
+      { type: "p", parts: ["Deshalb darf man diesen Zuschlag bei einem realistischen Beitragsvergleich nicht einfach ignorieren."] },
+    ],
+  },
+  {
+    id: "beispiel-30-jahre",
+    heading: "Beispiel: Was kann eine PKV mit 30 Jahren kosten?",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir einen gesunden 30-jährigen Angestellten."] },
+      { type: "p", parts: ["Ein veröffentlichtes Tarifbeispiel sieht ungefähr so aus:"] },
+      {
+        type: "table",
+        headers: ["Baustein", "Beispiel"],
+        rows: [
+          ["Krankenvollversicherung", "ca. 450 €"],
+          ["private Pflegepflichtversicherung", "ca. 32 €"],
+          ["Krankentagegeld", "ca. 25 €"],
+          ["gesetzlicher 10-%-Zuschlag", "ca. 45 €"],
+          ["Gesamtbeitrag", "ca. 552 €"],
+        ],
+      },
+      { type: "p", parts: ["Dieses konkrete Beispiel kommt damit auf rund:"] },
+      { type: "standalone", text: "552 Euro Gesamtbeitrag im Monat." },
+      { type: "p", parts: ["Bei einem Arbeitgeberzuschuss von 50 Prozent wären das in diesem Beispiel ungefähr:"] },
+      { type: "standalone", text: "276 Euro Eigenanteil für den Angestellten." },
+      { type: "p", parts: ["Wichtig:"] },
+      {
+        type: "standalone",
+        text: "Das ist ein konkretes veröffentlichtes Tarifbeispiel – keine Aussage darüber, was jeder 30-Jährige für seine PKV bezahlt.",
+      },
+      { type: "p", parts: ["Andere Tarife können beim gleichen Eintrittsalter deutlich günstiger oder teurer sein."] },
+    ],
+  },
+  {
+    id: "kosten-angestellte",
+    heading: "Was kostet die PKV für Angestellte?",
+    blocks: [
+      { type: "p", parts: ["Für Angestellte ist der volle Tarifbeitrag nur ein Teil der Rechnung."] },
+      { type: "p", parts: ["Denn der Arbeitgeber beteiligt sich unter den gesetzlichen Voraussetzungen an der privaten Krankenversicherung."] },
+      {
+        type: "p",
+        parts: ["Grundsätzlich übernimmt er maximal die Hälfte des zuschussfähigen Beitrags – allerdings nur bis zum gesetzlichen Höchstzuschuss."],
+      },
+      { type: "p", parts: ["2026 beträgt der maximale Arbeitgeberzuschuss zur privaten Krankenversicherung:"] },
+      { type: "standalone", text: "508,59 Euro monatlich." },
+      { type: "p", parts: ["Für die private Pflegepflichtversicherung können außerhalb Sachsens zusätzlich maximal:"] },
+      { type: "standalone", text: "104,63 Euro monatlich" },
+      { type: "p", parts: ["hinzukommen."] },
+      { type: "p", parts: ["In Sachsen beträgt der maximale Arbeitgeberzuschuss zur privaten Pflegepflichtversicherung 2026:"] },
+      { type: "standalone", text: "75,56 Euro monatlich." },
+      { type: "p", parts: ["Wichtig:"] },
+      { type: "p", parts: ["Der Arbeitgeber zahlt nicht automatisch diese Maximalbeträge."] },
+      { type: "p", parts: ["Er zahlt höchstens die Hälfte deines tatsächlich zuschussfähigen Beitrags."] },
+      { type: "h3", text: "Einfache Beispiele" },
+      { type: "p", parts: ["Beträgt dein zuschussfähiger PKV-Beitrag 600 Euro, wären bei einer hälftigen Beteiligung grob:"] },
+      { type: "standalone", text: "300 Euro Arbeitgeberzuschuss" },
+      { type: "p", parts: ["und"] },
+      { type: "standalone", text: "300 Euro eigener Anteil" },
+      { type: "p", parts: ["denkbar."] },
+      { type: "p", parts: ["Bei 700 Euro wären es grob:"] },
+      { type: "standalone", text: "350 Euro Arbeitgeber" },
+      { type: "p", parts: ["und"] },
+      { type: "standalone", text: "350 Euro Eigenanteil." },
+      { type: "p", parts: ["Bei 800 Euro:"] },
+      { type: "standalone", text: "400 Euro Arbeitgeber" },
+      { type: "p", parts: ["und"] },
+      { type: "standalone", text: "400 Euro Eigenanteil." },
+      { type: "p", parts: ["Solange die gesetzlichen Höchstgrenzen nicht erreicht werden und der jeweilige Beitrag vollständig zuschussfähig ist."] },
+      { type: "p", parts: ["Deshalb ist für einen Angestellten nicht nur die Frage wichtig:"] },
+      { type: "standalone", text: "„Was kostet meine PKV insgesamt?“" },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "standalone", text: "„Was kostet mich meine PKV nach Arbeitgeberzuschuss tatsächlich?“" },
+      {
+        type: "p",
+        parts: ["Mehr zu den Besonderheiten findest du auf meiner Seite ", { a: "Private Krankenversicherung für Angestellte", href: "/pkv-angestellte-kassel/" }, "."],
+      },
+    ],
+  },
+  {
+    id: "kosten-selbststaendige",
+    heading: "Was kostet die PKV für Selbstständige?",
+    blocks: [
+      { type: "p", parts: ["Bei Selbstständigen funktioniert die Rechnung anders."] },
+      { type: "p", parts: ["Es gibt keinen Arbeitgeber, der sich automatisch am Beitrag beteiligt."] },
+      { type: "p", parts: ["Der vollständige Beitrag muss deshalb in die eigene Finanzplanung passen."] },
+      { type: "p", parts: ["Bei einem leistungsstarken Schutz können Größenordnungen von beispielsweise:"] },
+      { type: "standalone", text: "600, 700, 800 oder 900 Euro monatlich" },
+      { type: "p", parts: ["realistisch sein."] },
+      { type: "p", parts: ["Ein veröffentlichtes Beispiel für einen Selbstständigen kommt inklusive:"] },
+      { type: "list", items: ["Krankenvollversicherung", "Pflegepflichtversicherung", "Krankentagegeld", "gesetzlichem 10-%-Zuschlag"] },
+      { type: "p", parts: ["auf rund:"] },
+      { type: "standalone", text: "777 Euro monatlich." },
+      { type: "p", parts: ["Das ist eine hilfreiche konkrete Größenordnung."] },
+      { type: "p", parts: ["Trotzdem ist es auch hier nur ein Einzelbeispiel."] },
+      {
+        type: "p",
+        parts: [
+          "Ein 30-jähriger gesunder Selbstständiger mit höherem Selbstbehalt kann vollkommen anders kalkuliert werden als ein 47-jähriger Selbstständiger mit Vorerkrankungen, niedriger Selbstbeteiligung und umfangreichem Krankentagegeld.",
+        ],
+      },
+      { type: "p", parts: ["Gerade bei Selbstständigen würde ich deshalb besonders auf drei Punkte achten:"] },
+      { type: "standalone", text: "Beitrag, Selbstbehalt und Krankentagegeld." },
+      { type: "p", parts: ["Mehr dazu findest du unter ", { a: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel/" }, "."] },
+    ],
+  },
+  {
+    id: "kosten-beamte",
+    heading: "Was kostet die PKV für Beamte?",
+    blocks: [
+      { type: "p", parts: ["Bei Beamten ist die Ausgangssituation häufig grundlegend anders."] },
+      { type: "p", parts: ["Viele Beamte haben Anspruch auf Beihilfe."] },
+      {
+        type: "p",
+        parts: ["Die private Krankenversicherung muss dann nicht zwingend 100 Prozent der Krankheitskosten absichern, sondern ergänzt den jeweiligen Beihilfeanspruch."],
+      },
+      {
+        type: "p",
+        parts: ["Dadurch liegen die Beiträge häufig deutlich unter denen einer normalen Krankenvollversicherung für Angestellte oder Selbstständige."],
+      },
+      { type: "p", parts: ["Ein veröffentlichter Marktwert nennt für beihilfeberechtigte Privatversicherte für 2024 einen durchschnittlichen Beitrag von rund:"] },
+      { type: "standalone", text: "239 Euro monatlich." },
+      { type: "p", parts: ["Diese Zahl ist ausdrücklich nur eine grobe historische Orientierung."] },
+      { type: "p", parts: ["Der persönliche Beitrag eines Beamten hängt unter anderem ab von:"] },
+      { type: "list", items: ["Eintrittsalter", "Beihilfesatz", "Dienstherr", "Bundesland", "Leistungsumfang", "Gesundheitszustand", "gewähltem Tarif"] },
+      { type: "p", parts: ["Ein Beamter sollte deshalb nicht mit einem pauschalen „Beamte zahlen 239 Euro“ rechnen."] },
+      { type: "p", parts: ["Der tatsächliche Beitrag kann deutlich abweichen."] },
+      { type: "p", parts: ["Mehr dazu findest du unter ", { a: "PKV für Beamte", href: "/pkv-beamte-kassel/" }, "."] },
+    ],
+  },
+  {
+    id: "kosten-kinder",
+    heading: "Was kostet die PKV für Kinder?",
+    blocks: [
+      { type: "p", parts: ["Einer der größten finanziellen Unterschiede zwischen PKV und GKV betrifft Familien."] },
+      {
+        type: "p",
+        parts: ["In der privaten Krankenversicherung gibt es grundsätzlich keine beitragsfreie Familienversicherung wie in der gesetzlichen Krankenversicherung."],
+      },
+      { type: "p", parts: ["Benötigt ein Kind privaten Versicherungsschutz, erhält es grundsätzlich einen eigenen Vertrag."] },
+      { type: "p", parts: ["Als grobe Orientierung werden je nach Tarif häufig Größenordnungen von etwa:"] },
+      { type: "standalone", text: "150 bis 270 Euro monatlich pro Kind" },
+      { type: "p", parts: ["genannt."] },
+      { type: "p", parts: ["Bei zwei Kindern können damit beispielsweise zusätzliche:"] },
+      { type: "standalone", text: "300 bis über 500 Euro monatlich" },
+      { type: "p", parts: ["entstehen."] },
+      {
+        type: "p",
+        parts: ["Deshalb kann eine PKV für einen alleinstehenden Angestellten finanziell vollkommen anders aussehen als für denselben Menschen einige Jahre später mit mehreren Kindern."],
+      },
+      { type: "p", parts: ["Das heißt nicht:"] },
+      { type: "standalone", text: "„PKV mit Kindern lohnt sich nicht.“" },
+      { type: "p", parts: ["Aber es heißt:"] },
+      { type: "standalone", text: "Die Gesamtkosten der Familie müssen gerechnet werden – nicht nur der Beitrag einer einzelnen Person." },
+      { type: "p", parts: ["Genau deshalb gehört die Familienplanung für mich immer in eine langfristige PKV-Entscheidung."] },
+    ],
+  },
+  {
+    id: "gkv-kosten-2026-vergleich",
+    heading: "Wie teuer ist die gesetzliche Krankenversicherung 2026 im Vergleich?",
+    blocks: [
+      { type: "p", parts: ["Ein Vergleich ist sinnvoll."] },
+      { type: "p", parts: ["Er muss aber sauber durchgeführt werden."] },
+      { type: "p", parts: ["Für 2026 beträgt die Beitragsbemessungsgrenze der Krankenversicherung:"] },
+      { type: "standalone", text: "5.812,50 Euro monatlich" },
+      { type: "p", parts: ["beziehungsweise:"] },
+      { type: "standalone", text: "69.750 Euro jährlich." },
+      { type: "p", parts: ["Der allgemeine Beitragssatz der gesetzlichen Krankenversicherung liegt bei:"] },
+      { type: "standalone", text: "14,6 Prozent." },
+      { type: "p", parts: ["Hinzu kommt der Zusatzbeitrag der jeweiligen Krankenkasse."] },
+      { type: "p", parts: ["Der vom Bundesministerium für Gesundheit festgelegte durchschnittliche Zusatzbeitragssatz beträgt 2026:"] },
+      { type: "standalone", text: "2,9 Prozent." },
+      {
+        type: "p",
+        parts: ["Bei Anwendung dieses durchschnittlichen Zusatzbeitrags ergibt sich an der Beitragsbemessungsgrenze ein Krankenversicherungsbeitrag von rund:"],
+      },
+      { type: "standalone", text: "1.017,19 Euro monatlich." },
+      { type: "p", parts: ["Wichtig für einen fairen Vergleich:"] },
+      { type: "standalone", text: "Diese 1.017,19 Euro beziehen sich auf die gesetzliche Krankenversicherung." },
+      { type: "p", parts: ["Die Pflegeversicherung kommt zusätzlich hinzu."] },
+      {
+        type: "p",
+        parts: [
+          "Wenn wir einen PKV-Gesamtbeitrag betrachten, in dem die private Pflegepflichtversicherung bereits enthalten ist, dürfen wir diese Werte deshalb nicht ungekennzeichnet direkt miteinander vergleichen.",
+        ],
+      },
+      { type: "p", parts: ["Bei einem Angestellten wird außerdem auch der GKV-Beitrag zwischen Arbeitnehmer und Arbeitgeber aufgeteilt."] },
+      { type: "p", parts: ["Der volle Systembeitrag ist also nicht identisch mit dem persönlichen Eigenanteil des Arbeitnehmers."] },
+      {
+        type: "p",
+        parts: [
+          "Einen ausführlicheren Vergleich der beiden Systeme findest du unter ",
+          { a: "GKV oder PKV?", href: "/wissen/private-krankenversicherung/gkv-oder-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "pkv-automatisch-guenstiger",
+    heading: "Ist die PKV automatisch günstiger als die GKV?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Sie kann günstiger sein."] },
+      { type: "p", parts: ["Sie kann ähnlich teuer sein."] },
+      { type: "p", parts: ["Oder sie kann teurer sein."] },
+      {
+        type: "p",
+        parts: ["Gerade bei jungen, gesunden und gutverdienenden Angestellten kann nach Arbeitgeberzuschuss ein deutlicher Beitragsunterschied entstehen."],
+      },
+      { type: "p", parts: ["Das darf aber nicht zur falschen Schlussfolgerung führen:"] },
+      { type: "standalone", text: "„Die PKV ist besser, weil sie heute günstiger ist.“" },
+      { type: "p", parts: ["Eine Krankenversicherung begleitet dich möglicherweise mehrere Jahrzehnte."] },
+      { type: "p", parts: ["Familienplanung, Teilzeit, Selbstständigkeit, Einkommensentwicklung und Alter können die finanzielle Betrachtung verändern."] },
+      { type: "p", parts: ["Deshalb sollte ein heutiger Beitragsvorteil niemals das einzige Wechselargument sein."] },
+      {
+        type: "p",
+        parts: [
+          "Wenn du grundsätzlich wissen möchtest, ob das System zu deiner Lebenssituation passt, findest du dazu meinen Artikel ",
+          { a: "Für wen lohnt sich die PKV?", href: "/wissen/private-krankenversicherung/fuer-wen-lohnt-sich-die-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "guenstige-pkv-automatisch-gut",
+    heading: "Ist eine günstige PKV automatisch gut?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Wenn mir jemand sagt:"] },
+      { type: "p", parts: ["„Ich habe eine PKV für 320 Euro gefunden.“"] },
+      { type: "p", parts: ["ist meine erste Frage nicht:"] },
+      { type: "p", parts: ["„Wo kann ich unterschreiben?“"] },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "standalone", text: "„Was ist dort eigentlich versichert?“" },
+      { type: "p", parts: ["Ein sehr niedriger Beitrag kann beispielsweise durch:"] },
+      { type: "list", items: ["hohen Selbstbehalt", "reduzierten Leistungsumfang", "schwächere Erstattungsregelungen", "bestimmte Tarifkonstruktionen"] },
+      { type: "p", parts: ["entstehen."] },
+      {
+        type: "p",
+        parts: ["Wenn du dich für eine private Krankenversicherung entscheidest, triffst du möglicherweise eine Entscheidung für mehrere Jahrzehnte."],
+      },
+      { type: "p", parts: ["Dann halte ich es für falsch, die Auswahl danach zu treffen, welcher Tarif heute 50 oder 70 Euro günstiger ist."] },
+      {
+        type: "p",
+        parts: ["Ich würde lieber einen leistungsstarken Tarif auswählen, dessen Beitrag vernünftig zu deinem Einkommen passt, als ausschließlich den billigsten Tarif am Markt zu suchen."],
+      },
+    ],
+  },
+  {
+    id: "vorerkrankungen-und-beitrag",
+    heading: "Was passiert bei Vorerkrankungen mit dem Beitrag?",
+    blocks: [
+      { type: "p", parts: ["Vorerkrankungen können Einfluss auf die Annahme und den Beitrag haben."] },
+      { type: "p", parts: ["Abhängig von Diagnose, Verlauf und Versicherer kann beispielsweise ein Risikozuschlag verlangt werden."] },
+      { type: "p", parts: ["Ein Tarif, der für eine gesunde Person 650 Euro kostet, könnte mit einem Risikozuschlag entsprechend teurer werden."] },
+      { type: "p", parts: ["Wie hoch dieser Zuschlag ausfällt oder ob überhaupt einer verlangt wird, lässt sich nicht pauschal sagen."] },
+      { type: "p", parts: ["Versicherer bewerten gesundheitliche Vorgeschichten unterschiedlich."] },
+      { type: "p", parts: ["Deshalb würde ich bei relevanten Vorerkrankungen zuerst prüfen:"] },
+      { type: "standalone", text: "Zu welchen Bedingungen ist eine private Krankenversicherung überhaupt möglich?" },
+      { type: "p", parts: ["Erst danach macht eine genaue Beitragsdiskussion Sinn."] },
+      { type: "p", parts: ["Mehr dazu findest du unter:"] },
+      { type: "p", parts: [{ a: "Gesundheitsfragen in der PKV", href: "/pkv-gesundheitsfragen/" }] },
+      { type: "p", parts: ["und"] },
+      { type: "p", parts: [{ a: "PKV-Risikovoranfrage", href: "/pkv-risikovoranfrage/" }] },
+    ],
+  },
+  {
+    id: "kosten-40-jahre",
+    heading: "Was kostet die PKV mit 40 Jahren?",
+    blocks: [
+      { type: "p", parts: ["Mit 40 Jahren kann ein Neueinstieg bereits spürbar teurer sein als mit 30."] },
+      {
+        type: "p",
+        parts: ["Veröffentlichte Tarifbeispiele für Vollschutz inklusive Pflege, aber teilweise ohne Krankentagegeld, bewegen sich je nach Leistungsniveau ungefähr zwischen:"],
+      },
+      { type: "standalone", text: "400 und 680 Euro monatlich." },
+      { type: "p", parts: ["Innerhalb einzelner Tarifserien können besonders leistungsstarke Varianten auch darüber liegen."] },
+      { type: "p", parts: ["Das zeigt einen wichtigen Punkt:"] },
+      { type: "standalone", text: "Das Eintrittsalter macht einen Unterschied – aber genauso der konkrete Leistungsumfang." },
+      { type: "p", parts: ["Ein günstiger 40-Jährigen-Tarif ist deshalb nicht automatisch besser als ein teurerer."] },
+    ],
+  },
+  {
+    id: "kosten-45-50-jahre",
+    heading: "Was kostet die PKV mit 45 oder 50 Jahren?",
+    blocks: [
+      { type: "p", parts: ["Mit zunehmendem Eintrittsalter steigt die Bedeutung einer individuellen Kalkulation nochmals."] },
+      { type: "p", parts: ["In veröffentlichten Tarifbeispielen lagen verschiedene Tarifstufen mit 45 Jahren ungefähr zwischen:"] },
+      { type: "standalone", text: "490 und 1.000 Euro monatlich." },
+      { type: "p", parts: ["Je leistungsstärker der Tarif, desto höher kann der Beitrag ausfallen."] },
+      { type: "p", parts: ["Mit 50 Jahren kann ein umfassender Neuabschluss entsprechend nochmals darüber liegen."] },
+      { type: "p", parts: ["Das bedeutet nicht, dass ein Wechsel mit 45 oder 50 grundsätzlich falsch ist."] },
+      { type: "p", parts: ["Aber:"] },
+      { type: "standalone", text: "Je später der Einstieg, desto wichtiger wird eine langfristige finanzielle Betrachtung." },
+      { type: "p", parts: ["Gerade hier würde ich nicht nur auf den heutigen Monatsbeitrag schauen."] },
+    ],
+  },
+  {
+    id: "pkv-im-alter-unbezahlbar",
+    heading: "Wird die PKV im Alter unbezahlbar?",
+    blocks: [
+      { type: "p", parts: ["PKV-Beiträge bleiben nicht für Jahrzehnte unverändert."] },
+      { type: "p", parts: ["Beiträge können angepasst werden."] },
+      { type: "p", parts: ["Das gehört zur langfristigen Kalkulation dazu."] },
+      { type: "p", parts: ["Gleichzeitig enthält das PKV-System verschiedene Mechanismen, die der Beitragsentwicklung im Alter entgegenwirken sollen."] },
+      { type: "p", parts: ["Dazu gehören insbesondere:"] },
+      {
+        type: "list",
+        items: [
+          "Alterungsrückstellungen",
+          "der gesetzliche 10-%-Zuschlag",
+          "mögliche zusätzliche Beitragsentlastungstarife",
+          "Wegfall des Krankentagegeldes nach Ende der Erwerbstätigkeit, sofern es dann nicht mehr benötigt wird",
+          "mögliche Zuschüsse im Rentenalter",
+        ],
+      },
+      { type: "p", parts: ["Deshalb halte ich wenig von pauschalen Hochrechnungen wie:"] },
+      { type: "p", parts: ["„600 Euro heute plus jedes Jahr 4 Prozent – also kostet die PKV später mehrere Tausend Euro.“"] },
+      { type: "p", parts: ["Solche Rechnungen bilden die tatsächliche Tarifmechanik nicht vollständig ab."] },
+      { type: "p", parts: ["Umgekehrt wäre es genauso unseriös zu sagen:"] },
+      { type: "p", parts: ["„Die PKV bleibt im Alter automatisch günstig.“"] },
+      { type: "p", parts: ["Das weiß heute niemand."] },
+      { type: "p", parts: ["Die sinnvollere Frage ist:"] },
+      { type: "standalone", text: "Wie plane ich meine PKV so, dass ich den Beitrag auch langfristig tragen kann?" },
+      { type: "p", parts: ["Für mich gehören dazu:"] },
+      {
+        type: "list",
+        items: [
+          "vernünftiger Einstiegsbeitrag",
+          "leistungsstarke Tarifbedingungen",
+          "ausreichende Altersvorsorge",
+          "Alterungsrückstellungen",
+          "mögliche Beitragsentlastung",
+          "finanzielle Reserven",
+          "einen heutigen Beitragsvorteil nicht vollständig zu konsumieren",
+        ],
+      },
+    ],
+  },
+  {
+    id: "was-kostet-eine-gute-pkv",
+    heading: "Was kostet eine gute PKV also wirklich?",
+    blocks: [
+      { type: "p", parts: ["Wenn du nur eine grobe Einordnung möchtest, würde ich es so zusammenfassen:"] },
+      {
+        type: "table",
+        headers: ["Situation", "Grobe Orientierung"],
+        rows: [
+          ["Gesunder 30-Jähriger, einfacherer Schutz", "ca. 250–400 €"],
+          ["Gesunder 30-Jähriger, solider Schutz", "ca. 350–500 €"],
+          ["Gesunder 30-Jähriger, sehr guter Schutz", "ca. 500–650 €"],
+          ["Gesunder 30-Jähriger, Premiumschutz", "ca. 600–800 €"],
+          ["Einstieg mit etwa 40 Jahren", "je nach Tarif häufig ca. 400–700 € oder mehr"],
+          ["Einstieg mit etwa 45 Jahren", "je nach Tarif ca. 490–1.000 € oder mehr"],
+          ["Selbstständiger mit umfangreicher Absicherung", "häufig ca. 650–900 € oder mehr"],
+          ["Beamter mit Beihilfe", "häufig deutlich niedriger als eine normale Vollversicherung"],
+          ["Kind", "häufig grob ca. 150–270 €"],
+        ],
+      },
+      { type: "p", parts: ["Diese Werte sind ausdrücklich:"] },
+      { type: "standalone", text: "Orientierungswerte und keine verbindlichen Angebote." },
+      { type: "p", parts: ["Die tatsächliche Kalkulation kann erheblich abweichen."] },
+      { type: "p", parts: ["Alter, Gesundheit, Tarif, Selbstbehalt, Krankentagegeld und Leistungsumfang können den Beitrag stark verändern."] },
+    ],
+  },
+  {
+    id: "durchschnitt-oder-persoenliches-angebot",
+    heading: "Durchschnittlicher PKV-Beitrag oder persönliches Angebot?",
+    blocks: [
+      { type: "p", parts: ["Diese beiden Zahlen sollte man nicht miteinander verwechseln."] },
+      { type: "p", parts: ["Der PKV-Verband erwartet für 2026 einen durchschnittlichen Beitrag von rund:"] },
+      { type: "standalone", text: "617 Euro monatlich." },
+      { type: "p", parts: ["Dieser Wert sagt etwas über den Versichertenbestand aus."] },
+      { type: "p", parts: ["Er beantwortet aber nicht:"] },
+      { type: "standalone", text: "„Was kostet ein Neuabschluss für mich heute?“" },
+      { type: "p", parts: ["Ein 29-jähriger gesunder Angestellter kann bei einem konkreten Tarif deutlich darunter liegen."] },
+      { type: "p", parts: ["Ein 48-jähriger Interessent mit höherem Leistungsniveau kann deutlich darüber liegen."] },
+      { type: "p", parts: ["Deshalb sind Durchschnittswerte interessant, aber für eine konkrete Entscheidung nur begrenzt hilfreich."] },
+    ],
+  },
+  {
+    id: "wichtigster-rat",
+    heading: "Mein wichtigster Rat zum PKV-Beitrag",
+    blocks: [
+      { type: "p", parts: ["Ich würde eine private Krankenversicherung niemals nach der Frage auswählen:"] },
+      { type: "standalone", text: "„Wie bekomme ich meinen Monatsbeitrag maximal niedrig?“" },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "standalone", text: "„Welcher Versicherungsschutz passt langfristig zu mir – und kann ich diesen Beitrag dauerhaft vernünftig tragen?“" },
+      { type: "p", parts: ["Wenn dabei gegenüber der gesetzlichen Krankenversicherung zusätzlich ein Beitragsvorteil entsteht, ist das angenehm."] },
+      { type: "p", parts: ["Aber der Beitragsvorteil sollte:"] },
+      { type: "standalone", text: "das Ergebnis einer guten PKV-Entscheidung sein und nicht der alleinige Grund für die Entscheidung." },
+      { type: "p", parts: ["Wenn du noch nicht weißt, ob die PKV grundsätzlich zu deiner Lebenssituation passt:"] },
+      { type: "p", parts: [{ a: "Für wen lohnt sich die PKV?", href: "/wissen/private-krankenversicherung/fuer-wen-lohnt-sich-die-pkv/" }] },
+      { type: "p", parts: ["Wenn du wissen möchtest, ob du überhaupt in die private Krankenversicherung wechseln kannst:"] },
+      { type: "p", parts: [{ a: "PKV Voraussetzungen", href: "/wissen/private-krankenversicherung/pkv-voraussetzungen/" }] },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

@@ -1,0 +1,49 @@
+---
+const entries = [
+  { id: "pkv-kosten-2026-ueberblick", label: "PKV-Kosten 2026 auf einen Blick" },
+  { id: "was-kostet-eine-pkv-ungefaehr", label: "Was kostet eine PKV ungefähr?" },
+  { id: "warum-nicht-pauschal-berechenbar", label: "Warum lässt sich der PKV-Beitrag nicht pauschal berechnen?" },
+  { id: "gesetzlicher-zehn-prozent-zuschlag", label: "Was ist der gesetzliche 10-%-Zuschlag?" },
+  { id: "beispiel-30-jahre", label: "Beispiel: Was kann eine PKV mit 30 Jahren kosten?" },
+  { id: "kosten-angestellte", label: "Was kostet die PKV für Angestellte?" },
+  { id: "kosten-selbststaendige", label: "Was kostet die PKV für Selbstständige?" },
+  { id: "kosten-beamte", label: "Was kostet die PKV für Beamte?" },
+  { id: "kosten-kinder", label: "Was kostet die PKV für Kinder?" },
+  { id: "gkv-kosten-2026-vergleich", label: "Wie teuer ist die gesetzliche Krankenversicherung 2026 im Vergleich?" },
+  { id: "pkv-automatisch-guenstiger", label: "Ist die PKV automatisch günstiger als die GKV?" },
+  { id: "guenstige-pkv-automatisch-gut", label: "Ist eine günstige PKV automatisch gut?" },
+  { id: "vorerkrankungen-und-beitrag", label: "Was passiert bei Vorerkrankungen mit dem Beitrag?" },
+  { id: "kosten-40-jahre", label: "Was kostet die PKV mit 40 Jahren?" },
+  { id: "kosten-45-50-jahre", label: "Was kostet die PKV mit 45 oder 50 Jahren?" },
+  { id: "pkv-im-alter-unbezahlbar", label: "Wird die PKV im Alter unbezahlbar?" },
+  { id: "was-kostet-eine-gute-pkv", label: "Was kostet eine gute PKV also wirklich?" },
+  { id: "durchschnitt-oder-persoenliches-angebot", label: "Durchschnittlicher PKV-Beitrag oder persönliches Angebot?" },
+  { id: "wichtigster-rat", label: "Mein wichtigster Rat zum PKV-Beitrag" },
+  { id: "pkv-kosten-individuell-berechnen", label: "PKV-Kosten individuell berechnen lassen" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>
