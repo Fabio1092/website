@@ -1,0 +1,113 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const sources = [
+  "Versicherungsvertragsgesetz (VVG) § 203 – Prämien- und Bedingungsanpassung",
+  "Versicherungsaufsichtsgesetz (VAG) § 155 – Rechnungsgrundlagen und Schwellenwerte bei der Prämienkalkulation",
+  "Krankenversicherungsaufsichtsverordnung (KVAV)",
+  "Bundesministerium für Gesundheit: Beitragssatz, Zusatzbeitrag und Beitragsbemessungsgrenze in der gesetzlichen Krankenversicherung 2026",
+  "Verband der Privaten Krankenversicherung (PKV-Verband): Beitragsanpassung, Alterungsrückstellungen und Beitragsentlastung in der PKV",
+  "Wissenschaftliches Institut der PKV / PKV-Verband: Langfristvergleich der Beitragsentwicklung 2006–2026",
+  "Versicherungsvertragsgesetz (VVG) § 204 – Tarifwechsel innerhalb des Versicherers",
+  "Versicherungsvertragsgesetz (VVG): Informationspflichten zur Beitragsentwicklung bei PKV-Angeboten",
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Fazit: Werden die Beiträge in der PKV stark steigen?
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Ja, PKV-Beiträge werden langfristig wahrscheinlich weiter steigen."]} />
+      <RichParagraph parts={["Alles andere wäre angesichts steigender Gesundheitskosten unrealistisch."]} />
+      <RichParagraph parts={["Das gilt allerdings nicht nur für die private Krankenversicherung."]} />
+      <RichParagraph parts={["Auch die gesetzliche Krankenversicherung muss steigende Ausgaben finanzieren."]} />
+      <RichParagraph parts={["Der Unterschied liegt vor allem im Mechanismus."]} />
+      <RichParagraph parts={["Die PKV passt Beiträge häufig ", { b: "unregelmäßiger und sprunghafter" }, " an."]} />
+      <RichParagraph
+        parts={["Die GKV verteilt steigende Belastungen unter anderem über Beitragssätze, Zusatzbeiträge und Beitragsbemessungsgrenzen."]}
+      />
+      <RichParagraph
+        parts={["Historisch lagen die durchschnittlichen langfristigen Entwicklungen beider Systeme näher beieinander, als einzelne Schlagzeilen über hohe PKV-Anpassungen vermuten lassen."]}
+      />
+      <RichParagraph parts={["Das heißt aber nicht, dass jeder PKV-Tarif gut läuft."]} />
+      <RichParagraph parts={["Und es bedeutet auch nicht, dass niemand im Alter einen hohen Beitrag haben kann."]} />
+      <RichParagraph parts={["Für mich lautet die wichtigste Erkenntnis deshalb:"]} />
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Versuche nicht, den PKV-Beitrag in 30 Jahren vorherzusagen. Sorge lieber dafür, dass deine heutige
+          Entscheidung auch dann noch funktioniert, wenn Beiträge zukünftig steigen.
+        </p>
+      </div>
+
+      <RichParagraph
+        parts={["Dafür braucht es einen guten Tarif, eine tragfähige finanzielle Ausgangslage und eine langfristige Strategie."]}
+      />
+    </div>
+  </div>
+</section>
+
+<section id="pkv-langfristig-aufstellen" class="scroll-mt-24 bg-brand-50/30 py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      PKV langfristig richtig aufstellen
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph
+        parts={["Wenn du dich mit der privaten Krankenversicherung beschäftigst, sollte die Frage der Beitragsentwicklung von Anfang an Teil der Beratung sein."]}
+      />
+      <RichParagraph parts={["Nicht erst dann, wenn irgendwann eine Beitragsanpassung im Briefkasten liegt."]} />
+      <RichParagraph parts={["Ich schaue deshalb mit dir nicht nur auf den heutigen Beitrag, sondern unter anderem auf:"]} />
+
+      <ul class="space-y-2">
+        {
+          [
+            "Tarifqualität",
+            "Selbstbehalt",
+            "historische Beitragsentwicklung",
+            "Arbeitgeberzuschuss",
+            "Altersvorsorge",
+            "mögliche Beitragsentlastung",
+            "deine Familien- und Karriereplanung",
+          ].map((item) => (
+            <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Mein Standort ist Kassel und mein regionaler Schwerpunkt liegt in Nordhessen."]} />
+      <RichParagraph parts={["Die Beratung ist persönlich vor Ort in Kassel oder digital möglich."]} />
+      <RichParagraph parts={[{ a: "Mehr zur PKV-Beratung in Kassel", href: "/private-krankenversicherung-kassel/" }]} />
+    </div>
+
+    <div class="mt-14 border-t border-black/5 pt-8">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Quellen und weiterführende Informationen</p>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/60">
+        Für diesen Artikel wurden insbesondere folgende Primärquellen und gesetzlichen Grundlagen
+        berücksichtigt:
+      </p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-ink-700/60">{source}</li>
+          ))
+        }
+      </ul>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Stand der gesetzlichen Angaben und Vergleichswerte: Oktober 2026.</p>
+    </div>
+
+    <div class="mt-10 border-t border-black/5 pt-8">
+      <RichParagraph
+        parts={["Zurück zum ", { a: "PKV-Wissen", href: "/wissen/private-krankenversicherung/" }]}
+        class="text-sm font-semibold text-ink-700/85"
+      />
+    </div>
+  </div>
+</section>

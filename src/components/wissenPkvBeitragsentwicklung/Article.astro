@@ -1,0 +1,630 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  { type: "p", parts: ["Diese Frage bekomme ich bei der Beratung zur PKV immer wieder."] },
+  { type: "p", parts: ["Und die seriöse Antwort lautet:"] },
+  { type: "standalone", text: "Das kann dir heute niemand verlässlich sagen." },
+  { type: "p", parts: ["Natürlich können wir historische Beitragsentwicklungen betrachten, Tarife vergleichen und verschiedene Szenarien rechnen."] },
+  {
+    type: "p",
+    parts: [
+      "Aber niemand kennt heute die Gesundheitskosten im Jahr 2050, zukünftige medizinische Möglichkeiten, Zinsen, gesetzliche Rahmenbedingungen oder die konkrete Entwicklung deines Tarifs.",
+    ],
+  },
+  { type: "p", parts: ["Was wir dagegen sehr gut erklären können:"] },
+  {
+    type: "standalone",
+    text: "Warum PKV-Beiträge steigen, warum Anpassungen häufig sprunghaft wirken, wie sich die PKV langfristig im Vergleich zur GKV entwickelt hat und welche Mechanismen dafür sorgen sollen, dass Beiträge auch im Alter tragbar bleiben.",
+  },
+  { type: "p", parts: ["Und genau darum geht es in diesem Artikel."] },
+];
+
+const sections: Section[] = [
+  {
+    id: "wichtigstes-in-kuerze",
+    heading: "Das Wichtigste zur PKV-Beitragsentwicklung in Kürze",
+    blocks: [
+      { type: "p", parts: ["Beiträge in der privaten Krankenversicherung bleiben nicht ein Leben lang konstant."] },
+      { type: "p", parts: ["Beitragsanpassungen gehören zum System."] },
+      { type: "p", parts: ["Wichtig ist aber:"] },
+      {
+        type: "list",
+        items: [
+          "ein Versicherer kann Beiträge nicht einfach nach Belieben erhöhen",
+          "gesetzlich definierte Rechnungsgrundlagen und Schwellenwerte müssen eine Überprüfung auslösen",
+          "ein unabhängiger Treuhänder muss einer notwendigen Beitragsanpassung zustimmen",
+          "dadurch steigen PKV-Beiträge häufig nicht jedes Jahr, sondern eher in unregelmäßigen Sprüngen",
+          "medizinischer Fortschritt und steigende Behandlungskosten betreffen PKV und GKV",
+          "das persönliche Älterwerden allein ist nicht der Grund für eine PKV-Beitragserhöhung",
+          "Alterungsrückstellungen sollen altersbedingt steigende Gesundheitskosten vorfinanzieren",
+          "eine exakte Prognose deines Beitrags in 20, 30 oder 40 Jahren ist nicht seriös möglich",
+          "Tarifqualität und langfristige Finanzplanung sind deshalb wichtiger als ein besonders niedriger Einstiegsbeitrag",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Zwischen 2006 und 2026 stiegen laut einer Auswertung des Wissenschaftlichen Instituts der PKV die Beitragseinnahmen je Versicherten in der PKV durchschnittlich um etwa ",
+          { b: "3,4 Prozent pro Jahr" },
+          ", in der GKV um etwa ",
+          { b: "3,9 Prozent pro Jahr" },
+          ".",
+        ],
+      },
+      { type: "p", parts: ["Diese Zahlen sind interessant."] },
+      { type: "p", parts: ["Aber:"] },
+      { type: "standalone", text: "Sie sind weder eine Garantie für die Zukunft noch die Beitragsentwicklung deines persönlichen PKV-Tarifs." },
+    ],
+  },
+  {
+    id: "warum-steigen-beitraege",
+    heading: "Warum steigen Beiträge in der privaten Krankenversicherung?",
+    blocks: [
+      { type: "p", parts: ["Eine Krankenversicherung bezahlt medizinische Leistungen."] },
+      { type: "p", parts: ["Und medizinische Versorgung wird langfristig normalerweise nicht günstiger."] },
+      { type: "p", parts: ["Neue Medikamente kommen auf den Markt."] },
+      { type: "p", parts: ["Diagnostik wird genauer."] },
+      { type: "p", parts: ["Operationstechniken entwickeln sich weiter."] },
+      { type: "p", parts: ["Therapien werden möglich, die es vor 20 Jahren überhaupt nicht gab."] },
+      { type: "p", parts: ["Gleichzeitig steigen Preise für Ärzte, Krankenhäuser, Medikamente, Hilfsmittel und weitere medizinische Leistungen."] },
+      { type: "p", parts: ["Eine leistungsstarke private Krankenversicherung soll diese vertraglich vereinbarten Leistungen auch in Zukunft finanzieren können."] },
+      { type: "p", parts: ["Wenn die tatsächlichen Kosten dauerhaft höher liegen als ursprünglich kalkuliert, muss die Kalkulation deshalb irgendwann angepasst werden."] },
+      { type: "p", parts: ["Das ist zunächst nichts Außergewöhnliches."] },
+      {
+        type: "p",
+        parts: ["Problematisch wäre vielmehr ein Tarif, dessen Beitrag jahrzehntelang künstlich niedrig gehalten würde, obwohl seine Leistungsausgaben erheblich steigen."],
+      },
+    ],
+  },
+  {
+    id: "kann-pkv-einfach-erhoehen",
+    heading: "Kann eine PKV ihren Beitrag einfach erhöhen?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Und das ist einer der wichtigsten Punkte bei der Beitragsentwicklung."] },
+      { type: "p", parts: ["Bei nach Art der Lebensversicherung kalkulierten privaten Krankenversicherungen sind Beitragsanpassungen gesetzlich geregelt."] },
+      { type: "p", parts: ["Maßgebliche auslösende Rechnungsgrundlagen sind insbesondere:"] },
+      { type: "standalone", text: "Versicherungsleistungen" },
+      { type: "p", parts: ["und"] },
+      { type: "standalone", text: "Sterbewahrscheinlichkeiten." },
+      { type: "p", parts: ["Bei den Versicherungsleistungen sieht § 155 VAG grundsätzlich eine Schwelle von ", { b: "mehr als 10 Prozent Abweichung" }, " vor."] },
+      { type: "p", parts: ["In den Versicherungsbedingungen kann allerdings auch ein niedrigerer Schwellenwert vereinbart sein."] },
+      { type: "p", parts: ["Bei den Sterbewahrscheinlichkeiten liegt der gesetzliche Schwellenwert bei ", { b: "mehr als 5 Prozent" }, "."] },
+      { type: "p", parts: ["Erst wenn ein solcher auslösender Faktor überschritten wird, werden die Beiträge des Tarifs überprüft."] },
+      {
+        type: "p",
+        parts: ["Eine notwendige Anpassung darf außerdem erst wirksam werden, nachdem ein ", { b: "unabhängiger Treuhänder" }, " die Kalkulation geprüft und zugestimmt hat."],
+      },
+      { type: "p", parts: ["Wichtig:"] },
+      { type: "p", parts: ["Die bekannte 10-Prozent-Grenze bedeutet nicht:"] },
+      { type: "p", parts: ["„Sobald Gesundheitskosten um 10 Prozent steigen, wird dein Beitrag automatisch um 10 Prozent erhöht.“"] },
+      { type: "p", parts: ["So funktioniert es nicht."] },
+      { type: "p", parts: ["Der Schwellenwert löst zunächst eine ", { b: "Neukalkulation" }, " aus."] },
+      { type: "p", parts: ["Bei dieser Kalkulation werden dann die relevanten Rechnungsgrundlagen neu betrachtet."] },
+      { type: "p", parts: ["Die konkrete Beitragsanpassung kann deshalb höher oder niedriger als der auslösende Schwellenwert ausfallen."] },
+    ],
+  },
+  {
+    id: "sprunghafte-erhoehungen",
+    heading: "Warum steigen PKV-Beiträge manchmal plötzlich um 10 oder 15 Prozent?",
+    blocks: [
+      { type: "p", parts: ["Genau hier liegt eine Besonderheit des Systems."] },
+      { type: "p", parts: ["Stell dir vereinfacht vor, die tatsächlichen Leistungsausgaben eines Tarifs steigen über mehrere Jahre."] },
+      { type: "p", parts: ["Die Abweichung reicht zunächst aber noch nicht aus, um den vertraglich oder gesetzlich festgelegten Schwellenwert zu überschreiten."] },
+      { type: "p", parts: ["Dann darf der Versicherer aufgrund dieses Faktors noch keine Anpassung durchführen."] },
+      { type: "p", parts: ["Die Kostenentwicklung läuft trotzdem weiter."] },
+      { type: "p", parts: ["Irgendwann wird der Schwellenwert überschritten."] },
+      { type: "p", parts: ["Jetzt muss neu kalkuliert werden."] },
+      { type: "p", parts: ["Für den Kunden kann das so wirken:"] },
+      { type: "standalone", text: "Drei Jahre kaum Veränderung – und anschließend plötzlich eine deutliche Beitragserhöhung." },
+      { type: "p", parts: ["Deshalb wirkt die Beitragsentwicklung der PKV häufig sprunghafter als beispielsweise Veränderungen in der gesetzlichen Krankenversicherung."] },
+      { type: "p", parts: ["Es handelt sich aber nicht automatisch um eine Kostenexplosion innerhalb eines einzigen Jahres."] },
+      { type: "p", parts: ["Oft wird mit einer Anpassung lediglich eine Entwicklung sichtbar, die sich bereits über mehrere Jahre aufgebaut hat."] },
+    ],
+  },
+  {
+    id: "beispiel-unterschied",
+    heading: "Ein vereinfachtes Beispiel für den Unterschied",
+    blocks: [
+      { type: "p", parts: ["Ein rein schematisches Beispiel:"] },
+      { type: "h3", text: "Variante A – gleichmäßige Entwicklung" },
+      { type: "p", parts: ["Ein Beitrag würde jedes Jahr etwas steigen:"] },
+      { type: "p", parts: ["Jahr 1: 600 €"] },
+      { type: "p", parts: ["Jahr 2: 620 €"] },
+      { type: "p", parts: ["Jahr 3: 640 €"] },
+      { type: "p", parts: ["Jahr 4: 660 €"] },
+      { type: "p", parts: ["Das wirkt relativ unspektakulär."] },
+      { type: "h3", text: "Variante B – sprunghafte Entwicklung" },
+      { type: "p", parts: ["Ein PKV-Tarif könnte aufgrund seines Anpassungsmechanismus dagegen beispielsweise länger stabil bleiben:"] },
+      { type: "p", parts: ["Jahr 1: 600 €"] },
+      { type: "p", parts: ["Jahr 2: 600 €"] },
+      { type: "p", parts: ["Jahr 3: 600 €"] },
+      { type: "p", parts: ["Jahr 4: 665 €"] },
+      { type: "p", parts: ["Die 65 Euro im vierten Jahr wirken plötzlich sehr viel dramatischer."] },
+      { type: "p", parts: ["Beide Verläufe können langfristig trotzdem zu einer ähnlichen Größenordnung führen."] },
+      { type: "p", parts: ["Das Beispiel ist bewusst vereinfacht und keine Darstellung einer realen Tarifkalkulation."] },
+      { type: "p", parts: ["Es soll nur zeigen:"] },
+      { type: "standalone", text: "Eine einzelne Beitragserhöhung sagt wenig über die langfristige Beitragsentwicklung eines Tarifs aus." },
+    ],
+  },
+  {
+    id: "faktoren-beitragsanpassung",
+    heading: "Welche Faktoren beeinflussen die Höhe einer Beitragsanpassung?",
+    blocks: [
+      { type: "p", parts: ["Wenn eine Neukalkulation ausgelöst wird, können verschiedene Rechnungsgrundlagen Einfluss auf den erforderlichen Beitrag haben."] },
+      { type: "p", parts: ["Dazu gehören insbesondere:"] },
+      { type: "h3", text: "Entwicklung der Versicherungsleistungen" },
+      { type: "p", parts: ["Steigen die tatsächlichen Behandlungskosten stärker als ursprünglich kalkuliert, muss das langfristig finanziert werden."] },
+      { type: "h3", text: "Lebenserwartung" },
+      { type: "p", parts: ["Wenn Versicherte statistisch länger leben als kalkuliert, werden medizinische Leistungen über einen längeren Zeitraum benötigt."] },
+      { type: "p", parts: ["Die Sterbewahrscheinlichkeit ist deshalb eine eigene gesetzlich relevante Rechnungsgrundlage."] },
+      { type: "h3", text: "Rechnungszins" },
+      { type: "p", parts: ["Die PKV legt Alterungsrückstellungen langfristig an."] },
+      { type: "p", parts: ["Welche Kapitalerträge daraus erwartet werden können, beeinflusst die Kalkulation."] },
+      {
+        type: "p",
+        parts: ["Bei einer Beitragsanpassung kann deshalb auch eine notwendige Änderung des Rechnungszinses Einfluss auf die Höhe des neu kalkulierten Beitrags haben."],
+      },
+      { type: "h3", text: "Medizinischer Fortschritt" },
+      { type: "p", parts: ["Moderne Medizin ist ein großer Vorteil."] },
+      { type: "p", parts: ["Viele Erkrankungen können heute besser diagnostiziert oder behandelt werden als früher."] },
+      { type: "p", parts: ["Neue Behandlungen und Medikamente können allerdings auch erheblich teurer sein."] },
+      { type: "p", parts: ["Das wirkt sich langfristig auf die Ausgaben des gesamten Gesundheitssystems aus."] },
+    ],
+  },
+  {
+    id: "steigt-beitrag-durchs-alter",
+    heading: "Steigt mein PKV-Beitrag automatisch, weil ich älter werde?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Das ist ein häufiges Missverständnis."] },
+      { type: "p", parts: ["Dein ursprüngliches Eintrittsalter spielt bei der Beitragskalkulation eine wichtige Rolle."] },
+      { type: "p", parts: ["Aber dein Beitrag wird nicht jedes Jahr einfach deshalb erhöht, weil du einen Geburtstag hattest."] },
+      {
+        type: "p",
+        parts: ["Die PKV kalkuliert altersbedingt steigende Gesundheitskosten von Beginn an mit ein und bildet dafür ", { b: "Alterungsrückstellungen" }, "."],
+      },
+      {
+        type: "p",
+        parts: ["Ein Teil deiner Beiträge wird also nicht nur für deine heutigen Krankheitskosten verwendet, sondern dient auch der Vorsorge für später steigende Gesundheitsausgaben."],
+      },
+      {
+        type: "p",
+        parts: ["Dadurch soll verhindert werden, dass dein Beitrag allein wegen deines zunehmenden Alters entsprechend deiner statistisch höheren Krankheitskosten steigt."],
+      },
+    ],
+  },
+  {
+    id: "alterungsrueckstellungen",
+    heading: "Was sind Alterungsrückstellungen?",
+    blocks: [
+      { type: "p", parts: ["Vereinfacht gesagt:"] },
+      { type: "p", parts: ["Jüngere Versicherte verursachen statistisch geringere Gesundheitskosten als ältere Versicherte."] },
+      { type: "p", parts: ["Würde ein Versicherer ausschließlich die aktuellen Kosten eines Alters berechnen, müsste der Beitrag mit zunehmendem Alter massiv steigen."] },
+      { type: "p", parts: ["Deshalb funktioniert eine normal kalkulierte PKV anders."] },
+      { type: "p", parts: ["Ein Teil des Beitrags wird in jungen Jahren zurückgelegt."] },
+      { type: "p", parts: ["Dieses Kapital wird angelegt und später verwendet, um die höheren Gesundheitskosten im Alter mitzufinanzieren."] },
+      {
+        type: "p",
+        parts: [
+          "Ende 2025 lagen die Alterungsrückstellungen der privaten Kranken- und Pflegeversicherung laut PKV-Verband bei rund ",
+          { b: "355 Milliarden Euro" },
+          ".",
+        ],
+      },
+      { type: "p", parts: ["Diese Rückstellungen bedeuten allerdings nicht:"] },
+      { type: "standalone", text: "„Mein Beitrag kann im Alter nicht mehr steigen.“" },
+      { type: "p", parts: ["Sie sollen vor allem den Effekt deiner altersbedingt steigenden Gesundheitskosten abfedern."] },
+      { type: "p", parts: ["Allgemeine Kostensteigerungen im Gesundheitswesen können weiterhin Beitragsanpassungen notwendig machen."] },
+    ],
+  },
+  {
+    id: "zehn-prozent-zuschlag",
+    heading: "Was hat der gesetzliche 10-%-Zuschlag damit zu tun?",
+    blocks: [
+      { type: "p", parts: ["Bei vielen privat Krankenversicherten wird zusätzlich zum kalkulierten Krankenversicherungsbeitrag ein gesetzlicher Zuschlag erhoben."] },
+      { type: "p", parts: ["Dieser beträgt grundsätzlich ", { b: "10 Prozent des maßgeblichen Beitrags" }, "."] },
+      { type: "p", parts: ["Die daraus aufgebauten Mittel dienen dazu, die Beitragsentwicklung im höheren Alter zusätzlich zu dämpfen."] },
+      { type: "p", parts: ["Der Zuschlag wird bis zum Ende des Kalenderjahres erhoben, in dem das 60. Lebensjahr vollendet wird."] },
+      { type: "p", parts: ["Danach entfällt dieser zusätzliche Beitrag."] },
+      { type: "p", parts: ["Später werden die angesammelten Mittel eingesetzt, um zukünftige Beitragserhöhungen abzumildern."] },
+      {
+        type: "p",
+        parts: ["Das ist einer von mehreren Gründen, warum die Entwicklung des PKV-Beitrags im Alter nicht einfach durch eine lineare Hochrechnung des heutigen Beitrags dargestellt werden kann."],
+      },
+    ],
+  },
+  {
+    id: "pkv-gkv-langfristvergleich",
+    heading: "Wie haben sich PKV und GKV langfristig entwickelt?",
+    blocks: [
+      { type: "p", parts: ["Beim Vergleich wird häufig nur auf besonders starke PKV-Anpassungen einzelner Jahre geschaut."] },
+      { type: "p", parts: ["Das kann ein verzerrtes Bild erzeugen."] },
+      {
+        type: "p",
+        parts: [
+          "Laut einer vom Wissenschaftlichen Institut der PKV ausgewerteten Langfristbetrachtung stiegen die Beitragseinnahmen je Versicherten zwischen ",
+          { b: "2006 und 2026" },
+          " durchschnittlich:",
+        ],
+      },
+      {
+        type: "table",
+        headers: ["System", "Durchschnittliche jährliche Entwicklung 2006–2026"],
+        rows: [
+          ["PKV", "ca. 3,4 %"],
+          ["GKV", "ca. 3,9 %"],
+        ],
+      },
+      { type: "p", parts: ["Wichtig:"] },
+      { type: "p", parts: ["Das ist eine ", { b: "historische Durchschnittsbetrachtung auf Systemebene" }, "."] },
+      { type: "p", parts: ["Sie sagt nicht:"] },
+      {
+        type: "list",
+        items: [
+          "dass jeder PKV-Tarif um genau 3,4 Prozent steigt",
+          "dass die PKV zukünftig günstiger als die GKV sein wird",
+          "dass dein persönlicher Beitrag diesen Verlauf nimmt",
+          "dass beide Systeme exakt vergleichbare Leistungen bieten",
+        ],
+      },
+      { type: "p", parts: ["Sie zeigt aber:"] },
+      {
+        type: "standalone",
+        text: "Die Aussage „PKV-Beiträge explodieren grundsätzlich viel stärker als GKV-Beiträge“ lässt sich aus der langfristigen Durchschnittsentwicklung nicht einfach ableiten.",
+      },
+    ],
+  },
+  {
+    id: "beitraege-in-der-gkv",
+    heading: "Wie steigen Beiträge in der gesetzlichen Krankenversicherung?",
+    blocks: [
+      { type: "p", parts: ["Auch die GKV wird langfristig teurer."] },
+      { type: "p", parts: ["Der Mechanismus ist nur anders."] },
+      { type: "p", parts: ["Der Beitrag eines gesetzlich Versicherten hängt insbesondere ab von:"] },
+      { type: "list", items: ["beitragspflichtigem Einkommen", "allgemeinem Beitragssatz", "Zusatzbeitrag der Krankenkasse", "Beitragsbemessungsgrenze"] },
+      { type: "p", parts: ["2026 beträgt der allgemeine Beitragssatz ", { b: "14,6 Prozent" }, "."] },
+      { type: "p", parts: ["Der vom Bundesgesundheitsministerium festgelegte durchschnittliche Zusatzbeitrag liegt bei ", { b: "2,9 Prozent" }, "."] },
+      { type: "p", parts: ["Die Beitragsbemessungsgrenze beträgt 2026:"] },
+      { type: "standalone", text: "5.812,50 Euro monatlich beziehungsweise 69.750 Euro jährlich." },
+      { type: "p", parts: ["Dadurch kann die persönliche Beitragsbelastung eines Gutverdieners auch steigen, obwohl der allgemeine Beitragssatz unverändert bleibt."] },
+      { type: "p", parts: ["Zum Beispiel dann, wenn die Beitragsbemessungsgrenze steigt."] },
+      { type: "p", parts: ["Hinzu kommen mögliche Veränderungen der Zusatzbeiträge."] },
+      { type: "p", parts: ["PKV und GKV verteilen steigende Gesundheitskosten deshalb auf unterschiedliche Weise."] },
+    ],
+  },
+  {
+    id: "welches-system-entwickelt-sich-besser",
+    heading: "PKV oder GKV: Welches System entwickelt sich zukünftig besser?",
+    blocks: [
+      { type: "p", parts: ["Das weiß niemand."] },
+      { type: "p", parts: ["Und jeder, der dir heute exakt vorrechnet, welches System im Jahr 2055 günstiger sein wird, arbeitet zwangsläufig mit Annahmen."] },
+      { type: "p", parts: ["Für eine solche Prognose müssten wir unter anderem wissen:"] },
+      {
+        type: "list",
+        items: [
+          "deine Einkommensentwicklung",
+          "deine Familienplanung",
+          "zukünftige Beitragsbemessungsgrenzen",
+          "zukünftige GKV-Beitragssätze",
+          "zukünftige Zusatzbeiträge",
+          "Gesundheitskosten",
+          "medizinischen Fortschritt",
+          "Zinsentwicklung",
+          "politische Reformen",
+          "Entwicklung deines konkreten PKV-Tarifs",
+        ],
+      },
+      { type: "p", parts: ["Genau deshalb halte ich wenig von vermeintlich exakten 30- oder 40-Jahres-Hochrechnungen."] },
+      { type: "p", parts: ["Eine Rechnung wie:"] },
+      { type: "p", parts: ["„Deine PKV steigt jedes Jahr exakt um 3 Prozent“"] },
+      { type: "p", parts: ["kann ein Szenario darstellen."] },
+      { type: "p", parts: ["Sie ist aber ", { b: "keine Prognose" }, "."] },
+    ],
+  },
+  {
+    id: "billigtarife-kritisch",
+    heading: "Warum ich Billigtarife bei der PKV kritisch sehe",
+    blocks: [
+      { type: "p", parts: ["Eine besonders niedrige Einstiegsprämie klingt attraktiv."] },
+      { type: "p", parts: ["Sie sollte aber niemals das wichtigste Auswahlkriterium sein."] },
+      { type: "p", parts: ["Eine PKV begleitet dich möglicherweise mehrere Jahrzehnte."] },
+      { type: "p", parts: ["Entscheidend sind deshalb unter anderem:"] },
+      {
+        type: "list",
+        items: [
+          "Versicherungsbedingungen",
+          "Leistungsumfang",
+          "Tarifkalkulation",
+          "langfristige Tragfähigkeit",
+          "Anpassungsmöglichkeiten",
+          "Selbstbehalt",
+          "Gesellschaft und Tarifstruktur",
+        ],
+      },
+      { type: "p", parts: ["Ein günstiger Beitrag bedeutet nicht automatisch eine schlechte Beitragsentwicklung."] },
+      { type: "p", parts: ["Und ein teurer Tarif garantiert nicht automatisch stabile Beiträge."] },
+      { type: "p", parts: ["Aber:"] },
+      {
+        type: "standalone",
+        text: "Ein besonders niedriger Beitrag darf niemals darüber hinwegtäuschen, dass Leistung und langfristige Kalkulation stimmen müssen.",
+      },
+      { type: "p", parts: ["Ich würde deshalb keinen PKV-Tarif wählen, nur weil er heute 80 Euro günstiger ist als eine leistungsstärkere Alternative."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr zu konkreten Beiträgen findest du unter ",
+          { a: "Was kostet eine private Krankenversicherung?", href: "/wissen/private-krankenversicherung/pkv-kosten/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "bisherige-beitragsentwicklung-ansehen",
+    heading: "Sollte ich mir die bisherige Beitragsentwicklung eines Tarifs ansehen?",
+    blocks: [
+      { type: "p", parts: ["Ja."] },
+      { type: "p", parts: ["Aber richtig eingeordnet."] },
+      { type: "p", parts: ["Bei Angeboten zur privaten Krankenversicherung müssen Versicherer unter anderem Informationen zur bisherigen Beitragsentwicklung bereitstellen."] },
+      {
+        type: "p",
+        parts: ["Vorgesehen ist grundsätzlich eine Übersicht über die Beitragsentwicklung des angebotenen Tarifs in den vergangenen zehn Jahren beziehungsweise – bei jüngeren Tarifen – seit Einführung."],
+      },
+      { type: "p", parts: ["Das ist sinnvoll."] },
+      { type: "p", parts: ["Denn du möchtest wissen, wie sich ein Tarif bisher entwickelt hat."] },
+      { type: "p", parts: ["Aber auch hier gilt:"] },
+      { type: "standalone", text: "Vergangenheit ist keine Garantie für die Zukunft." },
+      { type: "p", parts: ["Ein Tarif, der zehn Jahre relativ stabil war, kann anschließend angepasst werden."] },
+      { type: "p", parts: ["Ein Tarif mit einer stärkeren Anpassung in der Vergangenheit kann danach wiederum mehrere Jahre stabil bleiben."] },
+      { type: "p", parts: ["Die Historie ist deshalb ein Analysebaustein – kein alleiniger Entscheidungsgrund."] },
+    ],
+  },
+  {
+    id: "vorbereiten-auf-steigende-beitraege",
+    heading: "Wie kann ich mich auf steigende PKV-Beiträge vorbereiten?",
+    blocks: [
+      { type: "p", parts: ["Du kannst zukünftige Beitragsanpassungen nicht verhindern."] },
+      { type: "p", parts: ["Du kannst deine PKV aber so planen, dass sie langfristig besser zu deiner finanziellen Situation passt."] },
+      { type: "h3", text: "1. Nicht den billigsten Tarif wählen" },
+      { type: "p", parts: ["Der erste Schritt erfolgt bereits beim Abschluss."] },
+      { type: "p", parts: ["Nicht fragen:"] },
+      { type: "standalone", text: "„Welche PKV ist heute am günstigsten?“" },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "standalone", text: "„Welcher leistungsstarke Tarif kann langfristig zu mir passen?“" },
+      { type: "h3", text: "2. Einen Beitragsvorteil nicht vollständig konsumieren" },
+      {
+        type: "p",
+        parts: ["Wenn du beispielsweise gegenüber der GKV heute 200 Euro monatlich weniger selbst zahlst, musst du diese 200 Euro nicht zwangsläufig vollständig ausgeben."],
+      },
+      { type: "p", parts: ["Ein Teil davon kann für die langfristige Absicherung zurückgelegt werden."] },
+      { type: "p", parts: ["So schaffst du dir zusätzliche finanzielle Reserven für spätere Lebensphasen."] },
+      { type: "h3", text: "3. Beitragsentlastungstarife prüfen" },
+      { type: "p", parts: ["Viele Versicherer bieten zusätzliche Beitragsentlastungsbausteine an."] },
+      { type: "p", parts: ["Du zahlst heute einen zusätzlichen Beitrag und erhältst dafür ab einem bestimmten Alter eine vertraglich vereinbarte Beitragsreduzierung."] },
+      {
+        type: "p",
+        parts: [
+          "Gerade für Angestellte kann das interessant sein, weil der Beitrag eines solchen Entlastungstarifs grundsätzlich arbeitgeberzuschussfähig sein kann, solange die jeweiligen gesetzlichen Voraussetzungen und Höchstgrenzen eingehalten werden.",
+        ],
+      },
+      { type: "p", parts: ["Das bedeutet aber nicht automatisch, dass ein Beitragsentlastungstarif immer die beste Lösung ist."] },
+      { type: "p", parts: ["Kosten, Flexibilität, Arbeitgeberzuschuss und alternative Vorsorgemöglichkeiten müssen gemeinsam betrachtet werden."] },
+      { type: "h3", text: "4. Zusätzlich privat Vermögen aufbauen" },
+      { type: "p", parts: ["Eine weitere Möglichkeit besteht darin, außerhalb der Krankenversicherung Vermögen für später aufzubauen."] },
+      { type: "p", parts: ["Der Vorteil:"] },
+      { type: "p", parts: ["Das Kapital bleibt grundsätzlich flexibler."] },
+      { type: "p", parts: ["Der Nachteil:"] },
+      { type: "p", parts: ["Du musst selbst dafür sorgen, dass das Geld langfristig tatsächlich für diesen Zweck erhalten bleibt."] },
+      { type: "p", parts: ["Welche Variante besser passt, ist individuell."] },
+      { type: "h3", text: "5. Tarifwechselmöglichkeiten kennen" },
+      {
+        type: "p",
+        parts: [
+          "Wenn der Beitrag eines bestehenden Tarifs irgendwann nicht mehr zur Situation passt, gibt es innerhalb derselben Gesellschaft ein gesetzliches Tarifwechselrecht nach ",
+          { b: "§ 204 VVG" },
+          ".",
+        ],
+      },
+      { type: "p", parts: ["Dabei können erworbene Rechte und Alterungsrückstellungen grundsätzlich berücksichtigt werden."] },
+      {
+        type: "p",
+        parts: ["Bei Mehrleistungen im neuen Tarif kann allerdings eine Gesundheitsprüfung beziehungsweise ein Risikozuschlag oder Leistungsausschluss für diese Mehrleistungen relevant werden."],
+      },
+      { type: "p", parts: ["Ein interner Tarifwechsel sollte deshalb sorgfältig geprüft werden und nicht nur nach dem niedrigsten neuen Beitrag erfolgen."] },
+    ],
+  },
+  {
+    id: "beitrag-im-rentenalter",
+    heading: "Was passiert mit dem PKV-Beitrag im Rentenalter?",
+    blocks: [
+      { type: "p", parts: ["Auch hier gibt es keine pauschale Zahl."] },
+      { type: "p", parts: ["Mehrere Dinge verändern sich."] },
+      { type: "p", parts: ["Zum einen werden die Alterungsrückstellungen zunehmend zur Beitragsstabilisierung genutzt."] },
+      { type: "p", parts: ["Zusätzlich entfällt der gesetzliche 10-%-Zuschlag nach Vollendung des 60. Lebensjahres."] },
+      { type: "p", parts: ["Mit Renteneintritt wird häufig auch ein vorhandenes Krankentagegeld nicht mehr benötigt."] },
+      {
+        type: "p",
+        parts: ["Privatversicherte Rentner mit gesetzlicher Rente können außerdem unter den gesetzlichen Voraussetzungen einen Zuschuss der Deutschen Rentenversicherung zur privaten Krankenversicherung erhalten."],
+      },
+      { type: "p", parts: ["Gleichzeitig bleibt der eigentliche PKV-Beitrag grundsätzlich einkommensunabhängig."] },
+      { type: "p", parts: ["Wenn dein Einkommen im Ruhestand sinkt, sinkt deshalb nicht automatisch dein Krankenversicherungsbeitrag."] },
+      { type: "p", parts: ["Genau deshalb ist langfristige Planung wichtig."] },
+    ],
+  },
+  {
+    id: "gkv-im-alter-guenstiger",
+    heading: "Ist die GKV im Alter automatisch günstiger?",
+    blocks: [
+      { type: "p", parts: ["Auch das lässt sich nicht pauschal beantworten."] },
+      { type: "p", parts: ["Die GKV funktioniert einkommensabhängig."] },
+      { type: "p", parts: ["Welche Beiträge im Ruhestand entstehen, hängt unter anderem davon ab:"] },
+      {
+        type: "list",
+        items: [
+          "ob du pflichtversichert oder freiwillig versichert bist",
+          "wie hoch deine gesetzliche Rente ist",
+          "ob weitere beitragspflichtige Einkünfte bestehen",
+          "welche Beitragssätze dann gelten",
+        ],
+      },
+      { type: "p", parts: ["Die PKV funktioniert dagegen grundsätzlich einkommensunabhängig."] },
+      { type: "p", parts: ["Deshalb ist ein pauschaler Satz wie:"] },
+      { type: "standalone", text: "„Im Alter ist die GKV immer günstiger“" },
+      { type: "p", parts: ["genauso wenig seriös wie:"] },
+      { type: "standalone", text: "„Die PKV ist im Alter immer günstiger.“" },
+      {
+        type: "p",
+        parts: [
+          "Einen grundsätzlichen Systemvergleich findest du unter ",
+          { a: "GKV oder PKV?", href: "/wissen/private-krankenversicherung/gkv-oder-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "wegen-beitragssteigerungen-verzichten",
+    heading: "Sollte ich wegen Beitragssteigerungen auf die PKV verzichten?",
+    blocks: [
+      { type: "p", parts: ["Nicht pauschal."] },
+      { type: "p", parts: ["Du solltest aber verstehen, worauf du dich einlässt."] },
+      { type: "p", parts: ["Wenn deine Entscheidung lautet:"] },
+      { type: "p", parts: ["„Ich gehe in die PKV, weil ich heute 250 Euro spare.“"] },
+      { type: "p", parts: ["wäre mir das zu wenig."] },
+      { type: "p", parts: ["Wenn deine Entscheidung dagegen lautet:"] },
+      {
+        type: "p",
+        parts: ["„Die PKV passt langfristig zu meiner Lebensplanung, ich möchte die vertraglichen Leistungen, mein Einkommen ist tragfähig und ich habe auch zukünftige Beiträge eingeplant.“"],
+      },
+      { type: "p", parts: ["dann sieht die Ausgangssituation vollkommen anders aus."] },
+      { type: "p", parts: ["Beitragsentwicklung ist ein wichtiger Teil der Entscheidung."] },
+      { type: "p", parts: ["Sie ist aber nicht der einzige."] },
+      {
+        type: "p",
+        parts: ["Genau deshalb solltest du vor einem Wechsel sowohl ", { b: "Leistung als auch Beitrag und langfristige Lebensplanung" }, " betrachten."],
+      },
+      {
+        type: "p",
+        parts: [
+          "Wenn du grundsätzlich wissen möchtest, ob das System zu dir passt, lies ",
+          { a: "Für wen lohnt sich die PKV?", href: "/wissen/private-krankenversicherung/fuer-wen-lohnt-sich-die-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "checkliste",
+    heading: "Meine Checkliste zur PKV-Beitragsentwicklung",
+    blocks: [
+      { type: "p", parts: ["Bevor ich einen Tarif langfristig bewerte, würde ich unter anderem folgende Fragen stellen:"] },
+      {
+        type: "list",
+        items: [
+          "1. Wie hochwertig sind die Versicherungsbedingungen?",
+          "2. Ist der heutige Beitrag realistisch oder auffällig niedrig?",
+          "3. Wie hat sich der Tarif in den vergangenen Jahren entwickelt?",
+          "4. Wie lange existiert der Tarif bereits?",
+          "5. Welche Selbstbeteiligung besteht?",
+          "6. Welche Beitragsrückerstattungen sind einkalkuliert?",
+          "7. Welche Alterungsrückstellungen werden gebildet?",
+          "8. Ist ein Beitragsentlastungstarif sinnvoll?",
+          "9. Wie hoch ist meine heutige Ersparnis gegenüber der GKV?",
+          "10. Was mache ich mit dieser Ersparnis?",
+          "11. Kann ich den Beitrag auch tragen, wenn er zukünftig steigt?",
+          "12. Passt die PKV auch zu meiner Familien- und Karriereplanung?",
+        ],
+      },
+      { type: "p", parts: ["Keine einzelne Antwort entscheidet allein."] },
+      { type: "p", parts: ["Aber zusammen entsteht ein deutlich realistischeres Bild als durch die Frage:"] },
+      { type: "standalone", text: "„Wie hoch war die letzte Beitragserhöhung?“" },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

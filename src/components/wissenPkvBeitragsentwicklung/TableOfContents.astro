@@ -1,0 +1,50 @@
+---
+const entries = [
+  { id: "wichtigstes-in-kuerze", label: "Das Wichtigste zur PKV-Beitragsentwicklung in Kürze" },
+  { id: "warum-steigen-beitraege", label: "Warum steigen Beiträge in der privaten Krankenversicherung?" },
+  { id: "kann-pkv-einfach-erhoehen", label: "Kann eine PKV ihren Beitrag einfach erhöhen?" },
+  { id: "sprunghafte-erhoehungen", label: "Warum steigen PKV-Beiträge manchmal plötzlich um 10 oder 15 Prozent?" },
+  { id: "beispiel-unterschied", label: "Ein vereinfachtes Beispiel für den Unterschied" },
+  { id: "faktoren-beitragsanpassung", label: "Welche Faktoren beeinflussen die Höhe einer Beitragsanpassung?" },
+  { id: "steigt-beitrag-durchs-alter", label: "Steigt mein PKV-Beitrag automatisch, weil ich älter werde?" },
+  { id: "alterungsrueckstellungen", label: "Was sind Alterungsrückstellungen?" },
+  { id: "zehn-prozent-zuschlag", label: "Was hat der gesetzliche 10-%-Zuschlag damit zu tun?" },
+  { id: "pkv-gkv-langfristvergleich", label: "Wie haben sich PKV und GKV langfristig entwickelt?" },
+  { id: "beitraege-in-der-gkv", label: "Wie steigen Beiträge in der gesetzlichen Krankenversicherung?" },
+  { id: "welches-system-entwickelt-sich-besser", label: "PKV oder GKV: Welches System entwickelt sich zukünftig besser?" },
+  { id: "billigtarife-kritisch", label: "Warum ich Billigtarife bei der PKV kritisch sehe" },
+  { id: "bisherige-beitragsentwicklung-ansehen", label: "Sollte ich mir die bisherige Beitragsentwicklung eines Tarifs ansehen?" },
+  { id: "vorbereiten-auf-steigende-beitraege", label: "Wie kann ich mich auf steigende PKV-Beiträge vorbereiten?" },
+  { id: "beitrag-im-rentenalter", label: "Was passiert mit dem PKV-Beitrag im Rentenalter?" },
+  { id: "gkv-im-alter-guenstiger", label: "Ist die GKV im Alter automatisch günstiger?" },
+  { id: "wegen-beitragssteigerungen-verzichten", label: "Sollte ich wegen Beitragssteigerungen auf die PKV verzichten?" },
+  { id: "checkliste", label: "Meine Checkliste zur PKV-Beitragsentwicklung" },
+  { id: "fazit", label: "Fazit: Werden die Beiträge in der PKV stark steigen?" },
+  { id: "pkv-langfristig-aufstellen", label: "PKV langfristig richtig aufstellen" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>
