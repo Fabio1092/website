@@ -1,0 +1,629 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  { type: "p", parts: ["Das klingt zunächst ziemlich einfach."] },
+  {
+    type: "p",
+    parts: [
+      "In der Praxis gehört der Selbstbehalt aber zu den Punkten einer privaten Krankenversicherung, bei denen ein vermeintlich günstiger Tarif schnell schlechter aussehen kann, sobald man richtig rechnet.",
+    ],
+  },
+  {
+    type: "p",
+    parts: [
+      "Denn ein hoher Selbstbehalt senkt zwar normalerweise deinen Versicherungsbeitrag. Gleichzeitig trägst du aber einen größeren Teil deiner Krankheitskosten selbst.",
+    ],
+  },
+  { type: "p", parts: ["Bei Angestellten kommt noch ein wichtiger Punkt hinzu:"] },
+  { type: "standalone", text: "Dein Arbeitgeber beteiligt sich am PKV-Beitrag – aber nicht an deinem Selbstbehalt." },
+  {
+    type: "p",
+    parts: ["Und wenn du deinen Selbstbehalt später wieder reduzieren möchtest, kann je nach Tarif sogar erneut eine Gesundheitsprüfung notwendig werden."],
+  },
+  { type: "p", parts: ["Deshalb lautet die richtige Frage nicht:"] },
+  { type: "standalone", text: "„Mit welchem Selbstbehalt bekomme ich den niedrigsten PKV-Beitrag?“" },
+  { type: "p", parts: ["Sondern:"] },
+  { type: "standalone", text: "„Welche Selbstbeteiligung ergibt für meine persönliche Situation langfristig wirtschaftlich Sinn?“" },
+  { type: "p", parts: ["Genau das schauen wir uns in diesem Artikel an."] },
+];
+
+const sections: Section[] = [
+  {
+    id: "wichtigstes-in-kuerze",
+    heading: "Das Wichtigste zum PKV-Selbstbehalt in Kürze",
+    blocks: [
+      { type: "p", parts: ["Ein Selbstbehalt bedeutet, dass du einen vertraglich vereinbarten Teil deiner erstattungsfähigen Krankheitskosten selbst trägst."] },
+      { type: "p", parts: ["Grundsätzlich gilt:"] },
+      {
+        type: "list",
+        items: [
+          "ein höherer Selbstbehalt kann den Versicherungsbeitrag senken",
+          "dafür steigt dein finanzielles Risiko im Krankheitsfall",
+          "Selbstbehalte können als fester Jahresbetrag oder prozentual gestaltet sein",
+          "bei Angestellten beteiligt sich der Arbeitgeber nicht am Selbstbehalt",
+          "Beitragsrückerstattung und Selbstbehalt müssen gemeinsam betrachtet werden",
+          "eine spätere Reduzierung des Selbstbehalts kann eine Gesundheitsprüfung erfordern",
+          "neben offensichtlichen Selbstbehalten können Tarife auch indirekte oder „versteckte“ Eigenanteile enthalten",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Für die verpflichtende Krankheitskostenvollversicherung sind absolute und prozentuale Selbstbehalte für ambulante und stationäre Heilbehandlungen gesetzlich so zu begrenzen, dass ihre Auswirkung grundsätzlich höchstens ",
+          { b: "5.000 Euro pro Kalenderjahr und versicherter Person" },
+          " beträgt.",
+        ],
+      },
+      { type: "p", parts: ["Das bedeutet aber ausdrücklich nicht, dass ein Selbstbehalt von 5.000 Euro automatisch sinnvoll wäre."] },
+    ],
+  },
+  {
+    id: "was-ist-ein-selbstbehalt",
+    heading: "Was ist ein Selbstbehalt in der PKV?",
+    blocks: [
+      { type: "p", parts: ["Selbstbehalt und Selbstbeteiligung werden in der privaten Krankenversicherung meistens synonym verwendet."] },
+      { type: "p", parts: ["Das Prinzip ist einfach:"] },
+      { type: "p", parts: ["Du vereinbarst mit dem Versicherer, einen bestimmten Teil deiner Krankheitskosten selbst zu übernehmen."] },
+      { type: "p", parts: ["Im Gegenzug kalkuliert der Versicherer normalerweise einen niedrigeren monatlichen Beitrag."] },
+      { type: "h3", text: "Einfaches Beispiel" },
+      { type: "p", parts: ["Du hast einen Tarif mit:"] },
+      { type: "standalone", text: "600 Euro jährlichem Selbstbehalt." },
+      { type: "p", parts: ["Innerhalb des Jahres entstehen dir erstattungsfähige Behandlungskosten von:"] },
+      { type: "standalone", text: "250 Euro." },
+      { type: "p", parts: ["Dann trägst du diese 250 Euro selbst."] },
+      { type: "p", parts: ["Entstehen dir dagegen beispielsweise:"] },
+      { type: "standalone", text: "1.400 Euro erstattungsfähige Kosten," },
+      { type: "p", parts: ["trägst du bei einem klassischen absoluten Selbstbehalt von 600 Euro grundsätzlich die ersten 600 Euro selbst."] },
+      { type: "p", parts: ["Der darüber hinausgehende erstattungsfähige Anteil wird entsprechend den Tarifbedingungen vom Versicherer übernommen."] },
+      { type: "p", parts: ["Wichtig ist dabei immer:"] },
+      { type: "standalone", text: "Der Selbstbehalt ändert nicht automatisch die versicherten Leistungen." },
+      { type: "p", parts: ["Er bestimmt zunächst, welchen Anteil der erstattungsfähigen Kosten du selbst trägst."] },
+      { type: "p", parts: ["Ob eine Behandlung überhaupt erstattungsfähig ist, richtet sich weiterhin nach den Versicherungsbedingungen."] },
+    ],
+  },
+  {
+    id: "arten-von-selbstbehalt",
+    heading: "Welche Arten von Selbstbehalt gibt es?",
+    blocks: [
+      { type: "p", parts: ["Nicht jeder PKV-Selbstbehalt funktioniert gleich."] },
+      { type: "h3", text: "1. Absoluter Selbstbehalt" },
+      { type: "p", parts: ["Das ist die wahrscheinlich bekannteste Variante."] },
+      { type: "p", parts: ["Du übernimmst beispielsweise die ersten:"] },
+      { type: "standalone", text: "300, 600 oder 1.000 Euro" },
+      { type: "p", parts: ["der erstattungsfähigen Kosten eines Kalenderjahres selbst."] },
+      { type: "p", parts: ["Erst oberhalb der vereinbarten Grenze beteiligt sich der Versicherer entsprechend den Tarifbedingungen."] },
+      { type: "h3", text: "2. Prozentualer Selbstbehalt" },
+      { type: "p", parts: ["Hier übernimmst du einen bestimmten Prozentsatz jeder Rechnung."] },
+      { type: "p", parts: ["Zum Beispiel:"] },
+      { type: "standalone", text: "20 Prozent Eigenanteil, maximal 500 Euro pro Jahr." },
+      { type: "p", parts: ["Bei einer erstattungsfähigen Rechnung von 200 Euro würdest du zunächst 40 Euro selbst tragen."] },
+      { type: "p", parts: ["Bei mehreren Rechnungen summieren sich diese Eigenanteile, bis die tariflich vereinbarte Höchstgrenze erreicht ist."] },
+      { type: "h3", text: "3. Selbstbehalt nur für bestimmte Leistungsbereiche" },
+      { type: "p", parts: ["Ein Tarif kann den Selbstbehalt auch auf einzelne Leistungsbereiche beschränken."] },
+      { type: "p", parts: ["Beispielsweise:"] },
+      { type: "list", items: ["ambulante Leistungen", "Medikamente", "Heilpraktikerleistungen", "Zahnersatz"] },
+      { type: "p", parts: ["Andere Leistungsbereiche können davon ausgenommen sein."] },
+      { type: "p", parts: ["Deshalb reicht die Aussage:"] },
+      { type: "standalone", text: "„Der Tarif hat 600 Euro Selbstbehalt“" },
+      { type: "p", parts: ["allein noch nicht aus."] },
+      { type: "p", parts: ["Du musst wissen:"] },
+      { type: "standalone", text: "Wo genau greift dieser Selbstbehalt?" },
+      { type: "h3", text: "4. Versteckte Selbstbehalte" },
+      { type: "p", parts: ["Nicht jeder Eigenanteil steht groß mit der Überschrift „Selbstbehalt“ im Tarif."] },
+      { type: "p", parts: ["Auch Leistungsbegrenzungen können dazu führen, dass du regelmäßig Kosten selbst tragen musst."] },
+      { type: "p", parts: ["Zum Beispiel durch:"] },
+      {
+        type: "list",
+        items: [
+          "begrenzte Erstattung bestimmter Heilmittel",
+          "feste Preisverzeichnisse",
+          "prozentuale Erstattung bestimmter Leistungen",
+          "Begrenzungen bei Zahnersatz",
+          "Einschränkungen auf bestimmte Höchstbeträge",
+        ],
+      },
+      { type: "p", parts: ["Deshalb schaue ich bei einer PKV nicht nur auf die Zahl neben dem Wort Selbstbehalt."] },
+      { type: "p", parts: ["Ich schaue auf die ", { b: "gesamte mögliche Eigenbeteiligung" }, "."] },
+    ],
+  },
+  {
+    id: "maximale-hoehe-gesetzlich",
+    heading: "Wie hoch darf der Selbstbehalt maximal sein?",
+    blocks: [
+      { type: "p", parts: ["Für die Krankheitskostenvollversicherung enthält § 193 VVG eine gesetzliche Grenze."] },
+      {
+        type: "p",
+        parts: [
+          "Die betragsmäßige Auswirkung der vereinbarten absoluten und prozentualen Selbstbehalte für ambulante und stationäre Heilbehandlungen darf grundsätzlich ",
+          { b: "5.000 Euro pro Kalenderjahr und versicherter Person" },
+          " nicht überschreiten.",
+        ],
+      },
+      { type: "p", parts: ["Für Beihilfeberechtigte wird diese Grenze entsprechend dem nicht durch Beihilfe abgedeckten Anteil angepasst."] },
+      { type: "p", parts: ["Das ist eine rechtliche Höchstgrenze."] },
+      { type: "p", parts: ["Sie beantwortet aber nicht die wirtschaftliche Frage."] },
+      { type: "p", parts: ["Nur weil ein hoher Selbstbehalt erlaubt ist, bedeutet das noch lange nicht, dass er sinnvoll ist."] },
+    ],
+  },
+  {
+    id: "warum-senkt-selbstbehalt-beitrag",
+    heading: "Warum senkt ein Selbstbehalt den PKV-Beitrag?",
+    blocks: [
+      { type: "p", parts: ["Mit einem Selbstbehalt übernimmt der Versicherer kleinere Kosten nicht mehr vollständig selbst."] },
+      { type: "p", parts: ["Dadurch reduziert sich das erwartete Leistungsvolumen des Tarifs."] },
+      { type: "p", parts: ["Der Versicherer kann dafür grundsätzlich einen niedrigeren Beitrag kalkulieren."] },
+      { type: "p", parts: ["Vereinfacht:"] },
+      { type: "standalone", text: "Mehr Eigenrisiko für dich = weniger Risiko für den Versicherer = niedrigerer Beitrag." },
+      { type: "p", parts: ["Aber genau hier entsteht häufig ein Denkfehler."] },
+      { type: "p", parts: ["Ein Tarif mit 70 Euro weniger Monatsbeitrag ist nicht automatisch 70 Euro günstiger."] },
+      { type: "p", parts: ["Du musst die mögliche Selbstbeteiligung gegenrechnen."] },
+    ],
+  },
+  {
+    id: "tarife-vergleichen",
+    heading: "So vergleichst du PKV-Tarife mit unterschiedlichem Selbstbehalt",
+    blocks: [
+      { type: "p", parts: ["Eine einfache erste Vergleichsrechnung lautet:"] },
+      { type: "standalone", text: "Monatsbeitrag × 12 + jährlicher Selbstbehalt" },
+      { type: "p", parts: ["Damit erhältst du eine Art maximale jährliche Belastung aus Beitrag und tariflichem Selbstbehalt."] },
+      {
+        type: "p",
+        parts: ["Das ist noch keine vollständige Wirtschaftlichkeitsrechnung, weil beispielsweise Arbeitgeberzuschuss, Steuer und Beitragsrückerstattung fehlen."],
+      },
+      { type: "p", parts: ["Aber es ist erheblich sinnvoller, als nur Monatsbeiträge nebeneinanderzustellen."] },
+      { type: "h3", text: "Beispiel" },
+      { type: "standalone", text: "Tarif A" },
+      { type: "p", parts: ["Monatsbeitrag: 800 Euro"] },
+      { type: "p", parts: ["Selbstbehalt: 0 Euro"] },
+      { type: "p", parts: ["Jährlicher Beitrag:"] },
+      { type: "standalone", text: "9.600 Euro" },
+      { type: "standalone", text: "Tarif B" },
+      { type: "p", parts: ["Monatsbeitrag: 730 Euro"] },
+      { type: "p", parts: ["Selbstbehalt: 900 Euro"] },
+      { type: "p", parts: ["Jährlicher Beitrag:"] },
+      { type: "standalone", text: "8.760 Euro" },
+      { type: "p", parts: ["Maximale Belastung inklusive Selbstbehalt:"] },
+      { type: "standalone", text: "9.660 Euro" },
+      { type: "p", parts: ["Plötzlich ist der vermeintlich 70 Euro günstigere Tarif im ungünstigen Leistungsjahr sogar etwas teurer."] },
+      { type: "p", parts: ["Natürlich hast du nicht jedes Jahr automatisch den kompletten Selbstbehalt."] },
+      { type: "p", parts: ["Aber genau diese Rechnung zeigt:"] },
+      {
+        type: "standalone",
+        text: "Ein niedrigerer Monatsbeitrag allein sagt nichts darüber aus, ob der höhere Selbstbehalt wirtschaftlich sinnvoll ist.",
+      },
+    ],
+  },
+  {
+    id: "selbstbehalt-angestellte",
+    heading: "Warum ist der Selbstbehalt für Angestellte besonders wichtig?",
+    blocks: [
+      { type: "p", parts: ["Bei Angestellten verändert der Arbeitgeberzuschuss die Rechnung erheblich."] },
+      { type: "p", parts: ["Der Arbeitgeber beteiligt sich grundsätzlich am zuschussfähigen PKV-Beitrag bis zu den gesetzlichen Grenzen."] },
+      { type: "p", parts: ["Am Selbstbehalt beteiligt er sich dagegen nicht."] },
+      { type: "p", parts: ["Nehmen wir wieder unser Beispiel."] },
+      { type: "h3", text: "Tarif A" },
+      { type: "p", parts: ["Beitrag:"] },
+      { type: "standalone", text: "800 Euro monatlich" },
+      { type: "p", parts: ["Angenommen, der Arbeitgeber trägt davon in diesem vereinfachten Beispiel die Hälfte."] },
+      { type: "p", parts: ["Dein Anteil:"] },
+      { type: "standalone", text: "400 Euro monatlich" },
+      { type: "p", parts: ["beziehungsweise:"] },
+      { type: "standalone", text: "4.800 Euro jährlich." },
+      { type: "h3", text: "Tarif B" },
+      { type: "p", parts: ["Beitrag:"] },
+      { type: "standalone", text: "730 Euro monatlich" },
+      { type: "p", parts: ["Dein angenommener Anteil:"] },
+      { type: "standalone", text: "365 Euro monatlich" },
+      { type: "p", parts: ["beziehungsweise:"] },
+      { type: "standalone", text: "4.380 Euro jährlich." },
+      { type: "p", parts: ["Du sparst beim eigenen Beitrag also:"] },
+      { type: "standalone", text: "420 Euro pro Jahr." },
+      { type: "p", parts: ["Dafür hast du jetzt aber:"] },
+      { type: "standalone", text: "900 Euro Selbstbehalt." },
+      { type: "p", parts: ["Im Jahr, in dem du den Selbstbehalt vollständig ausschöpfst, beträgt deine Belastung damit:"] },
+      { type: "standalone", text: "5.280 Euro." },
+      { type: "p", parts: ["Das wären in diesem vereinfachten Beispiel ", { b: "480 Euro mehr" }, " als bei Tarif A."] },
+      { type: "p", parts: ["Natürlich gelten in der Praxis Arbeitgeber-Höchstzuschüsse und die konkrete Zuschussfähigkeit des Beitrags."] },
+      { type: "p", parts: ["Aber das Prinzip ist entscheidend:"] },
+      {
+        type: "standalone",
+        text: "Ein Angestellter spart durch einen höheren Selbstbehalt häufig nur einen Teil der Beitragsreduzierung, trägt den zusätzlichen Selbstbehalt aber vollständig selbst.",
+      },
+      { type: "p", parts: ["Deshalb würde ich bei Angestellten bei hohen Selbstbehalten besonders genau rechnen."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr zur PKV als Arbeitnehmer findest du unter ",
+          { a: "Private Krankenversicherung für Angestellte", href: "/pkv-angestellte-kassel/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "selbstbehalt-selbststaendige",
+    heading: "Ist ein höherer Selbstbehalt für Selbstständige sinnvoller?",
+    blocks: [
+      { type: "p", parts: ["Für Selbstständige sieht die Rechnung anders aus."] },
+      { type: "p", parts: ["Sie tragen ihren PKV-Beitrag grundsätzlich selbst."] },
+      { type: "p", parts: ["Es gibt keinen normalen Arbeitgeber, der die Hälfte des Beitrags übernimmt."] },
+      { type: "p", parts: ["Dadurch kommt eine Beitragsreduzierung durch einen höheren Selbstbehalt vollständig beim Selbstständigen an."] },
+      { type: "p", parts: ["Beispiel:"] },
+      { type: "p", parts: ["Der Selbstbehalt steigt von:"] },
+      { type: "standalone", text: "600 auf 1.200 Euro." },
+      { type: "p", parts: ["Zusätzliches maximales Eigenrisiko:"] },
+      { type: "standalone", text: "600 Euro pro Jahr." },
+      { type: "p", parts: ["Dadurch reduziert sich der Versicherungsbeitrag um:"] },
+      { type: "standalone", text: "70 Euro monatlich." },
+      { type: "p", parts: ["Beitragsersparnis pro Jahr:"] },
+      { type: "standalone", text: "840 Euro." },
+      {
+        type: "p",
+        parts: [
+          "Für einen Selbstständigen kann diese Konstellation wirtschaftlich interessant sein, weil er 840 Euro sicheren Beitrag spart und dafür maximal 600 Euro zusätzlichen tariflichen Selbstbehalt übernimmt.",
+        ],
+      },
+      { type: "p", parts: ["Aber auch das ist noch keine vollständige Entscheidung."] },
+      { type: "p", parts: ["Beitragsrückerstattung, Steuer, Liquidität und die Tarifqualität gehören ebenfalls dazu."] },
+      { type: "p", parts: ["Vor allem musst du die 1.200 Euro jederzeit problemlos aus deinen Rücklagen zahlen können."] },
+      {
+        type: "p",
+        parts: ["Mehr zu dieser Zielgruppe findest du unter ", { a: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel/" }, "."],
+      },
+    ],
+  },
+  {
+    id: "effektivbeitrag",
+    heading: "Was bedeutet „Effektivbeitrag“?",
+    blocks: [
+      { type: "p", parts: ["Wenn zwei Tarife unterschiedliche Selbstbehalte haben, würde ich niemals nur den reinen Versicherungsbeitrag vergleichen."] },
+      { type: "p", parts: ["Eine konservative Rechnung kann so aussehen:"] },
+      { type: "standalone", text: "Monatsbeitrag + jährlicher Selbstbehalt ÷ 12" },
+      { type: "p", parts: ["Beispiel:"] },
+      { type: "p", parts: ["Tarifbeitrag:"] },
+      { type: "standalone", text: "650 Euro monatlich" },
+      { type: "p", parts: ["Selbstbehalt:"] },
+      { type: "standalone", text: "600 Euro jährlich" },
+      { type: "p", parts: ["600 Euro ÷ 12 = 50 Euro."] },
+      { type: "p", parts: ["Damit beträgt die mögliche monatliche Belastung bei vollständiger Ausschöpfung des Selbstbehalts rechnerisch:"] },
+      { type: "standalone", text: "700 Euro." },
+      { type: "p", parts: ["Das ist kein zusätzlicher Versicherungsbeitrag."] },
+      { type: "p", parts: ["Es ist lediglich eine sinnvolle Vergleichsgröße."] },
+      {
+        type: "p",
+        parts: [
+          "Bei Angestellten sollte für diese Rechnung nicht einfach der volle Tarifbeitrag verwendet werden, sondern der eigene Beitrag nach Arbeitgeberzuschuss plus der vollständig selbst zu tragende Selbstbehalt.",
+        ],
+      },
+      { type: "p", parts: ["Genau deshalb kann derselbe Tarif für einen Selbstständigen wirtschaftlich anders aussehen als für einen Angestellten."] },
+    ],
+  },
+  {
+    id: "selbstbehalt-beitragsrueckerstattung",
+    heading: "Selbstbehalt und Beitragsrückerstattung sind nicht dasselbe",
+    blocks: [
+      { type: "p", parts: ["Diese beiden Dinge werden häufig vermischt."] },
+      { type: "h3", text: "Selbstbehalt" },
+      { type: "p", parts: ["Der Selbstbehalt ist vertraglich vereinbart."] },
+      { type: "p", parts: ["Du trägst einen bestimmten Teil der Kosten grundsätzlich selbst."] },
+      { type: "h3", text: "Beitragsrückerstattung" },
+      {
+        type: "p",
+        parts: ["Eine Beitragsrückerstattung kann bei bestimmten Tarifen gezahlt werden, wenn du innerhalb eines Jahres keine oder nur bestimmte Versicherungsleistungen beanspruchst."],
+      },
+      { type: "p", parts: ["Manche Tarife kombinieren beides."] },
+      { type: "p", parts: ["Dann kann es passieren, dass du gleichzeitig:"] },
+      { type: "list", items: ["einen Selbstbehalt hast", "kleinere Rechnungen selbst bezahlst", "zusätzlich eine Beitragsrückerstattung erhalten kannst"] },
+      { type: "p", parts: ["Das kann attraktiv aussehen."] },
+      { type: "p", parts: ["Es macht die Rechnung aber auch komplexer."] },
+      {
+        type: "p",
+        parts: [
+          "Eine Senkung des Tarifbeitrags durch einen höheren Selbstbehalt kann außerdem die mögliche Beitragsrückerstattung beeinflussen, wenn diese beispielsweise in Monatsbeiträgen berechnet wird.",
+        ],
+      },
+      { type: "p", parts: ["Deshalb würde ich immer das Gesamtpaket vergleichen."] },
+    ],
+  },
+  {
+    id: "rechnungen-selbst-zahlen",
+    heading: "Wann sollte ich Rechnungen selbst zahlen?",
+    blocks: [
+      { type: "p", parts: ["Das ist eine andere Frage als der tarifliche Selbstbehalt."] },
+      {
+        type: "p",
+        parts: ["Auch ohne tariflichen Selbstbehalt kann es sinnvoll sein, kleinere Rechnungen nicht einzureichen, wenn dadurch eine attraktive Beitragsrückerstattung erhalten bleibt."],
+      },
+      { type: "p", parts: ["Das ist dann aber eine ", { b: "freiwillige wirtschaftliche Entscheidung" }, "."] },
+      { type: "p", parts: ["Beim tariflichen Selbstbehalt ist dagegen von vornherein vereinbart, welchen Teil der Kosten du selbst trägst."] },
+      { type: "p", parts: ["Beide Effekte sollten in einer PKV-Beratung sauber voneinander getrennt werden."] },
+      { type: "p", parts: ["Und ganz wichtig:"] },
+      {
+        type: "standalone",
+        text: "Eine mögliche Beitragsrückerstattung oder ein Selbstbehalt sollte niemals dazu führen, dass du medizinisch notwendige Behandlungen oder sinnvolle Vorsorge aufschiebst.",
+      },
+      { type: "p", parts: ["Gesundheit sollte nicht davon abhängen, ob man gerade noch 400 Euro Selbstbehalt „sparen“ möchte."] },
+    ],
+  },
+  {
+    id: "steuerliche-behandlung",
+    heading: "Wie wird der Selbstbehalt steuerlich behandelt?",
+    blocks: [
+      { type: "p", parts: ["Auch steuerlich solltest du Beitrag und Selbstbehalt nicht gleichsetzen."] },
+      {
+        type: "p",
+        parts: [
+          "Der Bundesfinanzhof hat entschieden, dass selbst getragene Krankheitskosten aufgrund eines vereinbarten Selbstbehalts ",
+          { b: "keine Krankenversicherungsbeiträge" },
+          " sind und deshalb nicht als entsprechende Sonderausgaben abgezogen werden können.",
+        ],
+      },
+      { type: "p", parts: ["Eine mögliche Berücksichtigung als außergewöhnliche Belastung unterliegt wiederum eigenen gesetzlichen Voraussetzungen."] },
+      { type: "p", parts: ["Das bedeutet:"] },
+      { type: "p", parts: ["Wenn du deinen Versicherungsbeitrag durch einen höheren Selbstbehalt reduzierst, verschiebt sich ein Teil deiner möglichen Belastung von:"] },
+      { type: "standalone", text: "Versicherungsbeitrag" },
+      { type: "p", parts: ["zu:"] },
+      { type: "standalone", text: "selbst getragenen Krankheitskosten." },
+      { type: "p", parts: ["Auch deshalb sollte eine reine Beitragsersparnis nicht isoliert betrachtet werden."] },
+      { type: "p", parts: ["Bei individuellen steuerlichen Fragen gehört die konkrete Situation natürlich zum Steuerberater."] },
+    ],
+  },
+  {
+    id: "selbstbehalt-reduzieren",
+    heading: "Kann ich meinen Selbstbehalt später wieder reduzieren?",
+    blocks: [
+      { type: "p", parts: ["Das ist einer der Punkte, den ich ", { b: "vor Vertragsabschluss" }, " prüfen würde."] },
+      { type: "p", parts: ["Denn eine Reduzierung des Selbstbehalts bedeutet aus Sicht des Versicherers:"] },
+      { type: "p", parts: ["Du möchtest künftig mehr Risiko auf den Versicherer übertragen."] },
+      { type: "p", parts: ["Damit handelt es sich grundsätzlich um eine Leistungsausweitung."] },
+      { type: "p", parts: ["Bei einer späteren Reduzierung des Selbstbehalts kann deshalb in vielen Tarifen erneut eine Gesundheitsprüfung erforderlich sein."] },
+      { type: "p", parts: ["Bei inzwischen aufgetretenen Erkrankungen kann eine Reduzierung dadurch schwieriger werden oder mit einem Risikozuschlag verbunden sein."] },
+      { type: "p", parts: ["Deshalb finde ich Tarife besonders interessant, bei denen der Selbstbehalt möglichst flexibel angepasst werden kann."] },
+      { type: "p", parts: ["Die Frage lautet vor Abschluss also nicht nur:"] },
+      { type: "standalone", text: "„Wie hoch ist der Selbstbehalt heute?“" },
+      { type: "p", parts: ["Sondern auch:"] },
+      { type: "standalone", text: "„Kann ich ihn später wieder reduzieren – und wenn ja, unter welchen Bedingungen?“" },
+      { type: "p", parts: ["Das ist ein Detail, das langfristig enorm wichtig werden kann."] },
+    ],
+  },
+  {
+    id: "versteckte-selbstbehalte",
+    heading: "Warum können versteckte Selbstbehalte problematischer sein?",
+    blocks: [
+      { type: "p", parts: ["Ein klar definierter Selbstbehalt von beispielsweise 600 Euro ist transparent."] },
+      { type: "p", parts: ["Du weißt:"] },
+      { type: "p", parts: ["Im ungünstigen Fall kann dieser Betrag auf dich zukommen."] },
+      { type: "p", parts: ["Schwieriger finde ich Tarife, bei denen Eigenanteile an vielen verschiedenen Stellen entstehen."] },
+      { type: "p", parts: ["Zum Beispiel:"] },
+      {
+        type: "list",
+        items: [
+          "nur 80 Prozent Erstattung bestimmter Leistungen",
+          "begrenzte Höchstbeträge",
+          "Preisverzeichnisse",
+          "Einschränkungen bei Heilmitteln",
+          "reduzierte Zahnleistungen",
+          "Begrenzung bestimmter Hilfsmittel",
+        ],
+      },
+      { type: "p", parts: ["Dann existiert möglicherweise gar kein großer, sichtbar ausgewiesener Selbstbehalt."] },
+      { type: "p", parts: ["Trotzdem können im Leistungsfall erhebliche Eigenkosten entstehen."] },
+      { type: "p", parts: ["Für mich gilt:"] },
+      { type: "standalone", text: "Ein transparenter Selbstbehalt ist leichter planbar als unklare Leistungslücken." },
+    ],
+  },
+  {
+    id: "wie-hoch-sollte-er-sein",
+    heading: "Wie hoch sollte der PKV-Selbstbehalt sein?",
+    blocks: [
+      { type: "p", parts: ["Darauf gibt es keine pauschale Zahl."] },
+      { type: "p", parts: ["Ich würde die Höhe anhand von fünf Fragen bestimmen."] },
+      { type: "h3", text: "1. Wie viel Beitrag spare ich wirklich?" },
+      { type: "p", parts: ["Nicht:"] },
+      { type: "p", parts: ["„Der Tarif kostet 70 Euro weniger.“"] },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "standalone", text: "Wie viel spare ich pro Jahr tatsächlich?" },
+      { type: "h3", text: "2. Wie stark steigt mein maximales Eigenrisiko?" },
+      {
+        type: "p",
+        parts: ["Steigt dein Selbstbehalt um 1.000 Euro, der Beitrag sinkt aber nur um 250 Euro im Jahr, wäre das für mich wirtschaftlich wenig überzeugend."],
+      },
+      { type: "h3", text: "3. Bin ich Angestellter oder Selbstständiger?" },
+      {
+        type: "p",
+        parts: ["Für Angestellte ist ein hoher Selbstbehalt oft weniger attraktiv, weil der Arbeitgeber am Beitrag beteiligt ist, am Selbstbehalt jedoch nicht."],
+      },
+      { type: "p", parts: ["Für Selbstständige kann eine höhere Selbstbeteiligung eher sinnvoll sein, weil die gesamte Beitragsersparnis bei ihnen ankommt."] },
+      { type: "h3", text: "4. Kann ich den Betrag jederzeit problemlos bezahlen?" },
+      { type: "p", parts: ["Ein Selbstbehalt gehört aus meiner Sicht nicht auf die Kreditkarte."] },
+      {
+        type: "p",
+        parts: [
+          "Wenn dich eine unerwartete Rechnung über 1.500 Euro finanziell aus der Bahn werfen würde, solltest du keinen Tarif wählen, bei dem genau dieses Eigenrisiko realistisch auftreten kann.",
+        ],
+      },
+      { type: "h3", text: "5. Kann ich den Selbstbehalt später flexibel reduzieren?" },
+      { type: "p", parts: ["Diese Frage wird häufig vergessen."] },
+      { type: "p", parts: ["Mit 30 Jahren und hohem Einkommen kann ein größerer Selbstbehalt problemlos erscheinen."] },
+      { type: "p", parts: ["Mit 50 Jahren, Familie oder gesundheitlichen Veränderungen kann die Situation anders aussehen."] },
+      { type: "p", parts: ["Deshalb ist Flexibilität für mich wichtiger als die letzten 15 Euro Beitragsersparnis."] },
+    ],
+  },
+  {
+    id: "drei-typische-situationen",
+    heading: "Drei typische Situationen",
+    blocks: [
+      { type: "h3", text: "Beispiel 1: Angestellter mit hohem Selbstbehalt" },
+      { type: "p", parts: ["Ein Angestellter könnte zwischen zwei Tarifen wählen."] },
+      { type: "p", parts: ["Tarif A hat einen moderaten Selbstbehalt."] },
+      { type: "p", parts: ["Tarif B spart 60 Euro Monatsbeitrag, verlangt dafür aber einen deutlich höheren Selbstbehalt."] },
+      {
+        type: "p",
+        parts: ["Von den 60 Euro Beitragsersparnis kommen bei hälftigem Arbeitgeberzuschuss vereinfacht möglicherweise nur rund 30 Euro beim Arbeitnehmer an."],
+      },
+      { type: "p", parts: ["Der zusätzliche Selbstbehalt liegt dagegen vollständig bei ihm."] },
+      {
+        type: "p",
+        parts: [{ b: "Meine Einschätzung:" }, " Genau rechnen. Der niedrigere Monatsbeitrag kann optisch attraktiver wirken, als er wirtschaftlich tatsächlich ist."],
+      },
+      { type: "h3", text: "Beispiel 2: Selbstständiger mit guten Rücklagen" },
+      { type: "p", parts: ["Ein wirtschaftlich stabiler Selbstständiger kann durch einen höheren Selbstbehalt 80 Euro Beitrag im Monat sparen."] },
+      { type: "p", parts: ["Das sind:"] },
+      { type: "standalone", text: "960 Euro im Jahr." },
+      { type: "p", parts: ["Das zusätzliche maximale Eigenrisiko gegenüber der Alternative beträgt beispielsweise 600 Euro."] },
+      {
+        type: "p",
+        parts: [{ b: "Meine Einschätzung:" }, " Kann wirtschaftlich sinnvoll sein, sofern Tarifqualität, Rücklagen und langfristige Flexibilität stimmen."],
+      },
+      { type: "h3", text: "Beispiel 3: Niedriger Beitrag, aber viele versteckte Eigenanteile" },
+      { type: "p", parts: ["Tarif A kostet 50 Euro weniger als Tarif B."] },
+      { type: "p", parts: ["Auf den ersten Blick wirkt Tarif A günstiger."] },
+      { type: "p", parts: ["Dann zeigt die Bedingungsanalyse:"] },
+      { type: "p", parts: ["Bei bestimmten Heilmitteln, Zahnersatz und weiteren Leistungen bestehen zusätzliche Begrenzungen."] },
+      {
+        type: "p",
+        parts: [{ b: "Meine Einschätzung:" }, " Nicht nur den offiziellen Selbstbehalt vergleichen. Die gesamten Bedingungen entscheiden darüber, wie hoch dein tatsächliches Eigenrisiko ist."],
+      },
+    ],
+  },
+  {
+    id: "selbstbehalt-oder-hoeherer-beitrag",
+    heading: "Selbstbehalt oder lieber höherer Beitrag?",
+    blocks: [
+      { type: "p", parts: ["Ich würde die Entscheidung nicht ideologisch treffen."] },
+      { type: "p", parts: ["Ein Selbstbehalt ist weder grundsätzlich gut noch schlecht."] },
+      { type: "p", parts: ["Er ist ein Werkzeug."] },
+      { type: "p", parts: ["Richtig eingesetzt kann er:"] },
+      {
+        type: "list",
+        items: ["deinen laufenden Beitrag reduzieren", "kleine Risiken sinnvoll bei dir belassen", "gerade für Selbstständige wirtschaftlich interessant sein"],
+      },
+      { type: "p", parts: ["Falsch eingesetzt kann er:"] },
+      {
+        type: "list",
+        items: [
+          "einen Tarif nur optisch billig machen",
+          "bei Angestellten den Arbeitgeberzuschuss unnötig reduzieren",
+          "hohe Eigenkosten verursachen",
+          "später schwer wieder reduzierbar sein",
+        ],
+      },
+      { type: "p", parts: ["Deshalb lautet meine Regel:"] },
+      {
+        type: "standalone",
+        text: "Versichere die Risiken, die du nicht sinnvoll selbst tragen kannst – und übernimm nur so viel Selbstbehalt, wie wirtschaftlich wirklich sinnvoll und dauerhaft tragbar ist.",
+      },
+    ],
+  },
+  {
+    id: "checkliste",
+    heading: "Meine Checkliste für den PKV-Selbstbehalt",
+    blocks: [
+      { type: "p", parts: ["Bevor du dich für einen Tarif entscheidest, würde ich diese Punkte beantworten:"] },
+      {
+        type: "list",
+        items: [
+          "1. Wie hoch ist der Selbstbehalt pro Jahr?",
+          "2. Gilt er für alle Leistungen oder nur bestimmte Bereiche?",
+          "3. Gibt es zusätzlich prozentuale Eigenanteile?",
+          "4. Gibt es indirekte oder versteckte Selbstbehalte?",
+          "5. Wie stark reduziert der Selbstbehalt tatsächlich meinen Beitrag?",
+          "6. Wie sieht die Rechnung im maximalen Leistungsjahr aus?",
+          "7. Wie wirkt sich mein Arbeitgeberzuschuss darauf aus?",
+          "8. Welche Beitragsrückerstattung ist vorgesehen?",
+          "9. Kann ich den Selbstbehalt später reduzieren?",
+          "10. Ist dafür eine neue Gesundheitsprüfung notwendig?",
+          "11. Kann ich den maximalen Eigenanteil jederzeit aus meinen Rücklagen zahlen?",
+          "12. Passt der Tarif auch ohne die reine Beitragsersparnis zu meinen Leistungsanforderungen?",
+        ],
+      },
+      { type: "p", parts: ["Wenn diese Fragen sauber beantwortet sind, wird die Entscheidung deutlich einfacher."] },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

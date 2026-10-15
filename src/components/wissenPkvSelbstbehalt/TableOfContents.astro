@@ -1,0 +1,49 @@
+---
+const entries = [
+  { id: "wichtigstes-in-kuerze", label: "Das Wichtigste zum PKV-Selbstbehalt in Kürze" },
+  { id: "was-ist-ein-selbstbehalt", label: "Was ist ein Selbstbehalt in der PKV?" },
+  { id: "arten-von-selbstbehalt", label: "Welche Arten von Selbstbehalt gibt es?" },
+  { id: "maximale-hoehe-gesetzlich", label: "Wie hoch darf der Selbstbehalt maximal sein?" },
+  { id: "warum-senkt-selbstbehalt-beitrag", label: "Warum senkt ein Selbstbehalt den PKV-Beitrag?" },
+  { id: "tarife-vergleichen", label: "So vergleichst du PKV-Tarife mit unterschiedlichem Selbstbehalt" },
+  { id: "selbstbehalt-angestellte", label: "Warum ist der Selbstbehalt für Angestellte besonders wichtig?" },
+  { id: "selbstbehalt-selbststaendige", label: "Ist ein höherer Selbstbehalt für Selbstständige sinnvoller?" },
+  { id: "effektivbeitrag", label: "Was bedeutet „Effektivbeitrag“?" },
+  { id: "selbstbehalt-beitragsrueckerstattung", label: "Selbstbehalt und Beitragsrückerstattung sind nicht dasselbe" },
+  { id: "rechnungen-selbst-zahlen", label: "Wann sollte ich Rechnungen selbst zahlen?" },
+  { id: "steuerliche-behandlung", label: "Wie wird der Selbstbehalt steuerlich behandelt?" },
+  { id: "selbstbehalt-reduzieren", label: "Kann ich meinen Selbstbehalt später wieder reduzieren?" },
+  { id: "versteckte-selbstbehalte", label: "Warum können versteckte Selbstbehalte problematischer sein?" },
+  { id: "wie-hoch-sollte-er-sein", label: "Wie hoch sollte der PKV-Selbstbehalt sein?" },
+  { id: "drei-typische-situationen", label: "Drei typische Situationen" },
+  { id: "selbstbehalt-oder-hoeherer-beitrag", label: "Selbstbehalt oder lieber höherer Beitrag?" },
+  { id: "checkliste", label: "Meine Checkliste für den PKV-Selbstbehalt" },
+  { id: "fazit", label: "Fazit: Wie viel Selbstbehalt ist sinnvoll?" },
+  { id: "pkv-selbstbehalt-gemeinsam-pruefen", label: "PKV-Tarif und Selbstbehalt gemeinsam prüfen" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>

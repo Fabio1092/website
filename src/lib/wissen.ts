@@ -77,7 +77,7 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
     name: "Beiträge & Tarife",
     topics: [
       { label: "PKV Kosten", href: "/wissen/private-krankenversicherung/pkv-kosten/" },
-      { label: "Selbstbehalt" },
+      { label: "PKV Selbstbehalt", href: "/wissen/private-krankenversicherung/pkv-selbstbehalt/" },
       { label: "Beitragsentwicklung" },
       { label: "Tarifwechsel" },
     ],
@@ -130,6 +130,7 @@ export const pkvAvailableLinks: WissenLink[] = [
   { label: "Für wen lohnt sich die PKV?", href: "/wissen/private-krankenversicherung/fuer-wen-lohnt-sich-die-pkv/" },
   { label: "PKV Voraussetzungen", href: "/wissen/private-krankenversicherung/pkv-voraussetzungen/" },
   { label: "PKV Kosten", href: "/wissen/private-krankenversicherung/pkv-kosten/" },
+  { label: "PKV Selbstbehalt", href: "/wissen/private-krankenversicherung/pkv-selbstbehalt/" },
   { label: "Gesundheitsfragen bei der PKV", href: "/pkv-gesundheitsfragen/" },
   { label: "Risikovoranfrage zur PKV", href: "/pkv-risikovoranfrage/" },
   { label: "PKV für Angestellte", href: "/pkv-angestellte-kassel/" },

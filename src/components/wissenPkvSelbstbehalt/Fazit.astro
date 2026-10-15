@@ -1,0 +1,116 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const sources = [
+  "Schlemann: Glossar „Selbstbeteiligung oder Selbstbehalt“",
+  "Verband der Privaten Krankenversicherung (PKV-Verband): Der Selbstbehalt in der PKV",
+  "Gesetze im Internet: Versicherungsvertragsgesetz (VVG) § 193 Abs. 3 – Begrenzung des Selbstbehalts in der Krankheitskostenvollversicherung",
+  "Bundesfinanzhof, Urteil vom 01.06.2016, X R 43/14 – steuerliche Behandlung selbst getragener Krankheitskosten aufgrund eines Selbstbehalts",
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Fazit: Wie viel Selbstbehalt ist sinnvoll?
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Der Selbstbehalt kann ein sinnvoller Bestandteil einer privaten Krankenversicherung sein."]} />
+      <RichParagraph parts={["Aber:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">
+        Je höher der Selbstbehalt, desto besser ist der Tarif nicht automatisch.
+      </p>
+      <RichParagraph
+        parts={["Für Angestellte würde ich besonders genau prüfen, weil der Arbeitgeber zwar den PKV-Beitrag bezuschusst, aber nicht die selbst getragenen Krankheitskosten."]}
+      />
+      <RichParagraph
+        parts={["Bei Selbstständigen kann ein höherer Selbstbehalt wirtschaftlich interessanter sein, wenn die Beitragsersparnis das zusätzliche Risiko sinnvoll kompensiert und ausreichende Rücklagen vorhanden sind."]}
+      />
+      <RichParagraph parts={["Entscheidend ist am Ende nicht der niedrigste Monatsbeitrag."]} />
+      <RichParagraph parts={["Entscheidend ist:"]} />
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Was kostet mich der Tarif realistisch insgesamt – und wie viel finanzielles Risiko übernehme ich dafür selbst?
+        </p>
+      </div>
+
+      <RichParagraph
+        parts={[
+          "Wenn du zunächst verstehen möchtest, wie sich PKV-Beiträge generell zusammensetzen, findest du dazu meinen Artikel ",
+          { a: "Was kostet eine private Krankenversicherung?", href: "/wissen/private-krankenversicherung/pkv-kosten/" },
+          ".",
+        ]}
+      />
+      <RichParagraph
+        parts={[
+          "Grundlagen zur Funktionsweise findest du unter ",
+          { a: "Wie funktioniert die private Krankenversicherung?", href: "/wissen/private-krankenversicherung/wie-funktioniert-die-pkv/" },
+          ".",
+        ]}
+      />
+    </div>
+  </div>
+</section>
+
+<section id="pkv-selbstbehalt-gemeinsam-pruefen" class="scroll-mt-24 bg-brand-50/30 py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      PKV-Tarif und Selbstbehalt gemeinsam prüfen
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph
+        parts={["Wenn du herausfinden möchtest, welcher Selbstbehalt für deine Situation sinnvoll ist, sollte die Entscheidung nicht isoliert getroffen werden."]}
+      />
+      <RichParagraph parts={["Ich schaue mit dir gemeinsam auf:"]} />
+
+      <ul class="space-y-2">
+        {
+          [
+            "Beitrag",
+            "Selbstbehalt",
+            "Arbeitgeberzuschuss",
+            "Beitragsrückerstattung",
+            "Versicherungsbedingungen",
+            "langfristige Flexibilität",
+            "deine persönliche finanzielle Situation",
+          ].map((item) => (
+            <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Mein Standort ist Kassel und mein regionaler Schwerpunkt liegt in Nordhessen."]} />
+      <RichParagraph parts={["Die Beratung ist persönlich vor Ort in Kassel oder digital möglich."]} />
+      <RichParagraph parts={[{ a: "Mehr zur PKV-Beratung in Kassel", href: "/private-krankenversicherung-kassel/" }]} />
+    </div>
+
+    <div class="mt-14 border-t border-black/5 pt-8">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Quellen und weiterführende Informationen</p>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/60">
+        Für diesen Artikel wurden insbesondere folgende Fachquelle, Primärquellen und gesetzlichen Grundlagen
+        berücksichtigt:
+      </p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-ink-700/60">{source}</li>
+          ))
+        }
+      </ul>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Stand der gesetzlichen Angaben und Beispielwerte: Oktober 2026.</p>
+    </div>
+
+    <div class="mt-10 border-t border-black/5 pt-8">
+      <RichParagraph
+        parts={["Zurück zum ", { a: "PKV-Wissen", href: "/wissen/private-krankenversicherung/" }]}
+        class="text-sm font-semibold text-ink-700/85"
+      />
+    </div>
+  </div>
+</section>
