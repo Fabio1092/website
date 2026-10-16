@@ -1,0 +1,53 @@
+---
+const entries = [
+  { id: "wichtigstes-in-kuerze", label: "Das Wichtigste zum PKV-Tarifwechsel nach § 204 VVG" },
+  { id: "was-ist-ein-tarifwechsel", label: "Was ist ein Tarifwechsel nach § 204 VVG?" },
+  { id: "tarifwechsel-vs-versichererwechsel", label: "Tarifwechsel oder Versichererwechsel: Wo liegt der Unterschied?" },
+  { id: "alterungsrueckstellungen", label: "Was passiert mit meinen Alterungsrückstellungen?" },
+  { id: "neue-gesundheitspruefung", label: "Muss ich beim Tarifwechsel eine neue Gesundheitsprüfung machen?" },
+  { id: "was-ist-eine-mehrleistung", label: "Was bedeutet „Mehrleistung“ beim Tarifwechsel?" },
+  { id: "gesundheitszustand-verschlechtert", label: "Was passiert, wenn mein Gesundheitszustand schlechter geworden ist?" },
+  { id: "risikozuschlag-ausschluss-wartezeit", label: "Risikozuschlag, Leistungsausschluss oder Wartezeit?" },
+  { id: "einfaches-beispiel", label: "Ein einfaches Beispiel" },
+  { id: "gleichartiger-versicherungsschutz", label: "Was bedeutet „gleichartiger Versicherungsschutz“?" },
+  { id: "wann-sinnvoll", label: "Wann kann ein PKV-Tarifwechsel sinnvoll sein?" },
+  { id: "hinweispflicht-versicherer", label: "Muss mein Versicherer mich auf einen Tarifwechsel hinweisen?" },
+  { id: "guenstigster-tarif-nicht-automatisch-beste", label: "Warum der günstigste Tarif nicht automatisch der beste ist" },
+  { id: "spaeter-zurueckwechseln", label: "Was passiert, wenn ich später wieder zurück möchte?" },
+  { id: "leistungen-vergleichen", label: "Welche Leistungen sollte ich vor einem Tarifwechsel vergleichen?" },
+  { id: "neuer-tarif-automatisch-besser", label: "Ist ein neuer Tarif automatisch besser kalkuliert?" },
+  { id: "bisex-unisex-wechsel", label: "Besonderheit: Wechsel von Bisex zu Unisex" },
+  { id: "ablauf-in-sechs-schritten", label: "Wie läuft ein Tarifwechsel nach § 204 VVG praktisch ab?" },
+  { id: "drei-typische-situationen", label: "Drei typische Tarifwechsel-Situationen" },
+  { id: "kosten-des-tarifwechsels", label: "Was kostet ein Tarifwechsel nach § 204 VVG?" },
+  { id: "wichtigster-rat", label: "Mein wichtigster Rat beim PKV-Tarifwechsel" },
+  { id: "checkliste", label: "Checkliste: Das würde ich vor einem Tarifwechsel prüfen" },
+  { id: "fazit", label: "Fazit: Wann lohnt sich ein Tarifwechsel nach § 204 VVG?" },
+  { id: "pkv-tarifmoeglichkeiten-pruefen", label: "Bestehende PKV und Tarifmöglichkeiten prüfen" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>

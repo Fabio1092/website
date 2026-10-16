@@ -1,0 +1,107 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const sources = [
+  "Versicherungsvertragsgesetz (VVG) § 204 – Tarifwechsel",
+  "Krankenversicherungsaufsichtsverordnung (KVAV) § 12 – Gleichartigkeit des Versicherungsschutzes",
+  "VVG-Informationspflichtenverordnung § 6 Abs. 2 – Hinweispflichten bei Prämienerhöhung und ab Vollendung des 60. Lebensjahres",
+  "Verband der Privaten Krankenversicherung (PKV-Verband): Tarifwechsel-Leitlinien",
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Fazit: Wann lohnt sich ein Tarifwechsel nach § 204 VVG?
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Der interne Tarifwechsel ist eines der wichtigsten Rechte privat Krankenversicherter."]} />
+      <RichParagraph
+        parts={["Gerade wenn dein Beitrag stark gestiegen ist oder dein heutiger Tarif nicht mehr zu deiner Situation passt, solltest du nicht automatisch die gesamte Versicherungsgesellschaft wechseln."]}
+      />
+      <RichParagraph
+        parts={["§ 204 VVG ermöglicht dir, innerhalb deines bestehenden Versicherers andere Tarife zu prüfen und dabei erworbene Rechte sowie Alterungsrückstellungen anzurechnen."]}
+      />
+      <RichParagraph parts={["Der entscheidende Vorteil:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">
+        Dein heutiger Gesundheitszustand führt nicht automatisch dazu, dass dein kompletter Versicherungsschutz neu geprüft wird.
+      </p>
+      <RichParagraph parts={["Erst bei zusätzlichen Leistungen kann eine Risikoprüfung relevant werden."]} />
+      <RichParagraph parts={["Gleichzeitig solltest du die Möglichkeit nicht nur als Sparinstrument verstehen."]} />
+      <RichParagraph parts={["Ein niedrigerer Beitrag ist nur dann ein gutes Ergebnis, wenn der Versicherungsschutz weiterhin zu dir passt."]} />
+      <RichParagraph parts={["Für mich lautet deshalb die entscheidende Frage:"]} />
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Was spare ich – und was gebe ich dafür auf?
+        </p>
+      </div>
+
+      <RichParagraph
+        parts={["Wenn diese beiden Seiten sauber geprüft werden, kann ein Tarifwechsel nach § 204 VVG eine sehr sinnvolle Möglichkeit sein, eine bestehende PKV langfristig zu optimieren."]}
+      />
+    </div>
+  </div>
+</section>
+
+<section id="pkv-tarifmoeglichkeiten-pruefen" class="scroll-mt-24 bg-brand-50/30 py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Bestehende PKV und Tarifmöglichkeiten prüfen
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph
+        parts={["Wenn du bereits privat krankenversichert bist und deinen Tarif prüfen möchtest, schaue ich mit dir nicht nur auf die mögliche Beitragsersparnis."]}
+      />
+      <RichParagraph parts={["Entscheidend sind unter anderem:"]} />
+
+      <ul class="space-y-2">
+        {
+          [
+            "dein heutiger Versicherungsschutz",
+            "mögliche Tarifalternativen",
+            "Mehr- und Minderleistungen",
+            "Selbstbehalt",
+            "Beitragsentwicklung",
+            "mögliche Gesundheitsprüfung bei Mehrleistungen",
+            "langfristige Auswirkungen eines Wechsels",
+          ].map((item) => (
+            <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Mein Standort ist Kassel und mein regionaler Schwerpunkt liegt in Nordhessen."]} />
+      <RichParagraph parts={["Die Beratung ist persönlich vor Ort in Kassel oder digital möglich."]} />
+      <RichParagraph parts={[{ a: "Mehr zur PKV-Beratung in Kassel", href: "/private-krankenversicherung-kassel/" }]} />
+    </div>
+
+    <div class="mt-14 border-t border-black/5 pt-8">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Quellen und weiterführende Informationen</p>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/60">
+        Für diesen Artikel wurden insbesondere folgende Primärquellen und gesetzlichen Grundlagen
+        berücksichtigt:
+      </p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-ink-700/60">{source}</li>
+          ))
+        }
+      </ul>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Stand der gesetzlichen Angaben: Oktober 2026.</p>
+    </div>
+
+    <div class="mt-10 border-t border-black/5 pt-8">
+      <RichParagraph
+        parts={["Zurück zum ", { a: "PKV-Wissen", href: "/wissen/private-krankenversicherung/" }]}
+        class="text-sm font-semibold text-ink-700/85"
+      />
+    </div>
+  </div>
+</section>

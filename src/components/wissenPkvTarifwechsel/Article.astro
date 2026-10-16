@@ -1,0 +1,597 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  { type: "standalone", text: "Muss ich jetzt den Versicherer wechseln?" },
+  { type: "p", parts: ["Nicht unbedingt."] },
+  { type: "p", parts: ["Bevor du eine bestehende PKV kündigst, gibt es eine Möglichkeit, die viele Versicherte nicht ausreichend kennen:"] },
+  { type: "standalone", text: "den internen Tarifwechsel nach § 204 Versicherungsvertragsgesetz." },
+  { type: "p", parts: ["Dabei verlässt du deine Versicherungsgesellschaft nicht."] },
+  { type: "p", parts: ["Stattdessen wechselst du innerhalb deines bestehenden Versicherers in einen anderen Tarif."] },
+  {
+    type: "p",
+    parts: [
+      "Das kann interessant sein, wenn dein heutiger Beitrag nicht mehr zu deiner Situation passt, wenn sich deine Anforderungen verändert haben oder wenn innerhalb deines Versicherers andere Tarifoptionen existieren.",
+    ],
+  },
+  { type: "p", parts: ["Der große Unterschied zu einem kompletten Versichererwechsel:"] },
+  { type: "standalone", text: "Deine bisher erworbenen Rechte und deine Alterungsrückstellungen werden beim internen Tarifwechsel berücksichtigt." },
+  { type: "p", parts: ["Eine komplette neue Gesundheitsprüfung ist ebenfalls nicht automatisch notwendig."] },
+  { type: "p", parts: ["Aber genau hier steckt der Teufel im Detail."] },
+  {
+    type: "p",
+    parts: [
+      "Denn sobald der neue Tarif bessere oder umfassendere Leistungen enthält, gelten andere Regeln. Und ein Tarif mit niedrigerem Beitrag kann gleichzeitig an wichtigen Stellen schlechtere Leistungen haben.",
+    ],
+  },
+  { type: "p", parts: ["Deshalb sollte die Frage nicht lauten:"] },
+  { type: "standalone", text: "„Welcher Tarif ist am billigsten?“" },
+  { type: "p", parts: ["Sondern:"] },
+  { type: "standalone", text: "„Welcher Tarif verbessert meine Situation, ohne dass ich dafür an der falschen Stelle Versicherungsschutz aufgebe?“" },
+];
+
+const sections: Section[] = [
+  {
+    id: "wichtigstes-in-kuerze",
+    heading: "Das Wichtigste zum PKV-Tarifwechsel nach § 204 VVG",
+    blocks: [
+      { type: "p", parts: ["Ein interner PKV-Tarifwechsel bedeutet:"] },
+      {
+        type: "list",
+        items: [
+          "du bleibst bei deinem bisherigen Versicherungsunternehmen",
+          "dein bestehender Vertrag wird nicht einfach wie bei einem Versichererwechsel beendet",
+          "erworbene Rechte und Alterungsrückstellungen werden angerechnet",
+          "ein Tarifwechsel kann grundsätzlich jederzeit beantragt werden",
+          "bei gleichem oder niedrigerem Leistungsniveau ist wegen einer zwischenzeitlichen Verschlechterung deines Gesundheitszustands grundsätzlich keine neue Risikoprüfung für die bisherigen Leistungen zulässig",
+          "bei Mehrleistungen kann der Versicherer eine Risikoprüfung durchführen",
+          "für Mehrleistungen können Risikozuschläge, Leistungsausschlüsse oder Wartezeiten relevant werden",
+          "auch die Reduzierung eines Selbstbehalts kann eine Mehrleistung darstellen",
+          "ein niedrigerer Beitrag bedeutet nicht automatisch einen besseren Tarif",
+          "Leistungsunterschiede sollten vor dem Wechsel detailliert verglichen werden",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "§ 204 VVG gibt Versicherten ausdrücklich das Recht, innerhalb ihres Versicherers in andere Tarife mit gleichartigem Versicherungsschutz zu wechseln und dabei die aus dem Vertrag erworbenen Rechte sowie die Alterungsrückstellung anrechnen zu lassen.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "was-ist-ein-tarifwechsel",
+    heading: "Was ist ein Tarifwechsel nach § 204 VVG?",
+    blocks: [
+      { type: "p", parts: ["Der Tarifwechsel nach § 204 VVG findet ", { b: "innerhalb derselben Versicherungsgesellschaft" }, " statt."] },
+      { type: "p", parts: ["Angenommen, du bist seit vielen Jahren bei Versicherer A privat krankenversichert."] },
+      { type: "p", parts: ["Dein Tarif kostet inzwischen beispielsweise 900 Euro im Monat."] },
+      { type: "p", parts: ["Innerhalb derselben Gesellschaft gibt es aber weitere Tarife mit anderen:"] },
+      { type: "list", items: ["Leistungen", "Selbstbehalten", "Tarifgenerationen", "Beiträgen", "Leistungssystemen"] },
+      { type: "p", parts: ["Dann kannst du prüfen lassen, ob ein Wechsel in einen dieser Tarife möglich und sinnvoll ist."] },
+      { type: "p", parts: ["Du wechselst also nicht von:"] },
+      { type: "standalone", text: "Versicherer A zu Versicherer B" },
+      { type: "p", parts: ["sondern beispielsweise von:"] },
+      { type: "standalone", text: "Tarif A1 zu Tarif A2 innerhalb desselben Versicherers." },
+      { type: "p", parts: ["Genau für diese interne Tarifumstellung schafft § 204 VVG einen gesetzlichen Anspruch."] },
+    ],
+  },
+  {
+    id: "tarifwechsel-vs-versichererwechsel",
+    heading: "Tarifwechsel oder Versichererwechsel: Wo liegt der Unterschied?",
+    blocks: [
+      { type: "p", parts: ["Diese beiden Dinge solltest du unbedingt auseinanderhalten."] },
+      { type: "h3", text: "Interner Tarifwechsel" },
+      { type: "p", parts: ["Du bleibst bei deiner bisherigen Versicherungsgesellschaft."] },
+      { type: "p", parts: ["Deine erworbenen Rechte und Alterungsrückstellungen werden im Rahmen des Tarifwechsels berücksichtigt."] },
+      { type: "h3", text: "Wechsel zu einem anderen Versicherer" },
+      { type: "p", parts: ["Du schließt einen Vertrag bei einer anderen Gesellschaft ab."] },
+      { type: "p", parts: ["Dann gelten unter anderem andere Regeln bei Gesundheitsprüfung, Annahme und Übertragung von Alterungsrückstellungen."] },
+      {
+        type: "p",
+        parts: ["Deshalb würde ich bei einer bestehenden PKV mit hohem Beitrag ", { b: "nicht automatisch zuerst über eine Kündigung nachdenken" }, "."],
+      },
+      { type: "p", parts: ["Gerade nach vielen Versicherungsjahren sollte zunächst geprüft werden, welche Möglichkeiten innerhalb der bestehenden Gesellschaft vorhanden sind."] },
+    ],
+  },
+  {
+    id: "alterungsrueckstellungen",
+    heading: "Was passiert mit meinen Alterungsrückstellungen?",
+    blocks: [
+      { type: "p", parts: ["Das ist einer der größten Vorteile des internen Tarifwechsels."] },
+      { type: "p", parts: ["§ 204 VVG sieht ausdrücklich vor, dass die aus dem bisherigen Vertrag erworbenen Rechte und die Alterungsrückstellung beim Wechsel angerechnet werden."] },
+      { type: "p", parts: ["Vereinfacht gesagt:"] },
+      { type: "p", parts: ["Du fängst innerhalb deiner Gesellschaft ", { b: "nicht wieder bei null an" }, "."] },
+      { type: "p", parts: ["Das ist besonders relevant, wenn du bereits seit vielen Jahren privat versichert bist."] },
+      {
+        type: "p",
+        parts: ["Denn über die Jahre wurden in deiner Krankenversicherung Alterungsrückstellungen aufgebaut, die dabei helfen sollen, altersbedingt steigende Gesundheitskosten zu finanzieren."],
+      },
+      {
+        type: "p",
+        parts: [
+          "Mehr zum grundsätzlichen System findest du unter ",
+          { a: "Wie funktioniert die private Krankenversicherung?", href: "/wissen/private-krankenversicherung/wie-funktioniert-die-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "neue-gesundheitspruefung",
+    heading: "Muss ich beim Tarifwechsel eine neue Gesundheitsprüfung machen?",
+    blocks: [
+      { type: "p", parts: ["Nicht automatisch."] },
+      { type: "p", parts: ["Und das ist einer der wichtigsten Vorteile des Tarifwechselrechts."] },
+      {
+        type: "p",
+        parts: [
+          "Wenn dein neuer Tarif keine besseren oder umfassenderen Leistungen bietet als dein bisheriger Schutz, kann der Versicherer nicht einfach deinen heutigen Gesundheitszustand komplett neu bewerten und daraus neue Zuschläge für deinen bisherigen Versicherungsschutz ableiten.",
+        ],
+      },
+      { type: "p", parts: ["Anders sieht es bei ", { b: "Mehrleistungen" }, " aus."] },
+      {
+        type: "p",
+        parts: ["Enthält der neue Tarif Leistungen, die dein bisheriger Tarif nicht oder nur in geringerem Umfang vorsieht, darf der Versicherer für genau diese Mehrleistungen eine Risikoprüfung durchführen."],
+      },
+    ],
+  },
+  {
+    id: "was-ist-eine-mehrleistung",
+    heading: "Was bedeutet „Mehrleistung“ beim Tarifwechsel?",
+    blocks: [
+      { type: "p", parts: ["Eine Mehrleistung liegt vereinfacht gesagt dann vor, wenn dir der neue Tarif an einer Stelle mehr Versicherungsschutz bietet als dein bisheriger Tarif."] },
+      { type: "p", parts: ["Zum Beispiel könnte der neue Tarif:"] },
+      {
+        type: "list",
+        items: [
+          "höhere Erstattungsgrenzen vorsehen",
+          "bessere Zahnleistungen bieten",
+          "umfangreichere stationäre Leistungen enthalten",
+          "zusätzliche Behandlungen einschließen",
+          "einen niedrigeren Selbstbehalt vorsehen",
+        ],
+      },
+      { type: "p", parts: ["Gerade der letzte Punkt wird häufig übersehen."] },
+      { type: "h3", text: "Auch ein niedrigerer Selbstbehalt kann eine Mehrleistung sein" },
+      { type: "p", parts: ["Angenommen, dein bisheriger Tarif hat:"] },
+      { type: "standalone", text: "1.500 Euro Selbstbehalt pro Jahr." },
+      { type: "p", parts: ["Im neuen Tarif möchtest du nur noch:"] },
+      { type: "standalone", text: "500 Euro Selbstbehalt." },
+      { type: "p", parts: ["Dann übernimmt der Versicherer künftig bis zu 1.000 Euro mehr Risiko."] },
+      { type: "p", parts: ["Auch eine solche Reduzierung des Selbstbehalts kann deshalb als Mehrleistung gelten und eine Risikoprüfung auslösen."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr zum Thema findest du unter ",
+          { a: "PKV Selbstbehalt: Wie hoch sollte er sein?", href: "/wissen/private-krankenversicherung/pkv-selbstbehalt/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "gesundheitszustand-verschlechtert",
+    heading: "Was passiert, wenn mein Gesundheitszustand schlechter geworden ist?",
+    blocks: [
+      { type: "p", parts: ["Genau hier zeigt sich der Wert des § 204 VVG."] },
+      { type: "p", parts: ["Nehmen wir an:"] },
+      { type: "p", parts: ["Du bist vor 15 Jahren gesund in die PKV eingetreten."] },
+      { type: "p", parts: ["Inzwischen hattest du beispielsweise mehrere Erkrankungen oder Behandlungen."] },
+      { type: "p", parts: ["Du möchtest jetzt in einen anderen Tarif deiner Gesellschaft wechseln."] },
+      {
+        type: "p",
+        parts: ["Solange du keine zusätzlichen Leistungen möchtest, ist dein heutiger Gesundheitszustand nicht einfach ein Grund dafür, deinen bereits bestehenden Versicherungsschutz komplett neu zu kalkulieren."],
+      },
+      { type: "p", parts: ["Erst wenn du im Zieltarif ", { b: "zusätzliche Leistungen" }, " möchtest, darf der Versicherer diese Mehrleistungen risikoprüfen."] },
+      { type: "p", parts: ["Das ist ein erheblicher Unterschied zu einem Neuabschluss bei einer anderen Gesellschaft."] },
+    ],
+  },
+  {
+    id: "risikozuschlag-ausschluss-wartezeit",
+    heading: "Risikozuschlag, Leistungsausschluss oder Wartezeit?",
+    blocks: [
+      { type: "p", parts: ["Enthält der neue Tarif Mehrleistungen, hat der Versicherer mehrere Möglichkeiten."] },
+      { type: "p", parts: ["§ 204 VVG erlaubt für diese Mehrleistungen insbesondere:"] },
+      { type: "list", items: ["einen angemessenen Risikozuschlag", "einen Leistungsausschluss", "gegebenenfalls eine Wartezeit"] },
+      { type: "p", parts: ["Wichtig ist eine besondere Regel:"] },
+      {
+        type: "p",
+        parts: [
+          "Wenn der Versicherer wegen einer Mehrleistung einen Risikozuschlag oder eine Wartezeit verlangt, kannst du nach § 204 VVG hinsichtlich dieser Mehrleistung stattdessen einen ",
+          { b: "Leistungsausschluss" },
+          " vereinbaren.",
+        ],
+      },
+      { type: "p", parts: ["Das bedeutet vereinfacht:"] },
+      { type: "p", parts: ["Dein bisheriger Versicherungsschutz bleibt bestehen."] },
+      { type: "p", parts: ["Nur die neue zusätzliche Leistung wird nicht oder nur unter den vereinbarten Bedingungen versichert."] },
+    ],
+  },
+  {
+    id: "einfaches-beispiel",
+    heading: "Ein einfaches Beispiel",
+    blocks: [
+      { type: "p", parts: ["Du hast aktuell:"] },
+      { type: "standalone", text: "80 Prozent Zahnersatz." },
+      { type: "p", parts: ["Der neue Tarif bietet:"] },
+      { type: "standalone", text: "90 Prozent Zahnersatz." },
+      { type: "p", parts: ["Die zusätzlichen zehn Prozent sind eine Mehrleistung."] },
+      { type: "p", parts: ["Der Versicherer könnte deshalb hinsichtlich dieser zusätzlichen Leistung prüfen, ob aufgrund deines heutigen Gesundheitszustands ein zusätzliches Risiko besteht."] },
+      { type: "p", parts: ["Wichtig:"] },
+      { type: "p", parts: ["Das bedeutet nicht, dass dein kompletter bestehender Vertrag neu geprüft wird."] },
+      { type: "p", parts: ["Es geht grundsätzlich um die ", { b: "zusätzliche Leistung" }, ", die du neu erhalten möchtest."] },
+    ],
+  },
+  {
+    id: "gleichartiger-versicherungsschutz",
+    heading: "Was bedeutet „gleichartiger Versicherungsschutz“?",
+    blocks: [
+      { type: "p", parts: ["§ 204 VVG erlaubt nicht automatisch den Wechsel in jedes beliebige Versicherungsprodukt."] },
+      { type: "p", parts: ["Das Gesetz spricht von Tarifen mit ", { b: "gleichartigem Versicherungsschutz" }, "."] },
+      { type: "p", parts: ["§ 12 der Krankenversicherungsaufsichtsverordnung konkretisiert das."] },
+      { type: "p", parts: ["Gleichartig sind grundsätzlich Tarife, die dieselben Leistungsbereiche umfassen und für die du versicherungsfähig bist."] },
+      { type: "p", parts: ["Dazu zählen beispielsweise Leistungsbereiche wie:"] },
+      {
+        type: "list",
+        items: ["ambulante Heilbehandlung", "stationäre Heilbehandlung", "Zahnbehandlung und Zahnersatz", "Krankentagegeld", "Kurleistungen", "Pflegeleistungen"],
+      },
+      { type: "p", parts: ["Es geht also nicht darum, innerhalb des Konzerns beliebige Versicherungsprodukte miteinander auszutauschen."] },
+      { type: "p", parts: ["Entscheidend ist die Gleichartigkeit des Versicherungsschutzes."] },
+    ],
+  },
+  {
+    id: "wann-sinnvoll",
+    heading: "Wann kann ein PKV-Tarifwechsel sinnvoll sein?",
+    blocks: [
+      { type: "p", parts: ["Es gibt mehrere typische Situationen."] },
+      { type: "h3", text: "Nach einer deutlichen Beitragserhöhung" },
+      { type: "p", parts: ["Dein Beitrag wurde erhöht und du möchtest wissen, ob es innerhalb deiner Gesellschaft Alternativen gibt."] },
+      { type: "p", parts: ["Dann kann ein Tarifwechsel eine Option sein."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr zu den Ursachen von Beitragsanpassungen findest du unter ",
+          { a: "PKV Beitragsentwicklung: Wie stark steigen die Beiträge?", href: "/wissen/private-krankenversicherung/pkv-beitragsentwicklung/" },
+          ".",
+        ],
+      },
+      { type: "h3", text: "Wenn der Beitrag langfristig zu hoch geworden ist" },
+      { type: "p", parts: ["Vielleicht passt dein Tarif grundsätzlich noch, aber der Beitrag belastet dein Budget inzwischen deutlich stärker."] },
+      { type: "p", parts: ["Dann sollte geprüft werden, ob sich der Beitrag reduzieren lässt, ohne dafür wichtige Leistungen aufzugeben."] },
+      { type: "h3", text: "Wenn sich deine Anforderungen geändert haben" },
+      { type: "p", parts: ["Ein Tarif, der mit 30 Jahren perfekt zu dir gepasst hat, muss mit 55 Jahren nicht zwangsläufig immer noch die beste Lösung sein."] },
+      { type: "p", parts: ["Entscheidend ist aber:"] },
+      { type: "standalone", text: "Nicht einfach Leistungen streichen, nur um kurzfristig Beitrag zu sparen." },
+      { type: "h3", text: "Im Hinblick auf den Ruhestand" },
+      { type: "p", parts: ["Gerade vor oder während des Ruhestands kann ein Tarifvergleich innerhalb der bestehenden Gesellschaft sinnvoll sein."] },
+      { type: "p", parts: ["Dabei sollte aber nicht nur auf die unmittelbare Beitragsersparnis geschaut werden."] },
+      { type: "p", parts: ["Leistungsumfang, Selbstbehalt und langfristige Finanzierbarkeit gehören gemeinsam in die Betrachtung."] },
+    ],
+  },
+  {
+    id: "hinweispflicht-versicherer",
+    heading: "Muss mein Versicherer mich auf einen Tarifwechsel hinweisen?",
+    blocks: [
+      { type: "p", parts: ["Bei einer Beitragsanpassung gibt es konkrete gesetzliche Informationspflichten."] },
+      { type: "p", parts: ["Bei einer Prämienerhöhung in der substitutiven privaten Krankenversicherung muss der Versicherer auf die Möglichkeit eines Tarifwechsels nach § 204 VVG hinweisen."] },
+      { type: "p", parts: ["Für Versicherte, die das ", { b: "60. Lebensjahr vollendet haben" }, ", gelten zusätzliche Informationspflichten."] },
+      {
+        type: "p",
+        parts: ["Der Versicherer muss geeignete Tarife mit gleichartigem Versicherungsschutz nennen, bei denen ein Tarifwechsel zu einer Beitragsreduzierung führen würde, und die entsprechenden Beiträge angeben."],
+      },
+      { type: "p", parts: ["Die Verordnung begrenzt die Darstellung auf höchstens zehn Tarife und verlangt außerdem Hinweise auf Standard- beziehungsweise Basistarif, soweit relevant."] },
+      { type: "p", parts: ["Trotzdem würde ich mich nicht darauf verlassen, dass ein automatisch zugesandter Vorschlag bereits die für dich beste Lösung darstellt."] },
+    ],
+  },
+  {
+    id: "guenstigster-tarif-nicht-automatisch-beste",
+    heading: "Warum der günstigste Tarif nicht automatisch der beste ist",
+    blocks: [
+      { type: "p", parts: ["Das ist aus meiner Sicht der wichtigste Punkt des gesamten Artikels."] },
+      { type: "p", parts: ["Nehmen wir an:"] },
+      { type: "p", parts: ["Dein aktueller Tarif kostet:"] },
+      { type: "standalone", text: "900 Euro." },
+      { type: "p", parts: ["Tarif B kostet:"] },
+      { type: "standalone", text: "720 Euro." },
+      { type: "p", parts: ["180 Euro Ersparnis pro Monat klingt stark."] },
+      { type: "p", parts: ["Das sind:"] },
+      { type: "standalone", text: "2.160 Euro pro Jahr." },
+      { type: "p", parts: ["Aber was ist, wenn Tarif B dafür beispielsweise:"] },
+      {
+        type: "list",
+        items: [
+          "schlechtere Hilfsmittelleistungen hat",
+          "Psychotherapie stärker begrenzt",
+          "höhere Eigenanteile enthält",
+          "beim Zahnersatz schlechter leistet",
+          "bei bestimmten Behandlungsmethoden Einschränkungen hat?",
+        ],
+      },
+      { type: "p", parts: ["Dann hast du zwar deinen Beitrag optimiert."] },
+      { type: "p", parts: ["Aber möglicherweise gleichzeitig deinen Versicherungsschutz verschlechtert."] },
+      { type: "p", parts: ["Und das Problem:"] },
+      { type: "standalone", text: "Leistungen, die du heute freiwillig aufgibst, bekommst du später nicht zwangsläufig ohne erneute Risikoprüfung zurück." },
+      { type: "p", parts: ["Genau deshalb sollte Tarifoptimierung niemals nur Beitragsoptimierung sein."] },
+    ],
+  },
+  {
+    id: "spaeter-zurueckwechseln",
+    heading: "Was passiert, wenn ich später wieder zurück möchte?",
+    blocks: [
+      { type: "p", parts: ["Dieser Punkt wird bei einem Tarifwechsel gerne übersehen."] },
+      { type: "p", parts: ["Angenommen, du wechselst heute bewusst in einen Tarif mit niedrigeren Leistungen."] },
+      { type: "p", parts: ["Einige Jahre später möchtest du die besseren Leistungen deines früheren Tarifs wieder haben."] },
+      { type: "p", parts: ["Dann können genau diese Leistungen aus Sicht des neuen Ausgangstarifs wieder ", { b: "Mehrleistungen" }, " sein."] },
+      { type: "p", parts: ["Damit kann erneut eine Risikoprüfung relevant werden."] },
+      { type: "p", parts: ["Deshalb würde ich einen Leistungsabbau nie ausschließlich nach dem Motto entscheiden:"] },
+      { type: "standalone", text: "„Das brauche ich heute sowieso nicht.“" },
+      { type: "p", parts: ["Die PKV ist langfristiger Versicherungsschutz."] },
+    ],
+  },
+  {
+    id: "leistungen-vergleichen",
+    heading: "Welche Leistungen sollte ich vor einem Tarifwechsel vergleichen?",
+    blocks: [
+      { type: "p", parts: ["Ich würde mindestens folgende Punkte gegenüberstellen:"] },
+      { type: "h3", text: "Ambulante Leistungen" },
+      { type: "p", parts: ["Zum Beispiel:"] },
+      { type: "list", items: ["ärztliche Behandlung", "Gebührenordnung", "Arzneimittel", "Heilmittel", "Hilfsmittel", "Psychotherapie"] },
+      { type: "h3", text: "Stationäre Leistungen" },
+      { type: "p", parts: ["Zum Beispiel:"] },
+      { type: "list", items: ["allgemeine Krankenhausleistungen", "Wahlleistungen", "privatärztliche Behandlung", "Unterbringung"] },
+      { type: "h3", text: "Zahn" },
+      { type: "p", parts: ["Zum Beispiel:"] },
+      { type: "list", items: ["Zahnbehandlung", "Zahnersatz", "Implantate", "Kieferorthopädie", "Erstattungsgrenzen"] },
+      { type: "h3", text: "Selbstbehalt" },
+      { type: "p", parts: ["Nicht nur:"] },
+      { type: "standalone", text: "„Wie hoch ist der Selbstbehalt?“" },
+      { type: "p", parts: ["Sondern auch:"] },
+      { type: "standalone", text: "„Auf welche Leistungsbereiche gilt er?“" },
+      { type: "h3", text: "Weitere Begrenzungen" },
+      { type: "p", parts: ["Zum Beispiel:"] },
+      { type: "list", items: ["Höchstbeträge", "Preisverzeichnisse", "offene oder geschlossene Leistungskataloge", "Staffelungen", "tarifliche Eigenanteile"] },
+      { type: "p", parts: ["Erst wenn diese Unterschiede sauber nebeneinanderliegen, kannst du beurteilen, ob die Beitragsersparnis tatsächlich sinnvoll ist."] },
+    ],
+  },
+  {
+    id: "neuer-tarif-automatisch-besser",
+    heading: "Ist ein neuer Tarif automatisch besser kalkuliert?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Das würde ich niemals pauschal behaupten."] },
+      { type: "p", parts: ["Ein neuer Tarif kann interessante Leistungen oder eine andere Tarifstruktur haben."] },
+      { type: "p", parts: ["Aber:"] },
+      { type: "standalone", text: "„Neu“ bedeutet nicht automatisch „langfristig beitragsstabil“." },
+      { type: "p", parts: ["Genauso ist ein älterer Tarif nicht automatisch schlecht."] },
+      { type: "p", parts: ["Die bisherige Beitragsentwicklung kann ein Analysepunkt sein."] },
+      { type: "p", parts: ["Sie ist aber keine Garantie für die Zukunft."] },
+      { type: "p", parts: ["Deshalb sollten weder Tarifalter noch ein besonders niedriger aktueller Beitrag allein über einen Wechsel entscheiden."] },
+    ],
+  },
+  {
+    id: "bisex-unisex-wechsel",
+    heading: "Besonderheit: Wechsel von Bisex zu Unisex",
+    blocks: [
+      { type: "p", parts: ["Für Versicherte mit älteren Verträgen kann dieser Punkt relevant sein."] },
+      { type: "p", parts: ["Alte PKV-Tarife wurden teilweise noch geschlechtsabhängig kalkuliert."] },
+      { type: "p", parts: ["Spätere Tarife sind als sogenannte Unisex-Tarife kalkuliert."] },
+      { type: "p", parts: ["Ein Wechsel von einem alten Bisex-Tarif in einen Unisex-Tarif sollte besonders sorgfältig geprüft werden."] },
+      { type: "p", parts: ["Denn ein späterer Wechsel zurück in die alte Bisex-Tarifwelt ist rechtlich grundsätzlich nicht mehr möglich."] },
+      { type: "p", parts: ["Das heißt nicht:"] },
+      { type: "standalone", text: "„Nie in Unisex wechseln.“" },
+      { type: "p", parts: ["Es heißt:"] },
+      { type: "standalone", text: "Vorher die Konsequenzen kennen." },
+    ],
+  },
+  {
+    id: "ablauf-in-sechs-schritten",
+    heading: "Wie läuft ein Tarifwechsel nach § 204 VVG praktisch ab?",
+    blocks: [
+      { type: "p", parts: ["Ich würde den Prozess in sechs Schritte teilen."] },
+      { type: "h3", text: "1. Bestehenden Tarif analysieren" },
+      { type: "p", parts: ["Zuerst muss klar sein:"] },
+      { type: "p", parts: ["Was hast du aktuell überhaupt versichert?"] },
+      { type: "p", parts: ["Nicht nur der Beitrag zählt."] },
+      { type: "p", parts: ["Die Bedingungen sind die Ausgangsbasis."] },
+      { type: "h3", text: "2. Ziel definieren" },
+      { type: "p", parts: ["Was möchtest du erreichen?"] },
+      { type: "p", parts: ["Zum Beispiel:"] },
+      {
+        type: "list",
+        items: ["Beitrag reduzieren", "Selbstbehalt verändern", "Leistungen verbessern", "Tarifstruktur modernisieren", "Versicherung im Ruhestand tragfähiger gestalten"],
+      },
+      { type: "h3", text: "3. Tarifalternativen innerhalb des Versicherers prüfen" },
+      { type: "p", parts: ["Jetzt werden die relevanten Zieltarife derselben Gesellschaft betrachtet."] },
+      { type: "h3", text: "4. Leistungen gegenüberstellen" },
+      { type: "p", parts: ["Hier sollten Mehr- und Minderleistungen transparent sichtbar werden."] },
+      { type: "h3", text: "5. Gesundheitsprüfung nur bei notwendigen Mehrleistungen prüfen" },
+      { type: "p", parts: ["Enthält der Zieltarif Mehrleistungen, sollte vor einer endgültigen Entscheidung geklärt werden:"] },
+      {
+        type: "list",
+        items: [
+          "Welche Leistungen gelten konkret als Mehrleistung?",
+          "Für welche davon verlangt der Versicherer Gesundheitsangaben?",
+          "Gibt es einen Risikozuschlag?",
+          "Gibt es einen Leistungsausschluss?",
+          "Kann auf die Mehrleistung verzichtet werden?",
+        ],
+      },
+      { type: "h3", text: "6. Erst danach Tarifwechsel erklären" },
+      { type: "p", parts: ["Nicht umgekehrt."] },
+      { type: "p", parts: ["Erst wenn Beitrag, Leistung und mögliche Risikoprüfung geklärt sind, würde ich die tatsächliche Umstellung durchführen."] },
+    ],
+  },
+  {
+    id: "drei-typische-situationen",
+    heading: "Drei typische Tarifwechsel-Situationen",
+    blocks: [
+      { type: "h3", text: "Beispiel 1: Ähnliches Leistungsniveau, niedrigerer Beitrag" },
+      { type: "p", parts: ["Dein bestehender Tarif ist deutlich teurer geworden."] },
+      { type: "p", parts: ["Ein anderer Tarif derselben Gesellschaft bietet ein vergleichbares Leistungsniveau zu einem niedrigeren Beitrag."] },
+      { type: "p", parts: ["Enthält der Zieltarif keine relevanten Mehrleistungen, kann ein solcher Wechsel sehr interessant sein."] },
+      {
+        type: "p",
+        parts: [{ b: "Meine Einschätzung:" }, " Genau prüfen. Das ist der klassische Fall, in dem § 204 VVG einen großen Vorteil bieten kann."],
+      },
+      { type: "h3", text: "Beispiel 2: Niedrigerer Beitrag durch deutlichen Leistungsabbau" },
+      { type: "p", parts: ["Du kannst 200 Euro monatlich sparen."] },
+      { type: "p", parts: ["Dafür verschlechterst du aber mehrere wichtige Leistungen."] },
+      {
+        type: "p",
+        parts: [
+          { b: "Meine Einschätzung:" },
+          " Nicht allein wegen der Ersparnis wechseln. Prüfe zuerst, welche Rechte du später möglicherweise nur noch mit Gesundheitsprüfung zurückbekommst.",
+        ],
+      },
+      { type: "h3", text: "Beispiel 3: Neuer Tarif mit besseren Leistungen" },
+      { type: "p", parts: ["Der neue Tarif ist attraktiv und bietet an mehreren Stellen besseren Schutz."] },
+      {
+        type: "p",
+        parts: [{ b: "Meine Einschätzung:" }, " Gute Option, aber Mehrleistungen identifizieren und vor dem Wechsel klären, welche Gesundheitsprüfung dafür erforderlich ist."],
+      },
+    ],
+  },
+  {
+    id: "kosten-des-tarifwechsels",
+    heading: "Was kostet ein Tarifwechsel nach § 204 VVG?",
+    blocks: [
+      { type: "p", parts: ["Das gesetzliche Tarifwechselrecht selbst ist kein Neuabschluss bei einer neuen Versicherungsgesellschaft."] },
+      { type: "p", parts: ["Wenn du deinen Versicherer direkt zu Tarifalternativen befragst, entstehen nicht automatisch Kosten für einen externen Tarifwechselberater."] },
+      { type: "p", parts: ["Externe Berater oder spezialisierte Dienstleister können dagegen unterschiedliche Vergütungsmodelle haben."] },
+      { type: "p", parts: ["Zum Beispiel:"] },
+      { type: "list", items: ["feste Beratungsgebühr", "Honorar", "erfolgsabhängige Vergütung", "Beteiligung an der Beitragsersparnis"] },
+      { type: "p", parts: ["Wenn du externe Unterstützung nutzt, würde ich deshalb vorab klären:"] },
+      { type: "standalone", text: "Was kostet die Beratung insgesamt und wofür genau bezahlst du?" },
+    ],
+  },
+  {
+    id: "wichtigster-rat",
+    heading: "Mein wichtigster Rat beim PKV-Tarifwechsel",
+    blocks: [
+      { type: "p", parts: ["Optimiere nicht deinen Beitrag."] },
+      { type: "standalone", text: "Optimiere das Verhältnis aus Beitrag und Versicherungsschutz." },
+      { type: "p", parts: ["Das ist ein großer Unterschied."] },
+      { type: "p", parts: ["Eine PKV soll dich nicht nur in den nächsten zwölf Monaten begleiten."] },
+      { type: "p", parts: ["Im besten Fall begleitet sie dich über Jahrzehnte."] },
+      { type: "p", parts: ["Wenn du heute 150 Euro sparst, dafür aber langfristig relevante Leistungen aufgibst, kann das eine schlechte Entscheidung sein."] },
+      {
+        type: "p",
+        parts: [
+          "Wenn du dagegen innerhalb deiner Gesellschaft einen Tarif findest, der deine gewünschten Leistungen sinnvoll abbildet und gleichzeitig wirtschaftlich attraktiver ist, kann § 204 VVG ein sehr wertvolles Instrument sein.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "checkliste",
+    heading: "Checkliste: Das würde ich vor einem Tarifwechsel prüfen",
+    blocks: [
+      {
+        type: "list",
+        items: [
+          "1. Wie hoch ist mein aktueller Beitrag?",
+          "2. Welche Leistungen habe ich heute?",
+          "3. Welche Tarife stehen innerhalb meines Versicherers zur Verfügung?",
+          "4. Wie unterscheiden sich die Leistungen?",
+          "5. Welche Leistungen verliere ich?",
+          "6. Welche Leistungen kommen hinzu?",
+          "7. Gibt es Mehrleistungen mit Gesundheitsprüfung?",
+          "8. Ändert sich mein Selbstbehalt?",
+          "9. Gibt es neue Leistungsausschlüsse oder Risikozuschläge?",
+          "10. Wie hoch ist die tatsächliche Beitragsersparnis?",
+          "11. Wie sieht die bisherige Beitragsentwicklung der Tarife aus?",
+          "12. Wechsle ich von Bisex zu Unisex?",
+          "13. Kann ich später problemlos wieder auf ein höheres Leistungsniveau wechseln?",
+          "14. Passt der neue Tarif auch langfristig zu meiner Situation?",
+        ],
+      },
+      { type: "p", parts: ["Erst wenn diese Fragen beantwortet sind, würde ich eine Entscheidung treffen."] },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>
