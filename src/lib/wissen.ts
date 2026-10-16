@@ -102,7 +102,7 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
   {
     name: "Wechsel & langfristige Entscheidungen",
     topics: [
-      { label: "Wechsel in die PKV" },
+      { label: "Wechsel in die PKV", href: "/wissen/private-krankenversicherung/wechsel-in-die-pkv/" },
       { label: "Zurück in die GKV" },
       { label: "PKV im Alter" },
       { label: "Familienplanung & Kinder" },
@@ -133,6 +133,7 @@ export const pkvAvailableLinks: WissenLink[] = [
   { label: "PKV Selbstbehalt", href: "/wissen/private-krankenversicherung/pkv-selbstbehalt/" },
   { label: "PKV Beitragsentwicklung", href: "/wissen/private-krankenversicherung/pkv-beitragsentwicklung/" },
   { label: "PKV Tarifwechsel", href: "/wissen/private-krankenversicherung/pkv-tarifwechsel/" },
+  { label: "Wechsel in die PKV", href: "/wissen/private-krankenversicherung/wechsel-in-die-pkv/" },
   { label: "Gesundheitsfragen bei der PKV", href: "/pkv-gesundheitsfragen/" },
   { label: "Risikovoranfrage zur PKV", href: "/pkv-risikovoranfrage/" },
   { label: "PKV für Angestellte", href: "/pkv-angestellte-kassel/" },

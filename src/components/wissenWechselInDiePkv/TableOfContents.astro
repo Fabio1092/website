@@ -1,0 +1,56 @@
+---
+const entries = [
+  { id: "wichtigstes-in-kuerze", label: "Das Wichtigste zum Wechsel in die PKV in Kürze" },
+  { id: "schritt-1-darfst-du-wechseln", label: "Schritt 1: Darfst du überhaupt in die PKV wechseln?" },
+  { id: "wann-koennen-angestellte-wechseln", label: "Wann können Angestellte tatsächlich wechseln?" },
+  { id: "schritt-2-passt-pkv-zu-dir", label: "Schritt 2: Erst prüfen, ob die PKV langfristig zu dir passt" },
+  { id: "schritt-3-gesundheitshistorie", label: "Schritt 3: Gesundheitshistorie sauber aufarbeiten" },
+  { id: "welche-gesundheitsangaben", label: "Welche Gesundheitsangaben musst du machen?" },
+  { id: "patientenakten-pruefen", label: "Warum würde ich Patientenakten vorher prüfen?" },
+  { id: "schritt-4-risikovoranfrage", label: "Schritt 4: Bei Vorerkrankungen zuerst Risikovoranfrage" },
+  { id: "schritt-5-tarif-auswaehlen", label: "Schritt 5: Erst danach den PKV-Tarif auswählen" },
+  { id: "schritt-6-selbstbehalt", label: "Schritt 6: Den Selbstbehalt richtig festlegen" },
+  { id: "schritt-7-krankentagegeld", label: "Schritt 7: Krankentagegeld nicht vergessen" },
+  { id: "schritt-8-antrag", label: "Schritt 8: Jetzt wird der PKV-Antrag gestellt" },
+  { id: "schritt-9-gkv-nicht-voreilig-beenden", label: "Schritt 9: GKV nicht voreilig beenden" },
+  { id: "gkv-beenden", label: "Wie beendet man die GKV beim Wechsel zur PKV?" },
+  { id: "beispiel-jahresanfang-angestellter", label: "Beispiel: Wechsel zum Jahresanfang als Angestellter" },
+  { id: "beispiel-freiwillig-versicherter-angestellter", label: "Beispiel: Bereits freiwillig versicherter Angestellter" },
+  { id: "beispiel-selbststaendiger", label: "Beispiel: Selbstständiger" },
+  { id: "schritt-10-arbeitgeber-informieren", label: "Schritt 10: Arbeitgeber informieren" },
+  { id: "schritt-11-pflegepflichtversicherung", label: "Schritt 11: PKV und Pflegepflichtversicherung müssen zusammenpassen" },
+  { id: "wie-lange-dauert-wechsel", label: "Wie lange dauert der Wechsel in die PKV?" },
+  { id: "wie-lange-vorher-beginnen", label: "Wie lange vorher sollte ich mich mit der PKV beschäftigen?" },
+  { id: "antrag-abgelehnt", label: "Was passiert, wenn die PKV meinen Antrag ablehnt?" },
+  { id: "typische-fehler", label: "Welche Fehler sollte ich beim Wechsel vermeiden?" },
+  { id: "zurueck-in-die-gkv", label: "Kann ich später einfach wieder zurück in die GKV?" },
+  { id: "checkliste", label: "Meine Checkliste für den Wechsel in die PKV" },
+  { id: "fazit", label: "Fazit: So würde ich den Wechsel in die PKV angehen" },
+  { id: "wechsel-gemeinsam-vorbereiten", label: "Wechsel in die PKV gemeinsam vorbereiten" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>

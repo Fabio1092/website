@@ -1,0 +1,706 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  { type: "p", parts: ["Dann stellt sich irgendwann die praktische Frage:"] },
+  { type: "standalone", text: "Wie komme ich eigentlich sauber von der gesetzlichen in die private Krankenversicherung?" },
+  {
+    type: "p",
+    parts: ["Genau an dieser Stelle würde ich nicht einfach irgendeinen PKV-Antrag ausfüllen und anschließend sofort die gesetzliche Krankenkasse kündigen."],
+  },
+  { type: "p", parts: ["Die Reihenfolge ist wichtig."] },
+  { type: "p", parts: ["Denn vor dem eigentlichen Wechsel sollten unter anderem geklärt sein:"] },
+  {
+    type: "list",
+    items: [
+      "darfst du überhaupt in die PKV wechseln?",
+      "passt die PKV langfristig zu deiner Lebensplanung?",
+      "wie bewertet der Versicherer deine Gesundheitshistorie?",
+      "welcher Tarif passt zu deinen Anforderungen?",
+      "ab wann kann die private Krankenversicherung beginnen?",
+      "wann endet deine gesetzliche Krankenversicherung?",
+      "wie stellst du sicher, dass keine Versicherungslücke entsteht?",
+    ],
+  },
+  { type: "p", parts: ["Mein Grundsatz dabei ist:"] },
+  { type: "standalone", text: "Erst die PKV sauber prüfen und verbindlich absichern – danach den Austritt aus der GKV umsetzen." },
+];
+
+const sections: Section[] = [
+  {
+    id: "wichtigstes-in-kuerze",
+    heading: "Das Wichtigste zum Wechsel in die PKV in Kürze",
+    blocks: [
+      { type: "p", parts: ["Der Wechsel von der gesetzlichen in die private Krankenversicherung läuft nicht für jeden gleich ab."] },
+      { type: "p", parts: ["Entscheidend ist zunächst dein Versicherungs- und Berufsstatus."] },
+      { type: "p", parts: ["Grundsätzlich gilt:"] },
+      {
+        type: "list",
+        items: [
+          "Angestellte müssen für einen Wechsel versicherungsfrei sein",
+          "die allgemeine Jahresarbeitsentgeltgrenze liegt 2026 bei 77.400 Euro",
+          "Selbstständige und Beamte unterliegen anderen Voraussetzungen als Angestellte",
+          "vor einem Antrag sollte die Gesundheitshistorie sauber aufbereitet werden",
+          "bei Vorerkrankungen kann eine anonyme oder pseudonymisierte Risikovoranfrage sinnvoll sein",
+          "Gesundheitsfragen müssen vollständig und wahrheitsgemäß entsprechend der konkreten Fragestellung beantwortet werden",
+          "nicht nur Beitrag, sondern vor allem Leistungen und Bedingungen sollten verglichen werden",
+          "die GKV sollte nicht voreilig beendet werden",
+          "erst wenn der PKV-Schutz geklärt ist, wird der Wechsel terminlich mit der GKV abgestimmt",
+          "der Beginn der PKV sollte unmittelbar an das Ende der GKV anschließen",
+          "eine spätere Rückkehr von der PKV in die GKV ist nicht beliebig möglich",
+        ],
+      },
+      { type: "p", parts: ["Gerade der letzte Punkt ist wichtig:"] },
+      { type: "standalone", text: "Der Wechsel in die PKV ist keine Entscheidung, die du nur anhand des heutigen Monatsbeitrags treffen solltest." },
+      {
+        type: "p",
+        parts: [
+          "Mehr zur grundsätzlichen Entscheidung findest du unter ",
+          { a: "Für wen lohnt sich die PKV?", href: "/wissen/private-krankenversicherung/fuer-wen-lohnt-sich-die-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "schritt-1-darfst-du-wechseln",
+    heading: "Schritt 1: Darfst du überhaupt in die PKV wechseln?",
+    blocks: [
+      {
+        type: "p",
+        parts: ["Bevor wir über Versicherer, Tarife oder Gesundheitsfragen sprechen, muss zunächst geklärt werden, ob du überhaupt frei zwischen GKV und PKV wählen kannst."],
+      },
+      { type: "h3", text: "Angestellte" },
+      { type: "p", parts: ["Für Angestellte ist insbesondere die Jahresarbeitsentgeltgrenze relevant."] },
+      { type: "p", parts: ["2026 beträgt die allgemeine JAEG:"] },
+      { type: "standalone", text: "77.400 Euro pro Jahr." },
+      { type: "p", parts: ["Rechnerisch entspricht das:"] },
+      { type: "standalone", text: "6.450 Euro pro Monat." },
+      { type: "p", parts: ["Die monatliche Zahl ist allerdings nur eine Orientierung."] },
+      {
+        type: "p",
+        parts: [
+          "Entscheidend ist grundsätzlich das ",
+          { b: "regelmäßige Jahresarbeitsentgelt" },
+          " und dessen vorausschauende Bewertung – nicht die Frage, ob auf jeder einzelnen Gehaltsabrechnung exakt mindestens 6.450 Euro stehen.",
+        ],
+      },
+      {
+        type: "p",
+        parts: ["Für bestimmte Arbeitnehmer, die bereits am 31. Dezember 2002 privat versichert und aufgrund ihres Einkommens versicherungsfrei waren, gilt eine besondere niedrigere Jahresarbeitsentgeltgrenze."],
+      },
+      { type: "p", parts: ["Diese liegt 2026 bei:"] },
+      { type: "standalone", text: "69.750 Euro jährlich." },
+      {
+        type: "p",
+        parts: [
+          "Mehr zu diesem Thema findest du unter ",
+          { a: "PKV Voraussetzungen: Wer kann sich privat versichern?", href: "/wissen/private-krankenversicherung/pkv-voraussetzungen/" },
+          ".",
+        ],
+      },
+      { type: "h3", text: "Selbstständige" },
+      { type: "p", parts: ["Hauptberuflich Selbstständige sind grundsätzlich nicht aufgrund einer Beschäftigung in der GKV pflichtversichert."] },
+      { type: "p", parts: ["Dadurch besteht häufig die Möglichkeit, sich entweder freiwillig gesetzlich oder privat zu versichern."] },
+      { type: "p", parts: ["Ob die PKV deshalb automatisch sinnvoll ist, ist eine andere Frage."] },
+      { type: "p", parts: ["Gerade zu Beginn einer Selbstständigkeit würde ich darauf achten, dass Einkommen und Geschäftsmodell ausreichend stabil sind."] },
+      { type: "p", parts: ["Mehr dazu findest du unter ", { a: "PKV für Selbstständige", href: "/pkv-selbststaendige-kassel/" }, "."] },
+      { type: "h3", text: "Beamte" },
+      { type: "p", parts: ["Bei Beamten spielt neben der PKV insbesondere der jeweilige Beihilfeanspruch eine Rolle."] },
+      { type: "p", parts: ["Eine private Krankenversicherung deckt dann typischerweise den Teil der Krankheitskosten ab, der nicht über die Beihilfe abgesichert ist."] },
+      { type: "p", parts: ["Die konkrete Ausgestaltung hängt unter anderem vom Dienstherrn und den geltenden Beihilfevorschriften ab."] },
+      { type: "p", parts: ["Mehr dazu findest du unter ", { a: "PKV für Beamte", href: "/pkv-beamte-kassel/" }, "."] },
+    ],
+  },
+  {
+    id: "wann-koennen-angestellte-wechseln",
+    heading: "Wann können Angestellte tatsächlich wechseln?",
+    blocks: [
+      { type: "p", parts: ["Hier entstehen häufig Missverständnisse."] },
+      {
+        type: "p",
+        parts: ["Nur weil dein Gehalt heute die Jahresarbeitsentgeltgrenze überschreitet, bedeutet das nicht in jeder Situation, dass du morgen sofort die GKV verlassen kannst."],
+      },
+      { type: "h3", text: "Fall 1: Gehaltserhöhung im bestehenden Arbeitsverhältnis" },
+      { type: "p", parts: ["Du bist aktuell versicherungspflichtig beschäftigt."] },
+      { type: "p", parts: ["Während des Jahres steigt dein Gehalt so stark, dass dein regelmäßiges Jahresarbeitsentgelt die JAEG überschreitet."] },
+      { type: "p", parts: ["Dann endet die Versicherungspflicht grundsätzlich erst:"] },
+      { type: "standalone", text: "mit Ablauf des Kalenderjahres." },
+      { type: "p", parts: ["Zusätzlich muss dein Arbeitsentgelt auch die Jahresarbeitsentgeltgrenze übersteigen, die im ", { b: "folgenden Kalenderjahr" }, " gilt."] },
+      { type: "p", parts: ["Das ist wichtig."] },
+      { type: "p", parts: ["Wenn die JAEG zum nächsten Jahr steigt und dein Einkommen dann darunter liegt, wirst du nicht allein aufgrund der vorherigen Überschreitung versicherungsfrei."] },
+      { type: "h3", text: "Fall 2: Neue Beschäftigung oder Arbeitgeberwechsel" },
+      {
+        type: "p",
+        parts: ["Nimmst du eine neue Beschäftigung auf und liegt dein voraussichtliches regelmäßiges Jahresarbeitsentgelt bereits oberhalb der maßgeblichen JAEG, kann Versicherungsfreiheit bereits ab Beginn des neuen Beschäftigungsverhältnisses bestehen."],
+      },
+      { type: "p", parts: ["Das gilt entsprechend bei einem Arbeitgeberwechsel, wenn die Voraussetzungen erfüllt sind."] },
+      { type: "h3", text: "Fall 3: Du bist bereits freiwillig gesetzlich versichert" },
+      { type: "p", parts: ["Wenn du bereits freiwilliges Mitglied der GKV bist, besteht grundsätzlich keine Versicherungspflicht mehr, die erst beendet werden müsste."] },
+      { type: "p", parts: ["Dann kannst du grundsätzlich in die PKV wechseln."] },
+      { type: "p", parts: ["Allerdings müssen die Kündigungs- beziehungsweise Austrittsfristen deiner gesetzlichen Krankenversicherung berücksichtigt werden."] },
+      { type: "p", parts: ["Für die Kündigung einer freiwilligen Mitgliedschaft gilt grundsätzlich der Ablauf des übernächsten Kalendermonats."] },
+    ],
+  },
+  {
+    id: "schritt-2-passt-pkv-zu-dir",
+    heading: "Schritt 2: Erst prüfen, ob die PKV langfristig zu dir passt",
+    blocks: [
+      { type: "p", parts: ["Nur weil du in die PKV wechseln ", { b: "darfst" }, ", solltest du noch lange nicht automatisch wechseln."] },
+      { type: "p", parts: ["Das ist einer der wichtigsten Unterschiede."] },
+      { type: "p", parts: ["Die Frage:"] },
+      { type: "standalone", text: "„Kann ich in die PKV?“" },
+      { type: "p", parts: ["ist eine andere als:"] },
+      { type: "standalone", text: "„Sollte ich in die PKV?“" },
+      { type: "p", parts: ["Vor einem Wechsel würde ich deshalb mindestens folgende Themen betrachten:"] },
+      {
+        type: "list",
+        items: [
+          "Einkommen",
+          "berufliche Planung",
+          "Familienplanung",
+          "mögliche Kinder",
+          "Partner und dessen Versicherungsstatus",
+          "gewünschte medizinische Leistungen",
+          "langfristige Beitragsentwicklung",
+          "Rücklagen",
+          "Altersvorsorge",
+          "Bereitschaft, Rechnungen zunächst selbst zu bezahlen und einzureichen",
+        ],
+      },
+      { type: "p", parts: ["Besonders die Familienplanung wird häufig unterschätzt."] },
+      { type: "p", parts: ["In der PKV gibt es nicht automatisch die beitragsfreie Familienversicherung, die du aus der GKV kennst."] },
+      { type: "p", parts: ["Für Kinder oder einen nicht selbst versicherten Ehepartner kann deshalb eigener Versicherungsbedarf entstehen."] },
+      {
+        type: "p",
+        parts: ["Einen ausführlicheren Systemvergleich findest du unter ", { a: "GKV oder PKV?", href: "/wissen/private-krankenversicherung/gkv-oder-pkv/" }, "."],
+      },
+    ],
+  },
+  {
+    id: "schritt-3-gesundheitshistorie",
+    heading: "Schritt 3: Gesundheitshistorie sauber aufarbeiten",
+    blocks: [
+      { type: "p", parts: ["Bevor ich mit einem Kunden einen verbindlichen PKV-Antrag stelle, würde ich zuerst die Gesundheitshistorie aufarbeiten."] },
+      { type: "p", parts: ["Warum?"] },
+      { type: "p", parts: ["Weil der private Krankenversicherer deinen Gesundheitszustand bei Antragstellung bewerten darf."] },
+      { type: "p", parts: ["Dabei können je nach Ergebnis beispielsweise entstehen:"] },
+      {
+        type: "list",
+        items: ["normale Annahme", "Risikozuschlag", "Leistungsausschlüsse, soweit rechtlich und tariflich möglich", "Rückfragen", "Zurückstellung", "Ablehnung"],
+      },
+      { type: "p", parts: ["Welches Ergebnis entsteht, hängt unter anderem vom Versicherer, Tarif und den konkreten Vorerkrankungen ab."] },
+      { type: "p", parts: ["Deshalb würde ich niemals einfach aus dem Gedächtnis schnell ein paar Gesundheitsfragen beantworten."] },
+    ],
+  },
+  {
+    id: "welche-gesundheitsangaben",
+    heading: "Welche Gesundheitsangaben musst du machen?",
+    blocks: [
+      { type: "p", parts: ["Entscheidend sind die Gesundheitsfragen des jeweiligen Versicherers."] },
+      { type: "p", parts: ["Nach § 19 VVG musst du die dir bekannten gefahrerheblichen Umstände angeben, nach denen der Versicherer in Textform fragt."] },
+      { type: "p", parts: ["Auch Fragen des Versicherers nach deiner Vertragserklärung, aber vor Annahme, können relevant sein."] },
+      { type: "p", parts: ["Das bedeutet:"] },
+      { type: "p", parts: ["Du musst nicht wahllos deine komplette medizinische Lebensgeschichte erzählen."] },
+      { type: "p", parts: ["Du musst aber die ", { b: "gestellten Fragen vollständig und korrekt beantworten" }, "."] },
+      { type: "p", parts: ["Je nach Antrag können beispielsweise gefragt werden nach:"] },
+      {
+        type: "list",
+        items: [
+          "ambulanten Behandlungen",
+          "stationären Aufenthalten",
+          "Operationen",
+          "Medikamenten",
+          "Psychotherapie",
+          "Beschwerden",
+          "Untersuchungen",
+          "Diagnosen",
+          "geplanten Behandlungen",
+        ],
+      },
+      { type: "p", parts: ["und das innerhalb bestimmter Abfragezeiträume."] },
+      { type: "p", parts: ["Diese Zeiträume unterscheiden sich je nach Gesellschaft und Frage."] },
+      { type: "p", parts: ["Mehr dazu findest du unter ", { a: "PKV Gesundheitsfragen richtig beantworten", href: "/pkv-gesundheitsfragen/" }, "."] },
+    ],
+  },
+  {
+    id: "patientenakten-pruefen",
+    heading: "Warum würde ich Patientenakten vorher prüfen?",
+    blocks: [
+      { type: "p", parts: ["Menschen erinnern sich nicht immer exakt daran, was ein Arzt vor einigen Jahren dokumentiert oder abgerechnet hat."] },
+      { type: "p", parts: ["Das ist normal."] },
+      { type: "p", parts: ["Für einen Versicherungsantrag kann es trotzdem relevant sein."] },
+      { type: "p", parts: ["Deshalb kann es sinnvoll sein, vor der Antragstellung beispielsweise Unterlagen einzuholen von:"] },
+      { type: "list", items: ["Hausarzt", "Fachärzten", "Krankenhäusern", "Psychotherapeuten", "gesetzlicher Krankenkasse"] },
+      { type: "p", parts: ["Welche Unterlagen tatsächlich notwendig sind, hängt von deiner individuellen Vorgeschichte ab."] },
+      { type: "p", parts: ["Ziel ist nicht, möglichst viele Dokumente zu sammeln."] },
+      { type: "p", parts: ["Ziel ist:"] },
+      { type: "standalone", text: "Die gestellten Gesundheitsfragen korrekt beantworten zu können." },
+    ],
+  },
+  {
+    id: "schritt-4-risikovoranfrage",
+    heading: "Schritt 4: Bei Vorerkrankungen zuerst Risikovoranfrage",
+    blocks: [
+      { type: "p", parts: ["Wenn relevante Vorerkrankungen bestehen, würde ich häufig ", { b: "nicht sofort mehrere verbindliche PKV-Anträge stellen" }, "."] },
+      { type: "p", parts: ["Stattdessen kann eine anonyme oder pseudonymisierte Risikovoranfrage sinnvoll sein."] },
+      {
+        type: "p",
+        parts: ["Dabei wird deine gesundheitliche Situation ausgewählten Versicherern zur Einschätzung vorgelegt, ohne dass direkt ein normaler Antrag auf Versicherungsschutz gestellt wird."],
+      },
+      { type: "p", parts: ["So lässt sich beispielsweise herausfinden, welcher Versicherer:"] },
+      {
+        type: "list",
+        items: ["normal versichern würde", "einen Risikozuschlag verlangt", "Rückfragen stellt", "bestimmte Bedingungen verlangt", "den Antrag voraussichtlich nicht annehmen würde"],
+      },
+      { type: "p", parts: ["Das kann besonders wichtig sein, weil verschiedene Gesellschaften dieselbe Vorerkrankung unterschiedlich bewerten können."] },
+      { type: "p", parts: ["Mehr dazu findest du unter ", { a: "PKV Risikovoranfrage", href: "/pkv-risikovoranfrage/" }, "."] },
+      { type: "p", parts: ["Wichtig:"] },
+      { type: "p", parts: ["Eine Risikovoranfrage ist noch kein Versicherungsvertrag."] },
+      { type: "p", parts: ["Die endgültige Annahme erfolgt erst im Rahmen des tatsächlichen Antrags und auf Basis der dann vollständig vorliegenden Angaben."] },
+    ],
+  },
+  {
+    id: "schritt-5-tarif-auswaehlen",
+    heading: "Schritt 5: Erst danach den PKV-Tarif auswählen",
+    blocks: [
+      { type: "p", parts: ["Jetzt kommt der Punkt, an dem viele anfangen."] },
+      { type: "p", parts: ["Ich würde ihn deutlich später setzen."] },
+      { type: "p", parts: ["Nicht:"] },
+      { type: "standalone", text: "„Zeig mir mal die fünf günstigsten PKV-Tarife.“" },
+      { type: "p", parts: ["Sondern zuerst:"] },
+      { type: "standalone", text: "„Welche Versicherer kommen gesundheitlich infrage und welche Leistungen möchte ich langfristig versichert haben?“" },
+      { type: "p", parts: ["Erst dann würde ich Beiträge vergleichen."] },
+      { type: "p", parts: ["Zu den Punkten, die ich mir ansehen würde, gehören beispielsweise:"] },
+      { type: "h3", text: "Ambulante Leistungen" },
+      { type: "list", items: ["ärztliche Behandlung", "Gebührenordnung", "Medikamente", "Heilmittel", "Hilfsmittel", "Psychotherapie"] },
+      { type: "h3", text: "Stationäre Leistungen" },
+      { type: "list", items: ["Krankenhaus", "privatärztliche Behandlung", "Unterbringung", "besondere Behandlungsmethoden"] },
+      { type: "h3", text: "Zahnleistungen" },
+      { type: "list", items: ["Zahnbehandlung", "Zahnersatz", "Implantate", "Erstattungsgrenzen", "Leistungsstaffeln"] },
+      { type: "h3", text: "Weitere Punkte" },
+      {
+        type: "list",
+        items: [
+          "Selbstbehalt",
+          "Krankentagegeld",
+          "Beitragsrückerstattung",
+          "Optionsrechte",
+          "Auslandsleistungen",
+          "Beitragsentlastung im Alter",
+          "Tarifwechselmöglichkeiten",
+        ],
+      },
+      { type: "p", parts: ["Der Beitrag ist wichtig."] },
+      { type: "p", parts: ["Aber er ist nur ", { b: "ein" }, " Auswahlkriterium."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr zu konkreten Kosten findest du unter ",
+          { a: "Was kostet eine private Krankenversicherung?", href: "/wissen/private-krankenversicherung/pkv-kosten/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "schritt-6-selbstbehalt",
+    heading: "Schritt 6: Den Selbstbehalt richtig festlegen",
+    blocks: [
+      { type: "p", parts: ["Ein höherer Selbstbehalt kann deinen Versicherungsbeitrag reduzieren."] },
+      { type: "p", parts: ["Das bedeutet aber nicht automatisch, dass er wirtschaftlich sinnvoll ist."] },
+      { type: "p", parts: ["Gerade bei Angestellten solltest du beachten:"] },
+      { type: "p", parts: ["Der Arbeitgeber beteiligt sich grundsätzlich am zuschussfähigen Versicherungsbeitrag."] },
+      { type: "p", parts: ["Deinen Selbstbehalt trägst du dagegen selbst."] },
+      { type: "p", parts: ["Deshalb würde ich immer die Gesamtbelastung betrachten und nicht nur den Monatsbeitrag."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr dazu findest du unter ",
+          { a: "PKV Selbstbehalt: Wie hoch sollte er sein?", href: "/wissen/private-krankenversicherung/pkv-selbstbehalt/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "schritt-7-krankentagegeld",
+    heading: "Schritt 7: Krankentagegeld nicht vergessen",
+    blocks: [
+      { type: "p", parts: ["Ein Punkt, der beim Wechsel häufig zu wenig Aufmerksamkeit bekommt, ist das Krankentagegeld."] },
+      { type: "p", parts: ["Als gesetzlich versicherter Arbeitnehmer bist du an das System aus Entgeltfortzahlung und anschließendem Krankengeld gewöhnt."] },
+      { type: "p", parts: ["In der PKV muss die Absicherung eines länger dauernden Verdienstausfalls passend geplant werden."] },
+      { type: "p", parts: ["Dafür kann ein privates Krankentagegeld notwendig sein."] },
+      { type: "p", parts: ["Dabei müssen unter anderem zusammenpassen:"] },
+      { type: "list", items: ["Höhe des abgesicherten Einkommens", "Beginn des Krankentagegeldes", "Dauer der Lohnfortzahlung", "beruflicher Status"] },
+      { type: "p", parts: ["Gerade Selbstständige haben häufig einen anderen Absicherungsbedarf als Angestellte."] },
+      {
+        type: "p",
+        parts: ["Eine hochwertige Krankenvollversicherung ohne passende Absicherung des Einkommens bei längerer Arbeitsunfähigkeit wäre für mich deshalb nicht vollständig geplant."],
+      },
+    ],
+  },
+  {
+    id: "schritt-8-antrag",
+    heading: "Schritt 8: Jetzt wird der PKV-Antrag gestellt",
+    blocks: [
+      { type: "p", parts: ["Erst wenn"] },
+      {
+        type: "list",
+        items: [
+          "die grundsätzliche Eignung für die PKV geklärt ist",
+          "deine Gesundheitshistorie aufbereitet ist",
+          "mögliche Risikovoranfragen ausgewertet sind",
+          "Tarif und Leistungen feststehen",
+          "der gewünschte Versicherungsbeginn geklärt ist",
+        ],
+      },
+      { type: "p", parts: ["würde ich den tatsächlichen PKV-Antrag stellen."] },
+      { type: "p", parts: ["Ab diesem Punkt prüft die Gesellschaft verbindlich, ob und zu welchen Bedingungen sie Versicherungsschutz anbietet."] },
+      { type: "p", parts: ["Mögliche Ergebnisse sind beispielsweise:"] },
+      { type: "standalone", text: "Normale Annahme" },
+      { type: "p", parts: ["Der Versicherer nimmt dich zu den beantragten Bedingungen an."] },
+      { type: "standalone", text: "Annahme mit Risikozuschlag" },
+      { type: "p", parts: ["Der Versicherer verlangt aufgrund eines erhöhten gesundheitlichen Risikos einen zusätzlichen Beitrag."] },
+      { type: "standalone", text: "Rückfragen" },
+      { type: "p", parts: ["Der Versicherer benötigt weitere medizinische Informationen."] },
+      { type: "standalone", text: "Abweichendes Angebot" },
+      { type: "p", parts: ["Der Versicherer bietet Versicherungsschutz zu veränderten Bedingungen an."] },
+      { type: "p", parts: ["Erst wenn das Ergebnis vorliegt, weißt du wirklich, welche PKV du bekommen kannst."] },
+    ],
+  },
+  {
+    id: "schritt-9-gkv-nicht-voreilig-beenden",
+    heading: "Schritt 9: GKV nicht voreilig beenden",
+    blocks: [
+      { type: "p", parts: ["Das ist einer der wichtigsten praktischen Punkte."] },
+      { type: "p", parts: ["Ich würde die gesetzliche Krankenversicherung nicht einfach beenden und anschließend hoffen, dass der gewünschte PKV-Antrag angenommen wird."] },
+      { type: "p", parts: ["Die bessere Reihenfolge lautet:"] },
+      { type: "standalone", text: "1. PKV prüfen." },
+      { type: "standalone", text: "2. Gesundheit klären." },
+      { type: "standalone", text: "3. Antrag stellen." },
+      { type: "standalone", text: "4. Annahme beziehungsweise verbindlichen Versicherungsschutz erhalten." },
+      { type: "standalone", text: "5. Danach GKV-Austritt beziehungsweise Kündigung final koordinieren." },
+      { type: "p", parts: ["So vermeidest du unnötige Probleme bei der zeitlichen Abstimmung."] },
+      { type: "p", parts: ["In Deutschland besteht grundsätzlich die Pflicht, einen ausreichenden Krankenversicherungsschutz zu haben."] },
+      { type: "p", parts: ["Deshalb müssen Ende der GKV und Beginn der PKV lückenlos zusammenpassen."] },
+    ],
+  },
+  {
+    id: "gkv-beenden",
+    heading: "Wie beendet man die GKV beim Wechsel zur PKV?",
+    blocks: [
+      { type: "p", parts: ["Hier muss zwischen verschiedenen Situationen unterschieden werden."] },
+      { type: "h3", text: "Variante 1: Deine Versicherungspflicht endet gerade erst" },
+      { type: "p", parts: ["Wenn deine Versicherungspflicht endet, setzt sich deine bisherige GKV-Mitgliedschaft grundsätzlich automatisch als freiwillige Mitgliedschaft fort."] },
+      { type: "p", parts: ["Die Krankenkasse muss dich auf deine Austrittsmöglichkeit hinweisen."] },
+      {
+        type: "p",
+        parts: [
+          "Erklärst du innerhalb von ",
+          { b: "zwei Wochen nach diesem Hinweis" },
+          " deinen Austritt und weist eine anderweitige Absicherung im Krankheitsfall nach, kann die freiwillige Anschlussversicherung vermieden werden.",
+        ],
+      },
+      { type: "p", parts: ["Das ist beispielsweise relevant, wenn du als Angestellter zum Jahreswechsel erstmals versicherungsfrei wirst."] },
+      { type: "h3", text: "Variante 2: Du bist bereits freiwillig gesetzlich versichert" },
+      { type: "p", parts: ["Dann gilt grundsätzlich die normale Kündigungsfrist."] },
+      { type: "p", parts: ["Die freiwillige Mitgliedschaft kann zum Ablauf des ", { b: "übernächsten Kalendermonats" }, " beendet werden."] },
+      { type: "p", parts: ["Beispiel:"] },
+      {
+        type: "p",
+        parts: ["Geht deine Kündigung im März ein, kann die Mitgliedschaft grundsätzlich zum ", { b: "31. Mai" }, " enden und die PKV zum ", { b: "1. Juni" }, " beginnen."],
+      },
+      { type: "p", parts: ["Damit die Kündigung wirksam wird, musst du den anderweitigen Krankenversicherungsschutz nachweisen."] },
+    ],
+  },
+  {
+    id: "beispiel-jahresanfang-angestellter",
+    heading: "Beispiel: Wechsel zum Jahresanfang als Angestellter",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir an:"] },
+      { type: "p", parts: ["Du bist 2026 gesetzlich pflichtversichert."] },
+      { type: "p", parts: ["Durch eine Gehaltserhöhung liegt dein regelmäßiges Jahresarbeitsentgelt oberhalb der maßgeblichen JAEG."] },
+      { type: "p", parts: ["Auch die JAEG des Folgejahres wird voraussichtlich überschritten."] },
+      { type: "p", parts: ["Dann endet deine Versicherungspflicht grundsätzlich zum:"] },
+      { type: "standalone", text: "31. Dezember." },
+      { type: "p", parts: ["Die Krankenkasse informiert dich über die Möglichkeit, freiwilliges Mitglied zu bleiben."] },
+      { type: "p", parts: ["Möchtest du stattdessen in die PKV, erklärst du innerhalb der vorgesehenen Frist deinen Austritt und weist den privaten Versicherungsschutz nach."] },
+      { type: "p", parts: ["Die PKV beginnt dann passend zum Ende der GKV."] },
+      {
+        type: "p",
+        parts: [
+          { b: "Wichtig:" },
+          " Ob die Versicherungspflicht tatsächlich endet, sollte vorher verbindlich geklärt werden. Gerade variable Vergütung, Boni oder Änderungen der Arbeitszeit können die Beurteilung beeinflussen.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "beispiel-freiwillig-versicherter-angestellter",
+    heading: "Beispiel: Bereits freiwillig versicherter Angestellter",
+    blocks: [
+      { type: "p", parts: ["Du verdienst bereits seit längerer Zeit oberhalb der JAEG und bist freiwillig gesetzlich versichert."] },
+      { type: "p", parts: ["Jetzt entscheidest du dich im März für die PKV."] },
+      { type: "p", parts: ["Dein PKV-Antrag wird angenommen."] },
+      { type: "p", parts: ["Anschließend kündigst du deine freiwillige GKV-Mitgliedschaft."] },
+      { type: "p", parts: ["Bei Eingang der Kündigung im März kann sie grundsätzlich zum 31. Mai enden."] },
+      { type: "p", parts: ["Der private Versicherungsschutz startet:"] },
+      { type: "standalone", text: "1. Juni." },
+      { type: "p", parts: ["So entsteht keine Versicherungslücke."] },
+    ],
+  },
+  {
+    id: "beispiel-selbststaendiger",
+    heading: "Beispiel: Selbstständiger",
+    blocks: [
+      { type: "p", parts: ["Du bist selbstständig und freiwillig gesetzlich versichert."] },
+      { type: "p", parts: ["Nach einer ausführlichen Prüfung entscheidest du dich für die PKV."] },
+      { type: "p", parts: ["Dann gilt ebenfalls:"] },
+      { type: "p", parts: ["Erst PKV prüfen und Annahme sicherstellen."] },
+      {
+        type: "p",
+        parts: ["Danach freiwillige GKV-Mitgliedschaft unter Beachtung der Kündigungsfrist beenden und den Beginn der privaten Versicherung entsprechend koordinieren."],
+      },
+      { type: "p", parts: ["Die PKV beginnt unmittelbar nach Ende deiner gesetzlichen Absicherung."] },
+    ],
+  },
+  {
+    id: "schritt-10-arbeitgeber-informieren",
+    heading: "Schritt 10: Arbeitgeber informieren",
+    blocks: [
+      { type: "p", parts: ["Wenn du Angestellter bist, muss dein Arbeitgeber wissen, dass du zukünftig privat kranken- und pflegeversichert bist."] },
+      { type: "p", parts: ["Unter den gesetzlichen Voraussetzungen besteht ein Anspruch auf Arbeitgeberzuschuss zur privaten Krankenversicherung."] },
+      { type: "p", parts: ["Der Arbeitgeber übernimmt dabei nicht unbegrenzt die Hälfte jedes beliebigen PKV-Beitrags."] },
+      { type: "p", parts: ["Der Zuschuss ist gesetzlich begrenzt und grundsätzlich auch auf die Hälfte des tatsächlichen zuschussfähigen Beitrags beschränkt."] },
+      {
+        type: "p",
+        parts: ["Seit 2026 werden die relevanten PKV-Beitragsdaten für Arbeitgeberzuschuss und Lohnsteuer grundsätzlich digital zwischen Versicherern, Finanzverwaltung und Arbeitgebern ausgetauscht."],
+      },
+      { type: "p", parts: ["Die frühere regelmäßige Papierbescheinigung wurde damit weitgehend ersetzt."] },
+      { type: "p", parts: ["Mehr zur PKV als Arbeitnehmer findest du unter ", { a: "PKV für Angestellte", href: "/pkv-angestellte-kassel/" }, "."] },
+    ],
+  },
+  {
+    id: "schritt-11-pflegepflichtversicherung",
+    heading: "Schritt 11: PKV und Pflegepflichtversicherung müssen zusammenpassen",
+    blocks: [
+      { type: "p", parts: ["Beim Wechsel geht es nicht nur um die Krankheitskostenvollversicherung."] },
+      { type: "p", parts: ["Auch die Pflegeversicherung muss lückenlos geregelt sein."] },
+      { type: "p", parts: ["Wer privat krankenversichert ist, benötigt grundsätzlich auch eine entsprechende private Pflege-Pflichtversicherung."] },
+      { type: "p", parts: ["In der Praxis wird beides im Rahmen des Wechsels gemeinsam koordiniert."] },
+      { type: "p", parts: ["Achte deshalb beim Versicherungsbeginn darauf, dass deine gesamte Absicherung ab dem ersten Tag der privaten Versicherung steht."] },
+    ],
+  },
+  {
+    id: "wie-lange-dauert-wechsel",
+    heading: "Wie lange dauert der Wechsel in die PKV?",
+    blocks: [
+      { type: "p", parts: ["Darauf gibt es keine pauschale Antwort."] },
+      { type: "p", parts: ["Ein unkomplizierter Antrag eines gesunden Kunden kann schnell bearbeitet werden."] },
+      { type: "p", parts: ["Bei umfangreicher Gesundheitshistorie können dagegen erforderlich sein:"] },
+      { type: "list", items: ["Patientenakten", "Arztberichte", "Risikovoranfragen", "Rückfragen der Versicherer", "zusätzliche Erklärungen", "erneute Prüfung"] },
+      { type: "p", parts: ["Deshalb würde ich mit dem Prozess nicht erst wenige Tage vor dem gewünschten Wechseltermin beginnen."] },
+      { type: "p", parts: ["Gerade bei einem geplanten Wechsel zum Jahresanfang lohnt es sich, die Gesundheitshistorie frühzeitig vorzubereiten."] },
+    ],
+  },
+  {
+    id: "wie-lange-vorher-beginnen",
+    heading: "Wie lange vorher sollte ich mich mit der PKV beschäftigen?",
+    blocks: [
+      { type: "p", parts: ["Wenn du deinen Wechselzeitpunkt bereits kennst, würde ich nicht bis zur letzten Woche warten."] },
+      { type: "p", parts: ["Die eigentliche Tarifauswahl ist häufig nicht das Zeitproblem."] },
+      { type: "p", parts: ["Aufwendiger können sein:"] },
+      {
+        type: "list",
+        items: ["medizinische Unterlagen beschaffen", "falsche Diagnosen in Akten klären", "Arztberichte einholen", "Risikovoranfragen durchführen", "Angebote vergleichen", "Rückfragen beantworten"],
+      },
+      { type: "p", parts: ["Je komplexer deine gesundheitliche Vorgeschichte, desto früher würde ich beginnen."] },
+    ],
+  },
+  {
+    id: "antrag-abgelehnt",
+    heading: "Was passiert, wenn die PKV meinen Antrag ablehnt?",
+    blocks: [
+      { type: "p", parts: ["Dann solltest du deine GKV nicht bereits voreilig beendet haben."] },
+      { type: "p", parts: ["Genau deshalb ist die Reihenfolge so wichtig."] },
+      { type: "p", parts: ["Bei Vorerkrankungen kann eine vorherige Risikovoranfrage helfen, dieses Risiko zu reduzieren und geeignete Versicherer zu identifizieren."] },
+      { type: "p", parts: ["Eine Ablehnung bei einer Gesellschaft bedeutet außerdem nicht automatisch, dass jede andere Gesellschaft dieselbe Entscheidung trifft."] },
+      { type: "p", parts: ["Risikoprüfungen unterscheiden sich."] },
+    ],
+  },
+  {
+    id: "typische-fehler",
+    heading: "Welche Fehler sollte ich beim Wechsel vermeiden?",
+    blocks: [
+      { type: "h3", text: "Fehler 1: Nur nach dem günstigsten Beitrag auswählen" },
+      { type: "p", parts: ["Ein niedriger Beitrag macht noch keine gute private Krankenversicherung."] },
+      { type: "p", parts: ["Entscheidend ist, was langfristig versichert ist."] },
+      { type: "h3", text: "Fehler 2: Gesundheitsfragen aus dem Gedächtnis beantworten" },
+      { type: "p", parts: ["Ein vergessener Arztbesuch kann später erheblich relevanter sein als die paar Tage, die du beim Antrag sparen wolltest."] },
+      { type: "h3", text: "Fehler 3: Direkt mehrere Anträge stellen" },
+      { type: "p", parts: ["Bei relevanten Vorerkrankungen würde ich zunächst prüfen, ob eine Risikovoranfrage sinnvoller ist."] },
+      { type: "h3", text: "Fehler 4: Die GKV zu früh beenden" },
+      { type: "p", parts: ["Zuerst sollte der gewünschte private Versicherungsschutz stehen."] },
+      { type: "h3", text: "Fehler 5: Familienplanung ignorieren" },
+      { type: "p", parts: ["Kinder und Ehepartner sind in der PKV nicht automatisch kostenlos mitversichert."] },
+      { type: "h3", text: "Fehler 6: Krankentagegeld vergessen" },
+      { type: "p", parts: ["Krankenversicherung und Einkommensabsicherung bei längerer Arbeitsunfähigkeit gehören zusammen gedacht."] },
+      { type: "h3", text: "Fehler 7: Beitragsentwicklung ausblenden" },
+      { type: "p", parts: ["Du entscheidest dich nicht nur für den Beitrag des ersten Jahres."] },
+      { type: "p", parts: ["Eine PKV ist langfristige Absicherung."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr dazu findest du unter ",
+          { a: "PKV Beitragsentwicklung: Wie stark steigen die Beiträge?", href: "/wissen/private-krankenversicherung/pkv-beitragsentwicklung/" },
+          ".",
+        ],
+      },
+      { type: "h3", text: "Fehler 8: Den Wechsel als kurzfristiges Sparmodell betrachten" },
+      { type: "p", parts: ["Wenn der einzige Grund lautet:"] },
+      { type: "standalone", text: "„Ich spare heute 200 Euro im Monat“" },
+      { type: "p", parts: ["wäre mir das für eine Systementscheidung zu wenig."] },
+    ],
+  },
+  {
+    id: "zurueck-in-die-gkv",
+    heading: "Kann ich später einfach wieder zurück in die GKV?",
+    blocks: [
+      { type: "p", parts: ["Nicht beliebig."] },
+      { type: "p", parts: ["Das ist ein Punkt, den du ", { b: "vor" }, " dem Wechsel verstehen solltest."] },
+      { type: "p", parts: ["Ein freiwilliges GKV-Mitglied kann grundsätzlich in die PKV wechseln."] },
+      { type: "p", parts: ["Der umgekehrte Weg funktioniert später aber nicht einfach durch eine Kündigung der PKV und eine neue Anmeldung bei der GKV."] },
+      { type: "p", parts: ["Für eine Rückkehr muss regelmäßig ein gesetzlicher Zugangstatbestand zur GKV bestehen – beispielsweise eine neue Versicherungspflicht."] },
+      { type: "p", parts: ["Für Personen ab 55 Jahren gelten darüber hinaus erhebliche zusätzliche Einschränkungen."] },
+      { type: "p", parts: ["Das soll dich nicht von der PKV abschrecken."] },
+      { type: "p", parts: ["Aber du solltest die Entscheidung bewusst treffen."] },
+    ],
+  },
+  {
+    id: "checkliste",
+    heading: "Meine Checkliste für den Wechsel in die PKV",
+    blocks: [
+      { type: "p", parts: ["Bevor der Wechsel durchgeführt wird, würde ich diese Punkte abhaken:"] },
+      {
+        type: "list",
+        items: [
+          "1. Besteht tatsächlich Versicherungsfreiheit?",
+          "2. Ab welchem Datum darf ich wechseln?",
+          "3. Passt die PKV langfristig zu meiner Lebensplanung?",
+          "4. Wie sieht meine Familienplanung aus?",
+          "5. Sind meine Gesundheitsangaben vollständig aufbereitet?",
+          "6. Benötige ich eine Risikovoranfrage?",
+          "7. Welche Versicherer kommen gesundheitlich infrage?",
+          "8. Welche Leistungen möchte ich versichern?",
+          "9. Wie hoch soll mein Selbstbehalt sein?",
+          "10. Ist mein Krankentagegeld passend abgesichert?",
+          "11. Wie entwickelt sich die Gesamtbelastung langfristig?",
+          "12. Wurde der PKV-Antrag verbindlich angenommen?",
+          "13. Wann endet meine GKV-Mitgliedschaft?",
+          "14. Ist der Nachweis des neuen Versicherungsschutzes erbracht?",
+          "15. Schließen GKV-Ende und PKV-Beginn lückenlos aneinander an?",
+          "16. Ist mein Arbeitgeber informiert?",
+          "17. Ist die private Pflegepflichtversicherung geregelt?",
+        ],
+      },
+      { type: "p", parts: ["Wenn diese Punkte sauber beantwortet sind, ist der eigentliche Wechsel meistens der einfachste Teil."] },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        if (block.type === "list")
+          return (
+            <ul class="space-y-2">
+              {block.items.map((item) => (
+                <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                  <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          );
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

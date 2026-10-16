@@ -1,0 +1,112 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const sources = [
+  "Bundesministerium für Arbeit und Soziales: Sozialversicherungsrechengrößen 2026",
+  "Sozialgesetzbuch V (SGB V) § 6 – Versicherungsfreiheit",
+  "Sozialgesetzbuch V (SGB V) § 188 Abs. 4 – Fortsetzung der Mitgliedschaft nach Ende der Versicherungspflicht",
+  "Sozialgesetzbuch V (SGB V) § 175 Abs. 4 – Kündigung der Mitgliedschaft",
+  "Versicherungsvertragsgesetz (VVG) § 19 – Vorvertragliche Anzeigepflicht",
+  "Versicherungsvertragsgesetz (VVG) § 193 – Pflicht zur Versicherung",
+  "Sozialgesetzbuch V (SGB V) § 257 – Beitragszuschüsse für Beschäftigte",
+  "Bundesministerium für Gesundheit: Wechsel zwischen GKV und PKV",
+  "Verband der Privaten Krankenversicherung (PKV-Verband): Informationen zum Versicherungsbeginn",
+  "Verband der Privaten Krankenversicherung (PKV-Verband): Digitale Datenübermittlung ab 2026",
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Fazit: So würde ich den Wechsel in die PKV angehen
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Ein Wechsel in die private Krankenversicherung sollte nicht mit einem Tarifvergleich beginnen."]} />
+      <RichParagraph parts={["Er sollte mit deiner persönlichen Situation beginnen."]} />
+      <RichParagraph parts={["Zuerst klären wir:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">Darfst du wechseln und passt die PKV langfristig zu dir?</p>
+      <RichParagraph parts={["Danach:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">Wie sieht deine Gesundheitshistorie aus?</p>
+      <RichParagraph parts={["Dann:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">Welche Versicherer und Tarife kommen tatsächlich infrage?</p>
+      <RichParagraph parts={["Und erst wenn der private Versicherungsschutz geklärt ist, koordinieren wir:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">GKV-Ende und PKV-Beginn.</p>
+      <RichParagraph parts={["Die Reihenfolge lautet für mich deshalb:"]} />
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Voraussetzungen → Lebensplanung → Gesundheit → Risikovoranfrage → Tarifauswahl → Antrag → Annahme → GKV-Austritt → PKV-Start.
+        </p>
+      </div>
+
+      <RichParagraph
+        parts={["So reduzierst du unnötige Risiken und triffst deine Entscheidung nicht allein aufgrund eines vermeintlich günstigen Einstiegsbeitrags."]}
+      />
+    </div>
+  </div>
+</section>
+
+<section id="wechsel-gemeinsam-vorbereiten" class="scroll-mt-24 bg-brand-50/30 py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Wechsel in die PKV gemeinsam vorbereiten
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph
+        parts={["Wenn du über einen Wechsel von der GKV in die PKV nachdenkst, begleite ich dich von der ersten Prüfung bis zum tatsächlichen Versicherungsbeginn."]}
+      />
+      <RichParagraph parts={["Dabei schauen wir unter anderem auf:"]} />
+
+      <ul class="space-y-2">
+        {
+          [
+            "deine Voraussetzungen",
+            "deine persönliche Lebensplanung",
+            "Gesundheitshistorie",
+            "anonyme Risikovoranfrage",
+            "Tarif und Versicherungsbedingungen",
+            "Selbstbehalt",
+            "Krankentagegeld",
+            "Arbeitgeberzuschuss",
+            "langfristige Beitragsentwicklung",
+            "den richtigen Wechseltermin",
+          ].map((item) => (
+            <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Mein Standort ist Kassel und mein regionaler Schwerpunkt liegt in Nordhessen."]} />
+      <RichParagraph parts={["Die Beratung ist persönlich vor Ort in Kassel oder digital deutschlandweit möglich."]} />
+      <RichParagraph parts={[{ a: "Mehr zur PKV-Beratung in Kassel", href: "/private-krankenversicherung-kassel/" }]} />
+    </div>
+
+    <div class="mt-14 border-t border-black/5 pt-8">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Quellen und weiterführende Informationen</p>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/60">
+        Für diesen Artikel wurden insbesondere folgende Primärquellen und gesetzlichen Grundlagen
+        berücksichtigt:
+      </p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-ink-700/60">{source}</li>
+          ))
+        }
+      </ul>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Stand der gesetzlichen Angaben: Oktober 2026.</p>
+    </div>
+
+    <div class="mt-10 border-t border-black/5 pt-8">
+      <RichParagraph
+        parts={["Zurück zum ", { a: "PKV-Wissen", href: "/wissen/private-krankenversicherung/" }]}
+        class="text-sm font-semibold text-ink-700/85"
+      />
+    </div>
+  </div>
+</section>
