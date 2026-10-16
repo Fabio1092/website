@@ -1,0 +1,105 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const sources = [
+  "Sozialgesetzbuch V (SGB V) § 10 – Familienversicherung",
+  "Bundesministerium für Arbeit und Soziales: Sozialversicherungsrechengrößen 2026",
+  "Versicherungsvertragsgesetz (VVG) § 198 – Kindernachversicherung",
+  "Sozialgesetzbuch V (SGB V) § 257 – Beitragszuschüsse für Beschäftigte",
+  "Sozialgesetzbuch V (SGB V) § 8 – Befreiung von der Versicherungspflicht",
+  "Verband der Privaten Krankenversicherung (PKV-Verband): Privat versichert als Familie und mit Kindern",
+  "Verband der Privaten Krankenversicherung (PKV-Verband): Privatversichert in Mutterschutz und Elternzeit",
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Fazit: Passt die PKV zu Familien mit Kindern?
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Die PKV ist für Familien weder grundsätzlich gut noch grundsätzlich schlecht."]} />
+      <RichParagraph parts={["Sie funktioniert nur strukturell anders als die GKV: ohne beitragsfreie Familienversicherung, aber mit eigenem Versicherungsschutz für jedes Kind."]} />
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Unter den gesetzlichen Voraussetzungen kann dein Kind ohne Gesundheitsprüfung, Risikozuschlag und
+          Wartezeiten aufgenommen werden.
+        </p>
+      </div>
+
+      <p class="text-base font-medium leading-relaxed text-ink-950">„Ist die PKV mit Kindern teuer?“</p>
+      <RichParagraph parts={["Das hängt von Tarif, Kinderzahl und Arbeitgeberzuschuss ab."]} />
+
+      <p class="text-base font-medium leading-relaxed text-ink-950">
+        „Wie sieht deine gesamte Familienrechnung aus, wenn du Beiträge, Elternzeit und Kindernachversicherung
+        zusammen betrachtest?“
+      </p>
+      <RichParagraph parts={["Genau diese Frage sollte vor einer langfristigen Entscheidung beantwortet sein."]} />
+    </div>
+  </div>
+</section>
+
+<section id="pkv-familienplanung-gemeinsam-pruefen" class="scroll-mt-24 bg-brand-50/30 py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      PKV und Familienplanung gemeinsam prüfen
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Gemeinsam schauen wir uns an, wie deine Familienplanung und die PKV zusammenpassen, zum Beispiel:"]} />
+
+      <ul class="space-y-2">
+        {
+          [
+            "wie du und dein Partner aktuell versichert seid",
+            "ob eine beitragsfreie Familienversicherung infrage kommt",
+            "welche Rolle Einkommen und Jahresarbeitsentgeltgrenze spielen",
+            "was ein oder mehrere Kinder in der PKV kosten würden",
+            "wie der Arbeitgeberzuschuss für Kinderbeiträge aussieht",
+            "wie dein Tarif bei Schwangerschaft und Entbindung leistet",
+            "wie die Kindernachversicherung nach § 198 VVG konkret funktioniert",
+            "welche Fristen du nach der Geburt beachten musst",
+            "wie sich Elternzeit auf deinen PKV-Beitrag auswirkt",
+            "was bei Teilzeit während der Elternzeit zu beachten ist",
+            "wie mehrere Kinder deine Gesamtkosten verändern",
+            "ob dein aktueller oder ein neuer Tarif zu deiner Familienplanung passt",
+          ].map((item) => (
+            <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Mein Standort ist Kassel und mein regionaler Schwerpunkt liegt in Nordhessen."]} />
+      <RichParagraph parts={["Die Beratung ist persönlich vor Ort in Kassel oder digital deutschlandweit möglich."]} />
+      <RichParagraph parts={[{ a: "Mehr zur PKV-Beratung in Kassel", href: "/private-krankenversicherung-kassel/" }]} />
+    </div>
+
+    <div class="mt-14 border-t border-black/5 pt-8">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Quellen und weiterführende Informationen</p>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/60">
+        Für diesen Artikel wurden insbesondere folgende Primärquellen und gesetzlichen Grundlagen
+        berücksichtigt:
+      </p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-ink-700/60">{source}</li>
+          ))
+        }
+      </ul>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Stand der gesetzlichen Angaben: Oktober 2026.</p>
+    </div>
+
+    <div class="mt-10 border-t border-black/5 pt-8">
+      <RichParagraph
+        parts={["Zurück zum ", { a: "PKV-Wissen", href: "/wissen/private-krankenversicherung/" }]}
+        class="text-sm font-semibold text-ink-700/85"
+      />
+    </div>
+  </div>
+</section>

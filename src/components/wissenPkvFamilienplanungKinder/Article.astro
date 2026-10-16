@@ -1,0 +1,691 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  {
+    type: "p",
+    parts: ["Diese Frage gehört für mich in ", { b: "jede vernünftige PKV-Beratung" }, ", wenn Familienplanung grundsätzlich ein Thema sein kann."],
+  },
+  { type: "p", parts: ["Denn die private Krankenversicherung funktioniert bei Familien anders als die gesetzliche Krankenversicherung."] },
+  { type: "p", parts: ["Der wichtigste Unterschied:"] },
+  { type: "standalone", text: "In der PKV gibt es keine beitragsfreie Familienversicherung." },
+  { type: "p", parts: ["Jede privat versicherte Person benötigt grundsätzlich einen eigenen Versicherungsschutz und damit auch einen eigenen Beitrag."] },
+  { type: "p", parts: ["Das bedeutet aber nicht automatisch:"] },
+  { type: "standalone", text: "„Mit Kindern ist die PKV immer zu teuer.“" },
+  { type: "p", parts: ["Genauso falsch wäre:"] },
+  { type: "standalone", text: "„Kinder kosten in der PKV kaum etwas, also spielt Familienplanung keine Rolle.“" },
+  { type: "p", parts: ["Die Wahrheit hängt von deiner konkreten Familienkonstellation ab."] },
+  { type: "p", parts: ["Entscheidend ist unter anderem:"] },
+  {
+    type: "list",
+    items: [
+      "wie beide Eltern versichert sind",
+      "ob ihr verheiratet seid",
+      "wer mehr verdient",
+      "ob das Einkommen des privat versicherten Elternteils über der Jahresarbeitsentgeltgrenze liegt",
+      "wie viele Kinder geplant sind",
+      "welcher PKV-Schutz für die Kinder gewünscht ist",
+      "wie sich Elternzeit auf Einkommen und Beiträge auswirkt",
+    ],
+  },
+  {
+    type: "p",
+    parts: ["Genau deshalb sollte Familienplanung ", { b: "vor" }, " dem Wechsel in die PKV besprochen werden – nicht erst nach der Geburt des ersten Kindes."],
+  },
+];
+
+const sections: Section[] = [
+  {
+    id: "wichtigstes-in-kuerze",
+    heading: "Das Wichtigste zur PKV mit Kindern in Kürze",
+    blocks: [
+      { type: "p", parts: ["Für Familien solltest du insbesondere wissen:"] },
+      {
+        type: "list",
+        items: [
+          "in der PKV gibt es keine beitragsfreie Familienversicherung",
+          "jedes privat versicherte Kind hat grundsätzlich einen eigenen Beitrag",
+          "sind beide Eltern gesetzlich versichert, können Kinder unter den gesetzlichen Voraussetzungen beitragsfrei familienversichert sein",
+          "sind beide Eltern privat versichert, benötigen Kinder in der Regel ebenfalls eigenen privaten Versicherungsschutz",
+          "bei einem GKV- und einem PKV-Elternteil hängt die kostenlose Familienversicherung von mehreren Voraussetzungen ab",
+          "bei verheirateten oder eingetragenen Eltern sind dabei insbesondere Einkommen und Jahresarbeitsentgeltgrenze relevant",
+          "bei unverheirateten Eltern greift die besondere Ausschlussregel des § 10 Abs. 3 SGB V nicht",
+          "Neugeborene können unter den Voraussetzungen des § 198 VVG ohne Gesundheitsprüfung, Risikozuschlag und Wartezeiten beim Versicherer eines Elternteils aufgenommen werden",
+          "der Antrag dafür muss spätestens zwei Monate nach der Geburt rückwirkend gestellt werden",
+          "der Versicherer darf eine vorherige Versicherungsdauer des Elternteils verlangen, jedoch höchstens drei Monate",
+          "der gewünschte Schutz des Kindes darf für diese erleichterte Aufnahme nicht höher oder umfassender sein als der Schutz des versicherten Elternteils",
+          "während einer Elternzeit läuft eine bestehende PKV grundsätzlich weiter",
+          "der PKV-Beitrag entfällt während der Elternzeit nicht automatisch",
+          "Familienplanung gehört deshalb zur langfristigen PKV-Entscheidung",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Wenn du noch grundsätzlich überlegst, ob die PKV zu deiner Lebenssituation passt, lies zuerst ",
+          { a: "Für wen lohnt sich die PKV?", href: "/wissen/private-krankenversicherung/fuer-wen-lohnt-sich-die-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "warum-familienplanung-wichtig",
+    heading: "Warum Familienplanung bei der PKV so wichtig ist",
+    blocks: [
+      { type: "p", parts: ["Bei einem alleinstehenden Angestellten kann ein PKV-Vergleich relativ einfach aussehen."] },
+      { type: "p", parts: ["Du vergleichst beispielsweise:"] },
+      { type: "list", items: ["deinen heutigen GKV-Beitrag", "deinen zukünftigen PKV-Beitrag", "Leistungen", "Selbstbehalt", "Krankentagegeld", "langfristige Beitragsentwicklung"] },
+      { type: "p", parts: ["Mit Kindern kommt eine zusätzliche Ebene hinzu."] },
+      { type: "p", parts: ["Denn in der GKV kann es unter bestimmten Voraussetzungen eine ", { b: "beitragsfreie Familienversicherung" }, " geben."] },
+      { type: "p", parts: ["In der PKV dagegen nicht."] },
+      { type: "p", parts: ["Dadurch kann sich die wirtschaftliche Betrachtung einer Familie deutlich verändern."] },
+      { type: "p", parts: ["Ein Tarif, der heute für eine einzelne Person attraktiv aussieht, muss deshalb nicht automatisch auch zur späteren Familiensituation passen."] },
+    ],
+  },
+  {
+    id: "beide-eltern-gkv",
+    heading: "Wie werden Kinder versichert, wenn beide Eltern gesetzlich versichert sind?",
+    blocks: [
+      { type: "p", parts: ["Sind beide Eltern Mitglieder einer gesetzlichen Krankenkasse, können Kinder grundsätzlich im Rahmen der gesetzlichen Voraussetzungen beitragsfrei familienversichert werden."] },
+      { type: "p", parts: ["§ 10 SGB V regelt unter anderem:"] },
+      { type: "list", items: ["die Voraussetzungen der Familienversicherung", "Einkommensgrenzen", "Altersgrenzen", "besondere Regeln für Kinder"] },
+      { type: "p", parts: ["Das ist einer der großen strukturellen Unterschiede zwischen GKV und PKV."] },
+      { type: "p", parts: ["Eltern können sich trotzdem für privaten Versicherungsschutz des Kindes entscheiden."] },
+      { type: "p", parts: ["Dann handelt es sich allerdings nicht mehr um die kostenlose Familienversicherung der GKV."] },
+    ],
+  },
+  {
+    id: "beide-eltern-pkv",
+    heading: "Wie werden Kinder versichert, wenn beide Eltern privat versichert sind?",
+    blocks: [
+      { type: "p", parts: ["Sind beide Eltern privat krankenversichert, gibt es keinen gesetzlich versicherten Elternteil, über den das Kind beitragsfrei familienversichert werden könnte."] },
+      { type: "p", parts: ["Das Kind benötigt deshalb in der Regel eigenen privaten Krankenversicherungsschutz."] },
+      { type: "p", parts: ["Das bedeutet:"] },
+      { type: "standalone", text: "Für jedes Kind entsteht ein eigener Beitrag." },
+      { type: "p", parts: ["Der Beitrag eines Kindes ist nicht einfach identisch mit dem Beitrag eines Erwachsenen."] },
+      { type: "p", parts: ["Bei Kindern spielen beispielsweise andere Kalkulationsfaktoren eine Rolle und es werden noch keine Alterungsrückstellungen wie bei Erwachsenen aufgebaut."] },
+      { type: "p", parts: ["Trotzdem gehört der zusätzliche Beitrag selbstverständlich in die Familienplanung."] },
+    ],
+  },
+  {
+    id: "gemischt-versicherte-eltern",
+    heading: "Ein Elternteil GKV, ein Elternteil PKV: Wo wird das Kind versichert?",
+    blocks: [
+      { type: "p", parts: ["Das ist die interessanteste Konstellation."] },
+      { type: "p", parts: ["Denn hier lautet die Antwort:"] },
+      { type: "standalone", text: "Es kommt darauf an." },
+      { type: "p", parts: ["Das Kind kann nicht automatisch immer kostenlos in der GKV bleiben."] },
+      { type: "p", parts: ["Aber genauso wenig muss es automatisch privat versichert werden."] },
+      { type: "p", parts: ["Entscheidend ist insbesondere § 10 Abs. 3 SGB V."] },
+    ],
+  },
+  {
+    id: "wann-ausgeschlossen",
+    heading: "Wann ist die kostenlose Familienversicherung ausgeschlossen?",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir an:"] },
+      {
+        type: "list",
+        items: ["ein Elternteil ist gesetzlich versichert", "der andere Elternteil ist privat versichert", "die Eltern sind miteinander verheiratet oder eingetragene Lebenspartner", "beide sind mit dem Kind verwandt"],
+      },
+      {
+        type: "p",
+        parts: ["Dann ist das Kind nicht beitragsfrei familienversichert, wenn beim privat versicherten Elternteil ", { b: "beide" }, " folgenden Bedingungen gleichzeitig erfüllt sind:"],
+      },
+      { type: "p", parts: ["1. Das regelmäßige Gesamteinkommen liegt oberhalb von einem Zwölftel der Jahresarbeitsentgeltgrenze."] },
+      { type: "standalone", text: "und" },
+      { type: "p", parts: ["2. Das regelmäßige Gesamteinkommen ist höher als das Einkommen des gesetzlich versicherten Elternteils."] },
+      { type: "p", parts: ["Nur wenn beide Voraussetzungen zusammenkommen, greift dieser Ausschluss nach § 10 Abs. 3 SGB V."] },
+      { type: "p", parts: ["2026 beträgt die allgemeine Jahresarbeitsentgeltgrenze:"] },
+      { type: "standalone", text: "77.400 Euro jährlich beziehungsweise 6.450 Euro monatlich." },
+    ],
+  },
+  {
+    id: "beispiel-1-ueber-jaeg",
+    heading: "Beispiel 1: PKV-Elternteil verdient mehr und liegt über der JAEG",
+    blocks: [
+      { type: "p", parts: ["Vater:"] },
+      { type: "list", items: ["privat versichert", "Einkommen: 100.000 Euro jährlich"] },
+      { type: "p", parts: ["Mutter:"] },
+      { type: "list", items: ["gesetzlich versichert", "Einkommen: 55.000 Euro jährlich"] },
+      { type: "p", parts: ["Die Eltern sind verheiratet."] },
+      { type: "p", parts: ["Der privat versicherte Vater verdient:"] },
+      { type: "list", items: ["mehr als die Mutter", "gleichzeitig mehr als die maßgebliche JAEG"] },
+      { type: "p", parts: ["Damit ist die beitragsfreie Familienversicherung des Kindes grundsätzlich ausgeschlossen."] },
+      { type: "p", parts: ["Das Kind muss dann anderweitig abgesichert werden."] },
+      { type: "p", parts: ["Das kann beispielsweise über eine private Krankenversicherung erfolgen."] },
+    ],
+  },
+  {
+    id: "beispiel-2-verdient-weniger",
+    heading: "Beispiel 2: PKV-Elternteil verdient weniger",
+    blocks: [
+      { type: "p", parts: ["Mutter:"] },
+      { type: "list", items: ["privat versichert", "Einkommen: 80.000 Euro jährlich"] },
+      { type: "p", parts: ["Vater:"] },
+      { type: "list", items: ["gesetzlich versichert", "Einkommen: 100.000 Euro jährlich"] },
+      { type: "p", parts: ["Die Eltern sind verheiratet."] },
+      { type: "p", parts: ["Die privat versicherte Mutter liegt zwar oberhalb der JAEG."] },
+      { type: "p", parts: ["Sie verdient aber ", { b: "nicht mehr als der gesetzlich versicherte Vater" }, "."] },
+      { type: "p", parts: ["Damit ist die besondere Ausschlussvoraussetzung des § 10 Abs. 3 SGB V nicht vollständig erfüllt."] },
+      { type: "p", parts: ["Eine beitragsfreie Familienversicherung des Kindes kann deshalb grundsätzlich möglich sein, sofern die übrigen Voraussetzungen erfüllt sind."] },
+    ],
+  },
+  {
+    id: "beispiel-3-nicht-ueber-grenze",
+    heading: "Beispiel 3: PKV-Elternteil verdient mehr, aber nicht über der maßgeblichen Grenze",
+    blocks: [
+      { type: "p", parts: ["Auch hier kann die besondere Ausschlussregel nicht allein deshalb greifen, weil der privat versicherte Elternteil mehr verdient."] },
+      { type: "p", parts: ["Es müssen beide Voraussetzungen erfüllt sein:"] },
+      { type: "standalone", text: "über der relevanten Einkommensgrenze und höheres Einkommen als der GKV-Elternteil." },
+      { type: "p", parts: ["Genau deshalb lohnt sich eine saubere Prüfung."] },
+    ],
+  },
+  {
+    id: "unverheiratete-eltern",
+    heading: "Was gilt bei unverheirateten Eltern?",
+    blocks: [
+      { type: "p", parts: ["Dieser Punkt wird häufig übersehen."] },
+      { type: "p", parts: ["§ 10 Abs. 3 SGB V spricht ausdrücklich vom mit dem Kind verwandten ", { b: "Ehegatten oder Lebenspartner" }, " des GKV-Mitglieds."] },
+      { type: "p", parts: ["Sind die Eltern nicht verheiratet beziehungsweise besteht keine eingetragene Lebenspartnerschaft, greift diese besondere Ausschlussregel deshalb nicht."] },
+      {
+        type: "p",
+        parts: ["Das kann dazu führen, dass das Kind über den gesetzlich versicherten Elternteil beitragsfrei familienversichert werden kann, obwohl der privat versicherte Elternteil mehr verdient."],
+      },
+      { type: "p", parts: ["Natürlich müssen die allgemeinen Voraussetzungen der Familienversicherung trotzdem erfüllt sein."] },
+      { type: "p", parts: ["Deshalb würde ich bei gemischt versicherten Eltern immer zuerst klären:"] },
+      { type: "standalone", text: "Verheiratet oder unverheiratet?" },
+      { type: "p", parts: ["Danach:"] },
+      { type: "standalone", text: "Wer verdient wie viel?" },
+      { type: "p", parts: ["Und erst dann:"] },
+      { type: "standalone", text: "Welche Versicherungsoptionen bestehen für das Kind?" },
+    ],
+  },
+  {
+    id: "muss-kind-in-pkv",
+    heading: "Muss das Kind in die PKV, wenn die GKV-Familienversicherung ausgeschlossen ist?",
+    blocks: [
+      { type: "p", parts: ["Nicht automatisch im Sinne einer Pflicht, exakt denselben PKV-Tarif wie ein Elternteil zu wählen."] },
+      { type: "p", parts: ["Aber das Kind braucht natürlich einen eigenen Krankenversicherungsschutz."] },
+      {
+        type: "p",
+        parts: ["Wenn keine beitragsfreie Familienversicherung möglich ist, kommen je nach konkreter Situation insbesondere ein eigener privater Schutz oder gegebenenfalls eine beitragspflichtige gesetzliche Absicherung infrage."],
+      },
+      { type: "p", parts: ["Welche Variante möglich und wirtschaftlich sinnvoll ist, sollte konkret geprüft werden."] },
+      { type: "p", parts: ["Der entscheidende Punkt lautet:"] },
+      { type: "standalone", text: "Keine Familienversicherung bedeutet nicht „unversichert“, sondern eigener Versicherungsbedarf." },
+    ],
+  },
+  {
+    id: "was-kostet-ein-kind",
+    heading: "Was kostet ein Kind in der PKV?",
+    blocks: [
+      { type: "p", parts: ["Darauf gibt es keine pauschale Zahl."] },
+      { type: "p", parts: ["Der Beitrag hängt unter anderem ab von:"] },
+      { type: "list", items: ["Versicherer", "Tarif", "Leistungsumfang", "Selbstbehalt", "gewählten Zusatzbausteinen"] },
+      { type: "p", parts: ["Wichtig ist:"] },
+      { type: "p", parts: ["Ein Kind hat einen ", { b: "eigenen Monatsbeitrag" }, "."] },
+      { type: "p", parts: ["Bei zwei Kindern entstehen entsprechend zwei Beiträge."] },
+      { type: "p", parts: ["Deshalb würde ich die PKV niemals nur anhand der heutigen Kosten einer Einzelperson beurteilen."] },
+      { type: "p", parts: ["Beispiel:"] },
+      { type: "p", parts: ["Du sparst gegenüber deiner heutigen GKV als Angestellter vielleicht 180 Euro monatlich."] },
+      { type: "p", parts: ["Später kommen zwei Kinder hinzu."] },
+      { type: "p", parts: ["Dann kann sich die Rechnung deutlich verändern."] },
+      { type: "p", parts: ["Das bedeutet nicht, dass die PKV dadurch automatisch unattraktiv wird."] },
+      { type: "p", parts: ["Aber die Familienplanung muss in die Kalkulation hinein."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr zu den grundsätzlichen Beiträgen findest du unter ",
+          { a: "Was kostet eine private Krankenversicherung?", href: "/wissen/private-krankenversicherung/pkv-kosten/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "arbeitgeberzuschuss-kinder",
+    heading: "Beteiligt sich der Arbeitgeber an den PKV-Beiträgen der Kinder?",
+    blocks: [
+      { type: "p", parts: ["Das kann möglich sein."] },
+      {
+        type: "p",
+        parts: ["§ 257 SGB V berücksichtigt beim Arbeitgeberzuschuss nicht nur den privat versicherten Beschäftigten selbst, sondern unter bestimmten Voraussetzungen auch Angehörige, die bei bestehender Versicherungspflicht des Beschäftigten nach § 10 SGB V familienversichert wären."],
+      },
+      { type: "p", parts: ["Wichtig:"] },
+      { type: "p", parts: ["Der Arbeitgeberzuschuss ist insgesamt begrenzt."] },
+      { type: "p", parts: ["Das bedeutet:"] },
+      { type: "p", parts: ["Nur weil mehrere Familienmitglieder privat versichert sind, steigt der maximale Arbeitgeberzuschuss nicht unbegrenzt."] },
+      { type: "p", parts: ["Praktisch sollte deshalb immer geprüft werden:"] },
+      {
+        type: "list",
+        items: ["wie hoch dein eigener PKV-Beitrag ist", "wie viel des maximalen Arbeitgeberzuschusses bereits ausgeschöpft wird", "ob und in welcher Höhe Kinderbeiträge noch berücksichtigt werden können"],
+      },
+      { type: "p", parts: ["Gerade bei Angestellten kann das die tatsächliche Nettobelastung einer Familie deutlich beeinflussen."] },
+      { type: "p", parts: ["Mehr zur PKV als Arbeitnehmer findest du unter ", { a: "PKV für Angestellte", href: "/pkv-angestellte-kassel/" }, "."] },
+    ],
+  },
+  {
+    id: "kind-geboren",
+    heading: "Was passiert, wenn ein Kind geboren wird?",
+    blocks: [
+      { type: "p", parts: ["Hier gibt es in der privaten Krankenversicherung eine sehr wichtige Schutzregel."] },
+      { type: "p", parts: ["§ 198 VVG regelt die sogenannte ", { b: "Kindernachversicherung" }, "."] },
+      { type: "p", parts: ["Unter den gesetzlichen Voraussetzungen muss der Versicherer eines Elternteils das neugeborene Kind aufnehmen:"] },
+      { type: "list", items: ["ohne normale Gesundheitsprüfung", "ohne Risikozuschlag", "ohne Wartezeiten"] },
+      { type: "p", parts: ["Das ist gerade dann wichtig, wenn ein Kind mit einer Erkrankung, Fehlbildung oder anderen gesundheitlichen Besonderheit geboren wird."] },
+    ],
+  },
+  {
+    id: "voraussetzungen-kindernachversicherung",
+    heading: "Welche Voraussetzungen gelten für die Kindernachversicherung?",
+    blocks: [
+      { type: "p", parts: ["Für die erleichterte Aufnahme sind insbesondere drei Punkte wichtig."] },
+      { type: "h3", text: "1. Ein Elternteil muss beim Versicherer versichert sein" },
+      { type: "p", parts: ["Am Tag der Geburt muss für mindestens einen Elternteil bereits Krankenversicherungsschutz bei dem Versicherer bestehen, bei dem das Kind nachversichert werden soll."] },
+      { type: "h3", text: "2. Anmeldung innerhalb von zwei Monaten" },
+      { type: "p", parts: ["Der Antrag auf Versicherung des Kindes muss spätestens:"] },
+      { type: "standalone", text: "zwei Monate nach dem Tag der Geburt" },
+      { type: "p", parts: ["gestellt werden."] },
+      { type: "p", parts: ["Die Aufnahme erfolgt dann rückwirkend ab Geburt."] },
+      { type: "h3", text: "3. Mindestversicherungszeit des Elternteils" },
+      { type: "p", parts: ["Der Versicherer darf verlangen, dass der Elternteil bereits eine bestimmte Mindestzeit bei ihm versichert war."] },
+      { type: "p", parts: ["Diese Mindestversicherungsdauer darf nach § 198 VVG höchstens:"] },
+      { type: "standalone", text: "drei Monate" },
+      { type: "p", parts: ["betragen."] },
+    ],
+  },
+  {
+    id: "krank-geborenes-kind-abgelehnt",
+    heading: "Kann mein krank geborenes Kind abgelehnt werden?",
+    blocks: [
+      {
+        type: "p",
+        parts: ["Wenn die Voraussetzungen der gesetzlichen Kindernachversicherung erfüllt sind und der beantragte Schutz nicht höher oder umfassender ist als der Schutz des versicherten Elternteils, darf der Versicherer das neugeborene Kind nicht aufgrund seines Gesundheitszustands ablehnen oder einen Risikozuschlag verlangen."],
+      },
+      { type: "p", parts: ["§ 198 VVG verlangt in dieser Konstellation eine Aufnahme ohne Risikozuschläge und Wartezeiten."] },
+      { type: "p", parts: ["Das ist ein enorm wichtiger Punkt bei der Familienplanung."] },
+      { type: "p", parts: ["Denn der Gesundheitszustand eines Kindes lässt sich vor der Geburt natürlich nicht vollständig vorhersagen."] },
+    ],
+  },
+  {
+    id: "besserer-tarif-als-ich",
+    heading: "Kann mein Kind einen besseren Tarif bekommen als ich?",
+    blocks: [
+      { type: "p", parts: ["Hier musst du unterscheiden."] },
+      {
+        type: "p",
+        parts: ["Die gesetzlich privilegierte Kindernachversicherung gilt nur, soweit der beantragte Versicherungsschutz des Kindes ", { b: "nicht höher und nicht umfassender" }, " ist als der Versicherungsschutz des versicherten Elternteils."],
+      },
+      { type: "p", parts: ["Beispiel:"] },
+      { type: "p", parts: ["Du selbst hast stationär nur ein Zweibettzimmer versichert."] },
+      { type: "p", parts: ["Für dein Kind möchtest du zusätzlich einen höherwertigen Schutz."] },
+      { type: "p", parts: ["Dann fällt dieser zusätzliche Schutz nicht automatisch unter die erleichterte Aufnahme."] },
+      { type: "p", parts: ["Für einen über deinen eigenen Schutz hinausgehenden Versicherungsschutz kann deshalb eine normale Risikoprüfung relevant werden."] },
+      { type: "p", parts: ["Genau deshalb lohnt es sich, die eigene Tarifgestaltung ", { b: "vor der Geburt" }, " zu kennen."] },
+    ],
+  },
+  {
+    id: "vor-der-geburt-beschaeftigen",
+    heading: "Warum sollte ich mich schon vor der Geburt mit der Versicherung des Kindes beschäftigen?",
+    blocks: [
+      { type: "p", parts: ["Weil nach der Geburt genug andere Dinge passieren."] },
+      { type: "p", parts: ["Die Zwei-Monats-Frist solltest du nicht erst am letzten Tag bemerken."] },
+      { type: "p", parts: ["Ich würde deshalb schon während der Schwangerschaft klären:"] },
+      {
+        type: "list",
+        items: [
+          "bei welchem Elternteil soll das Kind nachversichert werden?",
+          "welche Leistungen besitzt dieser Tarif?",
+          "besteht die erforderliche Vorversicherungszeit?",
+          "welcher Kindertarif steht zur Verfügung?",
+          "soll das Kind exakt denselben Leistungsumfang bekommen?",
+          "ist die GKV-Familienversicherung eventuell eine Alternative?",
+          "wie hoch wäre der Beitrag?",
+          "wie sieht der Arbeitgeberzuschuss aus?",
+        ],
+      },
+      { type: "p", parts: ["Nach der Geburt müssen dann hauptsächlich noch die tatsächlichen Daten des Kindes ergänzt und die Anmeldung fristgerecht durchgeführt werden."] },
+    ],
+  },
+  {
+    id: "adoption",
+    heading: "Was gilt bei Adoption?",
+    blocks: [
+      { type: "p", parts: ["§ 198 VVG stellt die Adoption eines minderjährigen Kindes grundsätzlich der Geburt gleich."] },
+      { type: "p", parts: ["Allerdings gibt es einen wichtigen Unterschied:"] },
+      { type: "p", parts: ["Bei einem erhöhten Risiko darf der Versicherer bei adoptierten Kindern einen Risikozuschlag verlangen."] },
+      { type: "p", parts: ["Dieser ist gesetzlich begrenzt."] },
+      { type: "p", parts: ["Das ist eine besondere Regelung und sollte bei einer konkret geplanten Adoption individuell geprüft werden."] },
+    ],
+  },
+  {
+    id: "pkv-waehrend-schwangerschaft",
+    heading: "Was passiert mit meiner PKV während der Schwangerschaft?",
+    blocks: [
+      { type: "p", parts: ["Eine bestehende private Krankenversicherung läuft während einer Schwangerschaft grundsätzlich weiter."] },
+      { type: "p", parts: ["Welche konkreten Leistungen übernommen werden, richtet sich nach deinem Tarif."] },
+      { type: "p", parts: ["Deshalb sollte bereits bei der Tarifauswahl geprüft werden, wie beispielsweise Leistungen rund um:"] },
+      { type: "list", items: ["Vorsorge", "ambulante Behandlung", "Hebammenleistungen", "Entbindung", "Krankenhaus", "privatärztliche Behandlung"] },
+      { type: "p", parts: ["geregelt sind."] },
+      { type: "p", parts: ["Familienplanung ist damit nicht erst ein Thema ", { b: "nach" }, " der Geburt."] },
+      { type: "p", parts: ["Sie beginnt bereits bei der Auswahl der eigenen PKV-Leistungen."] },
+    ],
+  },
+  {
+    id: "pkv-waehrend-mutterschutz",
+    heading: "Was passiert mit meiner PKV während des Mutterschutzes?",
+    blocks: [
+      { type: "p", parts: ["Eine bestehende private Krankenversicherung bleibt grundsätzlich bestehen."] },
+      { type: "p", parts: ["Anders als bei einer beitragsfreien GKV-Familienversicherung verschwindet der eigene PKV-Beitrag nicht einfach deshalb, weil du vorübergehend nicht arbeitest."] },
+      { type: "p", parts: ["Ob und welche besonderen tariflichen Regelungen bestehen, hängt vom konkreten Versicherungsvertrag ab."] },
+      { type: "p", parts: ["Deshalb würde ich bei geplanter Familie auch prüfen, ob der Tarif beispielsweise besondere Regelungen zur Beitragsentlastung während bestimmter Familienphasen vorsieht."] },
+    ],
+  },
+  {
+    id: "pkv-waehrend-elternzeit",
+    heading: "Was passiert mit meiner PKV während der Elternzeit?",
+    blocks: [
+      { type: "p", parts: ["Dieser Punkt kann finanziell sehr relevant sein."] },
+      { type: "p", parts: ["Grundsätzlich läuft deine PKV auch während der Elternzeit weiter."] },
+      { type: "p", parts: ["Der Beitrag muss grundsätzlich weitergezahlt werden, soweit dein Tarif keine besondere Regelung vorsieht."] },
+      { type: "p", parts: ["Bei Arbeitnehmern kommt ein weiterer Punkt hinzu:"] },
+      { type: "p", parts: ["Wenn während der Elternzeit keine Beschäftigung ausgeübt und kein entsprechendes Arbeitsentgelt gezahlt wird, besteht grundsätzlich auch kein normaler Arbeitgeberzuschuss zur eigenen PKV."] },
+      { type: "p", parts: ["Das kann die monatliche Nettobelastung deutlich erhöhen."] },
+    ],
+  },
+  {
+    id: "beispiel-elternzeit",
+    heading: "Beispiel: PKV während der Elternzeit",
+    blocks: [
+      { type: "p", parts: ["Vor der Elternzeit beträgt dein eigener PKV-Beitrag beispielsweise:"] },
+      { type: "standalone", text: "700 Euro monatlich." },
+      { type: "p", parts: ["Dein Arbeitgeber beteiligt sich daran innerhalb der gesetzlichen Grenzen."] },
+      { type: "p", parts: ["Während einer vollständigen Elternzeit entfällt dieser Arbeitgeberzuschuss grundsätzlich."] },
+      { type: "p", parts: ["Dann kann der volle PKV-Beitrag bei dir selbst hängen bleiben."] },
+      { type: "p", parts: ["Das Beispiel ist bewusst vereinfacht."] },
+      { type: "p", parts: ["Entscheidend ist deine konkrete Beschäftigungs- und Familiensituation."] },
+      { type: "p", parts: ["Aber es zeigt:"] },
+      { type: "standalone", text: "Elternzeit gehört in eine seriöse PKV-Kostenplanung." },
+    ],
+  },
+  {
+    id: "teilzeit-waehrend-elternzeit",
+    heading: "Was passiert, wenn ich während der Elternzeit Teilzeit arbeite?",
+    blocks: [
+      { type: "p", parts: ["Dann kann sich dein Versicherungsstatus verändern."] },
+      { type: "p", parts: ["Sinkt dein regelmäßiges Arbeitsentgelt durch eine Teilzeittätigkeit unter die maßgebliche Jahresarbeitsentgeltgrenze, kann grundsätzlich Versicherungspflicht in der GKV entstehen."] },
+      { type: "p", parts: ["Für bestimmte Teilzeitfälle während der Elternzeit sieht § 8 SGB V allerdings eine Möglichkeit vor, sich auf Antrag von dieser Versicherungspflicht befreien zu lassen."] },
+      { type: "p", parts: ["Die Befreiung erstreckt sich dann auf die Elternzeit."] },
+      { type: "p", parts: ["Das ist keine Entscheidung, die ich automatisch treffen würde."] },
+      { type: "p", parts: ["Denn du solltest vorher verstehen:"] },
+      { type: "list", items: ["was passiert während der Elternzeit?", "was passiert danach?", "möchtest du langfristig in der PKV bleiben?", "welche Auswirkungen hat eine Befreiung?"] },
+      { type: "p", parts: ["Genau deshalb sollte die konkrete Konstellation vorher geprüft werden."] },
+    ],
+  },
+  {
+    id: "kinder-spaeter-gkv-wechseln",
+    heading: "Können Kinder später von der PKV in die GKV wechseln?",
+    blocks: [
+      { type: "p", parts: ["Der Versicherungsstatus eines Kindes ist nicht zwangsläufig für das gesamte Leben festgeschrieben."] },
+      { type: "p", parts: ["Spätestens wenn sich die Lebenssituation verändert – beispielsweise durch:"] },
+      { type: "list", items: ["Ausbildung", "Studium", "eigenes Beschäftigungsverhältnis"] },
+      { type: "p", parts: ["muss neu geprüft werden, ob Versicherungspflicht entsteht oder welches Versicherungssystem gewählt werden kann."] },
+      { type: "p", parts: ["Ein privat versichertes Kind bleibt also nicht automatisch lebenslang in der PKV."] },
+      { type: "p", parts: ["Die gesetzlichen Regeln der jeweiligen Lebensphase entscheiden über die Möglichkeiten."] },
+    ],
+  },
+  {
+    id: "mehrere-kinder",
+    heading: "Was passiert bei mehreren Kindern?",
+    blocks: [
+      { type: "p", parts: ["Das ist vor allem eine wirtschaftliche Frage."] },
+      { type: "p", parts: ["In der GKV können mehrere Kinder unter den Voraussetzungen der Familienversicherung beitragsfrei versichert sein."] },
+      { type: "p", parts: ["In der PKV erhält jedes Kind einen eigenen Vertrag und eigenen Beitrag."] },
+      { type: "p", parts: ["Bei einem Kind kann die Beitragsbelastung deshalb anders aussehen als bei drei Kindern."] },
+      { type: "p", parts: ["Genau deswegen würde ich in der Beratung nicht nur rechnen:"] },
+      { type: "standalone", text: "„Was kostet die PKV für dich heute?“" },
+      { type: "p", parts: ["Sondern zum Beispiel auch:"] },
+      { type: "standalone", text: "„Was passiert bei einem oder zwei Kindern?“" },
+      { type: "p", parts: ["Das ist keine Prognose deiner Familienplanung."] },
+      { type: "p", parts: ["Es ist einfach vernünftige finanzielle Vorbereitung."] },
+    ],
+  },
+  {
+    id: "pkv-fuer-familien-schlechter",
+    heading: "Ist die PKV deshalb für Familien grundsätzlich schlechter?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Das wäre viel zu pauschal."] },
+      { type: "p", parts: ["Die PKV kann auch für Familien sehr gut passen."] },
+      { type: "p", parts: ["Aber die wirtschaftliche Logik unterscheidet sich von der GKV."] },
+      { type: "p", parts: ["Du solltest deshalb Vorteile und Nachteile gemeinsam betrachten."] },
+      { type: "p", parts: ["Mögliche Vorteile können je nach Tarif beispielsweise sein:"] },
+      {
+        type: "list",
+        items: [
+          "individuell wählbarer Versicherungsschutz",
+          "vertraglich definierte Leistungen",
+          "hochwertige ambulante oder stationäre Leistungen",
+          "umfangreicher Zahnschutz",
+          "frühzeitige Absicherung des Kindes über die Kindernachversicherung",
+        ],
+      },
+      { type: "p", parts: ["Dem stehen mögliche finanzielle Nachteile gegenüber:"] },
+      {
+        type: "list",
+        items: ["eigener Beitrag für jedes privat versicherte Kind", "keine kostenlose Familienversicherung innerhalb der PKV", "zusätzliche Belastung während Elternzeiten", "höhere Gesamtkosten bei mehreren Kindern möglich"],
+      },
+      { type: "p", parts: ["Die richtige Frage lautet deshalb nicht:"] },
+      { type: "standalone", text: "„PKV mit Kindern – gut oder schlecht?“" },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "standalone", text: "„Passt die PKV auch zu der Familie, die ich möglicherweise in den nächsten Jahren haben werde?“" },
+    ],
+  },
+  {
+    id: "familienplanung-vor-wechsel",
+    heading: "Familienplanung sollte vor dem PKV-Wechsel besprochen werden",
+    blocks: [
+      { type: "p", parts: ["Wenn mir ein 30-jähriger Angestellter sagt:"] },
+      { type: "p", parts: ["„Kinder sind in zwei oder drei Jahren ziemlich wahrscheinlich.“"] },
+      { type: "p", parts: ["dann gehört das in die Entscheidung."] },
+      { type: "p", parts: ["Genauso wenn jemand sagt:"] },
+      { type: "p", parts: ["„Kinder sind ausgeschlossen.“"] },
+      { type: "p", parts: ["Oder:"] },
+      { type: "p", parts: ["„Wir wollen wahrscheinlich drei Kinder.“"] },
+      { type: "p", parts: ["Der heutige PKV-Beitrag ist immer nur eine Momentaufnahme."] },
+      { type: "p", parts: ["Deine Krankenversicherung begleitet dich dagegen möglicherweise über Jahrzehnte."] },
+      {
+        type: "p",
+        parts: [
+          "Wenn du gerade noch vor dem Wechsel stehst, findest du den konkreten Ablauf unter ",
+          { a: "Wechsel in die PKV: So funktioniert der Wechsel von der GKV", href: "/wissen/private-krankenversicherung/wechsel-in-die-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "drei-familienkonstellationen",
+    heading: "Drei typische Familienkonstellationen",
+    blocks: [
+      { type: "h3", text: "Beispiel 1: Beide Eltern privat versichert" },
+      { type: "p", parts: ["Beide Eltern sind privat krankenversichert."] },
+      { type: "p", parts: ["Ein Kind wird geboren."] },
+      { type: "p", parts: ["Eine beitragsfreie GKV-Familienversicherung über einen Elternteil steht nicht zur Verfügung."] },
+      {
+        type: "p",
+        parts: [{ b: "Meine Einschätzung:" }, " Den Kinderschutz und die Kosten bereits vor der Geburt einplanen. Kindernachversicherung nach § 198 VVG rechtzeitig vorbereiten."],
+      },
+      { type: "h3", text: "Beispiel 2: Ein Elternteil PKV, ein Elternteil GKV" },
+      { type: "p", parts: ["Der privat versicherte Elternteil verdient mehr als der gesetzlich versicherte Elternteil und liegt über der JAEG."] },
+      { type: "p", parts: ["Die Eltern sind verheiratet."] },
+      {
+        type: "p",
+        parts: [{ b: "Meine Einschätzung:" }, " Prüfen, ob § 10 Abs. 3 SGB V die kostenlose Familienversicherung ausschließt. Danach GKV- und PKV-Optionen für das Kind vergleichen."],
+      },
+      { type: "h3", text: "Beispiel 3: Ein Elternteil PKV, ein Elternteil GKV – unverheiratet" },
+      { type: "p", parts: ["Der privat versicherte Elternteil verdient deutlich mehr."] },
+      { type: "p", parts: ["Die Eltern sind aber nicht verheiratet."] },
+      {
+        type: "p",
+        parts: [
+          { b: "Meine Einschätzung:" },
+          " Die spezielle Ausschlussregel des § 10 Abs. 3 SGB V greift aufgrund dieser Konstellation nicht. Die allgemeinen Voraussetzungen einer Familienversicherung über den GKV-Elternteil müssen trotzdem geprüft werden.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "typische-fehler",
+    heading: "Welche Fehler würde ich vermeiden?",
+    blocks: [
+      { type: "h3", text: "Fehler 1: „Mein Kind kann immer kostenlos über meinen Partner in die GKV“" },
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Bei verheirateten gemischt versicherten Eltern können Einkommen und JAEG die kostenlose Familienversicherung ausschließen."] },
+      { type: "h3", text: "Fehler 2: „Wenn einer privat ist, muss das Kind immer privat sein“" },
+      { type: "p", parts: ["Auch das stimmt nicht."] },
+      { type: "p", parts: ["Bei gemischten Eltern muss die konkrete Konstellation geprüft werden."] },
+      { type: "h3", text: "Fehler 3: Familienplanung erst nach dem PKV-Abschluss bedenken" },
+      { type: "p", parts: ["Dann hast du wichtige wirtschaftliche Fragen zu spät gestellt."] },
+      { type: "h3", text: "Fehler 4: Zwei-Monats-Frist nach der Geburt verpassen" },
+      { type: "p", parts: ["Die erleichterte Kindernachversicherung nach § 198 VVG ist an eine Frist gebunden."] },
+      { type: "h3", text: "Fehler 5: Davon ausgehen, dass das Kind automatisch mehr Leistungen bekommen kann als der Elternteil" },
+      { type: "p", parts: ["Für die gesetzlich privilegierte Aufnahme darf der Schutz nicht höher oder umfassender sein als beim versicherten Elternteil."] },
+      { type: "h3", text: "Fehler 6: Elternzeit finanziell ignorieren" },
+      { type: "p", parts: ["Der eigene PKV-Beitrag läuft grundsätzlich weiter."] },
+      { type: "p", parts: ["Der Arbeitgeberzuschuss kann während einer vollständigen Elternzeit wegfallen."] },
+      { type: "h3", text: "Fehler 7: Nur auf den Kinderbeitrag schauen" },
+      { type: "p", parts: ["Auch Leistungen, Arbeitgeberzuschuss, Elternzeit und Familienversicherung gehören in die Rechnung."] },
+    ],
+  },
+  {
+    id: "checkliste",
+    heading: "Meine Checkliste für PKV und Familienplanung",
+    blocks: [
+      { type: "p", parts: ["Bevor ich eine PKV-Entscheidung mit Familienplanung treffe, würde ich folgende Punkte klären:"] },
+      {
+        type: "list",
+        items: [
+          "1. Sind Kinder grundsätzlich geplant?",
+          "2. Wie viele Kinder sind realistisch denkbar?",
+          "3. Wie ist der Partner aktuell versichert?",
+          "4. Seid ihr verheiratet oder unverheiratet?",
+          "5. Wer verdient aktuell mehr?",
+          "6. Liegt der privat versicherte Elternteil über der JAEG?",
+          "7. Wäre eine beitragsfreie GKV-Familienversicherung möglich?",
+          "8. Was kostet ein Kind in der gewünschten PKV?",
+          "9. Was kosten zwei oder mehrere Kinder?",
+          "10. Ist noch Arbeitgeberzuschuss für Kinderbeiträge verfügbar?",
+          "11. Wie ist der eigene Tarif bei Schwangerschaft und Entbindung aufgestellt?",
+          "12. Welche Kindernachversicherung bietet der Versicherer?",
+          "13. Ist die erforderliche Vorversicherungszeit erfüllt?",
+          "14. Ist die Zwei-Monats-Frist nach Geburt bekannt?",
+          "15. Welchen Leistungsumfang kann das Kind ohne Risikoprüfung erhalten?",
+          "16. Wie verändert Elternzeit die eigene Beitragsbelastung?",
+          "17. Ist Teilzeit während der Elternzeit geplant?",
+          "18. Was passiert nach der Elternzeit mit dem Versicherungsstatus?",
+          "19. Passt die PKV auch dann noch zur Familie, wenn die heutige Ersparnis kleiner wird?",
+        ],
+      },
+      { type: "p", parts: ["Erst wenn diese Fragen beantwortet sind, hast du ein realistisches Bild."] },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        if (block.type === "list")
+          return (
+            <ul class="space-y-2">
+              {block.items.map((item) => (
+                <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                  <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          );
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

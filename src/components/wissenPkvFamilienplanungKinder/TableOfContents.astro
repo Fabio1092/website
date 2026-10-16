@@ -1,0 +1,62 @@
+---
+const entries = [
+  { id: "wichtigstes-in-kuerze", label: "Das Wichtigste zur PKV mit Kindern in Kürze" },
+  { id: "warum-familienplanung-wichtig", label: "Warum Familienplanung bei der PKV so wichtig ist" },
+  { id: "beide-eltern-gkv", label: "Wie werden Kinder versichert, wenn beide Eltern gesetzlich versichert sind?" },
+  { id: "beide-eltern-pkv", label: "Wie werden Kinder versichert, wenn beide Eltern privat versichert sind?" },
+  { id: "gemischt-versicherte-eltern", label: "Ein Elternteil GKV, ein Elternteil PKV: Wo wird das Kind versichert?" },
+  { id: "wann-ausgeschlossen", label: "Wann ist die kostenlose Familienversicherung ausgeschlossen?" },
+  { id: "beispiel-1-ueber-jaeg", label: "Beispiel 1: PKV-Elternteil verdient mehr und liegt über der JAEG" },
+  { id: "beispiel-2-verdient-weniger", label: "Beispiel 2: PKV-Elternteil verdient weniger" },
+  { id: "beispiel-3-nicht-ueber-grenze", label: "Beispiel 3: PKV-Elternteil verdient mehr, aber nicht über der maßgeblichen Grenze" },
+  { id: "unverheiratete-eltern", label: "Was gilt bei unverheirateten Eltern?" },
+  { id: "muss-kind-in-pkv", label: "Muss das Kind in die PKV, wenn die GKV-Familienversicherung ausgeschlossen ist?" },
+  { id: "was-kostet-ein-kind", label: "Was kostet ein Kind in der PKV?" },
+  { id: "arbeitgeberzuschuss-kinder", label: "Beteiligt sich der Arbeitgeber an den PKV-Beiträgen der Kinder?" },
+  { id: "kind-geboren", label: "Was passiert, wenn ein Kind geboren wird?" },
+  { id: "voraussetzungen-kindernachversicherung", label: "Welche Voraussetzungen gelten für die Kindernachversicherung?" },
+  { id: "krank-geborenes-kind-abgelehnt", label: "Kann mein krank geborenes Kind abgelehnt werden?" },
+  { id: "besserer-tarif-als-ich", label: "Kann mein Kind einen besseren Tarif bekommen als ich?" },
+  { id: "vor-der-geburt-beschaeftigen", label: "Warum sollte ich mich schon vor der Geburt mit der Versicherung des Kindes beschäftigen?" },
+  { id: "adoption", label: "Was gilt bei Adoption?" },
+  { id: "pkv-waehrend-schwangerschaft", label: "Was passiert mit meiner PKV während der Schwangerschaft?" },
+  { id: "pkv-waehrend-mutterschutz", label: "Was passiert mit meiner PKV während des Mutterschutzes?" },
+  { id: "pkv-waehrend-elternzeit", label: "Was passiert mit meiner PKV während der Elternzeit?" },
+  { id: "beispiel-elternzeit", label: "Beispiel: PKV während der Elternzeit" },
+  { id: "teilzeit-waehrend-elternzeit", label: "Was passiert, wenn ich während der Elternzeit Teilzeit arbeite?" },
+  { id: "kinder-spaeter-gkv-wechseln", label: "Können Kinder später von der PKV in die GKV wechseln?" },
+  { id: "mehrere-kinder", label: "Was passiert bei mehreren Kindern?" },
+  { id: "pkv-fuer-familien-schlechter", label: "Ist die PKV deshalb für Familien grundsätzlich schlechter?" },
+  { id: "familienplanung-vor-wechsel", label: "Familienplanung sollte vor dem PKV-Wechsel besprochen werden" },
+  { id: "drei-familienkonstellationen", label: "Drei typische Familienkonstellationen" },
+  { id: "typische-fehler", label: "Welche Fehler würde ich vermeiden?" },
+  { id: "checkliste", label: "Meine Checkliste für PKV und Familienplanung" },
+  { id: "fazit", label: "Fazit: Passt die PKV zu Familien mit Kindern?" },
+  { id: "pkv-familienplanung-gemeinsam-pruefen", label: "PKV und Familienplanung gemeinsam prüfen" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>
