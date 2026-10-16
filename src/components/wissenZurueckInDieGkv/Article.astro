@@ -1,0 +1,621 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  { type: "p", parts: ["Dann ist der wichtigste Punkt direkt am Anfang:"] },
+  { type: "standalone", text: "Du kannst die PKV nicht einfach kündigen und dich anschließend freiwillig bei einer gesetzlichen Krankenkasse anmelden." },
+  {
+    type: "p",
+    parts: ["Der Wechsel zurück funktioniert grundsätzlich nur dann, wenn du die gesetzlichen Voraussetzungen für eine Mitgliedschaft in der GKV erfüllst."],
+  },
+  { type: "p", parts: ["In der Praxis bedeutet das häufig:"] },
+  { type: "standalone", text: "Es muss erneut Versicherungspflicht entstehen." },
+  {
+    type: "p",
+    parts: ["Das kann beispielsweise passieren, wenn ein privat versicherter Arbeitnehmer mit seinem regelmäßigen Jahresarbeitsentgelt unter die maßgebliche Jahresarbeitsentgeltgrenze fällt."],
+  },
+  { type: "p", parts: ["Auch der Bezug von Arbeitslosengeld kann grundsätzlich Versicherungspflicht auslösen."] },
+  { type: "p", parts: ["Für Selbstständige gelten wiederum andere Regeln."] },
+  { type: "p", parts: ["Und ab dem 55. Lebensjahr wird eine Rückkehr erheblich schwieriger."] },
+  { type: "p", parts: ["Deshalb würde ich zuerst nicht fragen:"] },
+  { type: "standalone", text: "„Wie kündige ich meine PKV?“" },
+  { type: "p", parts: ["Sondern:"] },
+  { type: "standalone", text: "„Welcher gesetzliche Tatbestand würde mich überhaupt wieder versicherungspflichtig in der GKV machen?“" },
+];
+
+const sections: Section[] = [
+  {
+    id: "wichtigstes-in-kuerze",
+    heading: "Das Wichtigste zur Rückkehr von der PKV in die GKV",
+    blocks: [
+      { type: "p", parts: ["Grundsätzlich gilt:"] },
+      {
+        type: "list",
+        items: [
+          "ein freier Wechsel von der PKV in die GKV ist nicht möglich",
+          "eine Rückkehr gelingt häufig über eine neu entstehende Versicherungspflicht",
+          "bei Arbeitnehmern kann ein Einkommen unterhalb der Jahresarbeitsentgeltgrenze Versicherungspflicht auslösen",
+          "der bloße Wunsch nach einem Wechsel reicht nicht aus",
+          "Arbeitslosengeld kann grundsätzlich GKV-Versicherungspflicht auslösen",
+          "bei hauptberuflich Selbstständigen entsteht durch eine normale Beschäftigung nicht automatisch Versicherungspflicht, solange die hauptberufliche Selbstständigkeit fortbesteht",
+          "für Personen ab 55 Jahren gelten erhebliche zusätzliche Einschränkungen",
+          "Grundsicherungsbezug bedeutet für bereits privat Versicherte nicht automatisch eine Rückkehr in die GKV",
+          "bei bestehender Pflichtversicherung besteht gegenüber der PKV grundsätzlich ein Sonderkündigungsrecht",
+          "die Beendigung der PKV sollte erst erfolgen, wenn die neue GKV-Mitgliedschaft beziehungsweise Versicherungspflicht tatsächlich geklärt ist",
+        ],
+      },
+    ],
+  },
+  {
+    id: "warum-nicht-einfach-freiwillig",
+    heading: "Warum kann ich nicht einfach freiwillig in die GKV zurück?",
+    blocks: [
+      { type: "p", parts: ["Weil die gesetzliche Krankenversicherung kein System ist, in das jeder jederzeit freiwillig eintreten kann."] },
+      { type: "p", parts: ["Eine freiwillige Mitgliedschaft setzt grundsätzlich voraus, dass bestimmte gesetzliche Vorversicherungs- oder Anschlussvoraussetzungen erfüllt sind."] },
+      {
+        type: "p",
+        parts: ["Wenn du seit Jahren ausschließlich privat versichert bist, entsteht allein durch die Kündigung deiner PKV normalerweise kein Recht, dich anschließend freiwillig gesetzlich zu versichern."],
+      },
+      { type: "p", parts: ["Deshalb ist die Reihenfolge entscheidend:"] },
+      { type: "standalone", text: "Zuerst muss geklärt sein, warum du wieder Zugang zur GKV hast." },
+      { type: "p", parts: ["Erst danach wird die PKV beendet."] },
+    ],
+  },
+  {
+    id: "moeglichkeit-1-arbeitnehmer",
+    heading: "Möglichkeit 1: Als Arbeitnehmer wieder versicherungspflichtig werden",
+    blocks: [
+      { type: "p", parts: ["Das ist einer der häufigsten Rückkehrwege."] },
+      { type: "p", parts: ["Arbeitnehmer sind grundsätzlich gesetzlich krankenversicherungspflichtig, solange keine Versicherungsfreiheit besteht."] },
+      { type: "p", parts: ["Für gutverdienende Arbeitnehmer ist dabei insbesondere die Jahresarbeitsentgeltgrenze relevant."] },
+      { type: "p", parts: ["2026 beträgt die allgemeine JAEG:"] },
+      { type: "standalone", text: "77.400 Euro jährlich." },
+      { type: "p", parts: ["Liegt dein regelmäßiges Jahresarbeitsentgelt oberhalb dieser Grenze, kannst du als Arbeitnehmer versicherungsfrei sein."] },
+      {
+        type: "p",
+        parts: ["Fällt dein regelmäßiges Jahresarbeitsentgelt dagegen wieder unter die maßgebliche Grenze und greift keine andere Ausnahme, kann erneut Versicherungspflicht in der GKV entstehen."],
+      },
+    ],
+  },
+  {
+    id: "einkommen-unter-jaeg",
+    heading: "Wie kann das Einkommen unter die JAEG fallen?",
+    blocks: [
+      { type: "p", parts: ["Dafür gibt es verschiedene mögliche Gründe."] },
+      { type: "p", parts: ["Zum Beispiel:"] },
+      {
+        type: "list",
+        items: [
+          "Wechsel zu einem geringer bezahlten Arbeitgeber",
+          "dauerhafte Reduzierung der Arbeitszeit",
+          "Wechsel von Vollzeit auf Teilzeit",
+          "Wegfall regelmäßig berücksichtigter Entgeltbestandteile",
+          "berufliche Veränderung mit niedrigerem regelmäßigen Jahresarbeitsentgelt",
+        ],
+      },
+      { type: "p", parts: ["Entscheidend ist nicht, dass du in einem einzelnen Monat weniger verdienst."] },
+      {
+        type: "p",
+        parts: ["Es muss sozialversicherungsrechtlich neu beurteilt werden, ob dein ", { b: "regelmäßiges Jahresarbeitsentgelt" }, " unterhalb der maßgeblichen Grenze liegt."],
+      },
+      { type: "p", parts: ["Eine künstliche kurzfristige Reduzierung nur auf dem Papier ist deshalb nicht dasselbe wie eine echte Änderung der Beschäftigungssituation."] },
+    ],
+  },
+  {
+    id: "beispiel-vollzeit-teilzeit",
+    heading: "Beispiel: Wechsel von Vollzeit auf Teilzeit",
+    blocks: [
+      { type: "p", parts: ["Du bist 45 Jahre alt und privat versichert."] },
+      { type: "p", parts: ["Dein regelmäßiges Jahresarbeitsentgelt liegt bisher bei:"] },
+      { type: "standalone", text: "90.000 Euro." },
+      { type: "p", parts: ["Du reduzierst dauerhaft deine Arbeitszeit."] },
+      { type: "p", parts: ["Dadurch beträgt dein regelmäßiges Jahresarbeitsentgelt künftig:"] },
+      { type: "standalone", text: "65.000 Euro." },
+      { type: "p", parts: ["Sofern keine besondere Versicherungsfreiheit oder Befreiung greift, kann dadurch Versicherungspflicht in der GKV entstehen."] },
+      { type: "p", parts: ["Die Krankenkasse prüft dabei die konkrete Beschäftigungssituation."] },
+      {
+        type: "p",
+        parts: [{ b: "Wichtig:" }, " Ich würde niemals erst die PKV kündigen und anschließend prüfen lassen, ob tatsächlich Versicherungspflicht besteht."],
+      },
+      { type: "p", parts: ["Die Reihenfolge ist genau andersherum."] },
+    ],
+  },
+  {
+    id: "jaeg-steigt",
+    heading: "Was passiert, wenn nur die JAEG steigt?",
+    blocks: [
+      { type: "p", parts: ["Auch dadurch kann Versicherungspflicht entstehen."] },
+      { type: "p", parts: ["Angenommen:"] },
+      { type: "p", parts: ["Du verdienst weiterhin gleich viel."] },
+      { type: "p", parts: ["Die gesetzliche Jahresarbeitsentgeltgrenze steigt aber zum Jahreswechsel über dein regelmäßiges Einkommen."] },
+      { type: "p", parts: ["Dann kann grundsätzlich Versicherungspflicht entstehen."] },
+      { type: "p", parts: ["Allerdings gibt es für genau solche Fälle die Möglichkeit, sich unter bestimmten Voraussetzungen von der Versicherungspflicht befreien zu lassen."] },
+      { type: "p", parts: ["§ 8 SGB V sieht ausdrücklich eine Befreiungsmöglichkeit vor, wenn Versicherungspflicht allein wegen einer Änderung der Jahresarbeitsentgeltgrenze eintritt."] },
+      { type: "p", parts: ["Wenn dein Ziel die Rückkehr in die GKV ist, wäre eine solche Befreiung natürlich gerade nicht das, was du möchtest."] },
+      { type: "p", parts: ["Eine Befreiung sollte deshalb nie automatisch beantragt werden, ohne die langfristigen Folgen verstanden zu haben."] },
+    ],
+  },
+  {
+    id: "moeglichkeit-2-arbeitslosengeld",
+    heading: "Möglichkeit 2: Rückkehr über Arbeitslosengeld",
+    blocks: [
+      { type: "p", parts: ["Auch der Bezug von Arbeitslosengeld kann grundsätzlich Versicherungspflicht in der gesetzlichen Krankenversicherung auslösen."] },
+      { type: "p", parts: ["§ 5 SGB V nennt Bezieher von Arbeitslosengeld ausdrücklich als versicherungspflichtige Personengruppe."] },
+      { type: "p", parts: ["Das kann dazu führen, dass ein zuvor privat Versicherter während des Arbeitslosengeldbezugs wieder Mitglied einer gesetzlichen Krankenkasse wird."] },
+      { type: "p", parts: ["Aber auch hier gibt es Besonderheiten."] },
+    ],
+  },
+  {
+    id: "trotz-alg-privat-bleiben",
+    heading: "Kann ich trotz Arbeitslosengeld privat versichert bleiben?",
+    blocks: [
+      { type: "p", parts: ["Unter bestimmten Voraussetzungen ja."] },
+      { type: "p", parts: ["§ 8 SGB V erlaubt privat Versicherten beim Bezug von Arbeitslosengeld unter bestimmten Bedingungen eine Befreiung von der Versicherungspflicht."] },
+      {
+        type: "p",
+        parts: ["Dafür ist unter anderem relevant, dass in den letzten fünf Jahren vor dem Leistungsbezug keine gesetzliche Krankenversicherung bestand und ein entsprechender privater Versicherungsschutz vorhanden ist."],
+      },
+      { type: "p", parts: ["Das bedeutet:"] },
+      { type: "standalone", text: "Arbeitslosengeld kann ein Weg zurück in die GKV sein – aber nicht jeder privat Versicherte muss zwangsläufig wechseln." },
+      { type: "p", parts: ["Wer dagegen bewusst zurück in die GKV möchte, sollte nicht vorschnell eine Befreiung von der Versicherungspflicht beantragen."] },
+    ],
+  },
+  {
+    id: "buergergeld-grundsicherung",
+    heading: "Bürgergeld beziehungsweise Grundsicherung: Komme ich dadurch zurück?",
+    blocks: [
+      { type: "p", parts: ["Nicht automatisch."] },
+      { type: "p", parts: ["Das ist ein häufiger Irrtum."] },
+      { type: "p", parts: ["Für Personen, die bereits vor dem Leistungsbezug privat krankenversichert waren, existieren besondere Regelungen."] },
+      { type: "p", parts: ["Privat Versicherte können bei Hilfebedürftigkeit unter bestimmten Voraussetzungen einen Zuschuss zu ihren PKV-Beiträgen erhalten."] },
+      { type: "p", parts: ["Ein Leistungsbezug führt deshalb nicht einfach dazu, dass jeder privat Versicherte automatisch in die GKV wechselt."] },
+      { type: "p", parts: ["Gerade bei diesem Thema würde ich die konkrete Situation immer individuell prüfen lassen."] },
+    ],
+  },
+  {
+    id: "moeglichkeit-3-selbststaendiger-zum-arbeitnehmer",
+    heading: "Möglichkeit 3: Vom Selbstständigen zum Arbeitnehmer",
+    blocks: [
+      { type: "p", parts: ["Auch für Selbstständige kann eine Rückkehr grundsätzlich möglich sein."] },
+      { type: "p", parts: ["Allerdings reicht es nicht, einfach irgendwo zusätzlich angestellt zu arbeiten."] },
+      { type: "p", parts: ["Denn nach § 5 SGB V gilt:"] },
+      {
+        type: "p",
+        parts: ["Wer ", { b: "hauptberuflich selbstständig" }, " tätig ist, wird durch eine daneben ausgeübte Beschäftigung nicht automatisch gesetzlich versicherungspflichtig."],
+      },
+      { type: "p", parts: ["Der entscheidende Punkt ist deshalb:"] },
+      { type: "standalone", text: "Ist die Selbstständigkeit weiterhin hauptberuflich oder wird die Beschäftigung zum Hauptberuf?" },
+    ],
+  },
+  {
+    id: "beispiel-selbststaendigkeit-aufgegeben",
+    heading: "Beispiel: Selbstständigkeit wird aufgegeben",
+    blocks: [
+      { type: "p", parts: ["Du bist 48 Jahre alt und seit zehn Jahren hauptberuflich selbstständig sowie privat krankenversichert."] },
+      {
+        type: "p",
+        parts: ["Du beendest deine hauptberufliche Selbstständigkeit und nimmst eine sozialversicherungspflichtige Beschäftigung mit einem regelmäßigen Jahresarbeitsentgelt unterhalb der JAEG auf."],
+      },
+      { type: "p", parts: ["Dann kann grundsätzlich wieder Versicherungspflicht in der GKV entstehen."] },
+      { type: "p", parts: ["Anders kann es aussehen, wenn du weiterhin in erheblichem Umfang hauptberuflich selbstständig tätig bist."] },
+      { type: "p", parts: ["Deshalb ist die tatsächliche berufliche Situation entscheidend."] },
+    ],
+  },
+  {
+    id: "kleine-teilzeitstelle",
+    heading: "Reicht eine kleine Teilzeitstelle neben der Selbstständigkeit?",
+    blocks: [
+      { type: "p", parts: ["Nicht zwangsläufig."] },
+      { type: "p", parts: ["Wenn deine Selbstständigkeit weiterhin als hauptberuflich eingestuft wird, verhindert § 5 Abs. 5 SGB V grundsätzlich die Versicherungspflicht aus einer Beschäftigung."] },
+      { type: "p", parts: ["Eine kleine Beschäftigung neben einem weiterhin dominierenden Unternehmen ist deshalb kein verlässlicher „Rückweg“."] },
+      { type: "p", parts: ["Die Krankenkasse bewertet die tatsächlichen Verhältnisse."] },
+      { type: "p", parts: ["Dazu können unter anderem gehören:"] },
+      { type: "list", items: ["Arbeitszeit", "wirtschaftliche Bedeutung", "Einkommen", "Beschäftigung von Mitarbeitern", "organisatorischer Umfang der Selbstständigkeit"] },
+    ],
+  },
+  {
+    id: "moeglichkeit-4-familienversicherung",
+    heading: "Möglichkeit 4: Familienversicherung",
+    blocks: [
+      { type: "p", parts: ["Unter bestimmten Voraussetzungen kann auch eine beitragsfreie Familienversicherung infrage kommen."] },
+      { type: "p", parts: ["§ 10 SGB V ermöglicht Ehegatten und Lebenspartnern eines GKV-Mitglieds grundsätzlich eine Familienversicherung, wenn die gesetzlichen Voraussetzungen erfüllt sind."] },
+      { type: "p", parts: ["Zu den Voraussetzungen gehört unter anderem:"] },
+      {
+        type: "list",
+        items: [
+          "kein eigener vorrangiger Pflicht- oder freiwilliger Versicherungsschutz",
+          "keine relevante Versicherungsfreiheit oder Befreiung",
+          "keine hauptberufliche Selbstständigkeit",
+          "Einkommen unterhalb der gesetzlichen Einkommensgrenzen",
+        ],
+      },
+      {
+        type: "p",
+        parts: ["2026 gilt grundsätzlich eine monatliche Einkommensgrenze von ", { b: "565 Euro" }, ", beziehungsweise ", { b: "603 Euro bei geringfügig Beschäftigten" }, "."],
+      },
+      { type: "p", parts: ["Ob die Familienversicherung tatsächlich möglich ist, muss aber immer im konkreten Fall geprüft werden."] },
+    ],
+  },
+  {
+    id: "rueckkehr-ab-55",
+    heading: "Die wichtigste Grenze: Rückkehr ab 55",
+    blocks: [
+      { type: "p", parts: ["Ab dem 55. Lebensjahr wird die Rückkehr in die gesetzliche Krankenversicherung erheblich schwieriger."] },
+      { type: "p", parts: ["Wichtig ist allerdings:"] },
+      { type: "standalone", text: "„Ab 55 geht es nie mehr“ ist zu pauschal." },
+      { type: "p", parts: ["Die tatsächliche gesetzliche Regel ist genauer."] },
+      {
+        type: "p",
+        parts: ["§ 6 Abs. 3a SGB V bestimmt, dass Personen, die nach Vollendung des 55. Lebensjahres eigentlich versicherungspflichtig würden, trotzdem versicherungsfrei bleiben, wenn:"],
+      },
+      { type: "p", parts: ["1. sie in den letzten fünf Jahren vor Eintritt der Versicherungspflicht nicht gesetzlich versichert waren"] },
+      { type: "standalone", text: "und" },
+      { type: "p", parts: ["2. sie mindestens die Hälfte dieser Zeit"] },
+      { type: "list", items: ["versicherungsfrei,", "von der Versicherungspflicht befreit", "oder wegen hauptberuflicher Selbstständigkeit nicht versicherungspflichtig waren."] },
+    ],
+  },
+  {
+    id: "beispiel-58-jahre",
+    heading: "Beispiel: 58 Jahre und seit vielen Jahren privat versichert",
+    blocks: [
+      { type: "p", parts: ["Du bist 58."] },
+      { type: "p", parts: ["Du warst die vergangenen zehn Jahre privat versichert, weil du als Arbeitnehmer oberhalb der JAEG verdient hast."] },
+      { type: "p", parts: ["Jetzt reduzierst du dein Einkommen deutlich unter die JAEG."] },
+      { type: "p", parts: ["Auf den ersten Blick würde dadurch eigentlich Versicherungspflicht entstehen."] },
+      { type: "p", parts: ["Wenn aber die Voraussetzungen des § 6 Abs. 3a SGB V erfüllt sind, bleibst du trotzdem versicherungsfrei."] },
+      { type: "p", parts: ["Dann kannst du nicht allein durch die Gehaltsreduzierung wieder in die GKV wechseln."] },
+      { type: "p", parts: ["Genau deshalb ist die 55-Jahre-Regel so relevant."] },
+    ],
+  },
+  {
+    id: "55-geburtstag-fuer-immer-pkv",
+    heading: "Bedeutet der 55. Geburtstag automatisch „für immer PKV“?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Aber für langjährig privat Versicherte ist die Hürde ab diesem Alter sehr hoch."] },
+      { type: "p", parts: ["Die entscheidenden Kriterien sind nicht nur das Alter, sondern auch die Versicherungsbiografie der vergangenen fünf Jahre."] },
+      { type: "p", parts: ["Deshalb würde ich niemals nur anhand des Geburtsdatums eine endgültige Aussage treffen."] },
+      { type: "p", parts: ["Die Krankenkasse muss die konkrete Versicherungsbiografie prüfen."] },
+    ],
+  },
+  {
+    id: "ausland-trick",
+    heading: "Kann ich kurz ins Ausland gehen und danach wieder in die GKV?",
+    blocks: [
+      { type: "p", parts: ["Solche vermeintlichen Gestaltungsmöglichkeiten werden im Internet regelmäßig diskutiert."] },
+      { type: "p", parts: ["Ich würde daraus keine Standardstrategie machen."] },
+      { type: "p", parts: ["Grenzüberschreitende Versicherungsfälle hängen unter anderem ab von:"] },
+      {
+        type: "list",
+        items: [
+          "Zielland",
+          "tatsächlichem Wohn- und Beschäftigungsort",
+          "dortigem Versicherungssystem",
+          "europäischen beziehungsweise zwischenstaatlichen Regelungen",
+          "Rückkehrsituation nach Deutschland",
+          "bisheriger Versicherungsbiografie",
+        ],
+      },
+      { type: "p", parts: ["Für Personen über 55 enthält § 6 SGB V sogar zusätzliche Regeln für bestimmte ausländische beziehungsweise supranationale Absicherungen."] },
+      { type: "p", parts: ["Wer einen echten Auslandsfall hat, sollte ihn individuell sozialversicherungsrechtlich prüfen lassen."] },
+      { type: "standalone", text: "Eine rein formale Gestaltung nur zum Umgehen der gesetzlichen Zugangsvoraussetzungen würde ich nicht empfehlen." },
+    ],
+  },
+  {
+    id: "alterungsrueckstellungen",
+    heading: "Was passiert mit meinen PKV-Alterungsrückstellungen?",
+    blocks: [
+      { type: "p", parts: ["Das ist ein wichtiger wirtschaftlicher Punkt."] },
+      {
+        type: "p",
+        parts: ["Wenn du die private Krankenvollversicherung verlässt und in die GKV zurückkehrst, kannst du deine aufgebauten Alterungsrückstellungen nicht einfach auf dein persönliches GKV-Konto übertragen."],
+      },
+      { type: "p", parts: ["Die GKV funktioniert nach einem anderen Finanzierungssystem."] },
+      { type: "p", parts: ["Deshalb sollte eine Rückkehr nicht nur unter dem Gesichtspunkt betrachtet werden:"] },
+      { type: "standalone", text: "„Wie hoch ist mein Beitrag nächsten Monat?“" },
+      { type: "p", parts: ["Sondern auch:"] },
+      { type: "standalone", text: "„Welche langfristigen Folgen hat die Systementscheidung?“" },
+      {
+        type: "p",
+        parts: [
+          "Mehr über die Funktionsweise der Alterungsrückstellungen findest du unter ",
+          { a: "Wie funktioniert die private Krankenversicherung?", href: "/wissen/private-krankenversicherung/wie-funktioniert-die-pkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "pkv-parallel-behalten",
+    heading: "Kann ich meine PKV einfach parallel behalten?",
+    blocks: [
+      { type: "p", parts: ["Wenn du wieder GKV-pflichtversichert wirst, brauchst du deine bisherige private Krankheitskostenvollversicherung normalerweise nicht unverändert weiterzuführen."] },
+      { type: "p", parts: ["Du kannst aber prüfen, ob bestimmte private Leistungen als Zusatzversicherung weitergeführt werden können."] },
+      { type: "p", parts: ["Zum Beispiel können je nach Versicherer und Tarif Möglichkeiten bestehen für:"] },
+      { type: "list", items: ["stationäre Zusatzversicherung", "Zahnzusatzversicherung", "ambulante Zusatzbausteine", "Anwartschaft"] },
+      { type: "p", parts: ["Welche Optionen bestehen, hängt vom konkreten Vertrag ab."] },
+      { type: "p", parts: ["Ich würde deshalb die PKV nicht einfach kommentarlos kündigen, bevor geprüft wurde, welche Rechte du eventuell erhalten möchtest."] },
+    ],
+  },
+  {
+    id: "sonderkuendigungsrecht",
+    heading: "Sonderkündigungsrecht der PKV bei neuer Versicherungspflicht",
+    blocks: [
+      { type: "p", parts: ["Wenn Versicherungspflicht in der GKV eintritt, besteht gegenüber der privaten Krankenversicherung grundsätzlich ein besonderes Kündigungsrecht."] },
+      { type: "p", parts: ["Praktisch bedeutet das:"] },
+      { type: "standalone", text: "Erst GKV-Pflicht klären und nachweisen – dann PKV passend zum Beginn der GKV beenden." },
+      { type: "p", parts: ["Damit vermeidest du Versicherungslücken."] },
+    ],
+  },
+  {
+    id: "welche-krankenkasse-waehlen",
+    heading: "Welche gesetzliche Krankenkasse kann ich wählen?",
+    blocks: [
+      { type: "p", parts: ["Wenn erneut Versicherungspflicht entsteht, kannst du grundsätzlich eine wählbare gesetzliche Krankenkasse auswählen."] },
+      { type: "p", parts: ["Dazu gehören je nach Voraussetzungen beispielsweise:"] },
+      { type: "list", items: ["AOK am Wohn- oder Beschäftigungsort", "Ersatzkassen", "geöffnete Betriebskrankenkassen", "geöffnete Innungskrankenkassen"] },
+      { type: "p", parts: ["Die gesundheitliche Vorgeschichte spielt bei der Aufnahme in die GKV grundsätzlich keine Rolle."] },
+      { type: "p", parts: ["Gesetzliche Krankenkassen müssen Personen aufnehmen, wenn die gesetzlichen Voraussetzungen erfüllt sind."] },
+    ],
+  },
+  {
+    id: "pflegeversicherung",
+    heading: "Was passiert mit der Pflegeversicherung?",
+    blocks: [
+      { type: "p", parts: ["Kranken- und Pflegeversicherung gehören grundsätzlich zusammen."] },
+      { type: "p", parts: ["Wer gesetzlich krankenversichert ist, ist regelmäßig automatisch auch in der sozialen Pflegeversicherung versichert."] },
+      { type: "p", parts: ["Beim Wechsel zurück in die GKV muss deshalb auch die bisherige private Pflegepflichtversicherung entsprechend beendet beziehungsweise umgestellt werden."] },
+      { type: "p", parts: ["Auch hier sollte der Versicherungswechsel zeitlich sauber koordiniert werden."] },
+    ],
+  },
+  {
+    id: "was-kostet-die-gkv",
+    heading: "Was kostet die GKV nach der Rückkehr?",
+    blocks: [
+      { type: "p", parts: ["Das hängt von deiner Situation ab."] },
+      { type: "p", parts: ["Als Arbeitnehmer werden die Beiträge grundsätzlich einkommensabhängig erhoben."] },
+      { type: "p", parts: ["2026 beträgt der allgemeine GKV-Beitragssatz:"] },
+      { type: "standalone", text: "14,6 Prozent." },
+      { type: "p", parts: ["Hinzu kommt der Zusatzbeitrag der jeweiligen Krankenkasse."] },
+      { type: "p", parts: ["Arbeitgeber und Arbeitnehmer teilen sich die Beiträge aus dem Arbeitsentgelt grundsätzlich jeweils zur Hälfte."] },
+      { type: "p", parts: ["Die Beitragsbemessung funktioniert damit vollkommen anders als in der PKV."] },
+      { type: "p", parts: ["In der PKV hängt dein Beitrag nicht unmittelbar von deinem Einkommen ab."] },
+      { type: "p", parts: ["In der GKV dagegen sehr wohl."] },
+    ],
+  },
+  {
+    id: "finanziell-sinnvoll",
+    heading: "Ist die Rückkehr in die GKV automatisch finanziell sinnvoll?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Nur weil du zurückkehren ", { b: "kannst" }, ", bedeutet das noch nicht automatisch, dass es die beste Entscheidung ist."] },
+      { type: "p", parts: ["Ich würde unter anderem vergleichen:"] },
+      {
+        type: "list",
+        items: [
+          "heutiger PKV-Beitrag",
+          "zukünftiger GKV-Beitrag",
+          "Selbstbehalt",
+          "Arbeitgeberanteil",
+          "Leistungsunterschiede",
+          "Familienversicherung",
+          "Einkünfte heute und im Ruhestand",
+          "Alterungsrückstellungen",
+          "private Zusatzversicherungen",
+          "langfristige Lebensplanung",
+        ],
+      },
+      { type: "p", parts: ["Gerade bei einem niedrigeren Einkommen kann die GKV finanziell attraktiv werden."] },
+      { type: "p", parts: ["Bei hohen späteren beitragspflichtigen Einkünften kann die Betrachtung anders aussehen."] },
+      { type: "p", parts: ["Deshalb sollte die Entscheidung nicht ausschließlich aufgrund einer aktuellen PKV-Beitragserhöhung getroffen werden."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr zum langfristigen Thema findest du unter ",
+          { a: "PKV Beitragsentwicklung: Wie stark steigen die Beiträge?", href: "/wissen/private-krankenversicherung/pkv-beitragsentwicklung/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "beitrag-zu-hoch",
+    heading: "PKV-Beitrag zu hoch: Muss ich unbedingt zurück in die GKV?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      {
+        type: "p",
+        parts: ["Wenn der eigentliche Grund für deinen Rückkehrwunsch ein hoher PKV-Beitrag ist, würde ich zusätzlich prüfen, welche Möglichkeiten ", { b: "innerhalb der PKV" }, " bestehen."],
+      },
+      { type: "p", parts: ["Eine Möglichkeit kann ein interner Tarifwechsel nach § 204 VVG sein."] },
+      { type: "p", parts: ["Dabei bleibst du bei deiner Gesellschaft und kannst andere Tarife prüfen lassen."] },
+      {
+        type: "p",
+        parts: ["Mehr dazu findest du unter ", { a: "PKV Tarifwechsel nach § 204 VVG", href: "/wissen/private-krankenversicherung/pkv-tarifwechsel/" }, "."],
+      },
+      { type: "p", parts: ["Gerade wenn eine GKV-Rückkehr rechtlich nicht mehr möglich oder wirtschaftlich gar nicht notwendig ist, kann das eine sinnvolle Alternative sein."] },
+    ],
+  },
+  {
+    id: "nicht-nur-nach-beitrag-entscheiden",
+    heading: "GKV oder PKV: Nicht nur nach dem Beitrag entscheiden",
+    blocks: [
+      { type: "p", parts: ["Ein Wechsel zurück verändert nicht nur deinen Versicherungsbeitrag."] },
+      { type: "p", parts: ["Du wechselst auch das Versicherungssystem."] },
+      { type: "p", parts: ["In der PKV basiert dein Versicherungsschutz auf deinem Vertrag."] },
+      { type: "p", parts: ["In der GKV richtet sich der Leistungsanspruch grundsätzlich nach dem gesetzlichen Leistungskatalog."] },
+      { type: "p", parts: ["Auch Familienversicherung, Beitragsberechnung und Finanzierung funktionieren unterschiedlich."] },
+      { type: "p", parts: ["Deshalb würde ich nicht nur fragen:"] },
+      { type: "standalone", text: "„Wo zahle ich heute weniger?“" },
+      { type: "p", parts: ["Sondern:"] },
+      { type: "standalone", text: "„Welches System passt ab jetzt besser zu meiner gesamten Lebenssituation?“" },
+      {
+        type: "p",
+        parts: ["Den ausführlichen Vergleich findest du unter ", { a: "GKV oder PKV?", href: "/wissen/private-krankenversicherung/gkv-oder-pkv/" }, "."],
+      },
+    ],
+  },
+  {
+    id: "drei-typische-situationen",
+    heading: "Drei typische Situationen",
+    blocks: [
+      { type: "h3", text: "Beispiel 1: Arbeitnehmer unter 55 reduziert dauerhaft sein Einkommen" },
+      { type: "p", parts: ["Du bist 47 Jahre alt und privat versichert."] },
+      { type: "p", parts: ["Dein Gehalt liegt bisher deutlich über der JAEG."] },
+      { type: "p", parts: ["Durch einen Jobwechsel liegt dein regelmäßiges Jahresarbeitsentgelt künftig unter der Grenze."] },
+      { type: "p", parts: ["Wenn keine besondere Ausnahme oder Befreiung greift, entsteht grundsätzlich wieder Versicherungspflicht."] },
+      { type: "p", parts: [{ b: "Meine Einschätzung:" }, " Das ist einer der klassischen Rückkehrwege in die GKV."] },
+      { type: "h3", text: "Beispiel 2: Selbstständiger wechselt vollständig in eine Beschäftigung" },
+      { type: "p", parts: ["Du bist 50 Jahre alt und hauptberuflich selbstständig."] },
+      { type: "p", parts: ["Du beendest deine Selbstständigkeit und nimmst eine sozialversicherungspflichtige Beschäftigung unterhalb der JAEG auf."] },
+      { type: "p", parts: [{ b: "Meine Einschätzung:" }, " Auch hier kann grundsätzlich wieder GKV-Versicherungspflicht entstehen."] },
+      { type: "p", parts: ["Wird die Selbstständigkeit dagegen weiterhin hauptberuflich ausgeübt, sieht die Situation anders aus."] },
+      { type: "h3", text: "Beispiel 3: 59-jähriger langjährig Privatversicherter" },
+      { type: "p", parts: ["Du bist 59 und seit vielen Jahren privat versichert."] },
+      { type: "p", parts: ["Jetzt möchtest du dein Einkommen unter die JAEG reduzieren."] },
+      { type: "p", parts: ["Wenn die Voraussetzungen des § 6 Abs. 3a SGB V erfüllt sind, entsteht trotz der Einkommensreduzierung keine GKV-Pflicht."] },
+      {
+        type: "p",
+        parts: [{ b: "Meine Einschätzung:" }, " Genau hier zeigt sich, warum eine individuelle Prüfung der letzten fünf Jahre zwingend notwendig ist."],
+      },
+    ],
+  },
+  {
+    id: "typische-fehler",
+    heading: "Welche Fehler würde ich vermeiden?",
+    blocks: [
+      { type: "h3", text: "Fehler 1: Erst PKV kündigen und dann GKV prüfen" },
+      { type: "p", parts: ["Falsche Reihenfolge."] },
+      { type: "p", parts: ["Erst muss klar sein, dass tatsächlich GKV-Zugang besteht."] },
+      { type: "h3", text: "Fehler 2: Glauben, unter 55 sei die Rückkehr immer möglich" },
+      { type: "p", parts: ["Auch unter 55 braucht es einen gesetzlichen Zugang zur GKV."] },
+      { type: "p", parts: ["Das Alter allein reicht nicht."] },
+      { type: "h3", text: "Fehler 3: Glauben, ab 55 sei es ausnahmslos unmöglich" },
+      { type: "p", parts: ["Auch das ist zu pauschal."] },
+      { type: "p", parts: ["Die gesetzliche Regel hängt zusätzlich von den letzten fünf Jahren ab."] },
+      { type: "h3", text: "Fehler 4: Eine nebenberufliche Anstellung bei weiterhin hauptberuflicher Selbstständigkeit überschätzen" },
+      { type: "p", parts: ["Dann entsteht möglicherweise gerade keine Versicherungspflicht."] },
+      { type: "h3", text: "Fehler 5: Arbeitslosengeld mit Bürgergeld beziehungsweise Grundsicherung gleichsetzen" },
+      { type: "p", parts: ["Die versicherungsrechtlichen Folgen können unterschiedlich sein."] },
+      { type: "h3", text: "Fehler 6: Sofort eine Befreiung von der Versicherungspflicht beantragen" },
+      { type: "p", parts: ["Eine Befreiung kann genau die Rückkehr verhindern, die du eigentlich möchtest."] },
+      { type: "h3", text: "Fehler 7: Nur auf den heutigen Beitrag schauen" },
+      { type: "p", parts: ["Die Entscheidung betrifft Leistungen, Alterungsrückstellungen und deine langfristige Versicherungsbiografie."] },
+    ],
+  },
+  {
+    id: "checkliste",
+    heading: "Meine Checkliste: Zurück von der PKV in die GKV",
+    blocks: [
+      { type: "p", parts: ["Bevor du irgendetwas kündigst, würde ich folgende Punkte klären:"] },
+      {
+        type: "list",
+        items: [
+          "1. Wie alt bist du?",
+          "2. Wie warst du in den vergangenen fünf Jahren krankenversichert?",
+          "3. Warum bist du aktuell versicherungsfrei?",
+          "4. Bist du Arbeitnehmer, Selbstständiger oder arbeitslos?",
+          "5. Entsteht durch eine Veränderung tatsächlich Versicherungspflicht?",
+          "6. Liegt dein regelmäßiges Jahresarbeitsentgelt unter der maßgeblichen JAEG?",
+          "7. Besteht weiterhin eine hauptberufliche Selbstständigkeit?",
+          "8. Greift § 6 Abs. 3a SGB V wegen Vollendung des 55. Lebensjahres?",
+          "9. Wurde irgendwann eine Befreiung von der Versicherungspflicht ausgesprochen?",
+          "10. Besteht möglicherweise Anspruch auf Familienversicherung?",
+          "11. Ab welchem Datum beginnt die GKV-Mitgliedschaft?",
+          "12. Welche gesetzliche Krankenkasse möchtest du wählen?",
+          "13. Ist die Pflichtversicherung schriftlich bestätigt?",
+          "14. Wann kann die PKV beendet werden?",
+          "15. Möchtest du einzelne PKV-Leistungen als Zusatzversicherung erhalten?",
+          "16. Was passiert mit deiner privaten Pflegepflichtversicherung?",
+          "17. Wie verändert sich deine tatsächliche Gesamtbelastung nach dem Wechsel?",
+        ],
+      },
+      { type: "p", parts: ["Erst danach würde ich die PKV tatsächlich beenden."] },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

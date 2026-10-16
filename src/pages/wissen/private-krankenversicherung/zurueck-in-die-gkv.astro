@@ -1,0 +1,51 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/wissenZurueckInDieGkv/Hero.astro";
+import TableOfContents from "@/components/wissenZurueckInDieGkv/TableOfContents.astro";
+import Article from "@/components/wissenZurueckInDieGkv/Article.astro";
+import Fazit from "@/components/wissenZurueckInDieGkv/Fazit.astro";
+
+const pageTitle = "Zurück in die GKV: So funktioniert der Wechsel aus der PKV";
+const pageDescription =
+  "Wie komme ich von der PKV zurück in die GKV? Möglichkeiten für Arbeitnehmer, Selbstständige und Arbeitslose – inklusive 55-Jahre-Regel.";
+const canonicalUrl = new URL("/wissen/private-krankenversicherung/zurueck-in-die-gkv/", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Zurück in die GKV: So funktioniert der Wechsel aus der PKV",
+  description: pageDescription,
+  inLanguage: "de-DE",
+  datePublished: "2026-10-16",
+  dateModified: "2026-10-16",
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
+  publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Wissen", item: new URL("/wissen/", Astro.site).toString() },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "PKV-Wissen",
+      item: new URL("/wissen/private-krankenversicherung/", Astro.site).toString(),
+    },
+    { "@type": "ListItem", position: 4, name: "Zurück in die GKV", item: canonicalUrl },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} fullTitle>
+  <Hero />
+  <TableOfContents />
+  <Article />
+  <Fazit />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
