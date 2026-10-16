@@ -106,7 +106,6 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
       { label: "Zurück in die GKV", href: "/wissen/private-krankenversicherung/zurueck-in-die-gkv/" },
       { label: "PKV im Alter" },
       { label: "PKV mit Kindern", href: "/wissen/private-krankenversicherung/pkv-familienplanung-kinder/" },
-      { label: "Tarifoptimierung" },
     ],
   },
 ];
