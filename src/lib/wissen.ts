@@ -87,8 +87,6 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
     topics: [
       { label: "Gesundheitsfragen", href: "/pkv-gesundheitsfragen/" },
       { label: "Risikovoranfrage", href: "/pkv-risikovoranfrage/" },
-      { label: "Vorerkrankungen" },
-      { label: "Gesundheitsprüfung" },
     ],
   },
   {
