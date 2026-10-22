@@ -1,0 +1,60 @@
+---
+const entries = [
+  { id: "wichtigstes-in-kuerze", label: "Das Wichtigste zur Berufsunfähigkeitsversicherung in Kürze" },
+  { id: "was-ist-eine-bu", label: "Was ist eine Berufsunfähigkeitsversicherung?" },
+  { id: "wann-berufsunfaehig", label: "Wann gilt man als berufsunfähig?" },
+  { id: "fuenfzig-prozent-regel", label: "Was bedeutet die 50-Prozent-Regel?" },
+  { id: "beispiel-handwerker", label: "Beispiel: Ein Handwerker wird berufsunfähig" },
+  { id: "beispiel-bueroangestellter", label: "Beispiel: Ein Büroangestellter wird berufsunfähig" },
+  { id: "sechs-monate-krankgeschrieben", label: "Muss ich sechs Monate krankgeschrieben sein?" },
+  { id: "arbeitsunfaehigkeit-vs-berufsunfaehigkeit", label: "Was ist der Unterschied zwischen Arbeitsunfähigkeit und Berufsunfähigkeit?" },
+  { id: "krankheiten-die-zur-bu-fuehren", label: "Bei welchen Krankheiten zahlt eine Berufsunfähigkeitsversicherung?" },
+  { id: "was-wird-ausgezahlt", label: "Was bekomme ich von der BU-Versicherung ausgezahlt?" },
+  { id: "wie-lange-wird-gezahlt", label: "Wie lange wird die BU-Rente gezahlt?" },
+  { id: "wie-hoch-sollte-bu-rente-sein", label: "Wie hoch sollte meine BU-Rente sein?" },
+  { id: "warum-lange-laufzeit", label: "Warum sollte die BU möglichst lange laufen?" },
+  { id: "leistungspruefung", label: "Wie funktioniert die BU-Leistungsprüfung?" },
+  { id: "anderer-beruf-moeglich", label: "Was passiert, wenn ich theoretisch einen anderen Beruf machen könnte?" },
+  { id: "konkrete-verweisung", label: "Was ist eine konkrete Verweisung?" },
+  { id: "bu-vs-erwerbsminderungsrente", label: "Was ist der Unterschied zwischen BU-Rente und Erwerbsminderungsrente?" },
+  { id: "psychische-erkrankungen", label: "Zahlt die BU auch bei psychischen Erkrankungen?" },
+  { id: "gesundheitsfragen-beantworten", label: "Muss ich Gesundheitsfragen beantworten, um eine BU abzuschließen?" },
+  { id: "vorerkrankungen", label: "Was mache ich bei Vorerkrankungen?" },
+  { id: "was-kostet-eine-bu", label: "Was kostet eine Berufsunfähigkeitsversicherung?" },
+  { id: "beitragsdynamik", label: "Was bedeutet Beitragsdynamik?" },
+  { id: "leistungsdynamik", label: "Was bedeutet Leistungsdynamik?" },
+  { id: "bu-rente-spaeter-erhoehen", label: "Kann ich meine BU-Rente später erhöhen?" },
+  { id: "wieder-gesund-werden", label: "Was passiert, wenn ich nach einer Berufsunfähigkeit wieder gesund werde?" },
+  { id: "wieder-arbeiten-waehrend-leistungsbezug", label: "Was passiert, wenn ich während des Leistungsbezugs wieder arbeite?" },
+  { id: "drei-praxisbeispiele", label: "Drei typische Beispiele für die Funktionsweise einer BU" },
+  { id: "typische-fehler", label: "Welche Fehler würde ich beim BU-Abschluss vermeiden?" },
+  { id: "checkliste", label: "Meine Checkliste für eine gute Berufsunfähigkeitsversicherung" },
+  { id: "fazit", label: "Fazit: Wie funktioniert eine Berufsunfähigkeitsversicherung?" },
+  { id: "bu-gemeinsam-pruefen", label: "Berufsunfähigkeitsversicherung gemeinsam prüfen" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>

@@ -1,0 +1,127 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const sources = [
+  { label: "§ 172 VVG – Leistung des Versicherers / Berufsunfähigkeit", href: "https://www.gesetze-im-internet.de/vvg_2008/__172.html" },
+  { label: "§ 173 VVG – Anerkenntnis", href: "https://www.gesetze-im-internet.de/vvg_2008/__173.html" },
+  { label: "§ 174 VVG – Leistungsfreiheit bei Nachprüfung", href: "https://www.gesetze-im-internet.de/vvg_2008/__174.html" },
+  { label: "§ 19 VVG – Vorvertragliche Anzeigepflicht", href: "https://www.gesetze-im-internet.de/vvg_2008/__19.html" },
+  { label: "§ 43 SGB VI – Rente wegen Erwerbsminderung", href: "https://www.gesetze-im-internet.de/sgb_6/__43.html" },
+  { label: "Bundesanstalt für Finanzdienstleistungsaufsicht – Berufsunfähigkeitsversicherung", href: "https://www.bafin.de/DE/Verbraucher/Versicherung/Produkte/Berufsunfaehigkeit/berufsunfaehigkeit_node.html" },
+  { label: "Deutsche Rentenversicherung – Erwerbsminderungsrente", href: "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Erwerbsminderungsrente/erwerbsminderungsrente_node.html" },
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Fazit: Wie funktioniert eine Berufsunfähigkeitsversicherung?
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Eine Berufsunfähigkeitsversicherung sichert deine Arbeitskraft finanziell ab."]} />
+      <RichParagraph parts={["Du vereinbarst eine monatliche BU-Rente."]} />
+      <RichParagraph
+        parts={["Wenn du deinen zuletzt ausgeübten Beruf wegen gesundheitlicher Einschränkungen nicht mehr im vertraglich erforderlichen Umfang ausüben kannst, kann der Versicherer zur Leistung verpflichtet sein."]}
+      />
+      <RichParagraph parts={["Besonders wichtig sind dabei:"]} />
+
+      <ul class="space-y-2">
+        {
+          [
+            "eine ausreichend hohe BU-Rente",
+            "eine passende Leistungsdauer",
+            "eine gute Berufsunfähigkeitsdefinition",
+            "der Verzicht auf abstrakte Verweisung",
+            "vollständige Gesundheitsangaben",
+            "sinnvolle Nachversicherungsmöglichkeiten",
+            "klare Leistungs- und Nachprüfungsregeln",
+          ].map((item) => (
+            <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Eine gute Berufsunfähigkeitsversicherung erkennst du nicht nur daran, wie günstig sie heute ist,
+          sondern vor allem daran, wie sie dich im Ernstfall absichert.
+        </p>
+      </div>
+
+      <RichParagraph parts={["Deshalb würde ich nicht mit einem beliebigen Tarifvergleich beginnen."]} />
+      <RichParagraph parts={["Sondern mit deiner beruflichen und finanziellen Situation."]} />
+    </div>
+  </div>
+</section>
+
+<section id="bu-gemeinsam-pruefen" class="scroll-mt-24 bg-brand-50/30 py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Berufsunfähigkeitsversicherung gemeinsam prüfen
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph
+        parts={["Wenn du eine Berufsunfähigkeitsversicherung abschließen möchtest oder bereits einen Vertrag hast, schauen wir uns die wichtigsten Punkte gemeinsam an."]}
+      />
+      <RichParagraph parts={["Dazu gehören:"]} />
+
+      <ul class="space-y-2">
+        {
+          [
+            "berufliches Tätigkeitsbild",
+            "gewünschte BU-Rente",
+            "Versicherungs- und Leistungsdauer",
+            "Gesundheitsfragen",
+            "mögliche Risikovoranfrage",
+            "Versicherungsbedingungen",
+            "Verweisungsklauseln",
+            "Beitrags- und Leistungsdynamik",
+            "Nachversicherungsmöglichkeiten",
+            "langfristiger Versicherungsschutz",
+          ].map((item) => (
+            <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Mein Standort ist Kassel und mein regionaler Schwerpunkt liegt in Nordhessen."]} />
+      <RichParagraph parts={["Die Beratung ist persönlich vor Ort in Kassel oder digital deutschlandweit möglich."]} />
+      <RichParagraph parts={[{ a: "Mehr zur BU-Beratung in Kassel", href: "/berufsunfaehigkeitsversicherung-kassel/" }]} />
+    </div>
+
+    <div class="mt-14 border-t border-black/5 pt-8">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Quellen und weiterführende Informationen</p>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/60">
+        Für diesen Artikel wurden insbesondere folgende Primärquellen und gesetzlichen Grundlagen
+        berücksichtigt:
+      </p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-ink-700/60">
+              <a href={source.href} class="underline decoration-ink-700/30 underline-offset-2 hover:text-ink-950 hover:decoration-ink-700/60" target="_blank" rel="noopener noreferrer">
+                {source.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Stand der gesetzlichen Angaben: Oktober 2026.</p>
+    </div>
+
+    <div class="mt-10 border-t border-black/5 pt-8">
+      <RichParagraph
+        parts={["Zurück zum ", { a: "BU-Wissen", href: "/wissen/berufsunfaehigkeitsversicherung/" }]}
+        class="text-sm font-semibold text-ink-700/85"
+      />
+    </div>
+  </div>
+</section>

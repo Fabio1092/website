@@ -18,7 +18,7 @@ export const buWissenCategories: WissenTopicCategory[] = [
   {
     name: "Grundlagen",
     topics: [
-      { label: "Wie funktioniert eine Berufsunfähigkeitsversicherung?" },
+      { label: "Wie funktioniert eine Berufsunfähigkeitsversicherung?", href: "/wissen/berufsunfaehigkeitsversicherung/wie-funktioniert-die-bu/" },
       { label: "Wie hoch sollte die BU-Rente sein?" },
       { label: "Wie lange sollte eine BU laufen?" },
       { label: "Für wen ist eine BU sinnvoll?" },
@@ -109,6 +109,7 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
 ];
 
 export const buAvailableLinks: WissenLink[] = [
+  { label: "Wie funktioniert eine Berufsunfähigkeitsversicherung?", href: "/wissen/berufsunfaehigkeitsversicherung/wie-funktioniert-die-bu/" },
   { label: "Leistungsdynamik in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/leistungsdynamik/" },
   { label: "Endalter in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/endalter/" },
   { label: "Abstrakte Verweisung in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/abstrakte-verweisung/" },

@@ -1,0 +1,631 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  { type: "p", parts: ["Aber was passiert, wenn du deinen Beruf wegen einer Krankheit oder eines Unfalls plötzlich nicht mehr ausüben kannst?"] },
+  { type: "p", parts: ["Deine laufenden Ausgaben verschwinden dadurch schließlich nicht."] },
+  { type: "p", parts: ["Miete, Kredit, Lebensmittel, Versicherungen und deine Altersvorsorge müssen weiterhin bezahlt werden."] },
+  { type: "p", parts: ["Genau hier setzt die Berufsunfähigkeitsversicherung an."] },
+  { type: "standalone", text: "Eine Berufsunfähigkeitsversicherung soll dein Einkommen absichern, wenn du deinen zuletzt ausgeübten Beruf aus gesundheitlichen Gründen nicht mehr ausreichend ausüben kannst." },
+  { type: "p", parts: ["Dafür vereinbarst du mit einem Versicherer eine monatliche BU-Rente."] },
+  { type: "p", parts: ["Wenn die vertraglichen Voraussetzungen erfüllt sind, erhältst du diese Rente für die Dauer der versicherten Berufsunfähigkeit, längstens bis zum vereinbarten Ende der Leistungsdauer."] },
+  { type: "p", parts: ["Wie das genau funktioniert, erkläre ich dir Schritt für Schritt."] },
+];
+
+const sections: Section[] = [
+  {
+    id: "wichtigstes-in-kuerze",
+    heading: "Das Wichtigste zur Berufsunfähigkeitsversicherung in Kürze",
+    blocks: [
+      { type: "p", parts: ["Eine private Berufsunfähigkeitsversicherung funktioniert grundsätzlich so:"] },
+      {
+        type: "list",
+        items: [
+          "Du versicherst deine berufliche Arbeitskraft.",
+          "Du vereinbarst eine monatliche BU-Rente.",
+          "Du legst eine Versicherungs- und Leistungsdauer fest.",
+          "Du zahlst regelmäßig Versicherungsbeiträge.",
+          "Wenn du berufsunfähig wirst, kannst du einen Leistungsantrag stellen.",
+          "Viele moderne BU-Tarife leisten, wenn du deinen zuletzt ausgeübten Beruf voraussichtlich mindestens sechs Monate lang zu mindestens 50 Prozent nicht mehr ausüben kannst.",
+          "Die genaue Definition ergibt sich aus deinen Versicherungsbedingungen.",
+          "Nicht nur Unfälle, sondern auch Krankheiten können eine Berufsunfähigkeit verursachen.",
+          "Die Prüfung bezieht sich grundsätzlich auf deinen zuletzt in gesunden Tagen ausgeübten Beruf.",
+          "Gute Verträge verzichten auf die abstrakte Verweisung.",
+          "Eine BU-Rente ist etwas anderes als die gesetzliche Erwerbsminderungsrente.",
+          "Während einer anerkannten Berufsunfähigkeit übernimmt der Versicherer bei vielen Tarifen auch die Befreiung von den laufenden BU-Beiträgen.",
+          "Ein Leistungsanspruch muss anhand medizinischer und beruflicher Unterlagen geprüft werden.",
+        ],
+      },
+      { type: "standalone", text: "Entscheidend ist nicht allein deine Diagnose, sondern wie stark dich deine gesundheitlichen Einschränkungen bei deiner konkreten beruflichen Tätigkeit beeinträchtigen." },
+    ],
+  },
+  {
+    id: "was-ist-eine-bu",
+    heading: "Was ist eine Berufsunfähigkeitsversicherung?",
+    blocks: [
+      { type: "p", parts: ["Die Berufsunfähigkeitsversicherung gehört zu den Versicherungen, die deine finanzielle Existenz absichern sollen."] },
+      { type: "p", parts: ["Du versicherst damit nicht dein Auto, dein Haus oder deinen Hausrat."] },
+      { type: "p", parts: ["Du versicherst deine Fähigkeit, mit deiner Arbeitskraft Einkommen zu verdienen."] },
+      { type: "p", parts: ["Wenn diese Fähigkeit wegen einer gesundheitlichen Beeinträchtigung verloren geht, kann das erhebliche finanzielle Folgen haben."] },
+      { type: "p", parts: ["Denn deine berufliche Tätigkeit ist bei vielen Menschen die wichtigste Grundlage ihres Vermögensaufbaus."] },
+      { type: "p", parts: ["Ein Beispiel:"] },
+      { type: "p", parts: ["Du bist 30 Jahre alt und verdienst monatlich 3.000 Euro netto."] },
+      { type: "p", parts: ["Bis zu deinem 67. Lebensjahr liegen noch 37 Berufsjahre vor dir."] },
+      { type: "p", parts: ["Rein rechnerisch entsprechen 3.000 Euro monatlich über 37 Jahre einem Einkommen von mehr als 1,3 Millionen Euro."] },
+      { type: "p", parts: ["Das ist ausdrücklich keine Prognose deines zukünftigen Einkommens."] },
+      { type: "p", parts: ["Gehaltserhöhungen, Steuern, Unterbrechungen und Inflation sind dabei nicht berücksichtigt."] },
+      { type: "p", parts: ["Das Beispiel zeigt lediglich, welcher finanzielle Wert hinter deiner Arbeitskraft stehen kann."] },
+      { type: "p", parts: ["Genau dieses Risiko soll eine BU-Versicherung abfedern."] },
+    ],
+  },
+  {
+    id: "wann-berufsunfaehig",
+    heading: "Wann gilt man als berufsunfähig?",
+    blocks: [
+      { type: "p", parts: ["Die gesetzliche Grunddefinition findest du in § 172 Versicherungsvertragsgesetz."] },
+      { type: "p", parts: ["Danach liegt Berufsunfähigkeit grundsätzlich vor, wenn du deinen zuletzt ausgeübten Beruf, so wie er ohne gesundheitliche Beeinträchtigung ausgestaltet war, wegen Krankheit, Körperverletzung oder mehr als altersentsprechendem Kräfteverfall ganz oder teilweise voraussichtlich auf Dauer nicht mehr ausüben kannst."] },
+      { type: "p", parts: ["In der Praxis kommt es zusätzlich auf die konkreten Versicherungsbedingungen an."] },
+      { type: "p", parts: ["Viele leistungsstarke BU-Tarife arbeiten insbesondere mit zwei Kriterien:"] },
+      { type: "standalone", text: "Mindestens 50 Prozent Berufsunfähigkeit." },
+      { type: "p", parts: ["Und:"] },
+      { type: "standalone", text: "Ein Prognosezeitraum von sechs Monaten." },
+      { type: "p", parts: ["Wichtig ist, dass diese beiden konkreten Werte nicht pauschal für jeden BU-Vertrag gelten."] },
+      { type: "p", parts: ["Sie müssen aus den jeweiligen Versicherungsbedingungen hervorgehen."] },
+    ],
+  },
+  {
+    id: "fuenfzig-prozent-regel",
+    heading: "Was bedeutet die 50-Prozent-Regel?",
+    blocks: [
+      { type: "p", parts: ["Die 50-Prozent-Regel wird häufig missverstanden."] },
+      { type: "p", parts: ["Viele Menschen denken:"] },
+      { type: "standalone", text: "„Wenn ich vorher acht Stunden gearbeitet habe und jetzt nur noch vier Stunden arbeiten kann, bin ich berufsunfähig.“" },
+      { type: "p", parts: ["Das kann zutreffen."] },
+      { type: "p", parts: ["Aber so einfach ist die Prüfung nicht immer."] },
+      { type: "p", parts: ["Denn nicht nur die reine Arbeitszeit ist relevant."] },
+      { type: "p", parts: ["Entscheidend ist, wie deine tatsächliche berufliche Tätigkeit ausgestaltet ist und welche Aufgaben du aufgrund deiner gesundheitlichen Einschränkungen nicht mehr ausüben kannst."] },
+      { type: "p", parts: ["Ein Beruf besteht schließlich nicht nur aus einer bestimmten Anzahl an Arbeitsstunden."] },
+      { type: "p", parts: ["Er besteht aus konkreten Tätigkeiten."] },
+      { type: "p", parts: ["Deshalb ist die Betrachtung deines tatsächlichen Berufsalltags so wichtig."] },
+    ],
+  },
+  {
+    id: "beispiel-handwerker",
+    heading: "Beispiel: Ein Handwerker wird berufsunfähig",
+    blocks: [
+      { type: "p", parts: ["Stell dir einen selbstständigen Handwerker vor."] },
+      { type: "p", parts: ["Sein Berufsalltag besteht beispielsweise aus:"] },
+      {
+        type: "list",
+        items: ["körperlicher Arbeit auf Baustellen", "Heben und Tragen", "Arbeiten in bestimmten Körperhaltungen", "Kundenbesuchen", "Angebotserstellung", "Organisation", "Büroarbeit"],
+      },
+      { type: "p", parts: ["Nun entwickelt er schwere gesundheitliche Einschränkungen, durch die wesentliche körperliche Tätigkeiten nicht mehr möglich sind."] },
+      { type: "p", parts: ["Dass er möglicherweise weiterhin telefonieren, Angebote schreiben oder Rechnungen bearbeiten kann, bedeutet nicht automatisch, dass er seinen bisherigen Beruf noch ausreichend ausüben kann."] },
+      { type: "p", parts: ["Es muss geprüft werden, welche Bedeutung die einzelnen Tätigkeiten für seine konkrete berufliche Arbeit hatten."] },
+      { type: "p", parts: ["Gerade prägende Tätigkeiten können dabei besonders wichtig sein."] },
+      { type: "p", parts: ["Die Bewertung erfolgt anhand der medizinischen Einschränkungen, des beruflichen Tätigkeitsbildes und der konkreten Versicherungsbedingungen."] },
+    ],
+  },
+  {
+    id: "beispiel-bueroangestellter",
+    heading: "Beispiel: Ein Büroangestellter wird berufsunfähig",
+    blocks: [
+      { type: "p", parts: ["Auch bei einem Bürojob kann Berufsunfähigkeit entstehen."] },
+      { type: "p", parts: ["Nehmen wir eine Person, die täglich:"] },
+      {
+        type: "list",
+        items: ["komplexe Entscheidungen trifft", "lange konzentriert arbeitet", "Kundengespräche führt", "Projekte koordiniert", "unter Zeitdruck arbeitet", "Verantwortung für Mitarbeiter trägt"],
+      },
+      { type: "p", parts: ["Durch eine psychische oder neurologische Erkrankung können bestimmte Fähigkeiten erheblich eingeschränkt sein."] },
+      { type: "p", parts: ["Das kann beispielsweise Konzentration, Belastbarkeit, Gedächtnis oder die Fähigkeit zur Bewältigung komplexer Aufgaben betreffen."] },
+      { type: "p", parts: ["Ob eine Berufsunfähigkeit vorliegt, hängt dann von den tatsächlichen Einschränkungen und den konkreten beruflichen Anforderungen ab."] },
+      { type: "standalone", text: "Berufsunfähigkeit ist deshalb keineswegs nur ein Thema für körperlich arbeitende Menschen." },
+    ],
+  },
+  {
+    id: "sechs-monate-krankgeschrieben",
+    heading: "Muss ich sechs Monate krankgeschrieben sein?",
+    blocks: [
+      { type: "p", parts: ["Nicht unbedingt."] },
+      { type: "p", parts: ["Das ist einer der häufigsten Irrtümer."] },
+      { type: "p", parts: ["Bei vielen modernen BU-Bedingungen kommt es darauf an, ob du voraussichtlich mindestens sechs Monate zu mindestens 50 Prozent berufsunfähig sein wirst."] },
+      { type: "p", parts: ["Das ist eine Prognose über die voraussichtliche Dauer deiner gesundheitlichen Einschränkung."] },
+      { type: "p", parts: ["Sie bedeutet nicht zwangsläufig, dass du erst sechs Monate abwarten musst, bevor eine Leistung möglich ist."] },
+      { type: "p", parts: ["Je nach Bedingungen kann außerdem eine rückblickende Regelung greifen, wenn du bereits über einen bestimmten Zeitraum ununterbrochen entsprechend eingeschränkt warst."] },
+      { type: "p", parts: ["Entscheidend ist:"] },
+      { type: "standalone", text: "Der sechsmonatige Prognosezeitraum ist nicht automatisch eine sechsmonatige Wartezeit ohne Leistungsanspruch." },
+      { type: "p", parts: ["Wann die BU-Rente tatsächlich beginnt, ergibt sich aus den Versicherungsbedingungen und der Leistungsprüfung."] },
+    ],
+  },
+  {
+    id: "arbeitsunfaehigkeit-vs-berufsunfaehigkeit",
+    heading: "Was ist der Unterschied zwischen Arbeitsunfähigkeit und Berufsunfähigkeit?",
+    blocks: [
+      { type: "p", parts: ["Diese beiden Begriffe werden oft gleichgesetzt."] },
+      { type: "p", parts: ["Sie bedeuten aber nicht dasselbe."] },
+      { type: "p", parts: ["Arbeitsunfähigkeit bedeutet vereinfacht gesagt, dass du deine Arbeit aus gesundheitlichen Gründen aktuell nicht ausüben kannst."] },
+      { type: "p", parts: ["Berufsunfähigkeit ist dagegen eine versicherungsvertraglich definierte längerfristige Einschränkung deiner Fähigkeit, deinen zuletzt ausgeübten Beruf auszuüben."] },
+      { type: "p", parts: ["Ein Beispiel:"] },
+      { type: "p", parts: ["Du hast eine Operation und bist anschließend acht Wochen krankgeschrieben."] },
+      { type: "p", parts: ["Das allein macht dich nicht automatisch berufsunfähig."] },
+      { type: "p", parts: ["Anders kann es aussehen, wenn die gesundheitlichen Einschränkungen voraussichtlich so lange andauern und so schwer sind, dass die vertragliche Definition der Berufsunfähigkeit erfüllt wird."] },
+      { type: "p", parts: ["Manche BU-Verträge enthalten zusätzlich eine Arbeitsunfähigkeitsklausel."] },
+      { type: "p", parts: ["Unter deren besonderen Voraussetzungen können bereits bei längerer ärztlich bescheinigter Arbeitsunfähigkeit Leistungen möglich sein."] },
+      { type: "p", parts: ["Das ist jedoch ein zusätzlicher Vertragsbaustein und keine allgemeine Eigenschaft jeder BU-Versicherung."] },
+    ],
+  },
+  {
+    id: "krankheiten-die-zur-bu-fuehren",
+    heading: "Bei welchen Krankheiten zahlt eine Berufsunfähigkeitsversicherung?",
+    blocks: [
+      { type: "p", parts: ["Eine BU ist grundsätzlich nicht auf bestimmte Krankheiten beschränkt."] },
+      { type: "p", parts: ["Maßgeblich ist, ob die gesundheitliche Beeinträchtigung die vertraglichen Voraussetzungen für Berufsunfähigkeit erfüllt."] },
+      { type: "p", parts: ["Mögliche Ursachen können beispielsweise sein:"] },
+      {
+        type: "list",
+        items: ["psychische Erkrankungen", "Erkrankungen des Bewegungsapparats", "neurologische Erkrankungen", "Krebs", "Herz-Kreislauf-Erkrankungen", "schwere Unfallfolgen", "andere körperliche oder psychische Erkrankungen"],
+      },
+      { type: "p", parts: ["Wichtig ist:"] },
+      { type: "standalone", text: "Nicht jede Diagnose führt automatisch zur Zahlung einer BU-Rente." },
+      { type: "p", parts: ["Ein Mensch mit einer bestimmten Erkrankung kann seinen Beruf möglicherweise weiter ausüben."] },
+      { type: "p", parts: ["Bei einem anderen Menschen kann dieselbe Erkrankung erhebliche Einschränkungen verursachen."] },
+      { type: "p", parts: ["Es kommt immer auf die konkrete Situation an."] },
+      { type: "p", parts: ["Außerdem müssen eventuelle individuelle Leistungsausschlüsse des Versicherungsvertrags berücksichtigt werden."] },
+    ],
+  },
+  {
+    id: "was-wird-ausgezahlt",
+    heading: "Was bekomme ich von der BU-Versicherung ausgezahlt?",
+    blocks: [
+      { type: "p", parts: ["Du vereinbarst bei Vertragsabschluss eine monatliche Berufsunfähigkeitsrente."] },
+      { type: "p", parts: ["Zum Beispiel:"] },
+      { type: "standalone", text: "2.000 Euro monatlich." },
+      { type: "p", parts: ["Wenn die Voraussetzungen erfüllt sind und die Berufsunfähigkeit anerkannt wird, erhältst du die vertraglich vorgesehene Rente."] },
+      { type: "p", parts: ["Bei vielen Tarifen werden während der anerkannten Berufsunfähigkeit außerdem die weiteren Beiträge zur BU-Versicherung erlassen."] },
+      { type: "p", parts: ["Je nach Vertrag können zusätzliche Leistungen vereinbart sein."] },
+      { type: "p", parts: ["Wichtig ist:"] },
+      { type: "p", parts: ["Die vereinbarte BU-Rente ist normalerweise keine einmalige Auszahlung."] },
+      { type: "p", parts: ["Sie ist als laufende monatliche Absicherung gedacht."] },
+    ],
+  },
+  {
+    id: "wie-lange-wird-gezahlt",
+    heading: "Wie lange wird die BU-Rente gezahlt?",
+    blocks: [
+      { type: "p", parts: ["Die BU-Rente wird grundsätzlich so lange gezahlt, wie die vertraglichen Leistungsvoraussetzungen bestehen, höchstens jedoch bis zum vereinbarten Ende der Leistungsdauer."] },
+      { type: "p", parts: ["Das kann beispielsweise bis zum 67. Lebensjahr sein."] },
+      { type: "p", parts: ["Wenn sich dein Gesundheitszustand ausreichend verbessert und die versicherte Berufsunfähigkeit nicht mehr besteht, kann der Leistungsanspruch nach entsprechender Prüfung enden."] },
+      { type: "p", parts: ["Deshalb ist eine BU-Rente nicht automatisch eine lebenslange Zahlung."] },
+      { type: "standalone", text: "Die Berufsunfähigkeitsversicherung soll vor allem das Einkommen während des Erwerbslebens absichern." },
+      { type: "p", parts: ["Die eigene Altersvorsorge bleibt ein zusätzliches Thema."] },
+    ],
+  },
+  {
+    id: "wie-hoch-sollte-bu-rente-sein",
+    heading: "Wie hoch sollte meine BU-Rente sein?",
+    blocks: [
+      { type: "p", parts: ["Die Höhe deiner BU-Rente sollte sich an deinem tatsächlichen finanziellen Bedarf orientieren."] },
+      { type: "p", parts: ["Ich würde dafür nicht einfach irgendeinen Standardbetrag auswählen."] },
+      { type: "p", parts: ["Stattdessen schauen wir auf deine laufenden Verpflichtungen."] },
+      { type: "p", parts: ["Dazu können gehören:"] },
+      {
+        type: "list",
+        items: ["Wohnen", "Lebenshaltung", "Kranken- und Pflegeversicherung", "Kinder und Familie", "Kredite", "laufende Versicherungen", "private Altersvorsorge", "finanzielle Rücklagen"],
+      },
+      { type: "p", parts: ["Ein wichtiger Punkt wird häufig unterschätzt:"] },
+      { type: "p", parts: ["Wenn du dauerhaft berufsunfähig wirst, fällt möglicherweise nicht nur dein laufendes Einkommen weg."] },
+      { type: "p", parts: ["Auch der weitere Aufbau deiner Altersvorsorge kann beeinträchtigt werden."] },
+      { type: "p", parts: ["Deshalb kann eine zu niedrig gewählte BU-Rente langfristig zu erheblichen Versorgungslücken führen."] },
+      { type: "p", parts: ["Die individuell passende Rentenhöhe muss zu deinen Einnahmen, Ausgaben, vorhandenen Ansprüchen und den Annahmegrenzen der Versicherer passen."] },
+    ],
+  },
+  {
+    id: "warum-lange-laufzeit",
+    heading: "Warum sollte die BU möglichst lange laufen?",
+    blocks: [
+      { type: "p", parts: ["Stell dir vor, du wirst mit 58 berufsunfähig."] },
+      { type: "p", parts: ["Deine BU endet aber bereits mit 60."] },
+      { type: "p", parts: ["Dann erhältst du möglicherweise nur noch zwei Jahre Leistungen."] },
+      { type: "p", parts: ["Bis zum tatsächlichen Rentenbeginn kann anschließend eine erhebliche finanzielle Lücke entstehen."] },
+      { type: "p", parts: ["Deshalb würde ich die Versicherungs- und Leistungsdauer immer im Zusammenhang mit deinem geplanten Renteneintritt betrachten."] },
+      { type: "p", parts: ["Für viele Erwerbstätige ist eine Absicherung bis 67 eine naheliegende Orientierung."] },
+      { type: "p", parts: ["Ob das individuell notwendig und möglich ist, muss geprüft werden."] },
+      { type: "p", parts: ["Ein früheres Endalter kann den Beitrag reduzieren."] },
+      { type: "p", parts: ["Es kann aber auch ein erhebliches finanzielles Risiko verlagern."] },
+    ],
+  },
+  {
+    id: "leistungspruefung",
+    heading: "Wie funktioniert die BU-Leistungsprüfung?",
+    blocks: [
+      { type: "p", parts: ["Wenn du glaubst, berufsunfähig geworden zu sein, stellst du einen Leistungsantrag bei deinem Versicherer."] },
+      { type: "p", parts: ["Dann prüft die Gesellschaft, ob die vertraglichen Voraussetzungen vorliegen."] },
+      { type: "p", parts: ["Dafür werden üblicherweise verschiedene Informationen benötigt."] },
+      { type: "h3", text: "Schritt 1: Der bisherige Beruf wird beschrieben" },
+      { type: "p", parts: ["Der Versicherer muss verstehen, wie dein beruflicher Alltag vor Eintritt der gesundheitlichen Einschränkungen tatsächlich aussah."] },
+      { type: "p", parts: ["Dazu gehören beispielsweise:"] },
+      { type: "list", items: ["konkrete Aufgaben", "zeitlicher Umfang", "körperliche Belastungen", "geistige Anforderungen", "Verantwortung", "Arbeitsumgebung", "typische Arbeitstage"] },
+      { type: "p", parts: ["Eine bloße Berufsbezeichnung reicht dafür häufig nicht aus."] },
+      { type: "p", parts: ["Zwei Personen können denselben Berufstitel haben und dennoch völlig unterschiedliche Aufgaben erledigen."] },
+      { type: "h3", text: "Schritt 2: Die gesundheitlichen Einschränkungen werden geprüft" },
+      { type: "p", parts: ["Dazu benötigt der Versicherer medizinische Unterlagen."] },
+      { type: "p", parts: ["Beispielsweise:"] },
+      { type: "list", items: ["ärztliche Berichte", "Diagnosen", "Untersuchungsbefunde", "Behandlungsverläufe", "gegebenenfalls Gutachten"] },
+      { type: "p", parts: ["Nicht allein die Diagnose ist entscheidend."] },
+      { type: "p", parts: ["Es geht darum, welche konkreten Auswirkungen die Erkrankung auf deine berufliche Leistungsfähigkeit hat."] },
+      { type: "h3", text: "Schritt 3: Beruf und Gesundheit werden miteinander abgeglichen" },
+      { type: "p", parts: ["Jetzt wird geprüft, welche beruflichen Tätigkeiten du gesundheitlich noch ausüben kannst."] },
+      { type: "p", parts: ["Entscheidend ist, ob die vertraglich definierte Berufsunfähigkeit vorliegt."] },
+      { type: "p", parts: ["Dabei werden unter anderem Leistungsumfang, Prognosezeitraum und gegebenenfalls Verweisungsklauseln berücksichtigt."] },
+      { type: "h3", text: "Schritt 4: Der Versicherer entscheidet über den Leistungsanspruch" },
+      { type: "p", parts: ["Wenn die Voraussetzungen erfüllt sind, erkennt der Versicherer den Leistungsanspruch an."] },
+      { type: "p", parts: ["Bei Ablehnung sollte die Begründung sorgfältig geprüft werden."] },
+      { type: "p", parts: ["Auch im laufenden Leistungsbezug können Nachprüfungen vorgesehen sein."] },
+      { type: "p", parts: ["Wichtig ist deshalb, einen Leistungsantrag sorgfältig vorzubereiten und die Mitwirkungspflichten zu beachten."] },
+    ],
+  },
+  {
+    id: "anderer-beruf-moeglich",
+    heading: "Was passiert, wenn ich theoretisch einen anderen Beruf machen könnte?",
+    blocks: [
+      { type: "p", parts: ["Das hängt von den Versicherungsbedingungen ab."] },
+      { type: "p", parts: ["Hier kommt die sogenannte abstrakte Verweisung ins Spiel."] },
+      { type: "p", parts: ["Bei einer abstrakten Verweisung kann der Versicherer unter den vereinbarten Voraussetzungen auf eine andere Tätigkeit verweisen, die du aufgrund deiner Kenntnisse und Fähigkeiten ausüben könntest und die deiner bisherigen Lebensstellung entspricht."] },
+      { type: "p", parts: ["Das kann auch dann relevant sein, wenn du diese andere Tätigkeit tatsächlich gar nicht ausübst."] },
+      { type: "p", parts: ["Deshalb würde ich beim Abschluss auf einen Verzicht auf die abstrakte Verweisung achten."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr dazu findest du unter ",
+          { a: "Abstrakte Verweisung in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/abstrakte-verweisung/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "konkrete-verweisung",
+    heading: "Was ist eine konkrete Verweisung?",
+    blocks: [
+      { type: "p", parts: ["Anders sieht es aus, wenn du nach Eintritt deiner gesundheitlichen Einschränkungen tatsächlich einen anderen Beruf ausübst."] },
+      { type: "p", parts: ["Dann kann unter den vertraglichen Voraussetzungen eine konkrete Verweisung geprüft werden."] },
+      { type: "p", parts: ["Dabei spielen beispielsweise deine neue Tätigkeit, deine Ausbildung, deine Fähigkeiten, dein Einkommen und deine bisherige Lebensstellung eine Rolle."] },
+      { type: "p", parts: ["Eine neue Tätigkeit führt deshalb nicht automatisch dazu, dass die BU-Rente entfällt."] },
+      { type: "p", parts: ["Die genaue Bewertung ist vom Vertrag und vom Einzelfall abhängig."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr dazu findest du unter ",
+          { a: "Konkrete Verweisung in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/konkrete-verweisung/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "bu-vs-erwerbsminderungsrente",
+    heading: "Was ist der Unterschied zwischen BU-Rente und Erwerbsminderungsrente?",
+    blocks: [
+      { type: "p", parts: ["Das ist ein besonders wichtiger Unterschied."] },
+      { type: "p", parts: ["Die private BU sichert grundsätzlich deinen zuletzt ausgeübten Beruf nach den vereinbarten Versicherungsbedingungen ab."] },
+      { type: "p", parts: ["Bei der gesetzlichen Erwerbsminderungsrente geht es dagegen grundsätzlich darum, wie lange du aus gesundheitlichen Gründen noch unter den üblichen Bedingungen des allgemeinen Arbeitsmarktes arbeiten kannst."] },
+      { type: "p", parts: ["Für eine volle Erwerbsminderungsrente ist grundsätzlich eine Leistungsfähigkeit von weniger als drei Stunden täglich auf dem allgemeinen Arbeitsmarkt maßgeblich."] },
+      { type: "p", parts: ["Bei einer teilweisen Erwerbsminderung liegt die Leistungsfähigkeit grundsätzlich bei mindestens drei, aber weniger als sechs Stunden täglich."] },
+      { type: "p", parts: ["Zusätzlich müssen die versicherungsrechtlichen Voraussetzungen erfüllt sein."] },
+      { type: "p", parts: ["Ein Beispiel:"] },
+      { type: "p", parts: ["Du kannst deinen anspruchsvollen bisherigen Beruf aus gesundheitlichen Gründen nicht mehr ausüben."] },
+      { type: "p", parts: ["Eine andere, einfachere Tätigkeit wäre möglicherweise aber noch ausreichend lange möglich."] },
+      { type: "p", parts: ["Dann kann unter geeigneten BU-Bedingungen durchaus Berufsunfähigkeit vorliegen, obwohl kein Anspruch auf eine volle gesetzliche Erwerbsminderungsrente besteht."] },
+      { type: "standalone", text: "Eine private BU-Rente und eine gesetzliche Erwerbsminderungsrente sind deshalb keine identischen Leistungen." },
+    ],
+  },
+  {
+    id: "psychische-erkrankungen",
+    heading: "Zahlt die BU auch bei psychischen Erkrankungen?",
+    blocks: [
+      { type: "p", parts: ["Grundsätzlich können auch psychische Erkrankungen zu einem BU-Leistungsanspruch führen."] },
+      { type: "p", parts: ["Beispielsweise können schwere psychische Beeinträchtigungen dazu führen, dass berufliche Anforderungen dauerhaft nicht mehr ausreichend erfüllt werden können."] },
+      { type: "p", parts: ["Entscheidend ist wiederum nicht allein die Diagnose."] },
+      { type: "p", parts: ["Geprüft werden die gesundheitlichen Einschränkungen, deren Auswirkungen auf deinen konkreten Beruf und die Versicherungsbedingungen."] },
+      { type: "p", parts: ["Wichtig ist außerdem, ob bei Vertragsabschluss ein individueller Leistungsausschluss vereinbart wurde."] },
+      { type: "p", parts: ["Deshalb würde ich bereits beim Abschluss sorgfältig auf eine vollständige und richtige Beantwortung der Gesundheitsfragen achten."] },
+    ],
+  },
+  {
+    id: "gesundheitsfragen-beantworten",
+    heading: "Muss ich Gesundheitsfragen beantworten, um eine BU abzuschließen?",
+    blocks: [
+      { type: "p", parts: ["In der Regel ja."] },
+      { type: "p", parts: ["Vor Abschluss einer BU stellt der Versicherer Fragen zu deiner Gesundheit."] },
+      { type: "p", parts: ["Welche Zeiträume und Informationen abgefragt werden, hängt vom konkreten Antrag ab."] },
+      { type: "p", parts: ["Dabei können beispielsweise relevant sein:"] },
+      {
+        type: "list",
+        items: ["ambulante Behandlungen", "stationäre Aufenthalte", "Diagnosen", "Medikamente", "Beschwerden", "psychotherapeutische Behandlungen", "Untersuchungen", "geplante Behandlungen"],
+      },
+      { type: "p", parts: ["Entscheidend ist, dass du die konkret gestellten Fragen vollständig und wahrheitsgemäß beantwortest."] },
+      { type: "p", parts: ["Unrichtige oder unvollständige Antworten können später erhebliche Konsequenzen für den Versicherungsschutz haben."] },
+      { type: "p", parts: ["Deshalb würde ich vor einem Antrag deine Gesundheitshistorie sorgfältig aufarbeiten."] },
+      {
+        type: "p",
+        parts: ["Mehr dazu findest du unter ", { a: "Gesundheitsfragen bei der BU", href: "/bu-gesundheitsfragen/" }, "."],
+      },
+    ],
+  },
+  {
+    id: "vorerkrankungen",
+    heading: "Was mache ich bei Vorerkrankungen?",
+    blocks: [
+      { type: "p", parts: ["Eine Vorerkrankung bedeutet nicht automatisch, dass du keine BU abschließen kannst."] },
+      { type: "p", parts: ["Versicherer bewerten gesundheitliche Risiken unterschiedlich."] },
+      { type: "p", parts: ["Je nach Vorerkrankung können beispielsweise folgende Ergebnisse entstehen:"] },
+      { type: "list", items: ["normale Annahme", "Risikozuschlag", "individueller Leistungsausschluss", "Rückfragen", "Zurückstellung", "Ablehnung"] },
+      { type: "p", parts: ["Wenn relevante Vorerkrankungen bestehen, würde ich häufig zuerst eine anonyme oder pseudonymisierte Risikovoranfrage prüfen."] },
+      { type: "p", parts: ["So lässt sich vor dem eigentlichen Versicherungsantrag einschätzen, welche Gesellschaften dich zu welchen Bedingungen versichern würden."] },
+      { type: "p", parts: ["Wichtig:"] },
+      { type: "p", parts: ["Eine Risikovoranfrage ist noch kein abgeschlossener Versicherungsvertrag."] },
+      {
+        type: "p",
+        parts: ["Mehr dazu findest du unter ", { a: "BU-Risikovoranfrage", href: "/bu-risikovoranfrage/" }, "."],
+      },
+    ],
+  },
+  {
+    id: "was-kostet-eine-bu",
+    heading: "Was kostet eine Berufsunfähigkeitsversicherung?",
+    blocks: [
+      { type: "p", parts: ["Darauf gibt es keine pauschale Antwort."] },
+      { type: "p", parts: ["Der Beitrag hängt unter anderem ab von:"] },
+      {
+        type: "list",
+        items: ["Eintrittsalter", "beruflicher Tätigkeit", "Gesundheitshistorie", "gewünschter BU-Rente", "Versicherungsdauer", "Leistungsdauer", "Versicherer", "Tarif und Zusatzbausteinen"],
+      },
+      { type: "p", parts: ["Deshalb kann dieselbe Rentenhöhe bei zwei Menschen sehr unterschiedlich viel kosten."] },
+      { type: "p", parts: ["Und auch unterschiedliche Versicherer können denselben Beruf unterschiedlich einstufen."] },
+      { type: "p", parts: ["Ich würde deshalb nicht nur Beiträge vergleichen."] },
+      { type: "p", parts: ["Ein günstiger Beitrag hilft dir wenig, wenn wichtige Bedingungen fehlen oder du im Leistungsfall eine erhebliche Versorgungslücke hast."] },
+    ],
+  },
+  {
+    id: "beitragsdynamik",
+    heading: "Was bedeutet Beitragsdynamik?",
+    blocks: [
+      { type: "p", parts: ["Eine Beitragsdynamik soll dir ermöglichen, den Versicherungsschutz während der Vertragslaufzeit regelmäßig zu erhöhen."] },
+      { type: "p", parts: ["Dadurch kann die versicherte BU-Rente mit der Zeit steigen."] },
+      { type: "p", parts: ["Je nach vereinbarten Bedingungen kann die Erhöhung ohne erneute vollständige Gesundheitsprüfung erfolgen."] },
+      { type: "p", parts: ["Dabei steigt regelmäßig auch dein Beitrag."] },
+      { type: "p", parts: ["Wichtig ist:"] },
+      { type: "p", parts: ["Eine Beitragsdynamik ist etwas anderes als die Leistungsdynamik."] },
+      { type: "p", parts: ["Die Beitragsdynamik betrifft den Aufbau deines Versicherungsschutzes vor Eintritt der Berufsunfähigkeit."] },
+    ],
+  },
+  {
+    id: "leistungsdynamik",
+    heading: "Was bedeutet Leistungsdynamik?",
+    blocks: [
+      { type: "p", parts: ["Die Leistungsdynamik betrifft dagegen die Zeit, in der du bereits eine anerkannte BU-Rente erhältst."] },
+      { type: "p", parts: ["Ist eine entsprechende garantierte Rentensteigerung vereinbart, kann sich die laufende BU-Rente während des Leistungsbezugs jährlich um den vereinbarten Prozentsatz erhöhen."] },
+      { type: "p", parts: ["Das kann wichtig sein, weil deine Lebenshaltungskosten auch bei einer langjährigen Berufsunfähigkeit steigen können."] },
+      { type: "p", parts: ["Eine garantierte Leistungsdynamik ist nicht dasselbe wie eine mögliche Überschussbeteiligung."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr dazu findest du unter ",
+          { a: "Leistungsdynamik in der BU", href: "/wissen/berufsunfaehigkeitsversicherung/leistungsdynamik/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "bu-rente-spaeter-erhoehen",
+    heading: "Kann ich meine BU-Rente später erhöhen?",
+    blocks: [
+      { type: "p", parts: ["Viele moderne BU-Verträge bieten sogenannte Nachversicherungsmöglichkeiten."] },
+      { type: "p", parts: ["Damit kannst du deine versicherte BU-Rente unter bestimmten Voraussetzungen später erhöhen."] },
+      { type: "p", parts: ["Zum Beispiel können vertraglich bestimmte Ereignisse relevant sein:"] },
+      { type: "list", items: ["Gehaltserhöhung", "Heirat", "Geburt eines Kindes", "Immobilienfinanzierung", "berufliche Veränderungen"] },
+      { type: "p", parts: ["Welche Erhöhungsmöglichkeiten bestehen, hängt vom Versicherungsvertrag ab."] },
+      { type: "p", parts: ["Dabei sind insbesondere Höchstgrenzen, Fristen und mögliche Verzichtsregelungen zur erneuten Gesundheitsprüfung relevant."] },
+      { type: "p", parts: ["Deshalb würde ich Nachversicherungsrechte bereits beim Abschluss berücksichtigen."] },
+    ],
+  },
+  {
+    id: "wieder-gesund-werden",
+    heading: "Was passiert, wenn ich nach einer Berufsunfähigkeit wieder gesund werde?",
+    blocks: [
+      { type: "p", parts: ["Eine anerkannte Berufsunfähigkeit muss nicht zwangsläufig bis zum Ende der Versicherungsdauer bestehen bleiben."] },
+      { type: "p", parts: ["Wenn sich dein Gesundheitszustand verbessert, kann sich auch deine berufliche Leistungsfähigkeit verändern."] },
+      { type: "p", parts: ["Viele Versicherer haben das Recht, im Rahmen der vertraglichen und gesetzlichen Voraussetzungen eine Nachprüfung durchzuführen."] },
+      { type: "p", parts: ["Dabei kann beispielsweise geprüft werden, ob die gesundheitlichen Einschränkungen weiterhin bestehen."] },
+      { type: "p", parts: ["Wenn die Voraussetzungen für Berufsunfähigkeit nicht mehr erfüllt sind und die rechtlichen Anforderungen an eine Leistungseinstellung eingehalten werden, kann die Zahlung enden."] },
+      { type: "p", parts: ["Deshalb ist eine BU-Rente nicht automatisch eine garantierte Zahlung bis zum ursprünglich vereinbarten Endalter."] },
+    ],
+  },
+  {
+    id: "wieder-arbeiten-waehrend-leistungsbezug",
+    heading: "Was passiert, wenn ich während des Leistungsbezugs wieder arbeite?",
+    blocks: [
+      { type: "p", parts: ["Das hängt davon ab, welche Tätigkeit du ausübst und was deine Versicherungsbedingungen regeln."] },
+      { type: "p", parts: ["Ein neuer Job führt nicht in jedem Fall automatisch zum Wegfall der BU-Rente."] },
+      { type: "p", parts: ["Es kann beispielsweise entscheidend sein:"] },
+      {
+        type: "list",
+        items: ["welche Tätigkeit du jetzt ausübst", "wie hoch dein neues Einkommen ist", "welche Qualifikation dafür erforderlich ist", "wie sich deine berufliche und soziale Stellung verändert", "welche konkrete Verweisungsklausel vereinbart ist"],
+      },
+      { type: "p", parts: ["Deshalb würde ich eine neue Tätigkeit während eines BU-Leistungsbezugs niemals pauschal beurteilen."] },
+    ],
+  },
+  {
+    id: "drei-praxisbeispiele",
+    heading: "Drei typische Beispiele für die Funktionsweise einer BU",
+    blocks: [
+      { type: "h3", text: "Beispiel 1: Handwerker mit Rückenproblemen" },
+      { type: "p", parts: ["Ein Handwerker kann wesentliche körperliche Tätigkeiten seines bisherigen Berufs wegen einer Erkrankung nicht mehr ausüben."] },
+      { type: "p", parts: ["Auch wenn er noch bestimmte Büroaufgaben erledigen kann, kann unter den konkreten Voraussetzungen eine Berufsunfähigkeit vorliegen."] },
+      { type: "p", parts: ["Entscheidend sind sein tatsächliches Tätigkeitsbild, die gesundheitlichen Einschränkungen und die Versicherungsbedingungen."] },
+      { type: "h3", text: "Beispiel 2: Projektleiter mit psychischer Erkrankung" },
+      { type: "p", parts: ["Ein Projektleiter leidet an einer schwerwiegenden psychischen Erkrankung."] },
+      { type: "p", parts: ["Er kann wesentliche Anforderungen seines bisherigen Berufs über längere Zeit nicht mehr ausreichend bewältigen."] },
+      { type: "p", parts: ["Wenn die vertraglichen Voraussetzungen erfüllt sind, kann auch daraus ein Anspruch auf BU-Leistungen entstehen."] },
+      { type: "h3", text: "Beispiel 3: Selbstständiger mit gesundheitlichen Einschränkungen" },
+      { type: "p", parts: ["Ein Selbstständiger fällt gesundheitlich aus."] },
+      { type: "p", parts: ["Bei ihm muss besonders genau betrachtet werden, welche Aufgaben er bislang selbst übernommen hat und welche betrieblichen Möglichkeiten zur Umorganisation bestehen."] },
+      { type: "p", parts: ["Bei guten BU-Bedingungen sind die Voraussetzungen und Grenzen einer zumutbaren Umorganisation entsprechend geregelt."] },
+      { type: "p", parts: ["Auch für Selbstständige ist deshalb nicht nur die Berufsbezeichnung entscheidend."] },
+    ],
+  },
+  {
+    id: "typische-fehler",
+    heading: "Welche Fehler würde ich beim BU-Abschluss vermeiden?",
+    blocks: [
+      { type: "h3", text: "Fehler 1: Die BU-Rente zu niedrig wählen" },
+      { type: "p", parts: ["Eine zu niedrige Rente kann im Leistungsfall erhebliche finanzielle Lücken lassen."] },
+      { type: "h3", text: "Fehler 2: Die Laufzeit zu kurz wählen" },
+      { type: "p", parts: ["Wenn die BU bereits mit 60 endet, deine Altersrente aber erst später beginnt, kann eine große Versorgungslücke entstehen."] },
+      { type: "h3", text: "Fehler 3: Nur nach dem günstigsten Beitrag entscheiden" },
+      { type: "p", parts: ["Versicherungsbedingungen und langfristige Absicherung sind mindestens genauso wichtig."] },
+      { type: "h3", text: "Fehler 4: Gesundheitsfragen ungenau beantworten" },
+      { type: "p", parts: ["Unvollständige Angaben können den späteren Versicherungsschutz gefährden."] },
+      { type: "h3", text: "Fehler 5: Auf abstrakte Verweisung nicht achten" },
+      { type: "p", parts: ["Eine solche Klausel kann den Leistungsanspruch erheblich beeinflussen."] },
+      { type: "h3", text: "Fehler 6: Nachversicherungsmöglichkeiten ignorieren" },
+      { type: "p", parts: ["Dein Einkommen und deine finanziellen Verpflichtungen können sich verändern."] },
+      { type: "h3", text: "Fehler 7: Beitragsdynamik und Leistungsdynamik verwechseln" },
+      { type: "p", parts: ["Beide erfüllen unterschiedliche Funktionen."] },
+      { type: "h3", text: "Fehler 8: Glauben, eine Krankschreibung reicht automatisch für die BU-Rente" },
+      { type: "p", parts: ["Arbeitsunfähigkeit und Berufsunfähigkeit sind unterschiedliche Sachverhalte."] },
+    ],
+  },
+  {
+    id: "checkliste",
+    heading: "Meine Checkliste für eine gute Berufsunfähigkeitsversicherung",
+    blocks: [
+      { type: "p", parts: ["Vor Abschluss würde ich mindestens diese Punkte prüfen:"] },
+      {
+        type: "list",
+        items: [
+          "1. Wie hoch ist mein aktuelles Nettoeinkommen?",
+          "2. Welche monatlichen Ausgaben muss ich absichern?",
+          "3. Wie hoch soll meine BU-Rente sein?",
+          "4. Bis zu welchem Alter brauche ich den Versicherungsschutz?",
+          "5. Bis zu welchem Alter soll die Rente gezahlt werden können?",
+          "6. Welche konkreten beruflichen Tätigkeiten übe ich aus?",
+          "7. Wie bewertet der Versicherer meinen Beruf?",
+          "8. Sind meine Gesundheitsangaben vollständig aufgearbeitet?",
+          "9. Ist eine Risikovoranfrage sinnvoll?",
+          "10. Wie definiert der Tarif Berufsunfähigkeit?",
+          "11. Welche Prognosedauer gilt?",
+          "12. Ist der Verzicht auf abstrakte Verweisung geregelt?",
+          "13. Wie funktioniert die konkrete Verweisung?",
+          "14. Gibt es besondere Regelungen für Selbstständige?",
+          "15. Besteht eine rückwirkende Leistungsregelung?",
+          "16. Wie ist die Beitragsbefreiung im Leistungsfall geregelt?",
+          "17. Welche Beitragsdynamik ist vorgesehen?",
+          "18. Gibt es eine garantierte Leistungsdynamik?",
+          "19. Welche Nachversicherungsmöglichkeiten bestehen?",
+          "20. Wie funktioniert die Leistungsprüfung?",
+          "21. Welche Rechte bestehen bei einer späteren Nachprüfung?",
+          "22. Ist der Vertrag langfristig bezahlbar?",
+        ],
+      },
+      { type: "p", parts: ["Wenn diese Fragen sauber beantwortet sind, hast du eine deutlich bessere Grundlage für deine Entscheidung."] },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        if (block.type === "list")
+          return (
+            <ul class="space-y-2">
+              {block.items.map((item) => (
+                <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                  <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          );
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>
