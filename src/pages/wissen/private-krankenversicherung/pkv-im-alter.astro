@@ -1,0 +1,51 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/wissenPkvImAlter/Hero.astro";
+import TableOfContents from "@/components/wissenPkvImAlter/TableOfContents.astro";
+import Article from "@/components/wissenPkvImAlter/Article.astro";
+import Fazit from "@/components/wissenPkvImAlter/Fazit.astro";
+
+const pageTitle = "PKV im Alter: Beiträge, Kosten & Beitragsentlastung";
+const pageDescription =
+  "Ist die PKV im Alter noch bezahlbar? Erfahre, wie Alterungsrückstellungen, Beitragsentlastungstarife und eine Basisrente helfen können.";
+const canonicalUrl = new URL("/wissen/private-krankenversicherung/pkv-im-alter/", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "PKV im Alter: Wie bleibt die private Krankenversicherung bezahlbar?",
+  description: pageDescription,
+  inLanguage: "de-DE",
+  datePublished: "2026-10-22",
+  dateModified: "2026-10-22",
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Fabio Rumpf", jobTitle: "Versicherungs- und Finanzmakler" },
+  publisher: { "@type": "Organization", name: "Fabio Rumpf Makler" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Wissen", item: new URL("/wissen/", Astro.site).toString() },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "PKV-Wissen",
+      item: new URL("/wissen/private-krankenversicherung/", Astro.site).toString(),
+    },
+    { "@type": "ListItem", position: 4, name: "PKV im Alter", item: canonicalUrl },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} fullTitle>
+  <Hero />
+  <TableOfContents />
+  <Article />
+  <Fazit />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

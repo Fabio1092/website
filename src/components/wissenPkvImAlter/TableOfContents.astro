@@ -1,0 +1,60 @@
+---
+const entries = [
+  { id: "wichtigstes-in-kuerze", label: "Das Wichtigste zur PKV im Alter" },
+  { id: "angst-vor-pkv-im-alter", label: "Warum haben viele Menschen Angst vor der PKV im Alter?" },
+  { id: "wird-pkv-automatisch-teurer", label: "Wird die PKV automatisch teurer, nur weil ich älter werde?" },
+  { id: "was-sind-alterungsrueckstellungen", label: "Was sind Alterungsrückstellungen?" },
+  { id: "gesetzlicher-beitragszuschlag", label: "Der gesetzliche Beitragszuschlag von zehn Prozent" },
+  { id: "veraenderungen-beim-ruhestand", label: "Was verändert sich beim Eintritt in den Ruhestand?" },
+  { id: "zuschuss-als-rentner", label: "Bekomme ich als privat versicherter Rentner einen Zuschuss?" },
+  { id: "unterschied-gkv-pkv-ruhestand", label: "Der Unterschied zwischen GKV und PKV im Ruhestand" },
+  { id: "beitragsentlastungstarif", label: "Beitragsentlastungstarif: Gezielt den PKV-Beitrag im Alter reduzieren" },
+  { id: "beitragsentlastung-fuer-angestellte", label: "Warum Beitragsentlastung für Angestellte besonders interessant sein kann" },
+  { id: "beispiel-arbeitgeber-beitragsentlastung", label: "Beispiel: Arbeitgeber finanziert einen Teil der Beitragsentlastung" },
+  { id: "arbeitgeberzuschuss-zuerst-pruefen", label: "Warum ich den Arbeitgeberzuschuss zuerst prüfen würde" },
+  { id: "nachteile-beitragsentlastungstarif", label: "Welche Nachteile hat ein Beitragsentlastungstarif?" },
+  { id: "basisrente-finanzierung", label: "Basisrente: Eine attraktive Möglichkeit zur Finanzierung der PKV im Alter" },
+  { id: "wie-funktioniert-basisrente", label: "Wie funktioniert eine Basisrente?" },
+  { id: "basisrente-steuerlich-attraktiv", label: "Warum kann die Basisrente steuerlich attraktiv sein?" },
+  { id: "beispiel-basisrente", label: "Beispiel: Basisrente für zusätzliche PKV-Einnahmen" },
+  { id: "fuer-wen-basisrente-interessant", label: "Für wen kann eine Basisrente besonders interessant sein?" },
+  { id: "nachteile-basisrente", label: "Welche Nachteile hat eine Basisrente?" },
+  { id: "entlastungstarif-oder-basisrente", label: "Beitragsentlastungstarif oder Basisrente: Was ist besser?" },
+  { id: "kombination-sinnvoll", label: "Kann eine Kombination sinnvoll sein?" },
+  { id: "beispiel-planung-35-jahre", label: "Beispiel: So könnte eine Planung mit 35 Jahren aussehen" },
+  { id: "wie-viel-zuruecklegen", label: "Wie viel Geld sollte ich für meine PKV im Alter zurücklegen?" },
+  { id: "guenstiger-tarif-besser", label: "Ist ein günstiger PKV-Tarif besser für das Alter?" },
+  { id: "pkv-bereits-zu-teuer", label: "Was kann ich tun, wenn meine PKV im Alter bereits zu teuer geworden ist?" },
+  { id: "zurueck-in-gkv-im-alter", label: "Muss ich im Rentenalter in die GKV zurückwechseln?" },
+  { id: "zwangslaeufig-unbezahlbar", label: "Ist die PKV im Alter zwangsläufig unbezahlbar?" },
+  { id: "typische-fehler", label: "Welche Fehler würde ich bei der PKV-Altersvorsorge vermeiden?" },
+  { id: "checkliste", label: "Meine Checkliste: PKV im Alter richtig planen" },
+  { id: "fazit", label: "Fazit: Wie bleibt die PKV im Alter bezahlbar?" },
+  { id: "pkv-altersvorsorge-gemeinsam-planen", label: "PKV und Altersvorsorge gemeinsam planen" },
+];
+---
+
+<section class="bg-white py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+        {
+          entries.map((entry, index) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
+              >
+                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>

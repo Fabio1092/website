@@ -1,0 +1,756 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+type Part = string | { b: string } | { a: string; href: string };
+
+type Block =
+  | { type: "p"; parts: Part[] }
+  | { type: "standalone"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "h3"; text: string }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+interface Section {
+  id: string;
+  heading: string;
+  blocks: Block[];
+}
+
+const introBlocks: Block[] = [
+  { type: "p", parts: ["Diese Frage gehört für mich zu jeder langfristigen PKV-Entscheidung."] },
+  { type: "p", parts: ["Denn eine private Krankenversicherung schließt du im Idealfall nicht für die nächsten fünf Jahre ab, sondern für mehrere Jahrzehnte."] },
+  { type: "p", parts: ["Deshalb ist nicht nur wichtig, was deine PKV heute kostet."] },
+  { type: "p", parts: ["Entscheidend ist auch:"] },
+  { type: "standalone", text: "Wie finanzierst du deinen Versicherungsschutz später, wenn dein Arbeitseinkommen wegfällt?" },
+  { type: "p", parts: ["Die gute Nachricht: In der PKV gibt es verschiedene Mechanismen, die Beiträge im Alter abfedern sollen. Zusätzlich kannst du selbst gezielt vorsorgen."] },
+  { type: "p", parts: ["Dazu gehören insbesondere:"] },
+  {
+    type: "list",
+    items: [
+      "Alterungsrückstellungen",
+      "der gesetzliche Beitragszuschlag",
+      "der Wegfall bestimmter Beitragsbestandteile",
+      "mögliche Zuschüsse aus der gesetzlichen Rentenversicherung",
+      "zusätzliche Beitragsentlastungstarife",
+      "eine Basisrente",
+      "frei verfügbares Vermögen und andere Kapitalanlagen",
+    ],
+  },
+  { type: "p", parts: ["Aber eines ist genauso wichtig:"] },
+  { type: "standalone", text: "Keiner dieser Mechanismen garantiert, dass dein PKV-Beitrag im Ruhestand niemals steigt." },
+  { type: "p", parts: ["Deshalb würde ich das Thema weder dramatisieren noch schönreden."] },
+  { type: "p", parts: ["Ich würde es von Anfang an vernünftig planen."] },
+];
+
+const sections: Section[] = [
+  {
+    id: "wichtigstes-in-kuerze",
+    heading: "Das Wichtigste zur PKV im Alter",
+    blocks: [
+      { type: "p", parts: ["Die wichtigsten Punkte im Überblick:"] },
+      {
+        type: "list",
+        items: [
+          "PKV-Beiträge sind grundsätzlich nicht direkt von deinem Einkommen abhängig.",
+          "Deshalb sinkt der Beitrag nicht automatisch, wenn du in Rente gehst.",
+          "Das reine Älterwerden führt in der üblichen alterungsrückstellungsbildenden PKV nicht automatisch zu einer jährlichen altersbedingten Beitragserhöhung.",
+          "Für höhere Gesundheitskosten im Alter werden Alterungsrückstellungen gebildet.",
+          "Zusätzlich gibt es den gesetzlichen zehnprozentigen Beitragszuschlag, der nur bis zu einem bestimmten Alter erhoben wird.",
+          "Ein nicht mehr benötigtes Krankentagegeld kann beim Ende der Erwerbstätigkeit entfallen.",
+          "Wer eine gesetzliche Rente bezieht, kann unter Voraussetzungen einen Zuschuss zur privaten Krankenversicherung erhalten.",
+          "Beitragsentlastungstarife können eine vertraglich vorgesehene zusätzliche Beitragssenkung im Alter ermöglichen.",
+          "Für Angestellte ist besonders interessant, dass ein geeigneter Beitragsentlastungstarif unter bestimmten Voraussetzungen vom Arbeitgeber bezuschusst werden kann.",
+          "Eine Basisrente kann zusätzliche lebenslange Einnahmen schaffen, um PKV-Beiträge zu finanzieren.",
+          "Eigene Kapitalanlagen können ergänzen, insbesondere wenn Flexibilität gewünscht ist.",
+          "Entscheidend ist die gesamte Ruhestandsplanung und nicht nur der aktuelle PKV-Beitrag.",
+        ],
+      },
+      {
+        type: "p",
+        parts: [
+          "Mehr zu den Ursachen langfristiger Beitragsveränderungen findest du unter ",
+          { a: "PKV Beitragsentwicklung: Wie stark steigen die Beiträge?", href: "/wissen/private-krankenversicherung/pkv-beitragsentwicklung/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "angst-vor-pkv-im-alter",
+    heading: "Warum haben viele Menschen Angst vor der PKV im Alter?",
+    blocks: [
+      { type: "p", parts: ["Das Problem entsteht häufig durch den Vergleich zweier völlig unterschiedlicher Lebenssituationen."] },
+      { type: "p", parts: ["Heute bist du beispielsweise 35 Jahre alt, hast ein gutes Einkommen und bekommst als Angestellter einen Arbeitgeberzuschuss zu deiner PKV."] },
+      { type: "p", parts: ["Später bist du 67 Jahre alt, arbeitest möglicherweise nicht mehr und musst deinen Lebensunterhalt aus deiner Altersvorsorge finanzieren."] },
+      { type: "p", parts: ["Natürlich stellt sich dann die Frage:"] },
+      { type: "standalone", text: "Kann ich mir meinen PKV-Beitrag weiterhin problemlos leisten?" },
+      { type: "p", parts: ["Diese Frage ist berechtigt."] },
+      { type: "p", parts: ["Aber daraus automatisch abzuleiten, dass die PKV im Alter unbezahlbar wird, wäre genauso falsch wie die Annahme, dass Alterungsrückstellungen jede künftige Beitragserhöhung verhindern."] },
+      { type: "p", parts: ["Die richtige Betrachtung ist individueller."] },
+      { type: "p", parts: ["Es kommt unter anderem darauf an:"] },
+      {
+        type: "list",
+        items: [
+          "wann du in die PKV eingetreten bist",
+          "welchen Tarif du gewählt hast",
+          "wie sich die Beiträge entwickeln",
+          "welche Vorsorge du zusätzlich aufgebaut hast",
+          "welche Rente und sonstigen Einkünfte du später erhältst",
+          "ob du einen Beitragsentlastungstarif nutzt",
+          "wie groß deine frei verfügbaren Rücklagen sind",
+        ],
+      },
+    ],
+  },
+  {
+    id: "wird-pkv-automatisch-teurer",
+    heading: "Wird die PKV automatisch teurer, nur weil ich älter werde?",
+    blocks: [
+      { type: "p", parts: ["Nicht allein wegen deines Geburtstags."] },
+      { type: "p", parts: ["In der üblichen privaten Krankheitskostenvollversicherung mit Alterungsrückstellungen wird der Beitrag unter Berücksichtigung der über das Leben erwarteten Krankheitskosten kalkuliert."] },
+      { type: "p", parts: ["Dass Menschen im höheren Alter durchschnittlich mehr medizinische Leistungen benötigen, wird damit von Beginn an berücksichtigt."] },
+      { type: "p", parts: ["Das bedeutet:"] },
+      { type: "standalone", text: "Dein Versicherer erhöht den Beitrag nicht einfach jedes Jahr nur deshalb, weil du ein Jahr älter geworden bist." },
+      { type: "p", parts: ["Trotzdem können Beiträge steigen."] },
+      { type: "p", parts: ["Beispielsweise durch:"] },
+      {
+        type: "list",
+        items: [
+          "steigende Behandlungskosten",
+          "medizinischen Fortschritt",
+          "Veränderungen bei kalkulatorischen Grundlagen",
+          "Veränderungen der Lebenserwartung",
+          "andere gesetzlich relevante Veränderungen der Kalkulation",
+        ],
+      },
+      { type: "p", parts: ["Für Beitragsanpassungen gelten gesetzliche Voraussetzungen."] },
+      { type: "p", parts: ["Deshalb solltest du Alter und allgemeine Beitragsentwicklung voneinander unterscheiden."] },
+    ],
+  },
+  {
+    id: "was-sind-alterungsrueckstellungen",
+    heading: "Was sind Alterungsrückstellungen?",
+    blocks: [
+      { type: "p", parts: ["Alterungsrückstellungen sind ein wesentlicher Bestandteil der Kalkulation in der privaten Krankenvollversicherung."] },
+      { type: "p", parts: ["Vereinfacht gesagt:"] },
+      { type: "p", parts: ["In jüngeren Jahren zahlst du nicht nur einen Beitrag für die durchschnittlich zu erwartenden aktuellen Behandlungskosten."] },
+      { type: "p", parts: ["Ein Teil des Beitrags dient dazu, die statistisch höheren Krankheitskosten im Alter mitzufinanzieren."] },
+      { type: "p", parts: ["Die Alterungsrückstellungen sollen also helfen, altersbedingt höhere Gesundheitsausgaben abzufedern."] },
+      { type: "p", parts: ["Wichtig ist jedoch:"] },
+      { type: "standalone", text: "Alterungsrückstellungen sind kein persönliches Sparkonto, das du dir später einfach auszahlen lassen kannst." },
+      { type: "p", parts: ["Sie sind Bestandteil des Versicherungssystems und der Tarifkalkulation."] },
+      { type: "p", parts: ["Sie verhindern außerdem nicht jede Beitragserhöhung, die beispielsweise durch steigende medizinische Kosten notwendig wird."] },
+    ],
+  },
+  {
+    id: "gesetzlicher-beitragszuschlag",
+    heading: "Der gesetzliche Beitragszuschlag von zehn Prozent",
+    blocks: [
+      { type: "p", parts: ["Neben den normalen Alterungsrückstellungen gibt es in der substitutiven PKV den gesetzlichen Beitragszuschlag."] },
+      { type: "p", parts: ["Dieser beträgt grundsätzlich zehn Prozent auf den dafür maßgeblichen Beitragsteil."] },
+      { type: "p", parts: ["Er wird vom Kalenderjahr nach Vollendung des 21. Lebensjahres bis zum Ende des Kalenderjahres erhoben, in dem du 60 wirst."] },
+      { type: "p", parts: ["Danach entfällt er."] },
+      { type: "p", parts: ["Die dadurch angesammelten Mittel werden nach gesetzlichen Regeln zur Beitragsentlastung beziehungsweise zur Abmilderung von Beitragsanpassungen im höheren Alter eingesetzt."] },
+      { type: "p", parts: ["Der Wegfall des Zuschlags kann deinen zu zahlenden Gesamtbeitrag reduzieren."] },
+      { type: "p", parts: ["Gleichzeitige andere Beitragsanpassungen können diesen Effekt allerdings überlagern."] },
+      { type: "p", parts: ["Deshalb bedeutet das Ende des Zuschlags nicht automatisch, dass deine gesamte PKV-Rechnung im betreffenden Jahr deutlich niedriger ausfallen muss."] },
+    ],
+  },
+  {
+    id: "veraenderungen-beim-ruhestand",
+    heading: "Was verändert sich beim Eintritt in den Ruhestand?",
+    blocks: [
+      { type: "p", parts: ["Mit dem Ende des Berufslebens können verschiedene Veränderungen zusammenkommen."] },
+      { type: "h3", text: "Krankentagegeld kann entfallen" },
+      { type: "p", parts: ["Während des Berufslebens ist Krankentagegeld häufig wichtig."] },
+      { type: "p", parts: ["Es soll bei längerer Arbeitsunfähigkeit einen Teil des Einkommensausfalls absichern."] },
+      { type: "p", parts: ["Wenn du dauerhaft aus dem Erwerbsleben ausscheidest, besteht dieser Absicherungsbedarf möglicherweise nicht mehr."] },
+      { type: "p", parts: ["Dann kann der entsprechende Beitragsanteil entfallen."] },
+      { type: "p", parts: ["Der richtige Zeitpunkt hängt von deiner tatsächlichen beruflichen Situation und den Versicherungsbedingungen ab."] },
+      { type: "h3", text: "Der gesetzliche Beitragszuschlag ist bereits weggefallen" },
+      { type: "p", parts: ["Der gesetzliche zehnprozentige Beitragszuschlag wird nach dem Kalenderjahr der Vollendung des 60. Lebensjahres nicht mehr erhoben."] },
+      { type: "p", parts: ["Das geschieht nicht erst mit deinem individuellen Rentenbeginn."] },
+      { type: "h3", text: "Der Arbeitgeberzuschuss kann wegfallen" },
+      { type: "p", parts: ["Während einer versicherungsfreien Beschäftigung kann der Arbeitgeber einen Zuschuss zur privaten Krankenversicherung leisten."] },
+      { type: "p", parts: ["Wenn du vollständig aus dem Arbeitsverhältnis ausscheidest, entfällt dieser Arbeitgeberzuschuss grundsätzlich."] },
+      { type: "p", parts: ["Unter bestimmten Voraussetzungen kann dafür ein Zuschuss der gesetzlichen Rentenversicherung relevant werden."] },
+      { type: "p", parts: ["Beide Zuschüsse sind aber nicht gleich hoch und beruhen auf unterschiedlichen Berechnungsregeln."] },
+    ],
+  },
+  {
+    id: "zuschuss-als-rentner",
+    heading: "Bekomme ich als privat versicherter Rentner einen Zuschuss?",
+    blocks: [
+      { type: "p", parts: ["Das ist möglich."] },
+      { type: "p", parts: ["Wenn du eine gesetzliche Rente beziehst und die gesetzlichen Voraussetzungen erfüllst, kannst du bei der Deutschen Rentenversicherung einen Beitragszuschuss zur privaten Krankenversicherung beantragen."] },
+      { type: "p", parts: ["Die Berechnung orientiert sich grundsätzlich an:"] },
+      {
+        type: "list",
+        items: [
+          "deiner gesetzlichen Bruttorente",
+          "dem halben allgemeinen GKV-Beitragssatz",
+          "dem halben durchschnittlichen Zusatzbeitragssatz der gesetzlichen Krankenkassen",
+        ],
+      },
+      { type: "p", parts: ["Der Zuschuss ist außerdem auf die Hälfte deiner tatsächlichen berücksichtigungsfähigen privaten Krankenversicherungsprämie begrenzt."] },
+      { type: "p", parts: ["Wichtig:"] },
+      {
+        type: "list",
+        items: [
+          "Der Zuschuss muss beantragt werden.",
+          "Er hängt von der Höhe deiner gesetzlichen Rente ab.",
+          "Er ersetzt nicht automatisch die Hälfte deines gesamten PKV-Beitrags.",
+          "Für die private Pflegepflichtversicherung zahlt die Deutsche Rentenversicherung keinen entsprechenden Zuschuss.",
+        ],
+      },
+      { type: "p", parts: ["Wer keine gesetzliche Rente bezieht, erhält nicht allein deshalb denselben Zuschuss, weil eine private Rente, Basisrente oder Versorgung aus einem berufsständischen Versorgungswerk ausgezahlt wird."] },
+      { type: "p", parts: ["Deshalb würde ich mögliche Rentenzuschüsse immer individuell einplanen."] },
+    ],
+  },
+  {
+    id: "unterschied-gkv-pkv-ruhestand",
+    heading: "Der Unterschied zwischen GKV und PKV im Ruhestand",
+    blocks: [
+      { type: "p", parts: ["Die Beitragsberechnung funktioniert in den beiden Systemen unterschiedlich."] },
+      { type: "p", parts: ["In der PKV richtet sich dein Beitrag grundsätzlich nach dem vereinbarten Versicherungsschutz und der Tarifkalkulation."] },
+      { type: "p", parts: ["Er sinkt deshalb nicht automatisch, wenn deine Einkünfte zurückgehen."] },
+      { type: "p", parts: ["In der GKV werden Beiträge dagegen grundsätzlich nach beitragspflichtigen Einnahmen berechnet."] },
+      { type: "p", parts: ["Allerdings ist entscheidend, ob jemand in der Krankenversicherung der Rentner pflichtversichert oder freiwilliges GKV-Mitglied ist."] },
+      { type: "p", parts: ["Je nach Status können unterschiedliche Einkünfte beitragspflichtig sein."] },
+      { type: "p", parts: ["Ein pauschaler Vergleich nach dem Motto:"] },
+      { type: "standalone", text: "„Die GKV ist im Alter immer günstiger.“" },
+      { type: "p", parts: ["oder:"] },
+      { type: "standalone", text: "„Die PKV ist im Alter immer günstiger.“" },
+      { type: "p", parts: ["wäre deshalb nicht seriös."] },
+    ],
+  },
+  {
+    id: "beitragsentlastungstarif",
+    heading: "Beitragsentlastungstarif: Gezielt den PKV-Beitrag im Alter reduzieren",
+    blocks: [
+      { type: "p", parts: ["Eine besonders interessante Möglichkeit zur langfristigen Planung ist ein zusätzlicher Beitragsentlastungstarif."] },
+      { type: "p", parts: ["Das Grundprinzip ist einfach."] },
+      { type: "p", parts: ["Du zahlst heute einen zusätzlichen monatlichen Beitrag an deinen privaten Krankenversicherer."] },
+      { type: "p", parts: ["Im Gegenzug wird dein späterer Krankenversicherungsbeitrag ab einem vertraglich vereinbarten Alter um einen festgelegten Betrag reduziert."] },
+      { type: "p", parts: ["Beispielsweise könnte ein solcher Baustein eine monatliche Entlastung von 300 Euro ab dem 67. Lebensjahr vorsehen."] },
+      { type: "p", parts: ["Wie viel du dafür heute zusätzlich zahlst, hängt unter anderem ab von:"] },
+      { type: "list", items: ["Versicherer", "Tarif", "Eintrittsalter", "gewünschter Entlastung", "Entlastungsbeginn", "Versicherungsbedingungen"] },
+      { type: "p", parts: ["Die Angebote unterscheiden sich teilweise erheblich."] },
+      { type: "p", parts: ["Deshalb sollte nicht nur die versprochene spätere Beitragsreduzierung verglichen werden."] },
+    ],
+  },
+  {
+    id: "beitragsentlastung-fuer-angestellte",
+    heading: "Warum Beitragsentlastung für Angestellte besonders interessant sein kann",
+    blocks: [
+      { type: "p", parts: ["Für privat versicherte Angestellte gibt es einen möglichen zusätzlichen Vorteil:"] },
+      { type: "standalone", text: "Der Arbeitgeber kann sich unter den gesetzlichen Voraussetzungen am Beitrag für einen geeigneten Beitragsentlastungstarif beteiligen." },
+      { type: "p", parts: ["Das ist ein wichtiger Unterschied zu vielen anderen Formen privater Altersvorsorge."] },
+      { type: "p", parts: ["Denn ein Beitragsentlastungsbaustein kann als Bestandteil der zuschussfähigen privaten Krankenversicherung berücksichtigt werden."] },
+      { type: "p", parts: ["Voraussetzung ist insbesondere, dass der gesetzliche Höchstzuschuss des Arbeitgebers noch nicht ausgeschöpft ist."] },
+      { type: "p", parts: ["Der Arbeitgeber zahlt deshalb nicht automatisch zusätzlich die Hälfte jedes beliebig hohen Entlastungstarif-Beitrags."] },
+      { type: "p", parts: ["Die konkrete Höhe hängt davon ab, wie viel Zuschussspielraum noch vorhanden ist."] },
+    ],
+  },
+  {
+    id: "beispiel-arbeitgeber-beitragsentlastung",
+    heading: "Beispiel: Arbeitgeber finanziert einen Teil der Beitragsentlastung",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir ein vereinfachtes Beispiel."] },
+      { type: "p", parts: ["Du bist angestellt und privat krankenversichert."] },
+      { type: "p", parts: ["Du möchtest einen zusätzlichen Beitragsentlastungstarif abschließen."] },
+      { type: "p", parts: ["Dieser kostet:"] },
+      { type: "standalone", text: "100 Euro monatlich." },
+      { type: "p", parts: ["Angenommen:"] },
+      {
+        type: "list",
+        items: ["der Baustein ist zuschussfähig", "dein Arbeitgeberzuschuss ist noch nicht ausgeschöpft", "die gesetzlichen Voraussetzungen sind erfüllt"],
+      },
+      { type: "p", parts: ["Dann kann dein Arbeitgeber grundsätzlich weitere:"] },
+      { type: "standalone", text: "50 Euro monatlich" },
+      { type: "p", parts: ["übernehmen."] },
+      { type: "p", parts: ["Dein eigener zusätzlicher Aufwand beträgt in diesem Beispiel vor individuellen Steuereffekten:"] },
+      { type: "standalone", text: "50 Euro monatlich." },
+      { type: "p", parts: ["Du finanzierst also einen Vorsorgebaustein mit 100 Euro Beitrag, trägst davon wirtschaftlich zunächst nur die Hälfte selbst."] },
+      { type: "p", parts: ["Das kann sehr attraktiv sein."] },
+      { type: "p", parts: ["Allerdings gilt:"] },
+      { type: "standalone", text: "Dieses Beispiel sagt noch nichts darüber aus, wie hoch deine spätere Beitragsentlastung ausfallen wird." },
+      { type: "p", parts: ["Dafür benötigen wir die konkreten Versicherungsangebote."] },
+      { type: "p", parts: ["Auch steuerliche Effekte müssen individuell betrachtet werden."] },
+    ],
+  },
+  {
+    id: "arbeitgeberzuschuss-zuerst-pruefen",
+    heading: "Warum ich den Arbeitgeberzuschuss zuerst prüfen würde",
+    blocks: [
+      { type: "p", parts: ["Wenn du Angestellter bist, würde ich vor der Entscheidung für eine zusätzliche Vorsorgelösung prüfen, ob beim Arbeitgeberzuschuss noch Spielraum besteht."] },
+      { type: "p", parts: ["Denn ein möglicher Arbeitgeberanteil kann die Wirtschaftlichkeit eines Beitragsentlastungstarifs erheblich verbessern."] },
+      { type: "p", parts: ["Aber:"] },
+      { type: "p", parts: ["Wenn dein maximaler Arbeitgeberzuschuss bereits durch deine bestehende PKV ausgeschöpft wird, entsteht durch den zusätzlichen Entlastungstarif möglicherweise kein weiterer Arbeitgeberzuschuss."] },
+      { type: "p", parts: ["Deshalb ist die richtige Reihenfolge für mich:"] },
+      { type: "standalone", text: "Erst Zuschussspielraum prüfen, dann Beitragsentlastungsangebot kalkulieren, anschließend mit anderen Vorsorgelösungen vergleichen." },
+      {
+        type: "p",
+        parts: [
+          "Mehr zu den allgemeinen Kosten einer PKV findest du unter ",
+          { a: "Was kostet eine private Krankenversicherung?", href: "/wissen/private-krankenversicherung/pkv-kosten/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "nachteile-beitragsentlastungstarif",
+    heading: "Welche Nachteile hat ein Beitragsentlastungstarif?",
+    blocks: [
+      { type: "p", parts: ["Auch diese Lösung hat Nachteile."] },
+      { type: "p", parts: ["Ein Beitragsentlastungstarif ist normalerweise keine frei verfügbare Kapitalanlage."] },
+      { type: "p", parts: ["Das gebildete Kapital kannst du nicht wie bei einem normalen Wertpapierdepot jederzeit auszahlen lassen."] },
+      { type: "p", parts: ["Weitere Punkte:"] },
+      {
+        type: "list",
+        items: [
+          "Du musst den Zusatzbeitrag zunächst finanzieren.",
+          "Die Entlastung beginnt erst zum vereinbarten Zeitpunkt.",
+          "Der Beitrag für den Entlastungstarif kann auch während der Entlastungsphase weitergezahlt werden müssen.",
+          "Deshalb ist die tatsächliche Nettoentlastung entscheidend.",
+          "Ein vollständiger Wechsel zu einem anderen Versicherungsunternehmen kann wirtschaftliche Nachteile haben.",
+          "Es besteht in der Regel kein frei verfügbares oder frei vererbbares persönliches Sparguthaben.",
+          "Bei Vertragsänderungen gelten die jeweiligen Versicherungsbedingungen.",
+        ],
+      },
+      { type: "p", parts: ["Ich würde deshalb immer zwei Größen miteinander vergleichen:"] },
+      { type: "standalone", text: "Wie viel zahle ich bis zum Rentenbeginn zusätzlich ein?" },
+      { type: "p", parts: ["Und:"] },
+      { type: "standalone", text: "Wie viel reduziert sich mein tatsächlicher Gesamtbeitrag später?" },
+      { type: "p", parts: ["Der Arbeitgeberzuschuss ist ein starkes Argument."] },
+      { type: "p", parts: ["Aber er ersetzt keine saubere Berechnung."] },
+    ],
+  },
+  {
+    id: "basisrente-finanzierung",
+    heading: "Basisrente: Eine attraktive Möglichkeit zur Finanzierung der PKV im Alter",
+    blocks: [
+      { type: "p", parts: ["Neben dem Beitragsentlastungstarif finde ich die Basisrente als Vorsorgebaustein besonders interessant."] },
+      { type: "p", parts: ["Sie wird häufig auch Rürup-Rente genannt."] },
+      { type: "p", parts: ["Ihr Ansatz ist allerdings ein anderer."] },
+      { type: "p", parts: ["Während ein Beitragsentlastungstarif unmittelbar deine spätere PKV-Beitragsrechnung reduzieren soll, baut eine Basisrente zusätzliche lebenslange Renteneinkünfte auf."] },
+      { type: "p", parts: ["Aus diesen Einkünften kannst du später unter anderem deine private Krankenversicherung finanzieren."] },
+      { type: "p", parts: ["Das macht sie zu einer möglichen Ergänzung für die langfristige PKV-Planung."] },
+      { type: "standalone", text: "Wichtig: Eine Basisrente reduziert nicht direkt deine PKV-Prämie. Sie schafft zusätzliche Einnahmen, mit denen du die Prämie bezahlen kannst." },
+    ],
+  },
+  {
+    id: "wie-funktioniert-basisrente",
+    heading: "Wie funktioniert eine Basisrente?",
+    blocks: [
+      { type: "p", parts: ["Während der Ansparphase zahlst du Beiträge in einen steuerlich begünstigten Altersvorsorgevertrag ein."] },
+      { type: "p", parts: ["Je nach Vertrag können diese Beiträge beispielsweise klassisch oder fondsgebunden angelegt werden."] },
+      { type: "p", parts: ["Später erhältst du daraus grundsätzlich eine lebenslange monatliche Rente."] },
+      { type: "p", parts: ["Der große Vorteil für die Planung deiner Krankenversicherung:"] },
+      { type: "standalone", text: "Ein regelmäßig anfallender PKV-Beitrag kann durch zusätzliche lebenslange Renteneinkünfte finanziert werden." },
+      { type: "p", parts: ["Diese Einnahmen sind nicht ausschließlich für die Krankenversicherung bestimmt."] },
+      { type: "p", parts: ["Du kannst sie auch für andere laufende Lebenshaltungskosten verwenden."] },
+      { type: "p", parts: ["Dadurch ist die Basisrente breiter einsetzbar als ein direkt an die PKV gekoppelter Beitragsentlastungstarif."] },
+      { type: "p", parts: ["Allerdings steht dir das angesparte Kapital bei der Basisrente grundsätzlich nicht frei zur Verfügung."] },
+    ],
+  },
+  {
+    id: "basisrente-steuerlich-attraktiv",
+    heading: "Warum kann die Basisrente steuerlich attraktiv sein?",
+    blocks: [
+      { type: "p", parts: ["Beiträge zu einer steuerlich begünstigten Basisrente können im Rahmen der gesetzlichen Grenzen als Altersvorsorgeaufwendungen steuerlich berücksichtigt werden."] },
+      { type: "p", parts: ["Seit 2023 können entsprechende Beiträge innerhalb der geltenden Höchstbeträge grundsätzlich vollständig als Sonderausgaben berücksichtigt werden."] },
+      { type: "p", parts: ["Der gesetzliche Höchstbetrag orientiert sich am Höchstbeitrag zur knappschaftlichen Rentenversicherung."] },
+      { type: "p", parts: ["Bei zusammenveranlagten Ehegatten verdoppelt er sich grundsätzlich."] },
+      { type: "p", parts: ["Wichtig ist jedoch:"] },
+      { type: "p", parts: ["Der Höchstbetrag gilt nicht allein für deine neuen Beiträge zur Basisrente."] },
+      { type: "p", parts: ["Auch andere begünstigte Altersvorsorgeaufwendungen werden berücksichtigt."] },
+      { type: "p", parts: ["Dazu zählen beispielsweise:"] },
+      {
+        type: "list",
+        items: ["Beiträge zur gesetzlichen Rentenversicherung", "Beiträge zu einem berufsständischen Versorgungswerk", "andere entsprechend begünstigte Basisvorsorgebeiträge"],
+      },
+      { type: "p", parts: ["Für Angestellte kann der noch verfügbare steuerliche Spielraum deshalb geringer ausfallen als für bestimmte Selbstständige."] },
+      { type: "p", parts: ["Außerdem ist die tatsächliche Steuerersparnis abhängig von deiner individuellen steuerlichen Situation."] },
+      { type: "standalone", text: "Ein steuerlich absetzbarer Beitrag ist nicht dasselbe wie ein vollständig vom Finanzamt erstatteter Beitrag." },
+      { type: "p", parts: ["Genau deshalb würde ich hier keine pauschale Ersparnis versprechen."] },
+    ],
+  },
+  {
+    id: "beispiel-basisrente",
+    heading: "Beispiel: Basisrente für zusätzliche PKV-Einnahmen",
+    blocks: [
+      { type: "p", parts: ["Angenommen, du möchtest im Ruhestand zusätzlich:"] },
+      { type: "standalone", text: "300 Euro monatlich" },
+      { type: "p", parts: ["für deine private Krankenversicherung zur Verfügung haben."] },
+      { type: "p", parts: ["Dann könntest du prüfen, welche Altersvorsorgebeiträge nötig wären, um später eine zusätzliche lebenslange Rente in dieser Größenordnung zu erreichen."] },
+      { type: "p", parts: ["Aber:"] },
+      { type: "standalone", text: "300 Euro Bruttorente bedeuten nicht automatisch 300 Euro frei verfügbares Nettoeinkommen." },
+      { type: "p", parts: ["Die Auszahlung einer Basisrente unterliegt grundsätzlich der nachgelagerten Besteuerung nach den jeweils geltenden gesetzlichen Regeln."] },
+      { type: "p", parts: ["Deshalb muss die gewünschte spätere Auszahlung unter Berücksichtigung der voraussichtlichen Steuerbelastung geplant werden."] },
+      { type: "p", parts: ["Zusätzlich beeinflussen unter anderem:"] },
+      { type: "list", items: ["Vertragskosten", "Laufzeit", "Kapitalanlage", "Rentenfaktor", "garantierte und nicht garantierte Leistungen", "mögliche Hinterbliebenenabsicherung"] },
+      { type: "p", parts: ["das Ergebnis."] },
+      { type: "p", parts: ["Eine Basisrente ist also kein kostenloser Zuschuss zur PKV."] },
+      { type: "p", parts: ["Sie kann aber eine interessante Möglichkeit sein, während der Erwerbsphase steuerlich gefördert zusätzliche lebenslange Altersvorsorge aufzubauen."] },
+    ],
+  },
+  {
+    id: "fuer-wen-basisrente-interessant",
+    heading: "Für wen kann eine Basisrente besonders interessant sein?",
+    blocks: [
+      { type: "p", parts: ["Ich würde sie insbesondere prüfen, wenn:"] },
+      {
+        type: "list",
+        items: [
+          "du heute ein höheres zu versteuerndes Einkommen hast",
+          "du noch ausreichend steuerlich nutzbaren Vorsorgespielraum besitzt",
+          "du gezielt zusätzliche lebenslange Renteneinkünfte möchtest",
+          "du langfristig vorsorgen kannst",
+          "du das eingezahlte Geld nicht kurzfristig benötigst",
+          "du einen geeigneten und kosteneffizienten Vertrag auswählen kannst",
+          "die spätere Besteuerung in deiner Planung berücksichtigt ist",
+        ],
+      },
+      { type: "p", parts: ["Auch für Angestellte kann das sehr interessant sein."] },
+      { type: "p", parts: ["Für Selbstständige kann die Basisrente ebenfalls eine wichtige Rolle spielen, gerade wenn keine umfassende gesetzliche Rentenanwartschaft besteht."] },
+      { type: "p", parts: ["Aber eine hohe Steuerersparnis allein wäre für mich noch kein ausreichender Abschlussgrund."] },
+    ],
+  },
+  {
+    id: "nachteile-basisrente",
+    heading: "Welche Nachteile hat eine Basisrente?",
+    blocks: [
+      { type: "p", parts: ["Die Basisrente ist bewusst stark auf die Altersvorsorge ausgerichtet."] },
+      { type: "p", parts: ["Das hat Konsequenzen."] },
+      { type: "p", parts: ["Typische Einschränkungen:"] },
+      {
+        type: "list",
+        items: [
+          "Das Kapital ist grundsätzlich nicht frei verfügbar.",
+          "Eine normale freie Kapitalauszahlung ist nicht vorgesehen.",
+          "Die Auszahlung erfolgt grundsätzlich als lebenslange Rente.",
+          "Die späteren Rentenzahlungen sind steuerlich zu berücksichtigen.",
+          "Die Vererbbarkeit ist eingeschränkt.",
+          "Hinterbliebenenleistungen hängen von der Vertragsgestaltung ab.",
+          "Vertrags- und Fondskosten können die Wirtschaftlichkeit beeinflussen.",
+          "Bei fondsgebundenen Verträgen bestehen Kapitalmarktrisiken.",
+          "Eine gewünschte künftige Rentenhöhe ist nicht automatisch garantiert.",
+        ],
+      },
+      { type: "p", parts: ["Deshalb ist die Basisrente nicht für jeden die beste Lösung."] },
+      { type: "standalone", text: "Ihre Stärke liegt insbesondere in der möglichen Kombination aus steuerlicher Förderung während der Erwerbsphase und lebenslangen Rentenzahlungen im Ruhestand." },
+    ],
+  },
+  {
+    id: "entlastungstarif-oder-basisrente",
+    heading: "Beitragsentlastungstarif oder Basisrente: Was ist besser?",
+    blocks: [
+      { type: "p", parts: ["Ich würde diese beiden Lösungen nicht vorschnell gegeneinander ausspielen."] },
+      { type: "p", parts: ["Denn sie erfüllen unterschiedliche Aufgaben."] },
+      { type: "h3", text: "Beitragsentlastungstarif" },
+      { type: "p", parts: ["Das Ziel ist eine vertraglich vorgesehene Reduzierung des späteren PKV-Beitrags."] },
+      { type: "p", parts: ["Besonders attraktiv kann der Arbeitgeberzuschuss für Angestellte sein."] },
+      { type: "p", parts: ["Dafür besteht eine starke Bindung an den Versicherungsvertrag und eingeschränkte Verfügbarkeit."] },
+      { type: "h3", text: "Basisrente" },
+      { type: "p", parts: ["Das Ziel ist der Aufbau zusätzlicher lebenslanger Renteneinkünfte."] },
+      { type: "p", parts: ["Besonders interessant kann die steuerliche Förderung während der Erwerbsphase sein."] },
+      { type: "p", parts: ["Dafür sind Verfügbarkeit und Vererbbarkeit eingeschränkt und die spätere Rente steuerpflichtig."] },
+      { type: "h3", text: "Freies Depot oder andere Kapitalanlage" },
+      { type: "p", parts: ["Das Ziel ist der flexible Aufbau von Vermögen."] },
+      { type: "p", parts: ["Je nach Anlageform können Teile des Vermögens später frei entnommen werden."] },
+      { type: "p", parts: ["Auch Vererbbarkeit und Anpassungsmöglichkeiten sind häufig flexibler."] },
+      { type: "p", parts: ["Dafür besteht beispielsweise bei einem normalen ETF-Depot kein vertraglich garantierter lebenslanger Rentenzahlungsanspruch."] },
+      { type: "p", parts: ["Außerdem gibt es Kapitalmarktrisiken."] },
+    ],
+  },
+  {
+    id: "kombination-sinnvoll",
+    heading: "Kann eine Kombination sinnvoll sein?",
+    blocks: [
+      { type: "p", parts: ["Ja."] },
+      { type: "p", parts: ["Gerade bei einem gutverdienenden Angestellten würde ich eine Kombination verschiedener Funktionen prüfen."] },
+      { type: "p", parts: ["Beispielsweise:"] },
+      { type: "p", parts: [{ b: "1. Beitragsentlastungstarif" }] },
+      { type: "p", parts: ["Wenn noch Arbeitgeberzuschuss verfügbar ist und die Tarifbedingungen wirtschaftlich überzeugen."] },
+      { type: "p", parts: [{ b: "2. Basisrente" }] },
+      { type: "p", parts: ["Wenn die steuerliche Situation passt und zusätzliche lebenslange Renteneinkünfte gewünscht sind."] },
+      { type: "p", parts: [{ b: "3. Frei verfügbares Vermögen" }] },
+      { type: "p", parts: ["Damit genügend Flexibilität für unerwartete Ausgaben bleibt."] },
+      { type: "p", parts: ["Der entscheidende Punkt lautet:"] },
+      { type: "standalone", text: "Nicht möglichst viele Produkte abschließen, sondern die finanzielle Vorsorge sinnvoll aufbauen." },
+      { type: "p", parts: ["Je nach Situation kann auch eine einzige Lösung oder eine Kombination aus zwei Bausteinen völlig ausreichend sein."] },
+    ],
+  },
+  {
+    id: "beispiel-planung-35-jahre",
+    heading: "Beispiel: So könnte eine Planung mit 35 Jahren aussehen",
+    blocks: [
+      { type: "p", parts: ["Nehmen wir einen 35-jährigen Angestellten."] },
+      { type: "p", parts: ["Er ist privat krankenversichert und möchte frühzeitig vorsorgen."] },
+      { type: "p", parts: ["Wir unterstellen rein beispielhaft:"] },
+      {
+        type: "list",
+        items: [
+          "Er möchte später zusätzlich 300 Euro monatliche PKV-Entlastung beziehungsweise entsprechende zusätzliche Einnahmen erreichen.",
+          "Er hat noch Spielraum beim Arbeitgeberzuschuss.",
+          "Er verfügt über ein langfristig stabiles Einkommen.",
+          "Er möchte zusätzlich frei verfügbares Vermögen aufbauen.",
+        ],
+      },
+      { type: "p", parts: ["Dann würde ich drei Fragen stellen."] },
+      { type: "h3", text: "Frage 1: Wie attraktiv ist der Beitragsentlastungstarif?" },
+      { type: "p", parts: ["Wir lassen konkret berechnen:"] },
+      { type: "list", items: ["erforderlicher Zusatzbeitrag", "möglicher Arbeitgeberanteil", "eigener Nettoaufwand", "vertraglich vorgesehene Entlastung", "weiterlaufender Beitrag im Alter"] },
+      { type: "h3", text: "Frage 2: Was kann eine Basisrente leisten?" },
+      { type: "p", parts: ["Wir prüfen:"] },
+      { type: "list", items: ["steuerlich verfügbaren Spielraum", "erforderlichen Beitrag", "Kosten des Vertrags", "garantierte und mögliche Rentenzahlungen", "voraussichtliche spätere Besteuerung"] },
+      { type: "h3", text: "Frage 3: Wie viel Flexibilität brauchen wir?" },
+      { type: "p", parts: ["Wir prüfen, welcher Teil der Vorsorge besser frei verfügbar bleiben sollte."] },
+      { type: "p", parts: ["Beispielsweise für:"] },
+      { type: "list", items: ["unerwartete Gesundheitsausgaben", "Familie", "Immobilien", "frühzeitigen Ruhestand", "größere Anschaffungen", "Veränderungen der Lebensplanung"] },
+      { type: "p", parts: ["Erst danach würde ich entscheiden, wie die Vorsorge aufgeteilt wird."] },
+      { type: "p", parts: ["Die 300 Euro sind in diesem Beispiel lediglich ein Planungsziel."] },
+      { type: "p", parts: ["Es handelt sich ausdrücklich nicht um eine Beitragsprognose und auch nicht um eine zugesagte Rendite."] },
+    ],
+  },
+  {
+    id: "wie-viel-zuruecklegen",
+    heading: "Wie viel Geld sollte ich für meine PKV im Alter zurücklegen?",
+    blocks: [
+      { type: "p", parts: ["Darauf gibt es keine seriöse Pauschalantwort."] },
+      { type: "p", parts: ["Ich würde nicht einfach behaupten:"] },
+      { type: "standalone", text: "„Lege jeden Monat 100 Euro zurück, dann passt das.“" },
+      { type: "p", parts: ["Die benötigte Vorsorge hängt unter anderem davon ab:"] },
+      {
+        type: "list",
+        items: [
+          "wie alt du heute bist",
+          "wann du in Rente gehen möchtest",
+          "wie hoch dein aktueller Beitrag ist",
+          "welchen Versicherungsschutz du gewählt hast",
+          "welche Renteneinkünfte du erwartest",
+          "ob ein Arbeitgeberzuschuss wegfällt",
+          "ob du Anspruch auf einen Rentenversicherungszuschuss hast",
+          "ob ein Beitragsentlastungstarif besteht",
+          "welche Rücklagen bereits vorhanden sind",
+        ],
+      },
+      { type: "p", parts: ["Die Planung sollte deshalb mit mehreren Szenarien arbeiten."] },
+      { type: "p", parts: ["Wichtig ist außerdem, einen Puffer einzuplanen."] },
+      { type: "p", parts: ["Denn niemand kann seriös versprechen, wie hoch eine bestimmte private Krankenversicherung in 30 Jahren sein wird."] },
+    ],
+  },
+  {
+    id: "guenstiger-tarif-besser",
+    heading: "Ist ein günstiger PKV-Tarif besser für das Alter?",
+    blocks: [
+      { type: "p", parts: ["Nicht automatisch."] },
+      { type: "p", parts: ["Ein heute niedriger Monatsbeitrag kann attraktiv aussehen."] },
+      { type: "p", parts: ["Aber bei der Entscheidung solltest du zusätzlich prüfen:"] },
+      {
+        type: "list",
+        items: ["Leistungsumfang", "Selbstbehalt", "Tarifkalkulation", "vorhandene Entlastungsmechanismen", "langfristige Tragfähigkeit", "Beitragsentwicklung", "mögliche spätere Eigenanteile"],
+      },
+      { type: "p", parts: ["Ein schlechterer Versicherungsschutz wird nicht automatisch zur besseren Altersvorsorge, nur weil du heute 100 Euro Beitrag sparst."] },
+      { type: "p", parts: ["Deshalb würde ich einen PKV-Tarif niemals ausschließlich anhand des Einstiegspreises auswählen."] },
+    ],
+  },
+  {
+    id: "pkv-bereits-zu-teuer",
+    heading: "Was kann ich tun, wenn meine PKV im Alter bereits zu teuer geworden ist?",
+    blocks: [
+      { type: "p", parts: ["Wenn du bereits privat versichert bist und dein Beitrag dich finanziell belastet, muss die Situation individuell betrachtet werden."] },
+      { type: "p", parts: ["Eine wichtige Möglichkeit ist der interne Tarifwechsel nach § 204 VVG."] },
+      { type: "p", parts: ["Dabei kannst du innerhalb deines bestehenden Versicherers andere Tarife mit gleichartigem Versicherungsschutz prüfen."] },
+      { type: "p", parts: ["Deine erworbenen Rechte und Alterungsrückstellungen werden dabei nach den gesetzlichen Regeln angerechnet."] },
+      { type: "p", parts: ["Wichtig ist der Leistungsumfang."] },
+      { type: "p", parts: ["Denn ein günstigerer Tarif kann auch Leistungseinschränkungen enthalten."] },
+      { type: "p", parts: ["Ein späteres Zurückwechseln auf höhere Leistungen kann eine erneute Risikoprüfung für diese Mehrleistungen auslösen."] },
+      { type: "p", parts: ["Deshalb würde ich die Beitragsoptimierung niemals ohne detaillierten Leistungsvergleich durchführen."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr dazu findest du unter ",
+          { a: "PKV Tarifwechsel nach § 204 VVG: So funktioniert er", href: "/wissen/private-krankenversicherung/pkv-tarifwechsel/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "zurueck-in-gkv-im-alter",
+    heading: "Muss ich im Rentenalter in die GKV zurückwechseln?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Nur weil du in Rente gehst, musst du nicht automatisch in die gesetzliche Krankenversicherung zurück."] },
+      { type: "p", parts: ["Außerdem ist eine Rückkehr aus der PKV in die GKV nicht beliebig möglich."] },
+      { type: "p", parts: ["Gerade bei langjährig privat Versicherten über 55 Jahren bestehen häufig erhebliche rechtliche Hürden."] },
+      { type: "p", parts: ["Deshalb wäre es für mich keine seriöse Altersvorsorgestrategie, heute eine PKV abzuschließen und fest damit zu rechnen, später einfach wieder in die GKV wechseln zu können."] },
+      {
+        type: "p",
+        parts: [
+          "Mehr zu den gesetzlichen Möglichkeiten findest du unter ",
+          { a: "Zurück in die GKV: So funktioniert der Wechsel aus der PKV", href: "/wissen/private-krankenversicherung/zurueck-in-die-gkv/" },
+          ".",
+        ],
+      },
+    ],
+  },
+  {
+    id: "zwangslaeufig-unbezahlbar",
+    heading: "Ist die PKV im Alter zwangsläufig unbezahlbar?",
+    blocks: [
+      { type: "p", parts: ["Nein."] },
+      { type: "p", parts: ["Aber das Gegenteil wäre ebenfalls zu pauschal."] },
+      { type: "p", parts: ["Es gibt Menschen, deren PKV-Beiträge im Alter sehr gut in ihre finanzielle Situation passen."] },
+      { type: "p", parts: ["Und es gibt Menschen, für die der Beitrag eine erhebliche Belastung darstellt."] },
+      { type: "p", parts: ["Deshalb sollten wir nicht über allgemeine Schlagzeilen entscheiden."] },
+      { type: "p", parts: ["Sondern über deine persönliche Situation."] },
+      { type: "p", parts: ["Für mich ist entscheidend:"] },
+      { type: "standalone", text: "Wie hoch ist deine langfristige finanzielle Belastbarkeit, und welche Vorsorge triffst du heute für später?" },
+      { type: "p", parts: ["Gerade wenn der Wechsel in die PKV erst bevorsteht, würde ich die Altersvorsorge nicht als späteres Problem behandeln."] },
+      { type: "p", parts: ["Sie gehört direkt zur heutigen Entscheidung."] },
+    ],
+  },
+  {
+    id: "typische-fehler",
+    heading: "Welche Fehler würde ich bei der PKV-Altersvorsorge vermeiden?",
+    blocks: [
+      { type: "h3", text: "Fehler 1: Nur den heutigen PKV-Beitrag betrachten" },
+      { type: "p", parts: ["Eine PKV ist eine langfristige Entscheidung."] },
+      { type: "p", parts: ["Die Ruhestandsphase gehört von Anfang an zur Planung."] },
+      { type: "h3", text: "Fehler 2: Glauben, Alterungsrückstellungen verhindern jede Erhöhung" },
+      { type: "p", parts: ["Sie sollen altersbedingte Mehrkosten abfedern."] },
+      { type: "p", parts: ["Sie garantieren keine dauerhaft gleichbleibenden Beiträge."] },
+      { type: "h3", text: "Fehler 3: Arbeitgeberzuschuss beim Beitragsentlastungstarif nicht prüfen" },
+      { type: "p", parts: ["Gerade für Angestellte kann das eine wichtige wirtschaftliche Chance sein."] },
+      { type: "p", parts: ["Allerdings nur, wenn tatsächlich Zuschussspielraum besteht."] },
+      { type: "h3", text: "Fehler 4: Bei einem Beitragsentlastungstarif nur auf die spätere Entlastung schauen" },
+      { type: "p", parts: ["Der weiterlaufende Beitrag des Entlastungsbausteins gehört ebenfalls in die Rechnung."] },
+      { type: "h3", text: "Fehler 5: Basisrente nur wegen der Steuerersparnis abschließen" },
+      { type: "p", parts: ["Auch Kosten, spätere Besteuerung, Rentenhöhe und eingeschränkte Verfügbarkeit müssen passen."] },
+      { type: "h3", text: "Fehler 6: Das gesamte Vorsorgevermögen langfristig binden" },
+      { type: "p", parts: ["Ein gewisser Anteil frei verfügbaren Vermögens kann für die persönliche Finanzplanung wichtig bleiben."] },
+      { type: "h3", text: "Fehler 7: Mit einer späteren Rückkehr in die GKV fest rechnen" },
+      { type: "p", parts: ["Die Rückkehr ist an gesetzliche Voraussetzungen gebunden."] },
+      { type: "h3", text: "Fehler 8: Im Alter wichtige Leistungen vorschnell streichen" },
+      { type: "p", parts: ["Eine kurzfristige Beitragsersparnis kann langfristig zu unerwünschten Versorgungslücken führen."] },
+    ],
+  },
+  {
+    id: "checkliste",
+    heading: "Meine Checkliste: PKV im Alter richtig planen",
+    blocks: [
+      { type: "p", parts: ["Bevor ich mich für eine langfristige Lösung entscheide, würde ich diese Punkte prüfen:"] },
+      {
+        type: "list",
+        items: [
+          "1. Wie alt bin ich heute?",
+          "2. Wann möchte ich voraussichtlich in Rente gehen?",
+          "3. Wie hoch ist mein aktueller PKV-Beitrag?",
+          "4. Welcher Anteil entfällt auf Krankentagegeld?",
+          "5. Welche gesetzlichen Entlastungsmechanismen bestehen?",
+          "6. Mit welcher gesetzlichen Rente kann ich rechnen?",
+          "7. Besteht voraussichtlich ein Anspruch auf Rentenzuschuss zur PKV?",
+          "8. Wie verändert der Wegfall des Arbeitgeberzuschusses meine Belastung?",
+          "9. Ist mein Arbeitgeberzuschuss heute schon ausgeschöpft?",
+          "10. Könnte ein Beitragsentlastungstarif bezuschusst werden?",
+          "11. Wie viel zusätzliche Entlastung möchte ich im Alter erreichen?",
+          "12. Welche Kosten verursacht der Beitragsentlastungstarif?",
+          "13. Wie hoch ist die tatsächliche Nettoentlastung im Ruhestand?",
+          "14. Wie viel steuerlicher Spielraum besteht für eine Basisrente?",
+          "15. Welche lebenslange Rentenhöhe könnte damit erreicht werden?",
+          "16. Wie hoch wäre die spätere Steuerbelastung?",
+          "17. Wie viel frei verfügbares Vermögen brauche ich?",
+          "18. Welche anderen Einkünfte und Ausgaben habe ich im Ruhestand?",
+          "19. Wie sieht die Planung in einem ungünstigeren Beitragsszenario aus?",
+          "20. Passt die Gesamtlösung langfristig zu meiner Lebensplanung?",
+        ],
+      },
+      { type: "p", parts: ["Erst danach würde ich über konkrete Vorsorgeprodukte entscheiden."] },
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+  <div data-reveal class="space-y-4">
+    {
+      introBlocks.map((block) => {
+        if (block.type === "p") return <RichParagraph parts={block.parts} />;
+        if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+        if (block.type === "list")
+          return (
+            <ul class="space-y-2">
+              {block.items.map((item) => (
+                <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                  <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          );
+        return null;
+      })
+    }
+  </div>
+
+  {
+    sections.map((section) => (
+      <section id={section.id} class="scroll-mt-24">
+        <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
+        <div data-reveal class="mt-6 space-y-4">
+          {section.blocks.map((block) => {
+            if (block.type === "p") return <RichParagraph parts={block.parts} />;
+            if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
+            if (block.type === "quote")
+              return (
+                <blockquote class="border-l-2 border-brand-200 pl-5">
+                  <p class="font-serif text-lg italic leading-relaxed text-ink-950">{block.text}</p>
+                </blockquote>
+              );
+            if (block.type === "list")
+              return (
+                <ul class="space-y-2">
+                  {block.items.map((item) => (
+                    <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+                      <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            if (block.type === "h3") return <h3 class="!mt-10 font-serif text-xl font-semibold text-ink-950">{block.text}</h3>;
+            if (block.type === "table")
+              return (
+                <div class="overflow-x-auto rounded-xl border border-black/5">
+                  <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr class="bg-brand-50/60">
+                        {block.headers.map((h) => (
+                          <th class="px-4 py-3 font-semibold text-ink-950">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/5 bg-white">
+                      {block.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, i) => (
+                            <td class={i === 0 ? "px-4 py-3 font-medium text-ink-950" : "px-4 py-3 text-ink-700/80"}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            return null;
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

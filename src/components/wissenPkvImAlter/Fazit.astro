@@ -1,0 +1,118 @@
+---
+import RichParagraph from "@/components/RichParagraph.astro";
+
+const sources = [
+  { label: "§ 257 SGB V – Arbeitgeberzuschuss zur privaten Krankenversicherung", href: "https://www.gesetze-im-internet.de/sgb_5/__257.html" },
+  { label: "Deutsche Rentenversicherung – Zuschuss zur Krankenversicherung", href: "https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Meldungen/2026/260323-zuschuss-krankenversicherung.html" },
+  { label: "PKV-Verband – Beitragsentlastungstarife", href: "https://www.pkv.de/wissen/beitraege/beitragskalkulation/beitragsentlastungstarife-in-der-pkv/" },
+  { label: "§ 10 Einkommensteuergesetz – Sonderausgaben", href: "https://www.gesetze-im-internet.de/estg/__10.html" },
+  { label: "§ 22 Einkommensteuergesetz – Sonstige Einkünfte", href: "https://www.gesetze-im-internet.de/estg/__22.html" },
+  { label: "§ 204 Versicherungsvertragsgesetz – Tarifwechsel", href: "https://www.gesetze-im-internet.de/vvg_2008/__204.html" },
+  { label: "PKV-Verband – Informationen zur Beitragskalkulation", href: "https://www.pkv.de/wissen/beitraege/" },
+];
+---
+
+<section id="fazit" class="scroll-mt-24 bg-white py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      Fazit: Wie bleibt die PKV im Alter bezahlbar?
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Die private Krankenversicherung wird nicht automatisch unbezahlbar, nur weil du älter wirst."]} />
+      <RichParagraph parts={["Sie ist aber auch kein System, in dem der Beitrag automatisch mit deinem Ruhestandseinkommen sinkt."]} />
+      <RichParagraph parts={["Deshalb gehören Beitragsentwicklung und Altersvorsorge zusammen."]} />
+      <RichParagraph parts={["Alterungsrückstellungen und gesetzliche Entlastungsmechanismen sind bereits Bestandteil des Systems."]} />
+      <RichParagraph parts={["Zusätzlich kann ein Beitragsentlastungstarif sinnvoll sein."]} />
+
+      <div class="rounded-2xl border border-brand-200 bg-brand-50/50 px-6 py-5">
+        <p class="font-serif text-lg font-medium leading-relaxed text-ink-950">
+          Gerade für Angestellte ist die mögliche Beteiligung des Arbeitgebers am Beitragsentlastungstarif ein
+          besonders interessanter Vorteil.
+        </p>
+      </div>
+
+      <RichParagraph
+        parts={["Eine Basisrente kann ergänzend attraktiv sein, weil sie unter den gesetzlichen Voraussetzungen steuerlich geförderte zusätzliche lebenslange Einkünfte ermöglicht."]}
+      />
+      <RichParagraph parts={["Frei verfügbares Vermögen schafft wiederum Flexibilität."]} />
+      <RichParagraph parts={["Für mich lautet die entscheidende Frage deshalb nicht:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">„Wie teuer wird meine PKV mit 70?“</p>
+      <RichParagraph parts={["Denn das kann heute niemand seriös auf den Euro genau vorhersagen."]} />
+      <RichParagraph parts={["Sondern:"]} />
+      <p class="text-base font-medium leading-relaxed text-ink-950">
+        „Wie baue ich meine Finanzen so auf, dass ich meinen gewünschten Versicherungsschutz auch im Ruhestand
+        sicher und langfristig bezahlen kann?“
+      </p>
+      <RichParagraph parts={["Genau darum sollte es bei der Planung gehen."]} />
+    </div>
+  </div>
+</section>
+
+<section id="pkv-altersvorsorge-gemeinsam-planen" class="scroll-mt-24 bg-brand-50/30 py-16">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
+      PKV und Altersvorsorge gemeinsam planen
+    </h2>
+
+    <div data-reveal class="mt-6 space-y-4">
+      <RichParagraph parts={["Wenn du über einen Wechsel in die PKV nachdenkst oder bereits privat versichert bist, würde ich das Thema Ruhestand direkt mit einbeziehen."]} />
+      <RichParagraph parts={["Wir betrachten unter anderem:"]} />
+
+      <ul class="space-y-2">
+        {
+          [
+            "deine aktuelle PKV",
+            "den gewünschten Versicherungsschutz",
+            "bisherige Beitragsentwicklung",
+            "Alterungsrückstellungen",
+            "Arbeitgeberzuschuss",
+            "Rentenversicherungszuschuss",
+            "Beitragsentlastungstarife",
+            "Basisrente",
+            "frei verfügbares Vermögen",
+            "langfristige Gesamtbelastung",
+          ].map((item) => (
+            <li class="flex items-baseline gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <RichParagraph parts={["Dabei geht es nicht darum, möglichst viele Versicherungsverträge abzuschließen."]} />
+      <RichParagraph parts={["Sondern darum, die Finanzierung deiner Krankenversicherung langfristig sinnvoll aufzustellen."]} />
+      <RichParagraph parts={["Mein Standort ist Kassel und mein regionaler Schwerpunkt liegt in Nordhessen."]} />
+      <RichParagraph parts={["Die Beratung ist persönlich vor Ort in Kassel oder digital deutschlandweit möglich."]} />
+      <RichParagraph parts={[{ a: "Mehr zur PKV-Beratung in Kassel", href: "/private-krankenversicherung-kassel/" }]} />
+    </div>
+
+    <div class="mt-14 border-t border-black/5 pt-8">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-ink-700/50">Quellen und weiterführende Informationen</p>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/60">
+        Für diesen Artikel wurden insbesondere folgende Primärquellen und gesetzlichen Grundlagen
+        berücksichtigt:
+      </p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-ink-700/60">
+              <a href={source.href} class="underline decoration-ink-700/30 underline-offset-2 hover:text-ink-950 hover:decoration-ink-700/60" target="_blank" rel="noopener noreferrer">
+                {source.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/50">Stand der gesetzlichen Angaben: Oktober 2026.</p>
+    </div>
+
+    <div class="mt-10 border-t border-black/5 pt-8">
+      <RichParagraph
+        parts={["Zurück zum ", { a: "PKV-Wissen", href: "/wissen/private-krankenversicherung/" }]}
+        class="text-sm font-semibold text-ink-700/85"
+      />
+    </div>
+  </div>
+</section>

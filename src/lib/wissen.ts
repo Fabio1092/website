@@ -102,7 +102,7 @@ export const pkvWissenCategories: WissenTopicCategory[] = [
     topics: [
       { label: "Wechsel in die PKV", href: "/wissen/private-krankenversicherung/wechsel-in-die-pkv/" },
       { label: "Zurück in die GKV", href: "/wissen/private-krankenversicherung/zurueck-in-die-gkv/" },
-      { label: "PKV im Alter" },
+      { label: "PKV im Alter", href: "/wissen/private-krankenversicherung/pkv-im-alter/" },
       { label: "PKV mit Kindern", href: "/wissen/private-krankenversicherung/pkv-familienplanung-kinder/" },
     ],
   },
@@ -133,6 +133,7 @@ export const pkvAvailableLinks: WissenLink[] = [
   { label: "Wechsel in die PKV", href: "/wissen/private-krankenversicherung/wechsel-in-die-pkv/" },
   { label: "Zurück in die GKV", href: "/wissen/private-krankenversicherung/zurueck-in-die-gkv/" },
   { label: "PKV mit Kindern", href: "/wissen/private-krankenversicherung/pkv-familienplanung-kinder/" },
+  { label: "PKV im Alter", href: "/wissen/private-krankenversicherung/pkv-im-alter/" },
   { label: "Gesundheitsfragen bei der PKV", href: "/pkv-gesundheitsfragen/" },
   { label: "Risikovoranfrage zur PKV", href: "/pkv-risikovoranfrage/" },
   { label: "PKV für Angestellte", href: "/pkv-angestellte-kassel/" },
