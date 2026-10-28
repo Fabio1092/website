@@ -1,0 +1,16 @@
+---
+const items = ["Unabhängiger Versicherungsmakler", "Spezialisiert auf BU & PKV", "Persönlich & digital", "Kostenloses Erstgespräch"];
+---
+
+<div class="border-y border-black/5 bg-brand-50/30 py-6">
+  <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-4 sm:px-6 lg:px-8">
+    {
+      items.map((item, index) => (
+        <>
+          <span class="text-center text-sm font-medium text-ink-700/75">{item}</span>
+          {index < items.length - 1 && <span class="hidden h-1 w-1 rounded-full bg-brand-300 sm:block" aria-hidden="true" />}
+        </>
+      ))
+    }
+  </div>
+</div>

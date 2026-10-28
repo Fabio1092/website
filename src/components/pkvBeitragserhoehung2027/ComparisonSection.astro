@@ -1,0 +1,84 @@
+---
+import ComparisonSplit from "@/components/ComparisonSplit.astro";
+
+const columns: [
+  { tone: "danger"; label: string; points: string[] },
+  { tone: "success"; label: string; points: string[] },
+] = [
+  {
+    tone: "danger",
+    label: "Nur auf den Beitrag achten",
+    points: [
+      "möglichst niedriger Monatsbeitrag",
+      "Leistungsunterschiede werden übersehen",
+      "Selbstbehalte werden unterschätzt",
+      "wichtige Leistungen können entfallen",
+      "spätere Nachteile werden nicht bedacht",
+    ],
+  },
+  {
+    tone: "success",
+    label: "Beitrag und Leistungen gemeinsam prüfen",
+    points: [
+      "mögliche Ersparnis realistisch bewerten",
+      "Leistungen systematisch vergleichen",
+      "Selbstbehalt berücksichtigen",
+      "relevante Einschränkungen erkennen",
+      "langfristige Auswirkungen verstehen",
+    ],
+  },
+];
+---
+
+<section id="leistungsvergleich" class="scroll-mt-20 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div data-reveal class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Günstigerer Beitrag – aber zu welchem Preis?</h2>
+    </div>
+
+    <div data-reveal class="mx-auto mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-ink-700/80">
+      <p>
+        Es gibt einen entscheidenden Unterschied zwischen einer echten Beitragsoptimierung und einer bloßen
+        Reduzierung deines Versicherungsschutzes.
+      </p>
+      <p>
+        Wenn du heute beispielsweise sehr gute Leistungen bei Zahnersatz, Hilfsmitteln oder stationären
+        Behandlungen versichert hast, sollten diese nicht unbemerkt verloren gehen.
+      </p>
+      <p>Deshalb schaue ich mir nicht einfach nur den neuen Monatsbeitrag an.</p>
+      <p>Ich vergleiche unter anderem:</p>
+    </div>
+
+    <ul class="mx-auto mt-6 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+      {
+        [
+          "ambulante Leistungen und ärztliche Behandlung",
+          "Krankenhausleistungen",
+          "Zahnbehandlung und Zahnersatz",
+          "Heil- und Hilfsmittel",
+          "Psychotherapie",
+          "Selbstbehalte und Erstattungsgrenzen",
+          "Krankentagegeld, soweit versichert",
+          "langfristige Auswirkungen eines Tarifwechsels",
+        ].map((item) => (
+          <li class="flex items-start gap-2.5 text-base leading-relaxed text-ink-700/85">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true" />
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div data-reveal class="mx-auto mt-8 max-w-2xl space-y-3 text-lg leading-relaxed text-ink-700/80">
+      <p>Mein Ziel ist nicht, dir um jeden Preis den billigsten Tarif zu empfehlen.</p>
+      <p class="text-base font-medium leading-relaxed text-ink-950">
+        Mein Ziel ist, eine wirtschaftlich sinnvolle Lösung zu finden, die auch bei den Leistungen zu deiner
+        Situation passt.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-10 max-w-3xl">
+      <ComparisonSplit columns={columns} />
+    </div>
+  </div>
+</section>

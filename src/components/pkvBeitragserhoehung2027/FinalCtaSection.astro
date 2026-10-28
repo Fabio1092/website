@@ -1,0 +1,90 @@
+---
+import BookingButton from "@/components/pkvBeitragserhoehung2027/BookingButton.astro";
+
+const sources = [
+  {
+    label: "PKV-Verband – Warum 2027 die Beiträge zur privaten Krankenversicherung steigen",
+    href: "https://www.pkv.de/wissen/beitraege/warum-die-beitraege-steigen/",
+  },
+  { label: "§ 204 VVG – Tarifwechsel", href: "https://www.gesetze-im-internet.de/vvg_2008/__204.html" },
+  { label: "§ 205 VVG – Kündigung des Versicherungsnehmers", href: "https://www.gesetze-im-internet.de/vvg_2008/__205.html" },
+];
+---
+
+<section id="kontakt" class="scroll-mt-20 bg-ink-950 py-16 text-white sm:py-24">
+  <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+    <h2 class="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">Lass deine PKV-Beitragserhöhung überprüfen</h2>
+
+    <div data-reveal class="mt-6 space-y-4 text-lg leading-relaxed text-white/80">
+      <p>Du hast eine Beitragserhöhung für Januar 2027 erhalten und möchtest wissen, welche Möglichkeiten du hast?</p>
+      <p>
+        Dann lass uns gemeinsam prüfen, ob dein aktueller Tarif weiterhin zu dir passt oder ob es innerhalb
+        deiner Versicherung eine sinnvolle Alternative gibt.
+      </p>
+      <p>
+        Ich bin Fabio Rumpf, Versicherungsmakler mit Schwerpunkt auf privater Krankenversicherung und
+        Berufsunfähigkeitsversicherung.
+      </p>
+      <p>In meiner Beratung geht es nicht nur um Beiträge.</p>
+      <p>Es geht darum, dass dein Versicherungsschutz langfristig zu deinen Anforderungen und deiner finanziellen Situation passt.</p>
+    </div>
+
+    <div data-reveal class="mx-auto mt-8 max-w-md rounded-2xl border border-white/10 bg-white/5 p-6 text-left">
+      <p class="text-base font-medium text-white">Das prüfen wir gemeinsam:</p>
+      <ul class="mt-4 space-y-2.5">
+        {
+          [
+            "Deine aktuelle Beitragserhöhung",
+            "Mögliche interne Tarifalternativen",
+            "Beitrags- und Leistungsunterschiede",
+            "Auswirkungen auf Selbstbehalt und Versicherungsumfang",
+            "Langfristige Vor- und Nachteile",
+          ].map((item) => (
+            <li class="flex items-start gap-2.5 text-sm leading-relaxed text-white/80">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <p class="mx-auto mt-8 max-w-xl text-base leading-relaxed text-white/80">Die Beratung ist persönlich in Kassel oder digital deutschlandweit möglich.</p>
+
+    <div class="mt-8 flex flex-col items-center gap-3">
+      <BookingButton location="final" label="Jetzt Termin zur PKV-Überprüfung vereinbaren" />
+      <p class="text-sm text-white/60">15 Minuten · kostenloses und unverbindliches Erstgespräch</p>
+    </div>
+
+    <p class="mx-auto mt-10 max-w-xl font-serif text-xl font-medium leading-snug text-white sm:text-2xl">
+      Deine Beitragserhöhung ist ein guter Anlass, deine Versicherung zu überprüfen. Ob ein Tarifwechsel
+      sinnvoll ist, entscheiden wir erst nach einem sorgfältigen Vergleich.
+    </p>
+
+    <p class="mx-auto mt-8 max-w-xl text-sm text-white/60">
+      <a href="/private-krankenversicherung-kassel/" class="font-medium text-brand-300 underline underline-offset-2 hover:text-brand-200">
+        Mehr zur PKV-Beratung in Kassel
+      </a>
+    </p>
+
+    <div class="mx-auto mt-16 max-w-xl border-t border-white/10 pt-8 text-left">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-white/40">Quellen und fachliche Grundlagen</p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-white/60">
+              <a href={source.href} class="underline decoration-white/30 underline-offset-2 hover:text-white hover:decoration-white/60" target="_blank" rel="noopener noreferrer">
+                {source.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-4 text-xs leading-relaxed text-white/40">Stand der Angaben: Oktober 2026.</p>
+      <p class="mt-2 text-xs leading-relaxed text-white/40">
+        Die genannten Durchschnittswerte sind Prognosen des PKV-Verbands und keine Aussage über die
+        Beitragserhöhung eines konkreten Vertrags.
+      </p>
+    </div>
+  </div>
+</section>

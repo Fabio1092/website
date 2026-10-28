@@ -1,0 +1,75 @@
+---
+import { ChevronDown } from "lucide-react";
+
+const faqs = [
+  {
+    question: "Kann ich meine PKV-Beitragserhöhung zum 1. Januar 2027 verhindern?",
+    answer: [
+      "Eine wirksame Beitragsanpassung kannst du nicht allein deshalb verhindern, weil du sie für zu hoch hältst.",
+      "Du kannst aber prüfen lassen, ob innerhalb deiner bestehenden Versicherung ein anderer geeigneter Tarif verfügbar ist.",
+    ],
+  },
+  {
+    question: "Kann ich meinen PKV-Beitrag senken, ohne die Versicherung zu wechseln?",
+    answer: [
+      "Ja, grundsätzlich kann ein interner Tarifwechsel nach § 204 VVG möglich sein.",
+      "Ob dadurch tatsächlich eine Beitragsersparnis entsteht und wie sich die Leistungen unterscheiden, hängt von deinen individuellen Tarifmöglichkeiten ab.",
+    ],
+  },
+  {
+    question: "Verliere ich bei einem internen Tarifwechsel meine Alterungsrückstellungen?",
+    answer: [
+      "Bei einem Tarifwechsel innerhalb deiner Gesellschaft mit gleichartigem Versicherungsschutz werden deine erworbenen Rechte und Alterungsrückstellungen nach § 204 VVG angerechnet.",
+      "Das ist ein wesentlicher Unterschied zu einem vollständigen Versichererwechsel.",
+    ],
+  },
+  {
+    question: "Muss ich bei einem internen Tarifwechsel erneut Gesundheitsfragen beantworten?",
+    answer: [
+      "Für den bereits versicherten Leistungsumfang grundsätzlich nicht.",
+      "Wenn du zusätzliche oder höhere Leistungen möchtest, kann der Versicherer für diese Mehrleistungen unter den gesetzlichen Voraussetzungen eine Risikoprüfung vornehmen.",
+    ],
+  },
+  {
+    question: "Gibt es wegen der Beitragserhöhung ein Sonderkündigungsrecht?",
+    answer: [
+      "Bei einer entsprechenden Beitragsanpassung besteht grundsätzlich ein Sonderkündigungsrecht nach § 205 Abs. 4 VVG. Die Kündigung muss innerhalb von zwei Monaten nach Zugang der Änderungsmitteilung erklärt werden.",
+      "Bei einer privaten Krankenvollversicherung muss zudem ein nahtloser anderweitiger Versicherungsschutz nachgewiesen werden.",
+      "Ein vorschneller Wechsel kann Nachteile haben. Deshalb würde ich die Alternativen vor einer Kündigung sorgfältig prüfen.",
+    ],
+  },
+  {
+    question: "Kann ich auch später noch intern den Tarif wechseln?",
+    answer: [
+      "Ja. Das gesetzliche Tarifwechselrecht nach § 204 VVG ist nicht auf die Zeit unmittelbar nach einer Beitragserhöhung begrenzt.",
+      "Du kannst also grundsätzlich auch unabhängig von der Anpassung zum Januar 2027 geeignete Tarifalternativen prüfen lassen.",
+    ],
+  },
+];
+---
+
+<section id="faq" class="scroll-mt-20 bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Häufige Fragen zur PKV-Beitragserhöhung 2027</h2>
+    </div>
+
+    <div data-reveal class="mx-auto mt-10 max-w-2xl divide-y divide-black/5 overflow-hidden rounded-2xl border border-black/5 bg-white shadow-soft">
+      {
+        faqs.map((faq) => (
+          <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 marker:content-none [&::-webkit-details-marker]:hidden">
+              <h3 class="font-serif text-base font-semibold text-ink-950 sm:text-lg">{faq.question}</h3>
+              <ChevronDown className="h-5 w-5 shrink-0 text-ink-700/50 transition-transform duration-200 group-open:rotate-180" aria-hidden={true} />
+            </summary>
+            <div class="space-y-3 px-6 pb-6 text-sm leading-relaxed text-ink-700/80 sm:text-base">
+              {faq.answer.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
