@@ -23,5 +23,5 @@ export const siteConfig = {
   // Zentrale Pflege der Bewertungszahlen (Hero-Badge + Testimonials-Sektion
   // lesen beide von hier) — rein statisch, keine automatische Trustindex-Abfrage.
   reviewRating: 5.0,
-  reviewCount: 41,
+  reviewCount: 43,
 };
