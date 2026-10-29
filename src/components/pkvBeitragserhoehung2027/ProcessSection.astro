@@ -4,13 +4,45 @@ import BookingButton from "@/components/pkvBeitragserhoehung2027/BookingButton.a
 const steps = [
   {
     number: "1",
-    title: "Wir schauen uns deine Beitragserhöhung an",
-    text: "Zunächst prüfen wir deine aktuelle Versicherung, deinen Tarif, die bisherigen Beiträge und die angekündigte Anpassung zum 1. Januar 2027. Dabei ist auch wichtig, welche Leistungen dir heute besonders wichtig sind.",
+    title: "Wir besprechen deine Ausgangssituation",
+    intro: "Im ersten Gespräch schauen wir uns an:",
+    items: [
+      "bei welcher Gesellschaft du versichert bist",
+      "seit wann dein Vertrag besteht",
+      "wie hoch dein bisheriger und neuer Beitrag ist",
+      "welche Leistungen du aktuell versichert hast",
+      "was du dir von einem Wechsel erhoffst",
+    ],
+    outro: "So können wir zunächst einschätzen, ob eine weitere Prüfung sinnvoll sein könnte.",
   },
   {
     number: "2",
-    title: "Wir prüfen mögliche Tarifalternativen",
-    text: "Anschließend schauen wir, welche Wechselmöglichkeiten innerhalb deiner bestehenden Versicherung infrage kommen. Wenn es sinnvolle Alternativen gibt, werden Beitrag, Selbstbehalt und Versicherungsleistungen gegenübergestellt.",
+    title: "Wir klären Gesundheit und Übertragungswert",
+    intro: "Falls ein Gesellschaftswechsel grundsätzlich infrage kommt, prüfen wir im weiteren Beratungsprozess die entscheidenden Voraussetzungen. Dazu gehören insbesondere:",
+    items: [
+      "deine Gesundheitshistorie",
+      "mögliche Annahmebedingungen neuer Versicherer",
+      "eine gegebenenfalls sinnvolle Risikovoranfrage",
+      "der Übertragungswert deiner Alterungsrückstellungen",
+      "besondere vertragliche oder wirtschaftliche Nachteile",
+    ],
+    outro: "Erst wenn diese Punkte geklärt sind, lohnt sich ein belastbarer Vergleich.",
+  },
+  {
+    number: "3",
+    title: "Wir vergleichen geeignete Alternativen",
+    intro:
+      "Wenn ein Wechsel gesundheitlich und wirtschaftlich realistisch ist, betrachten wir geeignete Tarife anderer Gesellschaften. Dabei vergleichen wir nicht nur den Beitrag, sondern auch Versicherungsleistungen, Selbstbehalt, Vertragsbedingungen und langfristige Aspekte.",
+    items: [],
+    outro: "Du erhältst eine nachvollziehbare Einschätzung der Vor- und Nachteile.",
+  },
+  {
+    number: "4",
+    title: "Du entscheidest, ob du wechseln möchtest",
+    intro: "Es kann sein, dass sich ein geeigneter neuer Versicherer findet.",
+    items: [],
+    outro:
+      "Es kann aber auch sein, dass dein bisheriger Vertrag die bessere Lösung bleibt. Wenn ein Wechsel sinnvoll erscheint, wird dieser erst nach verbindlicher Klärung des neuen Versicherungsschutzes vorbereitet.",
   },
 ];
 ---
@@ -18,7 +50,7 @@ const steps = [
 <section id="beratungsprozess" class="scroll-mt-20 bg-brand-50/30 py-16 sm:py-24">
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
-      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">So läuft die Überprüfung deiner PKV ab</h2>
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">So läuft die Prüfung eines PKV-Versichererwechsels ab</h2>
     </div>
 
     <ol class="mt-14 space-y-10">
@@ -29,45 +61,33 @@ const steps = [
               <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-base font-semibold text-white">
                 {step.number}
               </span>
-              <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />
+              {index < steps.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
             </div>
             <div class="min-w-0 pb-2">
               <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">{step.title}</h3>
-              <p class="mt-3 text-sm leading-relaxed text-ink-700/80 sm:text-base">{step.text}</p>
+              <p class="mt-3 text-sm leading-relaxed text-ink-700/80 sm:text-base">{step.intro}</p>
+              {step.items.length > 0 && (
+                <ul class="mt-4 space-y-2">
+                  {step.items.map((item) => (
+                    <li class="flex items-start gap-2.5 text-sm leading-relaxed text-ink-700/85 sm:text-base">
+                      <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <p class="mt-4 text-sm leading-relaxed text-ink-700/80 sm:text-base">{step.outro}</p>
             </div>
           </li>
         ))
       }
-
-      <li data-reveal style="transition-delay: 160ms" class="relative flex gap-6 sm:gap-8">
-        <div class="flex flex-col items-center">
-          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-base font-semibold text-white">3</span>
-        </div>
-        <div class="min-w-0 pb-2">
-          <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">Du bekommst eine verständliche Einschätzung</h3>
-          <p class="mt-3 text-sm leading-relaxed text-ink-700/80 sm:text-base">Am Ende sollst du wissen:</p>
-          <ul class="mt-4 space-y-2">
-            {
-              [
-                "Welche Möglichkeiten hast du tatsächlich?",
-                "Wie unterscheiden sich die Beiträge?",
-                "Welche Leistungen bleiben bestehen?",
-                "Wo gibt es möglicherweise Nachteile?",
-                "Ist ein Wechsel sinnvoll oder solltest du lieber im bisherigen Tarif bleiben?",
-              ].map((item) => (
-                <li class="flex items-start gap-2.5 text-sm leading-relaxed text-ink-700/85 sm:text-base">
-                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true" />
-                  {item}
-                </li>
-              ))
-            }
-          </ul>
-          <p class="mt-4 text-base font-medium leading-relaxed text-ink-950">Die Entscheidung triffst du erst, wenn die Unterschiede nachvollziehbar sind.</p>
-        </div>
-      </li>
     </ol>
 
-    <div class="mx-auto mt-14 max-w-lg text-center">
+    <p class="mx-auto mt-14 max-w-xl text-center text-base font-medium leading-relaxed text-ink-950">
+      Du sollst wissen, worauf du dich einlässt, bevor du eine langfristige Entscheidung triffst.
+    </p>
+
+    <div class="mx-auto mt-8 max-w-lg text-center">
       <BookingButton location="process" variant="compact" />
     </div>
   </div>

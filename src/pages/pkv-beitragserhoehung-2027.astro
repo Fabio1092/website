@@ -4,24 +4,30 @@ import Hero from "@/components/pkvBeitragserhoehung2027/Hero.astro";
 import IntroSection from "@/components/pkvBeitragserhoehung2027/IntroSection.astro";
 import TrustBar from "@/components/pkvBeitragserhoehung2027/TrustBar.astro";
 import StatsSection from "@/components/pkvBeitragserhoehung2027/StatsSection.astro";
+import InsurerRatesSection from "@/components/pkvBeitragserhoehung2027/InsurerRatesSection.astro";
 import CalculationSection from "@/components/pkvBeitragserhoehung2027/CalculationSection.astro";
-import TarifwechselSection from "@/components/pkvBeitragserhoehung2027/TarifwechselSection.astro";
+import GesellschaftswechselSection from "@/components/pkvBeitragserhoehung2027/GesellschaftswechselSection.astro";
+import BenefitsSection from "@/components/pkvBeitragserhoehung2027/BenefitsSection.astro";
+import RiskFactorsSection from "@/components/pkvBeitragserhoehung2027/RiskFactorsSection.astro";
 import ComparisonSection from "@/components/pkvBeitragserhoehung2027/ComparisonSection.astro";
+import AudienceSection from "@/components/pkvBeitragserhoehung2027/AudienceSection.astro";
 import ProcessSection from "@/components/pkvBeitragserhoehung2027/ProcessSection.astro";
-import ObjectionsSection from "@/components/pkvBeitragserhoehung2027/ObjectionsSection.astro";
+import VorerkrankungenSection from "@/components/pkvBeitragserhoehung2027/VorerkrankungenSection.astro";
+import LongTermSection from "@/components/pkvBeitragserhoehung2027/LongTermSection.astro";
+import NoSwitchSection from "@/components/pkvBeitragserhoehung2027/NoSwitchSection.astro";
 import AdvisorSection from "@/components/pkvBeitragserhoehung2027/AdvisorSection.astro";
 import FaqSection from "@/components/pkvBeitragserhoehung2027/FaqSection.astro";
 import FinalCtaSection from "@/components/pkvBeitragserhoehung2027/FinalCtaSection.astro";
 
-const pageTitle = "PKV Beitragserhöhung 2027: Jetzt Möglichkeiten prüfen";
+const pageTitle = "PKV Beitragserhöhung 2027: Versichererwechsel prüfen";
 const pageDescription =
-  "Deine PKV wird zum 1. Januar 2027 teurer? Erfahre, welche Möglichkeiten du hast, deinen Beitrag zu optimieren – ohne vorschnell den Versicherer zu wechseln.";
+  "Deine PKV wird 2027 teurer? Prüfe, ob ein Wechsel zu einer anderen privaten Krankenversicherung sinnvoll ist – mit Blick auf Leistungen, Gesundheit und Kosten.";
 const canonicalUrl = new URL("/pkv-beitragserhoehung-2027/", Astro.site).toString();
 
 const webPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "PKV Beitragserhöhung 2027: Musst du wirklich so viel mehr zahlen?",
+  name: "PKV Beitragserhöhung 2027: Lohnt sich ein Wechsel zu einer anderen Versicherung?",
   description: pageDescription,
   inLanguage: "de-DE",
   url: canonicalUrl,
@@ -43,11 +49,17 @@ const breadcrumbSchema = {
   <IntroSection />
   <TrustBar />
   <StatsSection />
+  <InsurerRatesSection />
   <CalculationSection />
-  <TarifwechselSection />
+  <GesellschaftswechselSection />
+  <BenefitsSection />
+  <RiskFactorsSection />
   <ComparisonSection />
+  <AudienceSection />
   <ProcessSection />
-  <ObjectionsSection />
+  <VorerkrankungenSection />
+  <LongTermSection />
+  <NoSwitchSection />
   <AdvisorSection />
   <FaqSection />
   <FinalCtaSection />
