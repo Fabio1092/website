@@ -1,0 +1,61 @@
+---
+const factors = [
+  {
+    number: "01",
+    eyebrow: "Gesundheit",
+    title: "Erneute Gesundheitsprüfung",
+    text: "Ein neuer Versicherer prüft bei einem regulären PKV-Neuabschluss grundsätzlich deine Gesundheit. Vorerkrankungen können die Annahmebedingungen beeinflussen.",
+    details: "Deshalb kann es sinnvoll sein, zunächst die Gesundheitshistorie aufzuarbeiten und gegebenenfalls eine Risikovoranfrage durchzuführen.",
+  },
+  {
+    number: "02",
+    eyebrow: "Alterungs&shy;rückstellungen",
+    title: "Übertragungswert begrenzt",
+    text: "Beim Gesellschaftswechsel werden vorhandene Alterungsrückstellungen nicht automatisch vollständig übertragen. Der Übertragungswert hängt unter anderem vom Vertragsbeginn ab.",
+    details: "Bei ab 2009 abgeschlossenen Verträgen kann ein gesetzlicher Übertragungswert bestehen. Bei gewöhnlichen Wechseln aus älteren Verträgen ist eine Übertragung grundsätzlich nicht vorgesehen.",
+  },
+  {
+    number: "03",
+    eyebrow: "Wirtschaftlichkeit",
+    title: "Langfristig statt nur heute",
+    text: "Ein niedrigerer Beitrag heute bedeutet nicht automatisch einen langfristigen Vorteil. Auch Leistungen, Selbstbehalt und Vertragsbedingungen müssen berücksichtigt werden.",
+    details: "Eine seriöse Gegenüberstellung berücksichtigt die tatsächlichen Leistungen und die individuellen wirtschaftlichen Folgen eines Wechsels.",
+  },
+];
+---
+
+<section id="drei-faktoren" class="scroll-mt-20 bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div data-reveal class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Drei Faktoren, die bei einem Versichererwechsel zählen</h2>
+    </div>
+
+    <div class="mx-auto mt-10 grid gap-5 sm:grid-cols-3">
+      {
+        factors.map((f, i) => (
+          <div data-reveal style={`transition-delay: ${i * 80}ms`} class="rounded-3xl border border-black/5 bg-white p-6 shadow-soft">
+            <div class="flex items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-sm font-semibold text-white">{f.number}</span>
+              <p class="min-w-0 text-xs font-semibold uppercase tracking-wide text-brand-600" set:html={f.eyebrow} />
+            </div>
+            <h3 class="mt-4 font-serif text-lg font-semibold text-ink-950">{f.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-700/80">{f.text}</p>
+            <details class="group mt-3">
+              <summary class="flex cursor-pointer list-none items-center gap-1 text-xs font-medium text-brand-700 marker:content-none [&::-webkit-details-marker]:hidden">
+                Details
+                <svg class="h-3.5 w-3.5 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </summary>
+              <p class="mt-2 text-xs leading-relaxed text-ink-700/70">{f.details}</p>
+            </details>
+          </div>
+        ))
+      }
+    </div>
+
+    <p data-reveal class="mx-auto mt-8 max-w-xl text-center text-sm font-medium leading-relaxed text-ink-950">
+      Kündige deinen bestehenden PKV-Vertrag niemals, bevor der neue Versicherungsschutz verbindlich geklärt ist.
+    </p>
+  </div>
+</section>

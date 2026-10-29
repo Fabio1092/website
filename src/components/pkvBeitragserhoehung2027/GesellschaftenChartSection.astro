@@ -1,0 +1,102 @@
+---
+const rates = [
+  { name: "AXA", value: 11.72 },
+  { name: "Gothaer", value: 9.02 },
+  { name: "HanseMerkur", value: 7.81 },
+  { name: "uniVersa", value: 6.58 },
+  { name: "INTER", value: 6.24 },
+  { name: "LKH", value: 5.11 },
+  { name: "Allianz", value: 4.92 },
+  { name: "Barmenia", value: 4.12 },
+];
+const maxValue = Math.max(...rates.map((r) => r.value));
+
+function fmtPct(n: number) {
+  return "+" + n.toFixed(2).replace(".", ",") + " %";
+}
+---
+
+<section id="gesellschaften" class="scroll-mt-20 bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div data-reveal class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Welche PKV-Gesellschaften erhöhen 2027?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-ink-700/80">Tippe auf eine Gesellschaft für Details zur ausgewerteten Anpassung.</p>
+    </div>
+
+    <div data-reveal id="gesellschaften-chart" class="mx-auto mt-10 max-w-2xl rounded-3xl border border-black/5 bg-white p-6 shadow-soft sm:p-8">
+      <ul class="space-y-3">
+        {
+          rates.map((r) => (
+            <li>
+              <button
+                type="button"
+                data-insurer={r.name}
+                data-value={fmtPct(r.value)}
+                class="chart-bar-btn group flex w-full items-center gap-4 rounded-xl border border-transparent px-2 py-2 text-left transition-colors hover:bg-brand-50/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 aria-pressed:border-brand-300 aria-pressed:bg-brand-50"
+                aria-pressed="false"
+              >
+                <span class="w-28 shrink-0 text-sm font-medium text-ink-950 sm:w-32">{r.name}</span>
+                <span class="h-5 min-w-0 flex-1 overflow-hidden rounded-full bg-black/5">
+                  <span
+                    class="chart-bar block h-full rounded-full bg-brand-400 transition-all duration-300 ease-out group-aria-pressed:bg-brand-600 motion-reduce:transition-none"
+                    style={`width: ${(r.value / maxValue) * 100}%`}
+                  />
+                </span>
+                <span class="w-20 shrink-0 text-right font-serif text-sm font-semibold text-ink-950 sm:w-24 sm:text-base">{fmtPct(r.value)}</span>
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div id="gesellschaften-info" class="mt-6 min-h-[88px] rounded-2xl border border-black/5 bg-brand-50/30 p-5" aria-live="polite">
+        <p class="text-sm text-ink-700/70">Tippe auf eine Gesellschaft, um die ausgewertete Tarifanpassung zu sehen.</p>
+      </div>
+
+      <div class="mt-6 space-y-2 border-t border-black/5 pt-5 text-xs leading-relaxed text-ink-700/60">
+        <p>
+          Quelle:
+          <a href="https://www.hcconsultingag.de/beitragserhoehungen-pkv/" class="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800" target="_blank" rel="noopener noreferrer">
+            hc consulting AG
+          </a>
+          , veröffentlichte Tarifdatenauswertungen zur PKV-Beitragsanpassung 2027, Stand 29. Oktober 2026.
+        </p>
+        <p>
+          Diese Werte sind keine offiziellen Bestandskunden-Durchschnitte der jeweiligen Gesellschaft und eignen sich nicht zur Bewertung
+          von Qualität oder Beitragsstabilität. Verbindlich für deine Situation ist das Beitragsanpassungsschreiben deiner eigenen PKV.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var root = document.getElementById("gesellschaften-chart");
+    if (!root) return;
+    var buttons = root.querySelectorAll(".chart-bar-btn");
+    var info = root.querySelector("#gesellschaften-info");
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var alreadyActive = btn.getAttribute("aria-pressed") === "true";
+        buttons.forEach(function (b) {
+          b.setAttribute("aria-pressed", "false");
+        });
+        if (alreadyActive) {
+          info.innerHTML = "<p class='text-sm text-ink-700/70'>Tippe auf eine Gesellschaft, um die ausgewertete Tarifanpassung zu sehen.</p>";
+          return;
+        }
+        btn.setAttribute("aria-pressed", "true");
+        var name = btn.getAttribute("data-insurer");
+        var value = btn.getAttribute("data-value");
+        info.innerHTML =
+          "<p class='font-serif text-lg font-semibold text-ink-950'>" +
+          name +
+          "</p><p class='mt-1 text-sm text-ink-700/80'>Ausgewertete Tarifanpassung: <strong class='text-ink-950'>" +
+          value +
+          "</strong></p><p class='mt-2 text-xs leading-relaxed text-ink-700/60'>Deine tatsächliche Beitragsanpassung hängt von deinem konkreten Tarif und Vertrag ab.</p>";
+      });
+    });
+  })();
+</script>

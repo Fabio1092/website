@@ -1,20 +1,12 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/pkvBeitragserhoehung2027/Hero.astro";
-import IntroSection from "@/components/pkvBeitragserhoehung2027/IntroSection.astro";
 import TrustBar from "@/components/pkvBeitragserhoehung2027/TrustBar.astro";
-import StatsSection from "@/components/pkvBeitragserhoehung2027/StatsSection.astro";
-import InsurerRatesSection from "@/components/pkvBeitragserhoehung2027/InsurerRatesSection.astro";
-import CalculationSection from "@/components/pkvBeitragserhoehung2027/CalculationSection.astro";
-import GesellschaftswechselSection from "@/components/pkvBeitragserhoehung2027/GesellschaftswechselSection.astro";
-import BenefitsSection from "@/components/pkvBeitragserhoehung2027/BenefitsSection.astro";
-import RiskFactorsSection from "@/components/pkvBeitragserhoehung2027/RiskFactorsSection.astro";
-import ComparisonSection from "@/components/pkvBeitragserhoehung2027/ComparisonSection.astro";
-import AudienceSection from "@/components/pkvBeitragserhoehung2027/AudienceSection.astro";
+import BeitragsrechnerSection from "@/components/pkvBeitragserhoehung2027/BeitragsrechnerSection.astro";
+import GesellschaftenChartSection from "@/components/pkvBeitragserhoehung2027/GesellschaftenChartSection.astro";
+import WechselCheckSection from "@/components/pkvBeitragserhoehung2027/WechselCheckSection.astro";
+import ThreeFactorsSection from "@/components/pkvBeitragserhoehung2027/ThreeFactorsSection.astro";
 import ProcessSection from "@/components/pkvBeitragserhoehung2027/ProcessSection.astro";
-import VorerkrankungenSection from "@/components/pkvBeitragserhoehung2027/VorerkrankungenSection.astro";
-import LongTermSection from "@/components/pkvBeitragserhoehung2027/LongTermSection.astro";
-import NoSwitchSection from "@/components/pkvBeitragserhoehung2027/NoSwitchSection.astro";
 import AdvisorSection from "@/components/pkvBeitragserhoehung2027/AdvisorSection.astro";
 import FaqSection from "@/components/pkvBeitragserhoehung2027/FaqSection.astro";
 import FinalCtaSection from "@/components/pkvBeitragserhoehung2027/FinalCtaSection.astro";
@@ -27,7 +19,7 @@ const canonicalUrl = new URL("/pkv-beitragserhoehung-2027/", Astro.site).toStrin
 const webPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "PKV Beitragserhöhung 2027: Lohnt sich ein Wechsel zu einer anderen Versicherung?",
+  name: "Deine PKV wird teurer. Lohnt sich ein anderer Versicherer?",
   description: pageDescription,
   inLanguage: "de-DE",
   url: canonicalUrl,
@@ -46,20 +38,12 @@ const breadcrumbSchema = {
 
 <Layout title={pageTitle} description={pageDescription} fullTitle>
   <Hero />
-  <IntroSection />
   <TrustBar />
-  <StatsSection />
-  <InsurerRatesSection />
-  <CalculationSection />
-  <GesellschaftswechselSection />
-  <BenefitsSection />
-  <RiskFactorsSection />
-  <ComparisonSection />
-  <AudienceSection />
+  <BeitragsrechnerSection />
+  <GesellschaftenChartSection />
+  <WechselCheckSection />
+  <ThreeFactorsSection />
   <ProcessSection />
-  <VorerkrankungenSection />
-  <LongTermSection />
-  <NoSwitchSection />
   <AdvisorSection />
   <FaqSection />
   <FinalCtaSection />

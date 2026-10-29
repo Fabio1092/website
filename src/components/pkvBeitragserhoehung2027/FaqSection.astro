@@ -1,64 +1,55 @@
 ---
 import { ChevronDown } from "lucide-react";
 
-const faqs = [
+const primaryFaqs = [
   {
-    question: "Kann ich einfach zu einer anderen privaten Krankenversicherung wechseln?",
+    question: "Kann ich wegen der Beitragserhöhung zu einer anderen Gesellschaft wechseln?",
+    answer: ["Grundsätzlich ja. Die neue Gesellschaft entscheidet dabei eigenständig über die Annahme – ein Wechsel ist keine Formalität."],
+  },
+  {
+    question: "Muss ich erneut Gesundheitsfragen beantworten?",
     answer: [
-      "Grundsätzlich ja, allerdings ist ein Wechsel zu einer anderen Gesellschaft keine Formalität.",
-      "Die neue Gesellschaft führt in der Regel eine eigene Gesundheitsprüfung durch und entscheidet eigenständig über die Annahme.",
+      "Ja. Anders als beim internen Tarifwechsel prüft eine andere Gesellschaft deinen Gesundheitszustand bei Antragstellung grundsätzlich erneut – mit möglicher Annahme, Zuschlag, Ausschluss, Zurückstellung oder Ablehnung.",
     ],
   },
   {
-    question: "Muss ich bei einem Wechsel zu einer anderen Gesellschaft erneut Gesundheitsfragen beantworten?",
+    question: "Was passiert mit meinen Alterungsrückstellungen?",
     answer: [
-      "Ja. Anders als beim internen Tarifwechsel nach § 204 VVG prüft eine andere Gesellschaft deinen Gesundheitszustand bei Antragstellung grundsätzlich erneut.",
-      "Das Ergebnis kann eine normale Annahme, ein Risikozuschlag, ein Leistungsausschluss, eine Zurückstellung oder eine Ablehnung sein.",
+      "Für ab 2009 abgeschlossene Verträge besteht ein gesetzlich geregelter Übertragungswert. Bei älteren Verträgen ist eine Übertragung bei einem gewöhnlichen Gesellschaftswechsel grundsätzlich nicht möglich.",
     ],
   },
   {
-    question: "Was passiert mit meinen Alterungsrückstellungen bei einem Versichererwechsel?",
+    question: "Spare ich durch einen Wechsel automatisch Geld?",
     answer: [
-      "Für ab 2009 abgeschlossene Krankheitskostenvollversicherungen besteht ein gesetzlich geregelter Übertragungswert, der sich unter anderem am Basistarif orientiert.",
-      "Nicht übertragbar ist in der Regel der darüberhinausgehende Teil deiner bisherigen Alterungsrückstellungen.",
-      "Bei vor 2009 abgeschlossenen Verträgen ist eine Übertragung bei einem gewöhnlichen Gesellschaftswechsel grundsätzlich nicht möglich.",
+      "Nein. Es gibt keine garantierte Ersparnis und keinen garantierten neuen Vertrag. Ob sich ein Wechsel lohnt, hängt von Gesundheit, Übertragungswert, Leistungen und langfristiger Wirtschaftlichkeit ab.",
     ],
   },
+  {
+    question: "Wann darf ich meine bisherige PKV kündigen?",
+    answer: [
+      "Bei einer Beitragsanpassung besteht grundsätzlich ein Sonderkündigungsrecht nach § 205 Abs. 4 VVG, innerhalb von zwei Monaten nach Zugang der Mitteilung. Kündige aber erst, wenn der neue Versicherungsschutz verbindlich geklärt ist.",
+    ],
+  },
+];
+
+const moreFaqs = [
   {
     question: "Was ist eine Risikovoranfrage und wofür brauche ich sie?",
     answer: [
-      "Eine Risikovoranfrage ist eine anonymisierte oder pseudonymisierte Anfrage bei einer oder mehreren Gesellschaften, mit der mögliche Annahmebedingungen vorab eingeschätzt werden können.",
-      "Sie ersetzt keine verbindliche Zusage, kann aber helfen, Überraschungen bei einem späteren Antrag zu vermeiden.",
+      "Eine anonymisierte oder pseudonymisierte Anfrage, mit der mögliche Annahmebedingungen vorab eingeschätzt werden können. Sie ersetzt keine verbindliche Zusage.",
     ],
   },
   {
     question: "Kann ein Wechsel auch bei Vorerkrankungen funktionieren?",
-    answer: [
-      "Das hängt von der Art und Schwere der Vorerkrankung sowie von der Annahmepolitik der jeweiligen Gesellschaft ab.",
-      "Eine Vorerkrankung schließt einen Wechsel nicht automatisch aus, kann aber zu Zuschlägen, Ausschlüssen oder einer Ablehnung führen.",
-    ],
-  },
-  {
-    question: "Gibt es wegen der Beitragserhöhung ein Sonderkündigungsrecht?",
-    answer: [
-      "Bei einer entsprechenden Beitragsanpassung besteht grundsätzlich ein Sonderkündigungsrecht nach § 205 Abs. 4 VVG. Die Kündigung muss innerhalb von zwei Monaten nach Zugang der Änderungsmitteilung erklärt werden.",
-      "Bei einer privaten Krankenvollversicherung muss zudem ein nahtloser anderweitiger Versicherungsschutz nachgewiesen werden.",
-      "Ein vorschneller Wechsel kann Nachteile haben. Deshalb würde ich die Alternativen vor einer Kündigung sorgfältig prüfen.",
-    ],
+    answer: ["Das hängt von Art und Schwere der Vorerkrankung sowie der Annahmepolitik der Gesellschaft ab. Zuschläge, Ausschlüsse oder eine Ablehnung sind möglich."],
   },
   {
     question: "Was passiert, wenn ich bei der neuen Gesellschaft abgelehnt werde?",
-    answer: [
-      "Dann bleibt dein bisheriger Vertrag unverändert bestehen, solange du ihn nicht gekündigt hast.",
-      "Deshalb solltest du deinen bestehenden PKV-Vertrag niemals kündigen, bevor der neue Versicherungsschutz verbindlich geklärt ist.",
-    ],
+    answer: ["Dein bisheriger Vertrag bleibt unverändert bestehen, solange du ihn nicht gekündigt hast."],
   },
   {
     question: "Lohnt sich ein Wechsel auch für langjährig Privatversicherte?",
-    answer: [
-      "Das lässt sich nicht pauschal beantworten.",
-      "Je länger du privat versichert bist, desto höher sind in der Regel die nicht übertragbaren Alterungsrückstellungen – und desto genauer sollte die Wirtschaftlichkeit geprüft werden.",
-    ],
+    answer: ["Das lässt sich nicht pauschal beantworten. Je länger du versichert bist, desto höher sind meist die nicht übertragbaren Alterungsrückstellungen."],
   },
 ];
 ---
@@ -66,12 +57,12 @@ const faqs = [
 <section id="faq" class="scroll-mt-20 bg-brand-50/30 py-16 sm:py-24">
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
-      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Häufige Fragen zur PKV-Beitragserhöhung 2027</h2>
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Häufige Fragen</h2>
     </div>
 
-    <div data-reveal class="mx-auto mt-10 max-w-2xl divide-y divide-black/5 overflow-hidden rounded-2xl border border-black/5 bg-white shadow-soft">
+    <div data-reveal id="faq-list" class="mx-auto mt-10 max-w-2xl divide-y divide-black/5 overflow-hidden rounded-2xl border border-black/5 bg-white shadow-soft">
       {
-        faqs.map((faq) => (
+        primaryFaqs.map((faq) => (
           <details class="group">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 marker:content-none [&::-webkit-details-marker]:hidden">
               <h3 class="font-serif text-base font-semibold text-ink-950 sm:text-lg">{faq.question}</h3>
@@ -85,6 +76,61 @@ const faqs = [
           </details>
         ))
       }
+
+      <div id="faq-more" hidden>
+        {
+          moreFaqs.map((faq) => (
+            <details class="group">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 marker:content-none [&::-webkit-details-marker]:hidden">
+                <h3 class="font-serif text-base font-semibold text-ink-950 sm:text-lg">{faq.question}</h3>
+                <ChevronDown className="h-5 w-5 shrink-0 text-ink-700/50 transition-transform duration-200 group-open:rotate-180" aria-hidden={true} />
+              </summary>
+              <div class="space-y-3 px-6 pb-6 text-sm leading-relaxed text-ink-700/80 sm:text-base">
+                {faq.answer.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+            </details>
+          ))
+        }
+      </div>
     </div>
+
+    <div class="mt-6 text-center">
+      <button
+        type="button"
+        id="faq-toggle"
+        class="text-sm font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800"
+        aria-expanded="false"
+        aria-controls="faq-more"
+      >
+        Mehr Fragen anzeigen
+      </button>
+    </div>
+
+    <noscript>
+      <style>
+        #faq-more {
+          display: block !important;
+        }
+        #faq-toggle {
+          display: none;
+        }
+      </style>
+    </noscript>
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById("faq-toggle");
+    var more = document.getElementById("faq-more");
+    if (!btn || !more) return;
+    btn.addEventListener("click", function () {
+      var expanded = btn.getAttribute("aria-expanded") === "true";
+      more.hidden = expanded;
+      btn.setAttribute("aria-expanded", String(!expanded));
+      btn.textContent = expanded ? "Mehr Fragen anzeigen" : "Weniger Fragen anzeigen";
+    });
+  })();
+</script>

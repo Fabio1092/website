@@ -1,0 +1,177 @@
+---
+import BookingButton from "@/components/pkvBeitragserhoehung2027/BookingButton.astro";
+
+const questions = [
+  {
+    key: "beginn",
+    legend: "Seit wann bist du privat krankenversichert?",
+    options: ["Vor 2009", "Seit 2009", "Weiß ich nicht genau"],
+  },
+  {
+    key: "alter",
+    legend: "Wie alt bist du ungefähr?",
+    options: ["Unter 35", "35 bis 49", "50 oder älter"],
+  },
+  {
+    key: "gesundheit",
+    legend: "Haben sich deine gesundheitlichen Voraussetzungen seit dem damaligen PKV-Abschluss wesentlich verändert?",
+    options: ["Ja", "Nein", "Kann ich nicht einschätzen"],
+  },
+  {
+    key: "grund",
+    legend: "Was ist dein Hauptgrund für eine mögliche Veränderung?",
+    options: ["Beitragserhöhung", "Leistungen verbessern", "Beides", "Ich möchte mich erst orientieren"],
+  },
+];
+---
+
+<section id="wechsel-check" class="scroll-mt-20 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div data-reveal class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Könnte ein anderer PKV-Versicherer für dich infrage kommen?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-ink-700/80">
+        Beantworte vier kurze Fragen und erfahre, welche Punkte bei deiner Situation besonders wichtig sind.
+      </p>
+      <p class="mx-auto mt-2 max-w-xl text-xs text-ink-700/55">
+        Allgemeine Orientierung, keine automatisierte Beratung, keine Annahmeprognose. Deine Antworten
+        bleiben ausschließlich in deinem Browser und werden nicht gespeichert oder übertragen.
+      </p>
+    </div>
+
+    <div data-reveal id="wechsel-check-card" class="mx-auto mt-10 max-w-2xl rounded-3xl border border-black/5 bg-brand-50/20 p-6 shadow-soft sm:p-8">
+      <form id="wechsel-check-form" class="space-y-7">
+        {
+          questions.map((q, qi) => (
+            <fieldset>
+              <legend class="text-sm font-semibold text-ink-950">
+                {qi + 1}. {q.legend}
+              </legend>
+              <div class="mt-3 flex flex-wrap gap-2">
+                {q.options.map((opt) => (
+                  <label class="wc-option cursor-pointer rounded-full border border-black/10 bg-white px-4 py-2 text-sm text-ink-700/80 transition-colors has-[:checked]:border-brand-500 has-[:checked]:bg-brand-500 has-[:checked]:text-white has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-500">
+                    <input type="radio" name={q.key} value={opt} class="sr-only" />
+                    {opt}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          ))
+        }
+      </form>
+
+      <div id="wc-result" hidden class="mt-8 rounded-2xl border border-black/5 bg-white p-6 shadow-soft" aria-live="polite">
+        <p class="font-serif text-lg font-semibold text-ink-950">Deine Orientierung</p>
+        <ul id="wc-result-list" class="mt-3 space-y-3 text-sm leading-relaxed text-ink-700/85"></ul>
+        <div class="mt-6 flex flex-col items-start gap-3 border-t border-black/5 pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <BookingButton location="wechsel-check" variant="compact" label="Deine Situation persönlich besprechen" />
+            <p class="mt-2 text-xs text-ink-700/60">Kostenloses 15-Minuten-Erstgespräch. Die Einschätzung ersetzt keine individuelle Beratung.</p>
+          </div>
+          <button type="button" id="wc-reset" class="shrink-0 text-sm font-medium text-ink-700/70 underline underline-offset-2 hover:text-ink-950">
+            Check neu starten
+          </button>
+        </div>
+      </div>
+
+      <p id="wc-progress" class="mt-6 text-sm text-ink-700/60" aria-live="polite">Beantworte alle vier Fragen, um deine Orientierung zu sehen.</p>
+
+      <noscript>
+        <p class="mt-6 rounded-xl border border-black/5 bg-white p-4 text-sm leading-relaxed text-ink-700/80">
+          Der interaktive Check benötigt JavaScript. Vereinbare stattdessen direkt ein kostenloses
+          Erstgespräch, in dem wir deine Situation gemeinsam besprechen.
+        </p>
+      </noscript>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var root = document.getElementById("wechsel-check");
+    if (!root) return;
+    var form = root.querySelector("#wechsel-check-form");
+    var resultBox = root.querySelector("#wc-result");
+    var resultList = root.querySelector("#wc-result-list");
+    var progress = root.querySelector("#wc-progress");
+    var resetBtn = root.querySelector("#wc-reset");
+
+    var NOTICES = {
+      beginn: {
+        "Vor 2009":
+          "Bei älteren PKV-Verträgen ist die Übertragung von Alterungsrückstellungen bei einem gewöhnlichen Gesellschaftswechsel grundsätzlich nicht vorgesehen. Deshalb sollte die Wirtschaftlichkeit besonders sorgfältig geprüft werden.",
+        "Seit 2009":
+          "Bei Verträgen ab 2009 kann grundsätzlich ein gesetzlich geregelter Übertragungswert bestehen. Das bedeutet aber nicht, dass sämtliche Alterungsrückstellungen mitgenommen werden können.",
+      },
+      alter: {
+        "50 oder älter":
+          "Mit höherem Eintrittsalter und längerer Vertragsdauer können die wirtschaftlichen Auswirkungen eines Gesellschaftswechsels erheblich sein.",
+      },
+      gesundheit: {
+        Ja: "Ein neuer Versicherer prüft bei einem regulären Neuabschluss grundsätzlich den Gesundheitszustand. Eine sorgfältige Vorbereitung und gegebenenfalls eine Risikovoranfrage können deshalb wichtig sein.",
+        "Kann ich nicht einschätzen":
+          "Ein neuer Versicherer prüft bei einem regulären Neuabschluss grundsätzlich den Gesundheitszustand. Eine sorgfältige Vorbereitung und gegebenenfalls eine Risikovoranfrage können deshalb wichtig sein.",
+      },
+      grund: {
+        "Leistungen verbessern":
+          "Entscheidend ist nicht nur der Beitrag, sondern ob ein anderer Versicherer die gewünschten Leistungen unter passenden Bedingungen anbietet.",
+        Beides: "Entscheidend ist nicht nur der Beitrag, sondern ob ein anderer Versicherer die gewünschten Leistungen unter passenden Bedingungen anbietet.",
+      },
+    };
+
+    var PRIORITY = ["gesundheit", "beginn", "alter", "grund"];
+
+    function getAnswers() {
+      var data = {};
+      ["beginn", "alter", "gesundheit", "grund"].forEach(function (key) {
+        var checked = form.querySelector('input[name="' + key + '"]:checked');
+        data[key] = checked ? checked.value : null;
+      });
+      return data;
+    }
+
+    function render() {
+      var answers = getAnswers();
+      var complete = answers.beginn && answers.alter && answers.gesundheit && answers.grund;
+
+      if (!complete) {
+        resultBox.hidden = true;
+        progress.hidden = false;
+        return;
+      }
+
+      var notices = [];
+      PRIORITY.forEach(function (key) {
+        var map = NOTICES[key];
+        var value = answers[key];
+        if (map && value && map[value] && notices.indexOf(map[value]) === -1) {
+          notices.push(map[value]);
+        }
+      });
+      notices = notices.slice(0, 3);
+
+      if (notices.length === 0) {
+        notices.push("Auf Basis deiner Angaben ergeben sich keine der besonders prüfungsrelevanten Punkte — eine persönliche Einschätzung bleibt trotzdem sinnvoll.");
+      }
+
+      resultList.innerHTML = "";
+      notices.forEach(function (text) {
+        var li = document.createElement("li");
+        li.className = "flex items-start gap-2.5";
+        li.innerHTML = '<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true"></span><span>' + text + "</span>";
+        resultList.appendChild(li);
+      });
+
+      resultBox.hidden = false;
+      progress.hidden = true;
+    }
+
+    form.addEventListener("change", render);
+
+    resetBtn.addEventListener("click", function () {
+      form.reset();
+      resultBox.hidden = true;
+      progress.hidden = false;
+      form.querySelectorAll("input[type=radio]")[0]?.focus();
+    });
+  })();
+</script>
