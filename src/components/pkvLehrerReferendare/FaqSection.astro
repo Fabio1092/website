@@ -1,0 +1,68 @@
+---
+import { ChevronDown } from "lucide-react";
+
+const faqs = [
+  {
+    question: "Ist die private Krankenversicherung für Lehrer immer die beste Wahl?",
+    answer: [
+      "Nein. Das hängt unter anderem davon ab, ob du verbeamtet oder angestellt bist, welcher Beihilfeanspruch besteht und wie deine persönliche Situation aussieht. Deshalb prüfen wir die Voraussetzungen, bevor wir über einen konkreten Tarif sprechen.",
+    ],
+  },
+  {
+    question: "Bin ich im Referendariat automatisch beihilfeberechtigt?",
+    answer: [
+      "Nicht in jeder Konstellation. Entscheidend ist insbesondere dein Dienstverhältnis und welche Regeln für deinen Dienstherrn gelten. Darauf stimmen wir die weitere Prüfung ab.",
+    ],
+  },
+  {
+    question: "Sollte ich einfach den günstigsten Anwärtertarif wählen?",
+    answer: [
+      "Nicht allein wegen des Preises. Auch Leistungen, Bedingungen und die Entwicklung nach dem Vorbereitungsdienst sind wichtig. Ein attraktiver Einstiegsbeitrag sagt noch nicht aus, ob ein Tarif langfristig gut passt.",
+    ],
+  },
+  {
+    question: "Was ist, wenn ich Vorerkrankungen habe?",
+    answer: [
+      "Das bedeutet nicht automatisch, dass eine PKV ausgeschlossen ist. Je nach Gesundheitsgeschichte können eine sorgfältige Aufbereitung, eine Risikovoranfrage oder besondere Aufnahmewege relevant sein. Eine Aufnahme zu bestimmten Bedingungen lässt sich daraus aber nicht garantieren.",
+    ],
+  },
+  {
+    question: "Muss ich mich selbst durch alle Tarife arbeiten?",
+    answer: [
+      "Nein. Genau dabei unterstütze ich dich. Ich bereite die relevanten Unterschiede verständlich auf, damit du weißt, welche Vor- und Nachteile du abwägen solltest.",
+    ],
+  },
+  {
+    question: "Wie viel Zeit muss ich für die Beratung einplanen?",
+    answer: [
+      "Das erste Gespräch dauert etwa 15 Minuten und ist kostenlos und unverbindlich. Der weitere Aufwand hängt von deiner Situation ab – insbesondere davon, welche Gesundheitsunterlagen benötigt werden und welche Fragen geklärt werden müssen.",
+    ],
+  },
+];
+---
+
+<section id="faq" class="scroll-mt-20 bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Häufige Fragen zur PKV für Lehrer und Referendare</h2>
+    </div>
+
+    <div data-reveal class="mx-auto mt-10 max-w-2xl divide-y divide-black/5 overflow-hidden rounded-2xl border border-black/5 bg-white shadow-soft">
+      {
+        faqs.map((faq) => (
+          <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 marker:content-none [&::-webkit-details-marker]:hidden">
+              <h3 class="font-serif text-base font-semibold text-ink-950 sm:text-lg">{faq.question}</h3>
+              <ChevronDown className="h-5 w-5 shrink-0 text-ink-700/50 transition-transform duration-200 group-open:rotate-180" aria-hidden={true} />
+            </summary>
+            <div class="space-y-3 px-6 pb-6 text-sm leading-relaxed text-ink-700/80 sm:text-base">
+              {faq.answer.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

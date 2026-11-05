@@ -1,0 +1,68 @@
+---
+import BookingButton from "@/components/pkvLehrerReferendare/BookingButton.astro";
+
+const sources = [
+  {
+    label: "PKV-Verband – Krankenversicherung für Beamtinnen und Beamte",
+    href: "https://www.pkv.de/positionen/krankenversicherung-fuer-beamtinnen-und-beamte/",
+  },
+  {
+    label: "PKV-Verband – Öffnungsaktion für Beamtenanfänger (PDF)",
+    href: "https://www.pkv.de/fileadmin/user_upload/PKV/3_PDFs/Publikationen/Beamte_Brosch%C3%BCre-%C3%96ffnungsaktion.pdf",
+  },
+];
+---
+
+<section id="kontakt" class="scroll-mt-20 bg-ink-950 py-16 text-white sm:py-24">
+  <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+    <h2 class="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">Deine PKV-Entscheidung muss nicht kompliziert sein.</h2>
+
+    <div data-reveal class="mt-6 space-y-4 text-lg leading-relaxed text-white/80">
+      <p>Du musst nicht jeden Tarif kennen und auch nicht selbst zum Experten für Versicherungsbedingungen werden.</p>
+      <p>Wichtig ist, dass du deine Möglichkeiten verstehst und eine Entscheidung treffen kannst, hinter der du stehst.</p>
+      <p>
+        Ich helfe dir dabei, deinen Versicherungsschutz passend zu deinem Berufseinstieg, deiner Gesundheit und
+        deinen langfristigen Plänen einzuordnen.
+      </p>
+      <p>Starte mit einem kostenlosen und unverbindlichen Erstgespräch.</p>
+    </div>
+
+    <div class="mt-8 flex flex-col items-center gap-3">
+      <BookingButton location="final" label="Jetzt 15-Minuten-Erstgespräch buchen" />
+      <p class="text-sm text-white/60">15 Minuten · kostenlos &amp; unverbindlich</p>
+    </div>
+
+    <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/80">Mit Fabio Rumpf · Persönlich in Kassel oder digital deutschlandweit</p>
+
+    <p class="mx-auto mt-10 max-w-xl text-xs leading-relaxed text-white/50">
+      Hinweis: Ob und zu welchen Bedingungen eine private Krankenversicherung möglich oder sinnvoll ist, hängt von
+      der individuellen Situation ab. Die Beratung ersetzt keine verbindliche Annahmeentscheidung eines
+      Versicherers.
+    </p>
+
+    <p class="mx-auto mt-8 max-w-xl text-sm text-white/60">
+      <a href="/private-krankenversicherung-kassel/" class="font-medium text-brand-300 underline underline-offset-2 hover:text-brand-200">
+        Mehr zur PKV-Beratung in Kassel
+      </a>
+    </p>
+
+    <div class="mx-auto mt-16 max-w-xl border-t border-white/10 pt-8 text-left">
+      <p id="quellen" class="scroll-mt-24 text-xs font-semibold uppercase tracking-wide text-white/40">Quellen und fachliche Grundlagen</p>
+      <ul class="mt-3 space-y-1.5">
+        {
+          sources.map((source) => (
+            <li class="text-xs leading-relaxed text-white/60">
+              <a href={source.href} class="underline decoration-white/30 underline-offset-2 hover:text-white hover:decoration-white/60" target="_blank" rel="noopener noreferrer">
+                {source.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-4 text-xs leading-relaxed text-white/40">
+        Beihilferegeln unterscheiden sich je nach Dienstherr, Bundesland und individueller Situation. Maßgeblich
+        sind die offiziellen Beihilfevorschriften des jeweiligen Dienstherrn.
+      </p>
+    </div>
+  </div>
+</section>
