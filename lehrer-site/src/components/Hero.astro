@@ -1,0 +1,51 @@
+---
+import BookingButton from "@/components/BookingButton.astro";
+---
+
+<section id="hero" class="relative overflow-hidden bg-white">
+  <div class="pointer-events-none absolute -top-32 right-[-8%] h-96 w-96 rounded-full bg-brand-100/50 blur-3xl" aria-hidden="true"></div>
+
+  <div class="relative mx-auto grid max-w-6xl gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-10 lg:py-20 lg:px-8">
+    <div class="order-1 min-w-0 text-center lg:text-left">
+      <span class="inline-flex items-center rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-700">
+        PKV für Lehrer &amp; Referendare
+      </span>
+
+      <h1 class="mx-auto mt-6 max-w-[640px] hyphens-auto text-balance break-words text-[2rem] font-semibold leading-[1.15] tracking-tight text-ink-950 sm:text-4xl md:text-5xl lg:mx-0">
+        Die passende PKV für deinen Start ins Lehramt. <span class="text-brand-600">Ohne Tarifdschungel. Ohne teure Fehl&shy;entscheidungen.</span>
+      </h1>
+
+      <div class="mx-auto mt-6 max-w-xl space-y-4 text-lg leading-relaxed text-ink-700/80 lg:mx-0">
+        <p>
+          Ich vergleiche passende PKV-Tarife für dich und begleite dich sorgfältig durch die Gesundheitsfragen. So
+          sparst du dir aufwendige Recherche und kannst deine Versicherung mit einem guten Gefühl auswählen.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-col items-center gap-3 lg:items-start">
+        <BookingButton location="hero" class="w-full sm:w-auto" />
+        <p class="text-sm text-ink-700/60">15 Minuten · kostenlos &amp; unverbindlich</p>
+      </div>
+
+      <p class="mx-auto mt-6 max-w-xl text-sm font-medium text-ink-700/70 lg:mx-0">Persönlich in Kassel · Digital deutschlandweit</p>
+    </div>
+
+    <div class="order-2 mx-auto w-full max-w-xs sm:max-w-sm lg:mx-0 lg:max-w-none">
+      <div class="relative">
+        <div
+          class="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/15 via-transparent to-gold-500/10 blur-xl"
+          aria-hidden="true"
+        >
+        </div>
+        <img
+          src="/images/1-19.jpg"
+          alt="Fabio Rumpf, Versicherungsmakler aus Kassel"
+          class="aspect-[4/5] w-full rounded-[2rem] border border-black/5 object-cover shadow-2xl shadow-black/10"
+          width="800"
+          height="1000"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </div>
+</section>

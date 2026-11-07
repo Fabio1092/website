@@ -3,6 +3,8 @@ name: Deploy zu Hostinger
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "lehrer-site/**"
   workflow_dispatch:
 
 jobs:

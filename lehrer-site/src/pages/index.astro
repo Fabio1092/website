@@ -1,0 +1,54 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/Hero.astro";
+import TrustBar from "@/components/TrustBar.astro";
+import PainSection from "@/components/PainSection.astro";
+import BenefitsSection from "@/components/BenefitsSection.astro";
+import StatusSelector from "@/components/StatusSelector.astro";
+import BeihilfeSection from "@/components/BeihilfeSection.astro";
+import TarifSection from "@/components/TarifSection.astro";
+import HealthSection from "@/components/HealthSection.astro";
+import ProcessSection from "@/components/ProcessSection.astro";
+import AdvisorSection from "@/components/AdvisorSection.astro";
+import FaqSection from "@/components/FaqSection.astro";
+import FinalCtaSection from "@/components/FinalCtaSection.astro";
+
+const pageTitle = "PKV für Lehrer & Referendare – Beratung mit Klarheit";
+const pageDescription =
+  "PKV für Lehrer, Referendare und Lehramtsanwärter: Verstehe Beihilfe, Tarife und Gesundheitsfragen. Persönliche Beratung ohne Verkaufsdruck.";
+const canonicalUrl = new URL("/", Astro.site).toString();
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Die passende PKV für deinen Start ins Lehramt. Ohne Tarifdschungel. Ohne teure Fehlentscheidungen.",
+  description: pageDescription,
+  inLanguage: "de-DE",
+  url: canonicalUrl,
+  isPartOf: { "@type": "WebSite", name: "PKV für Lehrer – Fabio Rumpf", url: canonicalUrl },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [{ "@type": "ListItem", position: 1, name: "Startseite", item: canonicalUrl }],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} fullTitle>
+  <Hero />
+  <TrustBar />
+  <PainSection />
+  <BenefitsSection />
+  <StatusSelector />
+  <BeihilfeSection />
+  <TarifSection />
+  <HealthSection />
+  <ProcessSection />
+  <AdvisorSection />
+  <FaqSection />
+  <FinalCtaSection />
+</Layout>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(webPageSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

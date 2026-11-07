@@ -1,0 +1,54 @@
+---
+---
+
+<script is:inline>
+  (function () {
+    var GTM_ID = "GTM-TVZRXZ9";
+    var STORAGE_KEY = "cookie-consent";
+
+    // A) dataLayer / gtag-Funktion verfügbar machen
+    window.dataLayer = window.dataLayer || [];
+    window.gtag =
+      window.gtag ||
+      function () {
+        window.dataLayer.push(arguments);
+      };
+
+    // B) Consent Default = denied – muss vor dem GTM-Script gesetzt sein
+    window.gtag("consent", "default", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      wait_for_update: 500,
+    });
+
+    // C) GTM laden – jetzt auf jeder Seite, unabhängig von einer Cookie-Entscheidung
+    if (!window.gtmLoaded) {
+      window.gtmLoaded = true;
+      window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
+      document.head.appendChild(script);
+    }
+
+    // D) Bereits gespeicherten Consent (früherer Besuch) sofort nach dem Default berücksichtigen
+    var stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === "accepted") {
+      window.gtag("consent", "update", {
+        analytics_storage: "granted",
+        ad_storage: "granted",
+        ad_user_data: "granted",
+        ad_personalization: "granted",
+      });
+    } else if (stored === "rejected") {
+      window.gtag("consent", "update", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+      });
+    }
+  })();
+</script>

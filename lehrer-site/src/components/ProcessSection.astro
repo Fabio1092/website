@@ -1,0 +1,61 @@
+---
+import BookingButton from "@/components/BookingButton.astro";
+
+const steps = [
+  {
+    number: "1",
+    title: "Wir lernen uns kennen",
+    text: "In einem kostenlosen und unverbindlichen 15-minütigen Erstgespräch klären wir, wo du beruflich stehst, welche Fragen du hast und ob ich dich sinnvoll unterstützen kann.",
+  },
+  {
+    number: "2",
+    title: "Wir ordnen deine Situation ein",
+    text: "Wenn wir zusammenarbeiten, betrachten wir deinen beruflichen Status, die Beihilfe, deinen gewünschten Versicherungsschutz und deine persönliche Lebensplanung.",
+  },
+  {
+    number: "3",
+    title: "Wir bereiten die Gesundheitsprüfung vor",
+    text: "Wir klären die notwendigen Gesundheitsangaben und prüfen gegebenenfalls, ob eine Risikovoranfrage sinnvoll ist. Wie viel Vorbereitung erforderlich ist, hängt vom Einzelfall ab.",
+  },
+  {
+    number: "4",
+    title: "Du entscheidest auf einer klaren Grundlage",
+    text: "Du erhältst eine verständliche Gegenüberstellung geeigneter Möglichkeiten. Wir besprechen Unterschiede, mögliche Nachteile und offene Fragen. Wenn du dich für eine Lösung entscheidest, begleite ich die Antragstellung.",
+  },
+];
+---
+
+<section id="beratungsprozess" class="scroll-mt-20 bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div data-reveal class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">So läuft unsere Zusammenarbeit ab</h2>
+    </div>
+
+    <ol class="mt-14 space-y-10">
+      {
+        steps.map((step, index) => (
+          <li data-reveal style={`transition-delay: ${index * 80}ms`} class="relative flex gap-6 sm:gap-8">
+            <div class="flex flex-col items-center">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-950 font-serif text-base font-semibold text-white">
+                {step.number}
+              </span>
+              {index < steps.length - 1 && <span class="mt-2 w-px flex-1 bg-brand-200" aria-hidden="true" />}
+            </div>
+            <div class="min-w-0 pb-2">
+              <h3 class="font-serif text-xl font-semibold text-ink-950 sm:text-2xl">{step.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ink-700/80 sm:text-base">{step.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="mx-auto mt-14 max-w-xl text-center text-base font-medium leading-relaxed text-ink-950">
+      Du musst dich nicht durch 30 Tarife kämpfen. Du sollst verstehen, warum eine Lösung für dich infrage kommt.
+    </p>
+
+    <div class="mx-auto mt-8 max-w-lg text-center">
+      <BookingButton location="process" variant="compact" label="Kostenloses Erstgespräch vereinbaren" />
+    </div>
+  </div>
+</section>

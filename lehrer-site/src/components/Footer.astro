@@ -1,0 +1,37 @@
+---
+import { siteConfig } from "@/lib/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="relative overflow-hidden border-t border-white/10 bg-ink-950 text-white">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/50 to-transparent" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+      <a href="/" class="flex items-center gap-3" aria-label="PKV für Lehrer – Startseite">
+        <img src="/images/Logo.png" alt="FR Makler Logo" class="h-10 w-10 rounded-lg" width="40" height="40" />
+        <span class="flex flex-col leading-tight">
+          <span class="font-serif text-lg font-semibold">Fabio Rumpf</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-brand-400">PKV für Lehrer &amp; Referendare</span>
+        </span>
+      </a>
+
+      <div class="flex flex-col items-center gap-2 text-sm text-white/70 sm:items-end">
+        <div class="flex items-center gap-4">
+          <a href={siteConfig.phoneHref} class="hover:text-white">{siteConfig.phone}</a>
+          <a href={siteConfig.emailHref} class="hover:text-white">{siteConfig.email}</a>
+        </div>
+        <div class="flex items-center gap-4 text-xs text-white/50">
+          <a href={siteConfig.mainSiteUrl} class="hover:text-white">fr-makler.de</a>
+          <a href={`${siteConfig.mainSiteUrl}/impressum/`} class="hover:text-white">Impressum</a>
+          <a href={`${siteConfig.mainSiteUrl}/datenschutz/`} class="hover:text-white">Datenschutz</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-8 border-t border-white/10 pt-6 text-center text-xs text-white/40">
+      © {year} Fabio Rumpf Versicherungsmakler. Alle Rechte vorbehalten.
+    </p>
+  </div>
+</footer>

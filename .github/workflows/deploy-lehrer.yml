@@ -1,0 +1,43 @@
+name: Deploy Lehrer-Seite zu Hostinger
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "lehrer-site/**"
+      - ".github/workflows/deploy-lehrer.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build & Upload
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lehrer-site
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: lehrer-site/package-lock.json
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Seite bauen
+        run: npm run build
+
+      - name: Auf Hostinger hochladen
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          local-dir: ./lehrer-site/dist/
+          server-dir: ./domains/fr-makler.de/public_html/lehrer/

@@ -1,0 +1,61 @@
+---
+import { siteConfig } from "@/lib/site";
+
+const navLinks = [
+  { href: "#leistungen", label: "Leistungen" },
+  { href: "#status", label: "Wo stehst du?" },
+  { href: "#beihilfe", label: "Beihilfe" },
+  { href: "#faq", label: "FAQ" },
+];
+---
+
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink-950/95 text-white backdrop-blur transition-shadow duration-300 data-[scrolled=true]:shadow-lg data-[scrolled=true]:shadow-black/20"
+  data-scrolled="false"
+>
+  <div class="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <a href="/" class="flex shrink-0 items-center gap-2.5" aria-label="PKV für Lehrer – Startseite">
+      <img src="/images/Logo.png" alt="FR Makler Logo" class="h-11 w-11 shrink-0 rounded-lg" width="44" height="44" />
+      <span class="flex flex-col leading-tight whitespace-nowrap">
+        <span class="font-serif text-lg font-semibold tracking-tight sm:text-xl">Fabio Rumpf</span>
+        <span class="hidden text-[10px] font-semibold uppercase tracking-wide text-brand-400 min-[420px]:inline sm:text-xs">PKV für Lehrer &amp; Referendare</span>
+      </span>
+    </a>
+
+    <nav class="hidden shrink-0 items-center gap-6 lg:flex" aria-label="Hauptnavigation">
+      {
+        navLinks.map((link) => (
+          <a href={link.href} class="whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white">
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a
+      href={siteConfig.calendlyPkvUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cta="booking"
+      data-cta-location="header"
+      class="inline-flex shrink-0 items-center justify-center rounded-full bg-gold-500 px-4 py-2.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:px-5"
+    >
+      <span class="sm:hidden">Buchen</span>
+      <span class="hidden sm:inline">Erstgespräch buchen</span>
+    </a>
+  </div>
+</header>
+<div class="h-20" aria-hidden="true"></div>
+
+<script is:inline>
+  (function () {
+    var header = document.getElementById("site-header");
+    if (!header) return;
+    function update() {
+      header.dataset.scrolled = window.scrollY > 8 ? "true" : "false";
+    }
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+  })();
+</script>

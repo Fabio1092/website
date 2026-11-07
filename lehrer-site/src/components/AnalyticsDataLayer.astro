@@ -1,0 +1,23 @@
+---
+---
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+
+  document.addEventListener("click", function (event) {
+    var ctaEl = event.target.closest("[data-cta]");
+    if (ctaEl) {
+      window.dataLayer.push({ event: "cta_click", cta_id: ctaEl.getAttribute("data-cta") });
+      return;
+    }
+    var telEl = event.target.closest('a[href^="tel:"]');
+    if (telEl) {
+      window.dataLayer.push({ event: "phone_click" });
+      return;
+    }
+    var mailEl = event.target.closest('a[href^="mailto:"]');
+    if (mailEl) {
+      window.dataLayer.push({ event: "email_click" });
+    }
+  });
+</script>

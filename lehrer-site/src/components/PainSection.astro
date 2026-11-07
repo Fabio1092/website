@@ -1,0 +1,37 @@
+---
+const questions = [
+  "Welcher PKV-Tarif passt zu meiner Situation?",
+  "Was brauche ich zusätzlich zur Beihilfe?",
+  "Muss ich wirklich all diese Tarifbedingungen selbst vergleichen?",
+  "Was passiert, wenn ich bei den Gesundheitsfragen etwas vergesse?",
+  "Entscheide ich mich gerade für etwas, das ich später bereue?",
+];
+---
+
+<section id="problem" class="scroll-mt-20 bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <div data-reveal>
+      <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">Du willst Lehrer werden. Nicht nebenbei Versicherungsexperte.</h2>
+      <div class="mt-6 space-y-4 text-base leading-relaxed text-ink-700/80">
+        <p>Wer sich mit der privaten Krankenversicherung beschäftigt, merkt schnell: Jeder Versicherer hat andere Tarife, Leistungen und Bedingungen.</p>
+        <p>Dazu kommen Fragen rund um die Beihilfe, deinen späteren Berufsweg und deine gesundheitliche Vorgeschichte.</p>
+        <p>Vielleicht fragst du dich gerade:</p>
+      </div>
+      <ul class="mt-4 space-y-2">
+        {
+          questions.map((item) => (
+            <li class="flex items-start gap-2.5 text-base leading-relaxed text-ink-700/85">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-5 text-base font-medium leading-relaxed text-ink-950">Du musst diese Fragen nicht allein beantworten.</p>
+      <p class="mt-3 text-base leading-relaxed text-ink-700/80">
+        Mein Anspruch ist, dass du die entscheidenden Unterschiede verstehst, ohne dich selbst durch unzählige
+        Tarifunterlagen arbeiten zu müssen.
+      </p>
+    </div>
+  </div>
+</section>
