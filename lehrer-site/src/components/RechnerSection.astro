@@ -1,0 +1,189 @@
+---
+import BookingButton from "@/components/BookingButton.astro";
+---
+
+<section id="rechner" class="scroll-mt-20 bg-brand-50/30 py-16 sm:py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div data-reveal class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Was kostet ein PKV-Tarif tatsächlich im Jahr?</h2>
+      <p class="mx-auto mt-3 max-w-xl text-base leading-relaxed text-ink-700/70">
+        Vergleiche Monatsbeitrag und Selbstbehalt – statt nur auf den Einstiegspreis zu schauen.
+      </p>
+    </div>
+
+    <div data-reveal class="mx-auto mt-10 max-w-3xl">
+      <div class="flex justify-center">
+        <button
+          type="button"
+          id="rechner-beispiel"
+          class="rounded-full border border-brand-200 bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 shadow-sm transition-colors hover:bg-brand-50"
+        >
+          Beispiel
+        </button>
+      </div>
+
+      <div class="mt-6 grid gap-5 sm:grid-cols-2">
+        {
+          ["a", "b"].map((id, i) => (
+            <div class="rounded-3xl border border-black/5 bg-white p-6 shadow-soft">
+              <p class="font-serif text-lg font-semibold text-ink-950">Tarif {i === 0 ? "A" : "B"}</p>
+
+              <div class="mt-4">
+                <label for={`beitrag-${id}`} class="block text-sm font-medium text-ink-950">
+                  Monatsbeitrag
+                </label>
+                <div class="relative mt-1.5">
+                  <input
+                    type="number"
+                    id={`beitrag-${id}`}
+                    class={`rechner-beitrag rechner-${id} w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 pr-9 text-base text-ink-950 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30`}
+                    inputmode="decimal"
+                    min="0"
+                    step="1"
+                    placeholder="z. B. 420"
+                  />
+                  <span class="pointer-events-none absolute inset-y-0 right-3.5 flex items-center text-sm text-ink-700/50" aria-hidden="true">
+                    €
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <label for={`sb-${id}`} class="block text-sm font-medium text-ink-950">
+                  Selbstbehalt/Jahr
+                </label>
+                <div class="relative mt-1.5">
+                  <input
+                    type="number"
+                    id={`sb-${id}`}
+                    class={`rechner-sb rechner-${id} w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 pr-9 text-base text-ink-950 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30`}
+                    inputmode="decimal"
+                    min="0"
+                    step="1"
+                    placeholder="z. B. 900"
+                  />
+                  <span class="pointer-events-none absolute inset-y-0 right-3.5 flex items-center text-sm text-ink-700/50" aria-hidden="true">
+                    €
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-5 space-y-3" role="status" aria-live="polite">
+                <div class="rounded-xl bg-brand-50/40 p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">Jahresbeitrag</p>
+                  <p class={`rechner-jahresbeitrag-${id} mt-1 font-serif text-2xl font-semibold text-ink-950`}>–</p>
+                </div>
+                <div class="rounded-xl bg-brand-50/40 p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/50">Modellwert</p>
+                  <p class={`rechner-modellwert-${id} mt-1 font-serif text-2xl font-semibold text-ink-950`}>–</p>
+                </div>
+                <div class="h-3 w-full overflow-hidden rounded-full bg-black/5" role="img" aria-label="Anteil Jahresbeitrag zu Selbstbehalt">
+                  <div class="flex h-full w-full">
+                    <div class={`rechner-bar-beitrag-${id} h-full bg-brand-500 transition-all duration-300 motion-reduce:transition-none`} style="width: 0%" />
+                    <div class={`rechner-bar-sb-${id} h-full bg-gold-400 transition-all duration-300 motion-reduce:transition-none`} style="width: 0%" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="mt-6 text-center text-xs leading-relaxed text-ink-700/55">
+        Die Rechnung ist vereinfacht. Der Selbstbehalt fällt nur entsprechend den konkreten Vertragsbedingungen und
+        tatsächlichen erstattungsfähigen Kosten an. Weitere Eigenkosten, Beitragsrückerstattungen, Zuschüsse,
+        Beihilfe und steuerliche Auswirkungen sind nicht berücksichtigt.
+      </p>
+      <p class="mt-3 text-center text-sm font-medium text-ink-950">
+        Diese Werte helfen dir, Beitrag und Selbstbehalt gemeinsam zu betrachten. Welcher Tarif besser passt, hängt
+        auch von den Leistungen und Bedingungen ab.
+      </p>
+
+      <noscript>
+        <p class="mt-6 rounded-xl border border-black/5 bg-white p-4 text-sm leading-relaxed text-ink-700/80">
+          Der Rechner benötigt JavaScript. Vereinbare stattdessen ein kostenloses Erstgespräch.
+        </p>
+      </noscript>
+    </div>
+
+    <div class="mx-auto mt-8 max-w-lg text-center">
+      <BookingButton location="rechner" variant="compact" label="PKV-Tarife persönlich vergleichen lassen" />
+      <p class="mt-3 text-xs leading-relaxed text-ink-700/55">
+        Der Rechner ist nur eine Orientierung. In der Beratung zählen auch Leistungen, Beihilfe und deine
+        persönliche Situation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var eur = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    function parseValue(input) {
+      if (!input || input.value.trim() === "") return null;
+      var n = parseFloat(input.value.replace(",", "."));
+      if (!isFinite(n) || isNaN(n) || n < 0) return null;
+      return n;
+    }
+
+    function updateTarif(id) {
+      var beitragInput = document.querySelector(".rechner-beitrag.rechner-" + id);
+      var sbInput = document.querySelector(".rechner-sb.rechner-" + id);
+      var jahresbeitragOut = document.querySelector(".rechner-jahresbeitrag-" + id);
+      var modellwertOut = document.querySelector(".rechner-modellwert-" + id);
+      var barBeitrag = document.querySelector(".rechner-bar-beitrag-" + id);
+      var barSb = document.querySelector(".rechner-bar-sb-" + id);
+      if (!beitragInput || !sbInput) return;
+
+      var beitrag = parseValue(beitragInput);
+      var sb = parseValue(sbInput);
+
+      if (beitrag === null && sb === null) {
+        jahresbeitragOut.textContent = "–";
+        modellwertOut.textContent = "–";
+        barBeitrag.style.width = "0%";
+        barSb.style.width = "0%";
+        return;
+      }
+
+      var jahresbeitrag = (beitrag || 0) * 12;
+      var selbstbehalt = sb || 0;
+      var modellwert = jahresbeitrag + selbstbehalt;
+
+      jahresbeitragOut.textContent = eur.format(jahresbeitrag) + " €";
+      modellwertOut.textContent = eur.format(modellwert) + " €";
+
+      if (modellwert > 0) {
+        barBeitrag.style.width = (jahresbeitrag / modellwert) * 100 + "%";
+        barSb.style.width = (selbstbehalt / modellwert) * 100 + "%";
+      } else {
+        barBeitrag.style.width = "0%";
+        barSb.style.width = "0%";
+      }
+    }
+
+    ["a", "b"].forEach(function (id) {
+      var beitragInput = document.querySelector(".rechner-beitrag.rechner-" + id);
+      var sbInput = document.querySelector(".rechner-sb.rechner-" + id);
+      if (beitragInput) beitragInput.addEventListener("input", function () { updateTarif(id); });
+      if (sbInput) sbInput.addEventListener("input", function () { updateTarif(id); });
+    });
+
+    var beispielBtn = document.getElementById("rechner-beispiel");
+    if (beispielBtn) {
+      beispielBtn.addEventListener("click", function () {
+        var values = { a: { beitrag: 420, sb: 900 }, b: { beitrag: 480, sb: 300 } };
+        ["a", "b"].forEach(function (id) {
+          var beitragInput = document.querySelector(".rechner-beitrag.rechner-" + id);
+          var sbInput = document.querySelector(".rechner-sb.rechner-" + id);
+          if (beitragInput) beitragInput.value = values[id].beitrag;
+          if (sbInput) sbInput.value = values[id].sb;
+          updateTarif(id);
+        });
+        beispielBtn.textContent = "Erfundenes Beispiel geladen";
+        beispielBtn.disabled = true;
+      });
+    }
+  })();
+</script>

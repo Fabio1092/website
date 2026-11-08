@@ -1,0 +1,92 @@
+---
+const beforePoints = ["Unzählige Tarifdetails", "Unklare Leistungsunterschiede", "Offene Gesundheitsfragen"];
+const afterPoints = ["Tarife verständlich eingeordnet", "Gesundheitsfragen vorbereitet", "Unterschiede nachvollziehbar"];
+---
+
+<section id="vorher-nachher" class="scroll-mt-20 bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div data-reveal class="mx-auto max-w-2xl text-center">
+      <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Aus Tarifchaos wird eine klare Entscheidung.</h2>
+    </div>
+
+    <div class="mx-auto mt-14 grid items-center gap-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-10">
+      <!-- VORHER -->
+      <div data-reveal>
+        <p class="text-center text-sm font-semibold uppercase tracking-wide text-ink-700/50 lg:text-left">Allein den Überblick behalten</p>
+
+        <div class="relative mx-auto mt-5 h-56 w-full max-w-sm" aria-hidden="true">
+          <div class="absolute inset-x-6 top-8 h-36 -rotate-6 rounded-xl border border-dashed border-ink-700/20 bg-ink-700/[0.03] shadow-sm"></div>
+          <div class="absolute inset-x-4 top-4 h-36 rotate-3 rounded-xl border border-dashed border-ink-700/20 bg-ink-700/[0.03] shadow-sm"></div>
+          <div class="absolute inset-x-8 top-6 h-36 -rotate-1 rounded-xl border border-black/10 bg-white p-4 shadow-soft">
+            <div class="h-2 w-2/3 rounded-full bg-ink-700/15"></div>
+            <div class="mt-2.5 h-2 w-full rounded-full bg-ink-700/10"></div>
+            <div class="mt-2 h-2 w-5/6 rounded-full bg-ink-700/10"></div>
+            <div class="mt-2 h-2 w-1/2 rounded-full bg-ink-700/10"></div>
+            <span class="mt-4 flex h-6 w-6 items-center justify-center rounded-full bg-ink-700/10 text-xs font-bold text-ink-700/50">?</span>
+          </div>
+        </div>
+
+        <ul class="mx-auto mt-6 max-w-xs space-y-2.5">
+          {
+            beforePoints.map((item) => (
+              <li class="flex items-center justify-center gap-2.5 text-sm text-ink-700/75 lg:justify-start">
+                <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-ink-700/30" aria-hidden="true" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- ARROW -->
+      <div class="flex items-center justify-center py-2 lg:py-0" aria-hidden="true">
+        <span class="flex h-11 w-11 shrink-0 rotate-90 items-center justify-center rounded-full bg-brand-500 text-white shadow-lift lg:rotate-0">
+          <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5">
+            <path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+      </div>
+
+      <!-- NACHHER -->
+      <div data-reveal>
+        <p class="text-center text-sm font-semibold uppercase tracking-wide text-brand-600 lg:text-left">Mit strukturierter PKV-Beratung</p>
+
+        <div class="mx-auto mt-5 w-full max-w-sm rounded-2xl border border-brand-100 bg-brand-50/40 p-4 shadow-soft" aria-hidden="true">
+          <div class="space-y-2.5">
+            {
+              afterPoints.map((_item) => (
+                <div class="flex items-center gap-3 rounded-xl bg-white px-3.5 py-3 shadow-sm">
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white">
+                    <svg viewBox="0 0 20 20" fill="none" class="h-3.5 w-3.5">
+                      <path d="M4 10.5 8 14l8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="h-2 flex-1 rounded-full bg-ink-700/10"></span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <ul class="mx-auto mt-6 max-w-xs space-y-2.5">
+          {
+            afterPoints.map((item) => (
+              <li class="flex items-center justify-center gap-2.5 text-sm font-medium text-ink-950 lg:justify-start">
+                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none" class="h-2.5 w-2.5">
+                    <path d="M4 10.5 8 14l8-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <p class="mx-auto mt-10 max-w-lg text-center text-xs leading-relaxed text-ink-700/50">
+      Veranschaulicht den Ablauf – keine Darstellung echter Kundenergebnisse.
+    </p>
+  </div>
+</section>

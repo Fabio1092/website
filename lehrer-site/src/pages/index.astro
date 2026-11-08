@@ -2,12 +2,10 @@
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
 import TrustBar from "@/components/TrustBar.astro";
-import PainSection from "@/components/PainSection.astro";
-import BenefitsSection from "@/components/BenefitsSection.astro";
 import StatusSelector from "@/components/StatusSelector.astro";
-import BeihilfeSection from "@/components/BeihilfeSection.astro";
-import TarifSection from "@/components/TarifSection.astro";
-import HealthSection from "@/components/HealthSection.astro";
+import BeforeAfterSection from "@/components/BeforeAfterSection.astro";
+import RechnerSection from "@/components/RechnerSection.astro";
+import BenefitsSection from "@/components/BenefitsSection.astro";
 import ProcessSection from "@/components/ProcessSection.astro";
 import AdvisorSection from "@/components/AdvisorSection.astro";
 import FaqSection from "@/components/FaqSection.astro";
@@ -21,7 +19,7 @@ const canonicalUrl = new URL("/", Astro.site).toString();
 const webPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Die passende PKV für deinen Start ins Lehramt. Ohne Tarifdschungel. Ohne teure Fehlentscheidungen.",
+  name: "Die passende PKV fürs Lehramt. Weniger Recherche. Mehr Klarheit.",
   description: pageDescription,
   inLanguage: "de-DE",
   url: canonicalUrl,
@@ -38,12 +36,10 @@ const breadcrumbSchema = {
 <Layout title={pageTitle} description={pageDescription} fullTitle>
   <Hero />
   <TrustBar />
-  <PainSection />
-  <BenefitsSection />
   <StatusSelector />
-  <BeihilfeSection />
-  <TarifSection />
-  <HealthSection />
+  <BeforeAfterSection />
+  <RechnerSection />
+  <BenefitsSection />
   <ProcessSection />
   <AdvisorSection />
   <FaqSection />

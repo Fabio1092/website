@@ -1,4 +1,7 @@
 ---
+import BookingButton from "@/components/BookingButton.astro";
+
+const facts = ["Fachwirt für Versicherungen und Finanzen", "Mehr als zehn Jahre Berufserfahrung", "Unabhängiger Versicherungsmakler", "Persönlich in Kassel, digital deutschlandweit"];
 ---
 
 <section id="ansprechpartner" class="scroll-mt-20 bg-white py-16 sm:py-24">
@@ -26,22 +29,24 @@
 
         <h2 class="mt-5 font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Dein Ansprechpartner: Fabio Rumpf</h2>
 
-        <div class="mx-auto mt-6 max-w-xl space-y-3.5 text-base leading-relaxed text-ink-700/80 lg:mx-0">
-          <p>
-            Ich bin Fabio Rumpf, unabhängiger Versicherungsmakler aus Kassel und spezialisiert auf private
-            Krankenversicherung und Berufsunfähigkeitsversicherung.
-          </p>
-          <p>Als Fachwirt für Versicherungen und Finanzen bringe ich mehr als zehn Jahre Berufserfahrung mit.</p>
-          <p>Für mich beginnt eine gute PKV-Beratung nicht mit einem Tarifvergleich, sondern mit deiner Situation.</p>
-          <p>
-            Mir ist wichtig, dass du die Zusammenhänge verstehst, deine Gesundheitsfragen sorgfältig vorbereitet
-            werden und du ohne unnötigen Verkaufsdruck entscheiden kannst.
-          </p>
-          <p>Und wenn später Fragen entstehen oder sich dein Leben verändert, hast du weiterhin einen persönlichen Ansprechpartner.</p>
-        </div>
+        <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ink-700/80 lg:mx-0">
+          Ich bin unabhängiger Versicherungsmakler aus Kassel und auf PKV und BU spezialisiert. Ich helfe dir, die
+          entscheidenden Unterschiede zu verstehen und deine PKV-Entscheidung sorgfältig vorzubereiten.
+        </p>
 
-        <div class="mx-auto mt-7 border-t border-black/[0.06] pt-6 lg:mx-0">
-          <p class="text-sm text-ink-700/60">Persönlich in Kassel und Nordhessen. Digital in ganz Deutschland.</p>
+        <ul class="mx-auto mt-6 grid max-w-xl grid-cols-1 gap-2.5 text-left sm:grid-cols-2 lg:mx-0">
+          {
+            facts.map((fact) => (
+              <li class="flex items-start gap-2.5 text-sm text-ink-700/80">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true" />
+                {fact}
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mx-auto mt-8 lg:mx-0">
+          <BookingButton location="advisor" variant="compact" />
         </div>
       </div>
     </div>

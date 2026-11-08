@@ -4,56 +4,76 @@ import BookingButton from "@/components/BookingButton.astro";
 const statuses = [
   {
     key: "studium",
-    label: "Noch im Studium",
-    text: "Du möchtest frühzeitig verstehen, welche Krankenversicherungsfragen mit Referendariat und Berufseinstieg auf dich zukommen. Wir klären, welche Vorbereitung jetzt sinnvoll ist.",
+    label: "Studium",
+    headline: "Du studierst Lehramt?",
+    text: "Bereite dich frühzeitig auf Referendariat und Berufseinstieg vor. Wir klären, welche Versicherungsfragen jetzt relevant sind.",
+    icon: "cap",
   },
   {
     key: "referendariat",
-    label: "Im Referendariat",
-    text: "Du möchtest wissen, wie dein aktuelles Dienstverhältnis, mögliche Beihilfeansprüche und passende PKV-Tarife zusammenspielen. Wir schauen nicht nur auf den heutigen Anwärterbeitrag.",
+    label: "Referendariat",
+    headline: "Du startest ins Referendariat?",
+    text: "Wir ordnen dein Dienstverhältnis, mögliche Beihilfeansprüche und passende PKV-Tarife ein.",
+    icon: "doc",
   },
   {
     key: "verbeamtung",
-    label: "Deine Verbeamtung steht an",
-    text: "Du möchtest deinen Versicherungsschutz passend zu deiner neuen beruflichen Situation gestalten. Wir prüfen die relevanten Voraussetzungen, Leistungen und möglichen Fristen.",
+    label: "Verbeamtung",
+    headline: "Deine Verbeamtung steht an?",
+    text: "Wir prüfen, welcher Versicherungsschutz zu deinem neuen Status und deinen Anforderungen passt.",
+    icon: "shield",
   },
   {
     key: "angestellt",
-    label: "Du bist als Lehrkraft angestellt",
-    text: "Für angestellte Lehrkräfte gelten andere Voraussetzungen als für Beamte. Deshalb klären wir zuerst, ob die PKV für dich überhaupt infrage kommt.",
+    label: "Angestellte Lehrkraft",
+    headline: "Du bist angestellt?",
+    text: "Für angestellte Lehrkräfte gelten andere Voraussetzungen. Wir klären zuerst, ob die PKV überhaupt infrage kommt.",
+    icon: "case",
   },
 ];
+
+const icons: Record<string, string> = {
+  cap: `<path d="M3 9.5 12 5l9 4.5-9 4.5-9-4.5Z" stroke-linejoin="round"/><path d="M7 11.5V16c0 1.1 2.24 2 5 2s5-.9 5-2v-4.5" /><path d="M20 9.5V15" stroke-linecap="round"/>`,
+  doc: `<path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" stroke-linejoin="round"/><path d="M14 3.5V8h4" stroke-linejoin="round"/><path d="M9 13h6M9 16.5h6" stroke-linecap="round"/>`,
+  shield: `<path d="M12 3.5 5 6v5.5C5 15.9 7.9 19.6 12 21c4.1-1.4 7-5.1 7-9.5V6l-7-2.5Z" stroke-linejoin="round"/><path d="m9 11.5 2 2 4-4.2" stroke-linecap="round" stroke-linejoin="round"/>`,
+  case: `<rect x="3.5" y="7.5" width="17" height="12" rx="1.5"/><path d="M8.5 7.5V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v1.5" /><path d="M3.5 12.5h17" />`,
+};
 ---
 
 <section id="status" class="scroll-mt-20 bg-brand-50/30 py-16 sm:py-24">
-  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
     <div data-reveal class="text-center">
       <h2 class="font-serif text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Wo stehst du gerade?</h2>
-      <p class="mx-auto mt-3 max-w-md text-sm text-ink-700/60">Eine Orientierung, keine automatische Versicherungsempfehlung.</p>
+      <p class="mx-auto mt-3 max-w-md text-base text-ink-700/70">
+        Wähle deine Situation – wir zeigen dir, worauf es jetzt bei deiner Krankenversicherung ankommt.
+      </p>
     </div>
 
-    <div data-reveal id="status-selector" class="mx-auto mt-8 max-w-xl rounded-3xl border border-black/5 bg-white p-6 shadow-soft sm:p-8">
-      <div class="flex flex-wrap justify-center gap-2.5" role="group" aria-label="Wähle deine aktuelle Situation">
+    <div data-reveal id="status-selector" class="mx-auto mt-10 max-w-3xl">
+      <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4" role="group" aria-label="Wähle deine aktuelle Situation">
         {
           statuses.map((s) => (
             <button
               type="button"
               data-status-btn={s.key}
               aria-pressed="false"
-              class="status-btn rounded-full border border-black/10 bg-white px-4 py-2.5 text-sm font-medium text-ink-700/80 transition-colors hover:border-brand-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 aria-pressed:border-brand-500 aria-pressed:bg-brand-500 aria-pressed:text-white"
+              class="status-btn group flex flex-col items-center gap-3 rounded-2xl border border-black/5 bg-white p-5 text-center shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lift focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 aria-pressed:border-brand-400 aria-pressed:bg-brand-50 aria-pressed:shadow-lift"
             >
-              {s.label}
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 transition-colors group-aria-pressed:bg-brand-500 group-aria-pressed:text-white">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-6 w-6" aria-hidden="true" set:html={icons[s.icon]} />
+              </span>
+              <span class="text-sm font-semibold text-ink-950">{s.label}</span>
             </button>
           ))
         }
       </div>
 
-      <div id="status-texts" class="mt-6 space-y-4">
+      <div id="status-texts" class="mt-6">
         {
           statuses.map((s) => (
-            <div data-status-text={s.key} class="rounded-2xl border border-black/5 bg-brand-50/20 p-5">
-              <p class="font-serif text-base font-semibold text-ink-950">{s.label}</p>
-              <p class="mt-2 text-sm leading-relaxed text-ink-700/80">{s.text}</p>
+            <div data-status-text={s.key} class="rounded-2xl border border-black/5 bg-white p-6 shadow-soft sm:p-8">
+              <p class="font-serif text-xl font-semibold text-ink-950">{s.headline}</p>
+              <p class="mt-2 text-base leading-relaxed text-ink-700/80">{s.text}</p>
             </div>
           ))
         }
@@ -61,7 +81,7 @@ const statuses = [
     </div>
 
     <div class="mx-auto mt-8 max-w-lg text-center">
-      <BookingButton location="status" variant="compact" label="Meine Situation besprechen" />
+      <BookingButton location="status" variant="compact" label="Meine Situation persönlich besprechen" />
     </div>
   </div>
 </section>
@@ -73,7 +93,6 @@ const statuses = [
     var buttons = root.querySelectorAll(".status-btn");
     var texts = root.querySelectorAll("[data-status-text]");
 
-    // Progressive enhancement: collapse to a single-select view only once JS runs.
     texts.forEach(function (t) {
       t.hidden = true;
     });
