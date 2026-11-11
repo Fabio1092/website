@@ -11,11 +11,11 @@ const questions = [
 ];
 ---
 
-<section id="pkv-bestandsvertrag" class="bg-brand-50/40 py-24">
+<section id="pkv-bestandsvertrag" class="bg-brand-50/40 py-16 sm:py-24">
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
-        Nicht jeder bestehende Vertrag muss gewechselt werden. Aber jeder sollte <span class="text-brand-600">verstanden werden</span>.
+        Nicht jeder bestehende Vertrag muss gewechselt werden. Aber jeder sollte verstanden werden.
       </h2>
       <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
         Ein Wechsel ist nicht automatisch die beste Lösung. Häufig ist es sinnvoller, zunächst den
@@ -23,7 +23,7 @@ const questions = [
       </p>
     </div>
 
-    <div class="shadow-soft mt-14 grid overflow-hidden rounded-3xl bg-white sm:grid-cols-2">
+    <div data-more="3" data-more-label="Alle Prüffragen anzeigen" class="shadow-soft mt-10 grid overflow-hidden rounded-3xl bg-white sm:mt-14 sm:grid-cols-2">
       {
         questions.map((question, index) => (
           <div

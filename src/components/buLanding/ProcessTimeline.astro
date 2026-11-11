@@ -51,7 +51,7 @@ const steps: Step[] = [
       </h2>
     </div>
 
-    <ol class="mt-14 space-y-10">
+    <ol class="mt-10 sm:mt-14 space-y-10">
       {
         steps.map((step, index) => (
           <li data-reveal style={`transition-delay: ${Math.min(index, 4) * 80}ms`} class="relative flex gap-6 sm:gap-8">
@@ -77,7 +77,7 @@ const steps: Step[] = [
       }
     </ol>
 
-    <div class="mt-14 text-center">
+    <div class="mt-10 sm:mt-14 text-center">
       <a
         href={siteConfig.calendlyBuUrl}
         target="_blank"

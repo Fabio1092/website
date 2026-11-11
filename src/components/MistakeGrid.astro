@@ -27,7 +27,7 @@ const titleMatch = hIdx >= 0 ? title.slice(hIdx, hIdx + titleHighlight!.length) 
 const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
 ---
 
-<section id={id} class="bg-white py-24">
+<section id={id} class="bg-white py-16 sm:py-24">
   <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl">
       <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
@@ -36,7 +36,7 @@ const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
       <p class="mt-4 text-lg leading-relaxed text-ink-700/80">{intro}</p>
     </div>
 
-    <div class="mt-16 divide-y divide-black/[0.06] border-t border-black/[0.06]">
+    <div data-more="2" data-more-label="Alle Fehler anzeigen" class="mt-10 divide-y divide-black/[0.06] border-t border-black/[0.06] sm:mt-16">
       {
         mistakes.map((mistake, index) => (
           <div data-reveal style={`transition-delay: ${index * 90}ms`} class="grid gap-6 py-10 sm:grid-cols-[auto_1fr] sm:gap-10">

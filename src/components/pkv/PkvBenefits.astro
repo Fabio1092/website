@@ -54,11 +54,11 @@ const benefits = [
 ];
 ---
 
-<section id="pkv-leistungen" class="bg-brand-50/40 py-24">
+<section id="pkv-leistungen" class="bg-brand-50/40 py-16 sm:py-24">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
-        Ein guter <span class="text-brand-600">PKV-Tarif</span> muss mehr können als Rechnungen erstatten.
+        Ein guter PKV-Tarif muss mehr können als Rechnungen erstatten.
       </h2>
       <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
         Die Unterschiede zwischen privaten Krankenversicherungen liegen oft im Detail. Genau diese
@@ -67,7 +67,7 @@ const benefits = [
       </p>
     </div>
 
-    <div class="shadow-soft mt-14 grid gap-px overflow-hidden rounded-3xl bg-black/[0.06] sm:grid-cols-2 lg:grid-cols-4">
+    <div data-more="4" data-more-label="Alle Leistungsbereiche anzeigen" class="shadow-soft mt-10 grid gap-px overflow-hidden rounded-3xl bg-black/[0.06] sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
       {
         benefits.map((benefit, index) => (
           <div data-reveal style={`transition-delay: ${index * 60}ms`} class="bg-white p-7">

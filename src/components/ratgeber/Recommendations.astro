@@ -32,7 +32,7 @@ const ctaLabels: Record<string, string> = {
 
     <div class="mt-12 grid gap-5 sm:grid-cols-3">
       {
-        recommendedGuides.map((guide, index) => (
+        recommendedGuides.filter((guide) => guide.status === "published").map((guide, index) => (
           <GuideCard
             title={guide.title}
             teaser={guide.recommendedTeaser ?? guide.teaser}

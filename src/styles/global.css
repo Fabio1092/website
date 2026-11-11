@@ -13,7 +13,7 @@
   --brand-300: #5fdfe2;
   --brand-400: #2bc9cd;
   --brand-500: #01a6aa;
-  --brand-600: #018589;
+  --brand-600: #017b7f;
   --brand-700: #016467;
   --brand-800: #014345;
   --brand-900: #012324;
@@ -190,6 +190,40 @@
   html {
     scrollbar-color: var(--ink-700) var(--background);
     scrollbar-width: thin;
+  }
+
+  /* Touch layouts: standalone text links and footer links get a finger-sized hit area. */
+  @media (max-width: 1023px) {
+    main a.inline-flex,
+    footer li > a,
+    footer li > button {
+      min-height: 2.75rem;
+    }
+    footer li > a,
+    footer li > button,
+    nav[aria-label="Breadcrumb"] a {
+      display: inline-flex;
+      align-items: center;
+    }
+    nav[aria-label="Breadcrumb"] a {
+      min-height: 2.75rem;
+    }
+  }
+
+  /* "Show all" button that Layout.astro adds after [data-more] lists on phones */
+  .more-toggle {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem auto 0;
+    padding: 0 1.25rem;
+    border: 1px solid rgb(10 10 10 / 0.15);
+    border-radius: 999px;
+    background: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ink-950);
   }
 
   [data-tabular] {

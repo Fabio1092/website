@@ -1,4 +1,6 @@
 ---
+import { bundleParagraphs } from "@/lib/articleBlocks";
+import ArticleCta from "@/components/ArticleCta.astro";
 import RichParagraph from "@/components/RichParagraph.astro";
 
 type Part = string | { b: string } | { a: string; href: string };
@@ -627,12 +629,14 @@ const sections: Section[] = [
     ],
   },
 ];
+
+const ctaAfterIndex = Math.floor((sections.length - 1) / 2);
 ---
 
-<div class="mx-auto max-w-3xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+<div class="mx-auto max-w-3xl space-y-14 px-4 pb-14 pt-2 sm:space-y-20 sm:px-6 sm:py-16 lg:px-8">
   <div data-reveal class="space-y-4">
     {
-      introBlocks.map((block) => {
+      bundleParagraphs(introBlocks).map((block) => {
         if (block.type === "p") return <RichParagraph parts={block.parts} />;
         if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
         return null;
@@ -641,11 +645,12 @@ const sections: Section[] = [
   </div>
 
   {
-    sections.map((section) => (
+    sections.map((section, sectionIndex) => (
+      <>
       <section id={section.id} class="scroll-mt-24">
         <h2 class="font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
         <div data-reveal class="mt-6 space-y-4">
-          {section.blocks.map((block) => {
+          {bundleParagraphs(section.blocks).map((block) => {
             if (block.type === "p") return <RichParagraph parts={block.parts} />;
             if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
             if (block.type === "quote")
@@ -693,6 +698,8 @@ const sections: Section[] = [
           })}
         </div>
       </section>
+      {sectionIndex === ctaAfterIndex && <ArticleCta topic="pkv" />}
+      </>
     ))
   }
 </div>

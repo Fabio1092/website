@@ -23,7 +23,7 @@ const { title, intro, links, hubHref, hubLabel } = Astro.props;
         links.map((link) => (
           <a
             href={link.href}
-            class="rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-medium text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
+            class="inline-flex min-h-11 items-center rounded-full border border-black/10 bg-white px-4 text-sm font-medium text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
           >
             {link.label}
           </a>

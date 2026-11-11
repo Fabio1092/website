@@ -1,4 +1,5 @@
 ---
+import ArticleCta from "@/components/ArticleCta.astro";
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/wissenPkvTarifwechsel/Hero.astro";
 import TableOfContents from "@/components/wissenPkvTarifwechsel/TableOfContents.astro";
@@ -45,6 +46,7 @@ const breadcrumbSchema = {
   <TableOfContents />
   <Article />
   <Fazit />
+  <ArticleCta topic="pkv" variant="section" />
 </Layout>
 
 <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />

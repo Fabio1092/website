@@ -21,9 +21,9 @@ const { title, teaser, href, ctaLabel, category, variant = "featured", comingSoo
       <div class="flex items-start justify-between gap-3">
         {category && <span class="min-w-0 text-xs font-semibold uppercase tracking-wide text-brand-600">{category}</span>}
         {comingSoon && (
-          <span class="inline-flex shrink-0 items-center gap-1 rounded-full border border-gold-200 bg-gold-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-gold-700">
+          <span class="inline-flex shrink-0 items-center gap-1 rounded-full border border-gold-200 bg-gold-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-gold-700">
             <Clock className="h-3 w-3" aria-hidden="true" />
-            Soon
+            Bald
           </span>
         )}
       </div>
@@ -42,9 +42,9 @@ const { title, teaser, href, ctaLabel, category, variant = "featured", comingSoo
       <div class="flex items-start justify-between gap-3">
         <h4 class="min-w-0 hyphens-auto break-words font-serif text-base font-semibold text-ink-950">{title}</h4>
         {comingSoon && (
-          <span class="inline-flex shrink-0 items-center gap-1 rounded-full border border-gold-200 bg-gold-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gold-700">
+          <span class="inline-flex shrink-0 items-center gap-1 rounded-full border border-gold-200 bg-gold-50 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-gold-700">
             <Clock className="h-2.5 w-2.5" aria-hidden="true" />
-            Soon
+            Bald
           </span>
         )}
       </div>

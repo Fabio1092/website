@@ -44,41 +44,47 @@ const audiences = [
 ];
 ---
 
-<section class="bg-white py-24">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl">
       <h2 class="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
-        BU- und PKV-Beratung für <span class="text-brand-600">unterschiedliche Lebenssituationen</span>
+        BU- und PKV-Beratung für deine Lebenssituation
       </h2>
       <p class="mt-4 text-lg leading-relaxed text-ink-700/80">
-        Je nach Beruf und Lebensphase unterscheiden sich Anforderungen an BU und PKV deutlich. Hier
-        findest du die passenden Informationen für deine Situation.
+        Je nach Beruf und Lebensphase unterscheiden sich die Anforderungen deutlich. Wähle, was
+        zu dir passt.
       </p>
     </div>
 
-    <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <ul class="mt-10 divide-y divide-ink-950/10 border-y border-ink-950/10">
       {
-        audiences.map((audience) => (
-          <div data-reveal class="flex flex-col rounded-2xl border border-black/5 bg-brand-50/30 p-6">
-            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-brand-600 shadow-sm">
-              <audience.icon className="h-5 w-5" aria-hidden="true" />
+        audiences.map((audience, index) => (
+          <li
+            data-reveal
+            style={`transition-delay: ${index * 70}ms`}
+            class="grid items-center gap-x-8 gap-y-4 py-6 md:grid-cols-[minmax(0,1.5fr)_auto]"
+          >
+            <div class="flex min-w-0 items-start gap-4">
+              <audience.icon className="mt-1 h-6 w-6 shrink-0 text-brand-600" aria-hidden="true" />
+              <div class="min-w-0">
+                <h3 class="font-serif text-lg font-semibold text-ink-950">{audience.title}</h3>
+                <p class="mt-1 text-sm leading-relaxed text-ink-700/75">{audience.description}</p>
+              </div>
             </div>
-            <h3 class="mt-5 font-serif text-lg font-semibold text-ink-950">{audience.title}</h3>
-            <p class="mt-2.5 text-sm leading-relaxed text-ink-700/75">{audience.description}</p>
-            <div class="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+            <div class="flex flex-wrap gap-2.5 pl-10 md:justify-end md:pl-0">
               {audience.links.map((link) => (
                 <a
                   href={link.href}
                   data-cta={link.ctaId}
-                  class="text-sm font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800"
+                  class="inline-flex min-h-11 items-center rounded-full border border-ink-950/15 px-4 text-sm font-semibold text-ink-950 transition-colors hover:border-brand-600 hover:bg-brand-50/60 hover:text-brand-700"
                 >
                   {link.label}
                 </a>
               ))}
             </div>
-          </div>
+          </li>
         ))
       }
-    </div>
+    </ul>
   </div>
 </section>

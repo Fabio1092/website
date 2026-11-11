@@ -36,7 +36,7 @@ const titleMatch = hIdx >= 0 ? title.slice(hIdx, hIdx + titleHighlight!.length) 
 const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
 ---
 
-<section id={id} class="scroll-mt-24 bg-brand-50/40 py-24">
+<section id={id} class="scroll-mt-24 bg-brand-50/40 py-16 sm:py-24">
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
@@ -45,7 +45,7 @@ const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
       <p class="mt-4 text-lg leading-relaxed text-ink-700/80">{intro}</p>
     </div>
 
-    <ol class="mt-16 space-y-10">
+    <ol class="mt-10 sm:mt-16 space-y-10">
       {
         steps.map((step, index) => (
           <li data-reveal style={`transition-delay: ${index * 100}ms`} class="relative flex gap-6 sm:gap-8">
@@ -67,7 +67,7 @@ const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
 
     {
       closing ? (
-        <div class="mt-14 rounded-3xl bg-ink-950 px-8 py-10 text-center text-white sm:px-12">
+        <div class="mt-10 sm:mt-14 rounded-3xl bg-ink-950 px-8 py-10 text-center text-white sm:px-12">
           <h3 class="font-serif text-2xl font-semibold">{closing.title}</h3>
           <p class="mx-auto mt-2 max-w-xl text-sm text-white/60">{closing.text}</p>
           <a
@@ -81,7 +81,7 @@ const titleAfter = hIdx >= 0 ? title.slice(hIdx + titleHighlight!.length) : "";
           </a>
         </div>
       ) : (
-        <div class="mt-14 text-center">
+        <div class="mt-10 sm:mt-14 text-center">
           <a
             href={siteConfig.calendlyUrl}
             target="_blank"

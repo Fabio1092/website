@@ -1,0 +1,76 @@
+---
+import { siteConfig } from "@/lib/site";
+
+interface Props {
+  topic: "pkv" | "bu";
+  /** "inline" sits inside the article column, "section" closes the page. */
+  variant?: "inline" | "section";
+}
+
+const { topic, variant = "inline" } = Astro.props;
+
+const copy = {
+  pkv: {
+    inline: {
+      title: "Was bedeutet das für deine Situation?",
+      text: "Im Erstgespräch ordnen wir in 15 Minuten ein, ob und wie die PKV zu dir passt.",
+    },
+    section: {
+      title: "Lass uns deine PKV-Frage persönlich klären.",
+      text: "Artikel erklären das Prinzip. Was für dich gilt, hängt von Beruf, Gesundheit und Lebensplanung ab – das besprechen wir im Erstgespräch.",
+    },
+  },
+  bu: {
+    inline: {
+      title: "Was bedeutet das für deine Absicherung?",
+      text: "Im Erstgespräch ordnen wir in 15 Minuten ein, worauf es bei deiner BU ankommt.",
+    },
+    section: {
+      title: "Lass uns deine BU-Frage persönlich klären.",
+      text: "Artikel erklären das Prinzip. Was für dich gilt, hängt von Beruf, Gesundheit und Bedingungen ab – das besprechen wir im Erstgespräch.",
+    },
+  },
+}[topic][variant];
+---
+
+{
+  variant === "inline" ? (
+    <aside class="flex flex-col gap-5 rounded-2xl border border-gold-200 bg-gold-50/60 p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-7">
+      <div class="min-w-0">
+        <p class="font-serif text-lg font-semibold text-ink-950">{copy.title}</p>
+        <p class="mt-1.5 text-base leading-relaxed text-ink-700/80">{copy.text}</p>
+      </div>
+      <div class="shrink-0 sm:text-center">
+        <a
+          href={siteConfig.calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta={`article_${topic}_inline_booking`}
+          class="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-gold-500 px-6 text-sm font-semibold text-ink-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+        >
+          Erstgespräch buchen
+        </a>
+        <p class="mt-2 text-center text-xs text-ink-700/60">kostenlos &amp; unverbindlich</p>
+      </div>
+    </aside>
+  ) : (
+    <section class="bg-white py-14 sm:py-20">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl bg-ink-950 px-6 py-10 text-center text-white sm:px-12 sm:py-12">
+          <h2 class="font-serif text-2xl font-semibold tracking-tight sm:text-3xl">{copy.title}</h2>
+          <p class="mx-auto mt-3 max-w-xl text-base leading-relaxed text-white/70">{copy.text}</p>
+          <a
+            href={siteConfig.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cta={`article_${topic}_end_booking`}
+            class="mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-gold-500 px-7 text-sm font-semibold text-ink-950 shadow-lg shadow-gold-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:w-auto"
+          >
+            Kostenloses Erstgespräch buchen
+          </a>
+          <p class="mt-3 text-xs text-white/50">15 Minuten · kostenlos &amp; unverbindlich</p>
+        </div>
+      </div>
+    </section>
+  )
+}

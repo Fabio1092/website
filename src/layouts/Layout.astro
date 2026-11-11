@@ -71,6 +71,29 @@ const ogImageUrl = new URL("/images/og-image.jpg", Astro.site);
         { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
       );
       document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
+
+      // Phones: long lists marked with data-more="N" show their first N items, the rest on tap.
+      if (window.matchMedia("(max-width: 639px)").matches) {
+        document.querySelectorAll<HTMLElement>("[data-more]").forEach((list) => {
+          const extra = (Array.from(list.children) as HTMLElement[]).slice(Number(list.dataset.more));
+          if (extra.length === 0) return;
+          extra.forEach((item) => (item.hidden = true));
+
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "more-toggle";
+          button.textContent = `${list.dataset.moreLabel ?? "Alle anzeigen"} (+${extra.length})`;
+          button.addEventListener("click", () => {
+            extra.forEach((item) => {
+              item.hidden = false;
+              item.classList.add("is-visible");
+              item.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-visible"));
+            });
+            button.remove();
+          });
+          list.after(button);
+        });
+      }
     </script>
   </body>
 </html>

@@ -1,21 +1,16 @@
 ---
 import { Star } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 
 const items = ["Versicherungsmakler aus Kassel", "Ungebunden beraten", "Persönlicher Ansprechpartner", "Vor Ort oder digital"];
 
-// A true live-updating compact widget here would need its own dedicated
-// Trustindex widget ID from the dashboard (the one embedded lower down in
-// Testimonials.astro is configured as the full review carousel, not a
-// compact badge). Until that widget ID exists, this reuses the same real,
-// already-published summary figure shown on the homepage rather than
-// inventing a number.
 ---
 
 <div class="border-y border-black/5 bg-brand-50/30 py-6">
   <div class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 sm:px-6 lg:px-8">
     <div class="flex items-center gap-2 text-gold-500">
       {Array.from({ length: 5 }).map(() => <Star className="h-4 w-4 fill-current" aria-hidden="true" />)}
-      <span class="ml-1 text-sm font-medium text-ink-700">5.0 von 5 · basierend auf 36 Bewertungen</span>
+      <span class="ml-1 text-sm font-medium text-ink-700">{siteConfig.reviewRating.toFixed(1)} von 5 · basierend auf {siteConfig.reviewCount} Bewertungen</span>
     </div>
 
     <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-10 sm:gap-y-3">

@@ -3,30 +3,29 @@
 
 <div
   id="cookie-consent"
-  class="fixed inset-x-0 bottom-0 z-[60] hidden border-t border-white/10 bg-ink-950 px-4 py-5 text-white shadow-2xl sm:px-6 lg:px-8"
+  class="fixed inset-x-0 bottom-0 z-[60] hidden border-t border-white/10 bg-ink-950 px-4 py-3 text-white shadow-2xl sm:px-6 sm:py-4 lg:px-8"
   role="dialog"
   aria-live="polite"
   aria-label="Cookie-Einwilligung"
 >
-  <div class="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-    <p class="text-sm leading-relaxed text-white/80">
-      Wir nutzen Cookies, um die Nutzung unserer Website mit Google Analytics zu analysieren und
-      den Erfolg unserer Google-Ads-Anzeigen zu messen. Du kannst frei entscheiden, ob du dem
-      zustimmst. Mehr dazu in unserer
+  <div class="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+    <p class="text-[13px] leading-snug text-white/80 sm:text-sm sm:leading-relaxed">
+      Wir nutzen Cookies für Google Analytics und zur Erfolgsmessung unserer Google-Ads-Anzeigen.
+      Du entscheidest frei, ob du zustimmst. Mehr dazu in der
       <a href="/datenschutz/" class="underline underline-offset-2 hover:text-white">Datenschutzerklärung</a>.
     </p>
-    <div class="flex shrink-0 gap-3">
+    <div class="flex shrink-0 gap-2 sm:gap-3">
       <button
         id="cookie-reject"
         type="button"
-        class="rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/5"
+        class="min-h-11 flex-1 rounded-full border border-white/25 px-5 text-sm font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/5 sm:flex-none"
       >
         Ablehnen
       </button>
       <button
         id="cookie-accept"
         type="button"
-        class="rounded-full bg-gold-500 px-5 py-2.5 text-sm font-semibold text-ink-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+        class="min-h-11 flex-1 rounded-full bg-gold-500 px-5 text-sm font-semibold text-ink-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-gold-400 sm:flex-none"
       >
         Akzeptieren
       </button>

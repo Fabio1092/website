@@ -16,9 +16,9 @@ import { siteConfig } from "@/lib/site";
   </div>
 
   <div
-    class="relative mx-auto grid max-w-6xl gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:py-28 lg:px-8"
+    class="relative mx-auto grid max-w-6xl gap-12 px-4 py-12 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:py-20 lg:px-8"
   >
-    <div class="order-2 min-w-0 text-center lg:order-1 lg:text-left">
+    <div class="order-1 min-w-0 text-center max-lg:flex max-lg:flex-col max-lg:items-center max-lg:[&>*:nth-child(n+4)]:order-2 max-lg:[&>p.text-xs]:order-1 lg:text-left">
       <span
         class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300"
       >
@@ -47,7 +47,7 @@ import { siteConfig } from "@/lib/site";
         </p>
       </div>
 
-      <div class="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+      <div class="mt-9 flex flex-col items-center justify-center gap-4 max-lg:!order-1 max-lg:w-full sm:flex-row lg:justify-start">
         <a
           href={siteConfig.calendlyUrl}
           target="_blank"
@@ -63,7 +63,7 @@ import { siteConfig } from "@/lib/site";
       </p>
     </div>
 
-    <div class="order-1 mx-auto w-full max-w-xs sm:max-w-sm lg:order-2 lg:mx-0 lg:max-w-none">
+    <div class="order-2 mx-auto w-full max-w-[15rem] sm:max-w-sm lg:mx-0 lg:max-w-none">
       <div class="relative">
         <div
           class="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/25 via-transparent to-gold-500/15 blur-xl"
@@ -79,7 +79,7 @@ import { siteConfig } from "@/lib/site";
           fetchpriority="high"
         />
         <div
-          class="absolute -bottom-6 left-1/2 flex w-[calc(100%-2.5rem)] -translate-x-1/2 items-start gap-3 rounded-2xl border border-white/10 bg-ink-900/90 px-5 py-4 shadow-xl shadow-black/30 backdrop-blur"
+          class="absolute -bottom-6 left-1/2 hidden w-[calc(100%-2.5rem)] -translate-x-1/2 items-start sm:flex gap-3 rounded-2xl border border-white/10 bg-ink-900/90 px-5 py-4 shadow-xl shadow-black/30 backdrop-blur"
         >
           <Compass className="mt-0.5 h-5 w-5 shrink-0 text-brand-400" aria-hidden="true" />
           <div>

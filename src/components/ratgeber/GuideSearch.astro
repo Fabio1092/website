@@ -60,7 +60,7 @@ const searchIndex = guides.map((g) => ({
         .map((item) => {
           const inner = `<span class="min-w-0 truncate font-medium text-ink-950">${item.title}</span><span class="flex shrink-0 items-center gap-2"><span class="text-xs text-ink-700/50">${item.category}</span>${
             item.comingSoon
-              ? '<span class="inline-flex items-center rounded-full border border-gold-200 bg-gold-50 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-gold-700">Soon</span>'
+              ? '<span class="inline-flex items-center rounded-full border border-gold-200 bg-gold-50 px-1.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-gold-700">Bald</span>'
               : ""
           }</span>`;
           return item.comingSoon

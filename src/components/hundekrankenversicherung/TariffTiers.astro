@@ -46,7 +46,7 @@ import { dogHealthTariffTiers } from "@/lib/dogInsurance";
         dogHealthTariffTiers.map((tier) => (
           <div class={`relative rounded-2xl border p-6 shadow-soft ${tier.isFavorite ? "border-brand-300 bg-brand-50/30" : "border-black/5 bg-white"}`}>
             {tier.isFavorite && (
-              <span class="absolute -top-3 right-5 rounded-full bg-brand-600 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-white">
+              <span class="absolute -top-3 right-5 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
                 Fabios Empfehlung
               </span>
             )}

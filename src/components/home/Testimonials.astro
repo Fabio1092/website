@@ -1,30 +1,59 @@
 ---
 import { Star } from "lucide-react";
 import { siteConfig } from "@/lib/site";
+
+const reviewsUrl = "https://www.trustindex.io/reviews/www.fr-makler.de";
 ---
 
-<section class="bg-white py-24">
+<section class="bg-white py-16 sm:py-24">
   <div class="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-    <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
-      Das sagen Kunden über <span class="text-brand-600">meine Beratung</span>
-    </h2>
+    <h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">Das sagen Kunden über meine Beratung</h2>
     <div class="mt-4 flex items-center justify-center gap-2 text-gold-500">
       {Array.from({ length: 5 }).map(() => <Star className="h-5 w-5 fill-current" aria-hidden="true" />)}
       <span class="ml-2 text-sm font-medium text-ink-700">{siteConfig.reviewRating.toFixed(1)} von 5 · basierend auf {siteConfig.reviewCount} Bewertungen</span>
     </div>
 
-    <div class="mt-12 rounded-2xl border border-black/5 bg-brand-50/40 p-4 sm:p-6">
+    <div data-reviews class="mt-10 rounded-2xl border border-black/5 bg-brand-50/40 p-4 sm:mt-12 sm:p-6">
+      {/* Shown until the external widget has rendered — and for good if it is blocked. */}
+      <div data-reviews-fallback class="px-2 py-6">
+        <p class="mx-auto max-w-md text-base leading-relaxed text-ink-700/80">
+          Die einzelnen Bewertungen werden von Trustindex geladen. Du kannst sie auch direkt dort nachlesen.
+        </p>
+        <a
+          href={reviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-ink-950/15 bg-white px-5 text-sm font-semibold text-ink-950 transition-colors hover:border-brand-600 hover:text-brand-700"
+        >
+          Alle {siteConfig.reviewCount} Bewertungen ansehen
+        </a>
+      </div>
       <!-- Trustindex widget: auto-mounts where this script tag is placed -->
       <script is:inline type="text/javascript" defer async src={siteConfig.trustindexEmbedSrc}></script>
-      <noscript>
-        <p class="p-6 text-sm text-ink-700/70">
-          Live-Bewertungen werden über
-          <a href="https://www.trustindex.io/reviews/www.fr-makler.de" class="underline" target="_blank" rel="noopener noreferrer">
-            Trustindex
-          </a>
-          angezeigt.
-        </p>
-      </noscript>
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-reviews]").forEach((box) => {
+    const fallback = box.querySelector<HTMLElement>("[data-reviews-fallback]");
+    if (!fallback) return;
+
+    const widgetRendered = () =>
+      Array.from(box.children).some(
+        (child) => child !== fallback && !["SCRIPT", "NOSCRIPT"].includes(child.tagName) && (child as HTMLElement).offsetHeight > 40,
+      );
+
+    const hideWhenReady = () => {
+      if (!widgetRendered()) return false;
+      fallback.hidden = true;
+      return true;
+    };
+
+    if (hideWhenReady()) return;
+    const observer = new MutationObserver(() => {
+      if (hideWhenReady()) observer.disconnect();
+    });
+    observer.observe(box, { childList: true, subtree: true, attributes: true });
+  });
+</script>

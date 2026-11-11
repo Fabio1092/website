@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site";
   <div class="pointer-events-none absolute -top-40 right-[-10%] h-[32rem] w-[32rem] rounded-full bg-brand-500/20 blur-3xl" aria-hidden="true"></div>
   <div class="pointer-events-none absolute -bottom-32 left-[-10%] h-[26rem] w-[26rem] rounded-full bg-gold-500/10 blur-3xl" aria-hidden="true"></div>
 
-  <div class="relative mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-10 lg:py-28 lg:px-8">
+  <div class="relative mx-auto grid max-w-6xl gap-12 px-4 py-12 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-10 lg:py-20 lg:px-8">
     <div class="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
       <span class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-300">
         Gesundheitsfragen bei der privaten Krankenversicherung
@@ -65,7 +65,7 @@ import { siteConfig } from "@/lib/site";
             { top: "42%", left: "74%", label: "Fragebogen C", lines: [60, 85, 45] },
           ].map((card) => (
             <div class="absolute w-24 rounded-xl border border-white/10 bg-white/[0.06] p-3" style={`top: ${card.top}; left: ${card.left};`}>
-              <p class="text-[10px] font-semibold uppercase tracking-wide text-brand-300">{card.label}</p>
+              <p class="text-xs font-semibold uppercase tracking-wide text-brand-300">{card.label}</p>
               <div class="mt-2 space-y-1.5">
                 {card.lines.map((w) => (
                   <div class="h-1 rounded-full bg-white/15" style={`width: ${w}%;`} />

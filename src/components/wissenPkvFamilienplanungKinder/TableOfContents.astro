@@ -1,4 +1,6 @@
 ---
+import ArticleToc from "@/components/ArticleToc.astro";
+
 const entries = [
   { id: "wichtigstes-in-kuerze", label: "Das Wichtigste zur PKV mit Kindern in Kürze" },
   { id: "warum-familienplanung-wichtig", label: "Warum Familienplanung bei der PKV so wichtig ist" },
@@ -36,27 +38,4 @@ const entries = [
 ];
 ---
 
-<section class="bg-white py-14">
-  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-    <nav aria-label="Inhaltsverzeichnis" class="rounded-2xl border border-black/5 bg-brand-50/30 p-6 sm:p-8">
-      <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Inhalt dieses Artikels</p>
-      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
-        {
-          entries.map((entry, index) => (
-            <li>
-              <a
-                href={`#${entry.id}`}
-                class="group flex items-baseline gap-2.5 text-sm leading-relaxed text-ink-700/85 transition-colors duration-150 hover:text-brand-700"
-              >
-                <span class="tabular-nums text-xs font-semibold text-brand-400 group-hover:text-brand-600">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span class="underline decoration-transparent underline-offset-2 group-hover:decoration-brand-300">{entry.label}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </div>
-</section>
+<ArticleToc entries={entries} rail />

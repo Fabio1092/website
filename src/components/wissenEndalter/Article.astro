@@ -1,4 +1,6 @@
 ---
+import { bundleParagraphs } from "@/lib/articleBlocks";
+import ArticleCta from "@/components/ArticleCta.astro";
 import { CheckCircle2 } from "lucide-react";
 import RichParagraph from "@/components/RichParagraph.astro";
 
@@ -502,6 +504,8 @@ const sections: Section[] = [
     ],
   },
 ];
+
+const ctaAfterIndex = Math.floor((sections.length - 1) / 2);
 ---
 
 <div class="mx-auto max-w-3xl space-y-4 px-4 pt-16 sm:px-6 lg:px-8">
@@ -510,11 +514,12 @@ const sections: Section[] = [
 
 <div class="mx-auto max-w-3xl space-y-20 px-4 pt-12 pb-16 sm:px-6 lg:px-8">
   {
-    sections.map((section) => (
+    sections.map((section, sectionIndex) => (
+      <>
       <section id={section.id} class="scroll-mt-24">
         <h2 class="hyphens-auto break-words font-serif text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">{section.heading}</h2>
         <div data-reveal class="mt-6 space-y-4">
-          {section.blocks.map((block) => {
+          {bundleParagraphs(section.blocks).map((block) => {
             if (block.type === "p") return <RichParagraph parts={block.parts} />;
             if (block.type === "standalone") return <p class="text-base font-medium leading-relaxed text-ink-950">{block.text}</p>;
             if (block.type === "keyFacts")
@@ -592,6 +597,8 @@ const sections: Section[] = [
           })}
         </div>
       </section>
+      {sectionIndex === ctaAfterIndex && <ArticleCta topic="bu" />}
+      </>
     ))
   }
 </div>

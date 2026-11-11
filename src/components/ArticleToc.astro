@@ -1,0 +1,128 @@
+---
+interface Props {
+  entries: { id: string; label: string }[];
+  label?: string;
+  tone?: "mint" | "white";
+  /** Fixed side navigation on wide screens — only for pages whose content stays in a narrow column. */
+  rail?: boolean;
+}
+
+const { entries, label = "Inhalt dieses Artikels", tone = "mint", rail = false } = Astro.props;
+const white = tone === "white";
+---
+
+<section class:list={[white ? "bg-brand-50/30 py-8 sm:py-12" : "bg-white py-10 sm:py-14"]}>
+  <div class:list={["mx-auto px-4 sm:px-6 lg:px-8", white ? "max-w-2xl" : "max-w-3xl"]}>
+    <details
+      data-article-toc
+      open={!white}
+      class:list={["group rounded-2xl border border-black/5 p-5 sm:p-8", white ? "bg-white shadow-soft" : "bg-brand-50/30"]}
+    >
+      <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+        <span class="text-xs font-semibold uppercase tracking-wide text-brand-700">
+          {label} <span class="font-medium text-ink-700/60">· {entries.length} Abschnitte</span>
+        </span>
+        <svg
+          class="h-4 w-4 shrink-0 text-brand-700 transition-transform duration-200 group-open:rotate-180"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </summary>
+      <nav aria-label="Inhaltsverzeichnis">
+        <ul class="mt-3 grid grid-cols-1 gap-x-8 sm:mt-4 sm:grid-cols-2 sm:gap-y-1">
+          {
+            entries.map((entry, index) => (
+              <li>
+                <a
+                  href={`#${entry.id}`}
+                  class="group/link flex min-h-11 items-baseline gap-2.5 py-2.5 text-sm leading-snug text-ink-700/85 transition-colors duration-150 hover:text-brand-700 sm:min-h-0 sm:py-1.5 sm:leading-relaxed"
+                >
+                  <span class="text-xs font-semibold tabular-nums text-brand-700">{String(index + 1).padStart(2, "0")}</span>
+                  <span class="underline decoration-transparent underline-offset-2 group-hover/link:decoration-brand-300">{entry.label}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </details>
+    {/* Runs before first paint: the list starts collapsed on phones, open from tablet width. */}
+    <script is:inline>
+      (function () {
+        var toc = document.currentScript.previousElementSibling;
+        if (toc && window.matchMedia("(max-width: 639px)").matches) toc.removeAttribute("open");
+      })();
+    </script>
+  </div>
+</section>
+
+{
+  rail && (
+    <nav
+      data-toc-rail
+      aria-label="Inhaltsverzeichnis (mitlaufend)"
+      class="pointer-events-none fixed left-[max(1rem,calc(50%-41rem))] top-28 z-30 hidden max-h-[calc(100vh-9rem)] w-56 overflow-y-auto rounded-2xl border border-black/5 bg-white/95 p-4 opacity-0 shadow-soft backdrop-blur transition-opacity duration-200 data-[visible=true]:pointer-events-auto data-[visible=true]:opacity-100 min-[1340px]:block"
+    >
+      <p class="text-xs font-semibold uppercase tracking-wide text-ink-700/60">Inhalt</p>
+      <ul class="mt-2 space-y-0.5">
+        {entries.map((entry) => (
+          <li>
+            <a
+              href={`#${entry.id}`}
+              data-toc-target={entry.id}
+              class="block rounded-md border-l-2 border-transparent px-2.5 py-1.5 text-[13px] leading-snug text-ink-700/70 transition-colors hover:text-brand-700 data-[active=true]:border-brand-500 data-[active=true]:bg-brand-50/60 data-[active=true]:font-medium data-[active=true]:text-ink-950"
+            >
+              {entry.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<script>
+  const rail = document.querySelector<HTMLElement>("[data-toc-rail]");
+  const inline = document.querySelector<HTMLElement>("[data-article-toc]");
+  const footer = document.querySelector("footer");
+
+  if (rail && inline && footer) {
+    let pastInline = false;
+    let atFooter = false;
+    const update = () => {
+      rail.dataset.visible = String(pastInline && !atFooter);
+    };
+
+    new IntersectionObserver(([entry]) => {
+      pastInline = !entry.isIntersecting && entry.boundingClientRect.bottom < 0;
+      update();
+    }).observe(inline);
+
+    new IntersectionObserver(([entry]) => {
+      atFooter = entry.isIntersecting;
+      update();
+    }).observe(footer);
+
+    const links = Array.from(rail.querySelectorAll<HTMLAnchorElement>("[data-toc-target]"));
+    const sections = links
+      .map((link) => document.getElementById(link.dataset.tocTarget ?? ""))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const spy = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          for (const link of links) link.dataset.active = String(link.dataset.tocTarget === entry.target.id);
+          rail.querySelector('[data-active="true"]')?.scrollIntoView({ block: "nearest" });
+        }
+      },
+      { rootMargin: "-15% 0px -75% 0px" },
+    );
+    sections.forEach((section) => spy.observe(section));
+  }
+</script>
